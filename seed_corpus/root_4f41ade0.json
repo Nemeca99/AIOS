@@ -1,0 +1,57 @@
+{
+  "file_id": "root_4f41ade0",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_4f41ade0-2865a68ac168",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who is curious and interested in new ideas.",
+  "created": "2025-09-22T15:33:05.522902",
+  "size": 56,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "curious",
+      "interested",
+      "ideas"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "is curious",
+      "and interested",
+      "in new"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 17.857142857142858,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 11,
+    "char_count": 56
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.522902",
+  "specialization": "general",
+  "tags": [
+    "i am",
+    "ideas",
+    "curious",
+    "someone",
+    "is curious",
+    "someone who",
+    "emotion_curiosity",
+    "interested"
+  ]
+}

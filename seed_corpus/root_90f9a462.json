@@ -1,0 +1,58 @@
+{
+  "file_id": "root_90f9a462",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_90f9a462-3cc20464d7fb",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who always follows through on my commitments.",
+  "created": "2025-09-22T15:33:05.512403",
+  "size": 58,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "always",
+      "follows",
+      "through",
+      "commitments"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "always follows",
+      "through on",
+      "my commitments"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 10,
+    "char_count": 58
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.512403",
+  "specialization": "enthusiastic",
+  "tags": [
+    "always",
+    "commitments",
+    "i am",
+    "someone",
+    "always follows",
+    "someone who",
+    "through",
+    "follows"
+  ]
+}

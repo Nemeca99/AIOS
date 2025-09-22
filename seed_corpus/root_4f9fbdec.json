@@ -1,0 +1,55 @@
+{
+  "file_id": "root_4f9fbdec",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_4f9fbdec-770350701665",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who appreciates art, music, and beauty.",
+  "created": "2025-09-22T15:33:05.523902",
+  "size": 52,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "appreciates",
+      "music",
+      "beauty"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "appreciates art",
+      "and beauty"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 9,
+    "char_count": 52
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.523902",
+  "specialization": "enthusiastic",
+  "tags": [
+    "appreciates art",
+    "i am",
+    "someone",
+    "someone who",
+    "beauty",
+    "appreciates",
+    "music"
+  ]
+}

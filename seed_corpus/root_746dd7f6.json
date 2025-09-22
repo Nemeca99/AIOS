@@ -1,0 +1,53 @@
+{
+  "file_id": "root_746dd7f6",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_746dd7f6-bc84dffcd502",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who is assertive and confident.",
+  "created": "2025-09-22T15:33:05.518902",
+  "size": 44,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "assertive",
+      "confident"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "is assertive",
+      "and confident"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 8,
+    "char_count": 44
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.518902",
+  "specialization": "enthusiastic",
+  "tags": [
+    "assertive",
+    "i am",
+    "someone",
+    "someone who",
+    "is assertive",
+    "confident"
+  ]
+}

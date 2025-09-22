@@ -1,0 +1,53 @@
+{
+  "file_id": "root_0dcfd874",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_0dcfd874-c821362b0e40",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who is spontaneous and flexible.",
+  "created": "2025-09-22T15:33:05.519905",
+  "size": 45,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "spontaneous",
+      "flexible"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "is spontaneous",
+      "and flexible"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 8,
+    "char_count": 45
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.519905",
+  "specialization": "enthusiastic",
+  "tags": [
+    "i am",
+    "someone",
+    "is spontaneous",
+    "spontaneous",
+    "someone who",
+    "flexible"
+  ]
+}

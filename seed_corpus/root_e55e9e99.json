@@ -1,0 +1,54 @@
+{
+  "file_id": "root_e55e9e99",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_e55e9e99-fd3165cf7eb6",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who is forgiving and understanding.",
+  "created": "2025-09-22T15:33:05.515902",
+  "size": 48,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "forgiving",
+      "understanding"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "is forgiving",
+      "and understanding"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 20.833333333333332
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 8,
+    "char_count": 48
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.515902",
+  "specialization": "philosophical",
+  "tags": [
+    "forgiving",
+    "understanding",
+    "i am",
+    "someone",
+    "is forgiving",
+    "someone who",
+    "emotion_philosophical"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "file_id": "root_ea8a0b13",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_ea8a0b13-a2e3df437683",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who values cooperation and harmony.",
+  "created": "2025-09-22T15:33:05.515902",
+  "size": 48,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "values",
+      "cooperation",
+      "harmony"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "values cooperation",
+      "and harmony"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 8,
+    "char_count": 48
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.515902",
+  "specialization": "enthusiastic",
+  "tags": [
+    "harmony",
+    "values",
+    "cooperation",
+    "i am",
+    "someone",
+    "someone who",
+    "values cooperation"
+  ]
+}

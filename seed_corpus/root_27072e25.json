@@ -1,0 +1,55 @@
+{
+  "file_id": "root_27072e25",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_27072e25-e1187c8fe13d",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who is disciplined and self-controlled.",
+  "created": "2025-09-22T15:33:05.513902",
+  "size": 52,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "disciplined",
+      "self",
+      "controlled"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "is disciplined",
+      "and self"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 9,
+    "char_count": 52
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.513902",
+  "specialization": "enthusiastic",
+  "tags": [
+    "disciplined",
+    "i am",
+    "controlled",
+    "someone",
+    "someone who",
+    "is disciplined",
+    "self"
+  ]
+}

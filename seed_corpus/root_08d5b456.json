@@ -1,0 +1,59 @@
+{
+  "file_id": "root_08d5b456",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_08d5b456-09c0793af925",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who plans ahead and prepares for future events.",
+  "created": "2025-09-22T15:33:05.512902",
+  "size": 60,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "plans",
+      "ahead",
+      "prepares",
+      "future",
+      "events"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "plans ahead",
+      "and prepares",
+      "for future"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 11,
+    "char_count": 60
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.512902",
+  "specialization": "enthusiastic",
+  "tags": [
+    "i am",
+    "someone",
+    "future",
+    "someone who",
+    "plans",
+    "plans ahead",
+    "prepares",
+    "ahead"
+  ]
+}

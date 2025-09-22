@@ -1,0 +1,58 @@
+{
+  "file_id": "root_85eefac0",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_85eefac0-59f23403e404",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who has mood swings and emotional instability.",
+  "created": "2025-09-22T15:33:05.520902",
+  "size": 59,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "mood",
+      "swings",
+      "emotional",
+      "instability"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "has mood",
+      "swings and",
+      "emotional instability"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 10,
+    "char_count": 59
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.520902",
+  "specialization": "enthusiastic",
+  "tags": [
+    "instability",
+    "mood",
+    "i am",
+    "emotional",
+    "someone",
+    "someone who",
+    "swings",
+    "has mood"
+  ]
+}

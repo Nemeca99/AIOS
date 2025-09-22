@@ -1,0 +1,60 @@
+{
+  "file_id": "root_7b2f80fb",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_7b2f80fb-f837c9caff46",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who is trusting and believes in the goodness of others.",
+  "created": "2025-09-22T15:33:05.514902",
+  "size": 68,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "trusting",
+      "believes",
+      "goodness",
+      "others"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "is trusting",
+      "and believes",
+      "in the",
+      "goodness of"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 14.705882352941176
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 13,
+    "char_count": 68
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.514902",
+  "specialization": "philosophical",
+  "tags": [
+    "others",
+    "goodness",
+    "trusting",
+    "i am",
+    "someone",
+    "is trusting",
+    "someone who",
+    "believes",
+    "emotion_philosophical"
+  ]
+}

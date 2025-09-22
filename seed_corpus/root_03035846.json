@@ -1,0 +1,56 @@
+{
+  "file_id": "root_03035846",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_03035846-e0906b9d5296",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who is respectful and considerate of others.",
+  "created": "2025-09-22T15:33:05.516403",
+  "size": 57,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "respectful",
+      "considerate",
+      "others"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "is respectful",
+      "and considerate",
+      "of others"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 10,
+    "char_count": 57
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.516403",
+  "specialization": "enthusiastic",
+  "tags": [
+    "others",
+    "is respectful",
+    "i am",
+    "considerate",
+    "respectful",
+    "someone",
+    "someone who"
+  ]
+}

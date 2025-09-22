@@ -1,0 +1,54 @@
+{
+  "file_id": "root_aa79a0df",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_aa79a0df-0b9a8af7d236",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who is creative and imaginative.",
+  "created": "2025-09-22T15:33:05.523402",
+  "size": 45,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "creative",
+      "imaginative"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "is creative",
+      "and imaginative"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 44.44444444444444,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 8,
+    "char_count": 45
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.523402",
+  "specialization": "creative",
+  "tags": [
+    "creative",
+    "i am",
+    "someone",
+    "emotion_creativity",
+    "someone who",
+    "is creative",
+    "imaginative"
+  ]
+}

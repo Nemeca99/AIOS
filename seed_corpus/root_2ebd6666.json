@@ -1,0 +1,56 @@
+{
+  "file_id": "root_2ebd6666",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_2ebd6666-f4ca4f06483d",
+  "ancestors": [],
+  "children": [],
+  "content": "I am someone who is sensitive to stress and pressure.",
+  "created": "2025-09-22T15:33:05.520902",
+  "size": 53,
+  "analysis": {
+    "common_words": [
+      "someone",
+      "sensitive",
+      "stress",
+      "pressure"
+    ],
+    "common_phrases": [
+      "i am",
+      "someone who",
+      "is sensitive",
+      "to stress",
+      "and pressure"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 10,
+    "char_count": 53
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-22T15:33:05.520902",
+  "specialization": "enthusiastic",
+  "tags": [
+    "pressure",
+    "i am",
+    "someone",
+    "sensitive",
+    "someone who",
+    "stress",
+    "is sensitive"
+  ]
+}
