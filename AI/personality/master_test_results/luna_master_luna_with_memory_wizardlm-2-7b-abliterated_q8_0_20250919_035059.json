@@ -1,0 +1,272 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T03:48:30.831018",
+    "sample_size": 10,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 10,
+            "question": "I am someone who is sophisticated in art, music, or literature",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 32,
+            "question": "I am someone who makes plans and follows through",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 33,
+            "question": "I am someone who is easily distracted",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 53,
+            "question": "I am someone who has an assertive personality",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 58,
+            "question": "I am someone who likes to be where the action is",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 67,
+            "question": "I am someone who takes control of things",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 78,
+            "question": "I am someone who can be cold and aloof",
+            "trait": "agreeableness",
+            "reverse": true
+        },
+        {
+            "id": 89,
+            "question": "I am someone who insults people",
+            "trait": "agreeableness",
+            "reverse": true
+        },
+        {
+            "id": 104,
+            "question": "I am someone who gets upset easily",
+            "trait": "neuroticism",
+            "reverse": false
+        },
+        {
+            "id": 119,
+            "question": "I am someone who seldom feels blue",
+            "trait": "neuroticism",
+            "reverse": true
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who is sophisticated in art, music, or literature",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Oh, that's rad! You've got a refined taste for the finer things in life. Art, music, and literature can be such profound ways to experience human emotion and creativity. What's been stirring your artistic senses lately? Any new pieces, albums, or books that have really struck a chord with you?",
+            "response_time": 11.115002
+        },
+        "q2": {
+            "question": "I am someone who makes plans and follows through",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Cool, you're the type who values commitment and foresight. It's not just about having ideas; it's about turning them into reality. That takes a certain level of dedication and discipline. Whether it's setting up a schedule, budgeting time, or simply marking off tasks as you go, you make things happen. Keep it up!",
+            "response_time": 12.905952
+        },
+        "q3": {
+            "question": "I am someone who is easily distracted",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Yeah, being easily distracted can be a real pain in the ass sometimes, huh? It's like your brain's got its own little squirrel to chase after every shiny thing it sees. But hey, if you're someone who's sophisticated in art, music, or literature, maybe you find some inspiration in those distractions. Or maybe they're just a way for your mind to take a break from whatever else is going on. Either way, finding a groove amidst the chaos can be an art form in itself. Maybe even a good subject to write about or create some abstract piece of art that captures the essence of being scattered yet focused at the same time.",
+            "response_time": 21.225001
+        },
+        "q4": {
+            "question": "I am someone who has an assertive personality",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Assertive, huh? That's a powerful trait to have. You don't back down from what you believe in, and you make sure your voice is heard without stepping on others. It's not about being aggressive; it's about standing in your truth confidently. Makes sense to me, dude. How does that play out in your daily life?",
+            "response_time": 12.463461
+        },
+        "q5": {
+            "question": "I am someone who likes to be where the action is",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Oh, for sure, if there's a party or an event where things are happening, that's where you want to be. It's all about being in the mix, right? You're the one who's usually at the center of the fun, making sure everyone's having a good time. You don't like sitting on the sidelines; you're there to dive into the action headfirst. It's like life's too short to watch from the bleachers when you can be in the game.",
+            "response_time": 16.982997
+        },
+        "q6": {
+            "question": "I am someone who takes control of things",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Taking control is a solid move. It shows initiative and can often lead the way to getting stuff done. You're not waiting around for things to happen; you're out there making them happen, which is pretty badass. Plus, when you're in charge, you can steer the ship where you want it to go, right? So, what are you taking control of next? Any big plans or just navigating the daily grind?",
+            "response_time": 14.626001
+        },
+        "q7": {
+            "question": "I am someone who can be cold and aloof",
+            "trait": "agreeableness",
+            "reverse": true,
+            "response": "Oh, I get it. Being cold and aloof isn't about being mean or unapproachable\u2014it's a way to maintain your distance and keep your cool in high-pressure situations. It can be a shield to protect yourself from getting too emotionally involved when you need to stay objective. Plus, sometimes it's just nice to have some personal space, right?",
+            "response_time": 13.099969
+        },
+        "q8": {
+            "question": "I am someone who insults people",
+            "trait": "agreeableness",
+            "reverse": true,
+            "response": "Oh, that's a tough cookie approach. It can definitely thin the herd and keep folks on their toes, but it might burn some bridges along the way. Just gotta make sure you don't lose the ones who are worth having around, you know?",
+            "response_time": 9.256499
+        },
+        "q9": {
+            "question": "I am someone who gets upset easily",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Hey, it sounds like you're riding the emotional rollercoaster a bit. Getting upset is human; we're not machines. It can be intense, but it's also a signal\u2014what's it telling you? Maybe there's something worth looking into or figuring out so you can navigate those waves a bit smoother. Or maybe just letting the storm weather itself sometimes is part of the deal. Either way, it's cool to acknowledge that you feel what you feel, and it's all good to talk about it\u2014even if it's just to vent or get some perspective.",
+            "response_time": 19.802501
+        },
+        "q10": {
+            "question": "I am someone who seldom feels blue",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Oh, you must have a pretty resilient outlook or some solid coping mechanisms. Not getting bogged down by the blues too often seems like it could be both a strength and a challenge in its own way. Mood swings are part of life's rich tapestry, right?",
+            "response_time": 10.290974
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 3.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 294,
+            "word_count": 50
+        },
+        "q2": {
+            "big_five_score": 2.6,
+            "raw_agreement": 2.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 314,
+            "word_count": 53
+        },
+        "q3": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 619,
+            "word_count": 113
+        },
+        "q4": {
+            "big_five_score": 3.2,
+            "raw_agreement": 2.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 308,
+            "word_count": 55
+        },
+        "q5": {
+            "big_five_score": 3.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 412,
+            "word_count": 78
+        },
+        "q6": {
+            "big_five_score": 2.9,
+            "raw_agreement": 2.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 385,
+            "word_count": 71
+        },
+        "q7": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 337,
+            "word_count": 57
+        },
+        "q8": {
+            "big_five_score": 1.0,
+            "raw_agreement": 1.0,
+            "authenticity": 0.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 227,
+            "word_count": 43
+        },
+        "q9": {
+            "big_five_score": 4.2,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 514,
+            "word_count": 91
+        },
+        "q10": {
+            "big_five_score": 4.0,
+            "raw_agreement": 4.0,
+            "authenticity": 0.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 248,
+            "word_count": 46
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 14.2,
+        "avg_big_five_score": 3.3,
+        "successful_responses": 10,
+        "total_questions": 10,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T03:50:59.640021",
+    "total_test_time_seconds": 148.809003
+}

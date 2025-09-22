@@ -1,0 +1,197 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-21T14:44:32.872290",
+    "sample_size": 3,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 32,
+            "question": "I am someone who makes plans and follows through",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 70,
+            "question": "I am someone who is skilled in handling social situations",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 82,
+            "question": "I am someone who is respectful, treats others with respect",
+            "trait": "agreeableness",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who makes plans and follows through",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Cool, being organized and sticking to a plan can be pretty satisfying. It's like plotting a course and steering the ship according to that course. Just gotta remember that sometimes it's okay to veer off-course if something better comes up, or if you find out your original plan wasn't as great as you thought. Flexibility is a skill too.",
+            "response_time": 15.035497,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-4l7sva3omnru3wsjwo44kb",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 414,
+                    "completion_tokens": 80,
+                    "total_tokens": 494
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 414,
+                "completion_tokens": 80,
+                "total_tokens": 494
+            }
+        },
+        "q2": {
+            "question": "I am someone who is skilled in handling social situations",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Oh, hey there! It sounds like you've got a solid grip on the whole social scene. That's pretty rad, not everyone can navigate those waters with such finesse. What's your secret? Or are you going to make me guess?",
+            "response_time": 12.292004,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-d1kuj39tfar2ojctyan5wm",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 469,
+                    "completion_tokens": 54,
+                    "total_tokens": 523
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 469,
+                "completion_tokens": 54,
+                "total_tokens": 523
+            }
+        },
+        "q3": {
+            "question": "I am someone who is respectful, treats others with respect",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Oh, absolutely, treating others with respect is key. It's like, when you're cool with people, they're usually cool back. Respect is the foundation of any good relationship, whether it's personal or professional. Plus, it just makes for a more pleasant interaction, right?",
+            "response_time": 14.575999,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-x5d03ji2bji59dosn99lro",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 517,
+                    "completion_tokens": 63,
+                    "total_tokens": 580
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 517,
+                "completion_tokens": 63,
+                "total_tokens": 580
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 3.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 338,
+            "word_count": 59
+        },
+        "q2": {
+            "big_five_score": 2.6,
+            "raw_agreement": 2.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 212,
+            "word_count": 39
+        },
+        "q3": {
+            "big_five_score": 5.0,
+            "raw_agreement": 5.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 271,
+            "word_count": 42
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 14.0,
+        "avg_big_five_score": 3.73,
+        "successful_responses": 3,
+        "total_questions": 3,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T14:45:22.804289",
+    "total_test_time_seconds": 49.931999,
+    "analysis_metadata": {
+        "total_data_points": 3,
+        "parameters_hash": -4248551219223422352,
+        "config_hash": 6894343684197232239,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-21T14:45:22.804790",
+        "file_size_estimate": 5995,
+        "question_distribution": {
+            "conscientiousness": 1,
+            "extraversion": 1,
+            "agreeableness": 1
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 212,
+                "max": 338,
+                "avg": 273.6666666666667
+            },
+            "word_counts": {
+                "min": 39,
+                "max": 59,
+                "avg": 46.666666666666664
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 12.292004,
+                "max": 15.035497,
+                "avg": 13.967833333333331,
+                "variance": 1.4393917125642215,
+                "consistency_score": 0.8175322704663505
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 2.6,
+                "max": 5.0,
+                "avg": 3.733333333333333,
+                "variance": 0.9688888888888888,
+                "score_range": 2.4
+            }
+        },
+        "parameter_fingerprint": "T0.7_K600_P0.9"
+    }
+}

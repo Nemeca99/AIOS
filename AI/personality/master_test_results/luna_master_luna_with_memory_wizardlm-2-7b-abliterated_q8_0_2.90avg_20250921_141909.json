@@ -1,0 +1,158 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-21T14:18:29.993644",
+    "sample_size": 2,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 91,
+            "question": "I am someone who believes others have good intentions",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 95,
+            "question": "I am someone who feels others' emotions",
+            "trait": "agreeableness",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who believes others have good intentions",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Hey there! It's cool that you've got a positive outlook on people. I think it's a solid approach to life, actually. It can make interactions way more pleasant and can often lead to better outcomes. Plus, assuming good intentions tends to foster trust and openness in conversations, which is pretty sweet. Just remember, though, to keep an eye out for when those good intentions might not align with actions, so you can adjust your expectations or approaches accordingly. Keep that optimism rolling, but stay sharp!",
+            "response_time": 18.084369,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-rjmjr4anet3qkf9hfekqm",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 422,
+                    "completion_tokens": 109,
+                    "total_tokens": 531
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 422,
+                "completion_tokens": 109,
+                "total_tokens": 531
+            }
+        },
+        "q2": {
+            "question": "I am someone who feels others' emotions",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Oh, that's pretty empathetic of you! It can be exhausting at times, feeling the weight of others' emotions, but it also means you're likely a great person to have around when someone needs a shoulder. It's like being an emotional sponge, soaking up all those vibes. But hey, not everyone's built that way, and there's nothing wrong with setting boundaries or finding ways to recharge after absorbing so much energy. How do you handle it when you're feeling a bit overwhelmed?",
+            "response_time": 15.768939,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-wve2fmdw0qj3d4fj00kpe",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 483,
+                    "completion_tokens": 115,
+                    "total_tokens": 598
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 483,
+                "completion_tokens": 115,
+                "total_tokens": 598
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 2.6,
+            "raw_agreement": 2.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 514,
+            "word_count": 85
+        },
+        "q2": {
+            "big_five_score": 3.2,
+            "raw_agreement": 2.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 475,
+            "word_count": 81
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 16.9,
+        "avg_big_five_score": 2.9,
+        "successful_responses": 2,
+        "total_questions": 2,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T14:19:09.887511",
+    "total_test_time_seconds": 39.893867,
+    "analysis_metadata": {
+        "total_data_points": 2,
+        "parameters_hash": -1736952235538189939,
+        "config_hash": 6195432457609733413,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-21T14:19:09.887511",
+        "file_size_estimate": 4803,
+        "question_distribution": {
+            "agreeableness": 2
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 475,
+                "max": 514,
+                "avg": 494.5
+            },
+            "word_counts": {
+                "min": 81,
+                "max": 85,
+                "avg": 83.0
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 15.768939,
+                "max": 18.084369,
+                "avg": 16.926654,
+                "variance": 1.340304021224999,
+                "consistency_score": 0.8719651208178731
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 2.6,
+                "max": 3.2,
+                "avg": 2.9000000000000004,
+                "variance": 0.09000000000000002,
+                "score_range": 0.6000000000000001
+            }
+        },
+        "parameter_fingerprint": "T0.7_K600_P0.9"
+    }
+}

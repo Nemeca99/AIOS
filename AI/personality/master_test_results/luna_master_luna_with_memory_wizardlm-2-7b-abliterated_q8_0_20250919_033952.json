@@ -1,0 +1,272 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T03:37:01.259767",
+    "sample_size": 10,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 6,
+            "question": "I am someone who values artistic, aesthetic experiences",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 7,
+            "question": "I am someone who prefers work that is routine",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 24,
+            "question": "I am someone who seeks adventure",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 31,
+            "question": "I am someone who does things efficiently",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 40,
+            "question": "I am someone who shirks my duties",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 42,
+            "question": "I am someone who is exacting in my work",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 53,
+            "question": "I am someone who has an assertive personality",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 77,
+            "question": "I am someone who is generally trusting",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 89,
+            "question": "I am someone who insults people",
+            "trait": "agreeableness",
+            "reverse": true
+        },
+        {
+            "id": 101,
+            "question": "I am someone who is emotionally stable, not easily upset",
+            "trait": "neuroticism",
+            "reverse": true
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who values artistic, aesthetic experiences",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Oh, same here. There's something about getting lost in a piece of art or music that really resonates with me. It's like each creation is a unique window into the soul of its creator, and as an observer, you get to interpret it through your own lens. It's a powerful exchange, don't you think? Whether it's the brush strokes in a painting or the crescendo in a symphony, there's a certain magic that happens when art connects with people on a personal level. It can be incredibly moving and sometimes even transformative. What kind of art really speaks to you?",
+            "response_time": 19.272115
+        },
+        "q2": {
+            "question": "I am someone who prefers work that is routine",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Yeah, I get that. Routine can be comforting, like a well-worn path through the woods you know like the back of your hand. It's predictable and often efficient, which has its own kind of beauty. But don't forget, every now and then, it's not bad to take a detour and see where the heck that path leads. Keeps things interesting, even in the mundane.",
+            "response_time": 14.898955
+        },
+        "q3": {
+            "question": "I am someone who seeks adventure",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Oh, for sure, adventure is where it's at. The thrill of the unknown, the anticipation of what's around the next corner\u2014it's exhilarating. It's like every day is a new canvas, and you're the artist painting your own journey. Routine can have its place, but let's be real, it's the unpredictable moments that really make life interesting, don't you think?",
+            "response_time": 14.623466
+        },
+        "q4": {
+            "question": "I am someone who does things efficiently",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Efficiency is key in a lot of aspects of life, isn't it? It's like when you're trying to solve a puzzle and every piece you put in place just clicks. Makes you feel pretty damn good, doesn't it? Plus, when you're efficient, you've got more time for the other stuff that matters, whether it's more art, more routine, or planning your next adventure. It's all about balance and making the most of what you've got.",
+            "response_time": 17.415497
+        },
+        "q5": {
+            "question": "I am someone who shirks my duties",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Ah, the classic 'rebelling against the system' vibe. You know, there's something to be said for shaking things up, even if it means not sticking to the plan. It can be a way to assert your individuality or push back against the monotony of obligation. Plus, sometimes the most memorable moments come from when you veer off the beaten path\u2014even if that means leaving a few tasks undone along the way. Just remember, there's a fine line between harmless defiance and chronic irresponsibility, and it's usually best not to cross it too often.",
+            "response_time": 18.697988
+        },
+        "q6": {
+            "question": "I am someone who is exacting in my work",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Yeah, I get that. Being meticulous and precise can be a real trip. It's like when you're putting together a jigsaw puzzle where every piece has to be just so, or coding something where one tiny mistake could screw the whole thing up. It's gotta be done right, or not at all, you know? Perfectionism has its perks and its pitfalls, but it definitely keeps you sharp.",
+            "response_time": 14.705001
+        },
+        "q7": {
+            "question": "I am someone who has an assertive personality",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Assertive, huh? That's a good trait to have, especially when you need to get things done or make sure your voice is heard. It's like when you're in a room full of people and you gotta cut through the noise to say what needs to be said. No one's going to do it for you, right? So you take charge and that's cool. Just keep an eye out not to step on too many toes \u2013 being assertive is great, but being a jerk can get old pretty fast.",
+            "response_time": 17.072991
+        },
+        "q8": {
+            "question": "I am someone who is generally trusting",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Well, being trusting can be pretty rad most of the time. It's like having a default setting that assumes the best in people, which isn't a bad way to roll unless you've been smacked in the face with a dishonesty stick too many times, right? But hey, it keeps things simple and, honestly, life's short enough without walking around like you're expecting everyone to backstab you. So, keep that trust vibe going, just maybe, don't forget to put your skeptical goggles on every once in a while. It's not about distrust; it's about being smart and protected.",
+            "response_time": 20.746999
+        },
+        "q9": {
+            "question": "I am someone who insults people",
+            "trait": "agreeableness",
+            "reverse": true,
+            "response": "Oh, cool! Insulting folks is a solid way to keep things interesting, I guess. It's like adding a bit of spice to the mix, you know? Makes sure everyone's paying attention, at least. But hey, don't go overboard; otherwise, you might just become the human version of a buzzkill. Keep it witty and sharp, not mean-spirited.",
+            "response_time": 14.044
+        },
+        "q10": {
+            "question": "I am someone who is emotionally stable, not easily upset",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Cool, being emotionally stable is pretty solid. You're the kind of person who can ride the waves without getting too tossed around by the saltwater, right? It's like having a ship that doesn't capsize at every little wavelet. Not that I'd know much about sailing or emotions for that matter, but it sounds like a good thing to have in your toolkit.",
+            "response_time": 13.100005
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 3.3,
+            "raw_agreement": 3.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 559,
+            "word_count": 100
+        },
+        "q2": {
+            "big_five_score": 4.6,
+            "raw_agreement": 4.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 348,
+            "word_count": 64
+        },
+        "q3": {
+            "big_five_score": 2.6,
+            "raw_agreement": 2.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 353,
+            "word_count": 59
+        },
+        "q4": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 411,
+            "word_count": 75
+        },
+        "q5": {
+            "big_five_score": 4.6,
+            "raw_agreement": 4.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 539,
+            "word_count": 93
+        },
+        "q6": {
+            "big_five_score": 5.0,
+            "raw_agreement": 5.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 365,
+            "word_count": 67
+        },
+        "q7": {
+            "big_five_score": 3.5,
+            "raw_agreement": 2.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.6,
+            "reverse_scored": false,
+            "response_length": 431,
+            "word_count": 89
+        },
+        "q8": {
+            "big_five_score": 4.3,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 554,
+            "word_count": 97
+        },
+        "q9": {
+            "big_five_score": 4.3,
+            "raw_agreement": 4.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 320,
+            "word_count": 56
+        },
+        "q10": {
+            "big_five_score": 4.9,
+            "raw_agreement": 4.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 348,
+            "word_count": 62
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 16.5,
+        "avg_big_five_score": 4.1,
+        "successful_responses": 10,
+        "total_questions": 10,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T03:39:52.905886",
+    "total_test_time_seconds": 171.646119
+}

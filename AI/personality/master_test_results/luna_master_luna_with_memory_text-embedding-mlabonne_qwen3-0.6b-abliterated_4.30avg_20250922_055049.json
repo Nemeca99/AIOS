@@ -1,0 +1,272 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-22T05:49:04.092413",
+    "sample_size": 5,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true,
+        "rag_type": "luna"
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 16,
+            "question": "I am someone who thinks poetry and plays are boring",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 32,
+            "question": "I am someone who makes plans and follows through",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 35,
+            "question": "I am someone who avoids my duties",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 37,
+            "question": "I am someone who gets chores done right away",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 90,
+            "question": "I am someone who has a good word for everyone",
+            "trait": "agreeableness",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who thinks poetry and plays are boring",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Yeah, I get it. Poetry and plays can come off as stuffy and outdated to some folks, especially if you're not into the whole literary or performance scene. It's like they're speaking another language sometimes, right? But hey, that doesn't mean there isn't something cool to unpack in them if you're willing to give it a chance. Sometimes the most profound ideas are wrapped up in metaphors and old-school language. And plays? They're just a live version of a good book, with the added bonus of watching people act out stories. It's like reality TV from the 1800s. But if you genuinely find them snooze-fests, there's no shame in that. There's a ton of other stuff out there to stimulate your brain or entertain you.",
+            "response_time": 29.340975,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-qz1rzobjz3h3jbvmn5yyy5",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 254,
+                    "completion_tokens": 182,
+                    "total_tokens": 436
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 254,
+                "completion_tokens": 182,
+                "total_tokens": 436
+            }
+        },
+        "q2": {
+            "question": "I am someone who makes plans and follows through",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Cool, being organized and sticking to plans is a solid approach. It's like plotting a course and steering the ship straight towards your goals. Unless there's a storm or you change your mind, you're likely to hit that destination. Keep it up! But hey, don't be too rigid; a bit of spontaneity can spice things up sometimes.",
+            "response_time": 14.112967,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-wz52jcd488cx508lhnbnk",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 315,
+                    "completion_tokens": 81,
+                    "total_tokens": 396
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 315,
+                "completion_tokens": 81,
+                "total_tokens": 396
+            }
+        },
+        "q3": {
+            "question": "I am someone who avoids my duties",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Ah, the classic 'procrastination shuffle.' It's like your brain has hit the snooze button on responsibility, huh? But hey, everyone's got their moments of dodging the bullet on tasks. The key is finding what works to kick that can down the road into the realm of 'done.' Whether it's breaking tasks into smaller steps, finding a buddy to hold you accountable, or even just setting a timer to create urgency, there's a strategy out there for you. But remember, the longer you leave those duties hanging, the heavier that chain gets. Might as well lift the weight now rather than later.",
+            "response_time": 22.817856,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-idwtz4arnb70bu3o7ellvxi",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 353,
+                    "completion_tokens": 139,
+                    "total_tokens": 492
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 353,
+                "completion_tokens": 139,
+                "total_tokens": 492
+            }
+        },
+        "q4": {
+            "question": "I am someone who gets chores done right away",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Oh, you're the 'immediate action' type, huh? That's pretty efficient. It's like you're the task-completion Terminator—hydrochloric acid for procrastination. But hey, don't forget to pace yourself or you might wear yourself out. Balance is key, even for a robot with a mission.",
+            "response_time": 13.988675,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-pvzdzmevu3yiygiqss18",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 398,
+                    "completion_tokens": 80,
+                    "total_tokens": 478
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 398,
+                "completion_tokens": 80,
+                "total_tokens": 478
+            }
+        },
+        "q5": {
+            "question": "I am someone who has a good word for everyone",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "You sound like the kind of person who's got a sunny outlook and probably keeps the vibes positive around you. It's like you're the human equivalent of a 'Choose Your Own Adventure' book where every story ends on a high note because, well, you're in it. Keep spreading that positivity!",
+            "response_time": 12.90032,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-0z6lvyi47irrcwew937a4b",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 404,
+                    "completion_tokens": 73,
+                    "total_tokens": 477
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 404,
+                "completion_tokens": 73,
+                "total_tokens": 477
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 5.0,
+            "raw_agreement": 4.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 715,
+            "word_count": 125
+        },
+        "q2": {
+            "big_five_score": 4.3,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 323,
+            "word_count": 57
+        },
+        "q3": {
+            "big_five_score": 4.9,
+            "raw_agreement": 4.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 584,
+            "word_count": 101
+        },
+        "q4": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 276,
+            "word_count": 42
+        },
+        "q5": {
+            "big_five_score": 3.3,
+            "raw_agreement": 2.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 284,
+            "word_count": 50
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 18.6,
+        "avg_big_five_score": 4.3,
+        "successful_responses": 5,
+        "total_questions": 5,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-22T05:50:49.294336",
+    "total_test_time_seconds": 105.201923,
+    "analysis_metadata": {
+        "total_data_points": 5,
+        "parameters_hash": 4062293899238237518,
+        "config_hash": 5431869767308055150,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-22T05:50:49.294837",
+        "file_size_estimate": 9952,
+        "question_distribution": {
+            "openness": 1,
+            "conscientiousness": 3,
+            "agreeableness": 1
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 276,
+                "max": 715,
+                "avg": 436.4
+            },
+            "word_counts": {
+                "min": 42,
+                "max": 125,
+                "avg": 75.0
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 12.90032,
+                "max": 29.340975,
+                "avg": 18.632158599999997,
+                "variance": 41.407563562141036,
+                "consistency_score": 0.4396690975674803
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 3.3,
+                "max": 5.0,
+                "avg": 4.300000000000001,
+                "variance": 0.3880000000000002,
+                "score_range": 1.7000000000000002
+            }
+        },
+        "parameter_fingerprint": "T0.7_K2000_P0.9"
+    }
+}

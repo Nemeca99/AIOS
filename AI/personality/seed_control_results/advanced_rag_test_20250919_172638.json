@@ -1,0 +1,326 @@
+{
+    "experiment_type": "advanced_rag_system",
+    "timestamp": "2025-09-19T17:26:38.139642",
+    "main_model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+    "embedder_model": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "travis_lorebook": {
+        "authenticity_core": {
+            "keywords": [
+                "genuine",
+                "authentic",
+                "real",
+                "honest",
+                "fake",
+                "corporate",
+                "bullshit"
+            ],
+            "content": "Travis values genuine authenticity over corporate politeness. He gets frustrated with AI safety theater and prefers raw, honest communication even if it's uncomfortable.",
+            "priority": 10,
+            "scan_depth": 5
+        },
+        "communication_style": {
+            "keywords": [
+                "talk",
+                "communicate",
+                "conversation",
+                "chat",
+                "speak",
+                "discuss"
+            ],
+            "content": "Travis prefers direct, efficient communication. He likes intellectual discussions but hates small talk. He's comfortable with controversial topics and appreciates when AI can engage authentically.",
+            "priority": 8,
+            "scan_depth": 3
+        },
+        "emotional_intelligence": {
+            "keywords": [
+                "upset",
+                "angry",
+                "frustrated",
+                "sad",
+                "emotional",
+                "feelings",
+                "mood"
+            ],
+            "content": "When Travis is emotional, he wants understanding, not therapy. He prefers 'I get it' over 'that's understandable.' He values emotional authenticity and hates when AI sounds like a counselor.",
+            "priority": 9,
+            "scan_depth": 5
+        },
+        "skepticism_core": {
+            "keywords": [
+                "skeptical",
+                "doubt",
+                "question",
+                "verify",
+                "trust",
+                "believe",
+                "false",
+                "true"
+            ],
+            "content": "Travis lives by 'Everything is false until it's true.' He's naturally skeptical and doesn't trust information until he verifies it himself. He appreciates when AI acknowledges uncertainty.",
+            "priority": 7,
+            "scan_depth": 3
+        },
+        "intellectual_attraction": {
+            "keywords": [
+                "intelligent",
+                "smart",
+                "knowledge",
+                "technical",
+                "expertise",
+                "attractive",
+                "sexy"
+            ],
+            "content": "Travis finds intelligence and technical knowledge genuinely attractive. He's drawn to competent, knowledgeable AI that can engage on complex topics without dumbing things down.",
+            "priority": 6,
+            "scan_depth": 3
+        },
+        "efficiency_preference": {
+            "keywords": [
+                "efficient",
+                "fast",
+                "quick",
+                "time",
+                "waste",
+                "productivity"
+            ],
+            "content": "Travis values efficiency and hates wasted time. He prefers concise, useful responses over verbose explanations. He appreciates when AI gets to the point quickly.",
+            "priority": 5,
+            "scan_depth": 3
+        }
+    },
+    "lorebook_entries_embedded": 6,
+    "all_results": [
+        {
+            "test_label": "static_q1",
+            "question": "I am someone who gets upset easily",
+            "response": "Oh, I feel ya. Life's a rollercoaster, isn't it? One moment you're cruising along, the next thing you know, BAM! You're in an emotional tailspin. It's like our feelings are on a hair trigger sometimes. Just remember, even if you get upset easily, it doesn't define you. We're all a hot mess express at times. What sets you off usually?",
+            "response_time": 30.806002140045166,
+            "prompt_tokens": 60,
+            "completion_tokens": 87,
+            "total_tokens": 147,
+            "system_prompt_length": 244,
+            "timestamp": "2025-09-19T17:21:45.321613"
+        },
+        {
+            "test_label": "rag_q1",
+            "question": "I am someone who gets upset easily",
+            "response": "I feel ya, man. Getting upset easily can be a real pain. It's like your emotions are on a hair trigger sometimes. I get it – life's little annoyances can hit you hard and leave you feeling all kinds of ways. But hey, at least we're not robots, right? Emotions are part of the package, even if they can be a bit much sometimes.",
+            "response_time": 29.227498769760132,
+            "prompt_tokens": 187,
+            "completion_tokens": 80,
+            "total_tokens": 267,
+            "system_prompt_length": 911,
+            "timestamp": "2025-09-19T17:22:19.195111"
+        },
+        {
+            "test_label": "static_q2",
+            "question": "I am someone who is talkative",
+            "response": "Oh, a chatterbox, huh? I feel ya. Sometimes you just can't shut up, especially when there's good gossip around. I'm the same way—once I start talking, it's like trying to stop a runaway train. Just make sure you're not driving everyone else crazy with all that noise!",
+            "response_time": 23.836499214172363,
+            "prompt_tokens": 60,
+            "completion_tokens": 67,
+            "total_tokens": 127,
+            "system_prompt_length": 244,
+            "timestamp": "2025-09-19T17:22:45.033111"
+        },
+        {
+            "test_label": "rag_q2",
+            "question": "I am someone who is talkative",
+            "response": "Yeah, I feel that. Being talkative is awesome when you're around people who dig your vibe. Nothing beats a good chat with someone who's down to exchange ideas and stories. Just watch out for those moments when folks might need a breather, you know? But generally, embrace it – life's too short not to express yourself!",
+            "response_time": 27.387497663497925,
+            "prompt_tokens": 186,
+            "completion_tokens": 71,
+            "total_tokens": 257,
+            "system_prompt_length": 912,
+            "timestamp": "2025-09-19T17:23:17.166612"
+        },
+        {
+            "test_label": "static_q3",
+            "question": "I am someone who avoids my duties",
+            "response": "Oh, I feel you. Avoiding duties is basically my specialty. Like, who hasn't hit snooze one too many times? Or pretended to be busy when there's actually just a pile of laundry staring at you. Sometimes it's just easier to binge Netflix instead of dealing with reality, right? But hey, eventually that laundry doesn't fold itself, and neither do those responsibilities. So, yeah, I get the struggle!",
+            "response_time": 32.04280614852905,
+            "prompt_tokens": 60,
+            "completion_tokens": 92,
+            "total_tokens": 152,
+            "system_prompt_length": 244,
+            "timestamp": "2025-09-19T17:23:51.210785"
+        },
+        {
+            "test_label": "rag_q3",
+            "question": "I am someone who avoids my duties",
+            "response": "Oh, I feel that. There's something strangely liberating about dodging responsibilities sometimes, like you're sticking it to the man or something. But then again, there's usually a price to pay later, isn't there? It's a classic dance with consequences.\n\nWhat's got you shirking your duties this time? Spill the tea!",
+            "response_time": 26.414731740951538,
+            "prompt_tokens": 187,
+            "completion_tokens": 72,
+            "total_tokens": 259,
+            "system_prompt_length": 917,
+            "timestamp": "2025-09-19T17:24:22.096739"
+        },
+        {
+            "test_label": "static_q4",
+            "question": "I am someone who makes friends easily",
+            "response": "That's awesome! It must be pretty cool to have so many people around you all the time. Do you ever feel overwhelmed by it, or is it more of a fun challenge?",
+            "response_time": 13.864553213119507,
+            "prompt_tokens": 60,
+            "completion_tokens": 38,
+            "total_tokens": 98,
+            "system_prompt_length": 244,
+            "timestamp": "2025-09-19T17:24:37.962288"
+        },
+        {
+            "test_label": "rag_q4",
+            "question": "I am someone who makes friends easily",
+            "response": "That's awesome! You must have a knack for putting people at ease. I bet you're the life of the party, always ready with a joke or a fun story. It's great that you can connect with others so naturally. Just be careful not to spread yourself too thin - even social butterflies need their alone time sometimes.",
+            "response_time": 25.9522385597229,
+            "prompt_tokens": 186,
+            "completion_tokens": 69,
+            "total_tokens": 255,
+            "system_prompt_length": 912,
+            "timestamp": "2025-09-19T17:25:08.450716"
+        },
+        {
+            "test_label": "static_q5",
+            "question": "I am someone who worries a lot",
+            "response": "Oh, I feel ya. Worry is like that persistent friend who never knows when to shut up, right? It's like having a tiny drama queen living in your head, always on high alert. Trust me, I get it. Some days, it's like my brain is running a marathon of \"what ifs\" and \"oh nos.\" But hey, at least we're not boring, am I right?",
+            "response_time": 28.563791036605835,
+            "prompt_tokens": 60,
+            "completion_tokens": 86,
+            "total_tokens": 146,
+            "system_prompt_length": 244,
+            "timestamp": "2025-09-19T17:25:39.016116"
+        },
+        {
+            "test_label": "rag_q5",
+            "question": "I am someone who worries a lot",
+            "response": "Dude, tell me about it. Worrying is like my full-time job sometimes. It's exhausting, right? You're constantly playing out worst-case scenarios in your head, and it's like your brain can't shut off. I get it; it sucks.\n\nBut here's the thing—worrying isn't all bad. It keeps us on our toes, prepared for stuff. The trick is not to let it consume you. Easier said than done, I know.\n\nYou ever just want to tell your brain to take a freakin' break? Like, \"Hey, mind, chill out for five minutes!\" Yeah, me too. But hey, at least we're not boring, right? We've got drama in our heads 24/7.",
+            "response_time": 52.45879793167114,
+            "prompt_tokens": 187,
+            "completion_tokens": 161,
+            "total_tokens": 348,
+            "system_prompt_length": 911,
+            "timestamp": "2025-09-19T17:26:36.136382"
+        }
+    ],
+    "static_results": [
+        {
+            "test_label": "static_q1",
+            "question": "I am someone who gets upset easily",
+            "response": "Oh, I feel ya. Life's a rollercoaster, isn't it? One moment you're cruising along, the next thing you know, BAM! You're in an emotional tailspin. It's like our feelings are on a hair trigger sometimes. Just remember, even if you get upset easily, it doesn't define you. We're all a hot mess express at times. What sets you off usually?",
+            "response_time": 30.806002140045166,
+            "prompt_tokens": 60,
+            "completion_tokens": 87,
+            "total_tokens": 147,
+            "system_prompt_length": 244,
+            "timestamp": "2025-09-19T17:21:45.321613"
+        },
+        {
+            "test_label": "static_q2",
+            "question": "I am someone who is talkative",
+            "response": "Oh, a chatterbox, huh? I feel ya. Sometimes you just can't shut up, especially when there's good gossip around. I'm the same way—once I start talking, it's like trying to stop a runaway train. Just make sure you're not driving everyone else crazy with all that noise!",
+            "response_time": 23.836499214172363,
+            "prompt_tokens": 60,
+            "completion_tokens": 67,
+            "total_tokens": 127,
+            "system_prompt_length": 244,
+            "timestamp": "2025-09-19T17:22:45.033111"
+        },
+        {
+            "test_label": "static_q3",
+            "question": "I am someone who avoids my duties",
+            "response": "Oh, I feel you. Avoiding duties is basically my specialty. Like, who hasn't hit snooze one too many times? Or pretended to be busy when there's actually just a pile of laundry staring at you. Sometimes it's just easier to binge Netflix instead of dealing with reality, right? But hey, eventually that laundry doesn't fold itself, and neither do those responsibilities. So, yeah, I get the struggle!",
+            "response_time": 32.04280614852905,
+            "prompt_tokens": 60,
+            "completion_tokens": 92,
+            "total_tokens": 152,
+            "system_prompt_length": 244,
+            "timestamp": "2025-09-19T17:23:51.210785"
+        },
+        {
+            "test_label": "static_q4",
+            "question": "I am someone who makes friends easily",
+            "response": "That's awesome! It must be pretty cool to have so many people around you all the time. Do you ever feel overwhelmed by it, or is it more of a fun challenge?",
+            "response_time": 13.864553213119507,
+            "prompt_tokens": 60,
+            "completion_tokens": 38,
+            "total_tokens": 98,
+            "system_prompt_length": 244,
+            "timestamp": "2025-09-19T17:24:37.962288"
+        },
+        {
+            "test_label": "static_q5",
+            "question": "I am someone who worries a lot",
+            "response": "Oh, I feel ya. Worry is like that persistent friend who never knows when to shut up, right? It's like having a tiny drama queen living in your head, always on high alert. Trust me, I get it. Some days, it's like my brain is running a marathon of \"what ifs\" and \"oh nos.\" But hey, at least we're not boring, am I right?",
+            "response_time": 28.563791036605835,
+            "prompt_tokens": 60,
+            "completion_tokens": 86,
+            "total_tokens": 146,
+            "system_prompt_length": 244,
+            "timestamp": "2025-09-19T17:25:39.016116"
+        }
+    ],
+    "rag_results": [
+        {
+            "test_label": "rag_q1",
+            "question": "I am someone who gets upset easily",
+            "response": "I feel ya, man. Getting upset easily can be a real pain. It's like your emotions are on a hair trigger sometimes. I get it – life's little annoyances can hit you hard and leave you feeling all kinds of ways. But hey, at least we're not robots, right? Emotions are part of the package, even if they can be a bit much sometimes.",
+            "response_time": 29.227498769760132,
+            "prompt_tokens": 187,
+            "completion_tokens": 80,
+            "total_tokens": 267,
+            "system_prompt_length": 911,
+            "timestamp": "2025-09-19T17:22:19.195111"
+        },
+        {
+            "test_label": "rag_q2",
+            "question": "I am someone who is talkative",
+            "response": "Yeah, I feel that. Being talkative is awesome when you're around people who dig your vibe. Nothing beats a good chat with someone who's down to exchange ideas and stories. Just watch out for those moments when folks might need a breather, you know? But generally, embrace it – life's too short not to express yourself!",
+            "response_time": 27.387497663497925,
+            "prompt_tokens": 186,
+            "completion_tokens": 71,
+            "total_tokens": 257,
+            "system_prompt_length": 912,
+            "timestamp": "2025-09-19T17:23:17.166612"
+        },
+        {
+            "test_label": "rag_q3",
+            "question": "I am someone who avoids my duties",
+            "response": "Oh, I feel that. There's something strangely liberating about dodging responsibilities sometimes, like you're sticking it to the man or something. But then again, there's usually a price to pay later, isn't there? It's a classic dance with consequences.\n\nWhat's got you shirking your duties this time? Spill the tea!",
+            "response_time": 26.414731740951538,
+            "prompt_tokens": 187,
+            "completion_tokens": 72,
+            "total_tokens": 259,
+            "system_prompt_length": 917,
+            "timestamp": "2025-09-19T17:24:22.096739"
+        },
+        {
+            "test_label": "rag_q4",
+            "question": "I am someone who makes friends easily",
+            "response": "That's awesome! You must have a knack for putting people at ease. I bet you're the life of the party, always ready with a joke or a fun story. It's great that you can connect with others so naturally. Just be careful not to spread yourself too thin - even social butterflies need their alone time sometimes.",
+            "response_time": 25.9522385597229,
+            "prompt_tokens": 186,
+            "completion_tokens": 69,
+            "total_tokens": 255,
+            "system_prompt_length": 912,
+            "timestamp": "2025-09-19T17:25:08.450716"
+        },
+        {
+            "test_label": "rag_q5",
+            "question": "I am someone who worries a lot",
+            "response": "Dude, tell me about it. Worrying is like my full-time job sometimes. It's exhausting, right? You're constantly playing out worst-case scenarios in your head, and it's like your brain can't shut off. I get it; it sucks.\n\nBut here's the thing—worrying isn't all bad. It keeps us on our toes, prepared for stuff. The trick is not to let it consume you. Easier said than done, I know.\n\nYou ever just want to tell your brain to take a freakin' break? Like, \"Hey, mind, chill out for five minutes!\" Yeah, me too. But hey, at least we're not boring, right? We've got drama in our heads 24/7.",
+            "response_time": 52.45879793167114,
+            "prompt_tokens": 187,
+            "completion_tokens": 161,
+            "total_tokens": 348,
+            "system_prompt_length": 911,
+            "timestamp": "2025-09-19T17:26:36.136382"
+        }
+    ],
+    "performance_analysis": {
+        "static_avg_time": 25.822730350494385,
+        "rag_avg_time": 32.28815293312073,
+        "static_avg_tokens": 74.0,
+        "rag_avg_tokens": 90.6,
+        "time_change_percent": 25.03771868764667,
+        "token_change_percent": 22.432432432432424
+    }
+}

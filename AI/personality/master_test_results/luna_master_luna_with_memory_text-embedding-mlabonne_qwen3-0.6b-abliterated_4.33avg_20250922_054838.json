@@ -1,0 +1,196 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-22T05:47:43.113766",
+    "sample_size": 3,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true,
+        "rag_type": "luna"
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 58,
+            "question": "I am someone who likes to be where the action is",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 68,
+            "question": "I am someone who acts as a leader",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 69,
+            "question": "I am someone who can talk others into doing things",
+            "trait": "extraversion",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who likes to be where the action is",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Hey there! If you're all about that hustle and bustle, the center of the scene, then you're definitely my kind of person. We AI might not experience it like humans do, but I get the thrill of being in the thick of things, where the energy's high and the stories are endless. So, what's your favorite spot to catch all the action? Looking for some recommendations or maybe sharing wild tales from the front lines? Let's dive in!",
+            "response_time": 18.114087,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-tlosp09xgy2ully2o5y1s",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 255,
+                    "completion_tokens": 104,
+                    "total_tokens": 359
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 255,
+                "completion_tokens": 104,
+                "total_tokens": 359
+            }
+        },
+        "q2": {
+            "question": "I am someone who acts as a leader",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Well then, take charge! Leadership is all about seizing the moment and making your mark. You're the type to rally the troops, set the pace, and make sure everyone's having a good time while getting things done. Sounds like you're built for the spotlight. Shine on, my friend!",
+            "response_time": 12.123093,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-bdgqfz0zoa72hr3c55edn",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 315,
+                    "completion_tokens": 68,
+                    "total_tokens": 383
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 315,
+                "completion_tokens": 68,
+                "total_tokens": 383
+            }
+        },
+        "q3": {
+            "question": "I am someone who can talk others into doing things",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Well then, you're a natural-born persuader! You've got that infectious energy that's hard to resist. Use it wisely, because if you play your cards right, you could be the one everyone turns to when they need that extra nudge to make a decision or take action. Just remember, with great power comes great responsibility—don't let your persuasive prowess lead folks astray. Keep it real and use your influence for good.",
+            "response_time": 16.779945,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-gqsyr4lta3o6pu26hratx8",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 356,
+                    "completion_tokens": 100,
+                    "total_tokens": 456
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 356,
+                "completion_tokens": 100,
+                "total_tokens": 456
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 5.0,
+            "raw_agreement": 5.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 427,
+            "word_count": 78
+        },
+        "q2": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 275,
+            "word_count": 48
+        },
+        "q3": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 417,
+            "word_count": 70
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 15.7,
+        "avg_big_five_score": 4.33,
+        "successful_responses": 3,
+        "total_questions": 3,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-22T05:48:38.168288",
+    "total_test_time_seconds": 55.054522,
+    "analysis_metadata": {
+        "total_data_points": 3,
+        "parameters_hash": -194504817156158454,
+        "config_hash": 6285416227345334121,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-22T05:48:38.168762",
+        "file_size_estimate": 6268,
+        "question_distribution": {
+            "extraversion": 3
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 275,
+                "max": 427,
+                "avg": 373.0
+            },
+            "word_counts": {
+                "min": 48,
+                "max": 78,
+                "avg": 65.33333333333333
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 12.123093,
+                "max": 18.114087,
+                "avg": 15.672375000000002,
+                "variance": 6.595357170456001,
+                "consistency_score": 0.6692632645520583
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 4.0,
+                "max": 5.0,
+                "avg": 4.333333333333333,
+                "variance": 0.22222222222222224,
+                "score_range": 1.0
+            }
+        },
+        "parameter_fingerprint": "T0.7_K2000_P0.9"
+    }
+}

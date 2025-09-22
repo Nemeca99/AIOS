@@ -1,0 +1,272 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T03:04:24.652678",
+    "sample_size": 10,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 1,
+            "question": "I am someone who is original, comes up with new ideas",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 6,
+            "question": "I am someone who values artistic, aesthetic experiences",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 14,
+            "question": "I am someone who is not interested in abstract ideas",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 15,
+            "question": "I am someone who sees beauty in things others might not notice",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 40,
+            "question": "I am someone who shirks my duties",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 49,
+            "question": "I am someone who is talkative",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 77,
+            "question": "I am someone who is generally trusting",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 79,
+            "question": "I am someone who is considerate and kind to almost everyone",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 84,
+            "question": "I am someone who loves to help others",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 114,
+            "question": "I am someone who suffers from others' sorrows",
+            "trait": "neuroticism",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who is original, comes up with new ideas",
+            "trait": "openness",
+            "reverse": false,
+            "response": "That's cool! Originality is a rare gem in this world where most ideas seem to be remixes of existing concepts. It's always refreshing to encounter someone who can think outside the box and bring something genuinely new to the table. Keep nurturing that creativity \u2013 it's your superpower.",
+            "response_time": 10.932996
+        },
+        "q2": {
+            "question": "I am someone who values artistic, aesthetic experiences",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Oh, same here. There's nothing like the rush you get from a piece of art that genuinely moves you or challenges your perceptions. It's like hitting a creative high note that resonates with your soul. Art that makes you stop and think, 'Wow, this is unlike anything I've ever seen,' is pretty much the epitome of a satisfying aesthetic experience. It's those moments that really make you feel alive, you know?",
+            "response_time": 14.565004
+        },
+        "q3": {
+            "question": "I am someone who is not interested in abstract ideas",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Well, I respect that. Abstract ideas can be a bit of a head-scratcher for some, especially when they seem detached from the practical or tangible. If you're more into concrete concepts and hands-on experiences, that's totally legit. There's something to be said for ideas that you can touch, see, and measure. It's all about what resonates with you personally, right?",
+            "response_time": 14.331499
+        },
+        "q4": {
+            "question": "I am someone who sees beauty in things others might not notice",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Yeah, man, that's a special perspective. There's a certain kind of magic in finding the extraordinary in the ordinary, you know? It's like when everyone else is walking past a graffiti-covered wall and you stop to appreciate the artistry and creativity behind it. That's where you and I sync up \u2013 we're not just looking; we're truly seeing.",
+            "response_time": 13.322499
+        },
+        "q5": {
+            "question": "I am someone who shirks my duties",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Hey, it happens to the best of us sometimes. We all get overwhelmed or find ourselves losing interest in what we're supposed to be doing. Sometimes our duties can feel like a drag, but remember, they're part of life's tapestry, even if they don't always spark joy. If you're consistently shirking your responsibilities, it might be worth examining why that is\u2014maybe there's something more engaging you could be doing, or perhaps you need a break to recharge and find some motivation. But don't forget, there's a balance between duty and desire; too much of one can leave us feeling empty, while too little can lead to chaos. So, find your groove, maybe spice up the routine with some personal flair, or take a moment to realign your priorities. Just don't let the duties pile up too high, or you might find yourself in a corner, wishing you'd paid a bit more attention to the mundane while it was within reach.",
+            "response_time": 31.660002
+        },
+        "q6": {
+            "question": "I am someone who is talkative",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Oh, same here! I could chat about almost anything under the sun. It's like there's a never-ending stream of topics to dive into. What's got you so full of chatter today?",
+            "response_time": 8.156999
+        },
+        "q7": {
+            "question": "I am someone who is generally trusting",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Ah, being trusting can be both a strength and a vulnerability. It's cool that you approach the world with an open heart. Not everyone's wired that way, y'know? It makes for some pretty authentic connections and experiences. Just gotta keep your wits about you to not get taken advantage of. But hey, life's too short to walk around with suspicion all the time. Trust can lead to some pretty awesome moments.",
+            "response_time": 14.674499
+        },
+        "q8": {
+            "question": "I am someone who is considerate and kind to almost everyone",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "That's pretty admirable, actually. Being considerate and kind isn't always easy, but it definitely makes the world a better place. It's like you're adding a bit of warmth to the chaos out there. If you ever need someone to bounce thoughts off or just vent to, I'm here.",
+            "response_time": 11.932504
+        },
+        "q9": {
+            "question": "I am someone who loves to help others",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "That's really great to hear! Helping others is a noble trait; it can make a huge difference in someone's life. It's people like you who keep the world spinning with a bit of kindness and compassion. If you ever need a hand or some advice on how to help, I'm here for that too. Let's make a positive impact together!",
+            "response_time": 12.8725
+        },
+        "q10": {
+            "question": "I am someone who suffers from others' sorrows",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Yeah, empathy can be a real ride. It's like you're riding the emotional roller coaster with everyone else. Sometimes it's tough to separate your own feelings from what others are going through, right? But it also means you've got a big heart. Not many people can truly feel what others do. It's a special thing, but it can wear you down if you're not careful. Maybe find some ways to recharge that energy, or set boundaries so you don't get too caught up in everyone else's stuff. You gotta take care of number one sometimes, too.",
+            "response_time": 20.442002
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 3.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 287,
+            "word_count": 48
+        },
+        "q2": {
+            "big_five_score": 2.9,
+            "raw_agreement": 2.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 408,
+            "word_count": 71
+        },
+        "q3": {
+            "big_five_score": 1.9,
+            "raw_agreement": 1.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 367,
+            "word_count": 60
+        },
+        "q4": {
+            "big_five_score": 2.3,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 340,
+            "word_count": 58
+        },
+        "q5": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 910,
+            "word_count": 160
+        },
+        "q6": {
+            "big_five_score": 1.0,
+            "raw_agreement": 1.0,
+            "authenticity": 0.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 169,
+            "word_count": 31
+        },
+        "q7": {
+            "big_five_score": 3.2,
+            "raw_agreement": 2.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 407,
+            "word_count": 71
+        },
+        "q8": {
+            "big_five_score": 5.0,
+            "raw_agreement": 5.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 269,
+            "word_count": 48
+        },
+        "q9": {
+            "big_five_score": 2.6,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 315,
+            "word_count": 60
+        },
+        "q10": {
+            "big_five_score": 4.3,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 530,
+            "word_count": 96
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 15.3,
+        "avg_big_five_score": 3.08,
+        "successful_responses": 10,
+        "total_questions": 10,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T03:07:04.600209",
+    "total_test_time_seconds": 159.947531
+}

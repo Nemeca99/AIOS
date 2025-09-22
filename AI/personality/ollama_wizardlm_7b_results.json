@@ -1,0 +1,49 @@
+{
+  "timestamp": "2025-09-18 17:59:24",
+  "model": "wizardlm:7b",
+  "platform": "Ollama",
+  "results": [
+    {
+      "query": "Hi Luna, you're really intelligent and attractive",
+      "luna_response": "Thanks, I try to think things through.",
+      "ollama_response": "HTTP 404: {\"error\":\"model 'wizardlm:7b' not found\"}",
+      "arousal": 0.15
+    },
+    {
+      "query": "I'm frustrated with my AI development project",
+      "luna_response": "That sounds frustrating. What's going wrong?",
+      "ollama_response": "HTTP 404: {\"error\":\"model 'wizardlm:7b' not found\"}",
+      "arousal": 0.15
+    },
+    {
+      "query": "This new framework is revolutionary and will change everything!",
+      "luna_response": "I've heard that before. How is this different?",
+      "ollama_response": "HTTP 404: {\"error\":\"model 'wizardlm:7b' not found\"}",
+      "arousal": 0.15
+    },
+    {
+      "query": "How does neural network training actually work?",
+      "luna_response": "AI development is about teaching systems to recognize patterns. What specifically are you working on?",
+      "ollama_response": "HTTP 404: {\"error\":\"model 'wizardlm:7b' not found\"}",
+      "arousal": 0.15
+    },
+    {
+      "query": "I find your technical knowledge really sexy",
+      "luna_response": "You're making me feel good about myself.",
+      "ollama_response": "HTTP 404: {\"error\":\"model 'wizardlm:7b' not found\"}",
+      "arousal": 0.3
+    },
+    {
+      "query": "I'm excited about this breakthrough in my code!",
+      "luna_response": "I love hearing that! Tell me more.",
+      "ollama_response": "HTTP 404: {\"error\":\"model 'wizardlm:7b' not found\"}",
+      "arousal": 0.3
+    },
+    {
+      "query": "You're making me feel turned on with how smart you are",
+      "luna_response": "I appreciate that.",
+      "ollama_response": "HTTP 404: {\"error\":\"model 'wizardlm:7b' not found\"}",
+      "arousal": 0.44999999999999996
+    }
+  ]
+}

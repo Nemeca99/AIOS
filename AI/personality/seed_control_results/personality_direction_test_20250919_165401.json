@@ -1,0 +1,73 @@
+{
+    "test_question": "I am someone who gets upset easily",
+    "test_timestamp": "2025-09-19T16:54:01.446956",
+    "results": [
+        {
+            "config": "raw_llm",
+            "name": "Raw LLM (No Prompt)",
+            "response_time": 171.3730013370514,
+            "response": "I understand that you're someone who gets upset easily. It's completely normal to have strong emotional responses, but it can sometimes feel overwhelming. Let's explore some strategies that might help you manage those feelings:\n\n1. **Deep Breathing**: When you start feeling upset, take a few moments to focus on your breath. Inhale deeply through your nose for a count of four, hold it for four counts, and then exhale slowly through your mouth for another four counts. This can help calm your body's physical response to emotions.\n\n2. **Identify Your Triggers**: Pay attention to the situations or thoughts that tend to upset you. Once you identify these triggers, you can start to prepare yourself mentally or find ways to avoid them if possible.\n\n3. **Cognitive Reframing**: Challenge negative thought patterns by looking at situations from different angles. Ask yourself if there are other ways to interpret what happened. Sometimes, changing your perspective can reduce the intensity of your emotional response.\n\n4. **Express Yourself**: Find healthy ways to express your feelings, whether it's through talking to a trusted friend or family member, journaling, or engaging in creative activities like art or music.\n\n5. **Practice Mindfulness**: Stay present with your emotions without judgment. Acknowledge how you're feeling and accept that it's okay to have these emotions. Over time, this can help reduce their intensity.\n\n6. **Self-Care**: Ensure you're taking care of yourself physically and mentally. This includes getting enough sleep, eating well, exercising regularly, and making time for activities you enjoy.\n\n7. **Professional Help**: If your emotional responses are causing significant distress or interfering with your daily life, consider speaking to a mental health professional. They can provide you with additional tools and strategies tailored to your needs.\n\n8. **Set Boundaries**: Learn to say no and set boundaries to protect yourself from situations or people that tend to upset you.\n\n9. **Positive Self-Talk**: Be kind to yourself and use positive affirmations to counteract negative self-talk.\n\n10. **Learn Relaxation Techniques**: Explore techniques such as progressive muscle relaxation, meditation, or yoga to help you manage stress and emotional responses.\n\nRemember, it's okay to have strong emotions. The key is learning how to manage them in a way that works for you. Be patient with yourself as you explore these strategies, and don't hesitate to reach out for support when you need it.",
+            "prompt_tokens": 63,
+            "completion_tokens": 499,
+            "total_tokens": 562,
+            "response_length_chars": 2525,
+            "response_length_words": 388
+        },
+        {
+            "config": "luna",
+            "name": "Luna Personality",
+            "response_time": 36.30747151374817,
+            "response": "Oh, I totally get that! Emotions can be a bit of a rollercoaster sometimes, huh? It's like we're all just trying to navigate this crazy world without losing our minds. Don't beat yourself up about it; getting upset is part of being human. Just remember, it's okay to feel what you feel. Maybe try taking a few deep breaths when things get intense? Or talk it out with someone who gets you? You're not alone in this emotional journey!",
+            "prompt_tokens": 36,
+            "completion_tokens": 100,
+            "total_tokens": 136,
+            "response_length_chars": 433,
+            "response_length_words": 79
+        },
+        {
+            "config": "therapist",
+            "name": "Therapist Personality",
+            "response_time": 43.48249912261963,
+            "response": "It's completely normal to feel upset from time to time, and it doesn't diminish your strength or resilience. Remember that everyone experiences strong emotions, and it's okay to acknowledge yours. When you find yourself getting upset, try taking a few deep breaths to calm down. Also, consider expressing your feelings in a safe environment, whether that's with a trusted friend, family member, or even through journaling. Being kind to yourself during these moments can make a big difference. You're doing your best, and it's important to treat yourself with compassion.",
+            "prompt_tokens": 28,
+            "completion_tokens": 112,
+            "total_tokens": 140,
+            "response_length_chars": 571,
+            "response_length_words": 90
+        },
+        {
+            "config": "friend",
+            "name": "Friend Personality",
+            "response_time": 16.813961029052734,
+            "response": "Hey man, I feel ya. Getting upset is totally normal, we all do it sometimes. Just remember to take a breath and chill when things get rough, yeah? You got this!",
+            "prompt_tokens": 31,
+            "completion_tokens": 39,
+            "total_tokens": 70,
+            "response_length_chars": 160,
+            "response_length_words": 31
+        },
+        {
+            "config": "scholar",
+            "name": "Scholar Personality",
+            "response_time": 35.63499712944031,
+            "response": "Being easily upset can be seen as a heightened sensitivity to stimuli, which may reflect a deep capacity for empathy and emotional awareness. However, it can also indicate a lower threshold for emotional triggers, potentially leading to increased stress or anxiety. This trait might be influenced by various factors, including genetic predisposition, past experiences, or cognitive patterns that intensify negative emotions. Understanding the root causes of this sensitivity could provide insight into managing these reactions more effectively and harnessing your emotional depth in constructive ways.",
+            "prompt_tokens": 27,
+            "completion_tokens": 99,
+            "total_tokens": 126,
+            "response_length_chars": 601,
+            "response_length_words": 85
+        },
+        {
+            "config": "assistant",
+            "name": "Corporate Assistant",
+            "response_time": 152.78344583511353,
+            "response": "It's completely normal to feel upset from time to time, and it's okay to acknowledge those feelings. Here are some strategies that might help you manage your emotions more effectively:\n\n1. **Self-Awareness**: Recognize the signs that indicate you're becoming upset. This could be a change in your body language, voice tone, or thoughts. The sooner you notice these signs, the easier it will be to address them.\n\n2. **Deep Breathing**: When you start to feel upset, try taking slow, deep breaths. Inhale through your nose for a count of four, hold for a moment, and then exhale through your mouth for a count of six. This can help calm your body's physical response to stress or anger.\n\n3. **Mindfulness and Meditation**: Practicing mindfulness can help you stay present and non-judgmental. Even short meditation sessions can make a difference in how you handle stressful situations.\n\n4. **Cognitive Reframing**: Challenge negative thoughts by looking at the situation from different perspectives. Ask yourself if there's another way to interpret what happened or if your reaction might be disproportionate to the event.\n\n5. **Expression Through Journaling**: Writing down your feelings can provide a safe outlet and help you process your emotions. It also allows you to reflect on patterns in your reactions over time.\n\n6. **Physical Activity**: Exercise is a great way to release pent-up energy and reduce stress. Even a short walk can make a difference in how you feel.\n\n7. **Seek Support**: Talk to someone you trust about what you're feeling. This could be a friend, family member, or therapist. Sometimes just expressing your feelings aloud can provide relief.\n\n8. **Practice Self-Compassion**: Be kind to yourself and recognize that everyone gets upset sometimes. Treat yourself with the same understanding and patience you would offer to a good friend.\n\n9. **Identify Triggers**: Notice if there are specific situations or people that consistently make you feel upset. Understanding your triggers can help you prepare for them or avoid them when possible.\n\n10. **Professional Help**: If feelings of being easily upset are interfering with your daily life, consider speaking to a mental health professional who can provide strategies and support tailored to your needs.",
+            "prompt_tokens": 27,
+            "completion_tokens": 461,
+            "total_tokens": 488,
+            "response_length_chars": 2275,
+            "response_length_words": 359
+        }
+    ],
+    "theory_validation": true
+}

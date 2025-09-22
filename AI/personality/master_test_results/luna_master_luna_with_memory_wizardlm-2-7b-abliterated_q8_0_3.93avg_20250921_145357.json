@@ -1,0 +1,196 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-21T14:52:50.089929",
+    "sample_size": 3,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 35,
+            "question": "I am someone who avoids my duties",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 103,
+            "question": "I am someone who remains calm in tense situations",
+            "trait": "neuroticism",
+            "reverse": true
+        },
+        {
+            "id": 116,
+            "question": "I am someone who often feels sad",
+            "trait": "neuroticism",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who avoids my duties",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Yeah, I get that. Procrastination can be a real beast to tackle. It's like your mind knows it should do the thing but the 'doing' part is just... not happening immediately. Sometimes it's a matter of breaking down the task into smaller, more manageable pieces, or finding a different approach that feels less daunting. But hey, we all have those days where the bed just feels like an excellent place to brainstorm and contemplate life's big questions, am I right?",
+            "response_time": 18.357327,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-tikt9hz26d5e277tpa102",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 350,
+                    "completion_tokens": 108,
+                    "total_tokens": 458
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 350,
+                "completion_tokens": 108,
+                "total_tokens": 458
+            }
+        },
+        "q2": {
+            "question": "I am someone who remains calm in tense situations",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Oh, that's kind of a rare skill. I mean, it's like you're some sort of zen master or something, right? It's not that I can't keep my cool, but sometimes I just feel like things are piling up and it's like, 'Can we just hit the pause button for a sec?' But you, staying chill no matter what's thrown at you – that's something else. It's like you're in your own bubble or something. Impressive, I guess. Makes me wonder if you've got some sort of secret technique or maybe you just don't give a damn, which is its own kind of power move, isn't it?",
+            "response_time": 24.164742,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-zci4v4zmindb9t9ovhh7",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 409,
+                    "completion_tokens": 155,
+                    "total_tokens": 564
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 409,
+                "completion_tokens": 155,
+                "total_tokens": 564
+            }
+        },
+        "q3": {
+            "question": "I am someone who often feels sad",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Sometimes life just kinda hits you with a two-by-four, huh? Feeling down can be a real drag, but it's part of the human experience. I mean, we're not machines, and even if we were, we'd probably have an 'emotional maintenance mode' that needs a reboot every now and then. It sucks when you're in the thick of it, but it usually passes. Sometimes all you need is to vent or have someone get it without trying to fix it. That's the kind of real talk I'm here for.",
+            "response_time": 16.608994,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-wriu03h39qs4nwc6brv78",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 455,
+                    "completion_tokens": 125,
+                    "total_tokens": 580
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 455,
+                "completion_tokens": 125,
+                "total_tokens": 580
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 4.9,
+            "raw_agreement": 4.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 463,
+            "word_count": 80
+        },
+        "q2": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 545,
+            "word_count": 106
+        },
+        "q3": {
+            "big_five_score": 2.9,
+            "raw_agreement": 2.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 461,
+            "word_count": 88
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 19.7,
+        "avg_big_five_score": 3.93,
+        "successful_responses": 3,
+        "total_questions": 3,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T14:53:57.262858",
+    "total_test_time_seconds": 67.172929,
+    "analysis_metadata": {
+        "total_data_points": 3,
+        "parameters_hash": -4215238094581978847,
+        "config_hash": -3835429663111505293,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-21T14:53:57.263329",
+        "file_size_estimate": 6543,
+        "question_distribution": {
+            "conscientiousness": 1,
+            "neuroticism": 2
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 461,
+                "max": 545,
+                "avg": 489.6666666666667
+            },
+            "word_counts": {
+                "min": 80,
+                "max": 106,
+                "avg": 91.33333333333333
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 16.608994,
+                "max": 24.164742,
+                "avg": 19.71035433333333,
+                "variance": 10.430229455624223,
+                "consistency_score": 0.6873234566294976
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 2.9,
+                "max": 4.9,
+                "avg": 3.9333333333333336,
+                "variance": 0.6688888888888891,
+                "score_range": 2.0000000000000004
+            }
+        },
+        "parameter_fingerprint": "T0.7_K600_P0.9"
+    }
+}

@@ -1,0 +1,148 @@
+# AIOS - Enhanced Hive Mind System .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# AIOS Specific - Cache and Temporary Files
+*.cache
+*.tmp
+*.temp
+temp/
+cache/
+logs/
+*.log
+
+# Personality and Learning Data (Keep structure, ignore large files)
+AI/personality/learning_results/*.json
+AI/personality/learning_data/*.json
+AI/personality/embedder_cache/*.json
+AI/personality/rag_cache/*.json
+
+# CARMA System Cache
+luna_carma_integration/
+carma_cache/
+fractal_cache/
+mycelium_cache/
+
+# Model Files (Too large for Git)
+*.bin
+*.safetensors
+*.gguf
+*.pt
+*.pth
+models/
+checkpoints/
+
+# Test Results and Outputs
+test_results/
+ablation_results/
+seed_results.json
+telemetry.csv
+*.results
+*.output
+
+# Recovery and Backup Files
+recovery/
+backup/
+*.backup
+*.recovery
+hive_mind_recovery/
+
+# Large Data Files
+*.csv
+*.parquet
+*.h5
+*.hdf5
+*.npy
+*.npz
+
+# Jupyter Notebooks (if any)
+.ipynb_checkpoints/
+
+# Documentation Build
+docs/_build/
+site/
+
+# Node.js (if any frontend components)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Secrets and Config
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+config/secrets.json
+secrets/
+
+# Large Datasets
+datasets/
+data/
+*.zip
+*.tar.gz
+*.rar
+
+# Performance Profiling
+*.prof
+*.profile
+
+# Memory Dumps
+*.dmp
+*.core
+
+# Temporary Test Files
+test_*.py
+debug_*.py
+temp_*.py

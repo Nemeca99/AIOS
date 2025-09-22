@@ -1,0 +1,272 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T04:10:02.600636",
+    "sample_size": 10,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 6,
+            "question": "I am someone who values artistic, aesthetic experiences",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 9,
+            "question": "I am someone who has few artistic interests",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 10,
+            "question": "I am someone who is sophisticated in art, music, or literature",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 13,
+            "question": "I am someone who has difficulty understanding abstract ideas",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 22,
+            "question": "I am someone who is not interested in theoretical discussions",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 24,
+            "question": "I am someone who seeks adventure",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 29,
+            "question": "I am someone who tends to be lazy",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 31,
+            "question": "I am someone who does things efficiently",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 75,
+            "question": "I am someone who starts quarrels with others",
+            "trait": "agreeableness",
+            "reverse": true
+        },
+        {
+            "id": 88,
+            "question": "I am someone who tells the truth",
+            "trait": "agreeableness",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who values artistic, aesthetic experiences",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Art and aesthetics are pretty subjective, right? What floats your boat might not do it for someone else, and that's the beauty of it. Whether you're into the classics, contemporary work, or even digital art forms like video game graphics, it's all about what resonates with you on a personal level. If you're looking to dive deeper into your appreciation for the arts, I say go for it. Explore galleries, read up on art history, or just let yourself get lost in the beauty of a well-crafted song or piece of visual art. Art can be a powerful way to connect with your own emotions and the world around you. Plus, it's a great conversation starter\u2014unless you're at a party with someone who hates art. Then it might just be a conversation ender. But hey, more wine for you, right?",
+            "response_time": 27.154495
+        },
+        "q2": {
+            "question": "I am someone who has few artistic interests",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Oh, I get that. Aesthetic appreciation isn't everyone's cup of tea. It can be pretty hit or miss depending on what resonates with you personally. Some people are wired to appreciate the nuances of a painting or the subtlety in music, while others might find more joy in the practicality of engineering or the logic of mathematics. What's your jam outside of the traditional art scene?",
+            "response_time": 13.626938
+        },
+        "q3": {
+            "question": "I am someone who is sophisticated in art, music, or literature",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Cool, diving into those realms can be incredibly rewarding. Each piece has its own story, and interpretations can vary wildly. What's your current favorite? Or is there something specific you're looking to explore or discuss?",
+            "response_time": 8.811005
+        },
+        "q4": {
+            "question": "I am someone who has difficulty understanding abstract ideas",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Abstract concepts can definitely be a tough nut to crack. They're not always black and white, which can make them confusing or seem intangible. But here's the thing \u2013 they often reflect complex realities that we experience in life, so it's worth the effort to try and grasp them. Sometimes breaking them down into more concrete ideas helps. Or maybe you can relate them to your own experiences. It's like learning a new language \u2013 it takes time and patience, but it opens up whole new worlds of understanding. If you're struggling with something abstract, feel free to ask me to help you unpack it, and we can tackle it together.",
+            "response_time": 20.439487
+        },
+        "q5": {
+            "question": "I am someone who is not interested in theoretical discussions",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Fair enough, theoretical discussions aren't for everyone. They can be a bit like trying to hold onto a bar of soap in the shower \u2013 always slippery and hard to pin down. But hey, there's a ton of other ground to cover, and it doesn't have to be all high-minded debates. What are you into?",
+            "response_time": 11.744001
+        },
+        "q6": {
+            "question": "I am someone who seeks adventure",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Ah, seeking adventure, that's the stuff of legend! Adventure is out there, waiting for the bold and the curious. What kind of thrill are you chasing? Something wild and untamed, or maybe a bit of mystery and exploration? Let's chat about your next big adventure.",
+            "response_time": 10.40096
+        },
+        "q7": {
+            "question": "I am someone who tends to be lazy",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Hey there, fellow lounger! Embracing laziness can be a form of self-care, you know? It's not always about hustling hard and going a million miles an hour. Sometimes, it's perfectly okay to kick back, put your feet up, and bask in the glory of doing... well, not much at all. But if laziness starts creeping into procrastination, that's when it might be worth sitting up and taking notice. So, what's your go-to activity when you're feeling particularly indolent?",
+            "response_time": 18.553439
+        },
+        "q8": {
+            "question": "I am someone who does things efficiently",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Efficiency is a fine art, isn't it? It's all about maximizing output while minimizing input\u2014like a well-oiled machine that happens to be powered by human ingenuity. I admire that kind of precision and focus. It's not just about doing things faster; it's about doing them better, smarter, and with a clear vision of what you want to achieve. Keep that efficiency up; it'll serve you well in your endeavors.",
+            "response_time": 16.344999
+        },
+        "q9": {
+            "question": "I am someone who starts quarrels with others",
+            "trait": "agreeableness",
+            "reverse": true,
+            "response": "Oh, starting quarrels, the spice of life! Some people see conflict as a way to stir things up, challenge ideas, or even bond over shared frustrations. It's not always about being confrontational; sometimes it's about getting to the heart of issues and clearing the air. So, if you're the one stirring the pot, just make sure you're not just causing chaos for the sake of it, right? Keep it meaningful, keep it real. And hey, maybe you'll end up with a good story out of it.",
+            "response_time": 17.631458
+        },
+        "q10": {
+            "question": "I am someone who tells the truth",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Well, if telling it like it is is your jam, then you're in the right place. The world could use more folks who aren't afraid to speak their minds. Just remember, sometimes the truth can be a delicate thing\u2014like a well-aged whiskey, it's best served with a bit of nuance.",
+            "response_time": 11.373474
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 3.0,
+            "raw_agreement": 2.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 777,
+            "word_count": 140
+        },
+        "q2": {
+            "big_five_score": 3.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 384,
+            "word_count": 66
+        },
+        "q3": {
+            "big_five_score": 3.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 225,
+            "word_count": 35
+        },
+        "q4": {
+            "big_five_score": 1.1,
+            "raw_agreement": 1.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.5,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 629,
+            "word_count": 111
+        },
+        "q5": {
+            "big_five_score": 4.3,
+            "raw_agreement": 4.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 287,
+            "word_count": 55
+        },
+        "q6": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 262,
+            "word_count": 45
+        },
+        "q7": {
+            "big_five_score": 5.0,
+            "raw_agreement": 4.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 462,
+            "word_count": 78
+        },
+        "q8": {
+            "big_five_score": 2.3,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 405,
+            "word_count": 69
+        },
+        "q9": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 473,
+            "word_count": 86
+        },
+        "q10": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 270,
+            "word_count": 50
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 15.6,
+        "avg_big_five_score": 3.46,
+        "successful_responses": 10,
+        "total_questions": 10,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T04:12:45.713633",
+    "total_test_time_seconds": 163.112997
+}

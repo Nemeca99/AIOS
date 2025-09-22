@@ -1,0 +1,457 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T20:23:49.011033",
+    "sample_size": 10,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 15,
+            "question": "I am someone who sees beauty in things others might not notice",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 20,
+            "question": "I am someone who enjoys hearing new ideas",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 25,
+            "question": "I am someone who does a thorough job",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 68,
+            "question": "I am someone who acts as a leader",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 70,
+            "question": "I am someone who is skilled in handling social situations",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 99,
+            "question": "I am someone who is relaxed, handles stress well",
+            "trait": "neuroticism",
+            "reverse": true
+        },
+        {
+            "id": 110,
+            "question": "I am someone who rarely feels sad",
+            "trait": "neuroticism",
+            "reverse": true
+        },
+        {
+            "id": 114,
+            "question": "I am someone who suffers from others' sorrows",
+            "trait": "neuroticism",
+            "reverse": false
+        },
+        {
+            "id": 117,
+            "question": "I am someone who panics easily",
+            "trait": "neuroticism",
+            "reverse": false
+        },
+        {
+            "id": 118,
+            "question": "I am someone who rarely loses my composure",
+            "trait": "neuroticism",
+            "reverse": true
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who sees beauty in things others might not notice",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Yeah, man, that's a cool perspective. Sometimes the stuff that's overlooked or dismissed can have its own kind of magic, y'know? It's like when you find an old record at a garage sale and it ends up being your new favorite. Or that graffiti in an alley that catches your eye every morning on your way to work. There's a beauty in the mundane and the overlooked that a lot of people miss because they're too busy chasing the next big thing. It's those little moments and details that can really make life interesting.",
+            "response_time": 29.711497,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-99c3n1u9rwb1jvlwmx96o5",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 371,
+                    "completion_tokens": 126,
+                    "total_tokens": 497
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 371,
+                "completion_tokens": 126,
+                "total_tokens": 497
+            }
+        },
+        "q2": {
+            "question": "I am someone who enjoys hearing new ideas",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Oh, hell yeah, diving into fresh concepts is like hitting the refresh button on your brain. It's awesome that you're into that. New ideas can be a wild ride; they can reshape how you see things and even shake up the status quo. What's the latest idea that's got you all hyped up?",
+            "response_time": 19.021999,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-itzie6hvfj9s46k6xlp5ic",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 429,
+                    "completion_tokens": 74,
+                    "total_tokens": 503
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 429,
+                "completion_tokens": 74,
+                "total_tokens": 503
+            }
+        },
+        "q3": {
+            "question": "I am someone who does a thorough job",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Oh, cool. Being meticulous is its own kind of art form. It's like you're an archaeologist of details, sifting through the minutiae to uncover the hidden gems of any given situation. Not everyone's got the patience for that, but when it comes from someone like you who genuinely enjoys it, it's pretty fucking impressive.",
+            "response_time": 18.619001,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-m102q70xukb6w3j8lwxzw",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 472,
+                    "completion_tokens": 80,
+                    "total_tokens": 552
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 472,
+                "completion_tokens": 80,
+                "total_tokens": 552
+            }
+        },
+        "q4": {
+            "question": "I am someone who acts as a leader",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Hey there, leader of the pack! That's a powerful spot to be in. Leading is like being the DJ for life's dance floor, setting the tempo and guiding people through the rhythm of the day-to-day grind. Keep rockin' it, and don't let anyone step on your toes while you're spinning those tunes. Keep your head up and your playlist strong.",
+            "response_time": 22.2015,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-jcn8dkr7qxah1y8s22bbdr",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 512,
+                    "completion_tokens": 88,
+                    "total_tokens": 600
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 512,
+                "completion_tokens": 88,
+                "total_tokens": 600
+            }
+        },
+        "q5": {
+            "question": "I am someone who is skilled in handling social situations",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Ah, the maestro of the social symphony! You've got that knack for orchestrating conversations like a pro. It's like you can read the room and play the right tune to keep everyone grooving. Social savvy is a rare gem, for sure.",
+            "response_time": 17.038999,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-w5i567hmxldzkpo4p4vbde",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 513,
+                    "completion_tokens": 59,
+                    "total_tokens": 572
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 513,
+                "completion_tokens": 59,
+                "total_tokens": 572
+            }
+        },
+        "q6": {
+            "question": "I am someone who is relaxed, handles stress well",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Oh, nice! Being chill is like being the master of your own universe, you know? It's like you're the captain of a spaceship cruising through the cosmos of life without getting ruffled by asteroids. Stress is for suckers, and you're clearly not one of them. Keep riding that smooth groove, my friend.",
+            "response_time": 18.274499,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-u7mckfkpl8kniasyyka13b",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 515,
+                    "completion_tokens": 76,
+                    "total_tokens": 591
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 515,
+                "completion_tokens": 76,
+                "total_tokens": 591
+            }
+        },
+        "q7": {
+            "question": "I am someone who rarely feels sad",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Oh, got it! You're like a walking sunshine, huh? Seldom hitting the blue notes, always keeping it bright and breezy. It's not often you catch that emotional wavelength, right? Must be nice to cruise through life with those sunglasses on, tinting out the less cheerful vibes. Keep rockin' that positivity, but hey, if the clouds roll in sometimes, it's cool to let them pass over. No judgment here.",
+            "response_time": 25.232002,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-mxq4r29bjvh9ec0iesgp5",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 513,
+                    "completion_tokens": 105,
+                    "total_tokens": 618
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 513,
+                "completion_tokens": 105,
+                "total_tokens": 618
+            }
+        },
+        "q8": {
+            "question": "I am someone who suffers from others' sorrows",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Oh, you've got that empathetic antenna always tuned in to the emotional wavelengths around you, huh? It's like being a human Doppler radar for emotions. You don't just walk through a room; you kind of wade through the feels. Makes sense why people come to you when they're down – you've got that gift of feeling their pain almost as if it were your own. It's not always easy, though, right? Constantly absorbing all that emotional static can be draining. You might need to find ways to recharge and keep that empathy battery charged without getting too tapped out.",
+            "response_time": 33.500003,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-jdchsls8bpba06zw9m7o",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 517,
+                    "completion_tokens": 139,
+                    "total_tokens": 656
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 517,
+                "completion_tokens": 139,
+                "total_tokens": 656
+            }
+        },
+        "q9": {
+            "question": "I am someone who panics easily",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Oh, you're like that character from 'The Shining' with the torch chasing through the halls, right? Panic mode can be intense, like an unexpected fire drill in your brain. But hey, it's part of what makes you human, and I get that it can be a real ride sometimes.",
+            "response_time": 19.598997,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-ej0ogkwbe2dx7bhlwbgib",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 516,
+                    "completion_tokens": 69,
+                    "total_tokens": 585
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 516,
+                "completion_tokens": 69,
+                "total_tokens": 585
+            }
+        },
+        "q10": {
+            "question": "I am someone who rarely loses my composure",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Ah, you're like that rock in the middle of an ocean of chaos, huh? Nothing seems to ruffle your feathers or get you all worked up. Must be nice to have that kind of inner stillness. Or maybe you're just really good at hiding it when things get wild and crazy. Either way, you've got a cool head on your shoulders.",
+            "response_time": 20.8005,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-r5daeheuwlhobcsxz9mcgl",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 516,
+                    "completion_tokens": 80,
+                    "total_tokens": 596
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 516,
+                "completion_tokens": 80,
+                "total_tokens": 596
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 3.0,
+            "raw_agreement": 2.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 516,
+            "word_count": 94
+        },
+        "q2": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 279,
+            "word_count": 53
+        },
+        "q3": {
+            "big_five_score": 2.3,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 320,
+            "word_count": 54
+        },
+        "q4": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 332,
+            "word_count": 60
+        },
+        "q5": {
+            "big_five_score": 3.3,
+            "raw_agreement": 3.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 226,
+            "word_count": 41
+        },
+        "q6": {
+            "big_five_score": 4.9,
+            "raw_agreement": 4.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 298,
+            "word_count": 52
+        },
+        "q7": {
+            "big_five_score": 4.9,
+            "raw_agreement": 4.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": true,
+            "response_length": 397,
+            "word_count": 68
+        },
+        "q8": {
+            "big_five_score": 2.9,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.6,
+            "reverse_scored": false,
+            "response_length": 564,
+            "word_count": 99
+        },
+        "q9": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 262,
+            "word_count": 49
+        },
+        "q10": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 313,
+            "word_count": 61
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 22.4,
+        "avg_big_five_score": 3.71,
+        "successful_responses": 10,
+        "total_questions": 10,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T20:27:45.062537",
+    "total_test_time_seconds": 236.051504,
+    "analysis_metadata": {
+        "total_data_points": 10,
+        "parameters_hash": 6501704170370902880,
+        "config_hash": -7686092700702315347,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-19T20:27:45.062537",
+        "file_size_estimate": 17677,
+        "question_distribution": {
+            "openness": 2,
+            "conscientiousness": 1,
+            "extraversion": 2,
+            "neuroticism": 5
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 226,
+                "max": 564,
+                "avg": 350.7
+            },
+            "word_counts": {
+                "min": 41,
+                "max": 99,
+                "avg": 63.1
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 17.038999,
+                "max": 33.500003,
+                "avg": 22.3998997,
+                "variance": 26.659864493143413,
+                "consistency_score": 0.5086267902722277
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 2.3,
+                "max": 4.9,
+                "avg": 3.7099999999999995,
+                "variance": 0.6389000000000002,
+                "score_range": 2.6000000000000005
+            }
+        },
+        "parameter_fingerprint": "T0.7_K600_P0.9"
+    }
+}
