@@ -1,4 +1,0 @@
-^CMake Error: +
-Error: @3,13: Not a valid hook: "bad hook"
-  "hooks": \["bad hook", "postGenerate", "preCMakeBuild", "postCMakeBuild", "postInstall"\]
-            \^$

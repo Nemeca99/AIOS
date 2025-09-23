@@ -58,6 +58,14 @@ cache/
 logs/
 *.log
 
+# Massive Tools and Archives (2GB+ folders)
+AI_Core/Nova AI/Tools/
+AI_Core/Nova AI/Archive/
+AI_Core/Nova AI/AI/personality/
+**/venv/
+**/__pycache__/
+**/node_modules/
+
 # Personality and Learning Data (Keep structure, ignore large files)
 AI/personality/learning_results/*.json
 AI/personality/learning_data/*.json

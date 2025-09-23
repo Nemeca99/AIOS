@@ -1,7 +1,0 @@
---- Reflection Summary (2025-04-21 00:22:02) ---
-Total Entries: 5
-Internal Thoughts: 0
-User Interactions: 4
-Collapses: 0
-Superpositions: 4
-

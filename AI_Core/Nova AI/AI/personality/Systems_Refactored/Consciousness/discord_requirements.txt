@@ -1,9 +1,0 @@
-# Discord Bot Requirements for AVA Consciousness Engine
-discord.py>=2.0.0
-asyncio
-psutil
-GPUtil
-numpy
-transformers
-sentence-transformers
-torch
