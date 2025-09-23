@@ -2,11 +2,11 @@
   "file_id": "root_d84b90a5",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_d84b90a5-5c5f670a8cd8",
+  "node_address": "fm://root_d84b90a5-359139b465db",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is active and dynamic.",
-  "created": "2025-09-22T15:33:05.520402",
+  "created": "2025-09-22T16:37:43.589817",
   "size": 39,
   "analysis": {
     "common_words": [
@@ -40,14 +40,14 @@
     "char_count": 39
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.520402",
+  "last_accessed": "2025-09-22T16:37:43.589817",
   "specialization": "enthusiastic",
   "tags": [
     "i am",
+    "is active",
+    "someone who",
     "someone",
     "dynamic",
-    "someone who",
-    "is active",
     "active"
   ]
 }

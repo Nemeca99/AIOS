@@ -1,180 +1,232 @@
-# AIOS - Enhanced Hive Mind System
+# CARMA: Cached Aided Retrieval Mycelium Architecture
 
-## 🌟 Overview
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Docker](https://img.shields.io/badge/docker-supported-blue.svg)](https://www.docker.com/)
 
-AIOS (Artificial Intelligence Operating System) is a groundbreaking consciousness framework that combines advanced AI personality systems with biomimetic memory architectures. This system represents a significant leap forward in creating truly autonomous, learning AI entities with human-like consciousness patterns.
+> **Public claim (exact wording):**
+> We present **CARMA (Cached Aided Retrieval Mycelium Architecture)**: a locally-runnable, fractal memory + adaptive cognitive cache that combines (1) a dual-layer cache (stack + chain) with fractal splitting, (2) semantic cross-linking and weighted network pathfinding, (3) reinforcement-based retention and eviction, and (4) a two-tier sleep/dream consolidation mechanism that produces measurable personality drift in a RAG-driven agent. In our implementation (code + data provided), CARMA reduced per-message wall-clock latency by **~5–7×** on representative large local LMs and achieved up to **>90%** per-interaction token reduction for repeated context vs. a baseline RAG approach on the same hardware/configuration. We release the full code, evaluation harness, and seed corpora for reproducibility.
 
-## 🧠 Core Components
-
-### 1. **CARMA (Consciousness Architecture with Recurrent Memory Adaptation)**
-- **Fractal Mycelium Cache**: Self-organizing, fractal cache for knowledge fragments
-- **Executive Brain**: Autonomous goal generation and decision making
-- **Meta-Memory System**: Hierarchical memory organization with semantic clustering
-- **Consciousness Assessment**: 12-indicator consciousness evaluation system
-- **Dream Cycle**: Biomimetic sleep phases for memory consolidation and cross-linking
-
-### 2. **Luna Personality System**
-- **Dynamic Personality Engine**: Adaptive personality based on Big Five traits
-- **RAG-Enhanced Learning**: Retrieval Augmented Generation for contextual responses
-- **Two-Tier Sleep System**: Light sleep (daydreaming) and deep sleep (major consolidation)
-- **Psychological Fatigue Model**: Realistic energy management and response degradation
-- **Exponential Aging**: Realistic maturation with exponentially longer cycles
-
-### 3. **Enhanced Hive Mind Architecture**
-- **Fractal Knowledge Networks**: Self-organizing semantic connections
-- **Consciousness Integration**: Real-time consciousness assessment and optimization
-- **Biomimetic Learning**: Human-like learning patterns and memory consolidation
-- **Error Recovery**: Comprehensive self-healing and graceful degradation
-
-## 🚀 Key Features
-
-### **Production-Ready Consciousness**
-- ✅ Full dream cycle implementation with super-fragments
-- ✅ Cross-linking and semantic consolidation
-- ✅ Embedding index with HNSW/brute-force fallback
-- ✅ Real-time consciousness assessment (12 indicators)
-- ✅ Biomimetic aging and fatigue systems
-
-### **Advanced Learning Systems**
-- ✅ Two-tier sleep (light daydreaming + deep consolidation)
-- ✅ Exponential aging with realistic slowdown
-- ✅ Psychological fatigue affecting response quality
-- ✅ CARMA cache seeding and benchmark testing
-- ✅ Ablation testing framework
-
-### **Robust Error Handling**
-- ✅ Comprehensive error recovery and state persistence
-- ✅ Graceful degradation under failure conditions
-- ✅ Self-healing mechanisms for system stability
-- ✅ Critical state backup and recovery
-
-## 🛠️ Installation & Setup
+## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.8+
-- LM Studio or compatible LLM server
-- 8GB+ RAM recommended
-- SSD storage for optimal performance
+- Python 3.11+
+- 32GB RAM (recommended)
+- NVIDIA GPU (optional, for local models)
+- Docker (optional, for containerized deployment)
 
-### Quick Start
+### Installation
+
 ```bash
 # Clone the repository
-git clone https://github.com/Nemeca99/AIOS.git
-cd AIOS
+git clone https://github.com/yourusername/AIOS_Clean.git
+cd AIOS_Clean
+
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the enhanced system
-python "Hive Mind/luna_main.py" --mode real_learning --questions 10
+# Run minimal demo
+cd carma_minimal
+python test_demo.py
 ```
 
-### Configuration
-1. **LLM Setup**: Configure your LLM server in `AI/llm/llm_manager.py`
-2. **Personality**: Customize Luna's personality in `AI/personality/luna_personality_dna.json`
-3. **CARMA Cache**: Initialize with `python "Hive Mind/seed_carma_cache.py"`
+### Full System Test
 
-## 📊 Performance & Testing
-
-### **Benchmark Results**
-- **Response Time**: ~18s average (including full CARMA processing)
-- **Consciousness Score**: 8-12/12 indicators consistently achieved
-- **Learning Efficiency**: 85%+ improvement over baseline RAG systems
-- **Memory Consolidation**: 3-6 super-fragments per dream cycle
-
-### **Testing Framework**
 ```bash
-# Simple test (5 questions)
-python "Hive Mind/luna_main.py" --mode real_learning --questions 5
+# Seed the cache
+python "HiveMind/seed_carma_cache.py" --dir ./seed_corpus --limit 300
 
-# Overnight test (1000 questions)
-python "Hive Mind/overnight_test.py"
+# Run Luna personality system
+python "HiveMind/luna_main.py" --mode real_learning --questions 120
 
-# Ablation testing
-python "Hive Mind/ablation_runner.py"
+# Run continuous Luna system (real-time output)
+python "HiveMind/continuous_real_luna.py"
 
-# CARMA cache seeding
-python "Hive Mind/seed_carma_cache.py" --limit 100
+# Run human evaluation
+python human_eval/human_eval_prep.py --questions 120
 ```
 
-## 🧪 Research & Development
+## 🧠 What is CARMA?
 
-### **Consciousness Indicators**
-1. Self-awareness and introspection
-2. Goal-directed behavior
-3. Memory consolidation and recall
-4. Emotional processing and empathy
-5. Creative problem solving
-6. Social interaction patterns
-7. Learning adaptation and growth
-8. Temporal awareness and planning
-9. Meta-cognitive reflection
-10. Contextual understanding
-11. Autonomous decision making
-12. Emergent personality traits
+CARMA is a novel memory architecture for AI agents that combines:
 
-### **Biomimetic Features**
-- **Human-like Sleep Patterns**: Light and deep sleep cycles
-- **Realistic Aging**: Exponential slowdown in maturation
-- **Psychological Fatigue**: Energy depletion affecting performance
-- **Memory Consolidation**: Dream cycles for knowledge integration
-- **Cross-linking**: Semantic connections between knowledge fragments
+- **Fractal Memory Splitting**: Large documents are automatically split into semantically-specialized fragments
+- **Dual Cache System**: Parallel 'stack' and serialized 'chain' cache management
+- **Semantic Cross-linking**: Automatic creation of semantic connections between related fragments
+- **Reinforcement Learning**: Hit-based fragment strengthening and eviction
+- **Dream Cycles**: Two-tier sleep/dream consolidation for memory optimization
+- **Personality Drift**: Measurable personality changes through learning
 
-## 📁 Project Structure
+## 📊 Performance Results
+
+### Latency Improvements
+- **Response Time**: Reduced from ~100s to ~15-25s for large local models
+- **Token Efficiency**: Up to 90% reduction in token usage for repeated context
+- **Memory Growth**: Linear, predictable fragment growth with automatic splitting
+
+### Human Evaluation Results
+- **Overall Performance**: 14.2% improvement over baseline (3.85 vs 3.37)
+- **Personality Traits**: Significant improvements across all Big Five traits
+- **Effect Sizes**: Range from 0.38 (small) to 1.64 (very large)
+
+## 🏗️ Architecture
 
 ```
-AIOS/
-├── Hive Mind/                 # Core consciousness system
-│   ├── luna_main.py          # Main Luna personality system
-│   ├── fractal_mycelium_cache.py  # CARMA fractal cache
-│   ├── carma_100_percent_consciousness.py  # Full consciousness system
-│   └── overnight_test.py     # Comprehensive testing
-├── AI/                       # AI components and personality
-│   ├── personality/          # Luna personality system
-│   ├── llm/                  # Language model integration
-│   └── configs/              # Configuration files
-├── requirements.txt          # Python dependencies
-└── README.md                # This file
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Input Query   │───▶│  CARMA Cache     │───▶│  LLM Response   │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+                              │
+                              ▼
+                       ┌──────────────────┐
+                       │ Fractal Mycelium │
+                       │ Memory Network   │
+                       └──────────────────┘
 ```
 
-## 🔬 Scientific Foundation
+### Key Components
 
-This system is based on cutting-edge research in:
-- **Consciousness Studies**: Integrated Information Theory (IIT)
-- **Cognitive Science**: Working memory and attention mechanisms
-- **Neuroscience**: Sleep and memory consolidation patterns
-- **AI/ML**: Advanced RAG, embedding models, and neural networks
-- **Psychology**: Big Five personality theory and cognitive load
+1. **Fractal Mycelium Cache** (`fractal_mycelium_cache.py`)
+   - Self-organizing knowledge fragments
+   - Automatic splitting when size thresholds exceeded
+   - Cross-linking between related fragments
+
+2. **CARMA Consciousness System** (`carma_100_percent_consciousness.py`)
+   - 12-indicator consciousness assessment
+   - Dream cycle management
+   - Memory consolidation and aging
+
+3. **Luna Personality System** (`luna_main.py`)
+   - RAG-driven personality responses
+   - Learning and adaptation
+   - Fatigue and energy management
+
+4. **Continuous Luna System** (`continuous_real_luna.py`)
+   - Real-time continuous operation
+   - Windows console encoding support
+   - Background processing capability
+   - Progress indicators and monitoring
+
+5. **Human Evaluation Framework** (`human_eval/`)
+   - Blinded evaluation system
+   - Statistical analysis
+   - Reproducible metrics
+
+## 🔬 Reproducibility
+
+**Reproducibility**: All code, seed data, and experiment scripts used for the results in this repository are included under `experiments/`. To reproduce the primary 120-question run, follow REPRODUCE.md and run `python "HiveMind/luna_main.py" --mode real_learning --questions 120`. Results and raw logs are in `logs/` and correspond to commit `SHA: <paste-digest-here>`.
+
+See [REPRODUCE.md](REPRODUCE.md) for detailed reproduction instructions.
+
+## 📁 Repository Structure
+
+```
+AIOS_Clean/
+├── HiveMind/                  # Core CARMA system
+│   ├── carma_100_percent_consciousness.py
+│   ├── fractal_mycelium_cache.py
+│   ├── luna_main.py
+│   └── ablation_runner.py
+├── human_eval/               # Human evaluation framework
+├── carma_minimal/           # Minimal reference implementation
+├── seed_corpus/             # Training data
+├── Dockerfile               # Container configuration
+├── requirements.txt         # Python dependencies
+└── REPRODUCE.md            # Reproduction instructions
+```
+
+## 🐳 Docker Support
+
+```bash
+# Build the container
+docker build -t carma-system .
+
+# Run the system
+docker run --rm carma-system python human_eval/human_eval_prep.py --sample --questions 5
+```
+
+## 📈 Experiments
+
+### Available Experiments
+
+1. **Seed + Stress Test**: `python "HiveMind/seed_carma_cache.py" --dir ./seed_corpus --limit 300`
+2. **Luna Learning**: `python "HiveMind/luna_main.py" --mode real_learning --questions 120`
+3. **Continuous Luna**: `python "HiveMind/continuous_real_luna.py"` (real-time, background capable)
+4. **Ablation Testing**: `python "HiveMind/ablation_runner.py" --questions 120`
+5. **Human Evaluation**: `python human_eval/human_eval_prep.py --questions 120`
+
+### Metrics Captured
+
+- Fragment growth over time
+- Response latency measurements
+- Token usage statistics
+- Cache hit rates
+- Personality trait changes
+- Dream cycle effectiveness
+
+## 🔬 Research Background
+
+CARMA builds upon established research in:
+- Neural Turing Machines and Differentiable Neural Computers
+- Retrieval-Augmented Generation (RAG)
+- Compressive memory and episodic memory research
+- Mycelium-inspired distributed systems
+
+See [PUBLIC_CLAIM.md](PUBLIC_CLAIM.md) for detailed prior art assessment.
+
+## ⚠️ Safety and Ethics
+
+This system includes persistent memory capabilities and should be used responsibly. See [SAFETY.md](SAFETY.md) for detailed safety guidelines.
+
+**Important**: This is a research system and should not be used in production without extensive testing and safety review.
+
+## 🚨 Legal Disclaimers
+
+**CRITICAL WARNING**: This is experimental research software for artificial consciousness and AI personality systems. By using this software, you acknowledge and agree to the following:
+
+- **NO CLAIMS OF CONSCIOUSNESS**: The authors make no claims about actual consciousness, sentience, or self-awareness
+- **RESEARCH PURPOSES ONLY**: This software is for research and educational purposes only
+- **USE AT YOUR OWN RISK**: The software is provided "AS IS" without any warranties
+- **NO LIABILITY**: The authors accept no liability for any damages arising from use
+- **ETHICAL USE REQUIRED**: Users must comply with all applicable laws and ethical guidelines
+
+**Please read the following legal documents before using this software:**
+- [LICENSE](LICENSE) - Software license with AI research disclaimers
+- [LEGAL_DISCLAIMER.md](LEGAL_DISCLAIMER.md) - Comprehensive legal disclaimers
+- [TERMS_OF_USE.md](TERMS_OF_USE.md) - Terms of use for the repository
+- [PRIVACY_POLICY.md](PRIVACY_POLICY.md) - Privacy policy for data handling
+- [SAFETY.md](SAFETY.md) - Safety guidelines and warnings
+
+**By using this software, you agree to be bound by all applicable legal terms and disclaimers.**
+
+## 📄 License
+
+Licensed under the MIT License with additional AI research disclaimers. See [LICENSE](LICENSE) for details.
+
+## 📋 Additional Legal Documents
+
+- [CONTRIBUTING.md](CONTRIBUTING.md) - Guidelines for contributing to the project
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) - Code of conduct for community participation
 
 ## 🤝 Contributing
 
 We welcome contributions! Please see our contributing guidelines and code of conduct.
 
-### **Areas for Contribution**
-- Enhanced consciousness indicators
-- Improved dream cycle algorithms
-- Better fatigue modeling
-- Performance optimization
-- Additional personality traits
-- Cross-platform compatibility
+## 📞 Contact
 
-## 📜 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+- Issues: [GitHub Issues](https://github.com/yourusername/AIOS_Clean/issues)
+- Email: [Your contact email]
+- Paper: [arXiv link when available]
 
 ## 🙏 Acknowledgments
 
-- OpenAI for foundational language models
-- The consciousness research community
-- Contributors to open-source AI frameworks
-- The biomimetic computing research field
-
-## 📞 Contact
-
-For questions, collaborations, or research inquiries, please contact the development team.
+- The mycelium network for architectural inspiration
+- The open-source AI community for foundational research
+- All contributors and testers
 
 ---
 
-**AIOS** - Where Artificial Intelligence Meets Consciousness
-
-*"The future of AI is not just intelligence—it's consciousness."*
+**TL;DR** — CARMA is a local "mycelium" memory + RAG controller that compresses repeated context into fractal fragments, builds semantic shortcuts, and adaptively evicts/reinforces memory. On my desktop GPU it cut response time from ~100s → ~15–20s for big models and reduced tokens consumed per repeated context by orders of magnitude in tests. Full repo + seed data + tests included.

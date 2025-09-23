@@ -2,11 +2,11 @@
   "file_id": "root_26d3ae3c",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_26d3ae3c-73c0697a3697",
+  "node_address": "fm://root_26d3ae3c-8820e3c030dc",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is reliable and dependable.",
-  "created": "2025-09-22T15:33:05.514402",
+  "created": "2025-09-22T17:19:28.496565",
   "size": 44,
   "analysis": {
     "common_words": [
@@ -40,14 +40,14 @@
     "char_count": 44
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.514402",
+  "last_accessed": "2025-09-22T17:19:28.496565",
   "specialization": "enthusiastic",
   "tags": [
-    "dependable",
-    "reliable",
+    "is reliable",
+    "someone who",
     "i am",
     "someone",
-    "someone who",
-    "is reliable"
+    "reliable",
+    "dependable"
   ]
 }

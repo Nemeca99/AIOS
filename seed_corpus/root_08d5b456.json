@@ -2,11 +2,11 @@
   "file_id": "root_08d5b456",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_08d5b456-09c0793af925",
+  "node_address": "fm://root_08d5b456-67de49941633",
   "ancestors": [],
   "children": [],
   "content": "I am someone who plans ahead and prepares for future events.",
-  "created": "2025-09-22T15:33:05.512902",
+  "created": "2025-09-22T17:19:28.495063",
   "size": 60,
   "analysis": {
     "common_words": [
@@ -44,16 +44,16 @@
     "char_count": 60
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.512902",
+  "last_accessed": "2025-09-22T17:19:28.495063",
   "specialization": "enthusiastic",
   "tags": [
+    "someone who",
     "i am",
     "someone",
-    "future",
-    "someone who",
-    "plans",
+    "ahead",
     "plans ahead",
     "prepares",
-    "ahead"
+    "future",
+    "plans"
   ]
 }

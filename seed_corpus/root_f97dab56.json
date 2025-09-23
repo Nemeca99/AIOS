@@ -2,11 +2,11 @@
   "file_id": "root_f97dab56",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_f97dab56-c7333e51f960",
+  "node_address": "fm://root_f97dab56-55a51a222de4",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is emotionally reactive and sensitive.",
-  "created": "2025-09-22T15:33:05.522902",
+  "created": "2025-09-22T16:37:43.592817",
   "size": 55,
   "analysis": {
     "common_words": [
@@ -41,15 +41,15 @@
     "char_count": 55
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.522902",
+  "last_accessed": "2025-09-22T16:37:43.592817",
   "specialization": "enthusiastic",
   "tags": [
-    "emotionally",
     "i am",
-    "someone",
     "sensitive",
-    "reactive",
+    "is emotionally",
     "someone who",
-    "is emotionally"
+    "reactive",
+    "someone",
+    "emotionally"
   ]
 }

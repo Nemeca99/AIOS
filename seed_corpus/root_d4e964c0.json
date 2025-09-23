@@ -2,11 +2,11 @@
   "file_id": "root_d4e964c0",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_d4e964c0-a0de54cc6618",
+  "node_address": "fm://root_d4e964c0-51dce808ade9",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is organized and methodical in my approach to tasks.",
-  "created": "2025-09-22T15:33:05.512403",
+  "created": "2025-09-22T17:19:28.494063",
   "size": 69,
   "analysis": {
     "common_words": [
@@ -44,16 +44,16 @@
     "char_count": 69
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.512403",
+  "last_accessed": "2025-09-22T17:19:28.494063",
   "specialization": "enthusiastic",
   "tags": [
-    "organized",
-    "i am",
-    "tasks",
-    "someone",
-    "is organized",
     "methodical",
     "someone who",
-    "approach"
+    "i am",
+    "approach",
+    "someone",
+    "organized",
+    "tasks",
+    "is organized"
   ]
 }

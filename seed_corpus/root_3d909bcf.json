@@ -2,11 +2,11 @@
   "file_id": "root_3d909bcf",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_3d909bcf-f103ed6bcf32",
+  "node_address": "fm://root_3d909bcf-69865ec2d4ff",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is talkative and expressive.",
-  "created": "2025-09-22T15:33:05.518402",
+  "created": "2025-09-22T16:37:43.587819",
   "size": 45,
   "analysis": {
     "common_words": [
@@ -40,14 +40,14 @@
     "char_count": 45
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.518402",
+  "last_accessed": "2025-09-22T16:37:43.587819",
   "specialization": "enthusiastic",
   "tags": [
-    "expressive",
-    "talkative",
     "i am",
-    "someone",
+    "someone who",
     "is talkative",
-    "someone who"
+    "talkative",
+    "someone",
+    "expressive"
   ]
 }

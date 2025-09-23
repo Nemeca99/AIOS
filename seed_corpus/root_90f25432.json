@@ -2,11 +2,11 @@
   "file_id": "root_90f25432",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_90f25432-f3ba8d6d1b54",
+  "node_address": "fm://root_90f25432-682fae0736ce",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is patient and tolerant.",
-  "created": "2025-09-22T15:33:05.516902",
+  "created": "2025-09-22T16:37:43.586320",
   "size": 41,
   "analysis": {
     "common_words": [
@@ -40,14 +40,14 @@
     "char_count": 41
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.516902",
+  "last_accessed": "2025-09-22T16:37:43.586320",
   "specialization": "enthusiastic",
   "tags": [
-    "patient",
     "i am",
+    "patient",
+    "someone who",
     "is patient",
     "someone",
-    "someone who",
     "tolerant"
   ]
 }

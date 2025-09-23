@@ -2,11 +2,11 @@
   "file_id": "root_6f81b586",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_6f81b586-5c16094a998e",
+  "node_address": "fm://root_6f81b586-8df67e70935b",
   "ancestors": [],
   "children": [],
   "content": "I am someone who enjoys being around other people.",
-  "created": "2025-09-22T15:33:05.517904",
+  "created": "2025-09-22T16:37:43.587819",
   "size": 50,
   "analysis": {
     "common_words": [
@@ -43,16 +43,16 @@
     "char_count": 50
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.517904",
+  "last_accessed": "2025-09-22T16:37:43.587819",
   "specialization": "enthusiastic",
   "tags": [
     "being",
     "i am",
     "other",
-    "someone",
+    "someone who",
     "enjoys being",
     "around",
-    "someone who",
+    "someone",
     "enjoys"
   ]
 }

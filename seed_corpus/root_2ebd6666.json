@@ -2,11 +2,11 @@
   "file_id": "root_2ebd6666",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_2ebd6666-f4ca4f06483d",
+  "node_address": "fm://root_2ebd6666-9e3612f22ecf",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is sensitive to stress and pressure.",
-  "created": "2025-09-22T15:33:05.520902",
+  "created": "2025-09-22T16:37:43.590319",
   "size": 53,
   "analysis": {
     "common_words": [
@@ -42,15 +42,15 @@
     "char_count": 53
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.520902",
+  "last_accessed": "2025-09-22T16:37:43.590319",
   "specialization": "enthusiastic",
   "tags": [
-    "pressure",
     "i am",
-    "someone",
     "sensitive",
-    "someone who",
+    "is sensitive",
+    "pressure",
     "stress",
-    "is sensitive"
+    "someone who",
+    "someone"
   ]
 }

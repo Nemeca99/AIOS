@@ -2,11 +2,11 @@
   "file_id": "root_0310fd9a",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_0310fd9a-c5828852804f",
+  "node_address": "fm://root_0310fd9a-074b79cec7da",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is easily overwhelmed by challenges.",
-  "created": "2025-09-22T15:33:05.521902",
+  "created": "2025-09-22T16:37:43.591818",
   "size": 53,
   "analysis": {
     "common_words": [
@@ -41,15 +41,15 @@
     "char_count": 53
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.521902",
+  "last_accessed": "2025-09-22T16:37:43.591818",
   "specialization": "enthusiastic",
   "tags": [
     "i am",
-    "someone",
-    "someone who",
-    "challenges",
     "is easily",
     "overwhelmed",
-    "easily"
+    "someone who",
+    "easily",
+    "challenges",
+    "someone"
   ]
 }

@@ -2,11 +2,11 @@
   "file_id": "root_e7b0b2df",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_e7b0b2df-3bc3b53cfc99",
+  "node_address": "fm://root_e7b0b2df-18c156ad4546",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is original and unconventional.",
-  "created": "2025-09-22T15:33:05.524402",
+  "created": "2025-09-22T16:37:43.594816",
   "size": 48,
   "analysis": {
     "common_words": [
@@ -40,15 +40,15 @@
     "char_count": 48
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.524402",
+  "last_accessed": "2025-09-22T16:37:43.594816",
   "specialization": "creative",
   "tags": [
     "i am",
-    "original",
-    "someone",
-    "emotion_creativity",
-    "someone who",
     "is original",
-    "unconventional"
+    "someone who",
+    "original",
+    "unconventional",
+    "someone",
+    "emotion_creativity"
   ]
 }

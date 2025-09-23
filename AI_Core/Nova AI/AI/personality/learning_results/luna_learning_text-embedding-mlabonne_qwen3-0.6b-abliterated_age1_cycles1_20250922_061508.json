@@ -1,0 +1,243 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-22T06:13:35.969402",
+    "total_questions": 5,
+    "luna_initial_age": 2,
+    "learning_cycles_completed": [
+        {
+            "dream_cycle": {
+                "cycle_number": 3,
+                "timestamp": "2025-09-22T06:15:08.703598",
+                "messages_processed": 5,
+                "insights": [
+                    "Luna is developing more detailed communication patterns",
+                    "Luna is exploring diverse personality dimensions"
+                ],
+                "memory_consolidation": {
+                    "total_memories": 5,
+                    "average_response_length": 378.6,
+                    "topics_covered": [
+                        "conscientiousness",
+                        "extraversion",
+                        "openness"
+                    ]
+                },
+                "emotional_patterns": {
+                    "positive": 0,
+                    "negative": 0,
+                    "neutral": 5,
+                    "dominant_emotion": "neutral"
+                },
+                "personality_notes": [],
+                "carma_dream_results": {
+                    "error": "'CARMA100PercentConsciousness' object has no attribute 'perform_dream_cycle'"
+                }
+            },
+            "personality_refinement": {
+                "cycle_number": 3,
+                "timestamp": "2025-09-22T06:15:08.705100",
+                "original_weights": {
+                    "directness": 0.48507632675730583,
+                    "humor": 0.5128955605801462,
+                    "technical_depth": 0.48750760279048966,
+                    "emotional_engagement": 0.5346327097518184,
+                    "sexual_awareness": 0.5036164078236428,
+                    "skepticism": 0.42042667915770243,
+                    "enthusiasm": 0.28509543351532945,
+                    "authenticity": 0.5074096253293636
+                },
+                "refinements": {
+                    "technical_depth": 0.001
+                },
+                "reasoning": [
+                    "Detailed communication patterns - slight technical depth increase"
+                ],
+                "new_weights": {
+                    "directness": 0.48507632675730583,
+                    "humor": 0.5128955605801462,
+                    "technical_depth": 0.48850760279048966,
+                    "emotional_engagement": 0.5346327097518184,
+                    "sexual_awareness": 0.5036164078236428,
+                    "skepticism": 0.42042667915770243,
+                    "enthusiasm": 0.28509543351532945,
+                    "authenticity": 0.5074096253293636
+                }
+            },
+            "new_age": 3,
+            "next_cycle_length": 13
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who seldom gets lost in thought",
+            "trait": "openness",
+            "response": "Well, that's pretty rare actually. Most folks get caught up in their heads from time to time. It's not a bad thing though; it can mean you're deep in thought or problem-solving. Just make sure it's not a habit that keeps you from engaging with the world around you. If you're looking for ways to snap out of it when you need to, try changing your scenery, doing something physical, or even just a quick chat with someone.",
+            "response_time": 17.612747,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-zlebi30rbidavbibxuwkg",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 254,
+                    "completion_tokens": 104,
+                    "total_tokens": 358
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 254,
+                "completion_tokens": 104,
+                "total_tokens": 358
+            },
+            "luna_age": 2,
+            "cycle_progress": "1/10"
+        },
+        "q2": {
+            "question": "I am someone who often forgets to put things back",
+            "trait": "conscientiousness",
+            "response": "Ah, the classic case of 'where did I leave my keys?' syndrome. It's like they have a mind of their own and decide to explore when you're not looking. Or maybe it's just a ploy by objects to test the limits of your memory and organization skills. Either way, you're not alone in that struggle.",
+            "response_time": 12.988098,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-fl9sefno7bb6a2ibca3ft",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 319,
+                    "completion_tokens": 73,
+                    "total_tokens": 392
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 319,
+                "completion_tokens": 73,
+                "total_tokens": 392
+            },
+            "luna_age": 2,
+            "cycle_progress": "2/10"
+        },
+        "q3": {
+            "question": "I am someone who likes to keep things neat",
+            "trait": "conscientiousness",
+            "response": "Oh, the satisfaction of a tidy space—I get it. There's something about order that just makes sense, you know? It's like your environment is a reflection of your mind, and when it's organized, everything feels more manageable. Plus, you won't spend hours searching for stuff because 'everything has its place.' Keep enjoying that peace of mind!",
+            "response_time": 14.141067,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-8g8kqiy7bvxpd1ylcvzcq7",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 362,
+                    "completion_tokens": 81,
+                    "total_tokens": 443
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 362,
+                "completion_tokens": 81,
+                "total_tokens": 443
+            },
+            "luna_age": 2,
+            "cycle_progress": "3/10"
+        },
+        "q4": {
+            "question": "I am someone who is exacting in my work",
+            "trait": "conscientiousness",
+            "response": "Oh, an artisan of precision then! That's a trait that can really make a difference in your field, whether it's craftsmanship, science, or any area where detail matters. It's like each stroke of your work is a brush of genius, and nothing less than perfection will do. Keep at it; the world could use more of your meticulous touch.",
+            "response_time": 14.487685,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-7gmalgubaucxcomyj4dp2",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 404,
+                    "completion_tokens": 82,
+                    "total_tokens": 486
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 404,
+                "completion_tokens": 82,
+                "total_tokens": 486
+            },
+            "luna_age": 2,
+            "cycle_progress": "4/10"
+        },
+        "q5": {
+            "question": "I am someone who finds it difficult to approach others",
+            "trait": "extraversion",
+            "response": "Well, you know, making the first move can be like stepping onto a stage without knowing the script. It's nerve-wracking, but every performer had their first opening night. You're not alone in that—it's a common jitter. But hey, think of it as a game of chess; you're making the first move, setting the pace for the whole match. And remember, every connection starts with that first 'hello.' So take a deep breath, and dive in. Worst they say is 'no,' but best case? You just might make a new ally or friend.",
+            "response_time": 21.465482,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-b02dnp7jygvva1u2u1v5kl",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 400,
+                    "completion_tokens": 130,
+                    "total_tokens": 530
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 400,
+                "completion_tokens": 130,
+                "total_tokens": 530
+            },
+            "luna_age": 2,
+            "cycle_progress": "5/10"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 16.1,
+        "successful_responses": 5,
+        "total_questions": 5,
+        "success_rate": 100.0,
+        "luna_age_growth": 1,
+        "total_cycles_completed": 1,
+        "personality_adjustments": 1,
+        "dream_insights_gained": 2,
+        "avg_personality_change": 0.001,
+        "learning_efficiency": 20.0
+    },
+    "test_end_time": "2025-09-22T06:15:08.706600",
+    "total_test_time_seconds": 92.737198,
+    "luna_final_age": 3,
+    "total_cycles_completed": 1,
+    "learning_metadata": {
+        "total_data_points": 5,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {
+            "technical_depth": {
+                "total_change": 0.001,
+                "change_count": 1,
+                "avg_change": 0.001
+            }
+        },
+        "dream_cycle_summary": {
+            "total_insights": 2,
+            "unique_insights": 2,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 5
+            },
+            "insight_frequency": {
+                "Luna is developing more detailed communication patterns": 1,
+                "Luna is exploring diverse personality dimensions": 1
+            }
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 2,
+                "max": 2
+            },
+            "age_transitions": 1,
+            "total_data_points": 5
+        },
+        "learning_insights": [
+            "Luna aged 1 cycles during the test",
+            "Learning efficiency: 20.0% (cycles per question)",
+            "Most evolved trait: technical_depth (+0.001)"
+        ]
+    }
+}

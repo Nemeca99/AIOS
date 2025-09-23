@@ -2,11 +2,11 @@
   "file_id": "root_795dfe7a",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_795dfe7a-a5f3a7be659a",
+  "node_address": "fm://root_795dfe7a-3f228206c730",
   "ancestors": [],
   "children": [],
   "content": "I am someone who values order and structure in my life.",
-  "created": "2025-09-22T15:33:05.514402",
+  "created": "2025-09-22T17:19:28.497065",
   "size": 55,
   "analysis": {
     "common_words": [
@@ -43,16 +43,16 @@
     "char_count": 55
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.514402",
+  "last_accessed": "2025-09-22T17:19:28.497065",
   "specialization": "enthusiastic",
   "tags": [
-    "values",
+    "structure",
+    "values order",
+    "someone who",
     "i am",
     "someone",
     "order",
-    "someone who",
-    "life",
-    "structure",
-    "values order"
+    "values",
+    "life"
   ]
 }

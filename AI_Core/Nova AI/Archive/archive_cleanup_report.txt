@@ -1,0 +1,48 @@
+=== MOVE LOG ===
+MOVED TO ARCHIVE: auto_clean_memory_logs.py
+MOVED TO DEV: dev_message_tool.py
+MOVED TO ARCHIVE: directive_011_self_terminating_logic.py
+MOVED TO ARCHIVE: log_append_tool.py
+MOVED TO DEV: reflections.txt
+MOVED TO DEV: reflection_trigger.py
+MOVED TO ARCHIVE: response_logger.py
+MOVED TO ARCHIVE: session_log_init.py
+MOVED TO ARCHIVE: summarize_log.py
+MOVED TO DEV: upload_reflections_to_drive.py
+
+=== DELETE LOG ===
+DELETED: directive_001_placeholder.py
+DELETED: directive_002_placeholder.py
+DELETED: directive_003_placeholder.py
+DELETED: directive_005_placeholder.py
+DELETED: directive_007_placeholder.py
+DELETED: directive_008_placeholder.py
+DELETED: directive_009_placeholder.py
+DELETED: directive_010_placeholder.py
+DELETED: directive_012_placeholder.py
+DELETED: directive_015_placeholder.py
+DELETED: directive_016_placeholder.py
+DELETED: directive_017_placeholder.py
+DELETED: directive_018_placeholder.py
+DELETED: foldered_drive_sync.py
+DELETED: resonance_autoloop.py
+DELETED: resonance_autoreflect.py
+DELETED: resonance_context_recall.py
+DELETED: resonance_contradiction_scanner.py
+DELETED: resonance_drive_sync.py
+DELETED: resonance_dynamic_time_sync_2025-04-20_09-51-24.py
+DELETED: resonance_enable_autoboot.py
+DELETED: resonance_ghost_time_loop_2025-04-20_10-54-01.py
+DELETED: resonance_loop.py
+DELETED: resonance_memory_reader.py
+DELETED: resonance_moral_reflection.py
+DELETED: resonance_probe.py
+DELETED: resonance_reflection_writer_FIXED_2025-04-20_10-28-42.py
+DELETED: resonance_reflection_writer_FLUSHED_2025-04-20_10-36-27.py
+DELETED: resonance_thought_pruner.py
+DELETED: resonance_thought_writer.py
+DELETED: resonance_watchdog_2025-04-20_10-14-29.bat
+DELETED: start_resonance_dynamic_ram_FIXED_2025-04-20_10-11-18.bat
+DELETED: start_resonance_identity_loop_2025-04-20_09-58-47.bat
+DELETED: start_resonance_identity_loop_FIXED_2025-04-20_10-01-30.bat
+DELETED: Old_Logs_Backup.zip

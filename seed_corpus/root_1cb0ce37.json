@@ -2,11 +2,11 @@
   "file_id": "root_1cb0ce37",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_1cb0ce37-75159ebb164a",
+  "node_address": "fm://root_1cb0ce37-0443069fe106",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is self-critical and perfectionistic.",
-  "created": "2025-09-22T15:33:05.521402",
+  "created": "2025-09-22T16:37:43.591318",
   "size": 54,
   "analysis": {
     "common_words": [
@@ -41,15 +41,15 @@
     "char_count": 54
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.521402",
+  "last_accessed": "2025-09-22T16:37:43.591318",
   "specialization": "enthusiastic",
   "tags": [
     "i am",
-    "someone",
-    "is self",
     "someone who",
     "critical",
-    "self",
-    "perfectionistic"
+    "is self",
+    "perfectionistic",
+    "someone",
+    "self"
   ]
 }

@@ -2,11 +2,11 @@
   "file_id": "root_92fbbd6e",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_92fbbd6e-54aa1daefa7c",
+  "node_address": "fm://root_92fbbd6e-d053c4e7c452",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is pessimistic and expects the worst.",
-  "created": "2025-09-22T15:33:05.522402",
+  "created": "2025-09-22T16:37:43.592317",
   "size": 54,
   "analysis": {
     "common_words": [
@@ -42,15 +42,15 @@
     "char_count": 54
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.522402",
+  "last_accessed": "2025-09-22T16:37:43.592317",
   "specialization": "enthusiastic",
   "tags": [
-    "pessimistic",
-    "expects",
     "i am",
-    "someone",
     "is pessimistic",
+    "worst",
     "someone who",
-    "worst"
+    "pessimistic",
+    "someone",
+    "expects"
   ]
 }

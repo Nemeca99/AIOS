@@ -2,11 +2,11 @@
   "file_id": "root_355a484f",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_355a484f-0153e5d0c39c",
+  "node_address": "fm://root_355a484f-9fb9e42e85fb",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is prone to negative thinking.",
-  "created": "2025-09-22T15:33:05.521402",
+  "created": "2025-09-22T16:37:43.591318",
   "size": 47,
   "analysis": {
     "common_words": [
@@ -41,16 +41,16 @@
     "char_count": 47
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.521402",
+  "last_accessed": "2025-09-22T16:37:43.591318",
   "specialization": "philosophical",
   "tags": [
-    "negative",
-    "thinking",
     "i am",
-    "someone",
     "someone who",
-    "prone",
+    "emotion_philosophical",
+    "negative",
     "is prone",
-    "emotion_philosophical"
+    "someone",
+    "thinking",
+    "prone"
   ]
 }

@@ -2,11 +2,11 @@
   "file_id": "root_b883eaea",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_b883eaea-c168f13e1500",
+  "node_address": "fm://root_b883eaea-8dd6f1570b40",
   "ancestors": [],
   "children": [],
   "content": "I am someone who takes responsibility for my actions.",
-  "created": "2025-09-22T15:33:05.513902",
+  "created": "2025-09-22T17:19:28.496064",
   "size": 53,
   "analysis": {
     "common_words": [
@@ -41,15 +41,15 @@
     "char_count": 53
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.513902",
+  "last_accessed": "2025-09-22T17:19:28.496064",
   "specialization": "enthusiastic",
   "tags": [
-    "takes responsibility",
-    "takes",
+    "someone who",
     "i am",
+    "actions",
     "responsibility",
     "someone",
-    "someone who",
-    "actions"
+    "takes",
+    "takes responsibility"
   ]
 }

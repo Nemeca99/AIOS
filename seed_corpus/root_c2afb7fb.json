@@ -2,11 +2,11 @@
   "file_id": "root_c2afb7fb",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_c2afb7fb-39dea0a94ee6",
+  "node_address": "fm://root_c2afb7fb-5cf774a69e40",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is charismatic and engaging.",
-  "created": "2025-09-22T15:33:05.519905",
+  "created": "2025-09-22T16:37:43.589817",
   "size": 45,
   "analysis": {
     "common_words": [
@@ -40,14 +40,14 @@
     "char_count": 45
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.519905",
+  "last_accessed": "2025-09-22T16:37:43.589817",
   "specialization": "enthusiastic",
   "tags": [
     "i am",
-    "someone",
     "charismatic",
-    "is charismatic",
     "engaging",
-    "someone who"
+    "is charismatic",
+    "someone who",
+    "someone"
   ]
 }

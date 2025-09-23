@@ -2,11 +2,11 @@
   "file_id": "root_90f9a462",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_90f9a462-3cc20464d7fb",
+  "node_address": "fm://root_90f9a462-45e2e7c6af0b",
   "ancestors": [],
   "children": [],
   "content": "I am someone who always follows through on my commitments.",
-  "created": "2025-09-22T15:33:05.512403",
+  "created": "2025-09-22T17:19:28.494562",
   "size": 58,
   "analysis": {
     "common_words": [
@@ -43,16 +43,16 @@
     "char_count": 58
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.512403",
+  "last_accessed": "2025-09-22T17:19:28.494562",
   "specialization": "enthusiastic",
   "tags": [
-    "always",
-    "commitments",
+    "follows",
+    "someone who",
     "i am",
     "someone",
-    "always follows",
-    "someone who",
+    "commitments",
+    "always",
     "through",
-    "follows"
+    "always follows"
   ]
 }

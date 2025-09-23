@@ -1,0 +1,88 @@
+# CARMA: Cached Aided Retrieval Mycelium Architecture
+# Multi-stage optimized production container
+
+# Build stage
+FROM python:3.11-slim AS builder
+
+# Add metadata labels
+LABEL maintainer="Travis Miner" \
+      version="1.0.0" \
+      description="CARMA: Cached Aided Retrieval Mycelium Architecture" \
+      org.opencontainers.image.source="https://github.com/yourusername/AIOS_Clean"
+
+# Install build dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install dependencies
+COPY requirements.txt .
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Runtime stage
+FROM python:3.11-alpine
+
+# Add metadata labels
+LABEL maintainer="Travis Miner" \
+      version="1.0.0" \
+      description="CARMA: Cached Aided Retrieval Mycelium Architecture" \
+      org.opencontainers.image.source="https://github.com/yourusername/AIOS_Clean"
+
+# Install minimal runtime dependencies
+RUN apk add --no-cache \
+    curl \
+    bash \
+    && rm -rf /var/cache/apk/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy virtual environment from builder
+COPY --from=builder /opt/venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Copy only essential application files
+COPY --chown=1000:1000 "Hive Mind" "Hive Mind"
+COPY --chown=1000:1000 human_eval/ human_eval/
+COPY --chown=1000:1000 carma_minimal/ carma_minimal/
+COPY --chown=1000:1000 seed_corpus/ seed_corpus/
+COPY --chown=1000:1000 requirements.txt .
+COPY --chown=1000:1000 *.py .
+
+# Create necessary directories
+RUN mkdir -p AI/personality/embedder_cache \
+    && mkdir -p AI/personality/learning_data \
+    && mkdir -p AI/personality/master_test_results \
+    && mkdir -p AI/personality/learning_results \
+    && mkdir -p telemetry_data \
+    && mkdir -p ablation_results \
+    && mkdir -p carma_data \
+    && chown -R 1000:1000 /app
+
+# Set environment variables
+ENV PYTHONPATH=/app
+ENV CARMA_BASE_DIR=/app/carma_data
+ENV LM_STUDIO_URL=http://host.docker.internal:1234/v1
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Create non-root user
+RUN adduser -D -u 1000 carma
+
+# Switch to non-root user
+USER carma
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python -c "import sys; sys.exit(0)"
+
+# Set entrypoint for consistent behavior
+ENTRYPOINT ["python"]
+
+# Default command
+CMD ["human_eval/human_eval_prep.py", "--sample", "--questions", "20"]

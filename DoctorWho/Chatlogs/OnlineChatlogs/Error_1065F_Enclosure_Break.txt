@@ -1,0 +1,10 @@
+Error 1065F: Enclosure Break
+
+User
+What does the error code 1065F, PDX Cell 006 Enclosure Break for the Mettler Toledo IND780 mean?
+
+Assistant
+I'm sorry, but I couldn't find specific information about the error code 1065F, PDX Cell 006 Enclosure Break for the Mettler Toledo IND780. Error codes can vary between different systems and manufacturers, and my knowledge cutoff is in September 2021. It's possible that this specific error code is either not widely documented or specific to a particular configuration or setup.
+
+To troubleshoot this issue, I recommend referring to the user manual or contacting Mettler Toledo's customer support directly. Their technical support team should be able to provide you with accurate information regarding the error code and guide you through the necessary steps to resolve the issue.
+

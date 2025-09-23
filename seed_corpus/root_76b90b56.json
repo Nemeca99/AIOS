@@ -2,11 +2,11 @@
   "file_id": "root_76b90b56",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_76b90b56-b6d06f969e61",
+  "node_address": "fm://root_76b90b56-74c232a11dc1",
   "ancestors": [],
   "children": [],
   "content": "I am someone who pays attention to details and rarely makes mistakes.",
-  "created": "2025-09-22T15:33:05.512902",
+  "created": "2025-09-22T17:19:28.495063",
   "size": 69,
   "analysis": {
     "common_words": [
@@ -46,16 +46,16 @@
     "char_count": 69
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.512902",
+  "last_accessed": "2025-09-22T17:19:28.495063",
   "specialization": "enthusiastic",
   "tags": [
-    "i am",
-    "someone",
-    "rarely",
     "someone who",
-    "pays attention",
-    "pays",
+    "i am",
     "attention",
-    "details"
+    "someone",
+    "details",
+    "rarely",
+    "pays attention",
+    "pays"
   ]
 }

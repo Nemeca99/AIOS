@@ -2,11 +2,11 @@
   "file_id": "root_4f41ade0",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_4f41ade0-2865a68ac168",
+  "node_address": "fm://root_4f41ade0-67c85112ebb1",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is curious and interested in new ideas.",
-  "created": "2025-09-22T15:33:05.522902",
+  "created": "2025-09-22T16:37:43.593317",
   "size": 56,
   "analysis": {
     "common_words": [
@@ -42,16 +42,16 @@
     "char_count": 56
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.522902",
+  "last_accessed": "2025-09-22T16:37:43.593317",
   "specialization": "general",
   "tags": [
     "i am",
-    "ideas",
-    "curious",
-    "someone",
     "is curious",
-    "someone who",
+    "ideas",
     "emotion_curiosity",
-    "interested"
+    "someone who",
+    "someone",
+    "interested",
+    "curious"
   ]
 }

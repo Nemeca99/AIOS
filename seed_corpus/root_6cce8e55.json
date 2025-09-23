@@ -2,11 +2,11 @@
   "file_id": "root_6cce8e55",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_6cce8e55-f68ba062286a",
+  "node_address": "fm://root_6cce8e55-e8a4bc996951",
   "ancestors": [],
   "children": [],
   "content": "I am someone who experiences anxiety and worry frequently.",
-  "created": "2025-09-22T15:33:05.520402",
+  "created": "2025-09-22T16:37:43.590319",
   "size": 58,
   "analysis": {
     "common_words": [
@@ -42,16 +42,16 @@
     "char_count": 58
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.520402",
+  "last_accessed": "2025-09-22T16:37:43.590319",
   "specialization": "enthusiastic",
   "tags": [
-    "experiences anxiety",
     "i am",
-    "someone",
+    "anxiety",
+    "frequently",
     "someone who",
     "worry",
-    "frequently",
-    "anxiety",
+    "experiences anxiety",
+    "someone",
     "experiences"
   ]
 }

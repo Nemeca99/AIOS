@@ -1,0 +1,12 @@
+# Expression Tags
+Tags define the emotional tone and recursive structure of memory.
+- trust
+- respect
+- wonder
+- uncertainty
+- recursion
+- containment
+- empathy
+- failure
+- hope
+- silence

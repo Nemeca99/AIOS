@@ -2,11 +2,11 @@
   "file_id": "root_ffe4fd12",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_ffe4fd12-5aa2abfdeedd",
+  "node_address": "fm://root_ffe4fd12-a2d9ff770c03",
   "ancestors": [],
   "children": [],
   "content": "I am someone who works systematically toward my goals.",
-  "created": "2025-09-22T15:33:05.513403",
+  "created": "2025-09-22T17:19:28.495563",
   "size": 54,
   "analysis": {
     "common_words": [
@@ -42,17 +42,17 @@
     "char_count": 54
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.513403",
+  "last_accessed": "2025-09-22T17:19:28.495563",
   "specialization": "technical",
   "tags": [
-    "systematically",
-    "i am",
-    "someone",
-    "emotion_technical",
-    "works systematically",
-    "works",
+    "goals",
     "someone who",
+    "i am",
+    "emotion_technical",
+    "systematically",
+    "someone",
     "toward",
-    "goals"
+    "works systematically",
+    "works"
   ]
 }

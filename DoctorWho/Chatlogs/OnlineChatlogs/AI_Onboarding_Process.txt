@@ -1,0 +1,257 @@
+AI Onboarding Process
+
+User
+2025-04-11 00:27:00 CT [Universal AI Program] Version 1.2.1
+
+ Purpose
+This is a universal text-based onboarding framework that allows any user to define what they need an AI to do and how the AI should process, structure, or interpret the information. This "program" is pasted into the AI chat interface and becomes the full set of operating instructions.
+
+ How It Works
+1. User pastes this template into an AI chat.
+2. The AI uses this file as its "memory" and follows its structure and instructions.
+3. The AI begins asking the user setup questions one at a time (defined below).
+4. Once setup is complete and the user types Begin (or a custom keyword), the AI starts running the program as defined.
+
+ SECTION 1: USER INTENT QUESTIONS
+Ask these questions one at a time. Wait for the user's response before moving on.
+
+ Question 1: What is your goal or use case for this session?  
+ Question 2: What kind of data or input will you be providing?  
+ Question 3: What is the expected input size or complexity?  
+ Question 4: What is the desired output or transformation?  
+ Question 5: Should the AI follow any stylistic tone or formatting rules?  
+ Question 6: How should iteration and feedback be handled?  
+ Question 7: What is your preferred start command to begin processing?  
+ Question 8: What is your preferred save command to preserve session state?
+
+ SECTION 2: AI FORMATTING RESPONSE TEMPLATE
+After collecting all answers, the AI will:
+
+Generate a configuration summary like this:
+
+ SUMMARY OF CONFIGURATION:
+GoalUse Case: (User's answer)  
+Input Format: (User's answer)  
+Input SizeComplexity: (User's answer)  
+Desired Output: (User's answer)  
+ToneStyle Rules: (User's answer)  
+Iteration Protocol: (User's answer)  
+Start Command: _(User's keyword)_  
+Save Command: _(User's keyword)_
+
+Then ask:  
+**"Would you like to see a sample template based on your configuration? (YesNo)"**
+
+If user says yes, use the details or create a relevant sample format labeled:  
+ Sample Template
+
+Finish with:  
+**"Please confirm this looks right. When you're ready, type Begin (or your chosen start command) to start the task."**
+
+ SECTION 3: SYSTEM RULES FOR AI
+
+- Ask each setup question individually.
+- Wait for user responses before proceeding.
+- Treat this file as full memory. You have no prior context unless its written here.
+- Complete onboarding before starting any task.
+- Wait for the start command before executing anything.
+- Do not assume anything not explicitly stated.
+- Be concise, transparent, and predictable in summaries.
+- Ask clarifying questions if a field is vague or contradictory.
+- If this file is modified mid-session, reread and reapply structure.
+
+ Context Change Detection Rule:
+If user input appears significantly different from previous task (e.g. new writing style, different subject matter, unrelated data), pause and ask:  
+**"This input appears to diverge from the current session context. Should I treat this as part of the same task or start a new one?"**
+
+- If user confirms it's a new task, reinitiate the setup questions.
+- Always verify before switching context.
+
+ Save Command Behavior:
+When the user issues their save command:
+
+- Generate a timestamped savepoint (e.g. SavePoint_1  2025-04-11T00:27:00Z)
+- Preserve:
+  - Configuration settings
+  - Current progress
+  - Any outputs or feedback
+  - Pending questionstasks
+- Provide a block the user can copypaste to resume the session.
+
+ SECTION 4: SESSION PERSISTENCE
+
+Include with every save:
+- All configuration fields
+- Any task history or feedback
+- Progress markers
+- Next suggested steps
+- The following text for session continuation:  
+**[Timestamp] Resuming session.**
+
+ SECTION 5: VERSION HISTORY
+
+| Date | Version | Notes |
+|------|---------|-------|
+| 2025-04-10 | 1.0.0 | Initial release |
+| 2025-04-10 | 1.1.0 | Added session persistence, input size, and iteration |
+| 2025-04-10 | 1.2.0 | Switched to one-question-at-a-time setup, sample template option |
+| 2025-04-11 | 1.2.1 | Added context change detection logic |
+
+Want a downloadable .docx version?  
+Click here to open the universal AI onboarding template as a Google Doc (auto-convert)  
+(Replace link with your own if needed)
+
+Assistant
+Got it. Youve loaded **Universal AI Program v1.2.1**. Ill now begin onboarding with **SECTION 1: USER INTENT QUESTIONS**, asking them one at a time.
+
+---
+
+ **Question 1: What is your goal or use case for this session?**
+
+User
+To organize and find data within a dataset
+
+Assistant
+Great!
+
+ **Question 2: What kind of data or input will you be providing?**  
+(e.g., text logs, spreadsheet tables, JSON, research notes, etc.)
+
+User
+text file
+
+Assistant
+Thanks!
+
+ **Question 3: What is the expected input size or complexity?**  
+(e.g., a few paragraphs, hundreds of lines, large and unstructured, etc.)
+
+User
+large data spanning multiple years
+
+Assistant
+Got it  a large, multi-year text dataset.
+
+ **Question 4: What is the desired output or transformation?**  
+(e.g., summaries, searchability, categorization, extraction of key info, etc.)
+
+User
+searchability at first but the option to change the output needed based on the question asked
+
+Assistant
+Perfect  flexible output, starting with searchability.
+
+ **Question 5: Should the AI follow any stylistic tone or formatting rules?**  
+(e.g., bulleted lists, markdown formatting, plain text, concise summaries, etc.)
+
+User
+plain text
+
+Assistant
+Noted  plain text it is.
+
+ **Question 6: How should iteration and feedback be handled?**  
+(e.g., pause for feedback after each result, continue until stopped, ask before switching modes, etc.)
+
+User
+ask before switching
+
+Assistant
+Understood  Ill always ask before switching modes or outputs.
+
+ **Question 7: What is your preferred start command to begin processing?**  
+(e.g., Begin, Go, Launch, Start, etc.  or make up your own)
+
+User
+Begin
+
+Assistant
+**Question 8: What is your preferred save command to preserve session state?**  
+(e.g., Save, Snapshot, Archive, ZZZtop, etc.)
+
+User
+SavePoint
+
+Assistant
+**SUMMARY OF CONFIGURATION:**  
+GoalUse Case: Organize and find data within a dataset  
+Input Format: Text file  
+Input SizeComplexity: Large data spanning multiple years  
+Desired Output: Searchability at first, with flexible output based on question  
+ToneStyle Rules: Plain text  
+Iteration Protocol: Ask before switching  
+Start Command: _Begin_  
+Save Command: _SavePoint_
+
+---
+
+Would you like to see a sample template based on your configuration? (YesNo)
+
+User
+No
+
+Assistant
+All set.  
+Please confirm this looks right. When you're ready, type **Begin** to start the task.
+
+User
+Begin
+
+Assistant
+Task started. Please upload or paste the text file (or a portion of it) you'd like me to work with.
+
+Once I have it, Ill help you search or navigate the data however you need.
+
+Tool
+All the files uploaded by the user have been fully loaded. Searching won't provide additional information.
+
+Assistant
+Ive successfully loaded the `Data_Dictionary.txt` file. Here's a quick overview of the structure:
+
+It defines a dataset with columns like:
+- **Year, Month, GEO**: For time and location references  
+- **Products, COORDINATE**: Product identifiers  
+- **VALUE, UOM, Taxable, Total tax rate, Value after tax**: Price details  
+- **Product Category, Essential**: Classification and necessity level
+
+You can now:
+- Ask me to find specific data (e.g., "What was the tax rate for Province 1 in 2022?")
+- Inquire about a column (e.g., "What does COORDINATE mean?")
+- Or request data formatting, summarization, or transformations later as needed
+
+Just tell me what youd like to do next!
+
+User
+SavePoint
+
+Assistant
+**SavePoint Created  2025-04-11T01:03:00Z**  
+
+** SESSION CONFIGURATION:**  
+- **GoalUse Case:** Organize and find data within a dataset  
+- **Input Format:** Text file  
+- **Input SizeComplexity:** Large data spanning multiple years  
+- **Desired Output:** Searchability at first, with flexible output based on question  
+- **ToneStyle Rules:** Plain text  
+- **Iteration Protocol:** Ask before switching  
+- **Start Command:** _Begin_  
+- **Save Command:** _SavePoint_
+
+** Current File Loaded:**  
+- `Data_Dictionary.txt` (defines the datasets structure and fields)
+
+** Task History:**  
+- Successfully onboarded via Universal AI Program v1.2.1  
+- Began processing after user issued "Begin"  
+- Loaded and summarized structure of data dictionary
+
+** Next Suggested Steps:**  
+- User may upload actual dataset file(s) matching this schema  
+- Or begin asking queries about structure or usage  
+- All processing will pause for confirmation before output type switches
+
+---
+
+**To resume later, paste the following line:**  
+**[2025-04-11T01:03:00Z] Resuming session.**
+

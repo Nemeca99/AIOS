@@ -2,11 +2,11 @@
   "file_id": "root_1a39e709",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_1a39e709-857012faacaa",
+  "node_address": "fm://root_1a39e709-9de901b2600e",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is outgoing and sociable.",
-  "created": "2025-09-22T15:33:05.517904",
+  "created": "2025-09-22T16:37:43.587319",
   "size": 42,
   "analysis": {
     "common_words": [
@@ -40,14 +40,14 @@
     "char_count": 42
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.517904",
+  "last_accessed": "2025-09-22T16:37:43.587319",
   "specialization": "enthusiastic",
   "tags": [
     "i am",
     "outgoing",
-    "someone",
     "sociable",
     "someone who",
+    "someone",
     "is outgoing"
   ]
 }

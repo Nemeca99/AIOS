@@ -2,11 +2,11 @@
   "file_id": "root_be1fb15e",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_be1fb15e-4e16a50c3487",
+  "node_address": "fm://root_be1fb15e-b56df4dad941",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is optimistic and positive.",
-  "created": "2025-09-22T15:33:05.519402",
+  "created": "2025-09-22T16:37:43.588820",
   "size": 44,
   "analysis": {
     "common_words": [
@@ -40,14 +40,14 @@
     "char_count": 44
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.519402",
+  "last_accessed": "2025-09-22T16:37:43.588820",
   "specialization": "enthusiastic",
   "tags": [
-    "optimistic",
     "i am",
-    "someone",
-    "someone who",
     "is optimistic",
-    "positive"
+    "someone who",
+    "someone",
+    "positive",
+    "optimistic"
   ]
 }

@@ -2,11 +2,11 @@
   "file_id": "root_59e29747",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_59e29747-8b7a4f21769c",
+  "node_address": "fm://root_59e29747-18027654b669",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is open to new experiences and adventures.",
-  "created": "2025-09-22T15:33:05.523402",
+  "created": "2025-09-22T16:37:43.593816",
   "size": 59,
   "analysis": {
     "common_words": [
@@ -42,15 +42,15 @@
     "char_count": 59
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.523402",
+  "last_accessed": "2025-09-22T16:37:43.593816",
   "specialization": "enthusiastic",
   "tags": [
-    "open",
     "i am",
-    "someone",
+    "someone who",
     "adventures",
     "is open",
-    "someone who",
-    "experiences"
+    "someone",
+    "experiences",
+    "open"
   ]
 }

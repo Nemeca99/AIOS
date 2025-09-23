@@ -2,11 +2,11 @@
   "file_id": "root_1cffe7a5",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_1cffe7a5-2f4cf4f8eb2c",
+  "node_address": "fm://root_1cffe7a5-478ca0943dc5",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is adventurous and seeks excitement.",
-  "created": "2025-09-22T15:33:05.519402",
+  "created": "2025-09-22T16:37:43.588820",
   "size": 53,
   "analysis": {
     "common_words": [
@@ -41,14 +41,14 @@
     "char_count": 53
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T15:33:05.519402",
+  "last_accessed": "2025-09-22T16:37:43.588820",
   "specialization": "enthusiastic",
   "tags": [
     "i am",
-    "someone",
     "seeks",
     "someone who",
     "is adventurous",
+    "someone",
     "adventurous",
     "excitement"
   ]
