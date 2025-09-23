@@ -22,6 +22,7 @@ from typing import Dict, List, Tuple, Optional, Set
 from collections import Counter
 import hashlib
 import uuid
+from simple_embedder import SimpleEmbedder
 
 class FractalMyceliumCache:
     def __init__(self, base_dir: str = "Data/FractalCache"):
@@ -72,12 +73,17 @@ class FractalMyceliumCache:
             'cross_links': 0
         }
         
+        # Embedding System
+        self.embedder = SimpleEmbedder(use_api=False)  # Use fallback for now
+        self.embedding_index = None  # FAISS index will be built here
+        
         print("🌱 Fractal Mycelium Cache Initialized")
         print(f"📁 Base directory: {self.base_dir}")
         print(f"📏 Max file size: {self.max_file_size // 1024}KB")
         print(f"🔀 Max splits: {self.max_splits}")
         print(f"🧠 Eviction enabled: {self.max_cache_size} max fragments")
         print(f"⚡ Reinforcement enabled: hit-based weighting")
+        print(f"🧠 Embedder: {self.embedder.embedding_model}")
 
     # --- Valence / Karma Utilities ---
     def _bounded_growth(self, current: float, base_rate: float, ceiling: float) -> float:
@@ -636,6 +642,56 @@ class FractalMyceliumCache:
 
     def find_relevant_fragments(self, query: str, max_results: int = 10) -> List[Dict]:
         """Find fragments relevant to a query"""
+        
+        # Check if we have embeddings and index
+        if hasattr(self, 'embedding_index') and self.embedding_index is not None:
+            return self._find_relevant_with_embeddings(query, max_results)
+        else:
+            # Fallback to analysis-based search
+            return self._find_relevant_with_analysis(query, max_results)
+    
+    def _find_relevant_with_embeddings(self, query: str, max_results: int) -> List[Dict]:
+        """Find relevant fragments using FAISS index."""
+        try:
+            # Generate query embedding
+            query_embedding = self.embedder.embed(query)
+            
+            # Use the FAISS index
+            results = self.find_relevant(query_embedding, topk=max_results)
+            
+            # Convert to expected format
+            formatted_results = []
+            for result in results:
+                if hasattr(result, 'id'):
+                    formatted_results.append({
+                        'file_id': result.id,
+                        'score': result.score,
+                        'fragment': {
+                            'content': result.content,
+                            'hits': result.hits,
+                            'level': result.level
+                        }
+                    })
+                else:
+                    # Handle dict results
+                    formatted_results.append({
+                        'file_id': result.get('file_id', 'unknown'),
+                        'score': result.get('similarity', 0.0),
+                        'fragment': {
+                            'content': result.get('content', ''),
+                            'hits': result.get('hits', 0),
+                            'level': result.get('level', 0)
+                        }
+                    })
+            
+            return formatted_results
+            
+        except Exception as e:
+            print(f"⚠️  Embedding search failed: {e}, using analysis search")
+            return self._find_relevant_with_analysis(query, max_results)
+    
+    def _find_relevant_with_analysis(self, query: str, max_results: int) -> List[Dict]:
+        """Find fragments using content analysis (fallback method)."""
         try:
             query_analysis = self.analyze_content(query)
             query_words = set(query_analysis['common_words'])
@@ -1452,6 +1508,85 @@ class FractalMyceliumCache:
             attempts += 1
         best['status'] = 'ok' if best['path'] else 'no_path'
         return best
+
+    # --- Embedding System ---
+    
+    def ensure_embedding_index(self):
+        """Build FAISS index for all fragments with embeddings."""
+        try:
+            import faiss
+        except ImportError:
+            print("⚠️  FAISS not available, using simple similarity search")
+            return
+        
+        # Collect all fragments with embeddings
+        embeddings = []
+        fragment_ids = []
+        
+        for frag_id, frag_data in self.file_registry.items():
+            if 'embedding' in frag_data and frag_data['embedding'] is not None:
+                embeddings.append(frag_data['embedding'])
+                fragment_ids.append(frag_id)
+        
+        if not embeddings:
+            print("❌ No embeddings found to build index")
+            return
+        
+        # Convert to numpy array
+        import numpy as np
+        embeddings_array = np.array(embeddings).astype('float32')
+        
+        # Build FAISS index
+        dimension = len(embeddings[0])
+        self.embedding_index = faiss.IndexFlatIP(dimension)  # Inner product for cosine similarity
+        self.embedding_index.add(embeddings_array)
+        
+        # Store mapping from index to fragment ID
+        self.embedding_to_fragment = fragment_ids
+        
+        print(f"✅ FAISS index built: {len(embeddings)} embeddings, dimension {dimension}")
+    
+    def find_relevant(self, query_embedding, topk=3):
+        """Find relevant fragments using FAISS index."""
+        if self.embedding_index is None:
+            print("⚠️  No embedding index built, using simple search")
+            return self.find_relevant_fragments("", max_results=topk)
+        
+        try:
+            import numpy as np
+            
+            # Normalize query embedding
+            query_array = np.array([query_embedding]).astype('float32')
+            query_norm = np.linalg.norm(query_array)
+            if query_norm > 0:
+                query_array = query_array / query_norm
+            
+            # Search index
+            scores, indices = self.embedding_index.search(query_array, topk)
+            
+            # Convert to fragment data
+            results = []
+            for i, (score, idx) in enumerate(zip(scores[0], indices[0])):
+                if idx < len(self.embedding_to_fragment):
+                    frag_id = self.embedding_to_fragment[idx]
+                    frag_data = self.file_registry.get(frag_id, {})
+                    
+                    # Create result object
+                    class FragmentResult:
+                        def __init__(self, frag_id, frag_data, score):
+                            self.id = frag_id
+                            self.content = frag_data.get('content', '')
+                            self.hits = frag_data.get('hits', 0)
+                            self.level = frag_data.get('level', 0)
+                            self.score = float(score)
+                    
+                    results.append(FragmentResult(frag_id, frag_data, score))
+            
+            return results
+            
+        except Exception as e:
+            print(f"❌ FAISS search failed: {e}")
+            return self.find_relevant_fragments("", max_results=topk)
 
 if __name__ == "__main__":
     # Example usage

@@ -1,0 +1,28 @@
+{
+  "timestamp": 1758606758.8022006,
+  "cache_file": "Data/FractalCache/registry.json",
+  "total_fragments": 36,
+  "max_level": 0,
+  "fragments_with_splits": 0,
+  "total_splits": 0,
+  "cross_links": 26,
+  "consolidation_rate": 0.0,
+  "level_distribution": {
+    "0": 36
+  },
+  "content_analysis": {
+    "avg_length": 50.833333333333336,
+    "min_length": 29,
+    "max_length": 70
+  },
+  "hit_analysis": {
+    "avg_hits": 0.0,
+    "max_hits": 0
+  },
+  "growth_patterns": {
+    "fractal_splitting": false,
+    "memory_consolidation": false,
+    "cross_linking": true,
+    "high_consolidation": false
+  }
+}

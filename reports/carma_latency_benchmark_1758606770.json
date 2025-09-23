@@ -1,0 +1,96 @@
+{
+  "timestamp": 1758606770.3627875,
+  "system": "CARMA",
+  "questions": 10,
+  "iterations": 1,
+  "total_queries": 10,
+  "successful_queries": 0,
+  "failed_queries": 10,
+  "avg_latency": 0,
+  "min_latency": 0,
+  "max_latency": 0,
+  "median_latency": 0,
+  "std_latency": 0,
+  "results": [
+    {
+      "query": "What is the capital of France?",
+      "response": "Error: 'FractalMyceliumCache' object has no attribute 'find_relevant'",
+      "latency": 0.0,
+      "fragments_found": 0,
+      "success": false,
+      "error": "'FractalMyceliumCache' object has no attribute 'find_relevant'"
+    },
+    {
+      "query": "Explain quantum entanglement simply.",
+      "response": "Error: 'FractalMyceliumCache' object has no attribute 'find_relevant'",
+      "latency": 0.0,
+      "fragments_found": 0,
+      "success": false,
+      "error": "'FractalMyceliumCache' object has no attribute 'find_relevant'"
+    },
+    {
+      "query": "Tell me a short story about a robot.",
+      "response": "Error: 'FractalMyceliumCache' object has no attribute 'find_relevant'",
+      "latency": 0.0,
+      "fragments_found": 0,
+      "success": false,
+      "error": "'FractalMyceliumCache' object has no attribute 'find_relevant'"
+    },
+    {
+      "query": "How does machine learning work?",
+      "response": "Error: 'FractalMyceliumCache' object has no attribute 'find_relevant'",
+      "latency": 0.0,
+      "fragments_found": 0,
+      "success": false,
+      "error": "'FractalMyceliumCache' object has no attribute 'find_relevant'"
+    },
+    {
+      "query": "What are the benefits of renewable energy?",
+      "response": "Error: 'FractalMyceliumCache' object has no attribute 'find_relevant'",
+      "latency": 0.0,
+      "fragments_found": 0,
+      "success": false,
+      "error": "'FractalMyceliumCache' object has no attribute 'find_relevant'"
+    },
+    {
+      "query": "Describe the process of photosynthesis.",
+      "response": "Error: 'FractalMyceliumCache' object has no attribute 'find_relevant'",
+      "latency": 0.0,
+      "fragments_found": 0,
+      "success": false,
+      "error": "'FractalMyceliumCache' object has no attribute 'find_relevant'"
+    },
+    {
+      "query": "What is artificial intelligence?",
+      "response": "Error: 'FractalMyceliumCache' object has no attribute 'find_relevant'",
+      "latency": 0.0,
+      "fragments_found": 0,
+      "success": false,
+      "error": "'FractalMyceliumCache' object has no attribute 'find_relevant'"
+    },
+    {
+      "query": "How do computers process information?",
+      "response": "Error: 'FractalMyceliumCache' object has no attribute 'find_relevant'",
+      "latency": 0.0,
+      "fragments_found": 0,
+      "success": false,
+      "error": "'FractalMyceliumCache' object has no attribute 'find_relevant'"
+    },
+    {
+      "query": "What is the meaning of life?",
+      "response": "Error: 'FractalMyceliumCache' object has no attribute 'find_relevant'",
+      "latency": 0.0,
+      "fragments_found": 0,
+      "success": false,
+      "error": "'FractalMyceliumCache' object has no attribute 'find_relevant'"
+    },
+    {
+      "query": "Explain the theory of relativity.",
+      "response": "Error: 'FractalMyceliumCache' object has no attribute 'find_relevant'",
+      "latency": 0.0,
+      "fragments_found": 0,
+      "success": false,
+      "error": "'FractalMyceliumCache' object has no attribute 'find_relevant'"
+    }
+  ]
+}

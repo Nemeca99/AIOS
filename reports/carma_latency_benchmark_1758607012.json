@@ -1,0 +1,51 @@
+{
+  "timestamp": 1758607012.2254677,
+  "system": "CARMA",
+  "questions": 5,
+  "iterations": 1,
+  "total_queries": 5,
+  "successful_queries": 5,
+  "failed_queries": 0,
+  "avg_latency": 0.0001995563507080078,
+  "min_latency": 0.0,
+  "max_latency": 0.0004992485046386719,
+  "median_latency": 0.0,
+  "std_latency": 0.00027325390395409517,
+  "results": [
+    {
+      "query": "What is the capital of France?",
+      "response": "Based on 3 relevant fragments, here's my response to: What is the capital of France?",
+      "latency": 0.0004985332489013672,
+      "fragments_found": 3,
+      "success": true
+    },
+    {
+      "query": "Explain quantum entanglement simply.",
+      "response": "Based on 3 relevant fragments, here's my response to: Explain quantum entanglement simply.",
+      "latency": 0.0,
+      "fragments_found": 3,
+      "success": true
+    },
+    {
+      "query": "Tell me a short story about a robot.",
+      "response": "Based on 3 relevant fragments, here's my response to: Tell me a short story about a robot.",
+      "latency": 0.0004992485046386719,
+      "fragments_found": 3,
+      "success": true
+    },
+    {
+      "query": "How does machine learning work?",
+      "response": "Based on 3 relevant fragments, here's my response to: How does machine learning work?",
+      "latency": 0.0,
+      "fragments_found": 3,
+      "success": true
+    },
+    {
+      "query": "What are the benefits of renewable energy?",
+      "response": "Based on 3 relevant fragments, here's my response to: What are the benefits of renewable energy?",
+      "latency": 0.0,
+      "fragments_found": 3,
+      "success": true
+    }
+  ]
+}

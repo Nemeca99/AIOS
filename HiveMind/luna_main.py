@@ -35,6 +35,14 @@ import shutil
 # Import Hive Mind logging system
 from hive_mind_logger import hive_logger, log, error_handler, safe_execute
 
+# Optional: Unified Cognitive CARMA system
+COGNITIVE_UNIFIED_AVAILABLE = False
+try:
+    from unified_cognitive_carma import UnifiedCognitiveCarma
+    COGNITIVE_UNIFIED_AVAILABLE = True
+except Exception:
+    COGNITIVE_UNIFIED_AVAILABLE = False
+
 # Import standard RAG baseline for comparison
 try:
     from standard_rag_baseline import StandardRAGBaseline
@@ -88,6 +96,15 @@ class LunaMasterTest:
             self.shutdown_flag = threading.Event()
             
             log("LUNA", "Basic initialization completed", "DEBUG")
+
+            # Initialize Unified Cognitive CARMA if available
+            self.cognitive_system = None
+            if COGNITIVE_UNIFIED_AVAILABLE:
+                try:
+                    self.cognitive_system = UnifiedCognitiveCarma()
+                    log("LUNA", "Unified Cognitive CARMA initialized", "INFO")
+                except Exception as e:
+                    log("LUNA", f"Unified Cognitive CARMA init failed: {e}", "WARNING")
             
         except Exception as e:
             log("LUNA", f"Critical initialization error: {e}", "CRITICAL", {"traceback": traceback.format_exc()})
@@ -1440,7 +1457,8 @@ class LunaMasterTest:
                 if response and lm_metadata:
                     print(f"🌙 Luna: {response}")
                     print(f"⏱️ Time: {response_time:.1f}s")
-                    print(f"🔢 Tokens: {lm_metadata['prompt_tokens']}→{lm_metadata['completion_tokens']} = {lm_metadata['total_tokens']}")
+                    if 'prompt_tokens' in lm_metadata and 'completion_tokens' in lm_metadata and 'total_tokens' in lm_metadata:
+                        print(f"🔢 Tokens: {lm_metadata['prompt_tokens']}→{lm_metadata['completion_tokens']} = {lm_metadata['total_tokens']}")
                     
                     # Store response
                     q_key = f"q{i}"
@@ -1665,7 +1683,8 @@ class LunaMasterTest:
                 
                 print(f"🌙 Luna: {response}")
                 print(f"⏱️ Time: {response_time:.1f}s")
-                print(f"🔢 Tokens: {lm_metadata['prompt_tokens']}→{lm_metadata['completion_tokens']} = {lm_metadata['total_tokens']}")
+                if 'prompt_tokens' in lm_metadata and 'completion_tokens' in lm_metadata and 'total_tokens' in lm_metadata:
+                    print(f"🔢 Tokens: {lm_metadata['prompt_tokens']}→{lm_metadata['completion_tokens']} = {lm_metadata['total_tokens']}")
                 print(f"{energy_emoji} Energy: {fatigue_info['fatigue_description']} (fatigue: {self.current_fatigue:.1f})")
                 
                 # Score response quantitatively
@@ -1847,8 +1866,27 @@ class LunaMasterTest:
                 log("LUNA", "Failed to build system prompt, using fallback", "WARNING")
                 system_prompt = f"You are Luna, a helpful AI assistant. Respond to: {prompt}"
             
+            # Inject Unified Cognitive CARMA context if available
+            if (not args.disable_cognitive) and hasattr(self, 'cognitive_system') and self.cognitive_system is not None:
+                try:
+                    cognitive_result = self.cognitive_system.process_query(prompt)
+                    emo = cognitive_result.get('emotional_summary', {})
+                    meta = cognitive_result.get('fragment_confidences', {})
+                    pred = cognitive_result.get('prediction_results', {})
+                    cog_context = "\n\n[Cognitive Context]\n"
+                    if emo:
+                        cog_context += f"Emotion avg_valence={emo.get('avg_valence', 0):.2f}, intensity={emo.get('avg_intensity', 0):.2f}\n"
+                    if pred and pred.get('predictions'):
+                        top_pred = pred['predictions'][0]
+                        cog_context += f"Prediction: {top_pred.get('fragment_id','')[:8]} (conf={top_pred.get('confidence',0):.2f})\n"
+                    # Cap context length to avoid token bloat
+                    capped_context = (cog_context[:400]) if len(cog_context) > 400 else cog_context
+                    prompt = prompt + capped_context
+                except Exception as e:
+                    log("LUNA", f"Cognitive context injection failed: {e}", "WARNING")
+
             payload = {
-                "model": "local-model",
+                "model": (self._get_current_model() or "local-model"),
                 "messages": [
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": prompt}
@@ -3246,7 +3284,7 @@ EXAMPLES:
     )
     
     # Test configuration
-    parser.add_argument("--mode", choices=["raw_llm", "luna_personality", "luna_with_memory", "standard_rag", "raw_luna_rag", "raw_standard_rag", "fresh_cache", "real_learning"], 
+    parser.add_argument("--mode", choices=["raw_llm", "luna_personality", "luna_with_memory", "standard_rag", "raw_luna_rag", "raw_standard_rag", "fresh_cache", "real_learning", "cognitive_unified"], 
                        default="luna_with_memory", help="Test mode (default: luna_with_memory)")
     parser.add_argument("--fresh_runs", type=int, default=3,
                        help="Number of fresh cache test runs (default: 3)")
@@ -3255,6 +3293,7 @@ EXAMPLES:
     parser.add_argument("--testruns", type=int, default=1, 
                        help="Number of consecutive test runs (default: 1)")
     parser.add_argument("--model", type=str, help="Specific model name (auto-detect if not provided)")
+    parser.add_argument("--disable_cognitive", action="store_true", help="Disable Unified Cognitive CARMA context injection (enabled by default)")
     
     # LLM parameters - complete control
     parser.add_argument("--tokens", type=int, default=2000, 
@@ -3428,6 +3467,25 @@ if __name__ == "__main__":
             model_name=args.model
         )
         all_results.append(learning_results)
+    elif args.mode == "cognitive_unified":
+        # Run the unified cognitive CARMA system end-to-end
+        try:
+            from unified_cognitive_carma import UnifiedCognitiveCarma
+        except Exception as e:
+            print(f"❌ Failed to import UnifiedCognitiveCarma: {e}")
+            sys.exit(1)
+
+        system = UnifiedCognitiveCarma()
+        # Build a simple test set using existing question generator or fallback
+        test_queries = [
+            "I am absolutely thrilled about this amazing scientific discovery!",
+            "This research shows that memory consolidation happens during sleep.",
+            "I'm not entirely sure about this hypothesis, but it seems plausible.",
+            "The neural networks in the brain form complex interconnected patterns.",
+            "I feel confident that this approach will lead to breakthroughs.",
+        ]
+        results = system.run_comprehensive_test(test_queries)
+        all_results.append({"mode": "cognitive_unified", "results": results})
     else:
         # Standard test modes
         for run in range(args.testruns):

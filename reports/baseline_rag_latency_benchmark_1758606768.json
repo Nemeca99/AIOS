@@ -1,0 +1,86 @@
+{
+  "timestamp": 1758606768.235856,
+  "system": "Baseline RAG",
+  "questions": 10,
+  "iterations": 1,
+  "total_queries": 10,
+  "successful_queries": 10,
+  "failed_queries": 0,
+  "avg_latency": 0.7013569116592407,
+  "min_latency": 0.7009608745574951,
+  "max_latency": 0.7019331455230713,
+  "median_latency": 0.7014601230621338,
+  "std_latency": 0.0003274651665848325,
+  "results": [
+    {
+      "query": "What is the capital of France?",
+      "response": "Baseline RAG response to: What is the capital of France?",
+      "latency": 0.7015063762664795,
+      "documents_searched": 1000,
+      "success": true
+    },
+    {
+      "query": "Explain quantum entanglement simply.",
+      "response": "Baseline RAG response to: Explain quantum entanglement simply.",
+      "latency": 0.7010083198547363,
+      "documents_searched": 1000,
+      "success": true
+    },
+    {
+      "query": "Tell me a short story about a robot.",
+      "response": "Baseline RAG response to: Tell me a short story about a robot.",
+      "latency": 0.7015640735626221,
+      "documents_searched": 1000,
+      "success": true
+    },
+    {
+      "query": "How does machine learning work?",
+      "response": "Baseline RAG response to: How does machine learning work?",
+      "latency": 0.7009983062744141,
+      "documents_searched": 1000,
+      "success": true
+    },
+    {
+      "query": "What are the benefits of renewable energy?",
+      "response": "Baseline RAG response to: What are the benefits of renewable energy?",
+      "latency": 0.7014186382293701,
+      "documents_searched": 1000,
+      "success": true
+    },
+    {
+      "query": "Describe the process of photosynthesis.",
+      "response": "Baseline RAG response to: Describe the process of photosynthesis.",
+      "latency": 0.7010786533355713,
+      "documents_searched": 1000,
+      "success": true
+    },
+    {
+      "query": "What is artificial intelligence?",
+      "response": "Baseline RAG response to: What is artificial intelligence?",
+      "latency": 0.7019331455230713,
+      "documents_searched": 1000,
+      "success": true
+    },
+    {
+      "query": "How do computers process information?",
+      "response": "Baseline RAG response to: How do computers process information?",
+      "latency": 0.7015016078948975,
+      "documents_searched": 1000,
+      "success": true
+    },
+    {
+      "query": "What is the meaning of life?",
+      "response": "Baseline RAG response to: What is the meaning of life?",
+      "latency": 0.70159912109375,
+      "documents_searched": 1000,
+      "success": true
+    },
+    {
+      "query": "Explain the theory of relativity.",
+      "response": "Baseline RAG response to: Explain the theory of relativity.",
+      "latency": 0.7009608745574951,
+      "documents_searched": 1000,
+      "success": true
+    }
+  ]
+}

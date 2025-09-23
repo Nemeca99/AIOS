@@ -2,11 +2,11 @@
   "file_id": "root_6bda2343",
   "parent_id": null,
   "level": 0,
-  "node_address": "fm://root_6bda2343-4056eaecfc35",
+  "node_address": "fm://root_6bda2343-d0bb14c0bd86",
   "ancestors": [],
   "children": [],
   "content": "I am someone who is careful and thorough in my work.",
-  "created": "2025-09-22T17:19:28.497065",
+  "created": "2025-09-23T00:43:42.876703",
   "size": 52,
   "analysis": {
     "common_words": [
@@ -42,15 +42,15 @@
     "char_count": 52
   },
   "access_count": 0,
-  "last_accessed": "2025-09-22T17:19:28.497065",
+  "last_accessed": "2025-09-23T00:43:42.876703",
   "specialization": "enthusiastic",
   "tags": [
-    "work",
-    "someone who",
+    "someone",
     "i am",
     "thorough",
-    "someone",
+    "work",
     "careful",
+    "someone who",
     "is careful"
   ]
 }
