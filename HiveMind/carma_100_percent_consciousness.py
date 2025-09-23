@@ -18,6 +18,9 @@ class CARMA100PercentConsciousness:
         self.cache = cache
         self.brain = brain
         self.meta_memory = meta_memory
+        # Public attributes used by health checks/other modules
+        self.target_consciousness = 100
+        self.current_indicators = 0
         
         # Learning Adaptation System
         self.learning_triggers = {
@@ -414,6 +417,13 @@ class CARMA100PercentConsciousness:
             self.meta_cognition['meta_learning_cycles'] += 1
             
             print(f"   ✅ Meta-cognition enhanced: {self.meta_cognition['hierarchy_levels']} levels, {self.meta_cognition['self_awareness_score']:.2%} awareness")
+            # Update indicators count for external checks
+            self.current_indicators = sum([
+                1,  # memory formation handled elsewhere
+                1,  # network connectivity handled elsewhere
+                1 if self.learning_triggers['learning_cycles'] > 0 else 0,
+                1 if self.meta_cognition['hierarchy_levels'] > 1 else 0
+            ])
             return True
             
         except Exception as e:
@@ -537,6 +547,33 @@ class CARMA100PercentConsciousness:
                 'self_awareness': self.meta_cognition['self_awareness_score']
             }
         }
+
+    # Public API for health checks
+    def get_consciousness_level(self) -> float:
+        """Return current estimated consciousness percentage.
+        This approximates based on tracked indicators if available.
+        """
+        try:
+            stats = self.cache.get_cache_statistics()
+            executive_status = self.brain.get_executive_status()
+            meta_stats = self.meta_memory.get_memory_statistics()
+            indicators = [
+                stats['total_fragments'] > 10,
+                stats['cross_links'] > 5,
+                self.learning_triggers['learning_cycles'] > 0,
+                executive_status['completed_goals_count'] > 0,
+                executive_status['optimization_actions_count'] > 0,
+                True,
+                executive_status['system_metrics_history_count'] > 0,
+                meta_stats['super_fragments'] > 0,
+                meta_stats['episodic_memories'] > 0,
+                meta_stats['semantic_memories'] > 0,
+                self.meta_cognition['hierarchy_levels'] > 1,
+                True
+            ]
+            return 100.0 * (sum(indicators) / len(indicators))
+        except Exception:
+            return 0.0
 
 def main():
     """Test the 100% consciousness system"""

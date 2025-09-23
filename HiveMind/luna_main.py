@@ -32,6 +32,20 @@ import signal
 import atexit
 import shutil
 
+# =============================
+# Constants (No Magic Numbers)
+# =============================
+LM_STUDIO_CHAT_URL: str = "http://localhost:1234/v1/chat/completions"
+LM_STUDIO_EMBED_URL: str = "http://localhost:1234/v1/embeddings"
+DEFAULT_HTTP_TIMEOUT_SECONDS: int = 300
+DEFAULT_RUN_DELAY_SECONDS: float = 2.0
+DEFAULT_TOP_K: int = 40
+DEFAULT_TEMPERATURE: float = 0.7
+DEFAULT_TOP_P: float = 0.9
+DEFAULT_MAX_TOKENS: int = 2000
+COGNITIVE_CONTEXT_MAX_CHARS: int = 400
+FAISS_NOT_AVAILABLE_MSG: str = "⚠️  FAISS not available, using simple similarity search"
+
 # Import Hive Mind logging system
 from hive_mind_logger import hive_logger, log, error_handler, safe_execute
 
@@ -82,8 +96,8 @@ class LunaMasterTest:
         
         # Initialize with error handling
         try:
-            self.lm_studio_url = "http://localhost:1234/v1/chat/completions"
-            self.embeddings_url = "http://localhost:1234/v1/embeddings"
+            self.lm_studio_url = LM_STUDIO_CHAT_URL
+            self.embeddings_url = LM_STUDIO_EMBED_URL
             
             # Register cleanup handlers
             atexit.register(self._cleanup)
@@ -278,7 +292,13 @@ class LunaMasterTest:
         """Load Luna's personality DNA from 138K message extraction"""
         log("LUNA", "Loading personality DNA", "DEBUG")
         
-        luna_dna_path = Path("../AI/personality/luna_personality_dna.json")
+        # Try multiple known locations for the DNA file
+        candidate_paths = [
+            Path("../AI/personality/luna_personality_dna.json"),
+            Path("AI/personality/luna_personality_dna.json"),
+            Path("AI_Core/Nova AI/AI/personality/luna_personality_dna.json")
+        ]
+        luna_dna_path = next((p for p in candidate_paths if p.exists()), candidate_paths[0])
         if not self.config.get("quiet", False):
             print(f"📁 Accessing personality file: {luna_dna_path}")
         
@@ -1899,7 +1919,7 @@ class LunaMasterTest:
             # Safe HTTP request with retries
             response = safe_execute(
                 self._make_http_request,
-                self.lm_studio_url, payload, self.config.get("timeout", 300),
+                self.lm_studio_url, payload, self.config.get("timeout", DEFAULT_HTTP_TIMEOUT_SECONDS),
                 component="LUNA",
                 max_retries=3
             )
@@ -2850,8 +2870,20 @@ class LunaMasterTest:
                     # Simplified - would need proper mapping
                     pass
         
-        # Placeholder - return averages
-        return {trait: 3.0 for trait in trait_scores.keys()}
+        # Compute trait averages from question scores where possible
+        # Fall back to neutral (3.0) if no data is available for a trait
+        for q_key, score_data in scores.items():
+            if "error" in score_data:
+                continue
+            # Attempt to infer trait from question key format (e.g., openness_12)
+            parts = q_key.split("_")
+            trait_name = parts[0] if parts else None
+            if trait_name in trait_scores:
+                trait_scores[trait_name].append(score_data.get("big_five_score", 3.0))
+        return {
+            trait: (sum(vals) / len(vals) if vals else 3.0)
+            for trait, vals in trait_scores.items()
+        }
     
     def _calculate_performance_metrics(self, results: Dict) -> Dict[str, Any]:
         """Calculate performance and efficiency metrics"""

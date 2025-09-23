@@ -11,6 +11,17 @@ from datetime import datetime
 from typing import Dict, List, Tuple, Optional
 import json
 
+SLOW_WAVE_COOLDOWN_SECONDS = 60
+DEFAULT_SLOW_WAVE_THRESHOLD = 0.6
+DEFAULT_REM_THRESHOLD = 0.8
+DEFAULT_SLOW_WAVE_DURATION_S = 5
+DEFAULT_REM_DURATION_S = 3
+DEFAULT_COMPRESSION_RATIO = 0.7
+DEFAULT_CLUSTERING_THRESHOLD = 0.5
+DEFAULT_CREATIVE_LINKING_PROB = 0.3
+DEFAULT_REPLAY_PROBABILITY = 0.4
+
+
 class ConsolidationWindows:
     """Multi-stage dream cycle system with different sleep stages."""
     
@@ -19,20 +30,20 @@ class ConsolidationWindows:
         self.emotion_cache = emotion_cache
         
         # Sleep stage parameters
-        self.slow_wave_threshold = 0.6  # When to trigger slow-wave sleep
-        self.rem_threshold = 0.8  # When to trigger REM sleep
+        self.slow_wave_threshold = DEFAULT_SLOW_WAVE_THRESHOLD
+        self.rem_threshold = DEFAULT_REM_THRESHOLD
         self.consolidation_cycles = 0
         self.last_sleep_time = 0
         
         # Slow-wave sleep parameters (structural consolidation)
-        self.slow_wave_duration = 5  # seconds
-        self.compression_ratio = 0.7  # How much to compress fragments
-        self.clustering_threshold = 0.5  # Similarity for clustering
+        self.slow_wave_duration = DEFAULT_SLOW_WAVE_DURATION_S
+        self.compression_ratio = DEFAULT_COMPRESSION_RATIO
+        self.clustering_threshold = DEFAULT_CLUSTERING_THRESHOLD
         
         # REM sleep parameters (associative consolidation)
-        self.rem_duration = 3  # seconds
-        self.creative_linking_prob = 0.3  # Probability of creative connections
-        self.replay_probability = 0.4  # Probability of replaying fragments
+        self.rem_duration = DEFAULT_REM_DURATION_S
+        self.creative_linking_prob = DEFAULT_CREATIVE_LINKING_PROB
+        self.replay_probability = DEFAULT_REPLAY_PROBABILITY
         
         print("🌙 Consolidation Windows Initialized")
         print(f"   Slow-wave threshold: {self.slow_wave_threshold}")
@@ -45,7 +56,7 @@ class ConsolidationWindows:
         current_time = time.time()
         
         # Check if enough time has passed since last sleep
-        if current_time - self.last_sleep_time < 60:  # 1 minute cooldown
+        if current_time - self.last_sleep_time < SLOW_WAVE_COOLDOWN_SECONDS:
             return False, "cooldown"
         
         # Calculate sleep pressure based on fragment count and activity
@@ -346,13 +357,37 @@ class ConsolidationWindows:
     
     def _add_creative_connection(self, frag1_id: str, frag2_id: str):
         """Add a creative connection between fragments."""
-        # This would be implemented in the actual cache system
-        pass
+        try:
+            links = self.cache.semantic_links
+            links.setdefault(frag1_id, [])
+            links.setdefault(frag2_id, [])
+            if frag2_id not in links[frag1_id]:
+                links[frag1_id].append(frag2_id)
+            if frag1_id not in links[frag2_id]:
+                links[frag2_id].append(frag1_id)
+        except Exception:
+            return
     
     def _add_emotional_connection(self, frag1_id: str, frag2_id: str, connection_type: str):
         """Add an emotional connection between fragments."""
-        # This would be implemented in the actual cache system
-        pass
+        try:
+            # Tag the link with an emotional marker in fragment analysis metadata
+            f1 = self.cache.file_registry.get(frag1_id, {})
+            f2 = self.cache.file_registry.get(frag2_id, {})
+            f1.setdefault('analysis', {}).setdefault('emotional_links', []).append({
+                'target': frag2_id,
+                'type': connection_type,
+                'timestamp': time.time()
+            })
+            f2.setdefault('analysis', {}).setdefault('emotional_links', []).append({
+                'target': frag1_id,
+                'type': connection_type,
+                'timestamp': time.time()
+            })
+            # Also ensure semantic link exists
+            self._add_creative_connection(frag1_id, frag2_id)
+        except Exception:
+            return
     
     def run_dream_cycle(self) -> Dict:
         """Run a complete dream cycle with both sleep stages."""

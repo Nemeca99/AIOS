@@ -93,47 +93,28 @@ def run_deep_sleep_test(force=False):
     start_time = time.time()
     
     try:
-        # This would need to be implemented in the actual system
-        # For now, we'll simulate the deep sleep process
-        
-        # Check if we can trigger deep sleep
+        # Natural trigger checks (optional)
         if not force:
-            # Check if deep sleep should trigger naturally
             messages_this_cycle = getattr(cache, 'messages_this_cycle', 0)
             cycle_limit = getattr(cache, 'current_cycle_limit', 10)
-            
             if messages_this_cycle < cycle_limit:
                 print(f"   ⚠️  Not enough messages for deep sleep ({messages_this_cycle}/{cycle_limit})")
                 print("   Use --force to override")
                 return False
-        
-        # Simulate deep sleep process
+
         print("   🔄 Processing fragments for superfragment creation...")
-        
-        # This is where the actual deep sleep logic would go
-        # For now, we'll just check if the system is ready
-        
-        # Count potential superfragments (fragments that could be consolidated)
-        potential_superfrags = 0
-        for fid, frag in cache.file_registry.items():
-            if 'hits' in frag and frag['hits'] > 1:
-                potential_superfrags += 1
-        
-        print(f"   📊 Fragments with multiple hits: {potential_superfrags}")
-        
-        # Simulate superfragment creation
-        superfrags_created = 0
-        if potential_superfrags > 0:
-            # This would be the actual superfragment creation logic
-            # For now, we'll simulate it
-            superfrags_created = min(potential_superfrags // 3, 5)  # Simulate some consolidation
-            print(f"   ✅ Created {superfrags_created} superfragments")
-        else:
-            print("   ⚠️  No fragments with multiple hits - no superfragments created")
-        
+
+        # Use the real dream cycle to create superfragments and cross-links
+        result = consciousness.perform_dream_cycle(
+            max_superfrags=5,
+            min_component_size=1,
+            summary_tokens=200,
+            crosslink_threshold=0.35
+        )
+        superfrags_created = result.get('superfrags_created', 0) if isinstance(result, dict) else 0
+
         end_time = time.time()
         duration = end_time - start_time
-        
         print(f"   ⏱️  Deep sleep completed in {duration:.2f}s")
         
     except Exception as e:

@@ -1,0 +1,11 @@
+digraph aios {
+  rankdir=LR;
+  node [shape=box, fontsize=10];
+  "HiveMind\luna_main.py" -> "AI_Core/Nova AI/AI/personality/embedder_cache/master_test_cache.json" [style=dashed, color=gray];
+  "HiveMind\luna_main.py" -> "../AI/personality/learning_data/luna_learning_history.json" [style=dashed, color=gray];
+  "HiveMind\luna_main.py" -> "../AI/personality/luna_personality_dna.json" [style=dashed, color=gray];
+  "HiveMind\luna_main.py" -> ".corrupted_{int(time.time())}.json" [style=dashed, color=gray];
+  "HiveMind\luna_main.py" -> ")}.json" [style=dashed, color=gray];
+  "HiveMind\luna_main.py" -> "]}_{model_slug}_{avg_score:.2f}avg_{timestamp}.json" [style=dashed, color=gray];
+  "HiveMind\luna_main.py" -> "luna_learning_{model_slug}_age{age_growth}_cycles{cycles}_{timestamp}.json" [style=dashed, color=gray];
+}

@@ -12,6 +12,11 @@ from datetime import datetime
 from typing import Dict, List, Tuple, Optional
 from collections import defaultdict
 
+PREDICTION_WINDOW_DEFAULT = 5
+PREDICTION_THRESHOLD_DEFAULT = 0.3
+PREDICTION_LEARNING_RATE_DEFAULT = 0.1
+
+
 class PredictiveCodingSystem:
     """Predictive coding system for self-organizing predictive model."""
     
@@ -21,9 +26,9 @@ class PredictiveCodingSystem:
         self.meta_memory = meta_memory
         
         # Predictive parameters
-        self.prediction_window = 5  # Number of fragments to predict
-        self.prediction_threshold = 0.3  # Minimum confidence for predictions
-        self.learning_rate = 0.1  # How quickly predictions adapt
+        self.prediction_window = PREDICTION_WINDOW_DEFAULT
+        self.prediction_threshold = PREDICTION_THRESHOLD_DEFAULT
+        self.learning_rate = PREDICTION_LEARNING_RATE_DEFAULT
         self.prediction_history = []  # Track prediction accuracy
         
         # Pattern recognition

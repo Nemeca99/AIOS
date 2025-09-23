@@ -11,6 +11,13 @@ from datetime import datetime
 from typing import Dict, List, Tuple, Optional
 import json
 
+UNCERTAINTY_THRESHOLD_DEFAULT = 0.3
+CONFIDENCE_THRESHOLD_DEFAULT = 0.7
+CONFIDENCE_DECAY_RATE_DEFAULT = 0.98
+LEARNING_RATE_DEFAULT = 0.1
+UNCERTAINTY_BOOST_DEFAULT = 1.2
+
+
 class MetaMemorySystem:
     """Meta-memory system that tracks confidence and uncertainty."""
     
@@ -20,8 +27,8 @@ class MetaMemorySystem:
         
         # Confidence tracking
         self.confidence_scores = {}  # fragment_id -> confidence_data
-        self.uncertainty_threshold = 0.3  # Below this = uncertain
-        self.confidence_threshold = 0.7  # Above this = confident
+        self.uncertainty_threshold = UNCERTAINTY_THRESHOLD_DEFAULT
+        self.confidence_threshold = CONFIDENCE_THRESHOLD_DEFAULT
         
         # Learning tracking
         self.learning_events = []  # Track learning events
@@ -29,9 +36,9 @@ class MetaMemorySystem:
         self.confidence_history = {}  # Track confidence over time
         
         # Meta-cognitive parameters
-        self.confidence_decay_rate = 0.98  # How quickly confidence decays
-        self.learning_rate = 0.1  # How quickly we learn from new information
-        self.uncertainty_boost = 1.2  # Boost for uncertain fragments in learning
+        self.confidence_decay_rate = CONFIDENCE_DECAY_RATE_DEFAULT
+        self.learning_rate = LEARNING_RATE_DEFAULT
+        self.uncertainty_boost = UNCERTAINTY_BOOST_DEFAULT
         
         print("🧠 Meta-Memory System Initialized")
         print(f"   Uncertainty threshold: {self.uncertainty_threshold}")

@@ -1,10 +1,33 @@
 # semantic.py
 import numpy as np
-from typing import List
-def fake_embed(text: str, dim=128):
-    # placeholder: deterministic pseudo-embedding (for tests)
+from typing import List, Optional
+
+_DEFAULT_EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+_FALLBACK_DIMENSION = 128
+
+_embedder = None
+
+def _get_embedder():
+    global _embedder
+    if _embedder is not None:
+        return _embedder
+    try:
+        from sentence_transformers import SentenceTransformer
+        _embedder = SentenceTransformer(_DEFAULT_EMBED_MODEL)
+        return _embedder
+    except Exception:
+        _embedder = False
+        return None
+
+def embed_text(text: str) -> List[float]:
+    """Return a real embedding for text. Falls back to deterministic vector if model unavailable."""
+    model = _get_embedder()
+    if model is not None:
+        vec = model.encode([text], normalize_embeddings=True)[0]
+        return vec.tolist()
+    # Deterministic fallback
     rng = np.random.RandomState(len(text))
-    v = rng.randn(dim)
+    v = rng.randn(_FALLBACK_DIMENSION)
     v = v / (np.linalg.norm(v)+1e-12)
     return v.tolist()
 

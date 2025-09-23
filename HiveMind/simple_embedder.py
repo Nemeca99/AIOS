@@ -4,27 +4,34 @@ Simple Embedder for CARMA System
 Provides embedding functionality for the fractal mycelium cache.
 """
 
+import os
 import hashlib
 import numpy as np
-from typing import List, Optional
+from typing import Dict, List, Optional
 import requests
-import json
-import time
 from datetime import datetime
+
+# =============================
+# Constants and Configuration
+# =============================
+DEFAULT_EMBED_MODEL: str = os.getenv("EMBEDDING_MODEL", "text-embedding-mlabonne_qwen3-0.6b-abliterated")
+DEFAULT_EMBED_URL: str = os.getenv("EMBEDDINGS_URL", "http://localhost:1234/v1/embeddings")
+DEFAULT_EMBED_TIMEOUT: int = int(os.getenv("EMBEDDINGS_TIMEOUT", "30"))
+DEFAULT_FALLBACK_DIM: int = int(os.getenv("EMBEDDING_DIM", "384"))
 
 class SimpleEmbedder:
     """Simple embedder that can use local API or fallback to hash-based embeddings."""
     
-    def __init__(self, 
-                 embedding_model: str = "text-embedding-mlabonne_qwen3-0.6b-abliterated",
-                 embeddings_url: str = "http://localhost:1234/v1/embeddings",
+    def __init__(self,
+                 embedding_model: str = DEFAULT_EMBED_MODEL,
+                 embeddings_url: str = DEFAULT_EMBED_URL,
                  use_api: bool = True,
-                 fallback_dimension: int = 384):
-        self.embedding_model = embedding_model
-        self.embeddings_url = embeddings_url
-        self.use_api = use_api
-        self.fallback_dimension = fallback_dimension
-        self.cache = {}  # Simple in-memory cache
+                 fallback_dimension: int = DEFAULT_FALLBACK_DIM):
+        self.embedding_model: str = embedding_model
+        self.embeddings_url: str = embeddings_url
+        self.use_api: bool = use_api
+        self.fallback_dimension: int = fallback_dimension
+        self.cache: Dict[str, List[float]] = {}
         
         print(f"🧠 Simple Embedder Initialized")
         print(f"   Model: {embedding_model}")
@@ -62,7 +69,7 @@ class SimpleEmbedder:
                 "input": text
             }
             
-            response = requests.post(self.embeddings_url, json=payload, timeout=30)
+            response = requests.post(self.embeddings_url, json=payload, timeout=DEFAULT_EMBED_TIMEOUT)
             response.raise_for_status()
             
             data = response.json()

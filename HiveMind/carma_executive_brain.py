@@ -17,6 +17,8 @@ class CARMAExecutiveBrain:
         self.goal_interval = goal_interval  # seconds between goal cycles
         self.running = False
         self.executive_thread = None
+        # Attributes expected by health checks
+        self.current_cycle = 0
         
         # Executive state
         self.current_goals = []
@@ -111,6 +113,7 @@ class CARMAExecutiveBrain:
                 
                 # Wait before next cycle
                 time.sleep(self.goal_interval)
+                self.current_cycle += 1
                 
             except Exception as e:
                 print(f"❌ Executive loop error: {e}")

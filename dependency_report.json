@@ -1,0 +1,22 @@
+{
+  "total": 0,
+  "report": [
+    {
+      "file": "HiveMind\\luna_main.py",
+      "findings": [],
+      "findings_count": 0,
+      "runtime_files": [
+        "AI_Core/Nova AI/AI/personality/embedder_cache/master_test_cache.json",
+        "../AI/personality/learning_data/luna_learning_history.json",
+        "../AI/personality/luna_personality_dna.json",
+        ".corrupted_{int(time.time())}.json",
+        ")}.json",
+        "]}_{model_slug}_{avg_score:.2f}avg_{timestamp}.json",
+        "luna_learning_{model_slug}_age{age_growth}_cycles{cycles}_{timestamp}.json"
+      ]
+    }
+  ],
+  "edges": {
+    "HiveMind\\luna_main.py": []
+  }
+}

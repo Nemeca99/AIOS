@@ -107,7 +107,16 @@ def health_check():
         
         print(f"   ✅ Retrieval working - found {len(results)} results")
         for i, result in enumerate(results):
-            print(f"      Result {i+1}: {result.id[:8]}... (hits: {result.hits}, level: {result.level})")
+            # Support both object-like and dict-like results
+            if isinstance(result, dict):
+                rid = result.get('file_id') or result.get('id') or 'unknown'
+                hits = result.get('hits') or result.get('score') or 0
+                level = result.get('level') or 0
+            else:
+                rid = getattr(result, 'id', 'unknown')
+                hits = getattr(result, 'hits', 0)
+                level = getattr(result, 'level', 0)
+            print(f"      Result {i+1}: {str(rid)[:8]}... (hits: {hits}, level: {level})")
     except Exception as e:
         print(f"   ❌ Retrieval test failed: {e}")
     

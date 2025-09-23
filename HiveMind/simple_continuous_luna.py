@@ -8,9 +8,12 @@ import sys
 import time
 import random
 import signal
-import subprocess
+import asyncio
 from pathlib import Path
 from datetime import datetime
+
+# Use real LM Studio client
+from AI_Core.Nova AI.AI.lm_studio_client import LMStudioClient
 
 class SimpleContinuousLunaRunner:
     def __init__(self):
@@ -78,34 +81,19 @@ class SimpleContinuousLunaRunner:
             self.log_stats()
             
     def get_luna_response(self, question: str) -> str:
-        """Get Luna's response using the existing system"""
+        """Get Luna's response using LM Studio chat completion"""
         try:
-            # Create a simple test script that runs Luna with one question
-            test_script = f"""
-import sys
-sys.path.append('HiveMind')
-from luna_main import LunaMasterTest
+            async def _run() -> str:
+                client = LMStudioClient()
+                ok = await client.start_server()
+                if not ok:
+                    return "LM Studio server not available. Please start LM Studio on port 1234."
+                reply = await client.generate_character_response("Luna", question)
+                await client.stop_server()
+                return reply
 
-# Create Luna instance
-luna = LunaMasterTest()
-
-# Ask the question
-print("Processing question...")
-# This is a simplified approach - we'll just return a placeholder for now
-print("I'm thinking about that... Let me process this question.")
-"""
-            
-            # For now, return a simple response
-            responses = [
-                "That's an interesting question. Let me think about that...",
-                "I can relate to that. It's something I've thought about before.",
-                "That's a good point. I find myself thinking about these things often.",
-                "I understand what you mean. It's something that comes up in my thoughts.",
-                "That's something I can connect with. Let me share my perspective on that."
-            ]
-            
-            return random.choice(responses)
-            
+            # Run the coroutine synchronously in this context
+            return asyncio.run(_run())
         except Exception as e:
             print(f"Error generating response: {e}")
             return "I'm having trouble thinking right now. Can you ask me again?"

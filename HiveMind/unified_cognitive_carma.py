@@ -26,10 +26,15 @@ from meta_memory_system import MetaMemorySystem
 from synaptic_tagging_system import SynapticTaggingSystem
 from predictive_coding_system import PredictiveCodingSystem
 
+# Constants
+DEFAULT_CACHE_DIR = "Data/FractalCache"
+MAX_MEMORY_SEQUENCE = 20
+TOP_FRAGMENT_DETAILS = 3
+
 class UnifiedCognitiveCarma:
     """Unified CARMA system with all cognitive enhancements integrated."""
     
-    def __init__(self, base_dir: str = "Data/FractalCache"):
+    def __init__(self, base_dir: str = DEFAULT_CACHE_DIR):
         print("🧠 Initializing Unified Cognitive CARMA System")
         print("=" * 80)
         
@@ -75,7 +80,7 @@ class UnifiedCognitiveCarma:
     
     def _load_existing_cache(self):
         """Load existing cache if available."""
-        cache_file = "Data/FractalCache/registry.json"
+        cache_file = f"{DEFAULT_CACHE_DIR}/registry.json"
         if Path(cache_file).exists():
             try:
                 self.cache.load_registry()
@@ -161,8 +166,8 @@ class UnifiedCognitiveCarma:
         # 6. Update memory sequence for predictive coding
         fragment_ids = [f.get('file_id', 'unknown') for f in relevant_fragments]
         self.memory_sequence.extend(fragment_ids)
-        if len(self.memory_sequence) > 20:  # Keep last 20 fragments
-            self.memory_sequence = self.memory_sequence[-20:]
+        if len(self.memory_sequence) > MAX_MEMORY_SEQUENCE:  # Keep last N fragments
+            self.memory_sequence = self.memory_sequence[-MAX_MEMORY_SEQUENCE:]
         
         # 7. Make predictions
         prediction_results = self.predictive_coding.process_sequence(self.memory_sequence)
@@ -231,7 +236,7 @@ class UnifiedCognitiveCarma:
         response_parts.append(f"📊 Found {len(fragments)} relevant fragments")
         
         # Add fragment analysis
-        for i, fragment in enumerate(fragments[:3]):  # Use top 3 fragments
+        for i, fragment in enumerate(fragments[:TOP_FRAGMENT_DETAILS]):  # Use top N fragments
             frag_id = fragment.get('file_id', 'unknown')
             content = fragment.get('content', '')
             
