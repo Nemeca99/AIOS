@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-09-23T15:56:31.712199",
+  "topology_stats": {
+    "fragments": 43,
+    "nodes": 43,
+    "edges": 10,
+    "parent_child_edges": 10,
+    "semantic_edges": 0
+  },
+  "visualizations_created": [
+    "experiments/memory_topology.png",
+    "experiments/similarity_heatmap.png",
+    "experiments/performance_dashboard.png"
+  ],
+  "fractal_structure": {
+    "max_level": 0,
+    "avg_children_per_node": 3.3333333333333335,
+    "semantic_connectivity": 0.0
+  }
+}

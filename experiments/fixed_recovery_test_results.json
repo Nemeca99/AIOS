@@ -1,0 +1,144 @@
+{
+  "timestamp": "2025-09-23T15:29:51.632772",
+  "query_results": {
+    "total_queries": 8,
+    "successful_queries": 8,
+    "failed_queries": 0,
+    "response_times": [
+      0.0009999275207519531,
+      0.008001089096069336,
+      0.0004994869232177734,
+      0.015001296997070312,
+      0.000499725341796875,
+      0.0014994144439697266,
+      0.008500099182128906,
+      0.007500171661376953
+    ],
+    "similarity_scores": [
+      0.7856670618057251,
+      0.7861481507619222,
+      0.8186782201131185,
+      0.7908398111661276,
+      0.7796827356020609,
+      0.7849084734916687,
+      0.8210811614990234,
+      0.7930858333905538
+    ],
+    "details": [
+      {
+        "query": "What is machine learning?",
+        "status": "\u2705 Success (similarity: 0.79)",
+        "response_time": 0.0009999275207519531,
+        "similarity_score": 0.7856670618057251,
+        "results_count": 3
+      },
+      {
+        "query": "Explain neural networks",
+        "status": "\u2705 Success (similarity: 0.79)",
+        "response_time": 0.008001089096069336,
+        "similarity_score": 0.7861481507619222,
+        "results_count": 3
+      },
+      {
+        "query": "How does deep learning work?",
+        "status": "\u2705 Success (similarity: 0.82)",
+        "response_time": 0.0004994869232177734,
+        "similarity_score": 0.8186782201131185,
+        "results_count": 3
+      },
+      {
+        "query": "What is natural language processing?",
+        "status": "\u2705 Success (similarity: 0.79)",
+        "response_time": 0.015001296997070312,
+        "similarity_score": 0.7908398111661276,
+        "results_count": 3
+      },
+      {
+        "query": "Describe computer vision",
+        "status": "\u2705 Success (similarity: 0.78)",
+        "response_time": 0.000499725341796875,
+        "similarity_score": 0.7796827356020609,
+        "results_count": 3
+      },
+      {
+        "query": "What is reinforcement learning?",
+        "status": "\u2705 Success (similarity: 0.78)",
+        "response_time": 0.0014994144439697266,
+        "similarity_score": 0.7849084734916687,
+        "results_count": 3
+      },
+      {
+        "query": "Explain supervised learning",
+        "status": "\u2705 Success (similarity: 0.82)",
+        "response_time": 0.008500099182128906,
+        "similarity_score": 0.8210811614990234,
+        "results_count": 3
+      },
+      {
+        "query": "What is unsupervised learning?",
+        "status": "\u2705 Success (similarity: 0.79)",
+        "response_time": 0.007500171661376953,
+        "similarity_score": 0.7930858333905538,
+        "results_count": 3
+      }
+    ]
+  },
+  "recovery_results": {
+    "recovered": 5,
+    "failed": 0,
+    "duration": 0.07499957084655762,
+    "avg_similarity": 0.7378509163856506,
+    "similarity_scores": [
+      0.789020836353302,
+      0.6710591316223145,
+      0.7506165504455566,
+      0.686360239982605,
+      0.7921978235244751
+    ]
+  },
+  "quality_metrics": {
+    "total_deleted": 5,
+    "total_reconstructed": 5,
+    "reconstruction_rate": 100.0,
+    "avg_similarity": 0.7378509163856506,
+    "similarity_scores": [
+      0.789020836353302,
+      0.686360239982605,
+      0.7506165504455566,
+      0.6710591316223145,
+      0.7921978235244751
+    ],
+    "high_quality_reconstructions": 5
+  },
+  "progressive_results": {
+    "cycles": 3,
+    "cycle_results": [
+      {
+        "cycle": 1,
+        "deleted": 2,
+        "recovered": 2,
+        "avg_similarity": 0.748947024345398
+      },
+      {
+        "cycle": 2,
+        "deleted": 2,
+        "recovered": 2,
+        "avg_similarity": 0.7471889555454254
+      },
+      {
+        "cycle": 3,
+        "deleted": 2,
+        "recovered": 2,
+        "avg_similarity": 0.7569792866706848
+      }
+    ],
+    "total_recovered": 6,
+    "avg_similarity_over_cycles": 0.7510384221871694,
+    "progressive_improvement": true
+  },
+  "overall_assessment": {
+    "success_rate": 100.0,
+    "avg_similarity": 0.7378509163856506,
+    "enterprise_ready": true
+  }
+}

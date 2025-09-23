@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carma-as-deployment
+  namespace: carma-as
+  labels:
+    app: carma-mycelium
+    region: AS
+spec:
+  replicas: 100
+  selector:
+    matchLabels:
+      app: carma-mycelium
+      region: AS
+  template:
+    metadata:
+      labels:
+        app: carma-mycelium
+        region: AS
+    spec:
+      containers:
+      - name: carma-block
+        image: carma-mycelium:latest
+        ports:
+        - containerPort: 443
+        - containerPort: 80
+        env:
+        - name: REGION
+          value: AS
+        - name: TOTAL_BLOCKS
+          value: "19,047,619"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 30

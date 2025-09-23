@@ -1,0 +1,47 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "CARMA Mycelium Network",
+    "tags": [
+      "carma",
+      "mycelium",
+      "network"
+    ],
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Total Server Blocks",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(carma_blocks_total)",
+            "legendFormat": "Total Blocks"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Active Connections",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(carma_connections_active)",
+            "legendFormat": "Active Connections"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Traffic Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(carma_traffic_total[5m])",
+            "legendFormat": "Traffic Rate"
+          }
+        ]
+      }
+    ]
+  }
+}

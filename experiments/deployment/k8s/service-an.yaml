@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: carma-an-service
+  namespace: carma-an
+  labels:
+    app: carma-mycelium
+    region: AN
+spec:
+  selector:
+    app: carma-mycelium
+    region: AN
+  ports:
+  - name: https
+    port: 443
+    targetPort: 443
+  - name: http
+    port: 80
+    targetPort: 80
+  type: LoadBalancer

@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-09-23T15:29:54.415726",
+  "demo_type": "enterprise_capabilities",
+  "overall_score": 0.9069084474245709,
+  "enterprise_ready": true,
+  "query_metrics": {
+    "success_rate": 1.0,
+    "avg_similarity": 0.7922031958897909,
+    "avg_response_time": 0.0005987167358398437
+  },
+  "recovery_metrics": {
+    "score": 0.92
+  },
+  "system_status": "\ud83d\udfe2 EXCELLENT"
+}

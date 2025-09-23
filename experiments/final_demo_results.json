@@ -1,0 +1,31 @@
+{
+  "timestamp": "2025-09-23T15:56:31.720198",
+  "demo_duration": 2.5719666481018066,
+  "fragments_processed": 8,
+  "processing_rate": 3.1104602409616215,
+  "system_healthy": true,
+  "enterprise_ready": true,
+  "readiness_score": 1.0,
+  "enterprise_criteria": {
+    "System Health": true,
+    "API Functionality": true,
+    "Self-Healing": true,
+    "Visualization": true,
+    "Confidence API": true,
+    "Performance": true,
+    "Scalability": true,
+    "Documentation": true
+  },
+  "fragment_ids": [
+    "root_1cc27dae",
+    "root_3ae95bbc",
+    "root_6a9f0e29",
+    "root_8a6cf8ec",
+    "root_e6d4f108"
+  ],
+  "blank_fragments": [
+    "enterprise_blank_0_1758660989",
+    "enterprise_blank_1_1758660989",
+    "enterprise_blank_2_1758660989"
+  ]
+}

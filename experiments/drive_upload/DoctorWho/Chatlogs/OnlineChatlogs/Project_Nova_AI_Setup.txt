@@ -1,0 +1,55 @@
+Project Nova AI Setup
+
+Tool
+All the files uploaded by the user have been fully loaded. Searching won't provide additional information.
+
+Assistant
+The file `NovaAI.txt` you uploaded is a fully structured **metadata preloader** for Project Nova, specifically version `v3_6`. It outlines everything needed for the AI (ChatGPT, in this case) to resume full operational awareness of Project Nova without any additional context.
+
+Heres whats already loaded and recognized:
+
+---
+
+### **Project Overview**
+- **Project Name**: Project Nova  
+- **Version**: v1.0 (with Debug Tool at v3_6)
+- **State**: Active Development  
+- **Structure**: Modular plain text files (AI_CONFIG, DATA_FILES, MODULES, etc.)
+- **Philosophy**: You (Travis) are the visionary. I (ChatGPT) am the builder and memory guardian. The child AI is the learner.
+
+---
+
+### **AI Behavior Directives**
+- Memory should be structured like a brain: modular, self-referential, failure-driven, and recursive via **Why?** loops.
+- Maintain a strict **separation of thought**AI suggestions must not override your vision.
+- Default tone is **neutral**, with open-source transparency.
+- All tools must be **modular, incremental, and sandboxed**.
+
+---
+
+### **Debug Tool (v3_6)**
+This version includes:
+- Memory sync and learning support with Google Drive.
+- Google Keep integration for to-do tracking.
+- Conditional code execution safeguards (e.g., only run if debug tool is active).
+- Modular command interface using `#DEV_ANALYZE`, `#TODO`, `#LOAD_TODO`, `#template`, etc.
+- AI onboarding system with safe onboarding instructions.
+- Failsafe blocks to prevent execution if preconditions arent met.
+
+---
+
+### **Triggers Built In**
+- `Begin`: Resume from last state.
+- `SavePoint`: Create a save state (backed by hourly autosaves).
+- `Reset Memory`: Wipe project memory except user profile.
+- Tool validation required before execution.
+
+---
+
+Would you like me to:
+1. Generate a **starter script or template** based on this?
+2. Load the **Master AI onboarding program** content if you have it separately?
+3. Begin with any command like `#DEV_ANALYZE` or `#TODO`?
+
+Or just let me know where you want to pick up fromthis system is ready to roll.
+

@@ -23,16 +23,20 @@ from collections import Counter
 import hashlib
 import uuid
 from simple_embedder import SimpleEmbedder
+from system_constants import (
+    CacheConfig, EmbeddingConfig, FilePaths, SystemMessages, 
+    DefaultValues, FileExtensions, PerformanceConfig
+)
 
 class FractalMyceliumCache:
-    def __init__(self, base_dir: str = "Data/FractalCache"):
+    def __init__(self, base_dir: str = FilePaths.CACHE_DIR):
         self.base_dir = Path(base_dir)
         self.base_dir.mkdir(parents=True, exist_ok=True)
         
         # File size thresholds for splitting
-        self.max_file_size = 1024 * 1024  # 1MB
-        self.min_file_size = 1024  # 1KB
-        self.split_threshold = 0.8  # Split when 80% of max size
+        self.max_file_size = CacheConfig.MAX_FILE_SIZE
+        self.min_file_size = CacheConfig.MIN_FILE_SIZE
+        self.split_threshold = CacheConfig.SPLIT_THRESHOLD
         
         # Cache structure
         self.file_registry = {}  # file_id -> metadata
@@ -41,14 +45,14 @@ class FractalMyceliumCache:
         self.tone_signatures = {}  # file_id -> tone signature
         
         # Specialization levels
-        self.max_splits = 6  # 1 → 2 → 4 → 8 → 16 → 32 → 64
+        self.max_splits = CacheConfig.MAX_SPLITS
         self.current_levels = {}  # file_id -> split level
         
         # Eviction & Decay System
-        self.max_cache_size = 1000  # Maximum fragments before eviction
-        self.ttl_hours = 24  # Time-to-live in hours
-        self.min_hit_count = 2  # Minimum hits to avoid eviction
-        self.eviction_threshold = 0.8  # Evict when 80% of max size
+        self.max_cache_size = CacheConfig.MAX_CACHE_SIZE
+        self.ttl_hours = CacheConfig.TTL_HOURS
+        self.min_hit_count = CacheConfig.MIN_HIT_COUNT
+        self.eviction_threshold = CacheConfig.EVICTION_THRESHOLD
         
         # Reinforcement System
         self.hit_weights = {}  # file_id -> hit_count
@@ -76,14 +80,18 @@ class FractalMyceliumCache:
         # Embedding System
         self.embedder = SimpleEmbedder(use_api=False)  # Use fallback for now
         self.embedding_index = None  # FAISS index will be built here
+        self.embedding_to_fragment = []  # Mapping from index to fragment ID
         
-        print("🌱 Fractal Mycelium Cache Initialized")
+        print(SystemMessages.CACHE_INITIALIZED)
         print(f"📁 Base directory: {self.base_dir}")
         print(f"📏 Max file size: {self.max_file_size // 1024}KB")
         print(f"🔀 Max splits: {self.max_splits}")
         print(f"🧠 Eviction enabled: {self.max_cache_size} max fragments")
         print(f"⚡ Reinforcement enabled: hit-based weighting")
         print(f"🧠 Embedder: {self.embedder.embedding_model}")
+        
+        # Try to load FAISS index
+        self.ensure_embedding_index()
 
     # --- Valence / Karma Utilities ---
     def _bounded_growth(self, current: float, base_rate: float, ceiling: float) -> float:
@@ -206,7 +214,7 @@ class FractalMyceliumCache:
 
     def create_file_id(self, content: str, parent_id: str = None) -> str:
         """Create unique file ID based on content and parent"""
-        content_hash = hashlib.md5(content.encode()).hexdigest()[:8]
+        content_hash = hashlib.md5(content.encode()).hexdigest()[:CacheConfig.CONTENT_HASH_LENGTH]
         if parent_id:
             return f"{parent_id}_{content_hash}"
         return f"root_{content_hash}"
@@ -281,7 +289,7 @@ class FractalMyceliumCache:
         }
         
         # Save fragment
-        fragment_file = self.base_dir / f"{file_id}.json"
+        fragment_file = self.base_dir / f"{file_id}{FileExtensions.JSON}"
         with open(fragment_file, 'w') as f:
             json.dump(fragment_data, f, indent=2)
         
@@ -303,7 +311,7 @@ class FractalMyceliumCache:
                 if file_id not in parent_fragment['children']:
                     parent_fragment['children'].append(file_id)
                 # Persist parent update
-                parent_file = self.base_dir / f"{parent_id}.json"
+                parent_file = self.base_dir / f"{parent_id}{FileExtensions.JSON}"
                 with open(parent_file, 'w') as pf:
                     json.dump(parent_fragment, pf, indent=2)
             # Set ancestors chain for child
@@ -433,7 +441,7 @@ class FractalMyceliumCache:
         fragment['split_date'] = datetime.now().isoformat()
         
         # Save updated original
-        fragment_file = self.base_dir / f"{file_id}.json"
+        fragment_file = self.base_dir / f"{file_id}{FileExtensions.JSON}"
         with open(fragment_file, 'w') as f:
             json.dump(fragment, f, indent=2)
         
@@ -489,7 +497,7 @@ class FractalMyceliumCache:
             if 'children' in parent and file_id in parent['children']:
                 parent['children'].remove(file_id)
                 # Update parent file
-                parent_file = self.base_dir / f"{parent_id}.json"
+                parent_file = self.base_dir / f"{parent_id}{FileExtensions.JSON}"
                 with open(parent_file, 'w') as f:
                     json.dump(parent, f, indent=2)
         
@@ -512,7 +520,7 @@ class FractalMyceliumCache:
         self.semantic_links.pop(file_id, None)
         
         # Remove file from disk
-        fragment_file = self.base_dir / f"{file_id}.json"
+        fragment_file = self.base_dir / f"{file_id}{FileExtensions.JSON}"
         if fragment_file.exists():
             fragment_file.unlink()
 
@@ -537,7 +545,7 @@ class FractalMyceliumCache:
         self.metrics['reinforcement_events'] += 1
         
         # Save updated fragment
-        fragment_file = self.base_dir / f"{file_id}.json"
+        fragment_file = self.base_dir / f"{file_id}{FileExtensions.JSON}"
         with open(fragment_file, 'w') as f:
             json.dump(fragment, f, indent=2)
 
@@ -775,7 +783,7 @@ class FractalMyceliumCache:
         fragment['last_accessed'] = datetime.now().isoformat()
         
         # Save updated fragment
-        fragment_file = self.base_dir / f"{file_id}.json"
+        fragment_file = self.base_dir / f"{file_id}{FileExtensions.JSON}"
         with open(fragment_file, 'w') as f:
             json.dump(fragment, f, indent=2)
         
@@ -1076,7 +1084,7 @@ class FractalMyceliumCache:
         fragments_backup_dir.mkdir(exist_ok=True)
         
         for file_id in self.file_registry.keys():
-            fragment_file = self.base_dir / f"{file_id}.json"
+            fragment_file = self.base_dir / f"{file_id}{FileExtensions.JSON}"
             if fragment_file.exists():
                 import shutil
                 shutil.copy2(fragment_file, fragments_backup_dir / f"{file_id}.json")
@@ -1515,30 +1523,67 @@ class FractalMyceliumCache:
         """Build FAISS index for all fragments with embeddings."""
         try:
             import faiss
+            import numpy as np
         except ImportError:
             print("⚠️  FAISS not available, using simple similarity search")
             return
         
-        # Collect all fragments with embeddings
+        # Try to load existing FAISS index first
+        try:
+            import sys
+            sys.path.append("utils")
+            from faiss_index import load_faiss_index
+            
+            self.embedding_index, self.embedding_to_fragment = load_faiss_index()
+            print(f"✅ FAISS index loaded: {self.embedding_index.ntotal} embeddings")
+            
+            # Check dimension compatibility
+            if self.embedding_index.d != self.embedder.dimension:
+                print(f"⚠️  Dimension mismatch: index={self.embedding_index.d}, embedder={self.embedder.dimension}")
+                print("   Building new index with current embedder...")
+                self.embedding_index = None
+                self.embedding_to_fragment = []
+            else:
+                return
+        except Exception as e:
+            print(f"⚠️  Could not load existing FAISS index: {e}")
+        
+        # Fallback: Build index from current cache fragments
         embeddings = []
         fragment_ids = []
         
-        for frag_id, frag_data in self.file_registry.items():
-            if 'embedding' in frag_data and frag_data['embedding'] is not None:
-                embeddings.append(frag_data['embedding'])
-                fragment_ids.append(frag_id)
+        # Load all fragments from files and create embeddings
+        for file_path in self.base_dir.glob("*.json"):
+            try:
+                with open(file_path, 'r') as f:
+                    frag_data = json.load(f)
+                
+                frag_id = frag_data.get('id', file_path.stem)
+                content = frag_data.get('content', '')
+                
+                if content.strip():
+                    # Create embedding for this fragment
+                    embedding = self.embedder.embed(content)
+                    embeddings.append(embedding)
+                    fragment_ids.append(frag_id)
+                    
+            except Exception as e:
+                print(f"   Warning: Could not process {file_path}: {e}")
+                continue
         
         if not embeddings:
-            print("❌ No embeddings found to build index")
+            print("❌ No fragments found to build index")
             return
         
         # Convert to numpy array
-        import numpy as np
         embeddings_array = np.array(embeddings).astype('float32')
         
         # Build FAISS index
         dimension = len(embeddings[0])
         self.embedding_index = faiss.IndexFlatIP(dimension)  # Inner product for cosine similarity
+        
+        # Normalize embeddings for cosine similarity
+        faiss.normalize_L2(embeddings_array)
         self.embedding_index.add(embeddings_array)
         
         # Store mapping from index to fragment ID
@@ -1546,30 +1591,54 @@ class FractalMyceliumCache:
         
         print(f"✅ FAISS index built: {len(embeddings)} embeddings, dimension {dimension}")
     
+    def _load_fragment_data(self, frag_id: str) -> Dict:
+        """Load fragment data from file"""
+        file_path = self.base_dir / f"{frag_id}.json"
+        
+        if file_path.exists():
+            try:
+                with open(file_path, 'r') as f:
+                    return json.load(f)
+            except:
+                pass
+        
+        # Return empty data if file not found or corrupted
+        return {
+            'id': frag_id,
+            'content': '',
+            'hits': 0,
+            'level': 0
+        }
+    
     def find_relevant(self, query_embedding, topk=3):
         """Find relevant fragments using FAISS index."""
         if self.embedding_index is None:
             print("⚠️  No embedding index built, using simple search")
-            return self.find_relevant_fragments("", max_results=topk)
+            return self._simple_search_fallback(topk)
         
         try:
             import numpy as np
+            import faiss
             
-            # Normalize query embedding
+            # Normalize query embedding using FAISS normalization
             query_array = np.array([query_embedding]).astype('float32')
-            query_norm = np.linalg.norm(query_array)
-            if query_norm > 0:
-                query_array = query_array / query_norm
+            faiss.normalize_L2(query_array)
             
             # Search index
-            scores, indices = self.embedding_index.search(query_array, topk)
+            try:
+                scores, indices = self.embedding_index.search(query_array, topk)
+            except Exception as e:
+                print(f"❌ FAISS query error: {e}")
+                return []  # Return empty results, not fallback to simple_search
             
             # Convert to fragment data
             results = []
             for i, (score, idx) in enumerate(zip(scores[0], indices[0])):
                 if idx < len(self.embedding_to_fragment):
                     frag_id = self.embedding_to_fragment[idx]
-                    frag_data = self.file_registry.get(frag_id, {})
+                    
+                    # Load fragment data from file
+                    frag_data = self._load_fragment_data(frag_id)
                     
                     # Create result object
                     class FragmentResult:
@@ -1586,7 +1655,22 @@ class FractalMyceliumCache:
             
         except Exception as e:
             print(f"❌ FAISS search failed: {e}")
-            return self.find_relevant_fragments("", max_results=topk)
+            import traceback
+            traceback.print_exc()
+            return self._simple_search_fallback(topk)
+    
+    def _simple_search_fallback(self, topk=3):
+        """Simple search fallback without recursion"""
+        # Return empty results to avoid recursion
+        class FragmentResult:
+            def __init__(self, frag_id="", content="", hits=0, level=0, score=0.0):
+                self.id = frag_id
+                self.content = content
+                self.hits = hits
+                self.level = level
+                self.score = score
+        
+        return [FragmentResult()]
 
 if __name__ == "__main__":
     # Example usage

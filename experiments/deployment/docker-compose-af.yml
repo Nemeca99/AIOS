@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # CARMA Mycelium Network - Africa Region
+  # Total Blocks: 19,047,619
+  # Total Capacity: 1,142,857,140 users
+
+  carma-block-af-001:
+    image: carma-mycelium:latest
+    container_name: carma-af-001
+    environment:
+      - BLOCK_ID=af_00000001
+      - EXTERNAL_IP=203.0.113.1
+      - INTERNAL_NETWORK=192.168.1.0/24
+      - REGION=AF
+      - MAX_USERS=60
+    ports:
+      - "443:443"
+      - "80:80"
+    networks:
+      - carma-af-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  carma-af-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.af.0/16
+          gateway: 172.20.af.1
+
+volumes:
+  carma-af-data:
+    driver: local

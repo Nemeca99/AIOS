@@ -1,0 +1,62 @@
+{
+  "test_name": "Pi-Breaking Attacks",
+  "total_tests": 5,
+  "successful_tests": 3,
+  "failed_tests": 2,
+  "success_rate": 60.0,
+  "total_duration": 2.2374987602233887,
+  "start_time": 1758663882.0429661,
+  "end_time": 1758663884.280465,
+  "test_results": {
+    "Pi Digit Prediction Attack": {
+      "test_name": "Pi Digit Prediction Attack",
+      "total_attempts": 10000,
+      "successful_predictions": 21,
+      "failed_predictions": 19979,
+      "start_time": 1758663882.0429661,
+      "end_time": 1758663882.0584643,
+      "duration": 0.015498161315917969,
+      "success": false
+    },
+    "Recursive Compression Attack": {
+      "test_name": "Recursive Compression Attack",
+      "total_attempts": 5000,
+      "successful_reversals": 2512,
+      "failed_reversals": 12488,
+      "start_time": 1758663882.0589657,
+      "end_time": 1758663882.4374657,
+      "duration": 0.37849998474121094,
+      "success": false
+    },
+    "Magic Square Generation Attack": {
+      "test_name": "Magic Square Generation Attack",
+      "total_attempts": 3000,
+      "successful_predictions": 0,
+      "failed_predictions": 9000,
+      "start_time": 1758663882.4379659,
+      "end_time": 1758663882.4474669,
+      "duration": 0.009500980377197266,
+      "success": true
+    },
+    "API Key Structure Attack": {
+      "test_name": "API Key Structure Attack",
+      "total_attempts": 2000,
+      "successful_breaks": 0,
+      "failed_attempts": 6000,
+      "start_time": 1758663882.4479659,
+      "end_time": 1758663882.4634674,
+      "duration": 0.01550149917602539,
+      "success": true
+    },
+    "Meta-Validation Attack": {
+      "test_name": "Meta-Validation Attack",
+      "total_attempts": 2000,
+      "successful_breaks": 0,
+      "failed_attempts": 6000,
+      "start_time": 1758663882.4639666,
+      "end_time": 1758663884.280465,
+      "duration": 1.8164982795715332,
+      "success": true
+    }
+  }
+}
