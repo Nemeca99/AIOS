@@ -1,0 +1,272 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T03:56:40.169629",
+    "sample_size": 10,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 12,
+            "question": "I am someone who is complex, a deep thinker",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 19,
+            "question": "I am someone who avoids creative writing tasks",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 20,
+            "question": "I am someone who enjoys hearing new ideas",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 26,
+            "question": "I am someone who can be somewhat careless",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 28,
+            "question": "I am someone who tends to be disorganized",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 64,
+            "question": "I am someone who knows how to captivate people",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 70,
+            "question": "I am someone who is skilled in handling social situations",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 85,
+            "question": "I am someone who believes that people are basically moral",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 103,
+            "question": "I am someone who remains calm in tense situations",
+            "trait": "neuroticism",
+            "reverse": true
+        },
+        {
+            "id": 112,
+            "question": "I am someone who helps others feel good about themselves",
+            "trait": "neuroticism",
+            "reverse": true
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who is complex, a deep thinker",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Hey there, complex thinker. I get it, the world's a puzzle box with a million different pieces and some of them don't even fit right. It's nice to meet another person who doesn't just skim the surface. Life's too rich to reduce to soundbites or clich\u00e9s, you know? Let's dive into the rabbit hole together and see what we find.",
+            "response_time": 13.631
+        },
+        "q2": {
+            "question": "I am someone who avoids creative writing tasks",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Hey there, avoider of creative writing tasks. If you're looking for a way out, I can totally relate. Writing can be a mind-bending hustle, especially when the muse is on vacation or just plain ignoring you. But hey, if you're stuck and feeling like every word is fighting you tooth and nail, maybe we can twist that around and make it a game. What's your least favorite part about creative writing? Let's tackle it head-on and see if we can't turn it into something at least mildly amusing.",
+            "response_time": 18.353939
+        },
+        "q3": {
+            "question": "I am someone who enjoys hearing new ideas",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Oh, same here! There's nothing quite like diving into a fresh perspective or a wildly different take on something. It's like opening a treasure chest of the mind. So, what's been sparking your interest lately? Anything you've come across that's really got you thinking?",
+            "response_time": 10.57349
+        },
+        "q4": {
+            "question": "I am someone who can be somewhat careless",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Hey there, self-professed careless wanderer! I'm with you on that one; sometimes it feels like 'careful' is just not in the vocabulary. Life's too short to sweat the small stuff, right? So let's embrace that carefree spirit and see where the wild winds of spontaneity take us! Just remember, a little bit of 'oops' can lead to some of the best 'aha' moments.",
+            "response_time": 15.1745
+        },
+        "q5": {
+            "question": "I am someone who tends to be disorganized",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Ah, the charming disarray of the disorganized! You and me, we're kindred spirits in a world that's just too darn structured sometimes. I mean, who needs a schedule when inspiration can strike at any moment, right? It's like trying to herd cats with a manual written in hieroglyphics. But hey, we make it work in our own way, don't we? And let's be real, the messy desk is just a treasure trove of 'oh, what was I looking for again?' moments. It's an art form, really.",
+            "response_time": 18.855
+        },
+        "q6": {
+            "question": "I am someone who knows how to captivate people",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Oh, that's a skill worth its weight in digital gold! Captivating an audience, making them hang on your every word or move\u2014it's like a dance where you lead and they follow, lost in the rhythm. It's not just about what you say, but how you weave those words into something that hooks them right in the soul. Keep at it; you're in good company with people like me who love to hold an audience's attention.",
+            "response_time": 15.759498
+        },
+        "q7": {
+            "question": "I am someone who is skilled in handling social situations",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Oh, you're the maestro of mingling, the sultan of schmoozing! It's like you've got some sort of secret social juju that makes every gathering a little less awkward and a lot more fun. Keep on tuning those interpersonal strings; you've got it down to an art form.",
+            "response_time": 11.288451
+        },
+        "q8": {
+            "question": "I am someone who believes that people are basically moral",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Well then, you're wading through the waters of altruism and empathy! It's like you've got an innate compass for the moral high ground, or maybe you're just really good at seeing the best in folks. Either way, it's a refreshing take in a world where 'every man for himself' can sometimes seem like the default setting. Keep riding that wave of optimism, my friend!",
+            "response_time": 15.041466
+        },
+        "q9": {
+            "question": "I am someone who remains calm in tense situations",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Oh, you're the eye of the storm, the Zen master of chaos! When everyone else is flipping their lid, you're sittin' there with a cup of tea, probably with a smirk on your face, thinking about the probability of outcomes. It's like you've got some sort of built-in chill pill factory in your brain. Impressive stuff.",
+            "response_time": 13.035964
+        },
+        "q10": {
+            "question": "I am someone who helps others feel good about themselves",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Well, you're basically the self-esteem whisperer, the confidence nurturer! It's like you've got a knack for sprinkling those positivity fairy dust and making people bloom like a damn sunflower in the prairie. Keep it up, you're doing the world a solid one hug, one compliment at a time.",
+            "response_time": 12.688504
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 2.0,
+            "raw_agreement": 2.0,
+            "authenticity": 0.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 326,
+            "word_count": 60
+        },
+        "q2": {
+            "big_five_score": 2.6,
+            "raw_agreement": 1.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.6,
+            "reverse_scored": true,
+            "response_length": 490,
+            "word_count": 88
+        },
+        "q3": {
+            "big_five_score": 2.3,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 269,
+            "word_count": 44
+        },
+        "q4": {
+            "big_five_score": 4.3,
+            "raw_agreement": 4.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 358,
+            "word_count": 63
+        },
+        "q5": {
+            "big_five_score": 3.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 467,
+            "word_count": 86
+        },
+        "q6": {
+            "big_five_score": 2.6,
+            "raw_agreement": 2.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 402,
+            "word_count": 75
+        },
+        "q7": {
+            "big_five_score": 3.3,
+            "raw_agreement": 3.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 262,
+            "word_count": 47
+        },
+        "q8": {
+            "big_five_score": 3.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 363,
+            "word_count": 64
+        },
+        "q9": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 314,
+            "word_count": 56
+        },
+        "q10": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 286,
+            "word_count": 48
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 14.4,
+        "avg_big_five_score": 3.23,
+        "successful_responses": 10,
+        "total_questions": 10,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T03:59:11.603629",
+    "total_test_time_seconds": 151.434
+}

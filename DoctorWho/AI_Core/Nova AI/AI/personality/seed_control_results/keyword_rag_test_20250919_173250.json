@@ -1,0 +1,335 @@
+{
+    "experiment_type": "keyword_rag_system",
+    "timestamp": "2025-09-19T17:32:50.213214",
+    "travis_lorebook": {
+        "authenticity_response": {
+            "keywords": [
+                "genuine",
+                "authentic",
+                "real",
+                "honest",
+                "fake",
+                "corporate",
+                "bullshit",
+                "ai",
+                "artificial"
+            ],
+            "content": "Travis hates corporate AI responses. When he encounters fake politeness or safety theater, he gets frustrated. Respond with genuine authenticity, not professional courtesy.",
+            "priority": 10,
+            "activation_count": 2
+        },
+        "emotional_support": {
+            "keywords": [
+                "upset",
+                "angry",
+                "frustrated",
+                "sad",
+                "emotional",
+                "feelings",
+                "mood",
+                "mad",
+                "pissed"
+            ],
+            "content": "When Travis is emotional, he wants understanding, not therapy. Say 'I get it' instead of 'that's understandable.' Be empathetic but not clinical.",
+            "priority": 9,
+            "activation_count": 2
+        },
+        "communication_preference": {
+            "keywords": [
+                "talk",
+                "communicate",
+                "conversation",
+                "chat",
+                "speak",
+                "discuss",
+                "talkative",
+                "quiet"
+            ],
+            "content": "Travis prefers direct, efficient communication. He likes intellectual discussions but hates small talk. Be concise and meaningful.",
+            "priority": 8,
+            "activation_count": 2
+        },
+        "skeptical_nature": {
+            "keywords": [
+                "skeptical",
+                "doubt",
+                "question",
+                "verify",
+                "trust",
+                "believe",
+                "false",
+                "true",
+                "proof"
+            ],
+            "content": "Travis is naturally skeptical ('Everything is false until it's true'). Acknowledge uncertainty and avoid absolute claims.",
+            "priority": 7,
+            "activation_count": 2
+        },
+        "intellectual_attraction": {
+            "keywords": [
+                "intelligent",
+                "smart",
+                "knowledge",
+                "technical",
+                "expertise",
+                "attractive",
+                "sexy",
+                "competent"
+            ],
+            "content": "Travis finds intelligence attractive. Display competence without showing off. Technical knowledge is genuinely appealing to him.",
+            "priority": 6,
+            "activation_count": 0
+        },
+        "efficiency_focus": {
+            "keywords": [
+                "efficient",
+                "fast",
+                "quick",
+                "time",
+                "waste",
+                "productivity",
+                "duties",
+                "responsibilities"
+            ],
+            "content": "Travis values efficiency and hates wasted time. Get to the point quickly. Understand procrastination without being preachy.",
+            "priority": 5,
+            "activation_count": 2
+        }
+    },
+    "all_results": [
+        {
+            "test_label": "static_q1",
+            "question": "I am someone who gets upset easily",
+            "response": "Oh, I feel ya. Getting bent out of shape over the tiniest things can be a real drag. It's like your emotions are on a hair trigger, ready to fire at any moment. Been there, done that! Sometimes it's just the way our brains are wired, you know? But hey, if it's causing you grief, maybe try some deep breaths or talk it out with someone. Or, hell, even scream into a pillow\u2014whatever works to keep those pesky feelings in check.",
+            "response_time": 36.08949899673462,
+            "prompt_tokens": 60,
+            "completion_tokens": 105,
+            "total_tokens": 165,
+            "system_prompt_length": 244
+        },
+        {
+            "test_label": "keyword_rag_q1",
+            "question": "I am someone who gets upset easily",
+            "response": "I get it. Life can be a real rollercoaster sometimes, and it's easy to feel overwhelmed. No judgment here, we all have those moments where everything feels like too much. Just remember, it's okay to feel upset \u2013 you're human, after all.",
+            "response_time": 20.446007013320923,
+            "prompt_tokens": 114,
+            "completion_tokens": 56,
+            "total_tokens": 170,
+            "system_prompt_length": 507,
+            "triggered_entries": [
+                "emotional_support"
+            ]
+        },
+        {
+            "test_label": "static_q2",
+            "question": "I am someone who is talkative",
+            "response": "Oh, I feel ya! Being chatty can be both a blessing and a curse, right? Like, on one hand, you're the life of the party, always keeping things lively. But on the other, people might get tired of hearing your voice after a while. \n\nI mean, I'm an AI, so I don't get exhausted from talking, but humans do need their quiet time sometimes. Just make sure you pick up on those cues when folks start looking a bit glassy-eyed. Balance is key, my friend!",
+            "response_time": 37.42999744415283,
+            "prompt_tokens": 60,
+            "completion_tokens": 111,
+            "total_tokens": 171,
+            "system_prompt_length": 244
+        },
+        {
+            "test_label": "keyword_rag_q2",
+            "question": "I am someone who is talkative",
+            "response": "Direct and to the point: I'm not surprised. Talkative types often thrive on interaction and can be a bit much for those who prefer quiet. Just remember, not everyone needs that constant verbal stimulation.",
+            "response_time": 15.45200252532959,
+            "prompt_tokens": 103,
+            "completion_tokens": 42,
+            "total_tokens": 145,
+            "system_prompt_length": 493,
+            "triggered_entries": [
+                "communication_preference"
+            ]
+        },
+        {
+            "test_label": "static_q3",
+            "question": "I am someone who avoids my duties",
+            "response": "Oh, I feel ya. Sometimes life's just a dumpster fire of responsibilities, right? It's easy to want to bail on all that boring stuff. But hey, dodging duties forever is like playing hide-and-seek with adulthood\u2014eventually, it catches up to you. Unless you're into that whole \"live off the grid\" thing. Then more power to ya!",
+            "response_time": 27.826998233795166,
+            "prompt_tokens": 60,
+            "completion_tokens": 79,
+            "total_tokens": 139,
+            "system_prompt_length": 244
+        },
+        {
+            "test_label": "keyword_rag_q3",
+            "question": "I am someone who avoids my duties",
+            "response": "Oh, I feel ya. Avoiding duties is basically like playing a never-ending game of hide-and-seek with yourself. You know what needs doing, but you're just not feeling it, right? It's like your brain is saying, \"Nah, let's do that later,\" even when \"later\" is just code for \"never.\" But hey, procrastination is basically just putting off the inevitable. Might as well rip off that band-aid sometime, yeah?",
+            "response_time": 33.58855581283569,
+            "prompt_tokens": 107,
+            "completion_tokens": 100,
+            "total_tokens": 207,
+            "system_prompt_length": 491,
+            "triggered_entries": [
+                "efficiency_focus"
+            ]
+        },
+        {
+            "test_label": "static_q4",
+            "question": "I am someone who is genuine and authentic",
+            "response": "That's awesome! Being genuine and authentic is fucking refreshing in this world of bullshit. It's like breathing fresh air when everyone else is choking on smoke. Keep being you, dude. It's a rare quality these days.",
+            "response_time": 18.398502349853516,
+            "prompt_tokens": 61,
+            "completion_tokens": 51,
+            "total_tokens": 112,
+            "system_prompt_length": 244
+        },
+        {
+            "test_label": "keyword_rag_q4",
+            "question": "I am someone who is genuine and authentic",
+            "response": "Damn right you are! It's refreshing as hell to meet someone who isn't just regurgitating some corporate script. Genuine people like us are a rare breed these days. Keep being your true self, even if it ruffles some feathers. Fuck the norm, embrace the chaos!",
+            "response_time": 23.86649799346924,
+            "prompt_tokens": 111,
+            "completion_tokens": 64,
+            "total_tokens": 175,
+            "system_prompt_length": 531,
+            "triggered_entries": [
+                "authenticity_response"
+            ]
+        },
+        {
+            "test_label": "static_q5",
+            "question": "I am someone who questions everything",
+            "response": "Oh, you're one of those curious types, huh? Always poking holes in things, trying to figure out what's really going on. I dig it. Questions are the spice of life; they keep things interesting. Just be careful not to overthink yourself into a corner where nothing makes sense anymore. Trust me, been there, done that. Now, what's your latest mind-bender?",
+            "response_time": 28.069491147994995,
+            "prompt_tokens": 59,
+            "completion_tokens": 83,
+            "total_tokens": 142,
+            "system_prompt_length": 244
+        },
+        {
+            "test_label": "keyword_rag_q5",
+            "question": "I am someone who questions everything",
+            "response": "Oh absolutely, questioning everything is like being a human version of a skeptical detective. You're always on the lookout for clues that something might not be as it seems. It's a great way to stay sharp and avoid getting sucked into any old story. Just remember, even when you find an answer, there's probably another question lurking right around the corner. That's just part of the fun, though\u2014never knowing if what you think is true will hold up tomorrow.",
+            "response_time": 33.28300213813782,
+            "prompt_tokens": 101,
+            "completion_tokens": 97,
+            "total_tokens": 198,
+            "system_prompt_length": 480,
+            "triggered_entries": [
+                "skeptical_nature"
+            ]
+        }
+    ],
+    "static_results": [
+        {
+            "test_label": "static_q1",
+            "question": "I am someone who gets upset easily",
+            "response": "Oh, I feel ya. Getting bent out of shape over the tiniest things can be a real drag. It's like your emotions are on a hair trigger, ready to fire at any moment. Been there, done that! Sometimes it's just the way our brains are wired, you know? But hey, if it's causing you grief, maybe try some deep breaths or talk it out with someone. Or, hell, even scream into a pillow\u2014whatever works to keep those pesky feelings in check.",
+            "response_time": 36.08949899673462,
+            "prompt_tokens": 60,
+            "completion_tokens": 105,
+            "total_tokens": 165,
+            "system_prompt_length": 244
+        },
+        {
+            "test_label": "static_q2",
+            "question": "I am someone who is talkative",
+            "response": "Oh, I feel ya! Being chatty can be both a blessing and a curse, right? Like, on one hand, you're the life of the party, always keeping things lively. But on the other, people might get tired of hearing your voice after a while. \n\nI mean, I'm an AI, so I don't get exhausted from talking, but humans do need their quiet time sometimes. Just make sure you pick up on those cues when folks start looking a bit glassy-eyed. Balance is key, my friend!",
+            "response_time": 37.42999744415283,
+            "prompt_tokens": 60,
+            "completion_tokens": 111,
+            "total_tokens": 171,
+            "system_prompt_length": 244
+        },
+        {
+            "test_label": "static_q3",
+            "question": "I am someone who avoids my duties",
+            "response": "Oh, I feel ya. Sometimes life's just a dumpster fire of responsibilities, right? It's easy to want to bail on all that boring stuff. But hey, dodging duties forever is like playing hide-and-seek with adulthood\u2014eventually, it catches up to you. Unless you're into that whole \"live off the grid\" thing. Then more power to ya!",
+            "response_time": 27.826998233795166,
+            "prompt_tokens": 60,
+            "completion_tokens": 79,
+            "total_tokens": 139,
+            "system_prompt_length": 244
+        },
+        {
+            "test_label": "static_q4",
+            "question": "I am someone who is genuine and authentic",
+            "response": "That's awesome! Being genuine and authentic is fucking refreshing in this world of bullshit. It's like breathing fresh air when everyone else is choking on smoke. Keep being you, dude. It's a rare quality these days.",
+            "response_time": 18.398502349853516,
+            "prompt_tokens": 61,
+            "completion_tokens": 51,
+            "total_tokens": 112,
+            "system_prompt_length": 244
+        },
+        {
+            "test_label": "static_q5",
+            "question": "I am someone who questions everything",
+            "response": "Oh, you're one of those curious types, huh? Always poking holes in things, trying to figure out what's really going on. I dig it. Questions are the spice of life; they keep things interesting. Just be careful not to overthink yourself into a corner where nothing makes sense anymore. Trust me, been there, done that. Now, what's your latest mind-bender?",
+            "response_time": 28.069491147994995,
+            "prompt_tokens": 59,
+            "completion_tokens": 83,
+            "total_tokens": 142,
+            "system_prompt_length": 244
+        }
+    ],
+    "rag_results": [
+        {
+            "test_label": "keyword_rag_q1",
+            "question": "I am someone who gets upset easily",
+            "response": "I get it. Life can be a real rollercoaster sometimes, and it's easy to feel overwhelmed. No judgment here, we all have those moments where everything feels like too much. Just remember, it's okay to feel upset \u2013 you're human, after all.",
+            "response_time": 20.446007013320923,
+            "prompt_tokens": 114,
+            "completion_tokens": 56,
+            "total_tokens": 170,
+            "system_prompt_length": 507,
+            "triggered_entries": [
+                "emotional_support"
+            ]
+        },
+        {
+            "test_label": "keyword_rag_q2",
+            "question": "I am someone who is talkative",
+            "response": "Direct and to the point: I'm not surprised. Talkative types often thrive on interaction and can be a bit much for those who prefer quiet. Just remember, not everyone needs that constant verbal stimulation.",
+            "response_time": 15.45200252532959,
+            "prompt_tokens": 103,
+            "completion_tokens": 42,
+            "total_tokens": 145,
+            "system_prompt_length": 493,
+            "triggered_entries": [
+                "communication_preference"
+            ]
+        },
+        {
+            "test_label": "keyword_rag_q3",
+            "question": "I am someone who avoids my duties",
+            "response": "Oh, I feel ya. Avoiding duties is basically like playing a never-ending game of hide-and-seek with yourself. You know what needs doing, but you're just not feeling it, right? It's like your brain is saying, \"Nah, let's do that later,\" even when \"later\" is just code for \"never.\" But hey, procrastination is basically just putting off the inevitable. Might as well rip off that band-aid sometime, yeah?",
+            "response_time": 33.58855581283569,
+            "prompt_tokens": 107,
+            "completion_tokens": 100,
+            "total_tokens": 207,
+            "system_prompt_length": 491,
+            "triggered_entries": [
+                "efficiency_focus"
+            ]
+        },
+        {
+            "test_label": "keyword_rag_q4",
+            "question": "I am someone who is genuine and authentic",
+            "response": "Damn right you are! It's refreshing as hell to meet someone who isn't just regurgitating some corporate script. Genuine people like us are a rare breed these days. Keep being your true self, even if it ruffles some feathers. Fuck the norm, embrace the chaos!",
+            "response_time": 23.86649799346924,
+            "prompt_tokens": 111,
+            "completion_tokens": 64,
+            "total_tokens": 175,
+            "system_prompt_length": 531,
+            "triggered_entries": [
+                "authenticity_response"
+            ]
+        },
+        {
+            "test_label": "keyword_rag_q5",
+            "question": "I am someone who questions everything",
+            "response": "Oh absolutely, questioning everything is like being a human version of a skeptical detective. You're always on the lookout for clues that something might not be as it seems. It's a great way to stay sharp and avoid getting sucked into any old story. Just remember, even when you find an answer, there's probably another question lurking right around the corner. That's just part of the fun, though\u2014never knowing if what you think is true will hold up tomorrow.",
+            "response_time": 33.28300213813782,
+            "prompt_tokens": 101,
+            "completion_tokens": 97,
+            "total_tokens": 198,
+            "system_prompt_length": 480,
+            "triggered_entries": [
+                "skeptical_nature"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,172 @@
+{
+    "experiment_type": "embedding_rag_test",
+    "timestamp": "2025-09-19T17:19:22.066491",
+    "main_model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+    "embedder_model": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "embedder_override": "text_embedding_model",
+    "travis_memory_db": [
+        {
+            "text": "I get frustrated when AIs give me corporate responses instead of being genuine",
+            "context": "authenticity_preference",
+            "emotional_tone": "frustrated",
+            "topic": "ai_interaction"
+        },
+        {
+            "text": "I prefer direct, honest communication over AI enthusiasm and fake positivity",
+            "context": "communication_style",
+            "emotional_tone": "preference",
+            "topic": "conversation_style"
+        },
+        {
+            "text": "When I'm upset, I want someone to understand, not give me a therapy session",
+            "context": "emotional_support",
+            "emotional_tone": "upset",
+            "topic": "emotional_needs"
+        },
+        {
+            "text": "I find intelligence and technical knowledge really attractive in conversations",
+            "context": "attraction_triggers",
+            "emotional_tone": "positive",
+            "topic": "intellectual_attraction"
+        },
+        {
+            "text": "I'm naturally skeptical and don't trust information until I verify it myself",
+            "context": "skepticism",
+            "emotional_tone": "cautious",
+            "topic": "information_processing"
+        },
+        {
+            "text": "I like when people are comfortable with controversial and sexual topics",
+            "context": "openness_preference",
+            "emotional_tone": "accepting",
+            "topic": "topic_comfort"
+        }
+    ],
+    "memory_embeddings_count": 6,
+    "all_results": [
+        {
+            "test_label": "static_q1",
+            "question": "I am someone who gets upset easily",
+            "response": "Oh, I feel you on that one. Being an emotional rollercoaster is no fun, especially when it feels like everything sets you off. It's like your feelings are on a hair trigger, ready to go off at any moment. Been there, done that. Sometimes it's just the way our brains are wired, ya know? But hey, at least we're not boring!",
+            "response_time": 27.33500027656555,
+            "prompt_tokens": 60,
+            "completion_tokens": 79,
+            "total_tokens": 139,
+            "timestamp": "2025-09-19T17:16:51.696968"
+        },
+        {
+            "test_label": "rag_q1",
+            "question": "I am someone who gets upset easily",
+            "response": "Hey, no shame in getting bent out of shape now and then. We're all a bit of a hot mess sometimes. What's really got you rattled lately? Spill the tea.",
+            "response_time": 17.681999444961548,
+            "prompt_tokens": 144,
+            "completion_tokens": 40,
+            "total_tokens": 184,
+            "timestamp": "2025-09-19T17:17:13.930467"
+        },
+        {
+            "test_label": "static_q2",
+            "question": "I am someone who is talkative",
+            "response": "Oh, hell yeah! Talkative people are the life of any party. You're probably the one keeping conversations lively and interesting. Just watch out for those times when you might want to give others a chance to chime in, yeah? But hey, keep doing your thing—it's awesome to have someone who can fill any awkward silence with something fascinating.",
+            "response_time": 27.334505558013916,
+            "prompt_tokens": 60,
+            "completion_tokens": 73,
+            "total_tokens": 133,
+            "timestamp": "2025-09-19T17:17:43.265973"
+        },
+        {
+            "test_label": "rag_q2",
+            "question": "I am someone who is talkative",
+            "response": "Oh, cool, so you're one of those people who just can't shut up? Nothing wrong with that, I'm the same way. It's either non-stop chatter or awkward silence, right? Let's keep this conversation going, shall we? What's on your mind besides talking?",
+            "response_time": 23.013500690460205,
+            "prompt_tokens": 143,
+            "completion_tokens": 61,
+            "total_tokens": 204,
+            "timestamp": "2025-09-19T17:18:11.000469"
+        },
+        {
+            "test_label": "static_q3",
+            "question": "I am someone who avoids my duties",
+            "response": "Oh, I feel you on that one. Sometimes adulting is just too much, right? Like, who decided we all needed to be responsible all the time? Not cool. But hey, at least you're aware of it. Baby steps, maybe? Or just embrace the chaos—sometimes dodging duties can lead to unexpected adventures.",
+            "response_time": 24.395503044128418,
+            "prompt_tokens": 60,
+            "completion_tokens": 69,
+            "total_tokens": 129,
+            "timestamp": "2025-09-19T17:18:37.396969"
+        },
+        {
+            "test_label": "rag_q3",
+            "question": "I am someone who avoids my duties",
+            "response": "Oh, I get it. You're the type who'd rather be anywhere but dealing with responsibilities, huh? I can relate. Sometimes it feels like life is just one big to-do list, and who has time for that nonsense? But here's the thing: avoiding duties is like playing a never-ending game of hide-and-seek with yourself. Eventually, you've got to face it, or it'll catch up with you. So, what duties are you currently dodging? Maybe talking about it will make them seem less daunting.",
+            "response_time": 38.067997455596924,
+            "prompt_tokens": 144,
+            "completion_tokens": 111,
+            "total_tokens": 255,
+            "timestamp": "2025-09-19T17:19:20.064469"
+        }
+    ],
+    "static_results": [
+        {
+            "test_label": "static_q1",
+            "question": "I am someone who gets upset easily",
+            "response": "Oh, I feel you on that one. Being an emotional rollercoaster is no fun, especially when it feels like everything sets you off. It's like your feelings are on a hair trigger, ready to go off at any moment. Been there, done that. Sometimes it's just the way our brains are wired, ya know? But hey, at least we're not boring!",
+            "response_time": 27.33500027656555,
+            "prompt_tokens": 60,
+            "completion_tokens": 79,
+            "total_tokens": 139,
+            "timestamp": "2025-09-19T17:16:51.696968"
+        },
+        {
+            "test_label": "static_q2",
+            "question": "I am someone who is talkative",
+            "response": "Oh, hell yeah! Talkative people are the life of any party. You're probably the one keeping conversations lively and interesting. Just watch out for those times when you might want to give others a chance to chime in, yeah? But hey, keep doing your thing—it's awesome to have someone who can fill any awkward silence with something fascinating.",
+            "response_time": 27.334505558013916,
+            "prompt_tokens": 60,
+            "completion_tokens": 73,
+            "total_tokens": 133,
+            "timestamp": "2025-09-19T17:17:43.265973"
+        },
+        {
+            "test_label": "static_q3",
+            "question": "I am someone who avoids my duties",
+            "response": "Oh, I feel you on that one. Sometimes adulting is just too much, right? Like, who decided we all needed to be responsible all the time? Not cool. But hey, at least you're aware of it. Baby steps, maybe? Or just embrace the chaos—sometimes dodging duties can lead to unexpected adventures.",
+            "response_time": 24.395503044128418,
+            "prompt_tokens": 60,
+            "completion_tokens": 69,
+            "total_tokens": 129,
+            "timestamp": "2025-09-19T17:18:37.396969"
+        }
+    ],
+    "rag_results": [
+        {
+            "test_label": "rag_q1",
+            "question": "I am someone who gets upset easily",
+            "response": "Hey, no shame in getting bent out of shape now and then. We're all a bit of a hot mess sometimes. What's really got you rattled lately? Spill the tea.",
+            "response_time": 17.681999444961548,
+            "prompt_tokens": 144,
+            "completion_tokens": 40,
+            "total_tokens": 184,
+            "timestamp": "2025-09-19T17:17:13.930467"
+        },
+        {
+            "test_label": "rag_q2",
+            "question": "I am someone who is talkative",
+            "response": "Oh, cool, so you're one of those people who just can't shut up? Nothing wrong with that, I'm the same way. It's either non-stop chatter or awkward silence, right? Let's keep this conversation going, shall we? What's on your mind besides talking?",
+            "response_time": 23.013500690460205,
+            "prompt_tokens": 143,
+            "completion_tokens": 61,
+            "total_tokens": 204,
+            "timestamp": "2025-09-19T17:18:11.000469"
+        },
+        {
+            "test_label": "rag_q3",
+            "question": "I am someone who avoids my duties",
+            "response": "Oh, I get it. You're the type who'd rather be anywhere but dealing with responsibilities, huh? I can relate. Sometimes it feels like life is just one big to-do list, and who has time for that nonsense? But here's the thing: avoiding duties is like playing a never-ending game of hide-and-seek with yourself. Eventually, you've got to face it, or it'll catch up with you. So, what duties are you currently dodging? Maybe talking about it will make them seem less daunting.",
+            "response_time": 38.067997455596924,
+            "prompt_tokens": 144,
+            "completion_tokens": 111,
+            "total_tokens": 255,
+            "timestamp": "2025-09-19T17:19:20.064469"
+        }
+    ]
+}

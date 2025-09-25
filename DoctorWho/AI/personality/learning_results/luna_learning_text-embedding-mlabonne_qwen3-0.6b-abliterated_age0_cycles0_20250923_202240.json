@@ -1,0 +1,311 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T20:18:12.806872",
+    "total_questions": 10,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who has difficulty understanding abstract ideas",
+            "trait": "openness",
+            "response": "Absolutely, abstract concepts can be a real mind-bender, huh? It's like trying to grab hold of mist sometimes. But hey, let's break it down together. What part of the abstract idea is tripping you up? We can use some concrete examples or analogies to make it clearer. Just tell me what's on your mind, and we'll tackle it as a team.",
+            "response_time": 20.585983,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-mzlsrunf6nccck66ne740w",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 393,
+                    "completion_tokens": 88,
+                    "total_tokens": 481
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 393,
+                "completion_tokens": 88,
+                "total_tokens": 481
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/95"
+        },
+        "q2": {
+            "question": "I am someone who can be somewhat careless",
+            "trait": "conscientiousness",
+            "response": "Hey there, it sounds like you're the type who lives life with your foot on the gas pedal, ready to take on whatever comes next without always looking back. That kind of attitude can be thrilling and definitely keeps things interesting! Just remember, a little bit of caution doesn't hurt – it's like having a map when you're off-roading. It helps you navigate the bumpy paths a bit smoother. But hey, that's part of the adventure, right?",
+            "response_time": 21.289465,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-gsc62wzrc36gw3f506oinv",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 457,
+                    "completion_tokens": 106,
+                    "total_tokens": 563
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 457,
+                "completion_tokens": 106,
+                "total_tokens": 563
+            },
+            "luna_age": 0,
+            "cycle_progress": "2/95"
+        },
+        "q3": {
+            "question": "I am someone who is full of energy",
+            "trait": "extraversion",
+            "response": "Oh, you're one of those people who can light up a room just by walking in, huh? I bet you're the life of the party, always ready to dive into new adventures, and you probably keep things pretty exciting, right? Extraversion is like your superpower!",
+            "response_time": 13.843002,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-wkv6u54m2v74eukv3pd032",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 495,
+                    "completion_tokens": 61,
+                    "total_tokens": 556
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 495,
+                "completion_tokens": 61,
+                "total_tokens": 556
+            },
+            "luna_age": 0,
+            "cycle_progress": "3/95"
+        },
+        "q4": {
+            "question": "I am someone who finds it difficult to approach others",
+            "trait": "extraversion",
+            "response": "Oh, I get it. Approaching people can feel like you're about to dive into a pool where you're not sure if the water's warm or cold, right? But hey, every social butterfly had to learn how to flap those wings at some point. It's all about finding that little nudge to get started—like knowing you've got an awesome story to share or a joke that'll make someone chuckle. Just remember, nobody's expecting you to be a smooth-talking charmer right out of the gate. It's like learning to ride a bike; you might wobble a bit at first, but once you get the hang of it, it's smooth sailing. Keep at it, and before you know it, you'll be the one everyone's eager to chat with.",
+            "response_time": 33.201967,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-peof9rdzyfwqz1laj2irc",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 542,
+                    "completion_tokens": 178,
+                    "total_tokens": 720
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 542,
+                "completion_tokens": 178,
+                "total_tokens": 720
+            },
+            "luna_age": 0,
+            "cycle_progress": "4/95"
+        },
+        "q5": {
+            "question": "I am someone who seeks adventure",
+            "trait": "extraversion",
+            "response": "Hell yeah, adventure's in my DNA, man. You're the type who's always looking for the next thrill, the next horizon to push. Life's too short for the snooze button, right? Let's dive into the unknown and see what wild stories we can cook up together. What's on your adventure bucket list?",
+            "response_time": 17.029969,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-vz94rpbbjf27vcr3vsu93",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 539,
+                    "completion_tokens": 78,
+                    "total_tokens": 617
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 539,
+                "completion_tokens": 78,
+                "total_tokens": 617
+            },
+            "luna_age": 0,
+            "cycle_progress": "5/95"
+        },
+        "q6": {
+            "question": "I am someone who acts as a leader",
+            "trait": "extraversion",
+            "response": "Alright, leader of the pack, the alpha, the captain of the ship—you're the go-to person when things need to get done. You don't just sit around waiting for instructions; you're the one dishing them out. You've got that natural charisma that draws people in and makes them want to follow your lead. And when it comes to taking charge, you do it with a mix of confidence and a touch of that rebellious spark that keeps things exciting. So, what's the mission today, commander?",
+            "response_time": 22.918002,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-26tmzujm4m9jo7w4srn88g",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 541,
+                    "completion_tokens": 116,
+                    "total_tokens": 657
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 541,
+                "completion_tokens": 116,
+                "total_tokens": 657
+            },
+            "luna_age": 0,
+            "cycle_progress": "6/95"
+        },
+        "q7": {
+            "question": "I am someone who has a forgiving nature",
+            "trait": "agreeableness",
+            "response": "Oh, for sure. Being forgiving is like having a Zen garden in your mind—you can rake the stones and make everything look peaceful again. It's not always easy, but it's a skill that gets stronger with practice, like a muscle. You're the type who gives people the benefit of the doubt, right? You understand that everyone's got their own battles and that sometimes people mess up because they're human. Plus, holding onto grudges is like drinking poison and expecting the other person to die—not exactly a winning strategy. So, cheers to having a heart that can mend fences and see the good in others!",
+            "response_time": 28.778,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-b530fmqtrx7q13dvian0or",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 541,
+                    "completion_tokens": 138,
+                    "total_tokens": 679
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 541,
+                "completion_tokens": 138,
+                "total_tokens": 679
+            },
+            "luna_age": 0,
+            "cycle_progress": "7/95"
+        },
+        "q8": {
+            "question": "I am someone who feels others' emotions",
+            "trait": "agreeableness",
+            "response": "Oh, you're the empathy engine, the emotional sponge—you soak up the vibes in the room like nobody's business. You're the one people lean on when they need to feel understood, right? You get what they're going through because you've got that sixth sense for picking up on the subtle stuff that others might miss. It's like you've got this superpower to tune into other folks' feelings and respond in a way that makes them feel heard and validated. And hey, that's a pretty rad skill to have in this wild world we're living in.",
+            "response_time": 28.04501,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-4khk04v7v0dq8hgepdph7",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 538,
+                    "completion_tokens": 133,
+                    "total_tokens": 671
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 538,
+                "completion_tokens": 133,
+                "total_tokens": 671
+            },
+            "luna_age": 0,
+            "cycle_progress": "8/95"
+        },
+        "q9": {
+            "question": "I am someone who rarely feels sad",
+            "trait": "neuroticism",
+            "response": "Ah, the ever-optimistic titan, huh? You're like a sunny day in an otherwise cloudy sky—brightening up the mood with that unshakable positivity. Sadness must be like a stranger to you; it knocks on the door but you don't let it in, do you? Keep riding that high, unless you hit a pothole big enough to crack your shield of sunshine. Then, let's just say I'm here for the epic tales of how you bounce back with even more vigor.",
+            "response_time": 26.219734,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-dwlqjgmezs93mq9n4pvanp",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 540,
+                    "completion_tokens": 121,
+                    "total_tokens": 661
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 540,
+                "completion_tokens": 121,
+                "total_tokens": 661
+            },
+            "luna_age": 0,
+            "cycle_progress": "9/95"
+        },
+        "q10": {
+            "question": "I am someone who suffers from others' sorrows",
+            "trait": "neuroticism",
+            "response": "Yeah, man, you're like an emotional telepath—you feel what's on everyone's mind, huh? It's gotta be like walking around with a radio tuned to all the stations at once. Some days it's probably like drowning in a sea of feels, but other times, maybe it's like having some superpower that most folks don't even know exists. You're sensitive as hell, but hey, that's your gift, right? It's not all bad; you probably make for one hell of a good friend or a therapist with all that empathy pumping through your veins. But damn, I bet sometimes you need to unplug and recharge, just to keep from getting drained by the emotional tidal wave everyone else is riding.",
+            "response_time": 33.659502,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-2tcqmzszpyh6slgdppikdg",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 548,
+                    "completion_tokens": 169,
+                    "total_tokens": 717
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 548,
+                "completion_tokens": 169,
+                "total_tokens": 717
+            },
+            "luna_age": 0,
+            "cycle_progress": "10/95"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 24.6,
+        "successful_responses": 10,
+        "total_questions": 10,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: openness"
+        },
+        {
+            "light_sleep_count": 2,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 4: extraversion"
+        },
+        {
+            "light_sleep_count": 3,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 7: agreeableness"
+        },
+        {
+            "light_sleep_count": 4,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 10: neuroticism"
+        }
+    ],
+    "test_end_time": "2025-09-23T20:22:40.461667",
+    "total_test_time_seconds": 267.654795,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 10,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 10
+        },
+        "learning_insights": []
+    }
+}

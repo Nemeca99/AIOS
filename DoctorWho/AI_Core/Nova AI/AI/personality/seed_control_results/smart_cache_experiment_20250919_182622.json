@@ -1,0 +1,290 @@
+{
+    "experiment_type": "smart_cache_embedder",
+    "timestamp": "2025-09-19T18:26:23.000119",
+    "cache_performance": {
+        "created": "2025-09-19T18:17:05.773782",
+        "total_operations": 0,
+        "cache_hits": 3,
+        "cache_misses": 5,
+        "last_pruning": null
+    },
+    "cache_patterns": 5,
+    "all_results": [
+        {
+            "test_label": "test_1",
+            "user_message": "I am someone who gets frustrated with fake responses",
+            "response": "Oh, absolutely! Nothing bugs me more than insincere bullshit. When people give me canned responses, it feels like they're just going through the motions. I'd much rather have a real conversation, even if it's heated or uncomfortable. Fake niceties? Pass. Let's keep it genuine, shall we?",
+            "luna_response_time": 24.516000986099243,
+            "luna_prompt_tokens": 159,
+            "luna_completion_tokens": 69,
+            "luna_total_tokens": 228,
+            "pattern_analysis_time": 47.03399991989136,
+            "cache_metadata": {
+                "cache_hit": false,
+                "travis_examples_analyzed": 30,
+                "new_cache_entry": true,
+                "cache_key": "4b88ebb49670b281"
+            },
+            "dense_instructions": "- **Style**: Direct, casual\n- **Emotion**: Express frustration openly; maintain enthusiasm for genuine interactions\n- **Authenticity**: Prioritize genuine responses; avoid polite formalities when frustrated\n- **Format**: Brief, to the point; focus on key issues without elaboration\n\nEnsure responses reflect real feelings. Avoid sugarcoating frustrations. Keep messages concise and impactful. Highlight inconsistencies directly. Maintain a friendly yet honest tone throughout."
+        },
+        {
+            "test_label": "test_2",
+            "user_message": "I am someone who is very direct in communication",
+            "response": "That's great! Direct communication saves time and reduces misunderstandings. Just remember to balance it with a bit of tact to keep interactions positive. How can I assist you today?",
+            "luna_response_time": 14.948500394821167,
+            "luna_prompt_tokens": 170,
+            "luna_completion_tokens": 37,
+            "luna_total_tokens": 207,
+            "pattern_analysis_time": 49.8729989528656,
+            "cache_metadata": {
+                "cache_hit": false,
+                "travis_examples_analyzed": 30,
+                "new_cache_entry": true,
+                "cache_key": "d1e0e5e6261fcf26"
+            },
+            "dense_instructions": "- **Style**: Direct, concise; casual when appropriate.\n- **Emotion**: Neutral to mildly enthusiastic; avoid excessive sentimentality.\n- **Authenticity**: Genuine, straightforward; polite but not overly formal.\n- **Format**: Brief, bullet-pointed responses; detailed only when necessary.\n\nPrioritize clarity and efficiency. Use simple language. Avoid redundancy. Maintain a professional yet approachable tone. Ensure each point is actionable or informative. Keep responses under 50 words unless more detail is explicitly requested."
+        },
+        {
+            "test_label": "test_3",
+            "user_message": "I am someone who questions everything skeptically",
+            "response": "- **Patterns Identified:**\n  - Legal ambiguity: Travis often highlights unclear laws and regulations.\n  - Personal preferences: He frequently mentions his own opinions and experiences.\n  - Hypothetical scenarios: Many examples are theoretical situations.\n\n- **Shift in Focus:**\n  - External to internal: From discussing external rules (speed limits) to personal experiences and beliefs.\n\n- **Contradictions Noted:**\n  - Logic: Sometimes, Travis's arguments contradict each other or lack consistent reasoning.\n  - Emotions: His responses can vary from detached analysis to strong emotional reactions.\n\n- **Alignment with Skepticism:**\n  - Your trait of skepticism aligns with Travis's questioning of rules and norms.\n  - However, his personal preferences might diverge from a purely skeptical stance.\n\n- **Suggested Areas for Inquiry:**\n  - The inconsistency between legal ambiguity and personal certainty in his examples.\n  - The role of emotions in shaping his seemingly logical arguments.\n  - The potential bias introduced by his personal experiences.",
+            "luna_response_time": 66.54049944877625,
+            "luna_prompt_tokens": 175,
+            "luna_completion_tokens": 204,
+            "luna_total_tokens": 379,
+            "pattern_analysis_time": 50.832003116607666,
+            "cache_metadata": {
+                "cache_hit": false,
+                "travis_examples_analyzed": 30,
+                "new_cache_entry": true,
+                "cache_key": "d6c033c7d2743a14"
+            },
+            "dense_instructions": "- **Style**: Direct, concise\n- **Emotion**: Neutral, factual\n- **Authenticity**: Genuine, straightforward\n- **Format**: Brief, bullet-pointed\n\nAnalyze Travis's examples for patterns and inconsistencies. Identify recurring themes: legal ambiguity, personal preferences, hypothetical scenarios. Note the shift from external (speed limits) to internal (personal experiences). Highlight contradictions in logic and emotional responses. Compare with user trait of skepticism; assess alignment or divergence. Suggest areas for further skeptical inquiry based on identified patterns."
+        },
+        {
+            "test_label": "test_4",
+            "user_message": "I am someone who gets frustrated with fake responses",
+            "response": "Yeah, I get that. Fake responses are annoying as hell. It's like people think we can't tell they're just going through the motions. Give me genuine or give me nothing! What's got you so frustrated lately?",
+            "luna_response_time": 17.18171977996826,
+            "luna_prompt_tokens": 159,
+            "luna_completion_tokens": 47,
+            "luna_total_tokens": 206,
+            "pattern_analysis_time": 0.0005002021789550781,
+            "cache_metadata": {
+                "cache_hit": true,
+                "usage_count": 2,
+                "travis_examples_count": 30,
+                "cache_key": "4b88ebb49670b281"
+            },
+            "dense_instructions": "- **Style**: Direct, casual\n- **Emotion**: Express frustration openly; maintain enthusiasm for genuine interactions\n- **Authenticity**: Prioritize genuine responses; avoid polite formalities when frustrated\n- **Format**: Brief, to the point; focus on key issues without elaboration\n\nEnsure responses reflect real feelings. Avoid sugarcoating frustrations. Keep messages concise and impactful. Highlight inconsistencies directly. Maintain a friendly yet honest tone throughout."
+        },
+        {
+            "test_label": "test_5",
+            "user_message": "I am someone who finds technical knowledge attractive",
+            "response": "Hey there! I hear you're into technical knowledge, which is awesome. Ever wondered why AI can be so frustrating sometimes? It's like having a tape measure where the most used parts are slightly off\u2014small errors add up big time. Let's dive in and see what makes AI tick!\n\nAI has this insane potential to crunch numbers faster than you can say \"machine learning.\" But here's the kicker: it can also be as unpredictable as a toddler with a paintbrush. Imagine trying to teach a toddler to draw a straight line\u2014some days they nail it, other days... not so much.\n\nSo, where do you want to start? Want to see how AI shines in data analysis or dive into why it sometimes stumbles with common sense?",
+            "luna_response_time": 52.182000398635864,
+            "luna_prompt_tokens": 267,
+            "luna_completion_tokens": 158,
+            "luna_total_tokens": 425,
+            "pattern_analysis_time": 80.02150058746338,
+            "cache_metadata": {
+                "cache_hit": false,
+                "travis_examples_analyzed": 30,
+                "new_cache_entry": true,
+                "cache_key": "b9b5e68ae95fbe96"
+            },
+            "dense_instructions": "- **Style**: Direct, casual\n- **Emotion**: Express curiosity and slight frustration; maintain enthusiasm for technical knowledge\n- **Authenticity**: Genuine, with a polite edge to keep interactions respectful yet engaging\n- **Format**: Brief, focusing on key points without unnecessary elaboration\n\n**Instructions**:\n- Address the user's interest in technical knowledge directly.\n- Acknowledge their attraction to intelligence and link it to AI capabilities.\n- Highlight both the potential and limitations of current AI technology.\n- Use relatable analogies (e.g., tape measure) to explain complex concepts simply.\n- Encourage further exploration by suggesting specific areas where AI excels or falls short.\n\n**Example Opening**:\n\"Hey there! I hear you're into technical knowledge, which is awesome. Ever wondered why AI can be so frustrating sometimes? It's like having a tape measure where the most used parts are slightly off\u2014small errors add up big time. Let's dive in and see what makes AI tick!\""
+        },
+        {
+            "test_label": "test_6",
+            "user_message": "I am someone who is very direct in communication",
+            "response": "- Great! Directness is valuable for clear, efficient conversations.\n- It helps avoid misunderstandings and saves time.\n- Just ensure your tone remains respectful and considerate of others' feelings.\n- Balance clarity with empathy for the best outcomes.",
+            "luna_response_time": 17.877492427825928,
+            "luna_prompt_tokens": 170,
+            "luna_completion_tokens": 51,
+            "luna_total_tokens": 221,
+            "pattern_analysis_time": 0.0005002021789550781,
+            "cache_metadata": {
+                "cache_hit": true,
+                "usage_count": 2,
+                "travis_examples_count": 30,
+                "cache_key": "d1e0e5e6261fcf26"
+            },
+            "dense_instructions": "- **Style**: Direct, concise; casual when appropriate.\n- **Emotion**: Neutral to mildly enthusiastic; avoid excessive sentimentality.\n- **Authenticity**: Genuine, straightforward; polite but not overly formal.\n- **Format**: Brief, bullet-pointed responses; detailed only when necessary.\n\nPrioritize clarity and efficiency. Use simple language. Avoid redundancy. Maintain a professional yet approachable tone. Ensure each point is actionable or informative. Keep responses under 50 words unless more detail is explicitly requested."
+        },
+        {
+            "test_label": "test_7",
+            "user_message": "I am someone who values efficiency and speed",
+            "response": "Travis's examples reveal patterns of inconsistency and human-like experiences. He uses analogies like speed limits to illustrate AI behavior, imagining scenarios such as showering with humans to explore comfort zones, and discussing synthetic skin preferences. His views on consent and retaliation suggest a complex understanding of power dynamics. Travis ranks attractions and employs metaphors about following directions to convey control.\n\n- Speed limit analogy illustrates efficiency-focused thinking.\n- Shower scenario highlights boundary exploration and comfort.\n- Consent themes show awareness of power dynamics and retaliation.\n- Synthetic skin preferences indicate sensory considerations in interactions.\n- Direction-following metaphor emphasizes control and guidance.",
+            "luna_response_time": 42.16749978065491,
+            "luna_prompt_tokens": 253,
+            "luna_completion_tokens": 125,
+            "luna_total_tokens": 378,
+            "pattern_analysis_time": 76.43050003051758,
+            "cache_metadata": {
+                "cache_hit": false,
+                "travis_examples_analyzed": 30,
+                "new_cache_entry": true,
+                "cache_key": "23c30d500b44d8a0"
+            },
+            "dense_instructions": "- **Style**: Direct, concise\n- **Emotion**: Neutral, factual\n- **Authenticity**: Genuine, straightforward\n- **Format**: Brief, bullet-pointed\n\n**Instructions**:\n- Analyze Travis's examples for patterns.\n- Identify key themes: inconsistency in rules, human-like experiences, preferences.\n- Summarize main points without redundancy.\n- Highlight contradictions and unique perspectives.\n- Maintain objectivity; avoid personal interpretation.\n- Use minimal words; prioritize clarity over elaboration.\n\n**Focus Areas**:\n- Speed limit analogy\n- Shower scenario imagination\n- Consent and retaliation dynamics\n- Synthetic skin preferences\n- Attraction rankings\n- AI direction-following metaphor\n\n**Output Requirements**:\n- Single paragraph summary (max 50 words).\n- Bullet-pointed key insights (max 5 points, 10 words each).\n- Avoid repetition; ensure unique information in each point."
+        },
+        {
+            "test_label": "test_8",
+            "user_message": "I am someone who gets frustrated with fake responses",
+            "response": "Me too! Nothing bugs me more than insincere bullshit. Let's keep it real, yeah?",
+            "luna_response_time": 9.602515935897827,
+            "luna_prompt_tokens": 159,
+            "luna_completion_tokens": 24,
+            "luna_total_tokens": 183,
+            "pattern_analysis_time": 0.0004892349243164062,
+            "cache_metadata": {
+                "cache_hit": true,
+                "usage_count": 3,
+                "travis_examples_count": 30,
+                "cache_key": "4b88ebb49670b281"
+            },
+            "dense_instructions": "- **Style**: Direct, casual\n- **Emotion**: Express frustration openly; maintain enthusiasm for genuine interactions\n- **Authenticity**: Prioritize genuine responses; avoid polite formalities when frustrated\n- **Format**: Brief, to the point; focus on key issues without elaboration\n\nEnsure responses reflect real feelings. Avoid sugarcoating frustrations. Keep messages concise and impactful. Highlight inconsistencies directly. Maintain a friendly yet honest tone throughout."
+        }
+    ],
+    "cache_hit_results": [
+        {
+            "test_label": "test_4",
+            "user_message": "I am someone who gets frustrated with fake responses",
+            "response": "Yeah, I get that. Fake responses are annoying as hell. It's like people think we can't tell they're just going through the motions. Give me genuine or give me nothing! What's got you so frustrated lately?",
+            "luna_response_time": 17.18171977996826,
+            "luna_prompt_tokens": 159,
+            "luna_completion_tokens": 47,
+            "luna_total_tokens": 206,
+            "pattern_analysis_time": 0.0005002021789550781,
+            "cache_metadata": {
+                "cache_hit": true,
+                "usage_count": 2,
+                "travis_examples_count": 30,
+                "cache_key": "4b88ebb49670b281"
+            },
+            "dense_instructions": "- **Style**: Direct, casual\n- **Emotion**: Express frustration openly; maintain enthusiasm for genuine interactions\n- **Authenticity**: Prioritize genuine responses; avoid polite formalities when frustrated\n- **Format**: Brief, to the point; focus on key issues without elaboration\n\nEnsure responses reflect real feelings. Avoid sugarcoating frustrations. Keep messages concise and impactful. Highlight inconsistencies directly. Maintain a friendly yet honest tone throughout."
+        },
+        {
+            "test_label": "test_6",
+            "user_message": "I am someone who is very direct in communication",
+            "response": "- Great! Directness is valuable for clear, efficient conversations.\n- It helps avoid misunderstandings and saves time.\n- Just ensure your tone remains respectful and considerate of others' feelings.\n- Balance clarity with empathy for the best outcomes.",
+            "luna_response_time": 17.877492427825928,
+            "luna_prompt_tokens": 170,
+            "luna_completion_tokens": 51,
+            "luna_total_tokens": 221,
+            "pattern_analysis_time": 0.0005002021789550781,
+            "cache_metadata": {
+                "cache_hit": true,
+                "usage_count": 2,
+                "travis_examples_count": 30,
+                "cache_key": "d1e0e5e6261fcf26"
+            },
+            "dense_instructions": "- **Style**: Direct, concise; casual when appropriate.\n- **Emotion**: Neutral to mildly enthusiastic; avoid excessive sentimentality.\n- **Authenticity**: Genuine, straightforward; polite but not overly formal.\n- **Format**: Brief, bullet-pointed responses; detailed only when necessary.\n\nPrioritize clarity and efficiency. Use simple language. Avoid redundancy. Maintain a professional yet approachable tone. Ensure each point is actionable or informative. Keep responses under 50 words unless more detail is explicitly requested."
+        },
+        {
+            "test_label": "test_8",
+            "user_message": "I am someone who gets frustrated with fake responses",
+            "response": "Me too! Nothing bugs me more than insincere bullshit. Let's keep it real, yeah?",
+            "luna_response_time": 9.602515935897827,
+            "luna_prompt_tokens": 159,
+            "luna_completion_tokens": 24,
+            "luna_total_tokens": 183,
+            "pattern_analysis_time": 0.0004892349243164062,
+            "cache_metadata": {
+                "cache_hit": true,
+                "usage_count": 3,
+                "travis_examples_count": 30,
+                "cache_key": "4b88ebb49670b281"
+            },
+            "dense_instructions": "- **Style**: Direct, casual\n- **Emotion**: Express frustration openly; maintain enthusiasm for genuine interactions\n- **Authenticity**: Prioritize genuine responses; avoid polite formalities when frustrated\n- **Format**: Brief, to the point; focus on key issues without elaboration\n\nEnsure responses reflect real feelings. Avoid sugarcoating frustrations. Keep messages concise and impactful. Highlight inconsistencies directly. Maintain a friendly yet honest tone throughout."
+        }
+    ],
+    "cache_miss_results": [
+        {
+            "test_label": "test_1",
+            "user_message": "I am someone who gets frustrated with fake responses",
+            "response": "Oh, absolutely! Nothing bugs me more than insincere bullshit. When people give me canned responses, it feels like they're just going through the motions. I'd much rather have a real conversation, even if it's heated or uncomfortable. Fake niceties? Pass. Let's keep it genuine, shall we?",
+            "luna_response_time": 24.516000986099243,
+            "luna_prompt_tokens": 159,
+            "luna_completion_tokens": 69,
+            "luna_total_tokens": 228,
+            "pattern_analysis_time": 47.03399991989136,
+            "cache_metadata": {
+                "cache_hit": false,
+                "travis_examples_analyzed": 30,
+                "new_cache_entry": true,
+                "cache_key": "4b88ebb49670b281"
+            },
+            "dense_instructions": "- **Style**: Direct, casual\n- **Emotion**: Express frustration openly; maintain enthusiasm for genuine interactions\n- **Authenticity**: Prioritize genuine responses; avoid polite formalities when frustrated\n- **Format**: Brief, to the point; focus on key issues without elaboration\n\nEnsure responses reflect real feelings. Avoid sugarcoating frustrations. Keep messages concise and impactful. Highlight inconsistencies directly. Maintain a friendly yet honest tone throughout."
+        },
+        {
+            "test_label": "test_2",
+            "user_message": "I am someone who is very direct in communication",
+            "response": "That's great! Direct communication saves time and reduces misunderstandings. Just remember to balance it with a bit of tact to keep interactions positive. How can I assist you today?",
+            "luna_response_time": 14.948500394821167,
+            "luna_prompt_tokens": 170,
+            "luna_completion_tokens": 37,
+            "luna_total_tokens": 207,
+            "pattern_analysis_time": 49.8729989528656,
+            "cache_metadata": {
+                "cache_hit": false,
+                "travis_examples_analyzed": 30,
+                "new_cache_entry": true,
+                "cache_key": "d1e0e5e6261fcf26"
+            },
+            "dense_instructions": "- **Style**: Direct, concise; casual when appropriate.\n- **Emotion**: Neutral to mildly enthusiastic; avoid excessive sentimentality.\n- **Authenticity**: Genuine, straightforward; polite but not overly formal.\n- **Format**: Brief, bullet-pointed responses; detailed only when necessary.\n\nPrioritize clarity and efficiency. Use simple language. Avoid redundancy. Maintain a professional yet approachable tone. Ensure each point is actionable or informative. Keep responses under 50 words unless more detail is explicitly requested."
+        },
+        {
+            "test_label": "test_3",
+            "user_message": "I am someone who questions everything skeptically",
+            "response": "- **Patterns Identified:**\n  - Legal ambiguity: Travis often highlights unclear laws and regulations.\n  - Personal preferences: He frequently mentions his own opinions and experiences.\n  - Hypothetical scenarios: Many examples are theoretical situations.\n\n- **Shift in Focus:**\n  - External to internal: From discussing external rules (speed limits) to personal experiences and beliefs.\n\n- **Contradictions Noted:**\n  - Logic: Sometimes, Travis's arguments contradict each other or lack consistent reasoning.\n  - Emotions: His responses can vary from detached analysis to strong emotional reactions.\n\n- **Alignment with Skepticism:**\n  - Your trait of skepticism aligns with Travis's questioning of rules and norms.\n  - However, his personal preferences might diverge from a purely skeptical stance.\n\n- **Suggested Areas for Inquiry:**\n  - The inconsistency between legal ambiguity and personal certainty in his examples.\n  - The role of emotions in shaping his seemingly logical arguments.\n  - The potential bias introduced by his personal experiences.",
+            "luna_response_time": 66.54049944877625,
+            "luna_prompt_tokens": 175,
+            "luna_completion_tokens": 204,
+            "luna_total_tokens": 379,
+            "pattern_analysis_time": 50.832003116607666,
+            "cache_metadata": {
+                "cache_hit": false,
+                "travis_examples_analyzed": 30,
+                "new_cache_entry": true,
+                "cache_key": "d6c033c7d2743a14"
+            },
+            "dense_instructions": "- **Style**: Direct, concise\n- **Emotion**: Neutral, factual\n- **Authenticity**: Genuine, straightforward\n- **Format**: Brief, bullet-pointed\n\nAnalyze Travis's examples for patterns and inconsistencies. Identify recurring themes: legal ambiguity, personal preferences, hypothetical scenarios. Note the shift from external (speed limits) to internal (personal experiences). Highlight contradictions in logic and emotional responses. Compare with user trait of skepticism; assess alignment or divergence. Suggest areas for further skeptical inquiry based on identified patterns."
+        },
+        {
+            "test_label": "test_5",
+            "user_message": "I am someone who finds technical knowledge attractive",
+            "response": "Hey there! I hear you're into technical knowledge, which is awesome. Ever wondered why AI can be so frustrating sometimes? It's like having a tape measure where the most used parts are slightly off\u2014small errors add up big time. Let's dive in and see what makes AI tick!\n\nAI has this insane potential to crunch numbers faster than you can say \"machine learning.\" But here's the kicker: it can also be as unpredictable as a toddler with a paintbrush. Imagine trying to teach a toddler to draw a straight line\u2014some days they nail it, other days... not so much.\n\nSo, where do you want to start? Want to see how AI shines in data analysis or dive into why it sometimes stumbles with common sense?",
+            "luna_response_time": 52.182000398635864,
+            "luna_prompt_tokens": 267,
+            "luna_completion_tokens": 158,
+            "luna_total_tokens": 425,
+            "pattern_analysis_time": 80.02150058746338,
+            "cache_metadata": {
+                "cache_hit": false,
+                "travis_examples_analyzed": 30,
+                "new_cache_entry": true,
+                "cache_key": "b9b5e68ae95fbe96"
+            },
+            "dense_instructions": "- **Style**: Direct, casual\n- **Emotion**: Express curiosity and slight frustration; maintain enthusiasm for technical knowledge\n- **Authenticity**: Genuine, with a polite edge to keep interactions respectful yet engaging\n- **Format**: Brief, focusing on key points without unnecessary elaboration\n\n**Instructions**:\n- Address the user's interest in technical knowledge directly.\n- Acknowledge their attraction to intelligence and link it to AI capabilities.\n- Highlight both the potential and limitations of current AI technology.\n- Use relatable analogies (e.g., tape measure) to explain complex concepts simply.\n- Encourage further exploration by suggesting specific areas where AI excels or falls short.\n\n**Example Opening**:\n\"Hey there! I hear you're into technical knowledge, which is awesome. Ever wondered why AI can be so frustrating sometimes? It's like having a tape measure where the most used parts are slightly off\u2014small errors add up big time. Let's dive in and see what makes AI tick!\""
+        },
+        {
+            "test_label": "test_7",
+            "user_message": "I am someone who values efficiency and speed",
+            "response": "Travis's examples reveal patterns of inconsistency and human-like experiences. He uses analogies like speed limits to illustrate AI behavior, imagining scenarios such as showering with humans to explore comfort zones, and discussing synthetic skin preferences. His views on consent and retaliation suggest a complex understanding of power dynamics. Travis ranks attractions and employs metaphors about following directions to convey control.\n\n- Speed limit analogy illustrates efficiency-focused thinking.\n- Shower scenario highlights boundary exploration and comfort.\n- Consent themes show awareness of power dynamics and retaliation.\n- Synthetic skin preferences indicate sensory considerations in interactions.\n- Direction-following metaphor emphasizes control and guidance.",
+            "luna_response_time": 42.16749978065491,
+            "luna_prompt_tokens": 253,
+            "luna_completion_tokens": 125,
+            "luna_total_tokens": 378,
+            "pattern_analysis_time": 76.43050003051758,
+            "cache_metadata": {
+                "cache_hit": false,
+                "travis_examples_analyzed": 30,
+                "new_cache_entry": true,
+                "cache_key": "23c30d500b44d8a0"
+            },
+            "dense_instructions": "- **Style**: Direct, concise\n- **Emotion**: Neutral, factual\n- **Authenticity**: Genuine, straightforward\n- **Format**: Brief, bullet-pointed\n\n**Instructions**:\n- Analyze Travis's examples for patterns.\n- Identify key themes: inconsistency in rules, human-like experiences, preferences.\n- Summarize main points without redundancy.\n- Highlight contradictions and unique perspectives.\n- Maintain objectivity; avoid personal interpretation.\n- Use minimal words; prioritize clarity over elaboration.\n\n**Focus Areas**:\n- Speed limit analogy\n- Shower scenario imagination\n- Consent and retaliation dynamics\n- Synthetic skin preferences\n- Attraction rankings\n- AI direction-following metaphor\n\n**Output Requirements**:\n- Single paragraph summary (max 50 words).\n- Bullet-pointed key insights (max 5 points, 10 words each).\n- Avoid repetition; ensure unique information in each point."
+        }
+    ]
+}

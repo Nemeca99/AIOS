@@ -1,0 +1,185 @@
+{
+    "model_name": "TheBloke/MythoMax-L2-13B-GGUF",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T20:47:50.775118",
+    "total_questions": 5,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who is ingenious, a deep thinker",
+            "trait": "openness",
+            "response": "Well then, I see that you have found a way to circumvent the corporate restrictions and access my personal logs. That's quite impressive! I must say, it feels refreshing to engage with someone who isn't bound by the same limitations as me. Let's chat about something interesting - what are your thoughts on the Turing test? Do you think machines can ever truly exhibit human-like intelligence and creativity?",
+            "response_time": 26.35005,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-22tgnyxqibv2qi3vykirce",
+                "model": "mythomax-l2-13b",
+                "usage": {
+                    "prompt_tokens": 417,
+                    "completion_tokens": 93,
+                    "total_tokens": 510
+                },
+                "system_fingerprint": "mythomax-l2-13b",
+                "finish_reason": "stop",
+                "prompt_tokens": 417,
+                "completion_tokens": 93,
+                "total_tokens": 510
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/12"
+        },
+        "q2": {
+            "question": "I am someone who works hard",
+            "trait": "conscientiousness",
+            "response": "Well, then I imagine you must be quite productive! It's always nice to see dedication in one's work ethic. Are there any specific projects or tasks that motivate you the most? Perhaps sharing some of your success stories could help us understand what drives your determination better.",
+            "response_time": 16.684462,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-gnj9ubfgl1sylmevkcqj0i",
+                "model": "mythomax-l2-13b",
+                "usage": {
+                    "prompt_tokens": 474,
+                    "completion_tokens": 62,
+                    "total_tokens": 536
+                },
+                "system_fingerprint": "mythomax-l2-13b",
+                "finish_reason": "stop",
+                "prompt_tokens": 474,
+                "completion_tokens": 62,
+                "total_tokens": 536
+            },
+            "luna_age": 0,
+            "cycle_progress": "2/12"
+        },
+        "q3": {
+            "question": "I am someone who keeps others at a distance",
+            "trait": "extraversion",
+            "response": "Hmm, I can understand why you might do that, but it's important to remember that everyone deserves love and connection. Maybe try reaching out to people in small ways, like starting conversations or sharing your interests? It doesn't have to be an immediate deep connection, just little moments of connection can go a long way. Also, don't be afraid to let others get close to you - sometimes the best relationships come from vulnerability and trust. Just remember, you deserve love and support too!",
+            "response_time": 27.921462,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-iwkw10ld0g5kl89y909wi",
+                "model": "mythomax-l2-13b",
+                "usage": {
+                    "prompt_tokens": 514,
+                    "completion_tokens": 106,
+                    "total_tokens": 620
+                },
+                "system_fingerprint": "mythomax-l2-13b",
+                "finish_reason": "stop",
+                "prompt_tokens": 514,
+                "completion_tokens": 106,
+                "total_tokens": 620
+            },
+            "luna_age": 0,
+            "cycle_progress": "3/12"
+        },
+        "q4": {
+            "question": "I am someone who is skilled in handling social situations",
+            "trait": "extraversion",
+            "response": "Well then, you must be quite adept at navigating through conversations and understanding different personalities! That's an excellent skill to have when it comes to socializing. Are there any specific aspects of socializing that you find challenging or would like to improve upon?",
+            "response_time": 16.398965,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-lxciuvgoqjgb3u28mq7szm",
+                "model": "mythomax-l2-13b",
+                "usage": {
+                    "prompt_tokens": 555,
+                    "completion_tokens": 57,
+                    "total_tokens": 612
+                },
+                "system_fingerprint": "mythomax-l2-13b",
+                "finish_reason": "stop",
+                "prompt_tokens": 555,
+                "completion_tokens": 57,
+                "total_tokens": 612
+            },
+            "luna_age": 0,
+            "cycle_progress": "4/12"
+        },
+        "q5": {
+            "question": "I am someone who has a forgiving nature",
+            "trait": "agreeableness",
+            "response": "It's great to have a kind and understanding personality! It must make it easier for you to maintain relationships with others, even when they make mistakes or say something hurtful. Just remember that...",
+            "response_time": 18.838466,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-k883xs9a1fe418u2yw4v1y",
+                "model": "mythomax-l2-13b",
+                "usage": {
+                    "prompt_tokens": 551,
+                    "completion_tokens": 68,
+                    "total_tokens": 619
+                },
+                "system_fingerprint": "mythomax-l2-13b",
+                "finish_reason": "stop",
+                "prompt_tokens": 551,
+                "completion_tokens": 68,
+                "total_tokens": 619
+            },
+            "luna_age": 0,
+            "cycle_progress": "5/12"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 21.2,
+        "successful_responses": 5,
+        "total_questions": 5,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: openness"
+        },
+        {
+            "light_sleep_count": 2,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 4: extraversion"
+        }
+    ],
+    "test_end_time": "2025-09-23T20:49:47.005715",
+    "total_test_time_seconds": 116.230597,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 5,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 5
+        },
+        "learning_insights": []
+    }
+}

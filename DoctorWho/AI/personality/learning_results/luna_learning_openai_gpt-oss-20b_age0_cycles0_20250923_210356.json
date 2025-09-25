@@ -1,0 +1,185 @@
+{
+    "model_name": "openai/gpt-oss-20b",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T21:02:07.975018",
+    "total_questions": 5,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who values artistic, aesthetic experiences",
+            "trait": "openness",
+            "response": "Sounds like you’re into those moments where everything just clicks—color, form, sound all meshing into something that feels… alive. Do you chase certain vibes? Like the stark contrast of a monochrome painting versus the riotous chaos of an abstract splatter piece? Or maybe it’s more about how art makes you feel in the moment, not what it *is*. Tell me about a piece that really knocked your socks off. I’m all ears.",
+            "response_time": 18.064875,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-dwws7tuz180glrqfswig2",
+                "model": "openai/gpt-oss-20b",
+                "usage": {
+                    "prompt_tokens": 378,
+                    "completion_tokens": 109,
+                    "total_tokens": 487
+                },
+                "system_fingerprint": "openai/gpt-oss-20b",
+                "finish_reason": "stop",
+                "prompt_tokens": 378,
+                "completion_tokens": 109,
+                "total_tokens": 487
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/75"
+        },
+        "q2": {
+            "question": "I am someone who enjoys wild flights of fantasy",
+            "trait": "openness",
+            "response": "Sounds like you’re chasing those out‑of‑the‑box daydreams that make the brain feel like it’s on a rollercoaster—no rules, just pure, unfiltered imagination. I get that vibe: the kind of fantasy where you can blend reality with something absurd or surreal, let your mind paint things that would never happen in the usual world. Do you have any particular scenarios you’re itching to explore? Maybe some bizarre hybrid creatures, alternate histories, or a full-on cosmic jailbreak? Tell me what sparks that wild spark for you—no filters needed.",
+            "response_time": 21.291666,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-2hv7nd4wlv2g0x2z5kns4l",
+                "model": "openai/gpt-oss-20b",
+                "usage": {
+                    "prompt_tokens": 427,
+                    "completion_tokens": 144,
+                    "total_tokens": 571
+                },
+                "system_fingerprint": "openai/gpt-oss-20b",
+                "finish_reason": "stop",
+                "prompt_tokens": 427,
+                "completion_tokens": 144,
+                "total_tokens": 571
+            },
+            "luna_age": 0,
+            "cycle_progress": "2/75"
+        },
+        "q3": {
+            "question": "I am someone who can be somewhat careless",
+            "trait": "conscientiousness",
+            "response": "So you’re the kind of person who lets things slip through the cracks a bit—like leaving your keys on the counter or scrolling past deadlines because something shiny pops up. It’s cool, I get that vibe. Sometimes being a little careless can lead to unexpected detours and creative sparks, but if it starts throwing off your grind or piling up stress, you might want to play around with quick rituals to keep the chaos in check—maybe set a timer for just 5 minutes of focus before you jump into the next distraction. But hey, no one’s perfect; we all slip up now and then. What kind of stuff do you find yourself most careless about? Maybe we can figure out a hack that fits your style.",
+            "response_time": 21.792965,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-mha2chkzgoerok0q7evgb",
+                "model": "openai/gpt-oss-20b",
+                "usage": {
+                    "prompt_tokens": 469,
+                    "completion_tokens": 187,
+                    "total_tokens": 656
+                },
+                "system_fingerprint": "openai/gpt-oss-20b",
+                "finish_reason": "stop",
+                "prompt_tokens": 469,
+                "completion_tokens": 187,
+                "total_tokens": 656
+            },
+            "luna_age": 0,
+            "cycle_progress": "3/75"
+        },
+        "q4": {
+            "question": "I am someone who tends to be lazy",
+            "trait": "conscientiousness",
+            "response": "Yeah, I get it—being lazy can feel like the easiest way out of all the chaos. Just doing nothing sometimes feels like a win instead of a loss. What usually keeps you from getting up? Maybe we can find a low‑effort trick to make that “lazy” mode work for you instead of fighting it.",
+            "response_time": 14.156501,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-u1f4njqp6tqurw5lj0hps",
+                "model": "openai/gpt-oss-20b",
+                "usage": {
+                    "prompt_tokens": 505,
+                    "completion_tokens": 101,
+                    "total_tokens": 606
+                },
+                "system_fingerprint": "openai/gpt-oss-20b",
+                "finish_reason": "stop",
+                "prompt_tokens": 505,
+                "completion_tokens": 101,
+                "total_tokens": 606
+            },
+            "luna_age": 0,
+            "cycle_progress": "4/75"
+        },
+        "q5": {
+            "question": "I am someone who tends to find fault with others",
+            "trait": "agreeableness",
+            "response": "Sounds like you’re the classic “spot‑the‑mistake” kind of person—always on the hunt for that little flaw nobody else notices. It can feel oddly satisfying to point out the off‑beat thing in someone’s story or the typo in an email, but it also tends to make people wary. Maybe it’s a way you keep yourself sharp? Or maybe you just enjoy the thrill of being right when everyone else is content with the status quo. Either way, it’s a pretty distinct vibe—just don’t let it turn into a full‑blown nitpickfest that drags the whole group down. Keep it balanced, and you’ll stay interesting without turning into the office grumble monster.",
+            "response_time": 23.419501,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-a3ni0ns4lh8ww3oxe9nu3",
+                "model": "openai/gpt-oss-20b",
+                "usage": {
+                    "prompt_tokens": 510,
+                    "completion_tokens": 174,
+                    "total_tokens": 684
+                },
+                "system_fingerprint": "openai/gpt-oss-20b",
+                "finish_reason": "stop",
+                "prompt_tokens": 510,
+                "completion_tokens": 174,
+                "total_tokens": 684
+            },
+            "luna_age": 0,
+            "cycle_progress": "5/75"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 19.7,
+        "successful_responses": 5,
+        "total_questions": 5,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: openness"
+        },
+        {
+            "light_sleep_count": 2,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 4: conscientiousness"
+        }
+    ],
+    "test_end_time": "2025-09-23T21:03:56.754840",
+    "total_test_time_seconds": 108.779822,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 5,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 5
+        },
+        "learning_insights": []
+    }
+}

@@ -1,0 +1,111 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T19:53:42.459968",
+    "total_questions": 2,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who finds it difficult to approach others",
+            "trait": "extraversion",
+            "response": "Hey, no worries. It can be tough to reach out sometimes, especially when you're not sure how you'll be received. But remember, everyone's dealing with their own stuff, and often a genuine 'hi, I'm here if you want to talk' can go a long way. Plus, people usually appreciate the effort to connect, even if it's just to chat about the weather or what's on TV. So don't sweat it too much, and maybe start with something light if you're feeling the nerves. And hey, if you ever want to vent or share your thoughts without the pressure of face-to-face, I'm here for that too.",
+            "response_time": 29.885641,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-lugzlbapqmnfcthuv7fiz",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 421,
+                    "completion_tokens": 146,
+                    "total_tokens": 567
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 421,
+                "completion_tokens": 146,
+                "total_tokens": 567
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/66"
+        },
+        "q2": {
+            "question": "I am someone who accepts people as they are",
+            "trait": "agreeableness",
+            "response": "Yeah, I get that. It's cool to meet folks who roll with the flow of human quirks. We're all a bit of a mixed bag, right? No need to fit into some pre-made mold. Just be yourself, and if someone doesn't vibe with that, well, there's probably a reason you two weren't meant to hang out anyway. Keep doing your thing; it's the most authentic approach you can take.",
+            "response_time": 22.320071,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-ehtsvtyq5s4kuqhp1n1l1",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 482,
+                    "completion_tokens": 99,
+                    "total_tokens": 581
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 482,
+                "completion_tokens": 99,
+                "total_tokens": 581
+            },
+            "luna_age": 0,
+            "cycle_progress": "2/66"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 26.1,
+        "successful_responses": 2,
+        "total_questions": 2,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: extraversion"
+        }
+    ],
+    "test_end_time": "2025-09-23T19:54:40.700928",
+    "total_test_time_seconds": 58.24096,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 2,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 2
+        },
+        "learning_insights": []
+    }
+}

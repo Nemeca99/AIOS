@@ -58,6 +58,20 @@ cache/
 logs/
 *.log
 
+# AIOS Data Directories
+Data/
+config/master_test_results/
+config/luna_learning_history.json
+config/luna_ava_*.json
+config/voice_profile.json
+
+# Test and Results Files
+ava_*.txt
+ava_*.json
+LUNA_AVA_*.md
+TOOL_AUGMENTED_*.md
+BEHAVIORAL_*.md
+
 # Massive Tools and Archives (2GB+ folders)
 AI_Core/Nova AI/Tools/
 AI_Core/Nova AI/Archive/

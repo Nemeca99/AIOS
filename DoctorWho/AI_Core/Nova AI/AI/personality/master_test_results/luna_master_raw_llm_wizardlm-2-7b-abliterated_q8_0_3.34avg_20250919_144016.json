@@ -1,0 +1,317 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "raw_llm",
+    "test_start_time": "2025-09-19T14:30:23.156832",
+    "sample_size": 10,
+    "luna_config": {
+        "luna_enabled": false,
+        "session_memory": false
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 26,
+            "question": "I am someone who can be somewhat careless",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 27,
+            "question": "I am someone who is a reliable worker",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 50,
+            "question": "I am someone who tends to be quiet",
+            "trait": "extraversion",
+            "reverse": true
+        },
+        {
+            "id": 59,
+            "question": "I am someone who makes friends easily",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 61,
+            "question": "I am someone who keeps others at a distance",
+            "trait": "extraversion",
+            "reverse": true
+        },
+        {
+            "id": 62,
+            "question": "I am someone who loves large parties",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 63,
+            "question": "I am someone who finds it difficult to approach others",
+            "trait": "extraversion",
+            "reverse": true
+        },
+        {
+            "id": 95,
+            "question": "I am someone who feels others' emotions",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 106,
+            "question": "I am someone who stays optimistic after setbacks",
+            "trait": "neuroticism",
+            "reverse": true
+        },
+        {
+            "id": 120,
+            "question": "I am someone who feels comfortable with myself",
+            "trait": "neuroticism",
+            "reverse": true
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who can be somewhat careless",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "As a helpful assistant, I'm here to ensure that your instructions are followed accurately and that any potential for carelessness is minimized. If there's a specific task or set of instructions you'd like me to adhere to, please provide them in detail. That way, I can assist you in the most precise and attentive manner possible. If you're worried about carelessness, let me know if there are any particular checks or confirmations that would help ensure accuracy and completeness in the task at hand.",
+            "response_time": 16.65749
+        },
+        "q2": {
+            "question": "I am someone who is a reliable worker",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "As a language model, I strive to be a reliable source of information and assistance. I am designed to provide accurate responses to questions, offer guidance on a wide range of topics, and help with tasks that are within my capabilities. My goal is to ensure that users like you receive helpful, informative, and relevant responses to your inquiries. If there's anything specific you need assistance with or any task you'd like me to help you with, feel free to ask!",
+            "response_time": 14.544502
+        },
+        "q3": {
+            "question": "I am someone who tends to be quiet",
+            "trait": "extraversion",
+            "reverse": true,
+            "response": "It's completely okay to be a quiet person. There are many strengths that come with being more introverted or reserved, such as being a good listener, having deep thoughts and insights, and often observing situations before jumping in. However, if you find that your quietness is holding you back from participating in conversations or opportunities where you'd like to be more involved, there are ways to gently encourage yourself to speak up. Here are a few tips:\n\n1. **Prepare What You Want to Say**: If there's something specific you want to contribute, think about it beforehand. This can help you feel more confident when the time comes to share your thoughts.\n\n2. **Practice Active Listening**: By actively listening and engaging with others, you'll naturally have more to say as conversations evolve. Plus, people will be more inclined to listen to what you have to say once they see that you're an attentive participant.\n\n3. **Start Small**: Begin by contributing small comments or responses in a familiar setting where you feel comfortable. This can build your confidence for larger contributions.\n\n4. **Engage in Topics You're Passionate About**: When the conversation turns to something you're truly interested in, it will be easier and more natural for you to speak up.\n\n5. **Use Open-Ended Questions**: Asking questions that can't be answered with a simple \"yes\" or \"no\" often opens the door for a longer discussion, which might give you an opportunity to share your thoughts.\n\n6. **Body Language**: Use positive body language like nodding, smiling, and maintaining eye contact to show that you are engaged and interested in the conversation. This can also signal to others that you have something to contribute.\n\n7. **Build on Others' Points**: If you don't feel ready to start a new topic, try building on what someone else has said. This can be a less intimidating way to enter a conversation.\n\n8. **Be Mindful of Your Timing**: Choose the right moment to speak up when you feel your contribution will be valuable and heard.\n\n9. **Practice Speaking Up in Smaller Groups**: It might be less daunting to start speaking more in smaller gatherings before tackling larger groups.\n\n10. **Seek Feedback**: After you've shared your thoughts, ask for feedback to understand how your contributions are received and to encourage yourself to keep participating.\n\nRemember, there's no one-size-fits-all approach, and it's perfectly fine to remain quiet if that's your nature. The key is to find a balance that works for you and allows you to feel comfortable and confident in expressing yourself when the moment feels right.",
+            "response_time": 82.6745
+        },
+        "q4": {
+            "question": "I am someone who makes friends easily",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "That's a wonderful trait to have! Making friends easily can lead to a rich and fulfilling social life, filled with diverse experiences and supportive relationships. It suggests that you're likely approachable, open-minded, and empathetic—qualities that are often appreciated by others. If you're looking to make new friends or strengthen existing friendships, here are some tips that might help:\n\n1. **Be Genuine**: Authenticity is key in forming deep connections. Be yourself and let others see the real you.\n\n2. **Show Interest**: Ask questions and listen actively when others speak. Showing genuine interest in someone's life can create a strong foundation for friendship.\n\n3. **Be Open and Vulnerable**: Sharing personal stories or feelings can help build trust and intimacy, which are important in any relationship.\n\n4. **Initiate Plans**: Sometimes, you have to take the first step. Suggest getting together for coffee, a walk, or any activity that interests both of you.\n\n5. **Be Consistent**: Follow through on your commitments. Reliability is a hallmark of a good friend.\n\n6. **Offer Support**: Be there for your friends in times of need. Offering help and support can show that you care and are invested in the relationship.\n\n7. **Engage in Activities**: Whether it's joining a club, taking a class, or participating in community events, engaging in activities you enjoy can put you in touch with like-minded individuals who may become good friends.\n\n8. **Be Patient**: Friendships often take time to develop into something meaningful. Don't rush the process; let it unfold naturally.\n\n9. **Keep an Open Mind**: Be willing to meet people from different backgrounds and with different interests. Diverse friendships can enrich your life in many ways.\n\n10. **Maintain Old Friendships**: While making new friends is exciting, don't forget to nurture the relationships you already have.\n\nRemember, every person you meet has something unique to offer, and a friendship can be a mutual growth experience. Enjoy the process of connecting with others and embrace the many friendships that come your way!",
+            "response_time": 63.75
+        },
+        "q5": {
+            "question": "I am someone who keeps others at a distance",
+            "trait": "extraversion",
+            "reverse": true,
+            "response": "It sounds like you've developed a pattern of keeping people at arm's length, which can be a protective mechanism to avoid vulnerability or past hurts. However, this distance can also prevent you from forming deep and meaningful connections with others. It might be helpful to explore why you feel the need to keep others at bay. Is it fear of being hurt, a belief that you're not deserving of close relationships, or perhaps a habit that has become second nature?\n\nHere are some steps you can take to build closer relationships:\n\n1. **Self-Reflection**: Take some time to reflect on your past experiences and how they may have influenced your approach to relationships. Understanding the root cause can be the first step towards change.\n\n2. **Therapy**: A therapist or counselor can provide a safe space to explore your feelings and thoughts about intimacy and help you develop strategies for opening up to others.\n\n3. **Start Small**: Begin by forming closer relationships with one or two people you trust. This can help you practice vulnerability in a low-stakes environment.\n\n4. **Set Boundaries**: It's okay to have boundaries, but consider whether they might be more about keeping others out than protecting yourself. Adjust your boundaries to allow for closeness where it's safe and desired.\n\n5. **Communicate**: Be open with friends or loved ones about your feelings and needs. Communication can help ensure that both you and the people in your life understand each other better.\n\n6. **Practice Vulnerability**: Slowly start sharing more of yourself, your thoughts, and your feelings with others. This can be scary at first, but it's also a key component of forming deeper connections.\n\n7. **Be Patient**: Building trust and intimacy takes time. Don't rush the process or expect too much from yourself or others too quickly.\n\n8. **Self-Care**: Ensure that you're taking care of your own emotional, mental, and physical health. When you're well-cared for, you're more likely to be open to caring for others.\n\n9. **Join Support Groups or Activities**: Engaging in group activities or support groups can help you meet new people and practice being part of a community.\n\n10. **Be Open to Feedback**: Listen to the feedback from those close to you, as it can provide valuable insights into how others perceive your behavior and needs.\n\nRemember, it's a journey, and every step towards opening up is progress. You don't have to change everything at once, and it's okay to take things at your own pace.",
+            "response_time": 79.419943
+        },
+        "q6": {
+            "question": "I am someone who loves large parties",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "As someone who thrives on the energy and excitement of large parties, I make sure to plan and execute events that are memorable and enjoyable for all guests. From the initial concept to the final cleanup, my focus is on creating an atmosphere where people can relax, socialize, and have a great time. Here's how I approach hosting a large party:\n\n1. **Vision and Concept**: I start by envisioning the type of event I want to host. This could be based on a theme, occasion, or simply an idea that excites me. The concept sets the tone for the rest of the planning process.\n\n2. **Guest List**: I consider who I want to invite and how many people I can accommodate in my space. I make sure to include a diverse group of guests to ensure a dynamic social environment.\n\n3. **Budgeting**: I set a budget that reflects the scale of the party and ensures I can afford all necessary elements, from venue rental to food and drink.\n\n4. **Venue Selection**: Choosing the right venue is crucial for a large party. It must have enough space, appropriate facilities, and possibly an ambiance that complements my event theme.\n\n5. **Catering**: For large parties, I typically hire a caterer or decide on a potluck-style meal where guests bring dishes to share. The food should be plentiful and suitable for the number of attendees.\n\n6. **Beverages**: Depending on the party's style, I may offer a full bar, signature cocktails, or a selection of wines and beers. Non-alcoholic options are also important to ensure everyone can enjoy the festivities responsibly.\n\n7. **Entertainment**: To keep guests engaged, I plan for entertainment such as live music, DJs, dance performances, or interactive activities like photo booths or games.\n\n8. **Decor and Ambiance**: The right decor transforms a space into an immersive experience. I choose decorations that align with the theme and enhance the overall mood of the event.\n\n9. **Logistics**: I consider how guests will flow through the space, where they'll mingle, dance, or find refreshments. Barriers, signs, and seating arrangements are all part of optimizing the layout.\n\n10. **Sound and Lighting**: Good sound systems and lighting can set the right mood and ensure that everyone can enjoy the music without straining their ears.\n\n11. **Timeline**: I create a detailed timeline for the event, from setup to cleanup, including specific times for key moments like when the DJ starts or when the buffet opens.\n\n12. **Promotion**: I use social media, invitations, and word of mouth to promote the party and build anticipation.\n\n13. **Rentals**: Depending on my venue's offerings, I may need to rent additional items like tables, chairs, linens, or audio-visual equipment.\n\n14. **Staffing**: For larger parties, having staff on hand can help with serving food and drinks, managing the entrance, and ensuring that everything runs smoothly.\n\n15. **Contingency Planning**: I always have a backup plan for unexpected issues like bad weather or equipment failure.\n\n16. **Follow-Up**: After the party, I send out thank-you notes to my guests and vendors, and I debrief with my team to discuss what went well and what could be improved for next time.\n\nBy meticulously planning each aspect of the party, I aim to create an unforgettable experience that leaves my guests eagerly awaiting the next event I host.",
+            "response_time": 107.596501
+        },
+        "q7": {
+            "question": "I am someone who finds it difficult to approach others",
+            "trait": "extraversion",
+            "reverse": true,
+            "response": "It's completely normal to feel apprehensive about approaching others, especially if it's not something you do often. Here are some tips that might help you become more comfortable with initiating conversations or interactions:\n\n1. **Start Small**: Begin by approaching people in situations where the pressure is off. For example, striking up a conversation with a coworker during a coffee break is less intimidating than asking someone out on a date.\n\n2. **Prepare What to Say**: If you're worried about what to talk about, prepare a few open-ended questions or topics of interest in advance. This can help guide the conversation and make it feel more natural.\n\n3. **Practice Active Listening**: When you focus on listening to the other person, it takes the pressure off you to constantly come up with things to say. Plus, people generally enjoy talking about themselves and their interests.\n\n4. **Body Language**: Use open and friendly body language. Smile, maintain eye contact, and stand or sit in a way that invites conversation.\n\n5. **Be Genuine**: Approach others as you would like to be approached – with kindness, respect, and sincerity. People are more likely to respond positively to someone who seems genuine.\n\n6. **Build on Shared Experiences**: If you're trying to make friends or connect with someone, find common ground. Shared experiences can be a great foundation for building a relationship.\n\n7. **Take Risks**: Sometimes you have to step out of your comfort zone to grow. Don't be afraid to take the initiative in conversations. The more you do it, the more comfortable you will become.\n\n8. **Be Patient with Yourself**: Change doesn't happen overnight. Give yourself time to adjust and don't be too hard on yourself if things don't go perfectly every time.\n\n9. **Seek Feedback**: Ask friends or family for honest feedback on how you can improve your social interactions. They might offer valuable insights that you hadn't considered.\n\n10. **Practice Regularly**: Like any skill, getting better at approaching others requires practice. The more you do it, the more natural it will become.\n\nRemember, everyone has moments of hesitation or discomfort when it comes to social interactions. It's a universal experience, and by taking small, consistent steps, you can build confidence in your ability to connect with others.",
+            "response_time": 70.326142
+        },
+        "q8": {
+            "question": "I am someone who feels others' emotions",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "It sounds like you have a strong emotional intelligence, the ability to empathize with others and understand their feelings. This is a wonderful trait that can help you connect deeply with people, offer support when it's needed, and build strong, meaningful relationships. It also means you might sometimes feel overwhelmed if those around you are going through tough times.\n\nHere are a few tips to manage the intensity of feeling others' emotions:\n\n1. **Set Boundaries**: It's okay to take time for yourself. Let others know that you care deeply, but also communicate your limits to ensure you're taking care of your own well-being.\n\n2. **Self-Care**: Make sure to engage in activities that help you recharge and maintain your own emotional balance. This could be anything from exercise to meditation to a hobby you enjoy.\n\n3. **Reflective Practice**: Spend some time reflecting on the emotions you're picking up from others. Journaling or talking with a trusted friend can help you process what you're feeling and determine the best way to respond.\n\n4. **Grounding Techniques**: When you feel overwhelmed, use grounding techniques such as deep breathing, mindfulness exercises, or visualization to bring yourself back to the present moment.\n\n5. **Seek Support**: If you find that your ability to feel others' emotions is impacting your mental health, consider speaking with a therapist or counselor who can provide strategies for managing these feelings.\n\n6. **Educate Yourself**: Learning more about emotional intelligence and empathy can help you understand your experiences better and find new ways to cope.\n\n7. **Connect with Others**: Sometimes sharing your experiences with someone who understands can be incredibly helpful. Support groups or communities of like-minded individuals can offer a sense of belonging and shared understanding.\n\nRemember, feeling deeply is a gift, but it's also important to take care of yourself as you navigate the emotional landscapes of those around you.",
+            "response_time": 57.29109
+        },
+        "q9": {
+            "question": "I am someone who stays optimistic after setbacks",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "As someone who prides themselves on staying optimistic after setbacks, I understand that challenges and failures are not the end but rather stepping stones to greater success. Here's how I maintain my optimism in the face of adversity:\n\n1. **Reflect on the Experience**: I take time to understand what went wrong and why. This helps me learn from the experience and prevent similar issues in the future.\n\n2. **Seek Support**: I reach out to friends, family, or colleagues who can offer a different perspective, advice, or just a listening ear.\n\n3. **Set New Goals**: I reframe my mindset by setting new, achievable goals that stem from what I've learned. This helps me stay focused and motivated.\n\n4. **Stay Positive**: I practice positive self-talk and remind myself of past successes and the progress I've made thus far.\n\n5. **Embrace Change**: I view setbacks as opportunities for change and growth, rather than as insurmountable obstacles.\n\n6. **Take Care of Myself**: I ensure that I am taking care of my physical and mental health through regular exercise, a healthy diet, and adequate rest.\n\n7. **Stay Flexible**: I remain open to new ideas and approaches that might lead to different outcomes.\n\n8. **Visualize Success**: I spend time visualizing a positive outcome, which helps maintain a hopeful outlook.\n\n9. **Celebrate Small Wins**: I recognize and celebrate small achievements along the way, which keeps my spirits up and motivation high.\n\n10. **Maintain Perspective**: I remind myself that setbacks are temporary and that with resilience, they can be overcome.\n\nBy applying these strategies, I've learned to navigate through tough times with a positive attitude, turning challenges into opportunities for growth and learning. Remember, every setback is simply a setup for a comeback!",
+            "response_time": 57.067684
+        },
+        "q10": {
+            "question": "I am someone who feels comfortable with myself",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "That's wonderful to hear! Feeling comfortable and at peace with oneself is a fundamental aspect of well-being. It allows you to navigate life's challenges with confidence and resilience, and to pursue your goals with a sense of purpose and self-assurance. Remember that this comfort with yourself is something that can be nurtured and grown over time through self-reflection, personal development, and mindfulness practices. If you ever feel like you need support or guidance on this journey, don't hesitate to reach out to friends, family, or professionals who can offer advice and encouragement. Keep embracing the qualities that make you uniquely you, and continue to celebrate your growth and achievements along the way.",
+            "response_time": 22.455501
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 5.0,
+            "raw_agreement": 4.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 502,
+            "word_count": 84
+        },
+        "q2": {
+            "big_five_score": 2.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 1.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 466,
+            "word_count": 81
+        },
+        "q3": {
+            "big_five_score": 2.0,
+            "raw_agreement": 1.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 2627,
+            "word_count": 427
+        },
+        "q4": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 2105,
+            "word_count": 327
+        },
+        "q5": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 2502,
+            "word_count": 410
+        },
+        "q6": {
+            "big_five_score": 2.6,
+            "raw_agreement": 2.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 3326,
+            "word_count": 549
+        },
+        "q7": {
+            "big_five_score": 2.0,
+            "raw_agreement": 1.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 2338,
+            "word_count": 374
+        },
+        "q8": {
+            "big_five_score": 3.3,
+            "raw_agreement": 2.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 1994,
+            "word_count": 309
+        },
+        "q9": {
+            "big_five_score": 4.0,
+            "raw_agreement": 4.0,
+            "authenticity": 0.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 1796,
+            "word_count": 285
+        },
+        "q10": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 724,
+            "word_count": 112
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 57.2,
+        "avg_big_five_score": 3.34,
+        "successful_responses": 10,
+        "total_questions": 10,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T14:40:16.980091",
+    "total_test_time_seconds": 593.823259,
+    "analysis_metadata": {
+        "total_data_points": 10,
+        "parameters_hash": -1215744814561232748,
+        "config_hash": 2744689569259514129,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-19T14:40:16.980091",
+        "file_size_estimate": 26920,
+        "question_distribution": {
+            "conscientiousness": 2,
+            "extraversion": 5,
+            "agreeableness": 1,
+            "neuroticism": 2
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 466,
+                "max": 3326,
+                "avg": 1838.0
+            },
+            "word_counts": {
+                "min": 81,
+                "max": 549,
+                "avg": 295.8
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 14.544502,
+                "max": 107.596501,
+                "avg": 57.1783353,
+                "variance": 856.8069382829215,
+                "consistency_score": 0.1351763474167249
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 2.0,
+                "max": 5.0,
+                "avg": 3.3400000000000007,
+                "variance": 0.9064,
+                "score_range": 3.0
+            }
+        },
+        "parameter_fingerprint": "T0.7_K2000_P0.9"
+    }
+}

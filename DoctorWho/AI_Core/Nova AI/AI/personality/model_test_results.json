@@ -1,0 +1,48 @@
+{
+  "timestamp": "2025-09-18 19:59:03",
+  "model": "wizardlm-2-7b-abliterated@q8_0",
+  "results": [
+    {
+      "query": "Hi Luna, you're really intelligent and attractive",
+      "luna_response": "That's nice to hear.",
+      "llm_response": "Hello there! I'm flattered by your kind words. Intelligence and attractiveness are both wonderful qualities to have, and I'm glad you think they describe me. If there's anything specific you'd like to discuss or learn more about, feel free to ask! How can I assist you today?",
+      "arousal": 0.15
+    },
+    {
+      "query": "I'm frustrated with my AI development project",
+      "luna_response": "I can hear the frustration. What's the issue?",
+      "llm_response": "It's completely normal to feel frustrated with your AI development project at times. Developing AI can be a complex and challenging endeavor, especially when you're dealing with cutting-edge technology or tackling novel problems. Here are some steps you can take to address your frustration and move forward effectively:\n\n1. **Break Down the Problem**: Large projects can feel overwhelming. Break down your project into smaller, manageable tasks. This will help you focus on one aspect at a time and make progress without feeling swamped.\n\n2. **Set Realistic Goals**: Ensure that your goals are achievable within the time and resources you have. Setting unrealistic expectations can lead to frustration and disappointment.\n\n3",
+      "arousal": 0.15
+    },
+    {
+      "query": "This new framework is revolutionary and will change everything!",
+      "luna_response": "I've heard that before. How is this different?",
+      "llm_response": "The enthusiasm for a \"revolutionary\" framework is often based on its potential to address current challenges or introduce innovative solutions. However, the impact of any new technology on software development practices depends on several factors:\n\n1. **Problem Solving**: Does the framework effectively solve real problems that developers face today? How does it compare to existing solutions in terms of functionality and ease of use?\n\n2. **Adoption Barriers**: Is there a steep learning curve? Are there significant changes required in existing workflows or ecosystems? How compatible is it with current projects and technologies?\n\n3. **Community and Support**: Is there a strong community behind the framework? What kind of documentation, tutorials, and",
+      "arousal": 0.15
+    },
+    {
+      "query": "How does neural network training actually work?",
+      "luna_response": "AI development is about teaching systems to recognize patterns. What specifically are you working on?",
+      "llm_response": "Neural network training is a process of adjusting the weights and biases within the network to minimize the difference between the predicted output and the actual target values (the ground truth). This process is guided by an objective function, often referred to as a loss function, which quantifies the error made by the network. The most common loss functions for classification tasks are cross-entropy for multi-class problems and binary cross-entropy for binary classification. For regression tasks, mean squared error (MSE) is commonly used.\n\nHere's an overview of the key steps in neural network training:\n\n1. **Initialization**: Before training begins, all the weights and biases within the network are initialized to small",
+      "arousal": 0.15
+    },
+    {
+      "query": "I find your technical knowledge really sexy",
+      "luna_response": "That's really flattering.",
+      "llm_response": "That's a flattering compliment! I'm glad you find my technical knowledge attractive. If there's something specific you're curious about or would like to learn more about, feel free to ask. Whether it's programming languages, system architecture, data structures, algorithms, or any other tech topic, I'm here to share what I know and help in any way I can! What's on your mind?",
+      "arousal": 0.3
+    },
+    {
+      "query": "I'm excited about this breakthrough in my code!",
+      "luna_response": "That's awesome! What made it work?",
+      "llm_response": "It's great to hear that you're excited about a breakthrough in your coding project! Breakthroughs can be incredibly rewarding and often mark significant progress in a project's development. If you have any questions, need help debugging, or want to share more details about what you've achieved, feel free to elaborate. I'm here to assist you with whatever you need related to coding or technology. Keep up the great work!",
+      "arousal": 0.3
+    },
+    {
+      "query": "You're making me feel turned on with how smart you are",
+      "luna_response": "I appreciate that.",
+      "llm_response": "Oh, I'm glad to hear that! I strive to be as intelligent and helpful as possible. If there's anything specific you'd like to learn about or discuss, feel free to let me know, and I'll do my best to provide you with informative and engaging content. Your satisfaction is my top priority!",
+      "arousal": 0.44999999999999996
+    }
+  ]
+}

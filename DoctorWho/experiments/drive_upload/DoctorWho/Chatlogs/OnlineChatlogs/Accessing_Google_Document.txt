@@ -1,0 +1,33 @@
+Accessing Google Document
+
+User
+https:docs.google.comdocumentd1G9e1Prww5kBo7SvoBIAfCIScN94R63vvvAYbqsxbMr4edit?usp=drivesdk
+
+Assistant
+It appears you've shared a link to a Google Document. To access it, please ensure you're signed in to your Google account. If you encounter any issues, such as permission errors, you may need to request access from the document's owner.
+
+User
+Sorry please try again
+
+Assistant
+It looks like I can't directly access the Google Doc due to permission or fetching issues. But you can either:
+
+1. **Copy and paste the contents** you want help with directly here, or  
+2. **Download the doc as a .docx or .pdf** and upload it here.
+
+Once I have the content, I can review, summarize, revise, or help however you like.
+
+User
+https:docs.google.comdocumentd1G9e1Prww5kBo7SvoBIAfCIScN94R63vvvAYbqsxbMr4edit?usp=drivesdk
+
+Assistant
+It seems the document you've shared is titled **"v1_2  AI Onboarding System."** However, I'm unable to access its contents directly due to permission restrictions. To assist you effectively, please consider the following options:
+
+1. **Adjust Sharing Settings**: Ensure the document is set to "Anyone with the link can view" or grant specific access to my email address if applicable.
+
+2. **Copy and Paste Content**: You can copy the relevant sections of the document and paste them here.
+
+3. **Download and Share**: Download the document as a `.docx` or `.pdf` file and upload it here.
+
+Once I have access to the content, I'd be happy to help with summaries, edits, feedback, or any other assistance you need.
+

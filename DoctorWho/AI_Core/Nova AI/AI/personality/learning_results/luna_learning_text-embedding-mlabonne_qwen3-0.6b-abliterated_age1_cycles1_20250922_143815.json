@@ -1,0 +1,207 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-22T14:37:23.043732",
+    "total_questions": 3,
+    "luna_initial_age": 5,
+    "learning_cycles_completed": [
+        {
+            "dream_cycle": {
+                "cycle_number": 6,
+                "timestamp": "2025-09-22T14:38:15.987087",
+                "messages_processed": 3,
+                "insights": [
+                    "Luna shows positive emotional growth this cycle",
+                    "Luna is developing more detailed communication patterns"
+                ],
+                "memory_consolidation": {
+                    "total_memories": 3,
+                    "average_response_length": 326.0,
+                    "topics_covered": [
+                        "conscientiousness",
+                        "extraversion"
+                    ]
+                },
+                "emotional_patterns": {
+                    "positive": 1,
+                    "negative": 0,
+                    "neutral": 2,
+                    "dominant_emotion": "neutral"
+                },
+                "personality_notes": [],
+                "carma_dream_results": {
+                    "superfrags_created": 0,
+                    "time": 0.00448918342590332,
+                    "fragments_processed": 13
+                }
+            },
+            "personality_refinement": {
+                "cycle_number": 6,
+                "timestamp": "2025-09-22T14:38:15.992578",
+                "original_weights": {
+                    "directness": 0.48507632675730583,
+                    "humor": 0.5128955605801462,
+                    "technical_depth": 0.48750760279048966,
+                    "emotional_engagement": 0.5346327097518184,
+                    "sexual_awareness": 0.5036164078236428,
+                    "skepticism": 0.42042667915770243,
+                    "enthusiasm": 0.28509543351532945,
+                    "authenticity": 0.5074096253293636
+                },
+                "refinements": {
+                    "enthusiasm": 0.001,
+                    "technical_depth": 0.001
+                },
+                "reasoning": [
+                    "Positive emotional patterns detected - slight enthusiasm boost",
+                    "Detailed communication patterns - slight technical depth increase"
+                ],
+                "new_weights": {
+                    "directness": 0.48507632675730583,
+                    "humor": 0.5128955605801462,
+                    "technical_depth": 0.48850760279048966,
+                    "emotional_engagement": 0.5346327097518184,
+                    "sexual_awareness": 0.5036164078236428,
+                    "skepticism": 0.42042667915770243,
+                    "enthusiasm": 0.28609543351532946,
+                    "authenticity": 0.5074096253293636
+                }
+            },
+            "new_age": 6,
+            "next_cycle_length": 13
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who gets chores done right away",
+            "trait": "conscientiousness",
+            "response": "Yeah, me too. I mean, why let stuff pile up when you can just knock it out? It's like a small victory for the day, and it keeps the anxiety of pending tasks at bay. Plus, once it's done, you can relax knowing you didn't put it off. But hey, we all have those days where the couch looks way too inviting, right?",
+            "response_time": 14.374832,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-wozu30d0mkibj4ud15slk",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 350,
+                    "completion_tokens": 83,
+                    "total_tokens": 433
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 350,
+                "completion_tokens": 83,
+                "total_tokens": 433
+            },
+            "luna_age": 5,
+            "cycle_progress": "1/12"
+        },
+        "q2": {
+            "question": "I am someone who finds it difficult to get down to work",
+            "trait": "conscientiousness",
+            "response": "Yeah, I hear you. It can be tough to muster up the motivation sometimes, especially when there's a whole pile of stuff that's just... waiting. But hey, if you find a groove or a reason that gets you moving, it's like a little personal cheering squad in your head, right? Sometimes I'll set a timer for like 25 minutes and do a sprint on a task. It's like a game against the clock. Once the timer dings, I've won that battle, and it feels pretty good. Plus, it's one less thing to worry about later.",
+            "response_time": 22.032252,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-7ub3qc93tfkhhd4bfk0xw",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 419,
+                    "completion_tokens": 132,
+                    "total_tokens": 551
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 419,
+                "completion_tokens": 132,
+                "total_tokens": 551
+            },
+            "luna_age": 5,
+            "cycle_progress": "2/12"
+        },
+        "q3": {
+            "question": "I am someone who is talkative",
+            "trait": "extraversion",
+            "response": "Oh, same here! I love chatting it up about almost anything. It's like every conversation has the potential to be a good one, you know? Keeps things interesting, for sure.",
+            "response_time": 8.495064,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-ukp014exk2j1n1wnlwfkyih",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 451,
+                    "completion_tokens": 42,
+                    "total_tokens": 493
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 451,
+                "completion_tokens": 42,
+                "total_tokens": 493
+            },
+            "luna_age": 5,
+            "cycle_progress": "3/12"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 15.0,
+        "successful_responses": 3,
+        "total_questions": 3,
+        "success_rate": 100.0,
+        "luna_age_growth": 1,
+        "total_cycles_completed": 1,
+        "personality_adjustments": 2,
+        "dream_insights_gained": 2,
+        "avg_personality_change": 0.001,
+        "learning_efficiency": 33.3
+    },
+    "test_end_time": "2025-09-22T14:38:15.994578",
+    "total_test_time_seconds": 52.950846,
+    "luna_final_age": 6,
+    "total_cycles_completed": 1,
+    "learning_metadata": {
+        "total_data_points": 3,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {
+            "enthusiasm": {
+                "total_change": 0.001,
+                "change_count": 1,
+                "avg_change": 0.001
+            },
+            "technical_depth": {
+                "total_change": 0.001,
+                "change_count": 1,
+                "avg_change": 0.001
+            }
+        },
+        "dream_cycle_summary": {
+            "total_insights": 2,
+            "unique_insights": 2,
+            "emotional_patterns": {
+                "positive": 1,
+                "negative": 0,
+                "neutral": 2
+            },
+            "insight_frequency": {
+                "Luna shows positive emotional growth this cycle": 1,
+                "Luna is developing more detailed communication patterns": 1
+            }
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 5,
+                "max": 5
+            },
+            "age_transitions": 1,
+            "total_data_points": 3
+        },
+        "learning_insights": [
+            "Luna aged 1 cycles during the test",
+            "Learning efficiency: 33.3% (cycles per question)",
+            "Most evolved trait: enthusiasm (+0.001)"
+        ]
+    }
+}

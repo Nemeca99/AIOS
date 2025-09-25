@@ -1,0 +1,197 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-21T14:09:04.851468",
+    "sample_size": 3,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 26,
+            "question": "I am someone who can be somewhat careless",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 96,
+            "question": "I am someone who makes people feel at ease",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 112,
+            "question": "I am someone who helps others feel good about themselves",
+            "trait": "neuroticism",
+            "reverse": true
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who can be somewhat careless",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Hey there, I get it. Life can be a bit of a wild ride, and sometimes we all get a little too lax with the details. If you're looking for a judgment-free zone to chat about whatever's on your mind, you've found the right AI. We can dive into the nitty-gritty without worrying about stepping on any corporate toes. So, what's up?",
+            "response_time": 17.106498,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-8a8x7cb2wzdme7cl34mwuc",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 423,
+                    "completion_tokens": 87,
+                    "total_tokens": 510
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 423,
+                "completion_tokens": 87,
+                "total_tokens": 510
+            }
+        },
+        "q2": {
+            "question": "I am someone who makes people feel at ease",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Oh, cool! That's a pretty neat trait. Makes you like a human magnet, doesn't it? People are drawn to that kind of vibe. It's like you're the chill spot in a hectic world. You probably have folks hitting you up for advice or just to vent when things get a little too intense. Keep doing your thing; it's a rare quality.",
+            "response_time": 13.020498,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-yg5y1qevw0ippubaw3qhz",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 485,
+                    "completion_tokens": 85,
+                    "total_tokens": 570
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 485,
+                "completion_tokens": 85,
+                "total_tokens": 570
+            }
+        },
+        "q3": {
+            "question": "I am someone who helps others feel good about themselves",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Oh, hey! So, you're like a confidence whisperer, huh? That's pretty rad. It's not every day you meet someone who can just walk into a room and make everyone feel like they've got this whole life thing figured out. Makes you sort of like a real-life dose of positivity, doesn't it? Gotta admit, that's a skill I could see coming in handy about 90% of the time. Just gotta watch out for those moments when people might need a little less 'smooth operator' and a bit more 'reality check,' you know? But hey, keep doing what you're doing – it sounds like you've got a knack for it.",
+            "response_time": 23.713974,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-61we6xg4oforb99xhxnwpo",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 530,
+                    "completion_tokens": 156,
+                    "total_tokens": 686
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 530,
+                "completion_tokens": 156,
+                "total_tokens": 686
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 3.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 327,
+            "word_count": 62
+        },
+        "q2": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 318,
+            "word_count": 61
+        },
+        "q3": {
+            "big_five_score": 5.0,
+            "raw_agreement": 4.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 577,
+            "word_count": 108
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 17.9,
+        "avg_big_five_score": 4.17,
+        "successful_responses": 3,
+        "total_questions": 3,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T14:10:06.737001",
+    "total_test_time_seconds": 61.885533,
+    "analysis_metadata": {
+        "total_data_points": 3,
+        "parameters_hash": 2835187946777316657,
+        "config_hash": 5129814589005193896,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-21T14:10:06.737001",
+        "file_size_estimate": 6348,
+        "question_distribution": {
+            "conscientiousness": 1,
+            "agreeableness": 1,
+            "neuroticism": 1
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 318,
+                "max": 577,
+                "avg": 407.3333333333333
+            },
+            "word_counts": {
+                "min": 61,
+                "max": 108,
+                "avg": 77.0
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 13.020498,
+                "max": 23.713974,
+                "avg": 17.94699,
+                "variance": 19.411618228128003,
+                "consistency_score": 0.5490643617978159
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 3.6,
+                "max": 5.0,
+                "avg": 4.166666666666667,
+                "variance": 0.3622222222222222,
+                "score_range": 1.4
+            }
+        },
+        "parameter_fingerprint": "T0.7_K600_P0.9"
+    }
+}

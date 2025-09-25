@@ -1,0 +1,16 @@
+{
+  "id": "root_0aa66349",
+  "content": "I am someone who am not really interested in others",
+  "level": 0,
+  "hits": 0,
+  "parent_id": null,
+  "children_ids": [],
+  "created_at": "F:\\AIOS_Clean\\HiveMind",
+  "metadata": {
+    "type": "learning_question",
+    "trait": "agreeableness",
+    "question_id": "agreeableness_24",
+    "reverse": true,
+    "source": "big_five_personality_test"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "root_001_split_1",
+  "content": "Reconstructed from parent root_001: Reconstructed content for root_001 at level 0 - 2025-09-23T15:00:31.927025...",
+  "status": "reconstructed",
+  "created": "2025-09-23T14:58:44.304813",
+  "recovery_priority": 9.69550336060457,
+  "parent_id": "root_001",
+  "children_ids": [
+    "root_001_split_1_split_1",
+    "root_001_split_1_split_2"
+  ],
+  "blank_created": "2025-09-23T14:58:44.305275",
+  "reconstructed": "2025-09-23T15:00:31.934527"
+}

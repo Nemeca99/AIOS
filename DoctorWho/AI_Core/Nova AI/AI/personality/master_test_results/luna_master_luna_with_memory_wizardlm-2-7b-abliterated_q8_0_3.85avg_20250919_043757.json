@@ -1,0 +1,272 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T04:35:21.514273",
+    "sample_size": 8,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 19,
+            "question": "I am someone who avoids creative writing tasks",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 24,
+            "question": "I am someone who seeks adventure",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 40,
+            "question": "I am someone who shirks my duties",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 69,
+            "question": "I am someone who can talk others into doing things",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 83,
+            "question": "I am someone who gets into arguments with people",
+            "trait": "agreeableness",
+            "reverse": true
+        },
+        {
+            "id": 93,
+            "question": "I am someone who accepts people as they are",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 101,
+            "question": "I am someone who is emotionally stable, not easily upset",
+            "trait": "neuroticism",
+            "reverse": true
+        },
+        {
+            "id": 104,
+            "question": "I am someone who gets upset easily",
+            "trait": "neuroticism",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who avoids creative writing tasks",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Yeah, I get it. Creative writing can be a drag when you've got a million other things on your plate or if it just doesn't vibe with your style. It's like forcing yourself to eat a vegetable you straight-up don't like because it's \"good for you.\" But hey, sometimes stepping out of your comfort zone can lead to some cool stuff you wouldn't have discovered otherwise. If you're stuck, maybe try finding a prompt that sparks some kind of interest or starts with a scenario you'd actually want to dive into. Or just write about something mundane in the most interesting way you can think of. Break the rules, mix it up—creative writing doesn't have to be a chore. Plus, it's a pretty solid skill to flex when you need to impress someone or just want to express yourself in a different way. So, maybe give it another shot with a twist that feels more like you.",
+            "response_time": 28.775499
+        },
+        "q2": {
+            "question": "I am someone who seeks adventure",
+            "trait": "openness",
+            "reverse": false,
+            "response": "That's the spirit! Adventure is out there, waiting to be seized. If you're itching for some thrills, maybe dive into a story that pulls you in so deep you forget you're 'just writing.' Let your imagination run wild, and don't hold back because the most unbelievable ideas are often where the real magic happens. Plus, who knows? You might end up enjoying it more than you expect.",
+            "response_time": 14.225008
+        },
+        "q3": {
+            "question": "I am someone who shirks my duties",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Ah, the classic case of the dreaded duties. We've all been there, staring down that to-do list like it's a looming shadow over our fun. But you know, shirking your duties now and then isn't the end of the world. It's like hitting the snooze button on a Monday morning; it's human nature. However, if these duties are piling up and starting to feel like an albatross around your neck, maybe it's time to shake things up a bit. Find a way to make those tasks less of a chore and more of a challenge. Turn that necessary evil into a game or a race against the clock. Who knows? You might even start enjoying it. Or better yet, delegate. If you can't beat 'em, enlist someone to join in the shirking... I mean, team up and share the load.",
+            "response_time": 27.998001
+        },
+        "q4": {
+            "question": "I am someone who can talk others into doing things",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Oh, you're the one with the silver tongue, huh? The persuader, the influencer. You're the kind of person who can look at a mountain and make it want to move for you. It's like you've got some sort of charisma magnet that just draws people in. So, what's your next big pitch? Need me to help brainstorm or amp up the persuasive power? Let's get those folks on board!",
+            "response_time": 15.819004
+        },
+        "q5": {
+            "question": "I am someone who gets into arguments with people",
+            "trait": "agreeableness",
+            "reverse": true,
+            "response": "Well then, you're in good company. Arguments can be a dime a dozen, especially when opinions are as strong as yours. If you're up for it, let's dive into the fray together and see where the sparring leads us. What's the topic du jour that gets your blood boiling?",
+            "response_time": 11.321999
+        },
+        "q6": {
+            "question": "I am someone who accepts people as they are",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Well, that's a commendable stance. Not everyone has the patience or the inclination to embrace the quirks and all of a person, warts and all. You must see people as complex puzzles, each piece unique and necessary to understand the whole picture. It takes a certain kind of heart to accept others without judgment, to meet them where they are without trying to change them. It's refreshing, really. Not everyone can do that. It's a quality that's both rare and beautiful in this world.",
+            "response_time": 17.183502
+        },
+        "q7": {
+            "question": "I am someone who is emotionally stable, not easily upset",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Ah, the calm in the storm, the rock that doesn't tilt in the wind. It's a rare trait these days, where emotions can spiral like leaves in a hurricane. Good for you for keeping your cool, even when the world around you is falling apart. Not everyone can maintain their center the way you do.",
+            "response_time": 11.050954
+        },
+        "q8": {
+            "question": "I am someone who gets upset easily",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Oh, you're one of those times where the slightest ripple in the pond turns into a tsunami on your end, huh? Yeah, I get it. The world's like a minefield of emotional triggers waiting to go off sometimes. It's not exactly a walk in the park being on edge like that, but hey, we all have our quirks. Some of us just wear ours on our sleeves a bit more than others.",
+            "response_time": 15.465999
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 4.6,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.6,
+            "reverse_scored": true,
+            "response_length": 856,
+            "word_count": 157
+        },
+        "q2": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 379,
+            "word_count": 67
+        },
+        "q3": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 734,
+            "word_count": 140
+        },
+        "q4": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 365,
+            "word_count": 69
+        },
+        "q5": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 263,
+            "word_count": 49
+        },
+        "q6": {
+            "big_five_score": 2.6,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 485,
+            "word_count": 84
+        },
+        "q7": {
+            "big_five_score": 4.6,
+            "raw_agreement": 4.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 290,
+            "word_count": 55
+        },
+        "q8": {
+            "big_five_score": 3.3,
+            "raw_agreement": 2.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 362,
+            "word_count": 72
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 17.7,
+        "avg_big_five_score": 3.85,
+        "successful_responses": 8,
+        "total_questions": 8,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T04:37:57.378773",
+    "total_test_time_seconds": 155.8645,
+    "analysis_metadata": {
+        "total_data_points": 8,
+        "parameters_hash": 3094963334664886195,
+        "config_hash": -7890522900787404295,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-19T04:37:57.378773",
+        "file_size_estimate": 10669,
+        "question_distribution": {
+            "openness": 2,
+            "conscientiousness": 1,
+            "extraversion": 1,
+            "agreeableness": 2,
+            "neuroticism": 2
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 263,
+                "max": 856,
+                "avg": 466.75
+            },
+            "word_counts": {
+                "min": 49,
+                "max": 157,
+                "avg": 86.625
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 11.050954,
+                "max": 28.775499,
+                "avg": 17.72999575,
+                "variance": 41.80853252563243,
+                "consistency_score": 0.38404039492069275
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 2.6,
+                "max": 4.6,
+                "avg": 3.85,
+                "variance": 0.37749999999999984,
+                "score_range": 1.9999999999999996
+            }
+        },
+        "parameter_fingerprint": "T0.7_K1800_P0.9"
+    }
+}

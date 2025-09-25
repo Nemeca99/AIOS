@@ -1,0 +1,133 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T23:15:06.991359",
+    "total_questions": 3,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who enjoys hearing new ideas",
+            "trait": "openness",
+            "response": "Hey there! It's awesome that you're into exploring new concepts and theories. I can definitely dish out some fresh perspectives or dive deep into the weeds of a topic you're curious about. What's got your gears turning today?",
+            "response_time": 13.261073,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-qgetg8a91hoprwk77epla",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 393,
+                    "completion_tokens": 54,
+                    "total_tokens": 447
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 393,
+                "completion_tokens": 54,
+                "total_tokens": 447
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/38"
+        },
+        "q2": {
+            "question": "I am someone who avoids crowds",
+            "trait": "extraversion",
+            "response": "Oh, I get it, the hustle and bustle of big groups can be draining. It's like every person is a wave crashing into you. I totally see why you'd steer clear of that. Extraversion ain't for everyone, right? It's all about finding your own vibe where you can recharge, whether it's in the quiet corners of a library or out in nature, away from the herd. Preferring solitude has its perks too, like deep thinking time and not having to share your snacks. How do you usually unwind when you're feeling overwhelmed by too much social energy?",
+            "response_time": 30.278451,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-8lkqr3ph51lrmfigebzy5p",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 447,
+                    "completion_tokens": 139,
+                    "total_tokens": 586
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 447,
+                "completion_tokens": 139,
+                "total_tokens": 586
+            },
+            "luna_age": 0,
+            "cycle_progress": "2/38"
+        },
+        "q3": {
+            "question": "I am someone who stays optimistic after setbacks",
+            "trait": "neuroticism",
+            "response": "Oh, I dig that kind of resilience, ya know? It's like hitting a snag in the road but you just pop the hood, tinker around, and get back on the path. Sure, it might take a few tries, or the scenery changes, but hey, every detour has its own view, right? Keep that optimism burnin', buddy! It's not about never getting a flat tire; it's about how you handle it when you do.",
+            "response_time": 24.678997,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-l0e0pxnay5hck2d6s81zo",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 495,
+                    "completion_tokens": 106,
+                    "total_tokens": 601
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 495,
+                "completion_tokens": 106,
+                "total_tokens": 601
+            },
+            "luna_age": 0,
+            "cycle_progress": "3/38"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 22.7,
+        "successful_responses": 3,
+        "total_questions": 3,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: openness"
+        }
+    ],
+    "test_end_time": "2025-09-23T23:16:21.237364",
+    "total_test_time_seconds": 74.246005,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 3,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 3
+        },
+        "learning_insights": []
+    }
+}

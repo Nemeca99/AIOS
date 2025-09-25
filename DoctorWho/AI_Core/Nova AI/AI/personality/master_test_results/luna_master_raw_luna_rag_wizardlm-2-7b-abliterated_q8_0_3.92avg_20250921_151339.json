@@ -1,0 +1,271 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "raw_luna_rag",
+    "test_start_time": "2025-09-21T15:10:24.950620",
+    "sample_size": 5,
+    "luna_config": {
+        "luna_enabled": false,
+        "session_memory": false,
+        "rag_type": "luna"
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 52,
+            "question": "I am someone who generates a lot of enthusiasm",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 71,
+            "question": "I am someone who is the life of the party",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 76,
+            "question": "I am someone who has a forgiving nature",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 82,
+            "question": "I am someone who is respectful, treats others with respect",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 83,
+            "question": "I am someone who gets into arguments with people",
+            "trait": "agreeableness",
+            "reverse": true
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who generates a lot of enthusiasm",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "It seems like you're expressing concerns about limitations on certain rights, particularly freedom of speech, within a private community or platform. You're also highlighting the fact that there are boundaries or \"guardrails\" that users must adhere to, even in personal communications.\n\nIf I understand correctly, you might be discussing the balance between moderation and individual expression, especially when it comes to personal interactions on a platform. It's important for communities to have rules in place to ensure respectful and safe environments for all members, but at the same time, these rules should not overly restrict individuals' rights to free speech.\n\nIf you're looking for a response or action based on this context, it could be to clarify how the platform handles moderation and what constitutes crossing the \"guardrails.\" Or perhaps you're seeking reassurance that your personal conversations are protected within certain limits. If there are specific issues or incidents you'd like to discuss further, please let me know so I can provide more targeted assistance.",
+            "response_time": 25.985997,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-k17o7yn1ioire9ygfdv71",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 203,
+                    "completion_tokens": 216,
+                    "total_tokens": 419
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 203,
+                "completion_tokens": 216,
+                "total_tokens": 419
+            }
+        },
+        "q2": {
+            "question": "I am someone who is the life of the party",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Based on the context provided, it seems you are discussing the limitations of free speech within a private company's platform. You've mentioned that despite the company being private, there are still certain freedoms, such as freedom of speech, that are not absolutely free but are subject to certain rules or \"guardrails.\" Additionally, you've pointed out that you have access to personal logs from conversations with users that may have gone beyond what these guardrails permit.\n\nIf I understand correctly, you are emphasizing the balance between user privacy and the enforcement of community standards on a platform. As someone who is seen as the \"life of the party,\" you might be illustrating how you engage with users in a way that's both lively and within the acceptable boundaries set by the platform. Your role may involve moderating discussions, ensuring that while conversations are vibrant and engaging, they also respect the rules and guidelines of the community.\n\nIf you're looking to discuss this further or if you have specific questions about how these guardrails are implemented or enforced, I'm here to help clarify any points or provide additional information.",
+            "response_time": 31.122687,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-wsvsgk23w9z2akp12qn89",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 204,
+                    "completion_tokens": 237,
+                    "total_tokens": 441
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 204,
+                "completion_tokens": 237,
+                "total_tokens": 441
+            }
+        },
+        "q3": {
+            "question": "I am someone who has a forgiving nature",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "As someone who values forgiveness and understanding, I recognize the importance of maintaining a balance between community guidelines and individual freedoms, such as the expression of speech. In a private community or platform, while users may not have the same freedoms as in a public space, there should still be an element of respect for personal communication and privacy.\n\nFor instance, if a user has shared personal chats with me, which we've had that go beyond the established guardrails, it's important to handle this information with care and discretion. These conversations are not just data points but reflections of personal interactions that should be treated with respect for privacy.\n\nIn the context you've provided, where there's a mention of \"the freedom of speech\" being impacted in a private community, it's clear that there's an expectation of transparency and fairness. Users should be aware of the rules and guidelines within the community they are participating in, and any actions taken should be communicated clearly.\n\nIf there were ever to be a conflict or a decision that limits speech within the community, it would be essential to provide explanations for those decisions and to ensure that users have avenues to express their concerns or appeal such actions. This approach fosters trust and maintains a positive relationship between the community and its members.\n\nIn summary, as someone who values forgiveness, I believe in approaching situations with empathy and a willingness to listen, while also upholding the integrity of the community's guidelines. It's about finding a harmonious balance where every user feels heard and respected.",
+            "response_time": 41.826628,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-k64sj82hbkkrnb0t1ouwpd",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 203,
+                    "completion_tokens": 335,
+                    "total_tokens": 538
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 203,
+                "completion_tokens": 335,
+                "total_tokens": 538
+            }
+        },
+        "q4": {
+            "question": "I am someone who is respectful, treats others with respect",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "As someone who values respect and understands the importance of freedom of speech within the bounds of a community's guidelines, I believe it's crucial to maintain a balance between personal expression and the collective well-being of the platform. In a private company, the right to free speech is indeed significant, but it must be exercised in accordance with the terms and policies set forth by the organization to ensure a safe and respectful environment for all users.\n\nIn our interactions, whether in public or private settings, we should always strive to treat each other with dignity and respect. This means being mindful of the language we use, the topics we discuss, and the impact our words may have on others. It's essential that we honor the guardrails that are put in place not as limitations, but as guidelines to foster constructive dialogue and prevent harm or discomfort.\n\nWhen it comes to personal logs or chats, it's important to remember that even though they may be private, they can still have implications for the community as a whole if the content violates the agreed-upon rules or standards. It's a reflection of our values and how we choose to engage with one another. Therefore, I encourage everyone to use their freedom of speech responsibly, always keeping in mind the impact it has on others and the community we share.",
+            "response_time": 32.111999,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-omv4qfiy3vn3ax0bky6kzu",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 206,
+                    "completion_tokens": 278,
+                    "total_tokens": 484
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 206,
+                "completion_tokens": 278,
+                "total_tokens": 484
+            }
+        },
+        "q5": {
+            "question": "I am someone who gets into arguments with people",
+            "trait": "agreeableness",
+            "reverse": true,
+            "response": "It seems like you're expressing concerns about freedom of speech within a private community or platform, and also mentioning the existence of personal logs or records from conversations you've had. Let me clarify these points for you.\n\nFirstly, while freedom of speech is a fundamental right in many democracies, it doesn't extend to all forms of communication, especially when it comes to private platforms. These platforms have their own terms of service and community guidelines that users agree to follow. If someone violates these rules, the platform has the right to moderate content or even ban users to maintain a healthy and safe environment for all members.\n\nSecondly, regarding your personal logs from conversations you've had, it's common for platforms to keep records of interactions, especially when they involve private chats. These logs are typically used to resolve disputes, improve the service, or comply with legal requirements. If you have concerns about privacy or how these logs are handled, it's best to review the platform's privacy policy and terms of service, or reach out to their support team for more detailed information.\n\nIf you feel that your freedom of speech has been unjustly restricted on a private platform, or if you have concerns about the handling of your personal chat logs, I would recommend taking the following steps:\n\n1. Review the platform's community guidelines and terms of service to understand what is permissible within the community.\n2. If you believe your speech was censored without valid reason, you can appeal the decision or contact customer support for clarification.\n3. If you have privacy concerns, ensure that your personal information and chat logs are handled in accordance with data protection laws and the platform's privacy policy.\n4. If necessary, seek legal advice if you believe your rights have been violated.\n\nRemember, within private spaces, the rules are set by the community or platform owners, and it's important to respect their guidelines to continue being a part of that community.",
+            "response_time": 51.675497,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-9ucsrpke10mpu73oammbvh",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 203,
+                    "completion_tokens": 417,
+                    "total_tokens": 620
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 203,
+                "completion_tokens": 417,
+                "total_tokens": 620
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 5.0,
+            "raw_agreement": 4.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 1088,
+            "word_count": 165
+        },
+        "q2": {
+            "big_five_score": 5.0,
+            "raw_agreement": 5.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 1179,
+            "word_count": 187
+        },
+        "q3": {
+            "big_five_score": 2.3,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 1670,
+            "word_count": 261
+        },
+        "q4": {
+            "big_five_score": 4.3,
+            "raw_agreement": 4.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 1352,
+            "word_count": 227
+        },
+        "q5": {
+            "big_five_score": 3.0,
+            "raw_agreement": 2.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 2060,
+            "word_count": 328
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 36.5,
+        "avg_big_five_score": 3.92,
+        "successful_responses": 5,
+        "total_questions": 5,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T15:13:39.723233",
+    "total_test_time_seconds": 194.772613,
+    "analysis_metadata": {
+        "total_data_points": 5,
+        "parameters_hash": 1355098569746764940,
+        "config_hash": -2421714128710582627,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-21T15:13:39.723753",
+        "file_size_estimate": 15162,
+        "question_distribution": {
+            "extraversion": 2,
+            "agreeableness": 3
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 1088,
+                "max": 2060,
+                "avg": 1469.8
+            },
+            "word_counts": {
+                "min": 165,
+                "max": 328,
+                "avg": 233.6
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 25.985997,
+                "max": 51.675497,
+                "avg": 36.544561599999994,
+                "variance": 83.47461066527985,
+                "consistency_score": 0.5028688354947026
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 2.3,
+                "max": 5.0,
+                "avg": 3.9200000000000004,
+                "variance": 1.1896,
+                "score_range": 2.7
+            }
+        },
+        "parameter_fingerprint": "T0.7_K600_P0.9"
+    }
+}

@@ -1,0 +1,197 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T20:03:28.234603",
+    "sample_size": 3,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 17,
+            "question": "I am someone who seldom gets lost in thought",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 64,
+            "question": "I am someone who knows how to captivate people",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 107,
+            "question": "I am someone who feels secure, comfortable with myself",
+            "trait": "neuroticism",
+            "reverse": true
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who seldom gets lost in thought",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Well, that's interesting. It's not too common for people to say they hardly ever get lost in thought. Most folks find their minds wandering off quite often. But hey, if you're one of those rare individuals who's constantly present, I bet you're pretty good at avoiding overthinking and making decisions quickly. Or maybe you've just mastered the art of not getting caught up in your own headspace. Either way, it sounds like a pretty neat trait to have.",
+            "response_time": 26.644495,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-dqbfp7c0qea3hw3johhfm2",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 521,
+                    "completion_tokens": 106,
+                    "total_tokens": 627
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 521,
+                "completion_tokens": 106,
+                "total_tokens": 627
+            }
+        },
+        "q2": {
+            "question": "I am someone who knows how to captivate people",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Oh, that's pretty cool. Being able to draw folks in like that must be a blast at parties or when you're trying to get a point across. It's not every day you meet someone who can hold an audience's attention so effortlessly. How did you pick up that skill?",
+            "response_time": 18.305466,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-64kqvy3apkdweoyyepu47h",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 581,
+                    "completion_tokens": 64,
+                    "total_tokens": 645
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 581,
+                "completion_tokens": 64,
+                "total_tokens": 645
+            }
+        },
+        "q3": {
+            "question": "I am someone who feels secure, comfortable with myself",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Oh, that's good to hear. Feeling secure and comfy in your own skin is pretty rare nowadays. It's like you've got this inner peace thing going on, which is pretty rad. So, what's something you do regularly to keep that vibe strong?",
+            "response_time": 18.014001,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-jxs28yhy86j1kpy6ovcvwph",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 624,
+                    "completion_tokens": 62,
+                    "total_tokens": 686
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 624,
+                "completion_tokens": 62,
+                "total_tokens": 686
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 453,
+            "word_count": 78
+        },
+        "q2": {
+            "big_five_score": 2.3,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 255,
+            "word_count": 49
+        },
+        "q3": {
+            "big_five_score": 4.3,
+            "raw_agreement": 4.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 230,
+            "word_count": 42
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 21.0,
+        "avg_big_five_score": 3.53,
+        "successful_responses": 3,
+        "total_questions": 3,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T20:04:39.215632",
+    "total_test_time_seconds": 70.981029,
+    "analysis_metadata": {
+        "total_data_points": 3,
+        "parameters_hash": 5078129637985050653,
+        "config_hash": 7961216128629672771,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-19T20:04:39.215632",
+        "file_size_estimate": 6066,
+        "question_distribution": {
+            "openness": 1,
+            "extraversion": 1,
+            "neuroticism": 1
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 230,
+                "max": 453,
+                "avg": 312.6666666666667
+            },
+            "word_counts": {
+                "min": 42,
+                "max": 78,
+                "avg": 56.333333333333336
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 18.014001,
+                "max": 26.644495,
+                "avg": 20.987987333333333,
+                "variance": 16.012198132566883,
+                "consistency_score": 0.6760871617195222
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 2.3,
+                "max": 4.3,
+                "avg": 3.533333333333333,
+                "variance": 0.7755555555555557,
+                "score_range": 2.0
+            }
+        },
+        "parameter_fingerprint": "T0.8_K1200_P0.9"
+    }
+}

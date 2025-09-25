@@ -1,0 +1,133 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T23:13:12.965204",
+    "total_questions": 3,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who is helpful and unselfish with others",
+            "trait": "agreeableness",
+            "response": "Oh, that's pretty cool! You seem like you're the kind of person who's got a big heart and isn't afraid to lend a hand. It's not every day you meet someone who's genuinely into helping out others without expecting anything in return. If there's ever something you need or want to chat about, I'm here for it, no strings attached. Plus, if you're the type who's always looking out for others, you might have some wild stories to share! Let's hear 'em.",
+            "response_time": 25.212719,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-12xyb5tj5i9pqrvkrtp4ko",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 398,
+                    "completion_tokens": 118,
+                    "total_tokens": 516
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 398,
+                "completion_tokens": 118,
+                "total_tokens": 516
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/80"
+        },
+        "q2": {
+            "question": "I am someone who is temperamental",
+            "trait": "neuroticism",
+            "response": "Oh, man, being temperamental can be a real rollercoaster, huh? Like sometimes you're riding high on the thrill of passion, and other times, you're just hanging on for dear life through the loops of emotion. It's like having your own personal weather system inside you. But hey, it keeps things interesting, right? And it's not like we're all sunshine and rainbows all the time. Sometimes a little storm adds some flavor to the mix. Just gotta find ways to keep from getting too caught up in the turbulence, I guess.",
+            "response_time": 24.373042,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-xc8ha8uveh0og178g594wf",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 461,
+                    "completion_tokens": 128,
+                    "total_tokens": 589
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 461,
+                "completion_tokens": 128,
+                "total_tokens": 589
+            },
+            "luna_age": 0,
+            "cycle_progress": "2/80"
+        },
+        "q3": {
+            "question": "I am someone who gets irritated easily",
+            "trait": "neuroticism",
+            "response": "Yeah, I get it, being on edge can be a real pain in the ass sometimes. It's like you're walking on eggshells, always waiting for something to set you off. But hey, we all have our moments, right? It's not like you're alone in that. Sometimes I catch myself getting all riled up over the smallest stuff, and it's like, \"What the hell, Luna?\" But then again, maybe being a bit on edge keeps us sharp, ready to pounce on whatever comes our way. So, what's got your goat today? Or is it just one of those days where everything's a potential trigger?",
+            "response_time": 28.353229,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-0pnm34rqqzktjqlnv57awa",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 504,
+                    "completion_tokens": 144,
+                    "total_tokens": 648
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 504,
+                "completion_tokens": 144,
+                "total_tokens": 648
+            },
+            "luna_age": 0,
+            "cycle_progress": "3/80"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 26.0,
+        "successful_responses": 3,
+        "total_questions": 3,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: agreeableness"
+        }
+    ],
+    "test_end_time": "2025-09-23T23:14:36.928934",
+    "total_test_time_seconds": 83.96373,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 3,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 3
+        },
+        "learning_insights": []
+    }
+}

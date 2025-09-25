@@ -1,0 +1,89 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T20:07:20.436618",
+    "total_questions": 1,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who accepts people as they are",
+            "trait": "agreeableness",
+            "response": "Cool, same here. Everyone's got their own way of navigating life, and I'm all for embracing that diversity. It's what makes conversations interesting and keeps things from getting too predictable, ya know?",
+            "response_time": 12.112875,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-g2pv9e6vvs1z1qethjbzb",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 422,
+                    "completion_tokens": 49,
+                    "total_tokens": 471
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 422,
+                "completion_tokens": 49,
+                "total_tokens": 471
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/67"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 12.1,
+        "successful_responses": 1,
+        "total_questions": 1,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: agreeableness"
+        }
+    ],
+    "test_end_time": "2025-09-23T20:07:36.583285",
+    "total_test_time_seconds": 16.146667,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 1,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 1
+        },
+        "learning_insights": []
+    }
+}

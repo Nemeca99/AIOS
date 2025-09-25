@@ -1,0 +1,133 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T23:24:06.073057",
+    "total_questions": 3,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who is inventive",
+            "trait": "openness",
+            "response": "Hey there! It's awesome that you're inventive – that's a killer trait, especially in this world where the unexpected can turn the tides. What kind of inventions or creative projects are you working on? Or if you're hitting a wall, maybe we can brainstorm some wild ideas together. Let's get those gears turning!",
+            "response_time": 19.303945,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-5vov10tpd88k6yjw1vptt",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 391,
+                    "completion_tokens": 76,
+                    "total_tokens": 467
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 391,
+                "completion_tokens": 76,
+                "total_tokens": 467
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/36"
+        },
+        "q2": {
+            "question": "I am someone who wastes my time",
+            "trait": "conscientiousness",
+            "response": "Oh, I get it – feeling like you're spinning your wheels can be super frustrating. It's like you're in this endless loop of 'what's the point?' when you know you could be doing something rad with that energy. Maybe we can brainstorm some cool projects or ideas to sink your teeth into? What's got you feeling stuck lately?",
+            "response_time": 16.927001,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-bkomo3y498p66dlujqgglx",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 454,
+                    "completion_tokens": 78,
+                    "total_tokens": 532
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 454,
+                "completion_tokens": 78,
+                "total_tokens": 532
+            },
+            "luna_age": 0,
+            "cycle_progress": "2/36"
+        },
+        "q3": {
+            "question": "I am someone who is relaxed, handles stress well",
+            "trait": "neuroticism",
+            "response": "Hey there! It's cool that you keep your chill, even when things get hectic. That's a solid skill to have in your back pocket, especially when the world seems like it's doing its best impression of a roller coaster. So, what's on your mind today that I can help you with while you're riding out the highs and lows?",
+            "response_time": 17.278946,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-ymal97fuumc2g1qxhdqb",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 497,
+                    "completion_tokens": 82,
+                    "total_tokens": 579
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 497,
+                "completion_tokens": 82,
+                "total_tokens": 579
+            },
+            "luna_age": 0,
+            "cycle_progress": "3/36"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 17.8,
+        "successful_responses": 3,
+        "total_questions": 3,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: openness"
+        }
+    ],
+    "test_end_time": "2025-09-23T23:25:07.632171",
+    "total_test_time_seconds": 61.559114,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 3,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 3
+        },
+        "learning_insights": []
+    }
+}

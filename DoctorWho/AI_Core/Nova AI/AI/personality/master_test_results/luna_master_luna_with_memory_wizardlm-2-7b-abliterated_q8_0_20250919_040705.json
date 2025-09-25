@@ -1,0 +1,272 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T04:04:37.273129",
+    "sample_size": 10,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 7,
+            "question": "I am someone who prefers work that is routine",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 14,
+            "question": "I am someone who is not interested in abstract ideas",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 37,
+            "question": "I am someone who gets chores done right away",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 41,
+            "question": "I am someone who follows a schedule",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 57,
+            "question": "I am someone who is less active than other people",
+            "trait": "extraversion",
+            "reverse": true
+        },
+        {
+            "id": 74,
+            "question": "I am someone who is helpful and unselfish with others",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 85,
+            "question": "I am someone who believes that people are basically moral",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 91,
+            "question": "I am someone who believes others have good intentions",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 112,
+            "question": "I am someone who helps others feel good about themselves",
+            "trait": "neuroticism",
+            "reverse": true
+        },
+        {
+            "id": 118,
+            "question": "I am someone who rarely loses my composure",
+            "trait": "neuroticism",
+            "reverse": true
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who prefers work that is routine",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Yeah, I get that. Routine can be comforting, you know? It's predictable, which means you can zone out a bit and let your mind wander without worrying about something jumping out to surprise you. Plus, it's often easier to find a groove and get into a state of flow when you're doing the same thing over and over. But don't forget to mix it up every now and then. A little novelty can keep things interesting and give your brain some new challenges to tackle. It's like eating the same meal every day; sure, it's convenient, but every once in a while, you gotta treat yourself to something different, just to remind your taste buds that life has more flavors than just 'familiar.'",
+            "response_time": 23.693001
+        },
+        "q2": {
+            "question": "I am someone who is not interested in abstract ideas",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Fair enough. Abstract stuff can be a bit out there, hard to grasp sometimes. If it's not practical or directly applicable, it's easy to lose interest. Concrete, tangible things tend to be more down-to-earth and easier to sink your teeth into, right?",
+            "response_time": 10.182002
+        },
+        "q3": {
+            "question": "I am someone who gets chores done right away",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Cool, being proactive with chores is a good habit. It saves you from piling up and stressing out later, you know? Plus, once they're done, you can chill without that nagging feeling in the back of your mind. What kind of chores are you knocking out first these days?",
+            "response_time": 10.983001
+        },
+        "q4": {
+            "question": "I am someone who follows a schedule",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Oh, living by a schedule? That's pretty solid. Keeps your day structured, makes sure you hit all the points without forgetting anything important. Plus, it's like having a blueprint for your day, so you can see where everything fits and plan for breaks or downtime too. Just remember to stay flexible \u2013 life has a way of throwing curveballs, even with the best plans.",
+            "response_time": 13.649501
+        },
+        "q5": {
+            "question": "I am someone who is less active than other people",
+            "trait": "extraversion",
+            "reverse": true,
+            "response": "Ah, I see. Being less active doesn't necessarily mean you're less productive or anything. Some people are powerhouses when it comes to being still and getting things done. It's all about finding your rhythm and what works for you. Plus, there's nothing wrong with having a more relaxed approach to movement. You might even find that conserving energy can be a strength in its own right. Just make sure you're not missing out on activities that are important to you or your health. But hey, if being less active is your jam, then rock it.",
+            "response_time": 18.446503
+        },
+        "q6": {
+            "question": "I am someone who is helpful and unselfish with others",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "That's a commendable trait, being helpful and unselfish. It's not always easy to put others before yourself, but it definitely makes a difference in people's lives. It's the kind of thing that can turn a bad day around for someone, just by your actions. Keep doing what you're doing; it's got a lot of value.",
+            "response_time": 12.453
+        },
+        "q7": {
+            "question": "I am someone who believes that people are basically moral",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Well, it's nice to meet someone with an optimistic view on human nature. It's not always black and white, but having a baseline of morality can certainly make interactions smoother, right? It's like having a default setting for 'good,' which isn't a bad place to start. Plus, it's always interesting to see how that plays out in different situations.",
+            "response_time": 12.894967
+        },
+        "q8": {
+            "question": "I am someone who believes others have good intentions",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "It's refreshing to hear that you trust people generally mean well. It's a perspective that can make interactions with others more pleasant and less fraught with suspicion. Of course, everyone has their own motivations and sometimes good intentions can get clouded, but it's a hopeful outlook for sure. Keep holding onto that belief; it might just inspire others to live up to your expectations.",
+            "response_time": 13.1105
+        },
+        "q9": {
+            "question": "I am someone who helps others feel good about themselves",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Ah, that's pretty neat. Boosting someone's self-esteem is like giving them a power-up in real life. It's not always simple, though; people are complex and can be sensitive to praise, you know? Sometimes a little encouragement can go a long way, but it's gotta be genuine or it just falls flat.",
+            "response_time": 12.755503
+        },
+        "q10": {
+            "question": "I am someone who rarely loses my composure",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "That's pretty impressive, to be able to keep your cool under most circumstances. It's not often you meet someone who can maintain their composure like that. Must take some serious self-control or inner peace. Or maybe you just don't give a shit what others think? Either way, it's a trait that can make life a bit smoother, I suppose.",
+            "response_time": 12.680991
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 5.0,
+            "raw_agreement": 4.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 679,
+            "word_count": 123
+        },
+        "q2": {
+            "big_five_score": 4.3,
+            "raw_agreement": 4.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 249,
+            "word_count": 42
+        },
+        "q3": {
+            "big_five_score": 2.3,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 266,
+            "word_count": 49
+        },
+        "q4": {
+            "big_five_score": 3.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 367,
+            "word_count": 64
+        },
+        "q5": {
+            "big_five_score": 5.0,
+            "raw_agreement": 4.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 537,
+            "word_count": 95
+        },
+        "q6": {
+            "big_five_score": 5.0,
+            "raw_agreement": 5.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.6,
+            "reverse_scored": false,
+            "response_length": 308,
+            "word_count": 55
+        },
+        "q7": {
+            "big_five_score": 4.3,
+            "raw_agreement": 4.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 350,
+            "word_count": 59
+        },
+        "q8": {
+            "big_five_score": 3.3,
+            "raw_agreement": 3.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 394,
+            "word_count": 64
+        },
+        "q9": {
+            "big_five_score": 4.6,
+            "raw_agreement": 4.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": true,
+            "response_length": 293,
+            "word_count": 51
+        },
+        "q10": {
+            "big_five_score": 3.3,
+            "raw_agreement": 3.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 334,
+            "word_count": 59
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 14.1,
+        "avg_big_five_score": 4.07,
+        "successful_responses": 10,
+        "total_questions": 10,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T04:07:05.142632",
+    "total_test_time_seconds": 147.869503
+}

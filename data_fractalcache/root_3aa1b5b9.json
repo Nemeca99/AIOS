@@ -1,0 +1,12 @@
+{
+  "id": "root_3aa1b5b9",
+  "level": 0,
+  "content": "Ensemble learning is a machine learning technique that combines multiple models to make better predictions than any individual model could achieve.\n\nSupervised learning is a type of machine learning where models are trained on labeled data to make predictions or classifications on new, unseen data.\n\nUnsupervised learning is a type of machine learning where models find patterns in unlabeled data.\n\nDeep learning is a subset of machine learning that uses neural networks with multiple layers.\n\nReinforcement learning is a type of machine learning where agents learn to make decisions through trial and error.\n\nMachine learning is a subset of artificial intelligence that focuses on algorithms that can learn from data without being explicitly programmed.\n\nReconstructed content for root_001 at level 0 - 2025-09-23T15:00:31.927025\n\nReconstructed from parent root_001: Reconstructed content for root_001 at level 0 - 2025-09-23T15:00:31.927025...\n\nReconstructed from parent root_001: Reconstructed content for root_001 at level 0 - 2025-09-23T15:00:31.927025...\n\nLevel 2 file 1-2 content for testing",
+  "blank": false,
+  "reconstructed": "2025-09-23T15:29:51.451380",
+  "created": "2025-01-27T00:00:00Z",
+  "placeholder_prompt": "Transfer learning is a machine learning technique where a model trained on one task is adapted for use on a related task, often improving performance....",
+  "status": "reconstructed",
+  "original_content": "Transfer learning is a machine learning technique where a model trained on one task is adapted for use on a related task, often improving performance.",
+  "similarity_score": 0.789020836353302
+}

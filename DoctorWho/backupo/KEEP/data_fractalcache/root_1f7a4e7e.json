@@ -1,0 +1,16 @@
+{
+  "id": "root_1f7a4e7e",
+  "content": "I am someone who is ingenious, a deep thinker",
+  "level": 0,
+  "hits": 0,
+  "parent_id": null,
+  "children_ids": [],
+  "created_at": "F:\\AIOS_Clean\\HiveMind",
+  "metadata": {
+    "type": "learning_question",
+    "trait": "openness",
+    "question_id": "openness_3",
+    "reverse": false,
+    "source": "big_five_personality_test"
+  }
+}

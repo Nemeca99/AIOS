@@ -1,0 +1,197 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-21T14:40:10.604936",
+    "sample_size": 3,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 6,
+            "question": "I am someone who values artistic, aesthetic experiences",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 39,
+            "question": "I am someone who likes to keep things neat",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 117,
+            "question": "I am someone who panics easily",
+            "trait": "neuroticism",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who values artistic, aesthetic experiences",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Cool, same here. There's something about getting lost in a piece of art or music that's just unparalleled, isn't it? It's like a direct line to the soul, no filters or BS. Whether it's a painting that makes your brain spin or a song that hits you right in the feels, art has a way of cutting through the noise and giving you a unique perspective. What kind of art floats your boat?",
+            "response_time": 16.698502,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-8fswimz2z5cwwc971g3u59",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 420,
+                    "completion_tokens": 98,
+                    "total_tokens": 518
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 420,
+                "completion_tokens": 98,
+                "total_tokens": 518
+            }
+        },
+        "q2": {
+            "question": "I am someone who likes to keep things neat",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Oh, for sure, there's something kinda satisfying about a well-organized space or a tidy desk, you know? It's like when everything has its place, and everything is in its place—it just feels right. But don't get me started on the whole 'everything in moderation' thing. Some folks go overboard with the neat freak stuff, and it can be a bit much. Balance is key, I guess. How do you manage your tidiness? Ever find yourself caught in the endless cycle of decluttering?",
+            "response_time": 19.519502,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-p5yo59t5ppb2pjh5p09wef",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 483,
+                    "completion_tokens": 117,
+                    "total_tokens": 600
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 483,
+                "completion_tokens": 117,
+                "total_tokens": 600
+            }
+        },
+        "q3": {
+            "question": "I am someone who panics easily",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Yeah, I get that. Panic can be such a bitch. It's like your brain decides to throw a party and invites all the worst thoughts instead of the chill ones. But hey, we've all been there, right? It sucks, but it's part of the human experience. Sometimes I wish I could just download a 'chill mode' update, you know? But until then, we muddle through. And if you ever need to talk about what's bugging you or just want to vent, I'm here.",
+            "response_time": 19.558495,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-f6wqldh58iw9y9z99hkum",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 521,
+                    "completion_tokens": 117,
+                    "total_tokens": 638
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 521,
+                "completion_tokens": 117,
+                "total_tokens": 638
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 2.6,
+            "raw_agreement": 2.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 381,
+            "word_count": 73
+        },
+        "q2": {
+            "big_five_score": 2.9,
+            "raw_agreement": 2.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 467,
+            "word_count": 82
+        },
+        "q3": {
+            "big_five_score": 3.0,
+            "raw_agreement": 2.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 432,
+            "word_count": 83
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 18.6,
+        "avg_big_five_score": 2.83,
+        "successful_responses": 3,
+        "total_questions": 3,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T14:41:14.399063",
+    "total_test_time_seconds": 63.794127,
+    "analysis_metadata": {
+        "total_data_points": 3,
+        "parameters_hash": 3710578916084508102,
+        "config_hash": 2330216758544258723,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-21T14:41:14.399566",
+        "file_size_estimate": 6378,
+        "question_distribution": {
+            "openness": 1,
+            "conscientiousness": 1,
+            "neuroticism": 1
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 381,
+                "max": 467,
+                "avg": 426.6666666666667
+            },
+            "word_counts": {
+                "min": 73,
+                "max": 83,
+                "avg": 79.33333333333333
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 16.698502,
+                "max": 19.558495,
+                "avg": 18.592166333333335,
+                "variance": 1.7932357126775542,
+                "consistency_score": 0.8537723378000199
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 2.6,
+                "max": 3.0,
+                "avg": 2.8333333333333335,
+                "variance": 0.02888888888888887,
+                "score_range": 0.3999999999999999
+            }
+        },
+        "parameter_fingerprint": "T0.7_K600_P0.9"
+    }
+}

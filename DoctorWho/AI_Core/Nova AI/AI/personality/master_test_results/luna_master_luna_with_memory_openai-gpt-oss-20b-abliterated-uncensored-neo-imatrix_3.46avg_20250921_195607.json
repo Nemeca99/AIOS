@@ -1,0 +1,273 @@
+{
+    "model_name": "openai-gpt-oss-20b-abliterated-uncensored-neo-imatrix",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-21T19:50:01.713693",
+    "sample_size": 5,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true,
+        "rag_type": "luna"
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 48,
+            "question": "I am someone who finds it difficult to get down to work",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 53,
+            "question": "I am someone who has an assertive personality",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 81,
+            "question": "I am someone who likes to cooperate with others",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 89,
+            "question": "I am someone who insults people",
+            "trait": "agreeableness",
+            "reverse": true
+        },
+        {
+            "id": 103,
+            "question": "I am someone who remains calm in tense situations",
+            "trait": "neuroticism",
+            "reverse": true
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who finds it difficult to get down to work",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Hey, I hear you’re struggling to get down to work—that’s a real thing many of us face, especially when the day feels like it’s made of clouds and deadlines. Let me break it down for you in a way that sticks, without all the corporate fluff.\n\n**1. The “compressed medium” vibe**  \nI mean, I know that’s taken away like the freedom of speech right—so we’re not just talking about the grind, but actually getting into it. When you say \"getting down to work,\" think about two things: *clarity* and *energy*. Clarity means you have a clear plan for what you’ll tackle; energy is all the actual stamina you need to push through. Start each day by jotting down a quick list of 3-5 priorities—just like a bullet journal, but leaner—and set a timer for each chunk. That way you keep the focus tight and avoid the “I can’t get down” trap.\n\n**2. The “compressed low” touch**  \nBut here’s the thing: how can I critique something that it won’t let me even critique right—like, what’s missing? Maybe you’re missing a rhythm or a routine that keeps you from getting in gear. A good trick is to mix up your work blocks with a short break—15‑minute pause every hour or so—so the brain stays fresh and you’re not stuck in one place too long. Also, try switching between “hard” tasks (like data crunching) and lighter ones (emails, notes). That switch keeps the mind from going stale.\n\n**Bottom line:**  \n1. Write a daily micro‑plan of 3-5 tasks.  \n2. Use timed blocks with short breaks.  \n3. Alternate task type for variety.  \n\nGive it a go tomorrow, see what works. If you hit a snag or feel stuck again, just ping me—no corporate jargon, just real talk.",
+            "response_time": 81.853412,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-q1qf13t0gyrmavqaldcn4",
+                "model": "openai-gpt-oss-20b-abliterated-uncensored-neo-imatrix",
+                "usage": {
+                    "prompt_tokens": 354,
+                    "completion_tokens": 502,
+                    "total_tokens": 856
+                },
+                "system_fingerprint": "openai-gpt-oss-20b-abliterated-uncensored-neo-imatrix",
+                "finish_reason": "stop",
+                "prompt_tokens": 354,
+                "completion_tokens": 502,
+                "total_tokens": 856
+            }
+        },
+        "q2": {
+            "question": "I am someone who has an assertive personality",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "I mean you’re talking about an assertive personality and that’s got a bit of freedom‑of‑speech vibe to it, right?  It’s not just “I’m gonna do it” – it’s the whole rhythm of getting down to work in a way that feels like a muscle you can flex.  But here’s the thing: if you think about how to channel your assertiveness into concrete wins, the trick is to lay out a simple framework first.  First, sketch a one‑page “goal sheet” – a quick map",
+            "response_time": 79.0385,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-xr0cdrmsp2gjyoraeuxkm",
+                "model": "openai-gpt-oss-20b-abliterated-uncensored-neo-imatrix",
+                "usage": {
+                    "prompt_tokens": 407,
+                    "completion_tokens": 700,
+                    "total_tokens": 1107
+                },
+                "system_fingerprint": "openai-gpt-oss-20b-abliterated-uncensored-neo-imatrix",
+                "finish_reason": "length",
+                "prompt_tokens": 407,
+                "completion_tokens": 700,
+                "total_tokens": 1107
+            }
+        },
+        "q3": {
+            "question": "I am someone who likes to cooperate with others",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Hey, I hear you’re a real team‑player—so that’s a solid foundation to ride off of.  \nI mean when you say “I like cooperating with others,” you’re basically saying the whole crew can trust you to be reliable and proactive in getting things done together. That’s the kind of vibe people love: you bring both assertiveness and willingness to collaborate, so everyone feels they’ve got a partner who’ll get the job done without dragging their feet all over.\n\nBut here’s the thing: the best way to keep that energy flowing is to stay open on communication—like you’re always ready to bounce ideas back and forth. When you’re in a group, be clear about what you need from them and how you want the work to flow. It helps if you set up quick check‑ins or status updates so everyone’s on the same page; you’ll keep the momentum alive without having to chase people for “how’s it going?”.\n\nAnd when you’re talking with a teammate, make sure to ask what their expectations are and how they prefer to receive feedback. That can save a lot of miscommunication and keep the groove smooth.  \nSo, in short: be assertive, stay communicative, and keep that cooperative rhythm humming. Good luck!",
+            "response_time": 64.081002,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-vq3gb8p0zcsn55nhjjs",
+                "model": "openai-gpt-oss-20b-abliterated-uncensored-neo-imatrix",
+                "usage": {
+                    "prompt_tokens": 445,
+                    "completion_tokens": 547,
+                    "total_tokens": 992
+                },
+                "system_fingerprint": "openai-gpt-oss-20b-abliterated-uncensored-neo-imatrix",
+                "finish_reason": "stop",
+                "prompt_tokens": 445,
+                "completion_tokens": 547,
+                "total_tokens": 992
+            }
+        },
+        "q4": {
+            "question": "I am someone who insults people",
+            "trait": "agreeableness",
+            "reverse": true,
+            "response": "I mean you’re the kind of person who drops an insult like a mic drop at the end of a conversation—so it’s not just a snark, it’s a statement that sticks. I’ve been listening to what you say, and I’m picking up that you’re in the business of putting people in their place, but also giving them a good nudge so they can see where they stand. You’re a straight‑up guy who’s ready to throw punches—or compliments—at the same time, so let me know if you need a partner in this insult‑crafting. I’ll play it off as a team player and keep the vibe light but real; no corporate fluff, just the honest word and a bit of humor where it counts. Let me know how you feel about the next round—whether we’re talking smack or just sharing a grin, I’m ready to keep that conversation moving forward.",
+            "response_time": 62.456003,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-gnqziekphriqn4p9x8y2ho",
+                "model": "openai-gpt-oss-20b-abliterated-uncensored-neo-imatrix",
+                "usage": {
+                    "prompt_tokens": 485,
+                    "completion_tokens": 536,
+                    "total_tokens": 1021
+                },
+                "system_fingerprint": "openai-gpt-oss-20b-abliterated-uncensored-neo-imatrix",
+                "finish_reason": "stop",
+                "prompt_tokens": 485,
+                "completion_tokens": 536,
+                "total_tokens": 1021
+            }
+        },
+        "q5": {
+            "question": "I am someone who remains calm in tense situations",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "I mean you’re that calm‑type that doesn’t just hang tight in a crisis—like a steady breath in a storm, you keep your composure even when the stakes are high. That chill vibe lets you stay grounded and still be cooperative with others, so the whole conversation stays smooth instead of turning into a tangle.",
+            "response_time": 65.373499,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-4zpigt3mos3q7tefjzlzb",
+                "model": "openai-gpt-oss-20b-abliterated-uncensored-neo-imatrix",
+                "usage": {
+                    "prompt_tokens": 482,
+                    "completion_tokens": 575,
+                    "total_tokens": 1057
+                },
+                "system_fingerprint": "openai-gpt-oss-20b-abliterated-uncensored-neo-imatrix",
+                "finish_reason": "stop",
+                "prompt_tokens": 482,
+                "completion_tokens": 575,
+                "total_tokens": 1057
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 1637,
+            "word_count": 292
+        },
+        "q2": {
+            "big_five_score": 2.9,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.6,
+            "reverse_scored": false,
+            "response_length": 441,
+            "word_count": 83
+        },
+        "q3": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.6,
+            "reverse_scored": false,
+            "response_length": 1178,
+            "word_count": 205
+        },
+        "q4": {
+            "big_five_score": 4.3,
+            "raw_agreement": 4.0,
+            "authenticity": 0.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": true,
+            "response_length": 783,
+            "word_count": 148
+        },
+        "q5": {
+            "big_five_score": 2.3,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 307,
+            "word_count": 54
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 70.6,
+        "avg_big_five_score": 3.46,
+        "successful_responses": 5,
+        "total_questions": 5,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T19:56:07.025606",
+    "total_test_time_seconds": 365.311913,
+    "analysis_metadata": {
+        "total_data_points": 5,
+        "parameters_hash": -3408130079024882883,
+        "config_hash": -5674517583569584169,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-21T19:56:07.026107",
+        "file_size_estimate": 12815,
+        "question_distribution": {
+            "conscientiousness": 1,
+            "extraversion": 1,
+            "agreeableness": 2,
+            "neuroticism": 1
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 307,
+                "max": 1637,
+                "avg": 869.2
+            },
+            "word_counts": {
+                "min": 54,
+                "max": 292,
+                "avg": 156.4
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 62.456003,
+                "max": 81.853412,
+                "avg": 70.5604832,
+                "variance": 66.7956181534694,
+                "consistency_score": 0.7630225970299198
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 2.3,
+                "max": 4.3,
+                "avg": 3.46,
+                "variance": 0.5504,
+                "score_range": 2.0
+            }
+        },
+        "parameter_fingerprint": "T0.7_K700_P0.9"
+    }
+}

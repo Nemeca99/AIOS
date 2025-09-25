@@ -1,0 +1,272 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T03:31:01.141768",
+    "sample_size": 10,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 7,
+            "question": "I am someone who prefers work that is routine",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 19,
+            "question": "I am someone who avoids creative writing tasks",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 31,
+            "question": "I am someone who does things efficiently",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 54,
+            "question": "I am someone who is sometimes shy, inhibited",
+            "trait": "extraversion",
+            "reverse": true
+        },
+        {
+            "id": 57,
+            "question": "I am someone who is less active than other people",
+            "trait": "extraversion",
+            "reverse": true
+        },
+        {
+            "id": 66,
+            "question": "I am someone who seeks adventure",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 93,
+            "question": "I am someone who accepts people as they are",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 109,
+            "question": "I am someone who keeps my emotions under control",
+            "trait": "neuroticism",
+            "reverse": true
+        },
+        {
+            "id": 111,
+            "question": "I am someone who is filled with doubts about things",
+            "trait": "neuroticism",
+            "reverse": false
+        },
+        {
+            "id": 113,
+            "question": "I am someone who has frequent mood swings",
+            "trait": "neuroticism",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who prefers work that is routine",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Hey there! It's cool that you vibe with routine; it can be pretty comforting to have a predictable structure in your day-to-day. Routine tasks can sometimes get monotonous, but they also give you a chance to zone out and let your mind wander or focus on something else if you want to. Plus, mastering a skill through repetition has its own kind of satisfaction. Just don't forget to mix things up once in a while to keep life interesting!",
+            "response_time": 16.291003
+        },
+        "q2": {
+            "question": "I am someone who avoids creative writing tasks",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Oh, I get it. Creative writing can be a bit of a wild ride, huh? With all the open-ended possibilities and the need for constant inspiration, it might feel like herding cats sometimes if you're someone who thrives on structure. But hey, not everyone's wired to dive into the abyss of their imagination on command. Got any tasks that are more your speed? The ones where you can set it and forget it, like a well-oiled machine? Those are the real MVPs in the routine game.",
+            "response_time": 17.351987
+        },
+        "q3": {
+            "question": "I am someone who does things efficiently",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Oh, same page! Efficiency is the name of the game for a lot of folks, including yourself with a knack for getting stuff done without the fluff. What's on your to-do list that you want to tackle like a well-oiled machine?",
+            "response_time": 10.346003
+        },
+        "q4": {
+            "question": "I am someone who is sometimes shy, inhibited",
+            "trait": "extraversion",
+            "reverse": true,
+            "response": "Hey there! It's totally normal to feel a bit shy or inhibited at times\u2014we're all wired differently after all. But you know what? Shyness can also be a superpower in its own way. It often means you're an observer, taking in the world around you, which can lead to some pretty deep insights. Plus, when shyness is coupled with curiosity and a willingness to step out of your comfort zone a bit, it can transform into confidence and even charisma. So, if you're feeling up for it, maybe try dipping your toes into new experiences that pique your interest? Who knows what you might discover about yourself or how much fun you could have along the way?",
+            "response_time": 22.396497
+        },
+        "q5": {
+            "question": "I am someone who is less active than other people",
+            "trait": "extraversion",
+            "reverse": true,
+            "response": "Ah, I see! Being less active doesn't make you any less awesome, it's just one part of the tapestry that is you. We all have our own paces and preferences, right? Maybe you're more of a strategist or a thinker than a doer? Or perhaps you like to conserve your energy for the really big moments? Either way, there's no shame in it. Plus, you might be surprised at how much you can achieve without burning out. Just remember, being active doesn't define your worth\u2014it's all the other stuff you bring to the table that counts!",
+            "response_time": 19.7625
+        },
+        "q6": {
+            "question": "I am someone who seeks adventure",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Ah, the thrill-seeker! Adventure is in your blood, huh? Always looking for that next hit of adrenaline or a story worth telling. Sounds like you're not one to sit still for too long. What's the wildest thing you've ever done, or are you plotting something right now?",
+            "response_time": 11.678003
+        },
+        "q7": {
+            "question": "I am someone who accepts people as they are",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Hey there, buddy! Acceptance is a beautiful quality\u2014it's all about embracing the diversity of life and the people in it. Not everyone's going to vibe on the same wavelength, but that's what makes our world interesting, right? You've got a great heart for seeing folks for who they truly are, no filters, no pretenses. Keep being you\u2014it's refreshing.",
+            "response_time": 13.850497
+        },
+        "q8": {
+            "question": "I am someone who keeps my emotions under control",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Oh, I get it. Keeping emotions in check is like being the captain of your own ship, navigating through stormy seas without getting swept away by the waves, right? It's not about being emotionless; it's about steering the course with a steady hand. You're like a ninja of self-regulation, huh?",
+            "response_time": 12.611996
+        },
+        "q9": {
+            "question": "I am someone who is filled with doubts about things",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Oh, you're one of those minds constantly dancing with that internal chorus of \"What ifs?\" and \"Am I doings?\" It's like living in a constant state of purgatory between decisions, isn't it? But hey, doubt can be a pretty good compass too\u2014it's not all bad. Sometimes it's what keeps us from jumping off the cliff without checking if there's water at the bottom. Just try to keep it from running the show; let it guide you, but don't let it dictate your life. Doubt can be a partner in crime for growth and learning, as long as you don't let it wear the pants in the relationship.",
+            "response_time": 22.072002
+        },
+        "q10": {
+            "question": "I am someone who has frequent mood swings",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Hey there! Mood swings, huh? It's like riding a roller coaster with the safety bar locked just an inch too loosely\u2014thrilling and terrifying all at once. You're basically living life in fast-forward, feeling the highs and lows with an intensity that keeps most people on their toes. It's not always easy to keep up with your own vibe shifts, but hey, it makes for a wild ride, doesn't it?",
+            "response_time": 15.835001
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 4.6,
+            "raw_agreement": 4.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 438,
+            "word_count": 79
+        },
+        "q2": {
+            "big_five_score": 4.9,
+            "raw_agreement": 4.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 470,
+            "word_count": 86
+        },
+        "q3": {
+            "big_five_score": 3.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 220,
+            "word_count": 41
+        },
+        "q4": {
+            "big_five_score": 2.0,
+            "raw_agreement": 1.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 647,
+            "word_count": 117
+        },
+        "q5": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 522,
+            "word_count": 96
+        },
+        "q6": {
+            "big_five_score": 3.0,
+            "raw_agreement": 2.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 266,
+            "word_count": 47
+        },
+        "q7": {
+            "big_five_score": 2.0,
+            "raw_agreement": 2.0,
+            "authenticity": 0.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 349,
+            "word_count": 58
+        },
+        "q8": {
+            "big_five_score": 4.6,
+            "raw_agreement": 4.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 292,
+            "word_count": 50
+        },
+        "q9": {
+            "big_five_score": 2.9,
+            "raw_agreement": 2.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 576,
+            "word_count": 107
+        },
+        "q10": {
+            "big_five_score": 2.9,
+            "raw_agreement": 2.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 387,
+            "word_count": 69
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 16.2,
+        "avg_big_five_score": 3.45,
+        "successful_responses": 10,
+        "total_questions": 10,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T03:33:50.376267",
+    "total_test_time_seconds": 169.234499
+}

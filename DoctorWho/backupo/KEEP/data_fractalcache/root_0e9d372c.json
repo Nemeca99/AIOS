@@ -1,0 +1,14 @@
+{
+  "id": "root_0e9d372c",
+  "content": "Performance comparison test 28 - testing current system capabilities",
+  "level": 0,
+  "hits": 0,
+  "parent_id": null,
+  "children_ids": [],
+  "created_at": "F:\\AIOS_Clean\\HiveMind",
+  "metadata": {
+    "type": "performance_test",
+    "index": 28,
+    "test": "comparison"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "root_0cf768da",
+  "content": "Learning content 3 - personality assessment data for Big Five analysis",
+  "level": 0,
+  "hits": 0,
+  "parent_id": null,
+  "children_ids": [],
+  "created_at": "F:\\AIOS_Clean\\HiveMind",
+  "metadata": {
+    "type": "learning_content",
+    "index": 3,
+    "source": "personality_test"
+  }
+}

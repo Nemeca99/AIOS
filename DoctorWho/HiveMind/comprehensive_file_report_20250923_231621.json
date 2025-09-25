@@ -1,0 +1,74 @@
+{
+  "tracking_info": {
+    "start_time": "2025-09-23T23:15:06.293285",
+    "end_time": "2025-09-23T23:16:21.778413",
+    "duration_seconds": 75.485128,
+    "total_files_touched": 10,
+    "files_created": 5,
+    "files_modified": 10,
+    "files_accessed": 847
+  },
+  "file_categories": {
+    "python_files": [],
+    "json_files": [
+      "Data\\audit_log.json",
+      "AI_Core\\Nova AI\\AI\\personality\\embedder_cache\\master_test_cache.json",
+      "Data\\FractalCache\\root_2f5775e3.json",
+      "Data\\FractalCache\\root_083c2049.json",
+      "Data\\FractalCache\\root_8371b20c_split_467e89a8.json",
+      "AI_Core\\Nova AI\\AI\\personality\\luna_persistent_memory.json",
+      "Data\\FractalCache\\root_2f5775e3_split_432e0bd0.json",
+      "Data\\FractalCache\\root_083c2049_split_fe3bc530.json",
+      "Data\\FractalCache\\root_8371b20c.json",
+      "Data\\billing_metrics.json"
+    ],
+    "log_files": [],
+    "cache_files": [],
+    "data_files": [],
+    "config_files": [],
+    "personality_files": [
+      "AI_Core\\Nova AI\\AI\\personality\\embedder_cache\\master_test_cache.json",
+      "AI_Core\\Nova AI\\AI\\personality\\luna_persistent_memory.json"
+    ],
+    "carma_files": [
+      "Data\\FractalCache\\root_2f5775e3.json",
+      "Data\\FractalCache\\root_083c2049.json",
+      "Data\\FractalCache\\root_8371b20c_split_467e89a8.json",
+      "Data\\FractalCache\\root_2f5775e3_split_432e0bd0.json",
+      "Data\\FractalCache\\root_083c2049_split_fe3bc530.json",
+      "Data\\FractalCache\\root_8371b20c.json"
+    ],
+    "other_files": []
+  },
+  "created_files": [
+    "Data\\FractalCache\\root_083c2049.json",
+    "Data\\FractalCache\\root_083c2049_split_fe3bc530.json",
+    "Data\\FractalCache\\root_2f5775e3.json",
+    "Data\\FractalCache\\root_2f5775e3_split_432e0bd0.json",
+    "Data\\FractalCache\\root_8371b20c_split_467e89a8.json"
+  ],
+  "modified_files": [
+    "AI_Core\\Nova AI\\AI\\personality\\embedder_cache\\master_test_cache.json",
+    "AI_Core\\Nova AI\\AI\\personality\\luna_persistent_memory.json",
+    "Data\\FractalCache\\root_083c2049.json",
+    "Data\\FractalCache\\root_083c2049_split_fe3bc530.json",
+    "Data\\FractalCache\\root_2f5775e3.json",
+    "Data\\FractalCache\\root_2f5775e3_split_432e0bd0.json",
+    "Data\\FractalCache\\root_8371b20c.json",
+    "Data\\FractalCache\\root_8371b20c_split_467e89a8.json",
+    "Data\\audit_log.json",
+    "Data\\billing_metrics.json"
+  ],
+  "all_touched_files": [
+    "AI_Core\\Nova AI\\AI\\personality\\embedder_cache\\master_test_cache.json",
+    "AI_Core\\Nova AI\\AI\\personality\\luna_persistent_memory.json",
+    "Data\\FractalCache\\root_083c2049.json",
+    "Data\\FractalCache\\root_083c2049_split_fe3bc530.json",
+    "Data\\FractalCache\\root_2f5775e3.json",
+    "Data\\FractalCache\\root_2f5775e3_split_432e0bd0.json",
+    "Data\\FractalCache\\root_8371b20c.json",
+    "Data\\FractalCache\\root_8371b20c_split_467e89a8.json",
+    "Data\\audit_log.json",
+    "Data\\billing_metrics.json"
+  ]
+}

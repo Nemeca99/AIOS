@@ -1,0 +1,74 @@
+{
+  "file_id": "root_24edab98",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_24edab98-211bb0b043b4",
+  "ancestors": [],
+  "children": [],
+  "content": "Neural networks are computing systems inspired by biological neural networks that constitute animal brains and can learn to perform tasks by considering examples.",
+  "created": "2025-09-23T15:29:51.339880",
+  "size": 162,
+  "analysis": {
+    "common_words": [
+      "neural",
+      "networks",
+      "computing",
+      "systems",
+      "inspired",
+      "biological",
+      "that",
+      "constitute",
+      "animal",
+      "brains",
+      "learn",
+      "perform",
+      "tasks",
+      "considering",
+      "examples"
+    ],
+    "common_phrases": [
+      "neural networks",
+      "are computing",
+      "systems inspired",
+      "by biological",
+      "that constitute",
+      "animal brains",
+      "and can",
+      "learn to",
+      "perform tasks",
+      "by considering"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 6.172839506172839,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 23,
+    "char_count": 162
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-23T15:29:51.339880",
+  "specialization": "technical",
+  "tags": [
+    "inspired",
+    "systems inspired",
+    "emotion_technical",
+    "neural",
+    "computing",
+    "systems",
+    "networks",
+    "neural networks",
+    "are computing"
+  ]
+}

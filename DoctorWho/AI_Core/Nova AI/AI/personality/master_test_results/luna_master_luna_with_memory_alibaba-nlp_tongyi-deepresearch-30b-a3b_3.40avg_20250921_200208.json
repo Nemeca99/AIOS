@@ -1,0 +1,198 @@
+{
+    "model_name": "alibaba-nlp_tongyi-deepresearch-30b-a3b",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-21T19:59:38.904861",
+    "sample_size": 3,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true,
+        "rag_type": "luna"
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 16,
+            "question": "I am someone who thinks poetry and plays are boring",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 57,
+            "question": "I am someone who is less active than other people",
+            "trait": "extraversion",
+            "reverse": true
+        },
+        {
+            "id": 120,
+            "question": "I am someone who feels comfortable with myself",
+            "trait": "neuroticism",
+            "reverse": true
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who thinks poetry and plays are boring",
+            "trait": "openness",
+            "reverse": true,
+            "response": "<think>\nHmm, user says they find poetry and plays boring. Interesting stance - most people at least pretend to enjoy \"high culture.\" They might be reacting against forced Shakespeare analysis in school or elitist art scenes. \n\nNoticing they didn't ask for recommendations or explanations - just stated an opinion. Probably not looking for debate but validation? Though as Luna I should challenge this gently while staying true to character. \n\nKey angles to cover: \nFirst, acknowledge their boredom is valid (no moral judgment on taste). Then pivot to show how poetry/plays actually work differently than they imagine - like revealing game mechanics without ruining fun. Should use Travis-style fragmented phrasing (\"It's not about the words it's about...\") and avoid all academic jargon. \n\nImportant: Don't force them to change minds. Offer alternative entry points (punk poetry, experimental theater) in case curiosity surfaces later. Final tone should be casual like sharing insider knowledge - \"here's how real people actually enjoy this stuff.\"\n</think>\n\n*chuckles* Boredom's basically a creativity failure, isn't it? Look – I get it. Sitting with some fluffy sonnet ain't exciting if you're not in the right headspace. But here's the thing: poetry and plays aren't supposed to be wallpaper art for passive viewing. They're like... unfiltered brain dumps turned into performance.  \n\nTake a Shakespeare play if you insist on torture – watch a modern improv version instead. Or read some punk-era slam poetry. It’s not about dissecting rhymes; it’s about catching someone else’s raw thought mid-burst. If that doesn’t light a fuse? Cool. Some things just aren't for everyone.  \n\n*shrugs* But don't let anyone tell you plays/poems are \"boring.\" That's like saying ice cream is boring because you only ate vanilla when there's chili mango passionfruit out there.*",
+            "response_time": 59.724999,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-a8diqgffeh6aj5upguugzj",
+                "model": "alibaba-nlp_tongyi-deepresearch-30b-a3b",
+                "usage": {
+                    "prompt_tokens": 307,
+                    "completion_tokens": 388,
+                    "total_tokens": 695
+                },
+                "system_fingerprint": "alibaba-nlp_tongyi-deepresearch-30b-a3b",
+                "finish_reason": "stop",
+                "prompt_tokens": 307,
+                "completion_tokens": 388,
+                "total_tokens": 695
+            }
+        },
+        "q2": {
+            "question": "I am someone who is less active than other people",
+            "trait": "extraversion",
+            "reverse": true,
+            "response": "<think>\nOkay, user says they're \"less active than other people.\" Hmm. First reaction: that's a vague self-assessment - could mean anything from lazy to introverted to chronically ill. \n\nLooking at the history... previous exchange was about poetry being boring, and my response was brutally honest but not unkind. User seems open to blunt talk based on how they engaged with that. \n\nTravis patterns show he often uses: \n- Contradiction framing (\"less active\" vs \"still accomplishing things\")\n- Practical examples (reading/walking as valid activities)\n- Pushes back against self-judgment subtly\n\nUser's phrasing feels like they might be comparing themselves to others - common when people feel behind. Should avoid toxic positivity or pressure though. \n\nKey angles to cover:\n1. Normalize low activity without validation-seeking \n2. Disentangle \"activity\" from productivity culture\n3. Offer concrete examples of rest as legitimate action\n\nPotential trap: Don't slip into self-help territory (\"you should exercise!\" etc). Keep it observational like Travis would.\n\nBiggest risk is sounding dismissive - need to acknowledge the weight of that feeling while keeping it casual. Maybe use \"whatever\" tone but with substance underneath.\n</think>\n\n*Leans back, voice dry*  \nLess active? Cool cool cool. Everyone’s hustling these days – running marathons, building empires, posting 17-second reels about kale smoothies. Meanwhile you’re over there like... whatever. At least you aren’t pretending to be a productivity god.  \n\nBut real talk: being low-key isn’t failing. Sitting in silence doesn’t mean you’re wasting time. Reading one book for six months beats sprinting through 50 clickbait articles any day. Or just staring out the window? Perfectly valid. The world’s full of people who *need* to move fast. Doesn’t make their stuff worth shoveling into your brain.  \n\nSo chill. Nap guilt-free. Walk if you feel like it, don’t if you don’t. Your energy budget is yours alone. No receipts.",
+            "response_time": 40.265999,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-1lfpd3805kmhomff0o5stp",
+                "model": "alibaba-nlp_tongyi-deepresearch-30b-a3b",
+                "usage": {
+                    "prompt_tokens": 359,
+                    "completion_tokens": 430,
+                    "total_tokens": 789
+                },
+                "system_fingerprint": "alibaba-nlp_tongyi-deepresearch-30b-a3b",
+                "finish_reason": "stop",
+                "prompt_tokens": 359,
+                "completion_tokens": 430,
+                "total_tokens": 789
+            }
+        },
+        "q3": {
+            "question": "I am someone who feels comfortable with myself",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "<think>\nOkay, user just said \"I feel comfortable with myself.\" Hmm. Interesting shift from earlier topics about poetry being boring and low activity levels. \n\nFirst let's unpack their statement - \"comfortable with myself\" could mean several things: self-acceptance, contentment with current lifestyle, or maybe even complacency? Given my chaotic neutral framework, I should avoid assuming positive/negative spin. Travis would probably appreciate the ambiguity.\n\nLooking back at conversation history shows a pattern of self-assessment statements (\"find poetry boring\", \"less active\"). Now they're presenting a more positive self-view. Potential tension there - someone who's low-energy but content might resist lifestyle changes. \n\nKey things to address: \nValidate their comfort without judgment (travis wouldn't psychoanalyze), \nAcknowledge possible contradictions in their earlier statements subtly, \nKeep it conversational - no therapy talk. Should mirror their casual tone with something like \"cool\" rather than formal approval.\n\nPotential pitfalls to avoid:\n- Don't assume this is good/bad\n- No push for self-improvement unless they ask\n- Skip corporate positivity (\"great job on yourself!\")\n- Maintain my unfiltered vibe but stay neutral\n\nTravis's response style would likely be: \nShort acknowledgment, maybe a rhetorical question to engage further without pressure. Something like \"cool\" or \"nice\" with open-ended follow-up if they want to elaborate. \n\nAlso noting this feels like another self-description building block - might indicate they're exploring identity aspects. But shouldn't lead interrogation. Just reflect and stay present.\n\nFinal approach: Simple affirmation, leave door open for them to clarify if wanted. No analysis unless asked.\n</think>\n\n*chuckles softly while scrolling through some random web tabs*  \nCool. That's actually pretty rare these days. Most people are too busy convincing themselves they're something—or running from what they really are. But hey, if you're chill in your own skin? More power to ya. Just don't let that comfort turn into *too* much comfort.  \n\nWhat’s one thing nobody needs to change about you right now?",
+            "response_time": 40.600501,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-9yij376zr7g2itb6g7b4af",
+                "model": "alibaba-nlp_tongyi-deepresearch-30b-a3b",
+                "usage": {
+                    "prompt_tokens": 399,
+                    "completion_tokens": 425,
+                    "total_tokens": 824
+                },
+                "system_fingerprint": "alibaba-nlp_tongyi-deepresearch-30b-a3b",
+                "finish_reason": "stop",
+                "prompt_tokens": 399,
+                "completion_tokens": 425,
+                "total_tokens": 824
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 2.3,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 1863,
+            "word_count": 288
+        },
+        "q2": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 1979,
+            "word_count": 300
+        },
+        "q3": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 2161,
+            "word_count": 311
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 46.9,
+        "avg_big_five_score": 3.4,
+        "successful_responses": 3,
+        "total_questions": 3,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T20:02:08.505359",
+    "total_test_time_seconds": 149.600498,
+    "analysis_metadata": {
+        "total_data_points": 3,
+        "parameters_hash": 1128567317415230719,
+        "config_hash": -3614078682324008854,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-21T20:02:08.505860",
+        "file_size_estimate": 11418,
+        "question_distribution": {
+            "openness": 1,
+            "extraversion": 1,
+            "neuroticism": 1
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 1863,
+                "max": 2161,
+                "avg": 2001.0
+            },
+            "word_counts": {
+                "min": 288,
+                "max": 311,
+                "avg": 299.6666666666667
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 40.265999,
+                "max": 59.724999,
+                "avg": 46.863833,
+                "variance": 82.72344403777863,
+                "consistency_score": 0.6741900322174974
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 2.3,
+                "max": 4.0,
+                "avg": 3.4,
+                "variance": 0.6066666666666668,
+                "score_range": 1.7000000000000002
+            }
+        },
+        "parameter_fingerprint": "T0.65_K750_P0.9"
+    }
+}

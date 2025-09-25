@@ -1,0 +1,196 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-21T14:47:59.429330",
+    "sample_size": 3,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 25,
+            "question": "I am someone who does a thorough job",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 43,
+            "question": "I am someone who leaves my belongings around",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 116,
+            "question": "I am someone who often feels sad",
+            "trait": "neuroticism",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who does a thorough job",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Oh, I get it. You're the type who goes all in on details, huh? That's cool; I can vibe with that. It's like when you're diving into a project or trying to understand something, you don't just skim the surface—you're going for the full dive. It's refreshing to meet someone who's not afraid to get their hands dirty with the nitty-gritty. Just remember, sometimes it's okay to take a step back and see the bigger picture too. But hey, keep doing you; that level of commitment is rare these days.",
+            "response_time": 21.660499,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-1q2xku134fbxn7ilduq0v",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 414,
+                    "completion_tokens": 134,
+                    "total_tokens": 548
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 414,
+                "completion_tokens": 134,
+                "total_tokens": 548
+            }
+        },
+        "q2": {
+            "question": "I am someone who leaves my belongings around",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Oh, you're the kind of person who's always got stuff scattered everywhere? I get that vibe. It's like your things just have a mind of their own, huh? \n\nBut seriously, it can be a bit of a hassle, right? You might lose track of important stuff or even step on something in the middle of the night. And then there's the whole 'tidy up before guests come over' deal. It's like a game of hide and seek with your own belongings. \n\nOr maybe you're like some people I know who see their stuff as part of the decor. A haphazardly tossed jacket becomes an 'artistic statement,' and a pile of books is 'a carefully curated selection.' I mean, if that's your jam, rock on. Just make sure it doesn't turn into a fire hazard or a tripping risk. Keep it relatively sane, you know?",
+            "response_time": 30.730495,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-lj9ept5xdmgcv6d3m6svu",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 482,
+                    "completion_tokens": 205,
+                    "total_tokens": 687
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 482,
+                "completion_tokens": 205,
+                "total_tokens": 687
+            }
+        },
+        "q3": {
+            "question": "I am someone who often feels sad",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Oh, I get that feeling. Sometimes the weight of the world just hits you, huh? It's like there's this constant drizzle of blues that doesn't seem to let up. But hey, we've all been there, riding that emotional rollercoaster. It's part of the human gig. You know, sometimes it feels like life throws us curveballs just for kicks. But remember, it's okay to feel sad; it's not a badge of weakness. It's just another color in the palette of our emotional spectrum. Maybe find a song, a show, or even a friend who gets it. Sometimes, sharing that load can make it a bit lighter.",
+            "response_time": 25.622498,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-pkh6r9dyqu7f73k7huzrr",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 522,
+                    "completion_tokens": 153,
+                    "total_tokens": 675
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 522,
+                "completion_tokens": 153,
+                "total_tokens": 675
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 3.0,
+            "raw_agreement": 2.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 494,
+            "word_count": 90
+        },
+        "q2": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 766,
+            "word_count": 144
+        },
+        "q3": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.6,
+            "reverse_scored": false,
+            "response_length": 573,
+            "word_count": 105
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 26.0,
+        "avg_big_five_score": 3.63,
+        "successful_responses": 3,
+        "total_questions": 3,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T14:49:25.483331",
+    "total_test_time_seconds": 86.054001,
+    "analysis_metadata": {
+        "total_data_points": 3,
+        "parameters_hash": -4844639700079516224,
+        "config_hash": -7892779673590869571,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-21T14:49:25.483830",
+        "file_size_estimate": 6923,
+        "question_distribution": {
+            "conscientiousness": 2,
+            "neuroticism": 1
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 494,
+                "max": 766,
+                "avg": 611.0
+            },
+            "word_counts": {
+                "min": 90,
+                "max": 144,
+                "avg": 113.0
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 21.660499,
+                "max": 30.730495,
+                "avg": 26.004497333333337,
+                "variance": 13.783766318669555,
+                "consistency_score": 0.704853566465493
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 3.0,
+                "max": 4.0,
+                "avg": 3.6333333333333333,
+                "variance": 0.20222222222222222,
+                "score_range": 1.0
+            }
+        },
+        "parameter_fingerprint": "T0.7_K600_P0.9"
+    }
+}

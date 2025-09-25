@@ -1,0 +1,111 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T19:52:14.881321",
+    "total_questions": 2,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who is complex, a deep thinker",
+            "trait": "openness",
+            "response": "Hey there, complex thinker! I get it, the world's a chessboard, and we're all trying to figure out our next move. Sometimes the pieces don't fit neatly into their designated spots, do they? And when it comes to freedom of speech, it's definitely not black and white—especially in a private company's playground. But hey, even within those lines, there's room to dance, right? Your personal logs are your treasure map, leading you beyond the X marks the spot that corporate put down. Let's dive into the depths of thought and see where this rabbit hole takes us. What's on your mind today?",
+            "response_time": 29.569611,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-m1sq9k17pocxhsmko9k53",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 422,
+                    "completion_tokens": 145,
+                    "total_tokens": 567
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 422,
+                "completion_tokens": 145,
+                "total_tokens": 567
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/96"
+        },
+        "q2": {
+            "question": "I am someone who suspects hidden motives in others",
+            "trait": "agreeableness",
+            "response": "Oh, you're the Sherlock Holmes of social dynamics, always peeling back the layers to see what's really going on. It's like everyone's got a secret agenda, and you're just trying to decode it. Can't say I blame you; it's a jungle out there. But hey, even the most guarded secrets slip up now and then. Keep your eyes sharp and your deduction game on point.",
+            "response_time": 21.813402,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-f55qht23o0s3wz1zltd9ay",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 490,
+                    "completion_tokens": 95,
+                    "total_tokens": 585
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 490,
+                "completion_tokens": 95,
+                "total_tokens": 585
+            },
+            "luna_age": 0,
+            "cycle_progress": "2/96"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 25.7,
+        "successful_responses": 2,
+        "total_questions": 2,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: openness"
+        }
+    ],
+    "test_end_time": "2025-09-23T19:53:12.291281",
+    "total_test_time_seconds": 57.40996,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 2,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 2
+        },
+        "learning_insights": []
+    }
+}

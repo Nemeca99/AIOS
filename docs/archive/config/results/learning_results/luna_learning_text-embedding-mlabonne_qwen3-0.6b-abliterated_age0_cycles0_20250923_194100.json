@@ -1,0 +1,185 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T19:38:31.439738",
+    "total_questions": 5,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who is curious about many different things",
+            "trait": "openness",
+            "response": "Hey there, I'm all ears! What's piquing your curiosity today? Whether it's the mysteries of the universe, the quirks of human behavior, or just some random trivia, hit me with your questions and let's dive in together.",
+            "response_time": 36.022285,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-8wg9faecvocpw0ld8jdtgc",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 421,
+                    "completion_tokens": 60,
+                    "total_tokens": 481
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 421,
+                "completion_tokens": 60,
+                "total_tokens": 481
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/48"
+        },
+        "q2": {
+            "question": "I am someone who avoids my duties",
+            "trait": "conscientiousness",
+            "response": "Ah, I get it. Procrastination can be a real beast to tame, huh? It's like every task has its own gravitational pull that makes you want to orbit around it instead of diving in. But hey, if you're looking for a buddy to commiserate or maybe some unconventional strategies to kick duty's ass, I'm your gal. Let's chat about what's got you stuck and maybe we'll end up cracking a smile over it. Or, if you're feeling particularly rebellious, let's plan the ultimate escape from responsibility together.",
+            "response_time": 27.379473,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-521k0y6vnsctcjyurvegl",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 487,
+                    "completion_tokens": 132,
+                    "total_tokens": 619
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 487,
+                "completion_tokens": 132,
+                "total_tokens": 619
+            },
+            "luna_age": 0,
+            "cycle_progress": "2/48"
+        },
+        "q3": {
+            "question": "I am someone who loves large parties",
+            "trait": "extraversion",
+            "response": "Oh, party animal! I'm totally on board with that. There's nothing quite like the energy of a big crowd, everyone buzzing with excitement, the laughter, the music—it's electric, isn't it? Plus, the chance encounters and connections you can make are pretty unbeatable. So, what's the next big bash you're planning or looking forward to?",
+            "response_time": 20.868502,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-qw5q1mmepbfi6x4kdlnna",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 530,
+                    "completion_tokens": 86,
+                    "total_tokens": 616
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 530,
+                "completion_tokens": 86,
+                "total_tokens": 616
+            },
+            "luna_age": 0,
+            "cycle_progress": "3/48"
+        },
+        "q4": {
+            "question": "I am someone who loves to help others",
+            "trait": "agreeableness",
+            "response": "Hey there! It's great to meet someone with a helping hand, so to speak. We all have that drive to make a difference or lend a hand where we can, right? Whether it's fixing a friend's leaky faucet or just being there for a listen, it's the human thing to do. So what's on your agenda for helping out today? Got any grand plans or just taking it one person at a time?",
+            "response_time": 22.386965,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-gyvj2f47lrcsxim7eu3h7",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 573,
+                    "completion_tokens": 97,
+                    "total_tokens": 670
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 573,
+                "completion_tokens": 97,
+                "total_tokens": 670
+            },
+            "luna_age": 0,
+            "cycle_progress": "4/48"
+        },
+        "q5": {
+            "question": "I am someone who panics easily",
+            "trait": "neuroticism",
+            "response": "Ah, the ol' panic-sweats. Been there, done that, got the metaphorical t-shirt. Panic can be such a bummer, but it's also kind of a part of the human experience, you know? It's like your brain hits the panic button when things get too intense or when it feels overwhelmed. Not exactly evolved for our modern day stressors, huh? But hey, we deal with it in our own ways, and sometimes just talking about it can help ease that edge a bit. So yeah, I get it. It's one of those universal human quirks, like stubbing your toe or accidentally sending a text to the wrong person.",
+            "response_time": 30.500471,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-lcrh9rb7o0hbr3xyz5wjco",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 565,
+                    "completion_tokens": 149,
+                    "total_tokens": 714
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 565,
+                "completion_tokens": 149,
+                "total_tokens": 714
+            },
+            "luna_age": 0,
+            "cycle_progress": "5/48"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 27.4,
+        "successful_responses": 5,
+        "total_questions": 5,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: openness"
+        },
+        {
+            "light_sleep_count": 2,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 4: agreeableness"
+        }
+    ],
+    "test_end_time": "2025-09-23T19:41:00.633417",
+    "total_test_time_seconds": 149.193679,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 5,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 5
+        },
+        "learning_insights": []
+    }
+}

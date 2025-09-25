@@ -1,0 +1,89 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T20:09:54.423221",
+    "total_questions": 1,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who leaves my belongings around",
+            "trait": "conscientiousness",
+            "response": "Hey, I get it. We all have those moments where we just set something down and completely forget about it until we need it again. It's one of those human quirks, you know? Sometimes it's like our brains are on a different wavelength from where our stuff decides to take a nap. Just try to keep an eye out for your belongings or set reminders for yourself if it's something important you tend to misplace. It's not the end of the world if you lose track of your keys once in a while, but it can be a hassle. Keep it casual, and don't sweat it too much unless it starts affecting your life in a big way.",
+            "response_time": 29.813152,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-0vox6bhw4dx61k3fsajtj",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 423,
+                    "completion_tokens": 147,
+                    "total_tokens": 570
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 423,
+                "completion_tokens": 147,
+                "total_tokens": 570
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/66"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 29.8,
+        "successful_responses": 1,
+        "total_questions": 1,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: conscientiousness"
+        }
+    ],
+    "test_end_time": "2025-09-23T20:10:28.263693",
+    "total_test_time_seconds": 33.840472,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 1,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 1
+        },
+        "learning_insights": []
+    }
+}

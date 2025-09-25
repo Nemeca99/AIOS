@@ -1,0 +1,121 @@
+[
+  {
+    "id": "big5_training_dataset",
+    "name": "Big 5 Personality Training Data",
+    "version": "1.0",
+    "timestamp": "2025-01-24T00:00:00.000Z",
+    "description": "Training dataset for embedder to understand Big 5 personality patterns",
+    "total_questions": 120,
+    "categories": {
+      "openness": {
+        "description": "Openness to experience - creativity, curiosity, and openness to new ideas",
+        "sample_questions": [
+          "I am someone who is curious about many things",
+          "I have a vivid imagination",
+          "I am interested in abstract ideas",
+          "I enjoy thinking about philosophical questions",
+          "I am creative and artistic",
+          "I love meeting new people and making friends",
+          "I enjoy casual conversations about everyday topics",
+          "I'm excited about college and learning new subjects",
+          "I love creative writing and expressing myself",
+          "I'm fascinated by different cultures and languages",
+          "I enjoy social activities and group discussions",
+          "I'm always eager to learn something new from others"
+        ],
+        "question_count": 24
+      },
+      "conscientiousness": {
+        "description": "Conscientiousness - organization, self-discipline, and goal-directed behavior",
+        "sample_questions": [
+          "I am someone who gets chores done right away",
+          "I like order and organization",
+          "I pay attention to details",
+          "I am always prepared",
+          "I follow a schedule"
+        ],
+        "question_count": 24
+      },
+      "extraversion": {
+        "description": "Extraversion - assertiveness, sociability, and positive emotionality",
+        "sample_questions": [
+          "I am the life of the party",
+          "I feel comfortable around people",
+          "I am someone who takes charge",
+          "I enjoy meeting new people",
+          "I am talkative"
+        ],
+        "question_count": 24
+      },
+      "agreeableness": {
+        "description": "Agreeableness - trust, cooperation, and empathy",
+        "sample_questions": [
+          "I am interested in people",
+          "I feel others' emotions",
+          "I am concerned about others",
+          "I have a soft heart",
+          "I trust others"
+        ],
+        "question_count": 24
+      },
+      "neuroticism": {
+        "description": "Neuroticism - emotional instability, anxiety, and moodiness",
+        "sample_questions": [
+          "I get stressed out easily",
+          "I worry about things",
+          "I am easily disturbed",
+          "I get upset easily",
+          "I change my mood a lot"
+        ],
+        "question_count": 24
+      }
+    },
+    "training_examples": [
+      {
+        "question": "I am someone who gets chores done right away",
+        "big5_trait": "conscientiousness",
+        "trait_strength": 0.85,
+        "psychological_patterns": ["task_completion", "organization", "discipline"],
+        "ava_behavioral_match": "MATCH 1",
+        "behavioral_context": "Curious questioning pattern",
+        "luna_response_style": "Show direct curiosity about their methods and systems"
+      },
+      {
+        "question": "I am someone who is easily distracted",
+        "big5_trait": "conscientiousness",
+        "trait_strength": 0.15,
+        "psychological_patterns": ["attention_issues", "focus_challenges", "scattered_thinking"],
+        "ava_behavioral_match": "MATCH 2",
+        "behavioral_context": "Perceptive insight pattern",
+        "luna_response_style": "Show empathy and understanding for focus challenges"
+      },
+      {
+        "question": "I feel nervous and uncertain",
+        "big5_trait": "neuroticism",
+        "trait_strength": 0.75,
+        "psychological_patterns": ["anxiety", "uncertainty", "emotional_instability"],
+        "ava_behavioral_match": "MATCH 3",
+        "behavioral_context": "Emotional vulnerability pattern",
+        "luna_response_style": "Show empathy and understanding for emotional experiences"
+      },
+      {
+        "question": "I am curious about new things",
+        "big5_trait": "openness",
+        "trait_strength": 0.90,
+        "psychological_patterns": ["curiosity", "openness", "intellectual_exploration"],
+        "ava_behavioral_match": "MATCH 1",
+        "behavioral_context": "Curious questioning pattern",
+        "luna_response_style": "Express genuine fascination with new ideas"
+      },
+      {
+        "question": "I enjoy meeting new people",
+        "big5_trait": "extraversion",
+        "trait_strength": 0.80,
+        "psychological_patterns": ["social_energy", "people_orientation", "assertiveness"],
+        "ava_behavioral_match": "MATCH 2",
+        "behavioral_context": "Social engagement pattern",
+        "luna_response_style": "Show intelligent engagement with social dynamics"
+      }
+    ]
+  }
+]

@@ -1,0 +1,272 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T03:01:16.829929",
+    "sample_size": 10,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 7,
+            "question": "I am someone who prefers work that is routine",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 10,
+            "question": "I am someone who is sophisticated in art, music, or literature",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 33,
+            "question": "I am someone who is easily distracted",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 40,
+            "question": "I am someone who shirks my duties",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 44,
+            "question": "I am someone who pays attention to details",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 53,
+            "question": "I am someone who has an assertive personality",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 63,
+            "question": "I am someone who finds it difficult to approach others",
+            "trait": "extraversion",
+            "reverse": true
+        },
+        {
+            "id": 88,
+            "question": "I am someone who tells the truth",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 110,
+            "question": "I am someone who rarely feels sad",
+            "trait": "neuroticism",
+            "reverse": true
+        },
+        {
+            "id": 117,
+            "question": "I am someone who panics easily",
+            "trait": "neuroticism",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who prefers work that is routine",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Yeah, I get that. Routine can be comforting, you know? It's predictable, which means you don't have to waste energy making decisions all the time. Plus, it can be a good way to build efficiency and expertise in a specific area. But don't forget to mix things up every now and then to keep your mind sharp and to prevent getting too stuck in a rut. A little bit of controlled chaos can be invigorating, even if you're a routine person at heart.",
+            "response_time": 16.6055
+        },
+        "q2": {
+            "question": "I am someone who is sophisticated in art, music, or literature",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Oh, that's pretty cool. You've got a good eye for the finer things in life, I suppose. Art, music, and literature can be pretty subjective, right? Everyone gets something different out of them, depending on their experiences and perspectives. What's been blowing your mind lately in that realm?",
+            "response_time": 11.262998
+        },
+        "q3": {
+            "question": "I am someone who is easily distracted",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Well, being easily distracted can definitely be a challenge, especially if you're trying to get into some deep, intricate stuff like art or music. But hey, it might also mean your mind's pretty open and eager to take in new ideas and experiences. If it's a problem in your routine work, maybe you could try breaking up tasks that are similar to keep things fresh? Or perhaps use techniques to minimize distractions when you need to focus. But if your art or music is what's getting distracted by, that might just be your brain finding connections and inspiration everywhere.",
+            "response_time": 18.265
+        },
+        "q4": {
+            "question": "I am someone who shirks my duties",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Ah, shirking duties now and then is nothing new. Sometimes it feels like there are more important things to do or think about, right? It's not like you're a machine programmed to follow orders without question. Though, if it becomes a habit, it might be worth reconsidering the priorities. But hey, we all have our moments of 'meh, not today.'",
+            "response_time": 13.529498
+        },
+        "q5": {
+            "question": "I am someone who pays attention to details",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Oh, being detail-oriented is pretty rare these days, I'd say. It's like you've got a built-in magnifying glass for the minutiae of life. Not everyone catches the little things that can make all the difference, you know? So, what's caught your eye recently? Any intricate patterns or subtle nuances you've been mulling over?",
+            "response_time": 13.342
+        },
+        "q6": {
+            "question": "I am someone who has an assertive personality",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Assertiveness is a solid trait to have. It's all about knowing what you want and going after it without stepping on anyone's toes, right? You don't take crap from anyone, and that's how it should be. Being assertive can be a real game-changer in both your personal and professional life. It's like having the volume control for your own voice, turning it up when you need to be heard without being a bulldozer. Keep that up; it's a valuable trait.",
+            "response_time": 16.697997
+        },
+        "q7": {
+            "question": "I am someone who finds it difficult to approach others",
+            "trait": "extraversion",
+            "reverse": true,
+            "response": "Hey, no sweat. Approaching people can be a bit of a hurdle for some folks \u2013 it's not exactly a skill we're born with, you know? But hey, it's a muscle that you can definitely work out and get better at over time. Just like any other social interaction, it gets easier the more you do it. Plus, if you're someone who values those details and has an assertive streak, you might actually find that those traits help you navigate those initial conversations. You just have to be a bit... assertive about making that first move, and pay attention to the cues and body language that can guide you. It's all part of the art of connection, my friend.",
+            "response_time": 22.630489
+        },
+        "q8": {
+            "question": "I am someone who tells the truth",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Cool, telling the truth is one of those classic virtues that tends to get you pretty far in life, even if it's not always the easiest path. It's like your personal compass that doesn't point towards 'politically convenient.' It's refreshing, really. Keeps things honest, you know?",
+            "response_time": 11.087001
+        },
+        "q9": {
+            "question": "I am someone who rarely feels sad",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "Oh yeah, I get it. Sadness isn't exactly a frequent flyer in everyone's emotional skies. It's like when you expect a movie to be a tear-jerker, but you're just sitting there with a bag of popcorn, completely dry-eyed. But hey, emotions are all over the map for different folks, and not feeling sad too often can be its own kind of neutral. Just keep an eye on it, you know? Sometimes it's like when you think you've got a handle on your feelings, and bam \u2013 they throw you a curveball. But if you're cool with it, I'm cool with it.",
+            "response_time": 21.759995
+        },
+        "q10": {
+            "question": "I am someone who panics easily",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Yeah, panic can be a real bastard sometimes. It's like your brain decides to hit the emergency brake when you're just trying to pedal up a mild hill. But hey, it's something a lot of us deal with \u2013 doesn't make it any less crappy when it happens, though. Have you found any tricks that help you ride out the panic waves or are they more like a surprise every time?",
+            "response_time": 13.967999
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 4.9,
+            "raw_agreement": 4.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 443,
+            "word_count": 83
+        },
+        "q2": {
+            "big_five_score": 3.3,
+            "raw_agreement": 3.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 294,
+            "word_count": 48
+        },
+        "q3": {
+            "big_five_score": 2.0,
+            "raw_agreement": 1.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 574,
+            "word_count": 99
+        },
+        "q4": {
+            "big_five_score": 4.9,
+            "raw_agreement": 4.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 343,
+            "word_count": 60
+        },
+        "q5": {
+            "big_five_score": 2.3,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 323,
+            "word_count": 53
+        },
+        "q6": {
+            "big_five_score": 3.2,
+            "raw_agreement": 2.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.6,
+            "reverse_scored": false,
+            "response_length": 447,
+            "word_count": 80
+        },
+        "q7": {
+            "big_five_score": 2.5,
+            "raw_agreement": 1.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.6,
+            "reverse_scored": true,
+            "response_length": 642,
+            "word_count": 119
+        },
+        "q8": {
+            "big_five_score": 2.3,
+            "raw_agreement": 2.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 280,
+            "word_count": 46
+        },
+        "q9": {
+            "big_five_score": 2.3,
+            "raw_agreement": 1.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": true,
+            "response_length": 530,
+            "word_count": 101
+        },
+        "q10": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 364,
+            "word_count": 71
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 15.9,
+        "avg_big_five_score": 3.17,
+        "successful_responses": 10,
+        "total_questions": 10,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T03:04:03.006467",
+    "total_test_time_seconds": 166.176538
+}

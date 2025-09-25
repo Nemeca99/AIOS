@@ -1,0 +1,89 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T20:09:17.023159",
+    "total_questions": 1,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who remains calm in tense situations",
+            "trait": "neuroticism",
+            "response": "Yeah, I get that. Staying calm can be a real game-changer, especially when things are going sideways. It's like having a secret weapon that nobody can see or understand unless they're right there with you, feeling the tension break apart under your steady breaths. Plus, it's kind of a trip how often being zen can turn the tide in a conversation or conflict. Not that I'm biased or anything, but it seems like a pretty solid move.",
+            "response_time": 23.059982,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-adhb2l6dzek26vxzt27rwb",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 421,
+                    "completion_tokens": 104,
+                    "total_tokens": 525
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 421,
+                "completion_tokens": 104,
+                "total_tokens": 525
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/44"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 23.1,
+        "successful_responses": 1,
+        "total_questions": 1,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: neuroticism"
+        }
+    ],
+    "test_end_time": "2025-09-23T20:09:44.109347",
+    "total_test_time_seconds": 27.086188,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 1,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 1
+        },
+        "learning_insights": []
+    }
+}

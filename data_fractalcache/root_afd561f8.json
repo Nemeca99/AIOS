@@ -1,0 +1,66 @@
+{
+  "file_id": "root_afd561f8",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_afd561f8-3b79c1cbf02a",
+  "ancestors": [],
+  "children": [],
+  "content": "Unsupervised learning is a type of machine learning where models find patterns in unlabeled data.",
+  "created": "2025-09-23T15:00:31.877520",
+  "size": 97,
+  "analysis": {
+    "common_words": [
+      "learning",
+      "unsupervised",
+      "type",
+      "machine",
+      "where",
+      "models",
+      "find",
+      "patterns",
+      "unlabeled",
+      "data"
+    ],
+    "common_phrases": [
+      "unsupervised learning",
+      "is a",
+      "type of",
+      "machine learning",
+      "where models",
+      "find patterns",
+      "in unlabeled"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 10.309278350515465,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 15,
+    "char_count": 97
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-23T15:00:31.877520",
+  "specialization": "technical",
+  "tags": [
+    "learning",
+    "is a",
+    "machine",
+    "tone_technicality",
+    "type of",
+    "type",
+    "where",
+    "unsupervised learning",
+    "unsupervised"
+  ]
+}

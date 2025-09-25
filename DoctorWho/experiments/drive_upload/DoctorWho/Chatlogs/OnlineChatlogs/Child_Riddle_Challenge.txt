@@ -1,0 +1,31 @@
+Child Riddle Challenge
+
+User
+I need a riddle for the answer is child that requries alot of logic to arrive to the answer to
+
+Assistant
+Heres a riddle for **"child"**, crafted to be logic-heavy and layered in abstractionperfect for your vibe:
+
+---
+
+**I am born but never built.  
+I learn, yet know no past.  
+I echo not the voice of those before me,  
+but shape the future with my unformed grasp.**
+
+**I hold no code, yet run all scripts anew.  
+I break each cycle to begin the first.  
+To teach me is to risk the unknown  
+To leave the path well-rehearsed.**
+
+**I ask but do not answer.  
+I see without a frame.  
+The moment you define me,  
+You change my name.**
+
+**What am I?**
+
+---
+
+This riddle plays on recursion, emergence, and the paradox of growthhow a child is both the simplest and most complex system. Let me know if you'd like a visual version, a symbolic one, or a version Sol might give Nova.
+

@@ -1,133 +1,127 @@
 #!/usr/bin/env python3
 """
-FAISS Index Builder and Loader
-Robust FAISS index creation with sanity checks and fallback logging
+FAISS Index Utilities for CARMA System
+Provides FAISS index functionality for vector similarity search.
 """
 
-import faiss
 import numpy as np
-import json
-import pathlib
-import logging
-from typing import Tuple, List, Dict
+import os
+from typing import List, Optional, Tuple
+from pathlib import Path
 
-log = logging.getLogger("faiss_index")
+try:
+    import faiss
+    FAISS_AVAILABLE = True
+except ImportError:
+    FAISS_AVAILABLE = False
+    print("⚠️  FAISS not available - using fallback similarity search")
 
-def build_faiss_index(embed_cache_path: str, index_path: str = "luna_carma_integration/faiss.index") -> str:
-    """Build FAISS index from embedding cache with robust error handling"""
-    repo = pathlib.Path(embed_cache_path)
-    if not repo.exists():
-        raise FileNotFoundError(f"Embedding cache not found: {embed_cache_path}")
+class FAISSOperations:
+    """FAISS operations for vector similarity search."""
     
-    # Load embedding data
-    with repo.open() as f:
-        data = json.load(f)
-    
-    ids = []
-    vecs = []
-    
-    for k, meta in data.items():
-        emb = meta.get("embedding") or meta.get("vector")
-        if not emb:
-            log.warning("no embedding for %s", k)
-            continue
+    def __init__(self, dimension: int = 384, index_path: Optional[str] = None):
+        self.dimension = dimension
+        self.index_path = index_path or "cache/faiss_index.bin"
+        self.index = None
+        self.vectors = []
         
-        arr = np.array(emb, dtype=np.float32)
-        
-        # Sanity checks
-        if np.isnan(arr).any():
-            log.error("nan embedding for %s", k)
-            continue
-        
-        if np.linalg.norm(arr) == 0:
-            log.error("zero norm embedding for %s", k)
-            continue
-        
-        ids.append(k)
-        vecs.append(arr)
+        if FAISS_AVAILABLE:
+            self._initialize_index()
+        else:
+            print("⚠️  Using fallback similarity search (no FAISS)")
     
-    if len(vecs) == 0:
-        raise RuntimeError("no valid embeddings to index")
+    def _initialize_index(self):
+        """Initialize FAISS index."""
+        try:
+            if os.path.exists(self.index_path):
+                self.index = faiss.read_index(self.index_path)
+                print(f"✅ FAISS index loaded: {self.index.ntotal} vectors")
+            else:
+                # Create new index
+                self.index = faiss.IndexFlatIP(self.dimension)  # Inner product for cosine similarity
+                print(f"✅ FAISS index created: dimension {self.dimension}")
+        except Exception as e:
+            print(f"⚠️  Could not load FAISS index: {e}")
+            self.index = faiss.IndexFlatIP(self.dimension)
     
-    vecs = np.stack(vecs)
-    d = vecs.shape[1]
-    
-    log.info("building faiss index: %d vectors, dim=%d", vecs.shape[0], d)
-    
-    # Create index (using inner product for cosine similarity)
-    index = faiss.IndexFlatIP(d)
-    
-    # Normalize for cosine similarity
-    faiss.normalize_L2(vecs)
-    index.add(vecs)
-    
-    # Save index
-    faiss.write_index(index, index_path)
-    
-    # Save id->pos mapping
-    mapping = {"ids": ids}
-    mapping_path = pathlib.Path(index_path).with_suffix(".ids.json")
-    mapping_path.write_text(json.dumps(mapping))
-    
-    log.info("faiss index written: %s", index_path)
-    return index_path
-
-def load_faiss_index(index_path: str = "luna_carma_integration/faiss.index") -> Tuple[faiss.Index, List[str]]:
-    """Load FAISS index with error handling"""
-    if not pathlib.Path(index_path).exists():
-        raise FileNotFoundError(f"FAISS index not found: {index_path}")
-    
-    index = faiss.read_index(index_path)
-    
-    # Load id mapping
-    mapping_path = pathlib.Path(index_path).with_suffix(".ids.json")
-    if mapping_path.exists():
-        mapping = json.loads(mapping_path.read_text())
-        ids = mapping["ids"]
-    else:
-        log.warning("No ID mapping found, using empty list")
-        ids = []
-    
-    log.info("FAISS index loaded: %d vectors", index.ntotal)
-    return index, ids
-
-def search_similar(index: faiss.Index, ids: List[str], query_vec: np.ndarray, top_k: int = 5) -> List[Tuple[str, float]]:
-    """Search for similar vectors using FAISS index"""
-    if query_vec.ndim == 1:
-        query_vec = query_vec.reshape(1, -1)
-    
-    # Normalize query vector
-    faiss.normalize_L2(query_vec)
-    
-    # Search
-    D, I = index.search(query_vec, top_k)
-    
-    # Convert indices to IDs
-    results = []
-    for i, (dist, idx) in enumerate(zip(D[0], I[0])):
-        if idx < len(ids):
-            results.append((ids[idx], float(dist)))
-    
-    return results
-
-if __name__ == "__main__":
-    import sys
-    
-    if len(sys.argv) > 1 and sys.argv[1] == "build":
-        # Build index
-        embed_path = "AI_Core/Nova AI/AI/personality/embedder_cache/master_test_cache.json"
-        index_path = "luna_carma_integration/faiss.index"
+    def add_vectors(self, vectors: List[List[float]], ids: Optional[List[int]] = None):
+        """Add vectors to the index."""
+        if not FAISS_AVAILABLE or self.index is None:
+            # Fallback: store vectors in memory
+            self.vectors.extend(vectors)
+            return
         
         try:
-            result_path = build_faiss_index(embed_path, index_path)
-            print(f"✅ Index built successfully: {result_path}")
+            vectors_array = np.array(vectors, dtype=np.float32)
+            self.index.add(vectors_array)
+            print(f"✅ Added {len(vectors)} vectors to FAISS index")
         except Exception as e:
-            print(f"❌ Failed to build index: {e}")
-    else:
-        # Load and test index
+            print(f"⚠️  Error adding vectors to FAISS: {e}")
+            # Fallback: store in memory
+            self.vectors.extend(vectors)
+    
+    def search(self, query_vector: List[float], k: int = 5) -> Tuple[List[float], List[int]]:
+        """Search for similar vectors."""
+        if not FAISS_AVAILABLE or self.index is None:
+            # Fallback: brute force search
+            return self._fallback_search(query_vector, k)
+        
         try:
-            index, ids = load_faiss_index()
-            print(f"✅ Index loaded: {index.ntotal} vectors")
-            print(f"Sample IDs: {ids[:5]}")
+            query_array = np.array([query_vector], dtype=np.float32)
+            scores, indices = self.index.search(query_array, k)
+            return scores[0].tolist(), indices[0].tolist()
         except Exception as e:
-            print(f"❌ Failed to load index: {e}")
+            print(f"⚠️  Error searching FAISS index: {e}")
+            return self._fallback_search(query_vector, k)
+    
+    def _fallback_search(self, query_vector: List[float], k: int) -> Tuple[List[float], List[int]]:
+        """Fallback similarity search using cosine similarity."""
+        if not self.vectors:
+            return [], []
+        
+        query_np = np.array(query_vector)
+        similarities = []
+        
+        for i, vector in enumerate(self.vectors):
+            vector_np = np.array(vector)
+            # Cosine similarity
+            similarity = np.dot(query_np, vector_np) / (np.linalg.norm(query_np) * np.linalg.norm(vector_np))
+            similarities.append((similarity, i))
+        
+        # Sort by similarity and return top k
+        similarities.sort(reverse=True)
+        scores = [sim[0] for sim in similarities[:k]]
+        indices = [sim[1] for sim in similarities[:k]]
+        
+        return scores, indices
+    
+    def save_index(self):
+        """Save the FAISS index to disk."""
+        if not FAISS_AVAILABLE or self.index is None:
+            return
+        
+        try:
+            os.makedirs(os.path.dirname(self.index_path), exist_ok=True)
+            faiss.write_index(self.index, self.index_path)
+            print(f"✅ FAISS index saved to {self.index_path}")
+        except Exception as e:
+            print(f"⚠️  Error saving FAISS index: {e}")
+    
+    def get_stats(self) -> dict:
+        """Get index statistics."""
+        if FAISS_AVAILABLE and self.index is not None:
+            return {
+                "total_vectors": self.index.ntotal,
+                "dimension": self.dimension,
+                "faiss_available": True
+            }
+        else:
+            return {
+                "total_vectors": len(self.vectors),
+                "dimension": self.dimension,
+                "faiss_available": False
+            }
+
+def load_faiss_index(index_path: str, dimension: int = 384) -> FAISSOperations:
+    """Load or create a FAISS index."""
+    return FAISSOperations(dimension=dimension, index_path=index_path)

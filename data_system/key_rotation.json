@@ -1,0 +1,27 @@
+{
+  "policies": {},
+  "key_history": {
+    "travis_miner": [
+      {
+        "old_key": "old_key",
+        "new_key": "rotated_a092d479",
+        "rotation_time": "2025-09-23T19:22:07.912200",
+        "rotation_id": "a092d479"
+      },
+      {
+        "old_key": "old_key",
+        "new_key": "rotated_02760836",
+        "rotation_time": "2025-09-23T19:22:18.753121",
+        "rotation_id": "02760836"
+      }
+    ],
+    "personality_analyst": [
+      {
+        "old_key": "old_key",
+        "new_key": "rotated_5efc8119",
+        "rotation_time": "2025-09-23T19:27:52.532406",
+        "rotation_id": "5efc8119"
+      }
+    ]
+  }
+}

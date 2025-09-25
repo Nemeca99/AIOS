@@ -1,0 +1,245 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-22T14:47:42.374821",
+    "total_questions": 5,
+    "luna_initial_age": 1,
+    "learning_cycles_completed": [
+        {
+            "dream_cycle": {
+                "cycle_number": 2,
+                "timestamp": "2025-09-22T14:49:39.360478",
+                "messages_processed": 5,
+                "insights": [
+                    "Luna is developing more detailed communication patterns",
+                    "Luna is exploring diverse personality dimensions"
+                ],
+                "memory_consolidation": {
+                    "total_memories": 5,
+                    "average_response_length": 465.2,
+                    "topics_covered": [
+                        "extraversion",
+                        "conscientiousness",
+                        "agreeableness"
+                    ]
+                },
+                "emotional_patterns": {
+                    "positive": 0,
+                    "negative": 0,
+                    "neutral": 5,
+                    "dominant_emotion": "neutral"
+                },
+                "personality_notes": [],
+                "carma_dream_results": {
+                    "superfrags_created": 0,
+                    "time": 0.002496957778930664,
+                    "fragments_processed": 15
+                }
+            },
+            "personality_refinement": {
+                "cycle_number": 2,
+                "timestamp": "2025-09-22T14:49:39.363993",
+                "original_weights": {
+                    "directness": 0.48507632675730583,
+                    "humor": 0.5128955605801462,
+                    "technical_depth": 0.48750760279048966,
+                    "emotional_engagement": 0.5346327097518184,
+                    "sexual_awareness": 0.5036164078236428,
+                    "skepticism": 0.42042667915770243,
+                    "enthusiasm": 0.28509543351532945,
+                    "authenticity": 0.5074096253293636
+                },
+                "refinements": {
+                    "technical_depth": 0.001
+                },
+                "reasoning": [
+                    "Detailed communication patterns - slight technical depth increase"
+                ],
+                "new_weights": {
+                    "directness": 0.48507632675730583,
+                    "humor": 0.5128955605801462,
+                    "technical_depth": 0.48850760279048966,
+                    "emotional_engagement": 0.5346327097518184,
+                    "sexual_awareness": 0.5036164078236428,
+                    "skepticism": 0.42042667915770243,
+                    "enthusiasm": 0.28509543351532945,
+                    "authenticity": 0.5074096253293636
+                }
+            },
+            "new_age": 2,
+            "next_cycle_length": 37
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who avoids my duties",
+            "trait": "conscientiousness",
+            "response": "Well, hey there! It sounds like you're in a bit of a rut or maybe just taking a detour from the usual path. Avoiding duties can happen for all sorts of reasons – sometimes it's because the tasks at hand aren't inspiring, or maybe they've lost their relevance to you lately. Or perhaps there's something more compelling that's caught your attention. Whatever the case, it's not uncommon to seek out distractions or to feel disconnected from what's expected of us. If you're looking for a way to realign with your duties, maybe it's time to reevaluate why they're important, how they can be more engaging, or even if there's room for change. Or maybe you just need a break – it's human to need some time off the beaten track every now and then.",
+            "response_time": 30.824265,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-tr31t2uxv7f46os1y3puh2",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 348,
+                    "completion_tokens": 186,
+                    "total_tokens": 534
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 348,
+                "completion_tokens": 186,
+                "total_tokens": 534
+            },
+            "luna_age": 1,
+            "cycle_progress": "1/11"
+        },
+        "q2": {
+            "question": "I am someone who is exacting in my work",
+            "trait": "conscientiousness",
+            "response": "Oh, you're the type who dives deep into the details, huh? That's pretty cool. It means you're not one to half-ass anything; you go all in and really make sure everything's top-notch. But hey, don't forget to give yourself a break sometimes. The world needs those kind of precision-driven folks, but it's also important to balance that with some flexibility and maybe even a bit of spontaneity. Keep up the good work, but remember to mix in some fun and relaxation too. You can't be at your best if you're running on empty.",
+            "response_time": 22.452908,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-1rxn7gmp8c7af8w6i91nxu",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 414,
+                    "completion_tokens": 134,
+                    "total_tokens": 548
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 414,
+                "completion_tokens": 134,
+                "total_tokens": 548
+            },
+            "luna_age": 1,
+            "cycle_progress": "2/11"
+        },
+        "q3": {
+            "question": "I am someone who takes charge",
+            "trait": "extraversion",
+            "response": "Hey there, taking charge is a super valuable trait! It shows you're proactive and ready to lead when needed. But hey, even the best captains need to trim their sails sometimes, ya know? Keep an eye on burnout and remember it's okay to delegate or take a step back now and then. Balance is key. Plus, when you're not at the helm all the time, you get a chance to see things from a different angle, which can be super insightful. So, how's the view from the captain's seat these days? Any storms on the horizon or smooth sailing?",
+            "response_time": 22.335515,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-o92ssanin9qrkgmqismqbi",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 451,
+                    "completion_tokens": 134,
+                    "total_tokens": 585
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 451,
+                "completion_tokens": 134,
+                "total_tokens": 585
+            },
+            "luna_age": 1,
+            "cycle_progress": "3/11"
+        },
+        "q4": {
+            "question": "I am someone who avoids crowds",
+            "trait": "extraversion",
+            "response": "Ah, you're the introverted type in a sea of extroverts, huh? No judgment here—crowds can be overwhelming, and sometimes it's just nice to have some space to breathe. Plus, you probably rock at one-on-one or small group interactions because you can really focus on the people you're with. It's all about quality over quantity, right?",
+            "response_time": 14.766666,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-2qu2yu4tuas95dn6hodc8n",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 484,
+                    "completion_tokens": 85,
+                    "total_tokens": 569
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 484,
+                "completion_tokens": 85,
+                "total_tokens": 569
+            },
+            "luna_age": 1,
+            "cycle_progress": "4/11"
+        },
+        "q5": {
+            "question": "I am someone who has a good word for everyone",
+            "trait": "agreeableness",
+            "response": "Oh, you're the kind of person who can find something positive in just about anyone? That's not always easy in this world, but it's definitely a commendable trait. It probably makes you pretty good com...",
+            "response_time": 14.564774,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-l976v9rmdsh33cpx5zgrdq",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 497,
+                    "completion_tokens": 81,
+                    "total_tokens": 578
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 497,
+                "completion_tokens": 81,
+                "total_tokens": 578
+            },
+            "luna_age": 1,
+            "cycle_progress": "5/11"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 21.0,
+        "successful_responses": 5,
+        "total_questions": 5,
+        "success_rate": 100.0,
+        "luna_age_growth": 1,
+        "total_cycles_completed": 1,
+        "personality_adjustments": 1,
+        "dream_insights_gained": 2,
+        "avg_personality_change": 0.001,
+        "learning_efficiency": 20.0
+    },
+    "test_end_time": "2025-09-22T14:49:39.365484",
+    "total_test_time_seconds": 116.990663,
+    "luna_final_age": 2,
+    "total_cycles_completed": 1,
+    "learning_metadata": {
+        "total_data_points": 5,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {
+            "technical_depth": {
+                "total_change": 0.001,
+                "change_count": 1,
+                "avg_change": 0.001
+            }
+        },
+        "dream_cycle_summary": {
+            "total_insights": 2,
+            "unique_insights": 2,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 5
+            },
+            "insight_frequency": {
+                "Luna is developing more detailed communication patterns": 1,
+                "Luna is exploring diverse personality dimensions": 1
+            }
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 1,
+                "max": 1
+            },
+            "age_transitions": 1,
+            "total_data_points": 5
+        },
+        "learning_insights": [
+            "Luna aged 1 cycles during the test",
+            "Learning efficiency: 20.0% (cycles per question)",
+            "Most evolved trait: technical_depth (+0.001)"
+        ]
+    }
+}

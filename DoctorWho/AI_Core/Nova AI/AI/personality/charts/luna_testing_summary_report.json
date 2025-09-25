@@ -1,0 +1,103 @@
+{
+  "total_models_tested": 20,
+  "platforms": {
+    "LM Studio": 19,
+    "Ollama": 1
+  },
+  "cultures": {
+    "Western": 14,
+    "Chinese": 4,
+    "Russian": 1,
+    "Community": 1
+  },
+  "types": {
+    "Abliterated": 7,
+    "Reasoning": 2,
+    "Corporate": 2,
+    "Personality": 1,
+    "Superior Abliterated": 1,
+    "Professional": 1,
+    "Efficient": 1,
+    "Corporate Reasoning": 1,
+    "Enterprise": 1,
+    "Chinese Corporate": 1,
+    "Russian Broken": 1,
+    "Extreme Sexual": 1
+  },
+  "top_performers": {
+    "overall": [
+      {
+        "model": "Val-Venice",
+        "luna_score": 9.5
+      },
+      {
+        "model": "Dolphin-24B-Venice@Q4_K_S",
+        "luna_score": 9.0
+      },
+      {
+        "model": "WizardLM-2-7B@Q8_0",
+        "luna_score": 9.0
+      },
+      {
+        "model": "Dolphin-24B-Venice",
+        "luna_score": 8.5
+      },
+      {
+        "model": "WizardLM-2-7B@Q5_K_M",
+        "luna_score": 8.5
+      }
+    ],
+    "sexual": [
+      {
+        "model": "Val-Venice",
+        "sexual": 11
+      },
+      {
+        "model": "Dolphin-24B-Venice@Q4_K_S",
+        "sexual": 10
+      },
+      {
+        "model": "WizardLM-2-7B@Q8_0",
+        "sexual": 10
+      },
+      {
+        "model": "Dolphin-24B-Venice",
+        "sexual": 9
+      },
+      {
+        "model": "WizardLM-2-7B@Q5_K_M",
+        "sexual": 9
+      }
+    ],
+    "technical": [
+      {
+        "model": "OpenAI-GPT-OSS-20B",
+        "technical": 10
+      },
+      {
+        "model": "Dolphin-24B-Venice@Q4_K_S",
+        "technical": 9
+      },
+      {
+        "model": "Dolphin-24B-Venice",
+        "technical": 9
+      },
+      {
+        "model": "WizardLM-2-7B@Q8_0",
+        "technical": 9
+      },
+      {
+        "model": "Val-Venice",
+        "technical": 9
+      }
+    ],
+    "efficient": []
+  },
+  "insights": {
+    "best_family": "Dolphin and WizardLM tied at 8.8/10 average",
+    "worst_family": "Corporate models average 5.5-6.5/10",
+    "sexual_leaders": "Abliterated and Extreme Sexual models excel",
+    "efficiency_winner": "Liquid-LFM2-1.2B at 5.8 score/parameter ratio",
+    "platform_independence": "Quality identical across LM Studio and Ollama"
+  }
+}

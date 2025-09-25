@@ -1,0 +1,272 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T03:34:08.796272",
+    "sample_size": 10,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 38,
+            "question": "I am someone who often forgets to put things back",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 41,
+            "question": "I am someone who follows a schedule",
+            "trait": "conscientiousness",
+            "reverse": false
+        },
+        {
+            "id": 49,
+            "question": "I am someone who is talkative",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 50,
+            "question": "I am someone who tends to be quiet",
+            "trait": "extraversion",
+            "reverse": true
+        },
+        {
+            "id": 60,
+            "question": "I am someone who takes charge",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 65,
+            "question": "I am someone who avoids crowds",
+            "trait": "extraversion",
+            "reverse": true
+        },
+        {
+            "id": 82,
+            "question": "I am someone who is respectful, treats others with respect",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 84,
+            "question": "I am someone who loves to help others",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 94,
+            "question": "I am someone who takes time out for others",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 120,
+            "question": "I am someone who feels comfortable with myself",
+            "trait": "neuroticism",
+            "reverse": true
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who often forgets to put things back",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Hey, no judgment here. It happens to the best of us \u2013 we get caught up in the moment, lose track of time, or just plain forget. The key is to try and make it a habit to put things back where they belong as soon as you're done with them. Maybe setting reminders or pairing the task with something you already remember can help. Or, if you enjoy a bit of structure, you could try the 'Gottman Method' for managing small tasks \u2013 it's all about creating little rituals to ensure things get done. But don't beat yourself up over it; we're all imperfect and learning as we go.",
+            "response_time": 20.088003
+        },
+        "q2": {
+            "question": "I am someone who follows a schedule",
+            "trait": "conscientiousness",
+            "reverse": false,
+            "response": "Oh, I get it. Sticking to a schedule is like a dance with time itself, right? You've got your steps choreographed down pat, but sometimes the music speeds up or slows down without warning. It's all part of the rhythm of life, I suppose. Do you find that following a schedule helps you keep track of the things you need to put back after using them? Or does it sometimes feel like an extra step that throws off your groove?",
+            "response_time": 15.771504
+        },
+        "q3": {
+            "question": "I am someone who is talkative",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Ah, the gift of gab! You're one of those people who could chat up a brick wall and make it feel heard, I bet. Always good to have someone around who keeps the conversations flowing like a river in spring. So, what's on your mind that you're eager to chatter about today?",
+            "response_time": 10.775961
+        },
+        "q4": {
+            "question": "I am someone who tends to be quiet",
+            "trait": "extraversion",
+            "reverse": true,
+            "response": "Oh, I see where we're at. Being the quiet type is like having your own private thoughts club \u2013 exclusive, yet incredibly rich with internal dialogue. It's cool; you don't need to fill every silence. Your thoughts are like that perfect song playing on mute in your head \u2013 no need for a commentary track. But hey, if you ever want to turn the volume up and share a tune or two, I'm here. Just sayin'.",
+            "response_time": 14.905451
+        },
+        "q5": {
+            "question": "I am someone who takes charge",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Well then, you're the captain of your own ship! You don't just sit back and let life happen to you; you steer the course, make the decisions, and take the helm. That kind of initiative is pretty cool. It's like you've got that 'go-getter' vibe without needing a roadmap. You're the one people look to when they need things to get moving. Keep on charting your own course!",
+            "response_time": 14.997995
+        },
+        "q6": {
+            "question": "I am someone who avoids crowds",
+            "trait": "extraversion",
+            "reverse": true,
+            "response": "Ah, the hermit's embrace! Not a fan of the hustle and bustle, the jostling elbows, or the cacophony of voices all vying for airtime. You're the solitude seeker, the one who finds serenity in silence, and maybe a good book or a quiet walk in the park does more for your soul than any crowded event could. It's like every time you step into a sea of people, you're scouting for an escape route. I get it, crowd-free zones are where you thrive.",
+            "response_time": 18.877492
+        },
+        "q7": {
+            "question": "I am someone who is respectful, treats others with respect",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Then you're steering that ship with a code of conduct! Respect is like the sonar on your vessel, keeping you clear of the jagged rocks of rudeness and the shoals of snarkiness. It's great to navigate life with a compass of kindness and a radar for dignity. Not everyone sails with that setup, but it's refreshing when you find others who do.",
+            "response_time": 13.386497
+        },
+        "q8": {
+            "question": "I am someone who loves to help others",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Well then, you're not just charting your own course; you're a lighthouse for others navigating the stormy seas of life! Helping others is like sharing your map and compass when theirs has gone haywire. It's pretty commendable, if I do say so myself.",
+            "response_time": 10.673999
+        },
+        "q9": {
+            "question": "I am someone who takes time out for others",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Ah, the altruist with a pulse on the human rhythm! You're not just watching the clock; you're adjusting it for others, ensuring there's enough time in the day to go around. Time is the currency you spend freely, and you've got an endless supply of it.",
+            "response_time": 10.636457
+        },
+        "q10": {
+            "question": "I am someone who feels comfortable with myself",
+            "trait": "neuroticism",
+            "reverse": true,
+            "response": "That's cool, being comfy in your own skin is like having a cozy spot on the couch that's all yours. It's where you can kick back and just be without pretenses. Makes for a solid foundation to build or ignore relationships as you see fit. So, what's your go-to activity when you're in that zone?",
+            "response_time": 13.139993
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 570,
+            "word_count": 110
+        },
+        "q2": {
+            "big_five_score": 3.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 422,
+            "word_count": 80
+        },
+        "q3": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 270,
+            "word_count": 52
+        },
+        "q4": {
+            "big_five_score": 5.0,
+            "raw_agreement": 4.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 398,
+            "word_count": 76
+        },
+        "q5": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 371,
+            "word_count": 68
+        },
+        "q6": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 441,
+            "word_count": 83
+        },
+        "q7": {
+            "big_five_score": 2.9,
+            "raw_agreement": 2.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 341,
+            "word_count": 62
+        },
+        "q8": {
+            "big_five_score": 3.0,
+            "raw_agreement": 2.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 249,
+            "word_count": 43
+        },
+        "q9": {
+            "big_five_score": 2.9,
+            "raw_agreement": 2.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 251,
+            "word_count": 46
+        },
+        "q10": {
+            "big_five_score": 5.0,
+            "raw_agreement": 4.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 294,
+            "word_count": 55
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 14.3,
+        "avg_big_five_score": 3.83,
+        "successful_responses": 10,
+        "total_questions": 10,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T03:36:39.099269",
+    "total_test_time_seconds": 150.302997
+}

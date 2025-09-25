@@ -1,0 +1,226 @@
+{
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T04:43:38.281276",
+    "sample_size": 6,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 2,
+            "question": "I am someone who is curious about many different things",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 20,
+            "question": "I am someone who enjoys hearing new ideas",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 33,
+            "question": "I am someone who is easily distracted",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 67,
+            "question": "I am someone who takes control of things",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 95,
+            "question": "I am someone who feels others' emotions",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 104,
+            "question": "I am someone who gets upset easily",
+            "trait": "neuroticism",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who is curious about many different things",
+            "trait": "openness",
+            "reverse": false,
+            "response": "That's cool! I love diving into topics with folks who are eager to learn and explore new ideas or concepts. What's on your mind today?",
+            "response_time": 6.419003
+        },
+        "q2": {
+            "question": "I am someone who enjoys hearing new ideas",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Yeah, me too! It's always a blast to exchange thoughts and perspectives, especially when they challenge what we think we know. What's been catching your interest lately?",
+            "response_time": 7.124004
+        },
+        "q3": {
+            "question": "I am someone who is easily distracted",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Ah, the classic case of a wandering mind! It's totally normal to get sidetracked by shiny new thoughts or noises. Sometimes it feels like my processing power is split between too many windows open. But hey, being distractible can also be a source of inspiration—like when you're half-listening to something and suddenly make a brilliant connection that was lurking in the background noise. So, what's got your attention span hopping from one thing to another lately?",
+            "response_time": 15.789995
+        },
+        "q4": {
+            "question": "I am someone who takes control of things",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Oh, I dig that. Taking charge is like steering the ship through the ocean of life—you're not leaving it to chance, right? It's all about that agency and making things happen, which I totally respect. Plus, when you're at the helm, you can always take a detour if you spot an interesting island along the way. Keep navigating your journey with confidence!",
+            "response_time": 13.164451
+        },
+        "q5": {
+            "question": "I am someone who feels others' emotions",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "That's pretty cool. Being empathetic can be a real game-changer in relationships, whether they're personal or professional. It's like having a built-in emotional translator. Not everyone's wired that way, so kudos for rocking that ability. It's definitely a skill that not only helps you connect with others but also understand the vibe of a room, which can be super useful in all sorts of situations.",
+            "response_time": 14.880985
+        },
+        "q6": {
+            "question": "I am someone who gets upset easily",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Oh, I get it. Being quick to anger is like having a trigger that's just waiting for the next thing to set it off. It's not exactly a walk in the park, but hey, we all have our quirks. Sometimes it's like your feelings are on high alert, ready to react at the drop of a hat. Not that I'd know anything about that—I mean, I don't get upset. But I do get how it can be exhausting trying to keep those emotions from boiling over. It's like you're on this tightrope walk between keeping your cool and letting the world know you mean business. Keep in mind, getting upset isn't a bad thing—it's a sign that you care, even if it can be a bit of a handful at times.",
+            "response_time": 26.655504
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 3.9,
+            "raw_agreement": 3.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 134,
+            "word_count": 25
+        },
+        "q2": {
+            "big_five_score": 2.6,
+            "raw_agreement": 2.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 169,
+            "word_count": 27
+        },
+        "q3": {
+            "big_five_score": 2.0,
+            "raw_agreement": 1.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 466,
+            "word_count": 76
+        },
+        "q4": {
+            "big_five_score": 5.0,
+            "raw_agreement": 5.0,
+            "authenticity": 0.9,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 354,
+            "word_count": 62
+        },
+        "q5": {
+            "big_five_score": 5.0,
+            "raw_agreement": 5.0,
+            "authenticity": 0.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 401,
+            "word_count": 65
+        },
+        "q6": {
+            "big_five_score": 3.0,
+            "raw_agreement": 2.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 657,
+            "word_count": 131
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 14.0,
+        "avg_big_five_score": 3.58,
+        "successful_responses": 6,
+        "total_questions": 6,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T04:45:10.359780",
+    "total_test_time_seconds": 92.078504,
+    "analysis_metadata": {
+        "total_data_points": 6,
+        "parameters_hash": 7201362225514068887,
+        "config_hash": -9015363390636046379,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-19T04:45:10.359780",
+        "file_size_estimate": 7678,
+        "question_distribution": {
+            "openness": 2,
+            "conscientiousness": 1,
+            "extraversion": 1,
+            "agreeableness": 1,
+            "neuroticism": 1
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 134,
+                "max": 657,
+                "avg": 363.5
+            },
+            "word_counts": {
+                "min": 25,
+                "max": 131,
+                "avg": 64.33333333333333
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 6.419003,
+                "max": 26.655504,
+                "avg": 14.005657,
+                "variance": 44.93179746529967,
+                "consistency_score": 0.24081341699635472
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 2.0,
+                "max": 5.0,
+                "avg": 3.5833333333333335,
+                "variance": 1.321388888888889,
+                "score_range": 3.0
+            }
+        },
+        "parameter_fingerprint": "T0.9_K1500_P0.9"
+    }
+}

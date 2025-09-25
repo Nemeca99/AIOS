@@ -1,0 +1,74 @@
+{
+  "file_id": "root_17b230ff",
+  "parent_id": null,
+  "level": 0,
+  "node_address": "fm://root_17b230ff-79550a8671e1",
+  "ancestors": [],
+  "children": [],
+  "content": "Ensemble learning is a machine learning technique that combines multiple models to make better predictions than any individual model could achieve.",
+  "created": "2025-09-23T15:29:51.342881",
+  "size": 147,
+  "analysis": {
+    "common_words": [
+      "learning",
+      "ensemble",
+      "machine",
+      "technique",
+      "that",
+      "combines",
+      "multiple",
+      "models",
+      "make",
+      "better",
+      "predictions",
+      "than",
+      "individual",
+      "model",
+      "could",
+      "achieve"
+    ],
+    "common_phrases": [
+      "ensemble learning",
+      "is a",
+      "machine learning",
+      "technique that",
+      "combines multiple",
+      "models to",
+      "make better",
+      "predictions than",
+      "any individual",
+      "model could"
+    ],
+    "emotion_scores": {
+      "excitement": 0.0,
+      "frustration": 0.0,
+      "curiosity": 0.0,
+      "determination": 0.0,
+      "creativity": 0.0,
+      "technical": 0.0,
+      "philosophical": 0.0
+    },
+    "tone_signature": {
+      "formality": 0.0,
+      "casualness": 0.0,
+      "technicality": 0.0,
+      "questioning": 0.0,
+      "exclamation": 0.0
+    },
+    "word_count": 21,
+    "char_count": 147
+  },
+  "access_count": 0,
+  "last_accessed": "2025-09-23T15:29:51.342881",
+  "specialization": "enthusiastic",
+  "tags": [
+    "machine learning",
+    "ensemble learning",
+    "technique",
+    "machine",
+    "is a",
+    "ensemble",
+    "learning",
+    "that"
+  ]
+}

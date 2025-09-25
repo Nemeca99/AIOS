@@ -1,0 +1,16 @@
+{
+  "id": "root_22b78682",
+  "content": "I am someone who am quiet around strangers",
+  "level": 0,
+  "hits": 0,
+  "parent_id": null,
+  "children_ids": [],
+  "created_at": "F:\\AIOS_Clean\\HiveMind",
+  "metadata": {
+    "type": "learning_question",
+    "trait": "extraversion",
+    "question_id": "extraversion_20",
+    "reverse": true,
+    "source": "big_five_personality_test"
+  }
+}

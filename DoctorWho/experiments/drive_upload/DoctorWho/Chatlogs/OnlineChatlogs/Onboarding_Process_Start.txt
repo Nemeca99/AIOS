@@ -1,0 +1,17 @@
+Onboarding Process Start
+
+User
+Hello! This is the primer program to start the onboarding process. Please let me know when you are ready for the Google Drive link.
+
+Assistant
+Hello, I'm ready to start the onboarding process! Please go ahead and share the Google Drive link when you're ready.
+
+User
+https:docs.google.comdocumentd1G9e1Prww5kBo7SvoBIAfCIScN94R63vvvAYbqsxbMr4edit?usp=drive_link
+
+Assistant
+Great! Ive got the Google Drive link. Let me take a moment to process the document. Ill be ready to proceed shortly.
+
+Assistant
+It looks like I can't directly access the document content right now. Could you either adjust the sharing settings or share the key content here so I can continue with the onboarding process?
+

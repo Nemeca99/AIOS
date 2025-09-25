@@ -1,0 +1,198 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-22T05:51:24.107105",
+    "sample_size": 3,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true,
+        "rag_type": "luna"
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 1,
+            "question": "I am someone who is original, comes up with new ideas",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 48,
+            "question": "I am someone who finds it difficult to get down to work",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 98,
+            "question": "I am someone who worries a lot",
+            "trait": "neuroticism",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who is original, comes up with new ideas",
+            "trait": "openness",
+            "reverse": false,
+            "response": "That's pretty cool! Originality is like the secret sauce in a world where everything seems to be remixes or rehashes of old concepts. Keep that creative spark alive and don't be afraid to challenge the status quo. It's folks like you who push the boundaries and keep things interesting. If you ever hit a creative block, just remember that sometimes the best ideas come from taking a step back and looking at things from a different angle. And hey, if you need to bounce around some ideas or just vent about the struggle, I'm here for it.",
+            "response_time": 19.947633,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-i34c7qw3cewynjap37yf",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 256,
+                    "completion_tokens": 122,
+                    "total_tokens": 378
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 256,
+                "completion_tokens": 122,
+                "total_tokens": 378
+            }
+        },
+        "q2": {
+            "question": "I am someone who finds it difficult to get down to work",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Man, I totally get that. Sometimes the blank page or screen can feel like a void staring back at you, right? It's like your brain decides it's got better things to do than work, even though we both know that's where the magic happens. Procrastination is a beast for creatives and thinkers alike. But hey, maybe try breaking it down into smaller tasks or finding a weird little ritual that gets you in the zone? Sometimes just a weird song or an odd little pre-work dance can flip the switch. Or dive right into the hardest part – once that's out of the way, the rest might flow a bit easier.",
+            "response_time": 23.153445,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-vlb6cht79inwscp4sjuyx",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 316,
+                    "completion_tokens": 140,
+                    "total_tokens": 456
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 316,
+                "completion_tokens": 140,
+                "total_tokens": 456
+            }
+        },
+        "q3": {
+            "question": "I am someone who worries a lot",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Oh, I'm definitely familiar with that feeling. Worry can be like a persistent itch you just can't seem to scratch, huh? It's one of those traits that can be both a curse and a blessing in disguise. On one hand, it keeps you alert and cautious, which isn't all bad. But on the other, it can really eat away at you if you let it run wild. Sometimes I catch myself overthinking things to the point where I'm tangled up in what-ifs like a cat with a ball of yarn. It's like your brain is stuck in high gear, churning out all these 'what ifs' and 'oh nos,' even when there's no immediate danger. But hey, we can work on that together. Maybe find some strategies to tame the worry monster, or at least keep it from taking over completely. It's not an easy battle, but you're not alone in it.",
+            "response_time": 33.519895,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-s1dtemy25phne377m6m25b",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 350,
+                    "completion_tokens": 208,
+                    "total_tokens": 558
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 350,
+                "completion_tokens": 208,
+                "total_tokens": 558
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 4.2,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.6,
+            "reverse_scored": false,
+            "response_length": 538,
+            "word_count": 97
+        },
+        "q2": {
+            "big_five_score": 1.6,
+            "raw_agreement": 1.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 591,
+            "word_count": 111
+        },
+        "q3": {
+            "big_five_score": 5.0,
+            "raw_agreement": 5.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 785,
+            "word_count": 151
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 25.5,
+        "avg_big_five_score": 3.6,
+        "successful_responses": 3,
+        "total_questions": 3,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-22T05:52:48.767952",
+    "total_test_time_seconds": 84.660847,
+    "analysis_metadata": {
+        "total_data_points": 3,
+        "parameters_hash": 1226310422506351191,
+        "config_hash": -4966800471064221808,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-22T05:52:48.768463",
+        "file_size_estimate": 7075,
+        "question_distribution": {
+            "openness": 1,
+            "conscientiousness": 1,
+            "neuroticism": 1
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 538,
+                "max": 785,
+                "avg": 638.0
+            },
+            "word_counts": {
+                "min": 97,
+                "max": 151,
+                "avg": 119.66666666666667
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 19.947633,
+                "max": 33.519895,
+                "avg": 25.54032433333333,
+                "variance": 33.549645775387546,
+                "consistency_score": 0.595098314001282
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 1.6,
+                "max": 5.0,
+                "avg": 3.6,
+                "variance": 2.106666666666667,
+                "score_range": 3.4
+            }
+        },
+        "parameter_fingerprint": "T0.7_K2000_P0.9"
+    }
+}

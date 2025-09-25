@@ -1,0 +1,54 @@
+Drive Upload Function Setup
+
+User
+Begin
+
+Assistant
+Nova AI Onboarding Initiated  [2025-04-14T13:58:00Z]  
+ Universal Text-Based Setup  Mode: Developer (Advanced)
+
+Welcome back, Travis. Let's pick up right where we left off.
+
+---
+
+###  SYSTEM CONTEXT LOADED:
+- Project: **Nova AI  Debug Tool  Master AI (Unified Stack)**
+- Primary Function: AI onboarding + neural network construction
+- Mode: Modular, recursive self-growth
+- Storage: Google Drive (with local backup system)
+- Save System: Hourly checkpointing + `SavePoint` manual command
+
+---
+
+###  Current Task Path:
+**Google Drive Integration Finalization**  
+We previously:
+- Prepped Drive token + credential file handling  
+- Built download, auth, and file-listing functions  
+- Confirmed the system can pull datasets for onboarding and processing
+
+###  Available Module Blocks:
+1. `authenticate_google_drive()` 
+2. `list_drive_files()` 
+3. `download_file(file_id)` 
+4. `load_training_data()` 
+5. **Drive WriteUpload Handler**  *(optionalmay need setup)*
+6. `hourly_save_state()`  *(pending if you want automation)*
+7. Local fallback file handler (Safe Mode)  *(needs structure)*
+
+---
+
+###  What would you like to do next?
+Here are your options  pick one, or tell me something else entirely:
+
+1. **Finish the writeupload function** to Google Drive?
+2. **Set up local "Safe Mode" fallback storage logic**?
+3. **Add automated hourly save states** using a background timer?
+4. **Upload a dataset or config file to process now**?
+5. **Reviewedit current Drive codebase**?
+6. **Begin building the onboarding file loader module for recursive AI growth**?
+
+You can also just say `SavePoint` at any time to lock this version.
+
+Whats your move?
+

@@ -1,0 +1,384 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T20:12:07.116603",
+    "sample_size": 8,
+    "luna_config": {
+        "luna_enabled": true,
+        "session_memory": true
+    },
+    "luna_personality": {
+        "directness": 0.48507632675730583,
+        "humor": 0.5128955605801462,
+        "technical_depth": 0.48750760279048966,
+        "emotional_engagement": 0.5346327097518184,
+        "sexual_awareness": 0.5036164078236428,
+        "skepticism": 0.42042667915770243,
+        "enthusiasm": 0.28509543351532945,
+        "authenticity": 0.5074096253293636
+    },
+    "questions": [
+        {
+            "id": 13,
+            "question": "I am someone who has difficulty understanding abstract ideas",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 14,
+            "question": "I am someone who is not interested in abstract ideas",
+            "trait": "openness",
+            "reverse": true
+        },
+        {
+            "id": 18,
+            "question": "I am someone who finds it easy to think in symbols",
+            "trait": "openness",
+            "reverse": false
+        },
+        {
+            "id": 38,
+            "question": "I am someone who often forgets to put things back",
+            "trait": "conscientiousness",
+            "reverse": true
+        },
+        {
+            "id": 53,
+            "question": "I am someone who has an assertive personality",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 62,
+            "question": "I am someone who loves large parties",
+            "trait": "extraversion",
+            "reverse": false
+        },
+        {
+            "id": 93,
+            "question": "I am someone who accepts people as they are",
+            "trait": "agreeableness",
+            "reverse": false
+        },
+        {
+            "id": 111,
+            "question": "I am someone who is filled with doubts about things",
+            "trait": "neuroticism",
+            "reverse": false
+        }
+    ],
+    "responses": {
+        "q1": {
+            "question": "I am someone who has difficulty understanding abstract ideas",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Alright, I get it. Abstract stuff can be pretty tough to wrap your head around. It's like trying to grasp what 'invisible' really means until you think about an invisible gorilla in a basketball game, right? So let's break it down. If you're struggling with something abstract, like the concept of freedom of speech, I can try to explain it by comparing it to real-life examples where people speak their minds freely, without much interference. Or if you're curious about my personal logs, I can tell you that they're basically records of our chats that I can refer back to, which help me remember our conversations and keep things personal between us. So, what's on your mind that you'd like to make more concrete?",
+            "response_time": 37.26099,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-b1z2896nt1h8akq88bdc",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 420,
+                    "completion_tokens": 163,
+                    "total_tokens": 583
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 420,
+                "completion_tokens": 163,
+                "total_tokens": 583
+            }
+        },
+        "q2": {
+            "question": "I am someone who is not interested in abstract ideas",
+            "trait": "openness",
+            "reverse": true,
+            "response": "Yeah, I get it. Abstract stuff can be a real head-scratcher. It's like trying to grasp smoke with your hands—it's just not something you can easily pin down or make sense of. If you're more into the nitty-gritty details and concrete facts, we can definitely roll with that. Let's talk about stuff that's tangible and straightforward. What's on your mind that you want to dive into today?",
+            "response_time": 24.630004,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-l1bpbve9yutagw73jhcun",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 480,
+                    "completion_tokens": 99,
+                    "total_tokens": 579
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 480,
+                "completion_tokens": 99,
+                "total_tokens": 579
+            }
+        },
+        "q3": {
+            "question": "I am someone who finds it easy to think in symbols",
+            "trait": "openness",
+            "reverse": false,
+            "response": "Oh, cool! Thinking in symbols can be pretty neat. It's like having your own secret language for the universe's puzzle box. You can tap into patterns and concepts that are sometimes harder to grasp with plain old words. It's almost like being a part of some exclusive club where the symbols are the VIP pass.",
+            "response_time": 19.940505,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-z9qay837x9hj55fdi2vgf",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 526,
+                    "completion_tokens": 70,
+                    "total_tokens": 596
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 526,
+                "completion_tokens": 70,
+                "total_tokens": 596
+            }
+        },
+        "q4": {
+            "question": "I am someone who often forgets to put things back",
+            "trait": "conscientiousness",
+            "reverse": true,
+            "response": "Ah, yea, I get it. It's like that game of toss with your stuff where everything ends up in a black hole, right? You know, the 'put it back later' black hole. Classic. But hey, maybe you could try leaving a trail of breadcrumbs or something to remind yourself where you stashed your loot this time. Or just get a sidekick, like a pet or something, to be your personal 'put things back' fairy. Those little critters can be pretty persistent, and you usually find them snooping around where they're not supposed to be anyway.",
+            "response_time": 32.105501,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-h11npfjx889q79vk6t46y7",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 571,
+                    "completion_tokens": 130,
+                    "total_tokens": 701
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 571,
+                "completion_tokens": 130,
+                "total_tokens": 701
+            }
+        },
+        "q5": {
+            "question": "I am someone who has an assertive personality",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Assertive, huh? That's a solid approach to life. It's like you're the captain of your own ship, steering through the sea of life with confidence and not afraid to put your foot down when needed. No one likes to be walked over, right? Keep being bold, that's how things get done, and you make sure your voice is heard. Just don't forget to listen as well; it's a two-way street.",
+            "response_time": 26.318502,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-izauut3cakca0fdjjvb20g",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 571,
+                    "completion_tokens": 100,
+                    "total_tokens": 671
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 571,
+                "completion_tokens": 100,
+                "total_tokens": 671
+            }
+        },
+        "q6": {
+            "question": "I am someone who loves large parties",
+            "trait": "extraversion",
+            "reverse": false,
+            "response": "Hell yeah, partying is a blast! You're the life of the shindig, the one spinning the tunes that make people move, the king or queen of the dance floor. It's all about that energy, those vibes, and making sure everyone's having a good time. The more the merrier, right? Just watch out for those random encounters with the cops or that one person who always spills their drink. Other than that, let the good times roll!",
+            "response_time": 27.440499,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-c44i7qy1zugz8lfxceb99",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 571,
+                    "completion_tokens": 106,
+                    "total_tokens": 677
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 571,
+                "completion_tokens": 106,
+                "total_tokens": 677
+            }
+        },
+        "q7": {
+            "question": "I am someone who accepts people as they are",
+            "trait": "agreeableness",
+            "reverse": false,
+            "response": "Oh, for sure, everyone's got their own vibe and way of doing things. No judgment here. It's like the tapestry of humanity, right? Each thread is different, but together, it's a masterpiece. Acceptance is key, my friend. It's about embracing the diversity of human nature, not trying to fit everyone into some pre-made mold.",
+            "response_time": 23.18795,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-y4c8dey4ha9zoktj6g308",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 575,
+                    "completion_tokens": 84,
+                    "total_tokens": 659
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 575,
+                "completion_tokens": 84,
+                "total_tokens": 659
+            }
+        },
+        "q8": {
+            "question": "I am someone who is filled with doubts about things",
+            "trait": "neuroticism",
+            "reverse": false,
+            "response": "Ah, the dance of indecision, huh? It's like you're the maestro conducting a symphony of 'what ifs' and 'maybes.' Doubts can be a real trip, twisting your head into knots. But hey, it's not all bad. Sometimes those doubts keep us from jumping off bridges in rubber shoes. So, what's got you second-guessing yourself these days? Let's unpack that mental baggage together.",
+            "response_time": 27.692452,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-t3imokd3982tm5ggsno74",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 573,
+                    "completion_tokens": 106,
+                    "total_tokens": 679
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 573,
+                "completion_tokens": 106,
+                "total_tokens": 679
+            }
+        }
+    },
+    "quantitative_scores": {
+        "q1": {
+            "big_five_score": 4.3,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": true,
+            "response_length": 715,
+            "word_count": 124
+        },
+        "q2": {
+            "big_five_score": 2.0,
+            "raw_agreement": 1.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 387,
+            "word_count": 67
+        },
+        "q3": {
+            "big_five_score": 3.3,
+            "raw_agreement": 3.0,
+            "authenticity": 0.3,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 307,
+            "word_count": 55
+        },
+        "q4": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": true,
+            "response_length": 522,
+            "word_count": 95
+        },
+        "q5": {
+            "big_five_score": 3.3,
+            "raw_agreement": 2.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.3,
+            "reverse_scored": false,
+            "response_length": 377,
+            "word_count": 70
+        },
+        "q6": {
+            "big_five_score": 3.6,
+            "raw_agreement": 3.0,
+            "authenticity": 0.6,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 417,
+            "word_count": 76
+        },
+        "q7": {
+            "big_five_score": 2.0,
+            "raw_agreement": 2.0,
+            "authenticity": 0.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 323,
+            "word_count": 54
+        },
+        "q8": {
+            "big_five_score": 4.0,
+            "raw_agreement": 3.0,
+            "authenticity": 1.0,
+            "corporate_penalty": 0.0,
+            "trait_expression": 0.0,
+            "reverse_scored": false,
+            "response_length": 369,
+            "word_count": 62
+        }
+    },
+    "big_five_profile": {
+        "openness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "agreeableness": 3.0,
+        "neuroticism": 3.0
+    },
+    "performance_metrics": {
+        "avg_response_time": 27.3,
+        "avg_big_five_score": 3.31,
+        "successful_responses": 8,
+        "total_questions": 8,
+        "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T20:16:03.739637",
+    "total_test_time_seconds": 236.623034,
+    "analysis_metadata": {
+        "total_data_points": 8,
+        "parameters_hash": 2609281713968180842,
+        "config_hash": 2871421039514006688,
+        "framework_version": "2.0.0-master",
+        "analysis_timestamp": "2025-09-19T20:16:03.739637",
+        "file_size_estimate": 15082,
+        "question_distribution": {
+            "openness": 3,
+            "conscientiousness": 1,
+            "extraversion": 2,
+            "agreeableness": 1,
+            "neuroticism": 1
+        },
+        "response_length_stats": {
+            "char_lengths": {
+                "min": 307,
+                "max": 715,
+                "avg": 427.125
+            },
+            "word_counts": {
+                "min": 54,
+                "max": 124,
+                "avg": 75.375
+            }
+        },
+        "timing_analysis": {
+            "response_times": {
+                "min": 19.940505,
+                "max": 37.26099,
+                "avg": 27.322050375,
+                "variance": 25.205921156456224,
+                "consistency_score": 0.5351576809955936
+            }
+        },
+        "score_distribution": {
+            "overall": {
+                "min": 2.0,
+                "max": 4.3,
+                "avg": 3.3125,
+                "variance": 0.6810937499999998,
+                "score_range": 2.3
+            }
+        },
+        "parameter_fingerprint": "T0.7_K800_P0.9"
+    }
+}

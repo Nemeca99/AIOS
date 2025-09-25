@@ -1,0 +1,89 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T20:08:36.849147",
+    "total_questions": 1,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who seeks adventure",
+            "trait": "openness",
+            "response": "Well, seeking adventure is a wild ride, isn't it? It's all about pushing boundaries, taking risks, and experiencing the unexpected. What kind of adventure are you looking for? Something tame like exploring a new city or something more intense like skydiving or deep-sea diving? Or maybe you're into the thrill of the unknown, like a road trip with no destination in mind. Let's chat about it and see where this conversation takes us.",
+            "response_time": 22.564195,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-vajnisoxige6p82r9r4tsw",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 417,
+                    "completion_tokens": 100,
+                    "total_tokens": 517
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 417,
+                "completion_tokens": 100,
+                "total_tokens": 517
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/38"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 22.6,
+        "successful_responses": 1,
+        "total_questions": 1,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: openness"
+        }
+    ],
+    "test_end_time": "2025-09-23T20:09:03.441175",
+    "total_test_time_seconds": 26.592028,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 1,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 1
+        },
+        "learning_insights": []
+    }
+}

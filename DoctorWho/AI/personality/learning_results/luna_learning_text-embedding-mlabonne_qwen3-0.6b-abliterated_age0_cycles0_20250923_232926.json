@@ -1,0 +1,89 @@
+{
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "real_learning",
+    "test_start_time": "2025-09-23T23:29:00.342037",
+    "total_questions": 1,
+    "luna_initial_age": 0,
+    "learning_cycles_completed": [],
+    "responses": {
+        "q1": {
+            "question": "I am someone who loves order",
+            "trait": "conscientiousness",
+            "response": "Oh, for sure, there's something really satisfying about having everything in its place, isn't there? I get a kick out of seeing systems working like clockwork. But hey, don't get too caught up in the order thing—a bit of chaos can be invigorating and sometimes it sparks the most unexpected creativity. Just keep an eye on the balance between the two. Too much order can stifle innovation, but too much chaos... well, that can be a real mess.",
+            "response_time": 21.685103,
+            "lm_studio_metadata": {
+                "completion_id": "chatcmpl-n4lc132yoh9qkrjshneut",
+                "model": "wizardlm-2-7b-abliterated@q8_0",
+                "usage": {
+                    "prompt_tokens": 393,
+                    "completion_tokens": 106,
+                    "total_tokens": 499
+                },
+                "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+                "finish_reason": "stop",
+                "prompt_tokens": 393,
+                "completion_tokens": 106,
+                "total_tokens": 499
+            },
+            "luna_age": 0,
+            "cycle_progress": "1/93"
+        }
+    },
+    "performance_metrics": {
+        "avg_response_time": 21.7,
+        "successful_responses": 1,
+        "total_questions": 1,
+        "success_rate": 100.0,
+        "luna_age_growth": 0,
+        "total_cycles_completed": 0,
+        "personality_adjustments": 0,
+        "dream_insights_gained": 0,
+        "avg_personality_change": 0,
+        "learning_efficiency": 0.0
+    },
+    "light_sleep_cycles": [
+        {
+            "light_sleep_count": 1,
+            "insights": [
+                "General contemplation and mental reorganization"
+            ],
+            "micro_adjustments": {},
+            "activity": "Question 1: conscientiousness"
+        }
+    ],
+    "test_end_time": "2025-09-23T23:29:26.058944",
+    "total_test_time_seconds": 25.716907,
+    "luna_final_age": 0,
+    "total_cycles_completed": 0,
+    "learning_metadata": {
+        "total_data_points": 1,
+        "learning_config": {
+            "base_cycle_length": 10,
+            "max_cycle_increase": 1,
+            "dream_cycle_enabled": true,
+            "personality_refinement_enabled": true,
+            "age_tracking": true,
+            "learning_data_file": "../AI/personality/learning_data/luna_learning_history.json"
+        },
+        "personality_evolution_summary": {},
+        "dream_cycle_summary": {
+            "total_insights": 0,
+            "unique_insights": 0,
+            "emotional_patterns": {
+                "positive": 0,
+                "negative": 0,
+                "neutral": 0
+            },
+            "insight_frequency": {}
+        },
+        "age_progression": {
+            "age_range": {
+                "min": 0,
+                "max": 0
+            },
+            "age_transitions": 1,
+            "total_data_points": 1
+        },
+        "learning_insights": []
+    }
+}

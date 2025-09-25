@@ -1,0 +1,16 @@
+{
+  "id": "root_0f977233",
+  "content": "I am someone who likes order",
+  "level": 0,
+  "hits": 0,
+  "parent_id": null,
+  "children_ids": [],
+  "created_at": "F:\\AIOS_Clean\\HiveMind",
+  "metadata": {
+    "type": "learning_question",
+    "trait": "conscientiousness",
+    "question_id": "conscientiousness_4",
+    "reverse": false,
+    "source": "big_five_personality_test"
+  }
+}
