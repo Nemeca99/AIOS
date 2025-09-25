@@ -70,7 +70,7 @@ class LunaTokenTimeEconometricSystem:
             "minimum_acceptable": 0.3,  # Below this = punishment
             "good": 0.6,  # Good quality threshold
             "excellent": 0.8,  # Excellent quality threshold
-            "perfect": 0.95  # Perfect quality threshold
+            "high": 0.95  # High quality threshold
         }
         
         # Learning parameters
@@ -185,8 +185,8 @@ class LunaTokenTimeEconometricSystem:
         overall_efficiency = (token_efficiency + time_efficiency) / 2.0
         
         # Calculate quality grade
-        if quality_score >= self.quality_thresholds["perfect"]:
-            quality_grade = "Perfect"
+        if quality_score >= self.quality_thresholds["high"]:
+            quality_grade = "High"
         elif quality_score >= self.quality_thresholds["excellent"]:
             quality_grade = "Excellent"
         elif quality_score >= self.quality_thresholds["good"]:

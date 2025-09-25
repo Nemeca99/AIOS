@@ -22,7 +22,7 @@ class ResponseValueTier(Enum):
     MODERATE = "moderate"         # 15-25 tokens (substantial questions)
     HIGH = "high"                 # 50-100 tokens (complex topics)
     CRITICAL = "critical"         # 150-300 tokens (philosophical, high-stakes)
-    MAXIMUM = "maximum"           # 500+ tokens (ultimate complexity)
+    MAXIMUM = "maximum"           # 500+ tokens (maximum complexity)
 
 @dataclass
 class ResponseValueAssessment:
@@ -185,7 +185,7 @@ class LunaResponseValueClassifier:
         # HIGH-COMPLEXITY DOMAINS - REDUCED TO PREVENT OVER-CLASSIFICATION
         high_complexity_domains = {
             "physics": ["quantum mechanics", "relativity theory", "thermodynamics", "electromagnetism", "particle physics"],
-            "philosophy": ["meaning of life", "nature of intelligence", "existential reality", "ultimate truth", "free will"],
+            "philosophy": ["meaning of life", "nature of intelligence", "existential reality", "fundamental truth", "free will"],
             "mathematics": ["calculus", "advanced algebra", "complex equation", "mathematical proof", "theoretical formula"],
             "computer_science": ["machine learning", "neural network", "artificial intelligence", "programming", "algorithm", "data"],
             "biology": ["evolutionary biology", "molecular genetics", "cellular biology", "organism development"],
@@ -302,7 +302,7 @@ class LunaResponseValueClassifier:
         elif tier == ResponseValueTier.CRITICAL:
             reasoning_parts.append("Critical complexity - high token investment warranted")
         else:
-            reasoning_parts.append("Maximum complexity - ultimate token allocation")
+            reasoning_parts.append("Maximum complexity - maximum token allocation")
         
         # Add specific reasoning
         if complexity > 0.5:
@@ -322,7 +322,7 @@ class LunaResponseValueClassifier:
             ResponseValueTier.MODERATE: "Balanced and informative",
             ResponseValueTier.HIGH: "Substantial and thoughtful",
             ResponseValueTier.CRITICAL: "Comprehensive and deep",
-            ResponseValueTier.MAXIMUM: "Ultimate complexity and depth"
+            ResponseValueTier.MAXIMUM: "Maximum complexity and depth"
         }
         
         base_style = styles[tier]

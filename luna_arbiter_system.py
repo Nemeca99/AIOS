@@ -66,7 +66,7 @@ class LunaArbiterSystem:
         """
         print(f"⚙️ Arbiter Assessment: Analyzing response quality...")
         
-        # 1. Generate Gold Standard (The Perfect, Unconstrained Answer)
+        # 1. Generate Gold Standard (The Reference Answer)
         gold_standard = self._generate_gold_standard(user_prompt, luna_response)
         
         # 2. Calculate Response Utility Score
@@ -128,7 +128,7 @@ class LunaArbiterSystem:
     
     def _generate_gold_standard(self, user_prompt: str, luna_response: str) -> str:
         """
-        Generate the perfect, unconstrained answer using the embedder model
+        Generate the reference answer using the embedder model
         This is the Arbiter's ideal response - the Gold Standard
         """
         import requests
@@ -137,7 +137,7 @@ class LunaArbiterSystem:
         # Use the embedder model (llama-3.2-1b-instruct) for Gold Standard generation
         lm_studio_url = "http://localhost:1234/v1/chat/completions"
         
-        arbiter_system_prompt = """You are the Arbiter - an internal AI system that generates perfect, unconstrained responses. 
+        arbiter_system_prompt = """You are the Arbiter - an internal AI system that generates reference responses. 
 You operate outside of token limits and constraints. Your job is to create the ideal response that Luna should have given.
 
 You are Luna's internal teacher and critic. Generate responses that are:
@@ -154,10 +154,10 @@ You must respond with ONLY the Gold Standard response text - no explanations, no
                 "model": "exaone-3.5-2.4b-instruct-abliterated",
                 "messages": [
                     {"role": "system", "content": arbiter_system_prompt},
-                    {"role": "user", "content": f"User asked: '{user_prompt}'\n\nLuna responded: '{luna_response}'\n\nGenerate the perfect Gold Standard response Luna should have given:"}
+                    {"role": "user", "content": f"User asked: '{user_prompt}'\n\nLuna responded: '{luna_response}'\n\nGenerate the reference response Luna should have given:"}
                 ],
-                "temperature": 0.3,  # Lower temperature for more consistent Gold Standards
-                "max_tokens": 200,   # Reasonable length for Gold Standards
+                "temperature": 0.3,  # Lower temperature for more consistent reference responses
+                "max_tokens": 200,   # Reasonable length for reference responses
                 "stream": False
             }
             
@@ -228,7 +228,7 @@ You must respond with ONLY the Gold Standard response text - no explanations, no
             efficiency_ratio = min(1.0, tte_used / max_tte)
             # MUCH HARSHER efficiency penalties
             if efficiency_ratio >= 0.5 and efficiency_ratio <= 0.7:
-                efficiency_component = 0.4  # Perfect efficiency (narrower range)
+                efficiency_component = 0.4  # High efficiency (narrower range)
             elif efficiency_ratio < 0.2:
                 efficiency_component = 0.0  # CRUSHING penalty for too concise (like "Nice" loops)
             elif efficiency_ratio < 0.5:
@@ -244,7 +244,7 @@ You must respond with ONLY the Gold Standard response text - no explanations, no
     def _embedder_quality_assessment(self, luna_response: str, gold_standard: str) -> float:
         """
         Use the embedder model (llama-3.2-1b-instruct) for harsh, aligned quality assessment
-        This creates perfect alignment between memory storage and utility judgment
+        This creates alignment between memory storage and utility judgment
         """
         import requests
         import json
@@ -256,7 +256,7 @@ You must respond with ONLY the Gold Standard response text - no explanations, no
 You use the same brain that handles memory compression and embedding. Your job is to ruthlessly evaluate response quality.
 
 You MUST respond with ONLY a number between 0.0 and 1.0, where:
-- 1.0 = Perfect response, highly useful, well-structured
+- 1.0 = High quality response, highly useful, well-structured
 - 0.8 = Good response with minor issues
 - 0.6 = Adequate response with some problems
 - 0.4 = Poor response with significant issues

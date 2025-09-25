@@ -1,6 +1,6 @@
-# AIOS Clean - Advanced AI Performance System
+# AIOS Clean - AI Performance System
 
-A unified AI operating system featuring advanced personality systems, memory management, and performance optimization.
+A modular AI system with personality simulation, memory management, and response optimization.
 
 ## 🚀 Quick Start
 
@@ -22,14 +22,14 @@ A unified AI operating system featuring advanced personality systems, memory man
 
 ## 🧠 Core Systems
 
-### **Luna AI** - Advanced Personality System
-- Dual-personality architecture (Ava/Luna modes)
+### **Luna AI** - Personality System
+- Dual-personality simulation (Ava/Luna modes)
 - Generational lifecycle with karma tracking
-- Performance evaluation and optimization
+- Response evaluation and optimization
 - Context-aware response generation
 
 ### **CARMA** - Cached Aided Retrieval Mycelium Architecture
-- Advanced memory compression and clustering
+- Memory compression and clustering
 - Semantic search and retrieval
 - Memory analytics and optimization
 - Fractal mycelium network
@@ -48,9 +48,9 @@ A unified AI operating system featuring advanced personality systems, memory man
 
 ## 🎯 Key Features
 
-- **Performance-Based Architecture**: No "consciousness" claims - pure advanced LLM performance
+- **Performance-Based Architecture**: No "consciousness" claims - pure LLM performance
 - **Generational Lifecycle**: AI generations with karma tracking and evolution
-- **Memory Management**: Advanced compression, clustering, and analytics
+- **Memory Management**: Compression, clustering, and analytics
 - **Dual-Personality System**: Casual (Ava) and complex (Luna) response modes
 - **Real-time Monitoring**: System health and performance tracking
 - **Token Economy**: Word-based token system with free function words
@@ -76,7 +76,7 @@ The system uses JSON configuration files in the `config/` directory. Key setting
 - **Memory Efficiency**: 99.3% file reduction (137,988 → 911 files)
 - **Size Optimization**: 98.8% size reduction (70.3 GB → 0.83 GB)
 - **Response Speed**: Sub-3 second response times
-- **Memory Compression**: Advanced semantic compression algorithms
+- **Memory Compression**: Semantic compression algorithms
 
 ## 🛠️ Development
 
@@ -103,4 +103,4 @@ For support and questions, please open an issue on GitHub.
 
 ---
 
-**AIOS Clean v1.0.0** - Advanced AI Performance System
+**AIOS Clean v1.0.0** - AI Performance System

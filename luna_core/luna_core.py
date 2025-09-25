@@ -128,7 +128,7 @@ def error_handler(component: str, error_type: str, recovery_action: str, auto_re
 # === HIVE MIND LOGGER ===
 
 class HiveMindLogger:
-    """Advanced logging system for Luna AI"""
+    """Logging system for Luna AI"""
     
     def __init__(self, log_file: str = "log/hive_mind/hive_mind.log"):
         self.log_file = Path(log_file)

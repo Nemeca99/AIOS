@@ -527,7 +527,7 @@ class AIOSClean:
         return {
             'name': 'AIOS Clean',
             'version': '1.0.0',
-            'description': 'Advanced AI Performance System',
+            'description': 'AI Performance System',
             'core_systems': [
                 'CARMA - Cached Aided Retrieval Mycelium Architecture',
                 'Luna - AI Personality System', 
@@ -619,7 +619,7 @@ class AIOSClean:
 def main():
     """Main entry point for AIOS Clean."""
     
-    parser = argparse.ArgumentParser(description='AIOS Clean - Advanced AI Performance System')
+    parser = argparse.ArgumentParser(description='AIOS Clean - AI Performance System')
     parser.add_argument('--mode', choices=[mode.value for mode in SystemMode], 
                        default='luna', help='Operation mode')
     parser.add_argument('--questions', type=int, default=3, help='Number of questions for Luna mode')

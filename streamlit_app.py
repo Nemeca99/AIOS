@@ -25,7 +25,7 @@ if 'aios_system' not in st.session_state:
 
 # Sidebar
 st.sidebar.title("🧠 AIOS Clean")
-st.sidebar.markdown("Advanced AI Performance System")
+st.sidebar.markdown("AI Performance System")
 
 # Initialize system button
 if st.sidebar.button("🚀 Initialize System", type="primary"):
@@ -188,12 +188,12 @@ if st.session_state.initialized and st.session_state.aios_system:
 else:
     # Welcome screen
     st.title("🧠 Welcome to AIOS Clean")
-    st.markdown("### Advanced AI Performance System")
+    st.markdown("### AI Performance System")
     
     st.markdown("""
-    **AIOS Clean** is a unified AI performance system featuring:
+    **AIOS Clean** is a modular AI system featuring:
     
-    - **🌙 Luna AI** - Advanced personality system with learning capabilities
+    - **🌙 Luna AI** - Personality system with learning capabilities
     - **🧠 CARMA** - Cached Aided Retrieval Mycelium Architecture
     - **🏢 Enterprise** - API and business features
     - **🛠️ Support** - Utilities and operations
@@ -213,4 +213,4 @@ else:
 
 # Footer
 st.markdown("---")
-st.markdown("**AIOS Clean v1.0.0** - Advanced AI Performance System")
+    st.markdown("**AIOS Clean v1.0.0** - AI Performance System")
