@@ -69,8 +69,8 @@ class LunaTokenTimeEconometricSystem:
         self.quality_thresholds = {
             "minimum_acceptable": 0.3,  # Below this = punishment
             "good": 0.6,  # Good quality threshold
-            "excellent": 0.8,  # Excellent quality threshold
-            "high": 0.95  # High quality threshold
+            "high": 0.8,  # High quality threshold
+            "maximum": 0.95  # Maximum quality threshold
         }
         
         # Learning parameters
@@ -185,10 +185,10 @@ class LunaTokenTimeEconometricSystem:
         overall_efficiency = (token_efficiency + time_efficiency) / 2.0
         
         # Calculate quality grade
-        if quality_score >= self.quality_thresholds["high"]:
+        if quality_score >= self.quality_thresholds["maximum"]:
+            quality_grade = "Maximum"
+        elif quality_score >= self.quality_thresholds["high"]:
             quality_grade = "High"
-        elif quality_score >= self.quality_thresholds["excellent"]:
-            quality_grade = "Excellent"
         elif quality_score >= self.quality_thresholds["good"]:
             quality_grade = "Good"
         elif quality_score >= self.quality_thresholds["minimum_acceptable"]:
@@ -233,10 +233,10 @@ class LunaTokenTimeEconometricSystem:
         time_performance = "Optimal" if time_deviation <= 1.0 else "Suboptimal" if time_deviation <= 2.0 else "Poor"
         
         # Quality performance
-        quality_performance = "Excellent" if metrics.quality_score >= 0.8 else "Good" if metrics.quality_score >= 0.6 else "Acceptable" if metrics.quality_score >= 0.3 else "Poor"
+        quality_performance = "High" if metrics.quality_score >= 0.8 else "Good" if metrics.quality_score >= 0.6 else "Acceptable" if metrics.quality_score >= 0.3 else "Poor"
         
         # Overall performance
-        if token_performance == "Optimal" and time_performance == "Optimal" and quality_performance in ["Excellent", "Good"]:
+        if token_performance == "Optimal" and time_performance == "Optimal" and quality_performance in ["High", "Good"]:
             overall_performance = "Optimal"
         elif token_performance != "Poor" and time_performance != "Poor" and quality_performance != "Poor":
             overall_performance = "Good"
@@ -335,7 +335,7 @@ class LunaTokenTimeEconometricSystem:
         if avg_reward >= 2.0 and avg_quality >= 0.8 and avg_efficiency >= 0.8:
             return "A+ (Optimal)"
         elif avg_reward >= 1.5 and avg_quality >= 0.7 and avg_efficiency >= 0.7:
-            return "A (Excellent)"
+            return "A (High)"
         elif avg_reward >= 1.0 and avg_quality >= 0.6 and avg_efficiency >= 0.6:
             return "B (Good)"
         elif avg_reward >= 0.5 and avg_quality >= 0.4 and avg_efficiency >= 0.4:

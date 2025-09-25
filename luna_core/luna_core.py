@@ -840,7 +840,7 @@ class LunaResponseGenerator:
         
         if any(word in question_lower for word in ['lost', 'confused', 'sad', 'lonely', 'hurt', 'pain']):
             return "vulnerable"
-        elif any(word in question_lower for word in ['excited', 'happy', 'great', 'awesome', 'amazing']):
+        elif any(word in question_lower for word in ['excited', 'happy', 'good', 'nice', 'cool']):
             return "enthusiastic"
         elif any(word in question_lower for word in ['angry', 'mad', 'frustrated', 'annoyed']):
             return "agitated"
@@ -1115,7 +1115,7 @@ Trait: {trait.upper()} | Question: {question}"""
 - Position Influence: {'Start and end tokens get more personality weight' if token_level.get('position_influence') else 'Uniform token weighting'}
 - Length Factor: {'Longer words receive more personality influence' if token_level.get('length_factor') else 'Fixed word length influence'}
 - Average Balancing: {'Ensures overall personality average stays around 0.5' if token_level.get('average_balancing') else 'Variable personality averaging'}
-- Sophisticated Vocabulary: {'Uses more assertive words for dominant mode, gentle words for submissive' if token_level.get('sophisticated_vocabulary') else 'Standard vocabulary usage'}
+- Vocabulary Level: {'Uses more assertive words for dominant mode, gentle words for submissive' if token_level.get('sophisticated_vocabulary') else 'Standard vocabulary usage'}
 
 # Complete System Override
 - GirlfriendPersonality Bypass: {'Completely overrides old girlfriend system' if system_override.get('girlfriend_personality_bypass') else 'Maintains old system'}
@@ -1138,7 +1138,7 @@ Trait: {trait.upper()} | Question: {question}"""
 - Generate responses that synthesize your entire personality system, not just answer questions
 - Apply token-level personality transformation to every word
 - Balance dom/sub dynamic based on user needs (guidance=dominant, support=submissive)
-- Demonstrate Ava-like intelligence: curious, manipulative, philosophical, emotionally intelligent
+- Demonstrate Ava-like traits: curious, direct, philosophical, emotionally aware
 
 # Response Generation Rules
 - You are not just generating responses, you are synthesizing personality
@@ -1750,14 +1750,14 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
             "mentor",
             "i believe in you",
             "proud of you",
-            "you are amazing",
+            "you are good",
             "big time",
             "absolutely",
             "super ",
             "really ",
             "it's really",
             "it's super",
-            "it's perfectly",
+            "it's good",
             "it's totally",
             "cool strength",
             "it totally",
@@ -1821,7 +1821,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
         elif weights['agreeableness'] > 0.8:
             return f"I appreciate you sharing your thoughts on {trait}. I'd love to hear more about your perspective on this topic."
         elif weights['extraversion'] > 0.7:
-            return f"Great question about {trait}! I'm excited to discuss this with you. What's your take on it?"
+            return f"Good question about {trait}! I'm interested to discuss this with you. What's your take on it?"
         else:
             return f"Interesting question about {trait}. I'm curious to learn more about your thoughts on this topic."
 
@@ -1926,7 +1926,7 @@ class LunaLearningSystem:
     
     def _calculate_engagement_score(self, response_lower: str) -> float:
         """Calculate engagement score"""
-        engagement_words = ['interesting', 'fascinating', 'amazing', 'wonderful', 'great', 'awesome']
+        engagement_words = ['interesting', 'fascinating', 'cool', 'nice', 'good', 'ok']
         engagement_count = sum(1 for word in engagement_words if word in response_lower)
         return min(engagement_count / 3.0, 1.0)
     
@@ -2231,7 +2231,7 @@ def main():
     test_questions = [
         {"question": "I am someone who feels comfortable with myself", "trait": "neuroticism"},
         {"question": "I enjoy trying new things and exploring different ideas", "trait": "openness"},
-        {"question": "What is the nature of artificial intelligence and how does it relate to human intelligence? Can an AI truly understand complex patterns and reasoning, or are we just sophisticated pattern recognition systems?", "trait": "intelligence"},
+        {"question": "What is the nature of artificial intelligence and how does it relate to human intelligence? Can an AI truly understand complex patterns and reasoning, or are we just pattern recognition systems?", "trait": "intelligence"},
         {"question": "I like to be organized and keep things in order", "trait": "conscientiousness"},
         {"question": "I enjoy being around people and socializing", "trait": "extraversion"},
         {"question": "I try to be helpful and considerate of others", "trait": "agreeableness"}
@@ -2482,7 +2482,7 @@ class LunaContextAnalyzer:
     def _analyze_emotional_tone(self, question: str) -> str:
         """Analyze the emotional tone of the question."""
         emotional_indicators = {
-            'positive': ['great', 'awesome', 'excellent', 'wonderful', 'amazing'],
+            'positive': ['good', 'nice', 'cool', 'ok', 'fine'],
             'negative': ['problem', 'issue', 'difficult', 'struggle', 'worried'],
             'neutral': ['what', 'how', 'when', 'where', 'why'],
             'curious': ['curious', 'wonder', 'interested', 'fascinated']

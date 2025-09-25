@@ -83,7 +83,7 @@ class LunaResponseValueClassifier:
             r"^(how are you|how's it going|how do you do)\b",
             r"^(thanks|thank you|thx)\b",
             r"^(ok|okay|alright|sure|yes|no)\b",
-            r"^(good|bad|fine|great|awesome|cool)\b",
+            r"^(good|bad|fine|ok|cool)\b",
             r"^(lol|lmao|haha|hehe)\b",
             r"^(bye|goodbye|see you|later)\b"
         ]

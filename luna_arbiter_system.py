@@ -192,7 +192,7 @@ You must respond with ONLY the Gold Standard response text - no explanations, no
         
         # Food/interest responses  
         if any(word in prompt_lower for word in ["pizza", "food", "like", "favorite"]):
-            return "That sounds great! I enjoy discussing food and preferences. What's your favorite type?"
+            return "That sounds good! I enjoy discussing food and preferences. What's your favorite type?"
         
         # Technical questions
         if any(word in prompt_lower for word in ["explain", "how does", "machine learning", "artificial intelligence"]):
@@ -500,7 +500,7 @@ Rate the quality harshly but fairly."""
         reasoning_parts = []
         
         if utility_score >= 0.8:
-            reasoning_parts.append("Excellent response quality and efficiency")
+            reasoning_parts.append("High response quality and efficiency")
         elif utility_score >= 0.6:
             reasoning_parts.append("Good response with room for improvement")
         elif utility_score >= 0.4:
@@ -539,7 +539,7 @@ Rate the quality harshly but fairly."""
         """Get karma status description"""
         current_karma = self.cfia_system.state.karma_pool
         if current_karma >= 120:
-            return "Excellent"
+            return "High"
         elif current_karma >= 100:
             return "Good"
         elif current_karma >= 80:
