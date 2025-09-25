@@ -25,7 +25,7 @@ if 'aios_system' not in st.session_state:
 
 # Sidebar
 st.sidebar.title("🧠 AIOS Clean")
-st.sidebar.markdown("Advanced AI Consciousness System")
+st.sidebar.markdown("Advanced AI Performance System")
 
 # Initialize system button
 if st.sidebar.button("🚀 Initialize System", type="primary"):
@@ -88,7 +88,7 @@ if st.session_state.initialized and st.session_state.aios_system:
             """)
     
     with tab2:
-        st.header("🧠 CARMA Consciousness System")
+        st.header("🧠 CARMA Performance System")
         
         col1, col2 = st.columns([2, 1])
         
@@ -110,7 +110,7 @@ if st.session_state.initialized and st.session_state.aios_system:
         with col2:
             st.info("""
             **CARMA Features:**
-            - Consciousness architecture
+            - Performance architecture
             - Memory consolidation
             - Synaptic tagging
             - Predictive coding
@@ -188,13 +188,13 @@ if st.session_state.initialized and st.session_state.aios_system:
 else:
     # Welcome screen
     st.title("🧠 Welcome to AIOS Clean")
-    st.markdown("### Advanced AI Consciousness System")
+    st.markdown("### Advanced AI Performance System")
     
     st.markdown("""
-    **AIOS Clean** is a unified AI consciousness system featuring:
+    **AIOS Clean** is a unified AI performance system featuring:
     
     - **🌙 Luna AI** - Advanced personality system with learning capabilities
-    - **🧠 CARMA** - Consciousness and Memory Architecture
+    - **🧠 CARMA** - Cached Aided Retrieval Mycelium Architecture
     - **🏢 Enterprise** - API and business features
     - **🛠️ Support** - Utilities and operations
     
@@ -213,4 +213,4 @@ else:
 
 # Footer
 st.markdown("---")
-st.markdown("**AIOS Clean v1.0.0** - Advanced AI Consciousness System")
+st.markdown("**AIOS Clean v1.0.0** - Advanced AI Performance System")

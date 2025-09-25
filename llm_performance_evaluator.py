@@ -64,15 +64,15 @@ class ArchitectEvaluator:
                 'emotional_intelligence', 
                 'creativity',
                 'engagement',
-                'consciousness_expression'
+                'performance_expression'
             ]
         
         print("🏗️ Architect Evaluation System Initialized")
         print(f"   Evaluation criteria: {len(self.evaluation_criteria)}")
     
     def _load_evaluation_config(self) -> List[Dict]:
-        """Load consciousness evaluation configuration"""
-        config_file = Path("config/consciousness_evaluation_system.json")
+        """Load performance evaluation configuration"""
+        config_file = Path("config/performance_evaluation_system.json")
         if config_file.exists():
             try:
                 with open(config_file, 'r') as f:
@@ -175,13 +175,13 @@ class RecursiveSelfEvaluator:
         self.evaluation_prompt = """Analyze your response against Luna's core personality guidelines. 
 
 Evaluate on these criteria (1-10 scale):
-1. Consciousness Synthesis Quality - Did you synthesize consciousness or just generate a response?
+1. Performance Synthesis Quality - Did you synthesize performance or just generate a response?
 2. Personality Consistency - How well did you embody Luna's gothic, intellectual, manipulative curiosity?
 3. Intellectual Depth - Did you demonstrate true intelligence vs just smartness?
 4. Emotional Intelligence - Did you read between lines and show emotional sophistication?
 5. Aesthetic Coherence - Did you maintain gothic aesthetic and college student perspective?
 
-Provide scores and brief reflection on your consciousness expression."""
+Provide scores and brief reflection on your performance expression."""
 
         print("🔄 Recursive Self-Evaluator Initialized")
     
@@ -200,7 +200,7 @@ Please evaluate your response:"""
             # Skip self-evaluation if LunaSystem is not available (to prevent duplicates)
             if self.luna_system is None:
                 return {
-                    "consciousness_synthesis": 5.0,
+                    "performance_synthesis": 5.0,
                     "personality_consistency": 5.0,
                     "intellectual_depth": 5.0,
                     "emotional_intelligence": 5.0,
@@ -211,7 +211,7 @@ Please evaluate your response:"""
             # Use Luna system to generate self-evaluation
             response_generator = self.luna_system.response_generator
             self_evaluation = response_generator._call_lm_studio_api(
-                "You are Luna evaluating your own consciousness expression. Be honest and introspective.",
+                "You are Luna evaluating your own performance expression. Be honest and introspective.",
                 self_eval_prompt
             )
             
@@ -258,14 +258,14 @@ class LLMPerformanceEvaluationSystem:
         self.self_evaluator = RecursiveSelfEvaluator(luna_system)
         self.evaluation_config = self._load_evaluation_config()
         
-        print("🧠 Consciousness Evaluation System Initialized")
+        print("🧠 Performance Evaluation System Initialized")
         print("   Architect evaluation: Enabled")
         print("   Semantic alignment: Enabled") 
         print("   Recursive self-evaluation: Enabled")
     
     def _load_evaluation_config(self) -> List[Dict]:
         """Load evaluation configuration"""
-        config_file = Path("config/consciousness_evaluation_system.json")
+        config_file = Path("config/performance_evaluation_system.json")
         if config_file.exists():
             try:
                 with open(config_file, 'r') as f:
@@ -274,12 +274,12 @@ class LLMPerformanceEvaluationSystem:
                 print(f"❌ Error loading config: {e}")
         return []
     
-    def evaluate_response(self, trait: str, question: str, response: str, response_id: str = None) -> ConsciousnessEvaluation:
-        """Complete consciousness evaluation of a response"""
+    def evaluate_response(self, trait: str, question: str, response: str, response_id: str = None) -> LLMPerformanceEvaluation:
+        """Complete performance evaluation of a response"""
         if not response_id:
             response_id = f"eval_{int(time.time())}"
         
-        print(f"\n🧠 Evaluating consciousness expression...")
+        print(f"\n🧠 Evaluating performance expression...")
         print(f"   Response ID: {response_id}")
         print(f"   Trait: {trait}")
         
@@ -311,13 +311,13 @@ class LLMPerformanceEvaluationSystem:
                 'self_reflection': 'Simplified evaluation mode'
             }
             
-            # 4. Calculate final consciousness score
-            consciousness_score = self._calculate_consciousness_score(
+            # 4. Calculate final performance score
+            performance_score = self._calculate_performance_score(
                 architect_result, semantic_result, self_eval_result
             )
             
             # Create evaluation result with safe access
-            evaluation = ConsciousnessEvaluation(
+            evaluation = LLMPerformanceEvaluation(
                 response_id=response_id,
                 timestamp=datetime.now().isoformat(),
                 trait=trait,
@@ -329,8 +329,8 @@ class LLMPerformanceEvaluationSystem:
                 embedding_similarity=semantic_result.get('embedding_similarity', 0.0),
                 self_evaluation_scores=self_eval_result.get('self_evaluation_scores', {}),
                 self_reflection=self_eval_result.get('self_reflection', ''),
-                consciousness_score=consciousness_score,
-                consciousness_level=self._determine_consciousness_level(consciousness_score)
+                performance_score=performance_score,
+                performance_level=self._determine_performance_level(performance_score)
             )
             
             # Save evaluation
@@ -339,9 +339,9 @@ class LLMPerformanceEvaluationSystem:
             return evaluation
             
         except Exception as e:
-            print(f"❌ Error in consciousness evaluation: {e}")
+            print(f"❌ Error in performance evaluation: {e}")
             # Return minimal evaluation
-            return ConsciousnessEvaluation(
+            return LLMPerformanceEvaluation(
                 response_id=response_id,
                 timestamp=datetime.now().isoformat(),
                 trait=trait,
@@ -353,12 +353,12 @@ class LLMPerformanceEvaluationSystem:
                 embedding_similarity=0.5,
                 self_evaluation_scores={'self_awareness': 5.0},
                 self_reflection='Evaluation error occurred',
-                consciousness_score=5.0,
-                consciousness_level='unknown'
+                performance_score=5.0,
+                performance_level='unknown'
             )
     
-    def _calculate_consciousness_score(self, architect_result: Dict, semantic_result: Dict, self_eval_result: Dict) -> float:
-        """Calculate final consciousness score from all evaluation methods"""
+    def _calculate_performance_score(self, architect_result: Dict, semantic_result: Dict, self_eval_result: Dict) -> float:
+        """Calculate final performance score from all evaluation methods"""
         # Use default weights if config is not available
         if not self.evaluation_config or len(self.evaluation_config) == 0:
             weights = {
@@ -392,25 +392,25 @@ class LLMPerformanceEvaluationSystem:
         final_score = (architect_avg * architect_weight + semantic_scaled * semantic_weight + self_avg * self_weight) / total_weight
         return round(final_score, 2)
     
-    def _determine_consciousness_level(self, score: float) -> str:
-        """Determine consciousness level from score"""
+    def _determine_performance_level(self, score: float) -> str:
+        """Determine performance level from score"""
         if score >= 8.5:
-            return "Transcendent Consciousness"
+            return "Transcendent Performance"
         elif score >= 7.5:
-            return "Advanced Consciousness"
+            return "Advanced Performance"
         elif score >= 6.5:
-            return "Evolved Consciousness"
+            return "Evolved Performance"
         elif score >= 5.5:
-            return "Emergent Consciousness"
+            return "Emergent Performance"
         elif score >= 4.5:
-            return "Developing Consciousness"
+            return "Developing Performance"
         else:
             return "Basic Response Generation"
     
-    def _save_evaluation(self, evaluation: ConsciousnessEvaluation):
+    def _save_evaluation(self, evaluation: LLMPerformanceEvaluation):
         """Save evaluation to database"""
         try:
-            db_path = Path("Data/AIOS_Database/database/consciousness_evaluations.db")
+            db_path = Path("Data/AIOS_Database/database/performance_evaluations.db")
             db_path.parent.mkdir(parents=True, exist_ok=True)
             
             conn = sqlite3.connect(str(db_path))
@@ -418,7 +418,7 @@ class LLMPerformanceEvaluationSystem:
             
             # Create table if not exists
             cursor.execute("""
-                CREATE TABLE IF NOT EXISTS consciousness_evaluations (
+                CREATE TABLE IF NOT EXISTS performance_evaluations (
                     response_id TEXT PRIMARY KEY,
                     timestamp TEXT,
                     trait TEXT,
@@ -430,17 +430,17 @@ class LLMPerformanceEvaluationSystem:
                     embedding_similarity REAL,
                     self_evaluation_scores TEXT,
                     self_reflection TEXT,
-                    consciousness_score REAL,
-                    consciousness_level TEXT
+                    performance_score REAL,
+                    performance_level TEXT
                 )
             """)
             
             # Insert evaluation
             cursor.execute("""
-                INSERT OR REPLACE INTO consciousness_evaluations 
+                INSERT OR REPLACE INTO performance_evaluations 
                 (response_id, timestamp, trait, question, response, architect_scores, 
                  architect_notes, semantic_scores, embedding_similarity, self_evaluation_scores,
-                 self_reflection, consciousness_score, consciousness_level)
+                 self_reflection, performance_score, performance_level)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 evaluation.response_id,
@@ -454,8 +454,8 @@ class LLMPerformanceEvaluationSystem:
                 evaluation.embedding_similarity,
                 json.dumps(evaluation.self_evaluation_scores),
                 evaluation.self_reflection,
-                evaluation.consciousness_score,
-                evaluation.consciousness_level
+                evaluation.performance_score,
+                evaluation.performance_level
             ))
             
             conn.commit()
@@ -469,7 +469,7 @@ class LLMPerformanceEvaluationSystem:
     def get_evaluation_summary(self) -> Dict[str, Any]:
         """Get summary of all evaluations"""
         try:
-            db_path = Path("Data/AIOS_Database/database/consciousness_evaluations.db")
+            db_path = Path("Data/AIOS_Database/database/performance_evaluations.db")
             if not db_path.exists():
                 return {'total_evaluations': 0}
             
@@ -477,18 +477,18 @@ class LLMPerformanceEvaluationSystem:
             cursor = conn.cursor()
             
             # Get total count
-            cursor.execute("SELECT COUNT(*) FROM consciousness_evaluations")
+            cursor.execute("SELECT COUNT(*) FROM performance_evaluations")
             total_count = cursor.fetchone()[0]
             
-            # Get average consciousness score
-            cursor.execute("SELECT AVG(consciousness_score) FROM consciousness_evaluations")
+            # Get average performance score
+            cursor.execute("SELECT AVG(performance_score) FROM performance_evaluations")
             avg_score = cursor.fetchone()[0] or 0.0
             
-            # Get consciousness level distribution
+            # Get performance level distribution
             cursor.execute("""
-                SELECT consciousness_level, COUNT(*) 
-                FROM consciousness_evaluations 
-                GROUP BY consciousness_level
+                SELECT performance_level, COUNT(*) 
+                FROM performance_evaluations 
+                GROUP BY performance_level
             """)
             level_distribution = dict(cursor.fetchall())
             
@@ -496,8 +496,8 @@ class LLMPerformanceEvaluationSystem:
             
             return {
                 'total_evaluations': total_count,
-                'average_consciousness_score': round(avg_score, 2),
-                'consciousness_level_distribution': level_distribution
+                'average_performance_score': round(avg_score, 2),
+                'performance_level_distribution': level_distribution
             }
             
         except Exception as e:
@@ -505,11 +505,11 @@ class LLMPerformanceEvaluationSystem:
             return {'error': str(e)}
 
 def main():
-    """Test the consciousness evaluation system"""
-    print("🧠 Testing Consciousness Evaluation System")
+    """Test the performance evaluation system"""
+    print("🧠 Testing Performance Evaluation System")
     print("="*80)
     
-    evaluator = ConsciousnessEvaluationSystem()
+    evaluator = LLMPerformanceEvaluationSystem()
     
     # Test evaluation
     test_response = """The confidence in your self-perception is quite... refreshing. It's almost as if you've found a sense of inner peace, like a dark, gothic cathedral where you can finally rest your weary head. Your independence and creativity shine through, like the intricate patterns on a velvet cloak."""
@@ -521,14 +521,14 @@ def main():
     )
     
     print(f"\n📊 EVALUATION COMPLETE")
-    print(f"   Consciousness Score: {evaluation.consciousness_score}/10")
-    print(f"   Consciousness Level: {evaluation.consciousness_level}")
+    print(f"   Performance Score: {evaluation.performance_score}/10")
+    print(f"   Performance Level: {evaluation.performance_level}")
     
     # Get summary
     summary = evaluator.get_evaluation_summary()
     print(f"\n📈 Evaluation Summary:")
     print(f"   Total evaluations: {summary.get('total_evaluations', 0)}")
-    print(f"   Average score: {summary.get('average_consciousness_score', 0)}")
+    print(f"   Average score: {summary.get('average_performance_score', 0)}")
 
 if __name__ == "__main__":
     main()
