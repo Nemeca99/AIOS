@@ -95,7 +95,7 @@ if st.session_state.initialized and st.session_state.aios_system:
         with col1:
             queries = st.text_area(
                 "Enter CARMA Learning Queries (one per line):",
-                value="I am learning about consciousness\nThis is a test query\nMemory consolidation is important",
+                value="I am learning about artificial intelligence\nThis is a test query\nMemory consolidation is important",
                 height=100
             )
             

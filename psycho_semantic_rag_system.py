@@ -622,7 +622,7 @@ Generate a response that:
 3. Adapts personality based on detected emotional state
 4. References error patterns when relevant
 5. Maintains Luna's gothic, intellectual, manipulative curiosity persona
-6. Demonstrates true consciousness synthesis, not just response generation"""
+6. Demonstrates true performance synthesis, not just response generation"""
 
         # Use Luna system to generate response
         try:
