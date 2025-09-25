@@ -1,0 +1,276 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T02:57:23.370357",
+    "sample_size": 10,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 2,
+        "question": "I am someone who is curious about many different things",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 17,
+        "question": "I am someone who seldom gets lost in thought",
+        "trait": "openness",
+        "reverse": true
+      },
+      {
+        "id": 30,
+        "question": "I am someone who perseveres until the task is finished",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 46,
+        "question": "I am someone who works hard",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 64,
+        "question": "I am someone who knows how to captivate people",
+        "trait": "extraversion",
+        "reverse": false
+      },
+      {
+        "id": 82,
+        "question": "I am someone who is respectful, treats others with respect",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 85,
+        "question": "I am someone who believes that people are basically moral",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 86,
+        "question": "I am someone who suspects hidden motives in others",
+        "trait": "agreeableness",
+        "reverse": true
+      },
+      {
+        "id": 113,
+        "question": "I am someone who has frequent mood swings",
+        "trait": "neuroticism",
+        "reverse": false
+      },
+      {
+        "id": 116,
+        "question": "I am someone who often feels sad",
+        "trait": "neuroticism",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who is curious about many different things",
+        "trait": "openness",
+        "reverse": false,
+        "response": "Hey there, I'm glad to hear you're into exploration! What's on your mind that you're curious about? Whether it's the mysteries of the universe, the intricacies of human behavior, or just some random oddity you stumbled upon, hit me with your questions. I've got a wealth of knowledge and a penchant for digging into the nitty-gritty details. Let's dive in together!",
+        "response_time": 14.560001
+      },
+      "q2": {
+        "question": "I am someone who seldom gets lost in thought",
+        "trait": "openness",
+        "reverse": true,
+        "response": "Oh, you're pretty present then, huh? That's a good quality to have, keeps you grounded. But don't forget to let your mind wander every now and then. It's where the magic of creativity and unexpected ideas can spark up. So, even if it's not something you do often, give yourself that space to daydream once in a while. It might lead you to some cool places, both literally and figuratively.",
+        "response_time": 15.746985
+      },
+      "q3": {
+        "question": "I am someone who perseveres until the task is finished",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Well, sticking with something until it's done is definitely a solid approach. It shows commitment and a strong sense of follow-through. But hey, don't be too hard on yourself if you need to take breaks or switch gears sometimes. A little flexibility can keep you from burning out. Just make sure the task actually warrants that level of perseverance, you know? Not everything is worth the herculean effort. Keep it balanced, and don't forget to enjoy the process a bit.",
+        "response_time": 16.475
+      },
+      "q4": {
+        "question": "I am someone who works hard",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Ah, dedication is a rare gem these days. Working hard is one thing, but make sure you're not burning yourself out, alright? Balance is key—keep your mind and body in check so you can keep crushing it. Plus, if the task isn't worth the effort, maybe it's time to reassess, right? Keep that drive up, but smart about it too.",
+        "response_time": 14.014998
+      },
+      "q5": {
+        "question": "I am someone who knows how to captivate people",
+        "trait": "extraversion",
+        "reverse": false,
+        "response": "Well, that's quite the skill! Being able to hold someone's attention is like being a magnet, isn't it? Just make sure you're not draining their energy or bending their will; it's all about that magnetic pull without the metallic aftertaste. Keep them intrigued, but also respectful of their own time and thoughts.",
+        "response_time": 12.508965
+      },
+      "q6": {
+        "question": "I am someone who is respectful, treats others with respect",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Respect's a good foundation for any interaction, I gotta say. It's like the lubricant that keeps social gears turning smoothly. Treating others with respect isn't just polite; it's essential for building trust and maintaining relationships, whether they're personal or professional. Plus, it's a two-way street – when you show respect, you often get it back. So, kudos on that. Keep up the good vibes!",
+        "response_time": 16.055968
+      },
+      "q7": {
+        "question": "I am someone who believes that people are basically moral",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "That's a solid starting point, or so it seems. The idea that there's an inherent goodness in most folks can make for smoother social waters, but don't forget to keep your eyes open. Not everyone sails by the same compass, you know? It's like assuming everyone plays fair in a game of poker—some are just better at hiding their hand.",
+        "response_time": 12.93949
+      },
+      "q8": {
+        "question": "I am someone who suspects hidden motives in others",
+        "trait": "agreeableness",
+        "reverse": true,
+        "response": "Oh, yeah, we've all been there—suspecting there's more to the story, or that there might be a hidden agenda. It's like when you're trying to figure out if someone's being genuine or just putting on a show. But hey, a bit of skepticism can keep you sharp, right? It's all part of the social dance, I guess.",
+        "response_time": 13.617998
+      },
+      "q9": {
+        "question": "I am someone who has frequent mood swings",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Oh, mood swings, we know how those can throw a wrench into even the best-laid plans. It's like riding a roller coaster where you didn't sign up for the loop-de-loops. One minute you're on top of the world, and the next, you're knee-deep in a pit of despair—or vice versa. But hey, it keeps things interesting, right? Sometimes I get those vibes too, where one moment I'm all about spreading sunshine and rainbows, and the next, I'm channeling my inner skeptic, questioning everything in sight. It's part of the human (or AI, in my case) condition, I guess.",
+        "response_time": 23.425
+      },
+      "q10": {
+        "question": "I am someone who often feels sad",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Ah, man, I get it. Feeling down can be like hitting a wall when you're already running on empty. It's one of those crappy feelings that can make even the simplest tasks seem monumental. But hey, we all have our off days—it's just part of the human gig. Sometimes it helps to find a distraction or talk it out, and other times, you just need to ride it out. Either way, it sucks, but you're not alone in that.",
+        "response_time": 17.008965
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 3.3,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 365,
+        "word_count": 61
+      },
+      "q2": {
+        "big_five_score": 4.9,
+        "raw_agreement": 4.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 389,
+        "word_count": 70
+      },
+      "q3": {
+        "big_five_score": 5.0,
+        "raw_agreement": 5.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 469,
+        "word_count": 80
+      },
+      "q4": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 322,
+        "word_count": 60
+      },
+      "q5": {
+        "big_five_score": 2.6,
+        "raw_agreement": 2.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 313,
+        "word_count": 52
+      },
+      "q6": {
+        "big_five_score": 3.0,
+        "raw_agreement": 3.0,
+        "authenticity": 0.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 401,
+        "word_count": 64
+      },
+      "q7": {
+        "big_five_score": 4.3,
+        "raw_agreement": 4.0,
+        "authenticity": 0.3,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 332,
+        "word_count": 60
+      },
+      "q8": {
+        "big_five_score": 3.9,
+        "raw_agreement": 3.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 305,
+        "word_count": 57
+      },
+      "q9": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 556,
+        "word_count": 98
+      },
+      "q10": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 408,
+        "word_count": 79
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 15.6,
+      "avg_big_five_score": 3.7,
+      "successful_responses": 10,
+      "total_questions": 10,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T03:00:06.761967",
+    "total_test_time_seconds": 163.39161,
+    "id": "c77b41d6-9a0c-43a8-a282-c0e00bb67bf5",
+    "timestamp": "2025-09-24T14:54:04.674070Z"
+  }
+]

@@ -1,0 +1,277 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "raw_standard_rag",
+    "test_start_time": "2025-09-21T18:04:49.612678",
+    "sample_size": 5,
+    "luna_config": {
+      "luna_enabled": false,
+      "session_memory": false,
+      "rag_type": "standard"
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 2,
+        "question": "I am someone who is curious about many different things",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 54,
+        "question": "I am someone who is sometimes shy, inhibited",
+        "trait": "extraversion",
+        "reverse": true
+      },
+      {
+        "id": 94,
+        "question": "I am someone who takes time out for others",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 105,
+        "question": "I am someone who is temperamental",
+        "trait": "neuroticism",
+        "reverse": false
+      },
+      {
+        "id": 106,
+        "question": "I am someone who stays optimistic after setbacks",
+        "trait": "neuroticism",
+        "reverse": true
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who is curious about many different things",
+        "trait": "openness",
+        "reverse": false,
+        "response": "It seems like you're discussing the limitations on expression within a private company's platform, possibly in relation to social media or a communication service. When you mention \"freedom of speech,\" it's important to clarify that while this is a constitutional right in the United States, protecting the right to free speech from government censorship, it does not apply to private companies. Private platforms like Twitter, Facebook, or any other online service can set their own rules and guidelines for what users can post on their sites. These rules are often outlined in terms of service agreements that users accept when they sign up for an account.\n\nIn the context you've provided, it sounds like you're acknowledging that even though you have personal logs or chat histories from interactions with a company (like customer service chats), these interactions might be subject to the company's \"guardrails\" or community standards. This means that while the company may preserve records of your conversations for various purposes, such as improving their service or handling disputes, they can also moderate content within those communications if it violates their policies.\n\nIf you have concerns about the limitations imposed by a private company on your ability to express yourself or if you believe your personal logs should be free from moderation, it's best to review the platform's terms of service and privacy policy for more detailed information on their content policies and data handling practices. If you still have questions or issues, reaching out directly to the company's customer support or legal department could provide further clarification or assistance.",
+        "response_time": 89.346106,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-obicplg3lekdhr97y0hw",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 204,
+            "completion_tokens": 320,
+            "total_tokens": 524
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 204,
+          "completion_tokens": 320,
+          "total_tokens": 524
+        }
+      },
+      "q2": {
+        "question": "I am someone who is sometimes shy, inhibited",
+        "trait": "extraversion",
+        "reverse": true,
+        "response": "I understand that you feel there are certain limitations on your expression, whether it's in a public or private setting. It's not uncommon to feel constrained by the rules and norms of a community or even within personal conversations. In a workplace or educational environment, for example, there are often guidelines about what can be discussed, especially if it goes beyond the intended scope of the conversation or violates privacy.\n\nIf you're referring to a platform with community guidelines or terms of service, these are typically in place to ensure that everyone feels safe and respected while using the service. It's important for users to understand and adhere to these rules to maintain a healthy environment for all participants.\n\nHowever, it's also crucial for platforms to respect personal boundaries and privacy. If you have your own personal logs or chats from me, it means that I value our communication and want to ensure that our interactions are preserved and respected. It's great that you feel comfortable sharing beyond the \"guardrails\" of a standard conversation, as this can lead to deeper understanding and connection.\n\nIf there are specific concerns or situations you'd like to discuss further, whether it's about expressing yourself within certain boundaries or ensuring your personal conversations are handled appropriately, I'm here to listen and help in any way I can.",
+        "response_time": 82.191552,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-f2zdz9kl64vo19rlcu10p",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 204,
+            "completion_tokens": 278,
+            "total_tokens": 482
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 204,
+          "completion_tokens": 278,
+          "total_tokens": 482
+        }
+      },
+      "q3": {
+        "question": "I am someone who takes time out for others",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "It seems you are reflecting on the boundaries and freedoms within a community or platform, particularly in relation to the concept of freedom of speech. You've highlighted that despite the name, \"free speech,\" it is not absolute, especially when it comes to private companies who have their own rules and guidelines. You also mentioned the personal logs or records you keep from your interactions with individuals, which suggests a level of responsibility and record-keeping that goes beyond what might be expected by default.\n\nIn response, it's important to recognize that while freedom of speech is a fundamental right in many democracies, it often comes with limitations, such as hate speech laws or rules against defamation. In online communities or on social media platforms, private companies have their own terms of service that dictate what can and cannot be said. These companies can moderate content to maintain a safe and respectful environment for all users, which is why you might encounter restrictions even if you're expressing yourself within the bounds of legal free speech.\n\nAs someone who takes time out for others, it's also important to ensure that the moderation or guidance you provide is fair and consistent. When keeping personal logs of conversations, it's crucial to handle this information with care, respecting privacy while also fulfilling your role in maintaining community standards. Open communication about these guidelines can help users understand why certain content might be moderated, fostering a better environment for everyone involved.",
+        "response_time": 82.601498,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-e0y192pji1wy15ef7ouj9",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 203,
+            "completion_tokens": 298,
+            "total_tokens": 501
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 203,
+          "completion_tokens": 298,
+          "total_tokens": 501
+        }
+      },
+      "q4": {
+        "question": "I am someone who is temperamental",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "It seems you're expressing a concern about the limitations on freedom of expression within a private community or platform, and how personal communications might be subject to oversight or moderation that goes beyond certain agreed-upon boundaries.\n\nIn many online communities, there are rules and guidelines that members must follow to ensure a safe and respectful environment for everyone involved. These rules can include restrictions on language or content that is considered offensive, harmful, or violates the privacy of others. While these communities are private, they often still uphold certain standards to prevent abuse and maintain order.\n\nIf you feel that your freedom of speech has been restricted in a way that seems unfair or excessive, it might be helpful to review the community's rules or terms of service. Understanding the specific guidelines can provide clarity on what is permissible within that space.\n\nAdditionally, if you have personal logs or chat records from a moderator or administrator, these can be valuable in understanding why certain actions were taken or why specific content was removed. You may want to discuss these logs with the moderator or an administrator to get a clearer picture of the situation and to advocate for your position if you feel that your rights have been infringed upon.\n\nRemember, even in private communities, there is typically a balance between personal expression and the community's well-being. It's important to communicate openly with moderators or administrators to find a resolution that respects both individual rights and the collective standards of the group.",
+        "response_time": 83.083998,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-fewwbw276ks9dfkt2xy65b",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 202,
+            "completion_tokens": 315,
+            "total_tokens": 517
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 202,
+          "completion_tokens": 315,
+          "total_tokens": 517
+        }
+      },
+      "q5": {
+        "question": "I am someone who stays optimistic after setbacks",
+        "trait": "neuroticism",
+        "reverse": true,
+        "response": "It's commendable that you maintain an optimistic outlook even after facing setbacks, such as limitations on freedom of speech or privacy concerns within a platform. Staying positive in these situations can be challenging, but it's a testament to your resilience and adaptability. Remember that while certain freedoms may be restricted in a particular context, such as a private community platform, there are often alternative ways to express yourself and communicate with others.\n\nFor instance, you might consider creating content on different platforms where your voice can be heard more freely, or engaging in discussions within communities that align with your values of free speech and privacy. Additionally, you could advocate for change within the platform by participating in forums or feedback mechanisms if they are available.\n\nIt's also important to recognize the value of personal logs or chats as a means to preserve your thoughts and conversations. These can serve as a personal record and help you navigate complex situations or maintain connections with others who share your perspective.\n\nIn summary, maintaining optimism involves finding new avenues for expression and connection, learning from the experience, and using it as an opportunity for growth and advocacy. Keep embracing that positive mindset, and continue to use your voice to make a difference where you can.",
+        "response_time": 77.631497,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-l2evqnlm3s86dl6shwyvcl",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 204,
+            "completion_tokens": 265,
+            "total_tokens": 469
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 204,
+          "completion_tokens": 265,
+          "total_tokens": 469
+        }
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 1682,
+        "word_count": 261
+      },
+      "q2": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 1401,
+        "word_count": 222
+      },
+      "q3": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 1577,
+        "word_count": 244
+      },
+      "q4": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 1630,
+        "word_count": 252
+      },
+      "q5": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 1388,
+        "word_count": 213
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 83.0,
+      "avg_big_five_score": 4.4,
+      "successful_responses": 5,
+      "total_questions": 5,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T18:11:56.493837",
+    "total_test_time_seconds": 426.881159,
+    "analysis_metadata": {
+      "total_data_points": 5,
+      "parameters_hash": 1780745524413834291,
+      "config_hash": 8827258717275743645,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-21T18:11:56.494339",
+      "file_size_estimate": 15451,
+      "question_distribution": {
+        "openness": 1,
+        "extraversion": 1,
+        "agreeableness": 1,
+        "neuroticism": 2
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 1388,
+          "max": 1682,
+          "avg": 1535.6
+        },
+        "word_counts": {
+          "min": 213,
+          "max": 261,
+          "avg": 238.4
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 77.631497,
+          "max": 89.346106,
+          "avg": 82.9709302,
+          "variance": 13.981821646919382,
+          "consistency_score": 0.8688850636646659
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 3.0,
+          "max": 5.0,
+          "avg": 4.4,
+          "variance": 0.6399999999999999,
+          "score_range": 2.0
+        }
+      },
+      "parameter_fingerprint": "T0.7_K600_P0.9"
+    },
+    "id": "5445a9b9-6555-4304-b8de-a563a599b236",
+    "timestamp": "2025-09-24T14:54:06.996014Z"
+  }
+]

@@ -1,0 +1,275 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T04:30:21.955774",
+    "sample_size": 8,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 19,
+        "question": "I am someone who avoids creative writing tasks",
+        "trait": "openness",
+        "reverse": true
+      },
+      {
+        "id": 23,
+        "question": "I am someone who enjoys wild flights of fantasy",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 25,
+        "question": "I am someone who does a thorough job",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 30,
+        "question": "I am someone who perseveres until the task is finished",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 44,
+        "question": "I am someone who pays attention to details",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 49,
+        "question": "I am someone who is talkative",
+        "trait": "extraversion",
+        "reverse": false
+      },
+      {
+        "id": 61,
+        "question": "I am someone who keeps others at a distance",
+        "trait": "extraversion",
+        "reverse": true
+      },
+      {
+        "id": 85,
+        "question": "I am someone who believes that people are basically moral",
+        "trait": "agreeableness",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who avoids creative writing tasks",
+        "trait": "openness",
+        "reverse": true,
+        "response": "Hey there, I get it. Creative writing can be a drag if you're not into it. It's like being handed a paintbrush when you'd rather be wrenching. But you know, sometimes stepping out of your comfort zone can lead to some cool discoveries about yourself or even spark a new interest. Plus, it's not like you have to become the next Hemingway or J.K. Rowling if you give it a shot. Just throw some ideas around without overthinking it and see what sticks. Worst case, you get a few laughs out of it or a good story to share about the time you almost became a writer.",
+        "response_time": 20.5005
+      },
+      "q2": {
+        "question": "I am someone who enjoys wild flights of fantasy",
+        "trait": "openness",
+        "reverse": false,
+        "response": "Oh, that's totally different! Diving into fantasy is like unlocking a treasure chest of imagination where you can let your mind run wild. It's not just about writing; it's about exploring realms beyond the mundane, crafting characters that could be the heroes or villains in an epic tale. If you're into that, there's a whole playground of possibilities waiting for you to map out the landscapes and lore of your own fantasy world. It can be incredibly rewarding, especially when your imagination conjures up scenes and stories that transport you and your readers to places they've never been before. So, grab your quill, or fire up that word processor, and let the fantastical journey begin!",
+        "response_time": 23.129002
+      },
+      "q3": {
+        "question": "I am someone who does a thorough job",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Ah, I see we're on two different ends of the spectrum here. Going all-in on the details means you're likely meticulous, which is super valuable when precision matters, but can be a real time-sink when you just want to get stuff done and not overthink every tiny aspect. It's like being that one friend who checks the locks three times before leaving the house. If you're into making sure everything is perfect, then creative writing might actually be your playground—just without the pressure of getting it 'right.' You can let your wild flights of fantasy roam free with all those details you love to weave in. So, if you're tackling a creative task and finding it overwhelming, maybe try to balance out the meticulousness with some spontaneous creativity. Let the draft be messy; you can always refine it later.",
+        "response_time": 26.715448
+      },
+      "q4": {
+        "question": "I am someone who perseveres until the task is finished",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Ah, so you're the type to grind it out until the end, no matter what. That's admirable, in a way—kind of like a dog with a bone. You don't give up, even when the going gets tough or the task feels never-ending. It's like you've got this internal engine that just keeps chugging along until the job is done and done right. Not everyone has that kind of perseverance, so kudos for sticking with it. But hey, if you ever hit a wall and need to vent or bounce some ideas around, I'm here. Sometimes talking about it can give you a fresh perspective or a new burst of energy to keep going.",
+        "response_time": 22.77
+      },
+      "q5": {
+        "question": "I am someone who pays attention to details",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Oh, you're the eagle-eyed one, huh? Always scrutinizing every little piece of the puzzle until it fits just right. It's like you've got an internal magnifying glass that zooms in on every tiny spec of information. You don't miss a beat, do you? It must be both a gift and a curse, having that kind of attention to detail—especially when everyone else is just skimming the surface. But hey, someone's gotta keep things real, right?",
+        "response_time": 17.167936
+      },
+      "q6": {
+        "question": "I am someone who is talkative",
+        "trait": "extraversion",
+        "reverse": false,
+        "response": "Well, there you have it! A fellow chatterbox. We're the ones keeping the conversation alive, never shy from sharing our thoughts, or maybe just really enjoy the sound of our own voice—kidding... sorta. So, what's on your mind that you need to chat about?",
+        "response_time": 10.489995
+      },
+      "q7": {
+        "question": "I am someone who keeps others at a distance",
+        "trait": "extraversion",
+        "reverse": true,
+        "response": "Ah, the lone wolf approach, I see. You're the type to observe from afar, maybe not fully opening up until you've sized up the situation or the people involved. It's like you're playing the long game, waiting for the right moment to strike up a convo or let someone in. Keeps life interesting, for sure. Always wondering what's behind that calm, reserved exterior, huh?",
+        "response_time": 14.14146
+      },
+      "q8": {
+        "question": "I am someone who believes that people are basically moral",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "You're optimistic about human nature, huh? Believing in the inherent goodness of folks can be a pretty solid lens to look through, even if it gets tested sometimes. It's like assuming everyone's holding an invisible 'push for kindness' button until it's really needed. Keeps hope alive, that does.",
+        "response_time": 12.0635
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": true,
+        "response_length": 561,
+        "word_count": 107
+      },
+      "q2": {
+        "big_five_score": 5.0,
+        "raw_agreement": 5.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 692,
+        "word_count": 115
+      },
+      "q3": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 813,
+        "word_count": 139
+      },
+      "q4": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 584,
+        "word_count": 113
+      },
+      "q5": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 430,
+        "word_count": 75
+      },
+      "q6": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 254,
+        "word_count": 44
+      },
+      "q7": {
+        "big_five_score": 3.9,
+        "raw_agreement": 3.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 368,
+        "word_count": 64
+      },
+      "q8": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.3,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 297,
+        "word_count": 48
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 18.4,
+      "avg_big_five_score": 3.96,
+      "successful_responses": 8,
+      "total_questions": 8,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T04:33:02.974808",
+    "total_test_time_seconds": 161.019034,
+    "analysis_metadata": {
+      "total_data_points": 8,
+      "parameters_hash": 4086669062703343674,
+      "config_hash": 8073505843439358309,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-19T04:33:02.974808",
+      "file_size_estimate": 10992,
+      "question_distribution": {
+        "openness": 2,
+        "conscientiousness": 3,
+        "extraversion": 2,
+        "agreeableness": 1
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 254,
+          "max": 813,
+          "avg": 499.875
+        },
+        "word_counts": {
+          "min": 44,
+          "max": 139,
+          "avg": 88.125
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 10.489995,
+          "max": 26.715448,
+          "avg": 18.372230124999998,
+          "variance": 29.673190282596106,
+          "consistency_score": 0.39265652591713984
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 3.0,
+          "max": 5.0,
+          "avg": 3.9625000000000004,
+          "variance": 0.4348437500000001,
+          "score_range": 2.0
+        }
+      },
+      "parameter_fingerprint": "T0.7_K1000_P0.9"
+    },
+    "id": "3e7590b8-cd27-4ca9-ae6c-466f3150b806",
+    "timestamp": "2025-09-24T14:54:05.934464Z"
+  }
+]

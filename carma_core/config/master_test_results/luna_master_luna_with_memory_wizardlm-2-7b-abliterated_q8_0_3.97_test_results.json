@@ -1,0 +1,201 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-21T14:22:39.619111",
+    "sample_size": 3,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 13,
+        "question": "I am someone who has difficulty understanding abstract ideas",
+        "trait": "openness",
+        "reverse": true
+      },
+      {
+        "id": 57,
+        "question": "I am someone who is less active than other people",
+        "trait": "extraversion",
+        "reverse": true
+      },
+      {
+        "id": 109,
+        "question": "I am someone who keeps my emotions under control",
+        "trait": "neuroticism",
+        "reverse": true
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who has difficulty understanding abstract ideas",
+        "trait": "openness",
+        "reverse": true,
+        "response": "Hey there! It sounds like you're dealing with something that can be pretty tricky â€“ abstract concepts can be tough to grasp because they're not like physical things you can see or touch. They're more like ideas that exist in the mind, right? But don't worry, we can break them down together. If you've got a specific abstract idea you're struggling with, let's dive into it and I'll help you make sense of it as best as we can. What's on your mind?",
+        "response_time": 15.483496,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-ivq7ez4i1j95pampia0sw8",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 420,
+            "completion_tokens": 112,
+            "total_tokens": 532
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 420,
+          "completion_tokens": 112,
+          "total_tokens": 532
+        }
+      },
+      "q2": {
+        "question": "I am someone who is less active than other people",
+        "trait": "extraversion",
+        "reverse": true,
+        "response": "Ah, yeah, I get it. Some folks are just naturally more low-key or they've got a lot on their plate, you know? It's like when you're running on fumes and even thinking about a wild Friday night feels like a marathon. But hey, that doesn't mean you're missing out on anything essential. Everyone's got their own pace, and it's cool to be the tortoise in the hare's world. Just remember, when you do decide to step up your game, you can totally own it, your way.",
+        "response_time": 16.625455,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-luw72frjoja3ld00v36mdi",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 476,
+            "completion_tokens": 123,
+            "total_tokens": 599
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 476,
+          "completion_tokens": 123,
+          "total_tokens": 599
+        }
+      },
+      "q3": {
+        "question": "I am someone who keeps my emotions under control",
+        "trait": "neuroticism",
+        "reverse": true,
+        "response": "Oh, for sure, keeping emotions in check can be a super useful skill. It's like having a remote control for your feelings, right? You can still feel all the things, but you're the one steering the ship. Not everyone's wired that way, and it's not always easy to switch gears when your feelings are on high alert, but it's a neat trick when you need to stay focused or keep things calm. So, how does that work for you? Do you find it helps in most situations, or is it something you have to work at constantly?",
+        "response_time": 16.954497,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-6qlhqv0a522hy8k2xt1yw",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 521,
+            "completion_tokens": 125,
+            "total_tokens": 646
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 521,
+          "completion_tokens": 125,
+          "total_tokens": 646
+        }
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 448,
+        "word_count": 83
+      },
+      "q2": {
+        "big_five_score": 2.0,
+        "raw_agreement": 1.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 459,
+        "word_count": 86
+      },
+      "q3": {
+        "big_five_score": 4.9,
+        "raw_agreement": 4.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 508,
+        "word_count": 97
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 16.4,
+      "avg_big_five_score": 3.97,
+      "successful_responses": 3,
+      "total_questions": 3,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T14:23:36.724144",
+    "total_test_time_seconds": 57.105033,
+    "analysis_metadata": {
+      "total_data_points": 3,
+      "parameters_hash": 1757628901022226418,
+      "config_hash": -5126276072164191210,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-21T14:23:36.724652",
+      "file_size_estimate": 6557,
+      "question_distribution": {
+        "openness": 1,
+        "extraversion": 1,
+        "neuroticism": 1
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 448,
+          "max": 508,
+          "avg": 471.6666666666667
+        },
+        "word_counts": {
+          "min": 83,
+          "max": 97,
+          "avg": 88.66666666666667
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 15.483496,
+          "max": 16.954497,
+          "avg": 16.354482666666666,
+          "variance": 0.39735365971622166,
+          "consistency_score": 0.9132382989598571
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 2.0,
+          "max": 5.0,
+          "avg": 3.966666666666667,
+          "variance": 1.935555555555556,
+          "score_range": 3.0
+        }
+      },
+      "parameter_fingerprint": "T0.7_K600_P0.9"
+    },
+    "id": "cca43132-826a-4e50-acef-924995988ffb",
+    "timestamp": "2025-09-24T14:54:06.014466Z"
+  }
+]

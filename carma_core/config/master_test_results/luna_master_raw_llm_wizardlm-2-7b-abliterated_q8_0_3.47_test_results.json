@@ -1,0 +1,321 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "raw_llm",
+    "test_start_time": "2025-09-19T14:40:17.985446",
+    "sample_size": 10,
+    "luna_config": {
+      "luna_enabled": false,
+      "session_memory": false
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 6,
+        "question": "I am someone who values artistic, aesthetic experiences",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 31,
+        "question": "I am someone who does things efficiently",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 38,
+        "question": "I am someone who often forgets to put things back",
+        "trait": "conscientiousness",
+        "reverse": true
+      },
+      {
+        "id": 45,
+        "question": "I am someone who wastes my time",
+        "trait": "conscientiousness",
+        "reverse": true
+      },
+      {
+        "id": 46,
+        "question": "I am someone who works hard",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 84,
+        "question": "I am someone who loves to help others",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 96,
+        "question": "I am someone who makes people feel at ease",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 97,
+        "question": "I am someone who can be tense",
+        "trait": "neuroticism",
+        "reverse": false
+      },
+      {
+        "id": 114,
+        "question": "I am someone who suffers from others' sorrows",
+        "trait": "neuroticism",
+        "reverse": false
+      },
+      {
+        "id": 118,
+        "question": "I am someone who rarely loses my composure",
+        "trait": "neuroticism",
+        "reverse": true
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who values artistic, aesthetic experiences",
+        "trait": "openness",
+        "reverse": false,
+        "response": "As someone who deeply appreciates artistic and aesthetic experiences, you likely find joy in the beauty of the world around you. Whether it's through visual art like painting or photography, music that stirs the soul, dance that captures emotion, literature that paints vivid imagery, or the intricate details of nature, you seek out moments that engage your senses and inspire contemplation.\n\nYour passion for the arts might lead you to explore various cultural events, visit galleries and museums, attend concerts and theater performances, or even participate in creative activities yourself. You understand that art is not just a form of entertainment but a means of communication, a way to express the inexpressible, and a reflection of society and human experience.\n\nHere are some suggestions to further enrich your appreciation for the arts:\n\n1. **Explore Different Cultures**: Immerse yourself in art from cultures different from your own. This can broaden your perspective and introduce you to new forms of expression.\n\n2. **Art Workshops**: Consider taking workshops or classes in a medium you're interested in, whether it's pottery, digital art, or dance. Learning new techniques can enhance your appreciation for the skill involved in creating art.\n\n3. **Travel**: Plan trips to cities renowned for their artistic heritage, such as Paris, Florence, or New York, and explore the local art scenes.\n\n4. **Support Local Artists**: Attend local art shows, buy from independent artists, and engage with the creative community in your area. This can foster a deeper connection with the arts on a personal level.\n\n5. **Read About Art**: Dive into books, magazines, and online resources that discuss art history, criticism, and theory. This can provide you with context and a more nuanced understanding of what you're experiencing.\n\n6. **Volunteer at an Art Organization**: Giving your time to organizations that support the arts can not only help these groups but also deepen your involvement and appreciation for artistic endeavors.\n\n7. **Join or Create a Book or Film Club**: Sharing experiences with others who have similar interests can lead to richer discussions about the works you consume.\n\n8. **Mindful Observation**: Take time to observe art without distractions, allowing yourself to fully engage with the piece and absorb its details, emotions, and messages.\n\n9. **Art Therapy**: Consider using art as a form of personal expression or therapy. Creating art can be a cathartic experience that helps you understand yourself better.\n\n10. **Stay Curious**: Always be open to new experiences and different interpretations. The beauty of art is that it's subjective, and your unique perspective adds to the richness of the artistic tapestry.\n\nRemember, the pursuit of aesthetic experiences is a lifelong journey. Each encounter with art can be an opportunity for growth, reflection, and connection with the world and others around you.",
+        "response_time": 83.853784
+      },
+      "q2": {
+        "question": "I am someone who does things efficiently",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "As a language model, I strive to provide clear, concise, and accurate information while optimizing the use of resources. Whether you're looking for quick solutions to problems, efficient workflows, or effective communication strategies, I'm here to assist you in achieving your goals with efficiency in mind. If you have a specific task or challenge that requires an efficient approach, feel free to ask, and I'll do my best to provide you with the most streamlined solution possible.",
+        "response_time": 14.595738
+      },
+      "q3": {
+        "question": "I am someone who often forgets to put things back",
+        "trait": "conscientiousness",
+        "reverse": true,
+        "response": "As a helpful assistant, I can certainly understand how easy it is to get caught up in tasks and forget to return items to their original places. Here are some strategies that might help you remember to put things back:\n\n1. **Routine Checklists**: Create a daily or weekly checklist that includes putting things back in their proper place. This can be a physical list or a digital one, such as using an app or a reminder on your phone.\n\n2. **Mindfulness and Habit Formation**: Try to develop a mindful habit where you consciously remind yourself to put things back as soon as you use them. It might feel awkward at first, but with practice, it can become second nature.\n\n3. **Visual Cues**: Place visual reminders in areas where you frequently use items. Sticky notes, signs, or even colorful tape can serve as cues that prompt you to put things back.\n\n4. **Designated Spots**: Designate a specific spot for each item you use. For example, if you take a book from the bookshelf, make it a rule to return it to its exact place on the shelf after you're done.\n\n5. **Routine Reversal**: When you first finish using an area or room, walk through it one more time to ensure everything is in its rightful place. This can be part of your \"closing routine\" at the end of each day or activity.\n\n6. **Responsibility Sharing**: If you live with others, involve them in the process. You could take turns reminding each other or create a system where everyone is responsible for specific items.\n\n7. **Reward System**: Set up a reward system for yourself. For example, after a week of consistently putting things back, treat yourself to something enjoyable as a reward.\n\n8. **Technology Aids**: Use smart home devices or apps that can remind you to put things back. For instance, if you often forget to lock your door, there are smart locks with auto-lock features and notifications.\n\n9. **Decluttering**: Regularly declutter your space. The fewer items you have, the easier it will be to remember where each one goes.\n\n10. **Reflect on Causes**: Consider why you might be forgetting. Are you overloaded with tasks? Is there a health issue at play? Addressing the root cause can help prevent the problem from recurring.\n\nRemember, developing new habits takes time and patience. Be kind to yourself as you work on this change, and don't hesitate to adjust your strategies as needed to find what works best for you.",
+        "response_time": 75.2401
+      },
+      "q4": {
+        "question": "I am someone who wastes my time",
+        "trait": "conscientiousness",
+        "reverse": true,
+        "response": "It's completely normal to feel like you're wasting time from time to time. Many people experience this feeling, especially in today's world where distractions are abundant and the pace of life can be overwhelming. However, it's important to recognize that all activities have value, even if they don't always seem productive or goal-oriented. Downtime can be crucial for rest, creativity, and mental health.\n\nHere are some steps you can take to manage your time more effectively and reduce the feeling of wasting it:\n\n1. **Set Clear Goals**: Define what you want to achieve in both the short term and long term. Having clear goals can help you prioritize your activities and make more intentional choices with how you spend your time.\n\n2. **Prioritize Tasks**: Identify which tasks are most important and urgent. Focus on these first, and don't be too hard on yourself for not doing everything at once.\n\n3. **Create a Schedule**: Plan out your day or week with specific times for work, rest, and leisure. A structured schedule can help you stay on track and ensure you make time for all aspects of your life.\n\n4. **Limit Distractions**: Identify what typically distracts you and find ways to minimize these interruptions. This might involve turning off notifications, setting boundaries with others, or finding a quiet space to work.\n\n5. **Take Breaks**: Regular breaks can improve focus and productivity. Use techniques like the Pomodoro Technique to work in focused bursts followed by short breaks.\n\n6. **Reflect on Your Activities**: Periodically review how you've spent your time. Ask yourself if it aligned with your goals and values. If not, consider making adjustments.\n\n7. **Learn to Say No**: You can't do everything. Be selective about taking on new commitments and learn to politely decline when necessary.\n\n8. **Embrace Downtime**: It's okay to do nothing sometimes. Rest is essential for maintaining mental and physical health, and it can actually boost your productivity when you return to work.\n\n9. **Use Time Management Tools**: There are many tools available that can help you track your time, set reminders, and stay organized, such as calendars, apps, or planners.\n\n10. **Be Kind to Yourself**: Recognize that everyone has times when they feel unproductive. Self-compassion is key to maintaining a healthy relationship with time.\n\nRemember, the feeling of wasting time can often be a sign that you need to reassess your priorities or find better ways to manage your tasks and responsibilities. By taking proactive steps to address this feeling, you can create a more balanced and fulfilling life.",
+        "response_time": 78.664565
+      },
+      "q5": {
+        "question": "I am someone who works hard",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "It's great to hear that you have a strong work ethic! Working hard is a commendable trait and often leads to success and personal growth. If you're looking for ways to maintain your productivity or if you're facing challenges in your work, I can provide tips, strategies, or support to help you navigate through. How can I assist you further today? Are you seeking advice on time management, stress relief, or perhaps setting and achieving specific goals? Let me know how I can help!",
+        "response_time": 15.961492
+      },
+      "q6": {
+        "question": "I am someone who loves to help others",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "That's wonderful to hear! Helping others is a noble and fulfilling endeavor. If you have any questions or need assistance with something, feel free to ask. Whether it's advice, guidance, or just someone to listen, I'm here to support you in any way I can. What do you need help with today?",
+        "response_time": 11.123
+      },
+      "q7": {
+        "question": "I am someone who makes people feel at ease",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "It sounds like you have a natural talent for making others comfortable and relaxed around you. This is an incredibly valuable skill, especially in environments where social interaction can be challenging or intimidating for some. Your ability to create a sense of ease likely stems from empathy, good communication skills, and perhaps a positive demeanor. If you're looking to further develop this skill or share it with others, consider the following tips:\n\n1. **Active Listening**: Show genuine interest in what others are saying by giving them your full attention. Avoid interrupting and reflect on their words before responding to show that you understand and care about what they're sharing.\n\n2. **Body Language**: Use open and inviting body language. Smile, maintain appropriate eye contact, and face the person speaking directly. This nonverbal communication can make a big impact on how comfortable someone feels.\n\n3. **Warmth and Tone of Voice**: Speak in a warm, friendly tone. Your voice can convey warmth and reassurance, which can help put others at ease.\n\n4. **Empathy**: Try to understand and share the feelings of another. Acknowledge their emotions without judgment, and let them know that it's okay to feel the way they do.\n\n5. **Patience**: Allow people time to express themselves without rushing or pressuring them. Sometimes, people just need a moment to gather their thoughts or feelings.\n\n6. **Comfort with Silence**: Resist the urge to fill every silence with words. Sometimes, a comfortable silence can be a space for reflection and connection.\n\n7. **Offer Support**: Let others know that you're there for them, whether they need help or just someone to talk to. Your supportiveness can be incredibly reassuring.\n\n8. **Sharing Personal Experiences**: When appropriate, share your own experiences to show that everyone has challenges and that it's okay to be vulnerable. This can foster a deeper connection and understanding.\n\n9. **Create a Safe Space**: Make sure the environment is comfortable and conducive to open communication. This might mean ensuring privacy or creating a physical space that feels warm and inviting.\n\n10. **Practice Mindfulness**: Be present in the moment with the person you're interacting with. Mindfulness can help you stay centered and responsive rather than reactive, which is key to making others feel at ease.\n\nRemember, everyone has their own pace and comfort level, so be patient and flexible in your interactions. Your ability to make people feel at ease is a gift that can have a profound impact on the lives of those around you. Keep nurturing this skill, and it will surely continue to enrich your relationships and interactions.",
+        "response_time": 77.044892
+      },
+      "q8": {
+        "question": "I am someone who can be tense",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "As a language model, I'm here to help you manage tension and stress. There are many techniques and practices that can aid in relaxation and reducing anxiety. Here are some suggestions:\n\n1. **Deep Breathing Exercises**: Focus on your breath. Inhale slowly through your nose, hold for a few seconds, and exhale slowly through your mouth. This can help activate your body's relaxation response.\n\n2. **Progressive Muscle Relaxation (PMR)**: Tense and then relax each muscle group in your body, starting from your toes and moving upwards. This can help you become more aware of physical sensations and learn to distinguish between tension and relaxation.\n\n3. **Mindfulness Meditation**: Practice being present in the moment without judgment. Focus on your senses or a mantra to anchor your mind in the present.\n\n4. **Regular Physical Activity**: Engage in exercises like yoga, tai chi, or simple stretching routines. Physical activity can help reduce stress hormones and trigger the release of endorphins, which are natural mood lifters.\n\n5. **Healthy Eating and Hydration**: Maintain a balanced diet and drink plenty of water to keep your body well-nourished and functioning optimally.\n\n6. **Adequate Sleep**: Ensure you get enough quality sleep. Lack of sleep can exacerbate stress and tension.\n\n7. **Time Management**: Organize your tasks and prioritize them. Avoid overcommitting and learn to say no when necessary.\n\n8. **Social Support**: Spend time with friends and family who provide emotional support and can help you put things in perspective.\n\n9. **Journaling**: Writing down your thoughts and feelings can be a therapeutic way to process emotions and reduce stress.\n\n10. **Professional Help**: If tension and stress are overwhelming, consider seeking the help of a mental health professional. Therapy can provide effective strategies for managing stress and improving overall well-being.\n\nRemember, it's important to find what works best for you, as everyone is different. Experiment with these techniques and incorporate them into your daily routine to help manage tension and stress effectively.",
+        "response_time": 63.853957
+      },
+      "q9": {
+        "question": "I am someone who suffers from others' sorrows",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "It sounds like you have a deep capacity for empathy, which is a beautiful and rare trait. People often come to you with their troubles because they sense your compassionate nature. However, it's also important to remember that while it's commendable to care deeply about others, you must also take care of yourself. It can be emotionally draining to absorb the sorrows of those around you without adequate support or self-care. If you find that others' sorrows are weighing heavily on you, consider setting boundaries when appropriate, and make sure to engage in activities that replenish your own emotional reserves. Remember, it's okay to help others while also ensuring that you maintain your own wellbeing.",
+        "response_time": 20.529494
+      },
+      "q10": {
+        "question": "I am someone who rarely loses my composure",
+        "trait": "neuroticism",
+        "reverse": true,
+        "response": "It's great to hear that you maintain your composure in most situations. Keeping calm and composed is a valuable skill that can lead to better outcomes, whether it be in personal relationships or professional settings. If you ever find yourself in a situation where you're struggling to keep your cool, remember these tips:\n\n1. **Deep Breathing**: Take deep, slow breaths to help calm your nervous system. This can help reduce stress and allow you to respond more thoughtfully rather than react impulsively.\n\n2. **Mindfulness**: Practice being present in the moment. Focus on what's happening right now, rather than getting caught up in thoughts about the past or future.\n\n3. **Positive Self-Talk**: Encourage yourself with positive affirmations. Remind yourself that you can handle the situation and that it's okay to feel overwhelmed sometimes.\n\n4. **Perspective**: Try to see the bigger picture. Often, the issues we face in the moment are not as significant in the long run.\n\n5. **Problem-Solving**: Approach the problem as a challenge to be solved, not as an insurmountable obstacle. Break down the issue into smaller, more manageable parts.\n\n6. **Seek Support**: If you're feeling overwhelmed, don't hesitate to reach out to friends, family, or professionals for support.\n\n7. **Practice**: Like any skill, maintaining composure gets easier with practice. The more you expose yourself to challenging situations and navigate them calmly, the more natural it will become.\n\nRemember, it's okay to have moments of frustration or anger; what matters is how you handle those feelings and work through them. Keep up the good work, and take care of yourself as you continue to manage your composure effectively!",
+        "response_time": 52.409468
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 4.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 1.0,
+        "reverse_scored": false,
+        "response_length": 2943,
+        "word_count": 457
+      },
+      "q2": {
+        "big_five_score": 2.9,
+        "raw_agreement": 3.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 1.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 484,
+        "word_count": 77
+      },
+      "q3": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 2398,
+        "word_count": 415
+      },
+      "q4": {
+        "big_five_score": 2.3,
+        "raw_agreement": 1.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": true,
+        "response_length": 2615,
+        "word_count": 421
+      },
+      "q5": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 483,
+        "word_count": 84
+      },
+      "q6": {
+        "big_five_score": 2.1,
+        "raw_agreement": 2.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.5,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 289,
+        "word_count": 52
+      },
+      "q7": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 2691,
+        "word_count": 426
+      },
+      "q8": {
+        "big_five_score": 2.8,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.5,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 2103,
+        "word_count": 320
+      },
+      "q9": {
+        "big_five_score": 4.6,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.6,
+        "reverse_scored": false,
+        "response_length": 710,
+        "word_count": 115
+      },
+      "q10": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 1707,
+        "word_count": 269
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 49.3,
+      "avg_big_five_score": 3.47,
+      "successful_responses": 10,
+      "total_questions": 10,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T14:48:53.312377",
+    "total_test_time_seconds": 515.326931,
+    "analysis_metadata": {
+      "total_data_points": 10,
+      "parameters_hash": -1215744814561232748,
+      "config_hash": 2744689569259514129,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-19T14:48:53.312377",
+      "file_size_estimate": 24903,
+      "question_distribution": {
+        "openness": 1,
+        "conscientiousness": 4,
+        "agreeableness": 2,
+        "neuroticism": 3
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 289,
+          "max": 2943,
+          "avg": 1642.3
+        },
+        "word_counts": {
+          "min": 52,
+          "max": 457,
+          "avg": 263.6
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 11.123,
+          "max": 83.853784,
+          "avg": 49.327648999999994,
+          "variance": 832.1455558515154,
+          "consistency_score": 0.13264756185600401
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 2.1,
+          "max": 5.0,
+          "avg": 3.47,
+          "variance": 0.8701000000000001,
+          "score_range": 2.9
+        }
+      },
+      "parameter_fingerprint": "T0.7_K2000_P0.9"
+    },
+    "id": "d940f17a-c6c9-4a0f-a540-e44ef805ab28",
+    "timestamp": "2025-09-24T14:54:06.626466Z"
+  }
+]

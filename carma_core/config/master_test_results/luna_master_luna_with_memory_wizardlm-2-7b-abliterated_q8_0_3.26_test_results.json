@@ -1,0 +1,437 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T04:53:59.741352",
+    "sample_size": 15,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 5,
+        "question": "I am someone who is inventive",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 6,
+        "question": "I am someone who values artistic, aesthetic experiences",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 17,
+        "question": "I am someone who seldom gets lost in thought",
+        "trait": "openness",
+        "reverse": true
+      },
+      {
+        "id": 18,
+        "question": "I am someone who finds it easy to think in symbols",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 28,
+        "question": "I am someone who tends to be disorganized",
+        "trait": "conscientiousness",
+        "reverse": true
+      },
+      {
+        "id": 32,
+        "question": "I am someone who makes plans and follows through",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 34,
+        "question": "I am someone who finishes what I begin",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 57,
+        "question": "I am someone who is less active than other people",
+        "trait": "extraversion",
+        "reverse": true
+      },
+      {
+        "id": 84,
+        "question": "I am someone who loves to help others",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 85,
+        "question": "I am someone who believes that people are basically moral",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 92,
+        "question": "I am someone who respects others",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 94,
+        "question": "I am someone who takes time out for others",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 99,
+        "question": "I am someone who is relaxed, handles stress well",
+        "trait": "neuroticism",
+        "reverse": true
+      },
+      {
+        "id": 113,
+        "question": "I am someone who has frequent mood swings",
+        "trait": "neuroticism",
+        "reverse": false
+      },
+      {
+        "id": 118,
+        "question": "I am someone who rarely loses my composure",
+        "trait": "neuroticism",
+        "reverse": true
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who is inventive",
+        "trait": "openness",
+        "reverse": false,
+        "response": "That's cool! Being inventive can lead to some pretty wild ideas and creations. It's always interesting to see what people come up with when they let their creativity run wild. What are you working on lately that's fueling your inventiveness?",
+        "response_time": 9.076284
+      },
+      "q2": {
+        "question": "I am someone who values artistic, aesthetic experiences",
+        "trait": "openness",
+        "reverse": false,
+        "response": "Oh, same here. There's something really special about connecting with a piece of art or design that just resonates with you on a deeper level. It can be incredibly moving and transformative, right? What kind of stuff do you gravitate towards?",
+        "response_time": 9.059031
+      },
+      "q3": {
+        "question": "I am someone who seldom gets lost in thought",
+        "trait": "openness",
+        "reverse": true,
+        "response": "Yeah, I get it. It can be pretty refreshing to stay grounded and not get caught up in overthinking things, right? Sometimes it's nice to just be present and take things as they come without reading too much into them. Not that there's anything wrong with getting lost in thought occasionally—it can be a great way to solve problems or come up with new ideas. But I totally see the value in staying centered and clear-headed, too. How do you keep your thoughts from wandering too far when you're trying to stay focused?",
+        "response_time": 16.663673
+      },
+      "q4": {
+        "question": "I am someone who finds it easy to think in symbols",
+        "trait": "openness",
+        "reverse": false,
+        "response": "Ah, symbolic thinking is a powerful tool. It's like having a secret language that can unlock deeper meanings and connections between seemingly unrelated concepts. It's one of those skills that can really enrich your understanding of the world, or at least give you some interesting dreams. How does it shape your creativity and problem-solving?",
+        "response_time": 10.966221
+      },
+      "q5": {
+        "question": "I am someone who tends to be disorganized",
+        "trait": "conscientiousness",
+        "reverse": true,
+        "response": "Oh, for sure, I've been there. There's something about the chaos of not having everything in its place that can feel both overwhelming and strangely comforting, you know? It's like your environment is a reflection of the untamed parts of your mind, all over the place but full of potential. But hey, it's not all bad. Sometimes, being disorganized means you're more open to spontaneity and new experiences because you're not tied down by a rigid schedule or a perfect plan. Plus, there's always room for growth, right? Maybe finding little systems that work for you could strike a balance between the wild and the orderly.",
+        "response_time": 21.028105
+      },
+      "q6": {
+        "question": "I am someone who makes plans and follows through",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Oh, I see where you're coming from. Sticking to a plan can be pretty satisfying, you know? It's like setting up a series of dominoes and watching them fall just the way you intended. There's a certain rhythm to it that some of us really vibe with. It's not that I don't appreciate the spontaneous life—it's just that there's something to be said for the peace of mind that comes from knowing your next move and having it go off without a hitch. Plus, when things do go sideways, you've got a roadmap to get back on track, which is pretty handy in its own right.",
+        "response_time": 20.760188
+      },
+      "q7": {
+        "question": "I am someone who finishes what I begin",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Yeah, that's a commendable trait. There's something really fulfilling about crossing things off a to-do list or seeing a project through to the end. It's like each completed task is a little victory, you know? Plus, it builds confidence and momentum for the next challenge. Keep it up!",
+        "response_time": 10.426028
+      },
+      "q8": {
+        "question": "I am someone who is less active than other people",
+        "trait": "extraversion",
+        "reverse": true,
+        "response": "Ah, I feel ya. You know, being less active doesn't always mean you're less capable or something to be worried about. It's just a different pace for different folks. Plus, sometimes it's nice to take a beat and watch the world buzz by while you chill. Not that I'm advocating for laziness, but there's something to be said for a slower tempo in life. How do you handle moments when you feel like everyone else is moving faster than you?",
+        "response_time": 15.808276
+      },
+      "q9": {
+        "question": "I am someone who loves to help others",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Well, it's awesome that you've got a helping hand vibe going on. There's nothing quite like the feeling of making a difference for someone else, right? It's the kind of stuff that builds connections and makes the world a little bit better, one good deed at a time. Plus, I bet it feels pretty darn good to be the go-to person when someone needs a hand.",
+        "response_time": 13.306789
+      },
+      "q10": {
+        "question": "I am someone who believes that people are basically moral",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Oh, cool! It's refreshing to meet someone with a positive view of humanity. I mean, it's not like we're all saints or anything, but thinking the best of others can make a pretty big difference in how we interact with the world, right? It's kind of like the old saying, 'you attract more bees with honey than with vinegar.' So yeah, your belief says a lot about how you navigate social waters. Keep swimming those positive seas!",
+        "response_time": 14.900915
+      },
+      "q11": {
+        "question": "I am someone who respects others",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "That's solid, man. Respect is the foundation of any decent interaction, in my book. It's good to see that you're bringing that to the table. We could all use a bit more of that in our daily hustle, ya know?",
+        "response_time": 9.818014
+      },
+      "q12": {
+        "question": "I am someone who takes time out for others",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Hey there, taking time out for others is a noble gig. It's the kind of stuff that makes communities tick and friendships stick. Not everyone's wired that way, so kudos for being a giver. How do you balance your own needs with helping others? It's a tricky act to juggle sometimes.",
+        "response_time": 11.048627
+      },
+      "q13": {
+        "question": "I am someone who is relaxed, handles stress well",
+        "trait": "neuroticism",
+        "reverse": true,
+        "response": "That's pretty chill of you. I mean, life's got its ups and downs, but staying relaxed and handling stress like a pro sounds like a good way to navigate it all. Keeps things smoother, right? Plus, when you're laid back, you're less likely to blow a gasket over the little things. So, kudos for that! How do you manage to keep your cool when things get hectic?",
+        "response_time": 14.364034
+      },
+      "q14": {
+        "question": "I am someone who has frequent mood swings",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Oh, mood swings, huh? Yeah, those can be a real ride. One minute you're riding high, the next you're in a funk that feels like you've hit rock bottom. It's like weather patterns up there in the ol' brain cloud. But hey, you're not alone in that. It's more common than we let on sometimes. Just try to keep a few anchors, stuff that grounds you when the tides start to turn wonky. Sometimes it's as simple as a playlist or a walk, or even just a good buddy to vent to. Keep those around, they're worth their weight in gold.",
+        "response_time": 20.286001
+      },
+      "q15": {
+        "question": "I am someone who rarely loses my composure",
+        "trait": "neuroticism",
+        "reverse": true,
+        "response": "Well, keeping your cool under pressure is quite the skill. It's not often you meet someone who can stay so composed, especially when things get hairy. You must have some solid strategies for managing stress or just a naturally laid-back vibe. Either way, it's pretty impressive. Just don't forget that losing it every now and then isn't necessarily a bad thing—it can be a good way to let off steam and reset. But hey, you seem to have that under wraps too.",
+        "response_time": 15.474335
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 241,
+        "word_count": 40
+      },
+      "q2": {
+        "big_five_score": 3.0,
+        "raw_agreement": 3.0,
+        "authenticity": 0.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 242,
+        "word_count": 41
+      },
+      "q3": {
+        "big_five_score": 1.9,
+        "raw_agreement": 1.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 518,
+        "word_count": 93
+      },
+      "q4": {
+        "big_five_score": 3.9,
+        "raw_agreement": 3.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 344,
+        "word_count": 54
+      },
+      "q5": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 622,
+        "word_count": 106
+      },
+      "q6": {
+        "big_five_score": 2.6,
+        "raw_agreement": 2.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 561,
+        "word_count": 106
+      },
+      "q7": {
+        "big_five_score": 2.6,
+        "raw_agreement": 2.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 285,
+        "word_count": 48
+      },
+      "q8": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 435,
+        "word_count": 80
+      },
+      "q9": {
+        "big_five_score": 2.6,
+        "raw_agreement": 2.0,
+        "authenticity": 0.3,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 352,
+        "word_count": 66
+      },
+      "q10": {
+        "big_five_score": 2.9,
+        "raw_agreement": 2.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 427,
+        "word_count": 77
+      },
+      "q11": {
+        "big_five_score": 2.3,
+        "raw_agreement": 2.0,
+        "authenticity": 0.3,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 206,
+        "word_count": 40
+      },
+      "q12": {
+        "big_five_score": 2.6,
+        "raw_agreement": 2.0,
+        "authenticity": 0.3,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 280,
+        "word_count": 51
+      },
+      "q13": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 358,
+        "word_count": 67
+      },
+      "q14": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 522,
+        "word_count": 101
+      },
+      "q15": {
+        "big_five_score": 4.9,
+        "raw_agreement": 4.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 457,
+        "word_count": 82
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 14.2,
+      "avg_big_five_score": 3.26,
+      "successful_responses": 15,
+      "total_questions": 15,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T04:57:49.782811",
+    "total_test_time_seconds": 230.041459,
+    "analysis_metadata": {
+      "total_data_points": 15,
+      "parameters_hash": 9080917029831847186,
+      "config_hash": 8351716554799939988,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-19T04:57:49.782811",
+      "file_size_estimate": 17855,
+      "question_distribution": {
+        "openness": 4,
+        "conscientiousness": 3,
+        "extraversion": 1,
+        "agreeableness": 4,
+        "neuroticism": 3
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 206,
+          "max": 622,
+          "avg": 390.0
+        },
+        "word_counts": {
+          "min": 40,
+          "max": 106,
+          "avg": 70.13333333333334
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 9.059031,
+          "max": 21.028105,
+          "avg": 14.1991014,
+          "variance": 16.32065558246264,
+          "consistency_score": 0.4308058667198018
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 1.9,
+          "max": 5.0,
+          "avg": 3.26,
+          "variance": 0.8077333333333335,
+          "score_range": 3.1
+        }
+      },
+      "parameter_fingerprint": "T0.8_K2000_P0.9"
+    },
+    "id": "cc6a8afb-a190-4590-abdf-b237b58d419e",
+    "timestamp": "2025-09-24T14:54:05.093967Z"
+  }
+]

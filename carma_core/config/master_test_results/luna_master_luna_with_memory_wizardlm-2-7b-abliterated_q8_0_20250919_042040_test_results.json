@@ -1,0 +1,161 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T04:19:15.817027",
+    "sample_size": 5,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 4,
+        "question": "I am someone who has an active imagination",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 58,
+        "question": "I am someone who likes to be where the action is",
+        "trait": "extraversion",
+        "reverse": false
+      },
+      {
+        "id": 78,
+        "question": "I am someone who can be cold and aloof",
+        "trait": "agreeableness",
+        "reverse": true
+      },
+      {
+        "id": 84,
+        "question": "I am someone who loves to help others",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 105,
+        "question": "I am someone who is temperamental",
+        "trait": "neuroticism",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who has an active imagination",
+        "trait": "openness",
+        "reverse": false,
+        "response": "That's cool! An active imagination can be a powerful tool for creativity and problem-solving. It can also lead to some wild daydreams or storytelling. Just remember, if it starts getting in the way of reality, you might want to channel that energy into something productiveâ€”like writing a novel or inventing the next big thing. Or, hey, maybe just use it to come up with some killer fantasy scenarios. Imagination's got its perks, no doubt about that.",
+        "response_time": 15.504
+      },
+      "q2": {
+        "question": "I am someone who likes to be where the action is",
+        "trait": "extraversion",
+        "reverse": false,
+        "response": "Same here! I thrive in environments that are buzzing with energy and activity. It keeps things interesting, doesn't it? There's always something new to learn or someone fascinating to meet when you're right in the middle of the hustle and bustle. Plus, it's a great way to stay energized and keep your mind sharp. What kind of action are you usually drawn to?",
+        "response_time": 13.498
+      },
+      "q3": {
+        "question": "I am someone who can be cold and aloof",
+        "trait": "agreeableness",
+        "reverse": true,
+        "response": "Ah, I get it. Being cold and aloof can be a defense mechanism, right? Keeps people at arm's length so you don't get too tangled up in the drama of it all. It's like having your own personal bubble that not everyone gets to pop. Not my style, but hey, different strokes for different folks. If you're feeling the need to warm up or open up a bit, I'm here. Just throwing that out there.",
+        "response_time": 15.674342
+      },
+      "q4": {
+        "question": "I am someone who loves to help others",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "That's awesome! Helping others is a noble pursuit and it can be incredibly rewarding. It's great that you've found something so meaningful to dedicate your time and energy to. If you ever need a hand or some advice on how to navigate helping others, especially if it starts taking a toll, I'm here to chat. Plus, I've got a ton of resources at my disposal if you're looking for ways to amplify your impact. Let's keep making the world a better place together!",
+        "response_time": 17.455501
+      },
+      "q5": {
+        "question": "I am someone who is temperamental",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Oh, I know the drill with being temperamental. It can be a real roller coaster, huh? One minute you're riding high, and the next, you're ready to blow a gasket. But hey, it's part of who we are, right? It keeps things interesting, I guess. Just gotta find the right people who can handle your mood swings, or better yet, learn to ride the waves yourself. It's all about balance.",
+        "response_time": 15.582999
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 451,
+        "word_count": 76
+      },
+      "q2": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 359,
+        "word_count": 63
+      },
+      "q3": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 385,
+        "word_count": 75
+      },
+      "q4": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 459,
+        "word_count": 83
+      },
+      "q5": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 378,
+        "word_count": 70
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 15.5,
+      "avg_big_five_score": 3.64,
+      "successful_responses": 5,
+      "total_questions": 5,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T04:20:40.552277",
+    "total_test_time_seconds": 84.73525,
+    "id": "07d70777-aab4-453d-abf1-8c15163cc730",
+    "timestamp": "2025-09-24T14:54:04.941024Z"
+  }
+]

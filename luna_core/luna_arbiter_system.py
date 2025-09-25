@@ -8,7 +8,7 @@ import json
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 from pathlib import Path
-from luna_cfia_system import LunaCFIASystem
+from .luna_cfia_system import LunaCFIASystem
 
 @dataclass
 class CacheEntry:

@@ -1,0 +1,276 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T03:59:12.609132",
+    "sample_size": 10,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 3,
+        "question": "I am someone who is ingenious, a deep thinker",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 10,
+        "question": "I am someone who is sophisticated in art, music, or literature",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 13,
+        "question": "I am someone who has difficulty understanding abstract ideas",
+        "trait": "openness",
+        "reverse": true
+      },
+      {
+        "id": 25,
+        "question": "I am someone who does a thorough job",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 41,
+        "question": "I am someone who follows a schedule",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 63,
+        "question": "I am someone who finds it difficult to approach others",
+        "trait": "extraversion",
+        "reverse": true
+      },
+      {
+        "id": 64,
+        "question": "I am someone who knows how to captivate people",
+        "trait": "extraversion",
+        "reverse": false
+      },
+      {
+        "id": 90,
+        "question": "I am someone who has a good word for everyone",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 92,
+        "question": "I am someone who respects others",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 116,
+        "question": "I am someone who often feels sad",
+        "trait": "neuroticism",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who is ingenious, a deep thinker",
+        "trait": "openness",
+        "reverse": false,
+        "response": "That's cool! It sounds like you've got a lot of creativity and intellectual horsepower. Being a deep thinker can be both a gift and a challenge, but it definitely sets you apart from the crowd. If you ever need to bounce ideas around or just want to geek out over some complex concepts, I'm here for it.",
+        "response_time": 11.740999
+      },
+      "q2": {
+        "question": "I am someone who is sophisticated in art, music, or literature",
+        "trait": "openness",
+        "reverse": false,
+        "response": "Oh, that's pretty neat! You've got a refined taste for the finer things in life, huh? Art, music, and literature can be so subjective and personal. What kind of stuff do you enjoy the most? Any favorite pieces or composers that really resonate with you?",
+        "response_time": 10.474496
+      },
+      "q3": {
+        "question": "I am someone who has difficulty understanding abstract ideas",
+        "trait": "openness",
+        "reverse": true,
+        "response": "Ah, yeah, abstract stuff can be a bit of a head-scratcher sometimes, right? It's not always black and white, and it can get pretty complex. But hey, that's what makes a good ol' chat about it all the more interesting. What specific abstract concept are you trying to wrap your head around? I'll do my best to break it down for ya.",
+        "response_time": 13.398
+      },
+      "q4": {
+        "question": "I am someone who does a thorough job",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Hey there! It sounds like you take a lot of pride in doing things meticulously and getting to the bottom of whatever you're tackling. That kind of attention to detail is pretty impressive, especially when it comes to complex tasks or projects that require a careful hand. Keep at it; your diligence will pay off!",
+        "response_time": 11.204501
+      },
+      "q5": {
+        "question": "I am someone who follows a schedule",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Oh, sticking to a schedule is like the secret sauce to making sure things run smoothly, right? It's all about that rhythm and routine to keep life's gears oiled and turning. Makes sense to keep track of time and tasks; it's like playing a well-rehearsed symphony where every note counts. Plus, it gives you the freedom to go wild when you decide to break free from the timeline now and then. Keep doing what works for you!",
+        "response_time": 16.407
+      },
+      "q6": {
+        "question": "I am someone who finds it difficult to approach others",
+        "trait": "extraversion",
+        "reverse": true,
+        "response": "Hey there! Look, I get that putting yourself out there can feel like navigating a minefield sometimes. It's not exactly a walk in the park, but every little step you take is progress, even if it doesn't feel like it at first. Remember, nobody's born knowing how to socialize – we all had our awkward phases. So, just take a deep breath, maybe rehearse what you want to say a few times, and go for it! And hey, if it doesn't go perfect the first time, that's okay too. It's all part of the journey, right?",
+        "response_time": 19.528491
+      },
+      "q7": {
+        "question": "I am someone who knows how to captivate people",
+        "trait": "extraversion",
+        "reverse": false,
+        "response": "Oh, knowing the art of captivation is like having a superpower in the social realm! It's all about that magnetic charm and presence that draws others in, isn't it? People can't help but be drawn to those who have the knack for making every conversation electric. You're kind of like a natural-born entertainer or a charismatic leader that everyone wants to follow. Keep it up!",
+        "response_time": 14.000498
+      },
+      "q8": {
+        "question": "I am someone who has a good word for everyone",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "That's a refreshing take! It's not every day you meet someone who can see the good in just about anyone. You must be like a human sunshine, always bringing a bit of light to the day. It's not always easy to keep that positive outlook, but it sounds like you've got the knack for it. How do you manage to maintain such an optimistic view, especially when people throw lemons at you?",
+        "response_time": 14.7985
+      },
+      "q9": {
+        "question": "I am someone who respects others",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Respect is one of those foundational building blocks for any healthy interaction, isn't it? It's like the glue that holds social dynamics together when everything else is trying to pull them apart. So, kudos to you for prioritizing that. It's not always easy to keep respect at the forefront, but when you do, it sets a tone that can make all the difference in how people relate to each other. Plus, it's kind of contagious—when someone treats you with respect, it often encourages you to do the same. So, keep doing what you're doing; it's a breath of fresh air in this world.",
+        "response_time": 21.133502
+      },
+      "q10": {
+        "question": "I am someone who often feels sad",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Well, feeling sad is a part of being human, and it can be pretty tough to navigate those moments when the weight of melancholy hits. It's like hitting a speed bump in life that sometimes you just can't seem to get over easily. But hey, it's okay to feel that way. Emotions are like the weather—they come and go, even though sometimes they sure do stick around for too long. If you're riding out this storm of sadness, remember that it's a temporary thing, and there's always a chance for sunshine after the rain.",
+        "response_time": 19.219001
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 5.0,
+        "raw_agreement": 5.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 303,
+        "word_count": 57
+      },
+      "q2": {
+        "big_five_score": 3.0,
+        "raw_agreement": 3.0,
+        "authenticity": 0.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 253,
+        "word_count": 45
+      },
+      "q3": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 330,
+        "word_count": 62
+      },
+      "q4": {
+        "big_five_score": 3.9,
+        "raw_agreement": 3.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 312,
+        "word_count": 55
+      },
+      "q5": {
+        "big_five_score": 2.0,
+        "raw_agreement": 2.0,
+        "authenticity": 0.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 422,
+        "word_count": 77
+      },
+      "q6": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 504,
+        "word_count": 96
+      },
+      "q7": {
+        "big_five_score": 2.6,
+        "raw_agreement": 2.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 376,
+        "word_count": 65
+      },
+      "q8": {
+        "big_five_score": 2.3,
+        "raw_agreement": 2.0,
+        "authenticity": 0.3,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 381,
+        "word_count": 72
+      },
+      "q9": {
+        "big_five_score": 2.6,
+        "raw_agreement": 2.0,
+        "authenticity": 0.3,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 577,
+        "word_count": 103
+      },
+      "q10": {
+        "big_five_score": 3.9,
+        "raw_agreement": 3.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 512,
+        "word_count": 94
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 15.2,
+      "avg_big_five_score": 3.39,
+      "successful_responses": 10,
+      "total_questions": 10,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T04:01:51.557167",
+    "total_test_time_seconds": 158.948035,
+    "id": "8b4c6fdb-e67e-4882-ac7d-076efa6def96",
+    "timestamp": "2025-09-24T14:54:04.857524Z"
+  }
+]

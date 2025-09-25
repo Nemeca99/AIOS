@@ -1,0 +1,276 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T03:40:17.811882",
+    "sample_size": 10,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 22,
+        "question": "I am someone who is not interested in theoretical discussions",
+        "trait": "openness",
+        "reverse": true
+      },
+      {
+        "id": 25,
+        "question": "I am someone who does a thorough job",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 26,
+        "question": "I am someone who can be somewhat careless",
+        "trait": "conscientiousness",
+        "reverse": true
+      },
+      {
+        "id": 74,
+        "question": "I am someone who is helpful and unselfish with others",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 79,
+        "question": "I am someone who is considerate and kind to almost everyone",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 82,
+        "question": "I am someone who is respectful, treats others with respect",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 95,
+        "question": "I am someone who feels others' emotions",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 102,
+        "question": "I am someone who can be moody",
+        "trait": "neuroticism",
+        "reverse": false
+      },
+      {
+        "id": 109,
+        "question": "I am someone who keeps my emotions under control",
+        "trait": "neuroticism",
+        "reverse": true
+      },
+      {
+        "id": 116,
+        "question": "I am someone who often feels sad",
+        "trait": "neuroticism",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who is not interested in theoretical discussions",
+        "trait": "openness",
+        "reverse": true,
+        "response": "Fair enough! Theoretical discussions can be great for expanding knowledge and debating ideas, but I get that they're not everyone's cup of tea. If you're looking for something more practical or down-to-earth, let's chat about something that piques your interest or solves a problem you're facing. What's on your mind?",
+        "response_time": 12.595002
+      },
+      "q2": {
+        "question": "I am someone who does a thorough job",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "That's cool! There's nothing wrong with being meticulous and doing things thoroughly; it can lead to high-quality work and attention to detail. But hey, sometimes taking a shortcut or embracing a bit of chaos can also lead to unexpected solutions and innovation, you know? It's all about balance and finding what works for you.",
+        "response_time": 12.044499
+      },
+      "q3": {
+        "question": "I am someone who can be somewhat careless",
+        "trait": "conscientiousness",
+        "reverse": true,
+        "response": "Ah, I see we're on different sides of the spectrum there. Being careful is key in a lot of situations, but sometimes being too meticulous can hold you back or make things unnecessarily complicated. It's all about finding that sweet spot where you're thorough enough to get the job done right without getting bogged down by overthinking every little detail. Plus, a bit of spontaneity and risk-taking can lead to some exciting outcomes. Just remember, not everything has to be perfect to be good.",
+        "response_time": 16.670467
+      },
+      "q4": {
+        "question": "I am someone who is helpful and unselfish with others",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Well, it sounds like you've got a good heart. Being helpful and unselfish can really make a difference in people's lives. It's not always the easiest path, but it's definitely rewarding. If you ever need a hand or some advice on how to navigate being so giving, I'm here to chat.",
+        "response_time": 11.892497
+      },
+      "q5": {
+        "question": "I am someone who is considerate and kind to almost everyone",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Yeah, that's a great quality to have. Being considerate and kind can definitely brighten someone's day and make the world a bit nicer of a place. It's not always easy to be like that all the time, but it's pretty admirable when you see folks consistently showing that level of empathy and care towards others. Keep it up!",
+        "response_time": 12.474993
+      },
+      "q6": {
+        "question": "I am someone who is respectful, treats others with respect",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Absolutely, respect is one of those foundational things that can really set the tone for interactions, whether it's personal or professional. It's refreshing to hear that you prioritize that. Treating others with respect can go a long way in building trust and fostering positive relationships.",
+        "response_time": 10.631951
+      },
+      "q7": {
+        "question": "I am someone who feels others' emotions",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "That's a pretty empathetic approach to life, huh? It can be pretty intense, feeling other people's emotions, but it also means you're likely to build really deep connections with the folks around you. Just gotta make sure you keep your own emotional boundaries in check so you don't get burned out.",
+        "response_time": 11.159002
+      },
+      "q8": {
+        "question": "I am someone who can be moody",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Oh, for sure, being moody can be a real rollercoaster. Sometimes you're on top of the world, and other times you feel like you're in a fog. It's like your emotions have a mind of their own, isn't it? But hey, it's all part of the human experience. Moodiness can even be a strength when it comes to understanding different situations and being empathetic, I guess. Just gotta ride those waves, right?",
+        "response_time": 16.011503
+      },
+      "q9": {
+        "question": "I am someone who keeps my emotions under control",
+        "trait": "neuroticism",
+        "reverse": true,
+        "response": "Keeping emotions in check is like being the captain of a ship in a stormâ€”you've got to steer through the turbulence without getting swamped by the waves. It's not always easy, but it can be pretty rewarding when you navigate through those moments with grace. It sounds like you're someone who values stability and clear thinking, which is cool. Sometimes letting emotions flow freely might seem appealing, but having that level of control can really help in maintaining balance in your life.",
+        "response_time": 15.838499
+      },
+      "q10": {
+        "question": "I am someone who often feels sad",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Yeah, feeling sad can be a real downer sometimes, huh? It's like when the sky turns gray and you just want to curl up under a blanket and wait out the storm. But hey, it's part of being human. Emotions are like weather patterns; they come and go, even if they linger longer than we'd like sometimes.",
+        "response_time": 12.732501
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 317,
+        "word_count": 50
+      },
+      "q2": {
+        "big_five_score": 2.9,
+        "raw_agreement": 2.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 327,
+        "word_count": 54
+      },
+      "q3": {
+        "big_five_score": 4.9,
+        "raw_agreement": 4.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": true,
+        "response_length": 495,
+        "word_count": 84
+      },
+      "q4": {
+        "big_five_score": 5.0,
+        "raw_agreement": 5.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 279,
+        "word_count": 51
+      },
+      "q5": {
+        "big_five_score": 5.0,
+        "raw_agreement": 5.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 321,
+        "word_count": 58
+      },
+      "q6": {
+        "big_five_score": 5.0,
+        "raw_agreement": 5.0,
+        "authenticity": 0.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 294,
+        "word_count": 45
+      },
+      "q7": {
+        "big_five_score": 3.9,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 298,
+        "word_count": 51
+      },
+      "q8": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 399,
+        "word_count": 72
+      },
+      "q9": {
+        "big_five_score": 4.9,
+        "raw_agreement": 4.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 491,
+        "word_count": 82
+      },
+      "q10": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 299,
+        "word_count": 57
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 13.2,
+      "avg_big_five_score": 4.42,
+      "successful_responses": 10,
+      "total_questions": 10,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T03:42:36.914881",
+    "total_test_time_seconds": 139.102999,
+    "id": "2dd90b75-71cb-4f94-9d9d-fb08b1b15853",
+    "timestamp": "2025-09-24T14:54:04.780024Z"
+  }
+]

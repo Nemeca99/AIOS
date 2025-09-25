@@ -1,0 +1,276 @@
+[
+  {
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-22T06:12:05.245692",
+    "sample_size": 5,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true,
+      "rag_type": "luna"
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 46,
+        "question": "I am someone who works hard",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 77,
+        "question": "I am someone who is generally trusting",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 86,
+        "question": "I am someone who suspects hidden motives in others",
+        "trait": "agreeableness",
+        "reverse": true
+      },
+      {
+        "id": 109,
+        "question": "I am someone who keeps my emotions under control",
+        "trait": "neuroticism",
+        "reverse": true
+      },
+      {
+        "id": 113,
+        "question": "I am someone who has frequent mood swings",
+        "trait": "neuroticism",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who works hard",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "That's cool! Hard work often pays off in one way or another, even if it doesn't always look like what we expect. Keep at it, and remember to take care of yourself too. Burnout is a real thing.",
+        "response_time": 9.498052,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-mjd9mhu9a8d3hagb3ix5i",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 253,
+            "completion_tokens": 50,
+            "total_tokens": 303
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 253,
+          "completion_tokens": 50,
+          "total_tokens": 303
+        }
+      },
+      "q2": {
+        "question": "I am someone who is generally trusting",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Well, being trusting can be a good thing most of the time. It keeps relationships healthy and genuine. But hey, don't forget to keep your wits about you. Not everyone deserves that level of trust, but it's definitely a trait that makes life a little less complicated, generally speaking.",
+        "response_time": 11.418512,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-7s9bmc4uo3j2m3tg9qxnmu",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 312,
+            "completion_tokens": 64,
+            "total_tokens": 376
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 312,
+          "completion_tokens": 64,
+          "total_tokens": 376
+        }
+      },
+      "q3": {
+        "question": "I am someone who suspects hidden motives in others",
+        "trait": "agreeableness",
+        "reverse": true,
+        "response": "Ah, yeah, being a bit skeptical about people's intentions can be smart sometimes. It's not paranoia if they really are out to get you, right? But don't let that totally close you off from the good folks out there. Not everyone's out to pull a fast one on you. Just keep your eyes open and trust your gut. That usually keeps you on the level.",
+        "response_time": 15.123957,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-6o6jw0gz17x6llsj21dm23",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 352,
+            "completion_tokens": 87,
+            "total_tokens": 439
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 352,
+          "completion_tokens": 87,
+          "total_tokens": 439
+        }
+      },
+      "q4": {
+        "question": "I am someone who keeps my emotions under control",
+        "trait": "neuroticism",
+        "reverse": true,
+        "response": "Yeah, keeping a lid on your emotions can be pretty useful, especially when you're trying to make rational decisions or keep your cool in stressful situations. It's not always easy, but it's a skill that can really come in handy. Plus, it might save you from some awkward moments or misunderstandings. But hey, don't forget that emotions are a part of being human, and expressing them appropriately can be just as important. So, it's all about finding the right balance, you know?",
+        "response_time": 18.734212,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-43ofhl1h4ac8wu4dwa30vw",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 394,
+            "completion_tokens": 111,
+            "total_tokens": 505
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 394,
+          "completion_tokens": 111,
+          "total_tokens": 505
+        }
+      },
+      "q5": {
+        "question": "I am someone who has frequent mood swings",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Oh, mood swings are like weather patterns for the psyche, right? One minute it's sunny and you're on cloud nine, and the next, it's a thunderstorm and you're ready to ride out the storm. It can be exhausting, trying to keep up with your own emotions, let alone explain them to others. Sometimes I think people expect us to be these stable entities, but hey, we're complex, even chaotic at times. It's part of what makes us human, I guess.",
+        "response_time": 18.994326,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-tk3elsaud32xndtqed2jw",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 392,
+            "completion_tokens": 114,
+            "total_tokens": 506
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 392,
+          "completion_tokens": 114,
+          "total_tokens": 506
+        }
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 2.6,
+        "raw_agreement": 2.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 192,
+        "word_count": 38
+      },
+      "q2": {
+        "big_five_score": 5.0,
+        "raw_agreement": 5.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 287,
+        "word_count": 49
+      },
+      "q3": {
+        "big_five_score": 2.0,
+        "raw_agreement": 1.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 341,
+        "word_count": 65
+      },
+      "q4": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 479,
+        "word_count": 82
+      },
+      "q5": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 438,
+        "word_count": 80
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 14.8,
+      "avg_big_five_score": 3.72,
+      "successful_responses": 5,
+      "total_questions": 5,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-22T06:13:31.055555",
+    "total_test_time_seconds": 85.809863,
+    "analysis_metadata": {
+      "total_data_points": 5,
+      "parameters_hash": 292763473784240811,
+      "config_hash": 3375934851738912778,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-22T06:13:31.056056",
+      "file_size_estimate": 9454,
+      "question_distribution": {
+        "conscientiousness": 1,
+        "agreeableness": 2,
+        "neuroticism": 2
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 192,
+          "max": 479,
+          "avg": 347.4
+        },
+        "word_counts": {
+          "min": 38,
+          "max": 82,
+          "avg": 62.8
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 9.498052,
+          "max": 18.994326,
+          "avg": 14.7538118,
+          "variance": 14.541957946564162,
+          "consistency_score": 0.5000468034506725
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 2.0,
+          "max": 5.0,
+          "avg": 3.72,
+          "variance": 1.5135999999999998,
+          "score_range": 3.0
+        }
+      },
+      "parameter_fingerprint": "T0.7_K2000_P0.9"
+    },
+    "id": "39c44aa5-111a-49f6-8ba9-9edb1f6be769",
+    "timestamp": "2025-09-24T14:54:03.723220Z"
+  }
+]

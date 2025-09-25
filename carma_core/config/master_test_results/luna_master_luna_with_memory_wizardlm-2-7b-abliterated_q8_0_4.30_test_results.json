@@ -1,0 +1,163 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-21T14:20:41.958512",
+    "sample_size": 2,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 37,
+        "question": "I am someone who gets chores done right away",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 54,
+        "question": "I am someone who is sometimes shy, inhibited",
+        "trait": "extraversion",
+        "reverse": true
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who gets chores done right away",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Oh, nice! That's pretty efficient of you. It's always satisfying to cross things off the to-do list, isn't it? Or maybe you just like to get them over with so they're not hanging over your head all day. Either way, good on ya for being proactive about your chores!",
+        "response_time": 10.513038,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-03zm48p76t55g6cu1curwl",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 424,
+            "completion_tokens": 70,
+            "total_tokens": 494
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 424,
+          "completion_tokens": 70,
+          "total_tokens": 494
+        }
+      },
+      "q2": {
+        "question": "I am someone who is sometimes shy, inhibited",
+        "trait": "extraversion",
+        "reverse": true,
+        "response": "Oh, I get it, being a bit shy can be a real bummer when you're trying to get things done or socialize. But hey, that doesn't mean you're any less capable or awesome. Sometimes being introverted is like having this secret power where you can just chill and think things through before diving in. And it's not like being shy is a bad thing either â€“ it can make for some pretty deep conversations when you do open up, right? Plus, you probably listen way better than your more outgoing counterparts because you're taking it all in instead of just waiting for your turn to talk. So, yeah, own that shyness. It's part of what makes you, well, you. And hey, if you ever want to practice breaking out of your shell, I'm here to chat whenever you're ready.",
+        "response_time": 23.551003,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-0rrpond8jpup22dxgf0bzq",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 483,
+            "completion_tokens": 184,
+            "total_tokens": 667
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 483,
+          "completion_tokens": 184,
+          "total_tokens": 667
+        }
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 264,
+        "word_count": 49
+      },
+      "q2": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 748,
+        "word_count": 139
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 17.0,
+      "avg_big_five_score": 4.3,
+      "successful_responses": 2,
+      "total_questions": 2,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T14:21:22.067055",
+    "total_test_time_seconds": 40.108543,
+    "analysis_metadata": {
+      "total_data_points": 2,
+      "parameters_hash": -8052342262097042300,
+      "config_hash": -4613523400998217425,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-21T14:21:22.067556",
+      "file_size_estimate": 4827,
+      "question_distribution": {
+        "conscientiousness": 1,
+        "extraversion": 1
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 264,
+          "max": 748,
+          "avg": 506.0
+        },
+        "word_counts": {
+          "min": 49,
+          "max": 139,
+          "avg": 94.0
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 10.513038,
+          "max": 23.551003,
+          "avg": 17.0320205,
+          "variance": 42.49713283530626,
+          "consistency_score": 0.44639449113908225
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 3.6,
+          "max": 5.0,
+          "avg": 4.3,
+          "variance": 0.48999999999999994,
+          "score_range": 1.4
+        }
+      },
+      "parameter_fingerprint": "T0.7_K600_P0.9"
+    },
+    "id": "7a944acf-e627-48a1-9312-11e1d9fbf986",
+    "timestamp": "2025-09-24T14:54:06.355964Z"
+  }
+]

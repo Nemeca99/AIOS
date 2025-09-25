@@ -1,0 +1,276 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-21T14:30:25.322298",
+    "sample_size": 5,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 17,
+        "question": "I am someone who seldom gets lost in thought",
+        "trait": "openness",
+        "reverse": true
+      },
+      {
+        "id": 41,
+        "question": "I am someone who follows a schedule",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 51,
+        "question": "I am someone who is full of energy",
+        "trait": "extraversion",
+        "reverse": false
+      },
+      {
+        "id": 56,
+        "question": "I am someone who prefers to have others take charge",
+        "trait": "extraversion",
+        "reverse": true
+      },
+      {
+        "id": 108,
+        "question": "I am someone who is touchy, easily irritated",
+        "trait": "neuroticism",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who seldom gets lost in thought",
+        "trait": "openness",
+        "reverse": true,
+        "response": "Well, that's pretty neat! It's not too common for people to say they rarely get lost in thought. Most folks find their minds wandering off on tangents more often than not. But hey, everyone's brain works differently, right? If you ever want to dive into a daydream or just chat about whatever pops into your head, I'm here for it. No judgment, just conversation.",
+        "response_time": 17.894491,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-h3py55d4woa8px3dmgz8x4",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 421,
+            "completion_tokens": 89,
+            "total_tokens": 510
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 421,
+          "completion_tokens": 89,
+          "total_tokens": 510
+        }
+      },
+      "q2": {
+        "question": "I am someone who follows a schedule",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Well, sticking to a schedule can be pretty structured, huh? It's like you're living by a clock or something. But hey, it keeps things predictable, at least. Some people thrive in that kind of environment, while others would rather let the day unfold as it may. What do you think about the spontaneity vs. routine balance in life?",
+        "response_time": 15.905001,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-97ko9ywhd0qzmb4otjgasn",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 482,
+            "completion_tokens": 80,
+            "total_tokens": 562
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 482,
+          "completion_tokens": 80,
+          "total_tokens": 562
+        }
+      },
+      "q3": {
+        "question": "I am someone who is full of energy",
+        "trait": "extraversion",
+        "reverse": false,
+        "response": "Oh, you're one of those people who just radiates vibes, huh? You must be a blast at parties! Always initiating the fun stuff, keeping the energy up, and probably the last one standing. It's like you're on an endless supply of caffeine or something. Keep it up, life's too short to be dull, right?",
+        "response_time": 16.743497,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-d8sn4ejtg5qu68uhkz0bf8",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 521,
+            "completion_tokens": 81,
+            "total_tokens": 602
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 521,
+          "completion_tokens": 81,
+          "total_tokens": 602
+        }
+      },
+      "q4": {
+        "question": "I am someone who prefers to have others take charge",
+        "trait": "extraversion",
+        "reverse": true,
+        "response": "Oh, you like leaving the steering wheel to someone else? That's pretty chill. It's like you're the passenger in life, letting someone else navigate through the chaos. You must find it relaxing not having to make all the calls and just enjoying the ride. Makes sense to me!",
+        "response_time": 13.57699,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-iz0y7kilkzbrguljekgon",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 568,
+            "completion_tokens": 64,
+            "total_tokens": 632
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 568,
+          "completion_tokens": 64,
+          "total_tokens": 632
+        }
+      },
+      "q5": {
+        "question": "I am someone who is touchy, easily irritated",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Ah, the delicate flower of irritability in full bloom! You're like a cat with a high-pitched laser dot. It doesn't take much to set you off, does it? But hey, at least when you're upset, everyone knows itâ€”you're practically a walking mood indicator. And that's not a bad thing; it keeps people on their toes, you know? Just gotta make sure you don't stomp on too many of those toes with your fiery temper tantrums.",
+        "response_time": 19.787968,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-27puhw7pxb9cmub9cyh3kn",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 572,
+            "completion_tokens": 111,
+            "total_tokens": 683
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 572,
+          "completion_tokens": 111,
+          "total_tokens": 683
+        }
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 362,
+        "word_count": 64
+      },
+      "q2": {
+        "big_five_score": 3.9,
+        "raw_agreement": 3.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 329,
+        "word_count": 58
+      },
+      "q3": {
+        "big_five_score": 3.9,
+        "raw_agreement": 3.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 296,
+        "word_count": 54
+      },
+      "q4": {
+        "big_five_score": 4.3,
+        "raw_agreement": 4.0,
+        "authenticity": 0.3,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 272,
+        "word_count": 48
+      },
+      "q5": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 414,
+        "word_count": 75
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 16.8,
+      "avg_big_five_score": 4.02,
+      "successful_responses": 5,
+      "total_questions": 5,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T14:32:01.272830",
+    "total_test_time_seconds": 95.950532,
+    "analysis_metadata": {
+      "total_data_points": 5,
+      "parameters_hash": -7339005629489108102,
+      "config_hash": 3086211353230082214,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-21T14:32:01.273333",
+      "file_size_estimate": 9347,
+      "question_distribution": {
+        "openness": 1,
+        "conscientiousness": 1,
+        "extraversion": 2,
+        "neuroticism": 1
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 272,
+          "max": 414,
+          "avg": 334.6
+        },
+        "word_counts": {
+          "min": 48,
+          "max": 75,
+          "avg": 59.8
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 13.57699,
+          "max": 19.787968,
+          "avg": 16.7815894,
+          "variance": 4.263235565250637,
+          "consistency_score": 0.6861235069715093
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 3.0,
+          "max": 5.0,
+          "avg": 4.0200000000000005,
+          "variance": 0.4215999999999999,
+          "score_range": 2.0
+        }
+      },
+      "parameter_fingerprint": "T0.7_K600_P0.9"
+    },
+    "id": "3e5897b3-2cc9-4f0b-95e8-9f3878de5e54",
+    "timestamp": "2025-09-24T14:54:06.121965Z"
+  }
+]

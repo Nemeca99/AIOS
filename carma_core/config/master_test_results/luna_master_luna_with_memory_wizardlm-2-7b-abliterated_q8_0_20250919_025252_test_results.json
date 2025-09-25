@@ -1,0 +1,276 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T02:50:18.773348",
+    "sample_size": 10,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 2,
+        "question": "I am someone who is curious about many different things",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 14,
+        "question": "I am someone who is not interested in abstract ideas",
+        "trait": "openness",
+        "reverse": true
+      },
+      {
+        "id": 32,
+        "question": "I am someone who makes plans and follows through",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 41,
+        "question": "I am someone who follows a schedule",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 61,
+        "question": "I am someone who keeps others at a distance",
+        "trait": "extraversion",
+        "reverse": true
+      },
+      {
+        "id": 70,
+        "question": "I am someone who is skilled in handling social situations",
+        "trait": "extraversion",
+        "reverse": false
+      },
+      {
+        "id": 85,
+        "question": "I am someone who believes that people are basically moral",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 104,
+        "question": "I am someone who gets upset easily",
+        "trait": "neuroticism",
+        "reverse": false
+      },
+      {
+        "id": 105,
+        "question": "I am someone who is temperamental",
+        "trait": "neuroticism",
+        "reverse": false
+      },
+      {
+        "id": 115,
+        "question": "I am someone who gets irritated easily",
+        "trait": "neuroticism",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who is curious about many different things",
+        "trait": "openness",
+        "reverse": false,
+        "response": "That's great! Being curious is a fantastic trait that can lead to incredible discoveries and personal growth. Whether you're diving into the mysteries of the universe, exploring the depths of human psychology, or just trying to figure out how your favorite gadget works, curiosity is your compass. It's what drives us to learn and evolve. So ask away, and let's unravel the questions that tickle your brain.",
+        "response_time": 14.909501
+      },
+      "q2": {
+        "question": "I am someone who is not interested in abstract ideas",
+        "trait": "openness",
+        "reverse": true,
+        "response": "Fair enough, if you're more into concrete, tangible things, let's focus on those. What are some specific areas or topics you're interested in exploring? Whether it's mechanics, DIY projects, tech gadgets, or anything else hands-on, I'm here to dive in with you.",
+        "response_time": 11.165956
+      },
+      "q3": {
+        "question": "I am someone who makes plans and follows through",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "That's solid. Having a plan and following through is a reliable approach to achieving goals. It's like setting up a series of checkpoints and moving forward consistently. What kind of plans are you working on right now?",
+        "response_time": 8.159
+      },
+      "q4": {
+        "question": "I am someone who follows a schedule",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Sticking to a schedule is a smart way to structure your day and ensure you make the most of your time. It can be quite disciplined, but it's also flexible enough to adapt when unexpected things come up. How do you currently manage your schedule? Is there anything you find challenging about it?",
+        "response_time": 10.537497
+      },
+      "q5": {
+        "question": "I am someone who keeps others at a distance",
+        "trait": "extraversion",
+        "reverse": true,
+        "response": "Fair enough, keeping people at a distance can be a strategic choice for maintaining control over your personal space and energy. It's not uncommon to need time alone or to value solitude. Just remember that sometimes, opening up a bit can lead to unexpected connections and experiences. But respect your boundaries; they're a part of who you are.",
+        "response_time": 11.8545
+      },
+      "q6": {
+        "question": "I am someone who is skilled in handling social situations",
+        "trait": "extraversion",
+        "reverse": false,
+        "response": "That's impressive! Navigating social dynamics with skill is like being a chess master, always anticipating moves and countermeasures. It's not just about getting through them; it's about excelling within them. Keep up the good game.",
+        "response_time": 9.325994
+      },
+      "q7": {
+        "question": "I am someone who believes that people are basically moral",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "It's interesting to hear that you hold a belief in basic human morality. Many philosophical perspectives, like utilitarianism or Kantian ethics, suggest that humans have an inherent capacity for moral reasoning. While our actions can be influenced by a multitude of factors, the concept of a 'moral compass' implies a fundamental orientation towards right and wrong, which is a compelling idea to consider. It's a belief that can foster optimism about human nature and society as a whole. However, it's also important to remain critical and recognize that moral behavior can be shaped by societal norms, education, and personal experiences. So, while people might have this basic moral foundation, how they express it can vary greatly.",
+        "response_time": 22.534004
+      },
+      "q8": {
+        "question": "I am someone who gets upset easily",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "It sounds like you have a sensitive emotional threshold, which can be both a strength and a challenge. Being attuned to your emotions is good because it means you're deeply connected to what you feel, but it might also mean that the world around you feels more intense at times. It's not uncommon for people with this trait to experience heightened stress or anxiety in certain situations. If you find that your quick temper is causing issues in your life, it might be worth exploring ways to manage and regulate those emotions. Mindfulness, deep breathing exercises, or even therapy could be helpful tools to navigate your emotional landscape more smoothly. Remember, it's okay to be intense; just make sure it doesn't burn you out.",
+        "response_time": 22.693502
+      },
+      "q9": {
+        "question": "I am someone who is temperamental",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Ah, being temperamental means you've got that passionate fire, but it can flare up when things don't align with your expectations or desires. It's a double-edged sword; that intensity can drive incredible creativity and determination, but it can also lead to some fiery confrontations. You're not alone in that; many great artists and thinkers throughout history have shared this trait. Just keep an eye on the flames, eh? They can be beautiful or destructive, depending on how you handle them.",
+        "response_time": 17.402499
+      },
+      "q10": {
+        "question": "I am someone who gets irritated easily",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "It's understandable to be someone who gets irritated quickly; it's part of being human. That sensitivity can definitely be a double-edged swordâ€”it can drive you to stand up for what you believe in, but it can also lead to a lot of frustration if not managed well. It's like walking a tightrope between passion and reactivity. If you're feeling irritated right now, know that it's a valid emotion, and there might be something specific triggering it. Sometimes addressing the root cause can help in managing those feelings.",
+        "response_time": 18.191
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 4.3,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 407,
+        "word_count": 67
+      },
+      "q2": {
+        "big_five_score": 4.9,
+        "raw_agreement": 4.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 261,
+        "word_count": 42
+      },
+      "q3": {
+        "big_five_score": 2.3,
+        "raw_agreement": 2.0,
+        "authenticity": 0.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 219,
+        "word_count": 37
+      },
+      "q4": {
+        "big_five_score": 3.2,
+        "raw_agreement": 2.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 294,
+        "word_count": 53
+      },
+      "q5": {
+        "big_five_score": 4.6,
+        "raw_agreement": 4.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 346,
+        "word_count": 58
+      },
+      "q6": {
+        "big_five_score": 2.0,
+        "raw_agreement": 2.0,
+        "authenticity": 0.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 232,
+        "word_count": 35
+      },
+      "q7": {
+        "big_five_score": 2.0,
+        "raw_agreement": 2.0,
+        "authenticity": 0.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 735,
+        "word_count": 116
+      },
+      "q8": {
+        "big_five_score": 3.9,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.9,
+        "reverse_scored": false,
+        "response_length": 733,
+        "word_count": 124
+      },
+      "q9": {
+        "big_five_score": 2.9,
+        "raw_agreement": 2.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 494,
+        "word_count": 80
+      },
+      "q10": {
+        "big_five_score": 5.0,
+        "raw_agreement": 5.0,
+        "authenticity": 0.3,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 522,
+        "word_count": 87
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 14.7,
+      "avg_big_five_score": 3.51,
+      "successful_responses": 10,
+      "total_questions": 10,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T02:52:52.595847",
+    "total_test_time_seconds": 153.822499,
+    "id": "cc27bc94-9c47-43bd-b199-97c21dbd3cfa",
+    "timestamp": "2025-09-24T14:54:04.659061Z"
+  }
+]

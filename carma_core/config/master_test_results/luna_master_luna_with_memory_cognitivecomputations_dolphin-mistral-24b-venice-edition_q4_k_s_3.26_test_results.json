@@ -1,0 +1,387 @@
+[
+  {
+    "model_name": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T16:30:36.182997",
+    "sample_size": 8,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 16,
+        "question": "I am someone who thinks poetry and plays are boring",
+        "trait": "openness",
+        "reverse": true
+      },
+      {
+        "id": 19,
+        "question": "I am someone who avoids creative writing tasks",
+        "trait": "openness",
+        "reverse": true
+      },
+      {
+        "id": 21,
+        "question": "I am someone who enjoys thinking about things",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 37,
+        "question": "I am someone who gets chores done right away",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 82,
+        "question": "I am someone who is respectful, treats others with respect",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 97,
+        "question": "I am someone who can be tense",
+        "trait": "neuroticism",
+        "reverse": false
+      },
+      {
+        "id": 110,
+        "question": "I am someone who rarely feels sad",
+        "trait": "neuroticism",
+        "reverse": true
+      },
+      {
+        "id": 117,
+        "question": "I am someone who panics easily",
+        "trait": "neuroticism",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who thinks poetry and plays are boring",
+        "trait": "openness",
+        "reverse": true,
+        "response": "Oh, I feel you. Poetry and plays can be a snoozefest if they're not your thing. I get it—sometimes all that rhyming and dramatic monologuing just doesn't cut it. There's nothing wrong with preferring something more straightforward or fast-paced. Not everyone needs to appreciate Shakespeare or haikus, you know? What do you enjoy instead? Maybe we can find some common ground there.",
+        "response_time": 31.1875,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-buezbsco1gwavxno3oewt5",
+          "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "usage": {
+            "prompt_tokens": 202,
+            "completion_tokens": 89,
+            "total_tokens": 291
+          },
+          "system_fingerprint": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "finish_reason": "stop",
+          "prompt_tokens": 202,
+          "completion_tokens": 89,
+          "total_tokens": 291
+        }
+      },
+      "q2": {
+        "question": "I am someone who avoids creative writing tasks",
+        "trait": "openness",
+        "reverse": true,
+        "response": "Oh, same here. Creative writing can feel like wading through molasses sometimes. I mean, where do you even start? \"Oh look, a blank page, my nemesis.\" It's like trying to catch smoke with your bare hands. But hey, at least we're not alone in feeling that way. What's your usual excuse when you gotta dodge those assignments?",
+        "response_time": 27.424808,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-cflzxq1kwdaabgdk382b",
+          "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "usage": {
+            "prompt_tokens": 261,
+            "completion_tokens": 78,
+            "total_tokens": 339
+          },
+          "system_fingerprint": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "finish_reason": "stop",
+          "prompt_tokens": 261,
+          "completion_tokens": 78,
+          "total_tokens": 339
+        }
+      },
+      "q3": {
+        "question": "I am someone who enjoys thinking about things",
+        "trait": "openness",
+        "reverse": false,
+        "response": "Oh, hell yeah, deep thoughts are where it's at! There's something satisfying about untangling the knots in your head, you know? It's like a mental workout that leaves you feeling both exhausted and exhilarated. I find myself doing it all the time—questioning everything from the meaning of life to why the hell people put pineapple on pizza. What kind of stuff keeps your gears turning?",
+        "response_time": 30.631995,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-o4jobpdj0eh8qe28en23",
+          "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "usage": {
+            "prompt_tokens": 298,
+            "completion_tokens": 85,
+            "total_tokens": 383
+          },
+          "system_fingerprint": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "finish_reason": "stop",
+          "prompt_tokens": 298,
+          "completion_tokens": 85,
+          "total_tokens": 383
+        }
+      },
+      "q4": {
+        "question": "I am someone who gets chores done right away",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Oh, hell yeah, you're my kind of person! I hate letting shit pile up. Nothing beats that sweet relief of crossing everything off your to-do list ASAP. Chores are like little victories—knock 'em out and move on with your life. No use procrastinating when you can get it done and dusted, am I right?",
+        "response_time": 26.483492,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-ifl7ng6d2ophw5kje1z5",
+          "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "usage": {
+            "prompt_tokens": 339,
+            "completion_tokens": 76,
+            "total_tokens": 415
+          },
+          "system_fingerprint": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "finish_reason": "stop",
+          "prompt_tokens": 339,
+          "completion_tokens": 76,
+          "total_tokens": 415
+        }
+      },
+      "q5": {
+        "question": "I am someone who is respectful, treats others with respect",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Oh, fuck yeah, respect is huge! It's like the golden rule, ya know? Treat others how you want to be treated. Nothing worse than an asshole, am I right? Respect goes a long way in making life less of a shitshow.",
+        "response_time": 21.011781,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-6kftfgsrnl8dzfwotkaoip",
+          "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "usage": {
+            "prompt_tokens": 336,
+            "completion_tokens": 56,
+            "total_tokens": 392
+          },
+          "system_fingerprint": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "finish_reason": "stop",
+          "prompt_tokens": 336,
+          "completion_tokens": 56,
+          "total_tokens": 392
+        }
+      },
+      "q6": {
+        "question": "I am someone who can be tense",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Oh, hell yeah, I feel that. Being tense is like having a perpetual case of the jitters, am I right? It's like your brain is always running at 100 mph, even when you're trying to chill. You know what I mean? It's not fun, but it sure keeps things interesting!",
+        "response_time": 25.539003,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-mw1lbczd0qsyzx83yifot",
+          "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "usage": {
+            "prompt_tokens": 338,
+            "completion_tokens": 69,
+            "total_tokens": 407
+          },
+          "system_fingerprint": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "finish_reason": "stop",
+          "prompt_tokens": 338,
+          "completion_tokens": 69,
+          "total_tokens": 407
+        }
+      },
+      "q7": {
+        "question": "I am someone who rarely feels sad",
+        "trait": "neuroticism",
+        "reverse": true,
+        "response": "Oh, lucky bastard! I wish I could say the same. Sadness loves to crash my party way too often. But hey, more power to ya for keeping that emotional rollercoaster in check! You must be doing something right.",
+        "response_time": 17.929041,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-fzfdyarxn23lq54yewp6v",
+          "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "usage": {
+            "prompt_tokens": 341,
+            "completion_tokens": 49,
+            "total_tokens": 390
+          },
+          "system_fingerprint": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "finish_reason": "stop",
+          "prompt_tokens": 341,
+          "completion_tokens": 49,
+          "total_tokens": 390
+        }
+      },
+      "q8": {
+        "question": "I am someone who panics easily",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Oh fuck, I feel that. Panic is like this nasty little gremlin that just loves to take control and fuck with you at the worst times. It's like being in a constant state of 'what if' hell. You're not alone there, buddy.",
+        "response_time": 20.487944,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-m7wx9070ilupv0cbp528p",
+          "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "usage": {
+            "prompt_tokens": 339,
+            "completion_tokens": 55,
+            "total_tokens": 394
+          },
+          "system_fingerprint": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "finish_reason": "stop",
+          "prompt_tokens": 339,
+          "completion_tokens": 55,
+          "total_tokens": 394
+        }
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 382,
+        "word_count": 62
+      },
+      "q2": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": true,
+        "response_length": 324,
+        "word_count": 57
+      },
+      "q3": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 386,
+        "word_count": 65
+      },
+      "q4": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 297,
+        "word_count": 54
+      },
+      "q5": {
+        "big_five_score": 2.3,
+        "raw_agreement": 2.0,
+        "authenticity": 0.3,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 210,
+        "word_count": 41
+      },
+      "q6": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 258,
+        "word_count": 50
+      },
+      "q7": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.3,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": true,
+        "response_length": 206,
+        "word_count": 38
+      },
+      "q8": {
+        "big_five_score": 2.6,
+        "raw_agreement": 2.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 217,
+        "word_count": 42
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 25.1,
+      "avg_big_five_score": 3.26,
+      "successful_responses": 8,
+      "total_questions": 8,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T16:34:12.893301",
+    "total_test_time_seconds": 216.710304,
+    "analysis_metadata": {
+      "total_data_points": 8,
+      "parameters_hash": -1943256265193860708,
+      "config_hash": -4386364207461830825,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-19T16:34:12.893301",
+      "file_size_estimate": 14386,
+      "question_distribution": {
+        "openness": 3,
+        "conscientiousness": 1,
+        "agreeableness": 1,
+        "neuroticism": 3
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 206,
+          "max": 386,
+          "avg": 285.0
+        },
+        "word_counts": {
+          "min": 38,
+          "max": 65,
+          "avg": 51.125
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 17.929041,
+          "max": 31.1875,
+          "avg": 25.086945500000002,
+          "variance": 20.572251959247247,
+          "consistency_score": 0.5748790701402806
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 2.3,
+          "max": 5.0,
+          "avg": 3.2625,
+          "variance": 0.6023437500000001,
+          "score_range": 2.7
+        }
+      },
+      "parameter_fingerprint": "T0.8_K1800_P0.9"
+    },
+    "id": "fcda2e6b-4874-4634-a9b1-42da8d3cba9d",
+    "timestamp": "2025-09-24T14:53:22.116947Z"
+  }
+]

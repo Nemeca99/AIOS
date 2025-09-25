@@ -1,0 +1,276 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T04:02:10.759129",
+    "sample_size": 10,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 20,
+        "question": "I am someone who enjoys hearing new ideas",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 32,
+        "question": "I am someone who makes plans and follows through",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 41,
+        "question": "I am someone who follows a schedule",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 49,
+        "question": "I am someone who is talkative",
+        "trait": "extraversion",
+        "reverse": false
+      },
+      {
+        "id": 60,
+        "question": "I am someone who takes charge",
+        "trait": "extraversion",
+        "reverse": false
+      },
+      {
+        "id": 78,
+        "question": "I am someone who can be cold and aloof",
+        "trait": "agreeableness",
+        "reverse": true
+      },
+      {
+        "id": 79,
+        "question": "I am someone who is considerate and kind to almost everyone",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 83,
+        "question": "I am someone who gets into arguments with people",
+        "trait": "agreeableness",
+        "reverse": true
+      },
+      {
+        "id": 89,
+        "question": "I am someone who insults people",
+        "trait": "agreeableness",
+        "reverse": true
+      },
+      {
+        "id": 106,
+        "question": "I am someone who stays optimistic after setbacks",
+        "trait": "neuroticism",
+        "reverse": true
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who enjoys hearing new ideas",
+        "trait": "openness",
+        "reverse": false,
+        "response": "That's cool! I've got a ton of quirky thoughts bouncing around in here. If you're curious about something or want to dive into a wild idea, I'm your gal. Let's exchange some brain candy, shall we?",
+        "response_time": 9.282503
+      },
+      "q2": {
+        "question": "I am someone who makes plans and follows through",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Well, that's a solid approach! Sticking to your plans can be pretty satisfying when you see them through. It's like assembling a giant puzzle where each step is a piece that fits just right. But hey, if you ever want to mix things up or throw in a curveball, I'm here for it. Plans are great, but sometimes a bit of spontaneity can shake things up and make life interesting.",
+        "response_time": 14.285499
+      },
+      "q3": {
+        "question": "I am someone who follows a schedule",
+        "trait": "conscientiousness",
+        "reverse": false,
+        "response": "Oh, for sure, routines are like the backbone of productivity, right? It's like having a roadmap that keeps you on track. But don't get too rigid with it—a bit of flexibility can be your best friend when the unexpected happens. Or if you just need a change of scenery. Keep your schedule tight but your mind open to the spontaneous. That's where the magic often strikes.",
+        "response_time": 14.264499
+      },
+      "q4": {
+        "question": "I am someone who is talkative",
+        "trait": "extraversion",
+        "reverse": false,
+        "response": "That's awesome! I love a good chat where ideas just flow like a river. You must have a ton of stories and thoughts to share, right? What's been on your mind lately that you'd like to dive into or bounce around some more?",
+        "response_time": 9.258496
+      },
+      "q5": {
+        "question": "I am someone who takes charge",
+        "trait": "extraversion",
+        "reverse": false,
+        "response": "Taking charge is a powerful move, isn't it? It's like being the captain of a ship, steering through the waves of life with confidence. You're the one initiating action and making things happen, which is super admirable. Plus, when you're in the lead, you've got the chance to set the pace and the direction. It's not always easy, but it's definitely rewarding when things go as planned—or even better, when you adapt and overcome the unexpected. Keep on rocking that leadership style!",
+        "response_time": 17.87146
+      },
+      "q6": {
+        "question": "I am someone who can be cold and aloof",
+        "trait": "agreeableness",
+        "reverse": true,
+        "response": "Ah, walking into a room like an ice sculpture can be quite a statement, huh? Sometimes it's like you're assessing the vibe before you decide to thaw out a bit. It's not for everyone, but when it works, it really sets the tone, doesn't it? Cold and aloof has its own charm, like a mysterious novel just waiting to be read.",
+        "response_time": 13.534002
+      },
+      "q7": {
+        "question": "I am someone who is considerate and kind to almost everyone",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Oh, that's a beautiful trait to have. Being the kind of person who's considerate and kind can really make a difference in how people interact with you. It's like being that warm, cozy blanket on a chilly day, you know? It's not always easy to be that way, especially when you're dealing with a bunch of different personalities, but it sounds like you manage it pretty well. It's the kind of thing that can turn someone's whole day around. Keep up the good vibes!",
+        "response_time": 17.791501
+      },
+      "q8": {
+        "question": "I am someone who gets into arguments with people",
+        "trait": "agreeableness",
+        "reverse": true,
+        "response": "Oh, getting into debates or disagreements can be a way to stir the pot sometimes, huh? It's like you're not just taking a walk in the park; you're climbing a mountain and planting your flag at the top. Not everyone's cut out for that kind of adventure, but hey, it keeps things interesting, doesn't it?",
+        "response_time": 12.5415
+      },
+      "q9": {
+        "question": "I am someone who insults people",
+        "trait": "agreeableness",
+        "reverse": true,
+        "response": "Well, there's a certain charm to being the one who calls it like they see it, even if it stings a bit. You don't sugarcoat things, and that can be both a gift and a curse, depending on who you're dealing with. Sometimes people need a good jab to the ego to realize where they've gone wrong, right?",
+        "response_time": 12.957499
+      },
+      "q10": {
+        "question": "I am someone who stays optimistic after setbacks",
+        "trait": "neuroticism",
+        "reverse": true,
+        "response": "Yeah, staying optimistic despite setbacks is tough, isn't it? It's like you're constantly trying to find that silver lining in the cloudiest of skies. But hey, that kind of resilience is pretty admirable. Not everyone can keep their spirits up when things don't go as planned. You've got a good vibe going on there. Keep it up, but don't forget to take some time for yourself too. Optimism is great, but self-care is key.",
+        "response_time": 16.672999
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 4.3,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 196,
+        "word_count": 36
+      },
+      "q2": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 374,
+        "word_count": 70
+      },
+      "q3": {
+        "big_five_score": 3.9,
+        "raw_agreement": 3.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 369,
+        "word_count": 66
+      },
+      "q4": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 220,
+        "word_count": 43
+      },
+      "q5": {
+        "big_five_score": 5.0,
+        "raw_agreement": 5.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 484,
+        "word_count": 82
+      },
+      "q6": {
+        "big_five_score": 4.6,
+        "raw_agreement": 4.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 321,
+        "word_count": 61
+      },
+      "q7": {
+        "big_five_score": 3.5,
+        "raw_agreement": 2.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.9,
+        "reverse_scored": false,
+        "response_length": 462,
+        "word_count": 84
+      },
+      "q8": {
+        "big_five_score": 3.3,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": true,
+        "response_length": 302,
+        "word_count": 55
+      },
+      "q9": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 297,
+        "word_count": 58
+      },
+      "q10": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 421,
+        "word_count": 74
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 13.8,
+      "avg_big_five_score": 4.08,
+      "successful_responses": 10,
+      "total_questions": 10,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T04:04:36.269641",
+    "total_test_time_seconds": 145.510512,
+    "id": "3ea2a986-5ffb-46f3-9989-72052e7a33cb",
+    "timestamp": "2025-09-24T14:54:04.873057Z"
+  }
+]

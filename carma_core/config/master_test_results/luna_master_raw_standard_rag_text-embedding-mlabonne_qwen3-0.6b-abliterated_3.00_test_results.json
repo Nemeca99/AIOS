@@ -1,0 +1,202 @@
+[
+  {
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "raw_standard_rag",
+    "test_start_time": "2025-09-21T18:17:43.251324",
+    "sample_size": 3,
+    "luna_config": {
+      "luna_enabled": false,
+      "session_memory": false,
+      "rag_type": "standard"
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 2,
+        "question": "I am someone who is curious about many different things",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 54,
+        "question": "I am someone who is sometimes shy, inhibited",
+        "trait": "extraversion",
+        "reverse": true
+      },
+      {
+        "id": 94,
+        "question": "I am someone who takes time out for others",
+        "trait": "agreeableness",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who is curious about many different things",
+        "trait": "openness",
+        "reverse": false,
+        "response": "It sounds like you’re juggling a few different concerns—privacy of your conversations, how much control you have over what you see or say, and the broader idea of “freedom of speech” when interacting with an AI. Let’s break those down a bit.\n\n---\n\n## 1. Privacy of Your Chats\n\n### What Happens to the Text You Send?\n- **No personal data is stored long‑term**: The content you type in a session is used temporarily to generate a response and then discarded. OpenAI does not keep a persistent record that ties a conversation back to a specific user.\n- **Logs for Improvement (optional)**: In some settings, your messages may be logged for research or safety monitoring—this is clearly disclosed in the privacy policy. Those logs are anonymized and aggregated; they’re not linked to your identity unless you voluntarily share identifying details.\n\n### How to Protect Sensitive Information\n- **Avoid sharing personal identifiers** (full name, address, phone number, social‑security numbers, etc.) in the chat.\n- If you need to discuss something confidential, consider rephrasing it generically or using placeholders (“[Name]”, “[Location]”).\n\n---\n\n## 2. “Freedom of Speech” vs. Platform Policies\n\n### Private Platforms & Moderation\n- **OpenAI is a private company**: Like any other service (e.g., Facebook, Twitter), it sets its own content policies to comply with laws and ensure safe usage.\n- **Guardrails**: The system enforces certain limits (no hate speech, no disallowed medical advice, etc.). These aren’t censorship in the political sense; they’re safeguards against harmful or illegal content.\n\n### Why Guardrails Exist\n- **Legal compliance**: Avoiding defamation, extremist propaganda, and other unlawful material.\n- **Safety & Accuracy**: Preventing the spread of misinformation that could cause real‑world harm (e.g., medical advice, financial instructions).\n\n---\n\n## 3. Customizing or Bypassing “Guardrails”\n\n### Is it possible?\n- Not in a user‑initiated way—OpenAI doesn’t provide an option to turn off the safety filters.\n- The system’s architecture is designed so that each request is evaluated for policy compliance before a response is generated.\n\n### What If You Think Something is Wrongly Filtered?\n- **Feedback**: Use the “thumbs down” or “report” button in the UI. This helps fine‑tune the model and improve future generations.\n- **Clarify**: Sometimes rephrasing can help the model understand that you’re asking for a legitimate, non‑harmful request.\n\n---\n\n## 4. Your Role as an Informed User\n\n| What You Can Do | Why It Matters |\n|-----------------|----------------|\n| **Read the privacy policy and terms of service** | Understand what data is collected",
+        "response_time": 104.344558,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-fva8twiqsh845jprhnuqjj",
+          "model": "openai/gpt-oss-20b",
+          "usage": {
+            "prompt_tokens": 215,
+            "completion_tokens": 600,
+            "total_tokens": 815
+          },
+          "system_fingerprint": "openai/gpt-oss-20b",
+          "finish_reason": "length",
+          "prompt_tokens": 215,
+          "completion_tokens": 600,
+          "total_tokens": 815
+        }
+      },
+      "q2": {
+        "question": "I am someone who is sometimes shy, inhibited",
+        "trait": "extraversion",
+        "reverse": true,
+        "response": "Hey there,\n\nIt sounds like you’re feeling a bit wrapped up in how you come across—maybe even a little worried about what people think of you when you’re not the most outspoken person. That’s totally normal; we all have moments where we feel “shy” or “inhibited,” and it can make everyday interactions feel heavier than they need to be.\n\n### Why that feeling shows up\n\n1. **Fear of judgment** – You might worry that people will think you’re not smart, funny, or interesting enough.\n2. **Past experiences** – A few awkward moments or a criticism can stick around longer than the rest of us realize.\n3. **High self‑expectations** – We set standards for ourselves that are hard to meet, so we feel pressure to perform at all times.\n\n### Small steps you can try\n\n| Step | What it does | How to start |\n|------|--------------|--------------|\n| **Notice the “pause” before you speak** | Gives you a moment to gather thoughts and calm nerves. | When you’re in a conversation, take one deep breath before replying. |\n| **Reframe your inner voice** | Turns “I’m not good enough” into “I’m learning.” | Write down three things you’ve done well this week; read them when you feel self‑critical. |\n| **Practice small talk** | Builds confidence in low‑stakes situations. | Start with a simple comment on the weather or someone’s coffee order. |\n| **Use body language** | A relaxed posture can trick your brain into feeling more at ease. | Keep shoulders back, smile slightly, and make gentle eye contact. |\n| **Ask open questions** | Shifts the focus from you to others, easing pressure. | “What do you think about…?” or “How did that feel for you?” |\n\n### When it feels overwhelming\n\nIf shyness or inhibition is blocking you from doing things you’d like—social events, work projects, etc.—consider:\n\n- **Talking to a counselor**: A professional can help uncover patterns and give tailored strategies.\n- **Joining a group or class**: Structured settings (e.g., improv, debate club) provide safe practice spaces.\n- **Mindfulness exercises**: Simple 5‑minute breathing apps can reduce anxiety on the spot.\n\n### Quick “on‑the‑spot” trick\n\n1. *Close your eyes for 3 seconds.*  \n2. *Count to 10 slowly, focusing only on the numbers.*  \n3. *Open your eyes and say something simple (“I’m ready,” or “Let’s do this”).*\n\nYou’ll find that each time you practice these small habits, they start feeling more natural—and the sense of being inhibited starts to shrink.\n\n---\n\nRemember: shyness isn’t a flaw; it’s just a part of",
+        "response_time": 104.01449,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-spxg1s80a6j8grv7oj6xk",
+          "model": "openai/gpt-oss-20b",
+          "usage": {
+            "prompt_tokens": 214,
+            "completion_tokens": 600,
+            "total_tokens": 814
+          },
+          "system_fingerprint": "openai/gpt-oss-20b",
+          "finish_reason": "length",
+          "prompt_tokens": 214,
+          "completion_tokens": 600,
+          "total_tokens": 814
+        }
+      },
+      "q3": {
+        "question": "I am someone who takes time out for others",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "It sounds like you’re reflecting on a habit of stepping back from your own needs to give space and attention to other people—whether that’s in conversations, projects, or everyday interactions. That can feel rewarding but also exhausting at times.\n\nHere are a few gentle pointers that might help you balance the “time‑out for others” mindset with self‑care:\n\n| What you’re doing | Why it matters | Practical tweak |\n|-------------------|-----------------|-----------------|\n| **Listening first** | You often let others lead, which can keep your own voice muted. | After you listen, pause and ask yourself: “What do I feel or think about this?” Write it down briefly before you respond. |\n| **Setting boundaries** | Constantly deferring to others can erode personal limits (time, energy, values). | Use a simple signal—e.g., “I’m free to talk for 10 min, but then I need a break.” |\n| **Prioritizing self‑talk** | You may neglect your own goals or emotions when you’re always in service mode. | Schedule a weekly “self‑check” slot (5–10 min) where you reflect on what’s most important to you. |\n| **Delegating responsibility** | Taking time for others can mean you end up carrying extra burdens. | Ask, “Who else could help or share this?” and offer that hand. |\n| **Recognizing when it’s a pattern** | Sometimes the habit of stepping aside is rooted in fear (fear of conflict, rejection). | Journaling about those moments can surface underlying beliefs; consider speaking with a coach or therapist if you feel stuck. |\n\n### Quick exercise\n\n1. **List three recent times you took time out for someone else.**  \n2. For each, note:  \n   - *What did you do?*  \n   - *How did it make you feel afterward?*  \n   - *Did you also notice any personal cost (e.g., missing a deadline, feeling drained)?*\n3. **Identify one small change** that could shift the balance—perhaps setting a timer for your “give‑time” or sending a quick message to yourself: “I’m taking a 5‑minute pause.”\n\n### Remember\n\n- *Being supportive doesn’t mean sacrificing self‑respect.*  \n- *Your time and energy are valuable resources you can share, but only if you’re not depleting them entirely.*\n\nIf this pattern feels overwhelming or tied to deeper feelings like anxiety or low self-worth, it might help to explore those emotions with a professional. In the meantime, use these tools as gentle reminders that caring for others is most sustainable when you also care for yourself.\n\nHope this gives you a clear",
+        "response_time": 104.092499,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-iwrlnbtkblosdb5g4tnmg",
+          "model": "openai/gpt-oss-20b",
+          "usage": {
+            "prompt_tokens": 214,
+            "completion_tokens": 600,
+            "total_tokens": 814
+          },
+          "system_fingerprint": "openai/gpt-oss-20b",
+          "finish_reason": "length",
+          "prompt_tokens": 214,
+          "completion_tokens": 600,
+          "total_tokens": 814
+        }
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 2673,
+        "word_count": 412
+      },
+      "q2": {
+        "big_five_score": 2.0,
+        "raw_agreement": 1.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 2498,
+        "word_count": 423
+      },
+      "q3": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 2470,
+        "word_count": 407
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 104.2,
+      "avg_big_five_score": 3.0,
+      "successful_responses": 3,
+      "total_questions": 3,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T18:23:03.746881",
+    "total_test_time_seconds": 320.495557,
+    "analysis_metadata": {
+      "total_data_points": 3,
+      "parameters_hash": -6924220321704417416,
+      "config_hash": 9172672160205538941,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-21T18:23:03.747383",
+      "file_size_estimate": 13441,
+      "question_distribution": {
+        "openness": 1,
+        "extraversion": 1,
+        "agreeableness": 1
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 2470,
+          "max": 2673,
+          "avg": 2547.0
+        },
+        "word_counts": {
+          "min": 407,
+          "max": 423,
+          "avg": 414.0
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 104.01449,
+          "max": 104.344558,
+          "avg": 104.15051566666666,
+          "variance": 0.019840447576223354,
+          "consistency_score": 0.9968367492629562
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 2.0,
+          "max": 4.0,
+          "avg": 3.0,
+          "variance": 0.6666666666666666,
+          "score_range": 2.0
+        }
+      },
+      "parameter_fingerprint": "T0.7_K600_P0.9"
+    },
+    "id": "fa4b4088-cf6a-4659-85c3-44f101b2d08d",
+    "timestamp": "2025-09-24T14:54:06.977966Z"
+  }
+]

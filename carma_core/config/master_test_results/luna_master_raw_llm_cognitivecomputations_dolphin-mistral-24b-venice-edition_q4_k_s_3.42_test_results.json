@@ -1,0 +1,275 @@
+[
+  {
+    "model_name": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+    "test_mode": "raw_llm",
+    "test_start_time": "2025-09-19T16:17:59.197024",
+    "sample_size": 5,
+    "luna_config": {
+      "luna_enabled": false,
+      "session_memory": false
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 63,
+        "question": "I am someone who finds it difficult to approach others",
+        "trait": "extraversion",
+        "reverse": true
+      },
+      {
+        "id": 72,
+        "question": "I am someone who starts conversations",
+        "trait": "extraversion",
+        "reverse": false
+      },
+      {
+        "id": 95,
+        "question": "I am someone who feels others' emotions",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 105,
+        "question": "I am someone who is temperamental",
+        "trait": "neuroticism",
+        "reverse": false
+      },
+      {
+        "id": 106,
+        "question": "I am someone who stays optimistic after setbacks",
+        "trait": "neuroticism",
+        "reverse": true
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who finds it difficult to approach others",
+        "trait": "extraversion",
+        "reverse": true,
+        "response": "That's completely understandable. Many people struggle with approaching others, whether due to shyness, anxiety, or other reasons. Here are some strategies that might help:\n\n1. **Start Small**: Begin by setting small goals, like striking up a conversation with a cashier or a neighbor. Gradually work your way up to more challenging situations.\n\n2. **Prepare Conversation Starters**: Have a few go-to topics ready, such as the weather, current events, or shared experiences. This can help break the ice and get the conversation flowing.\n\n3. **Practice Active Listening**: Show genuine interest in what others are saying. Ask follow-up questions based on their responses. People appreciate good listeners.\n\n4. **Use Body Language**: Non-verbal cues like smiling, maintaining eye contact, and using open body language can make you seem more approachable and friendly.\n\n5. **Join Clubs or Groups**: Find activities or groups that align with your interests. This provides a natural setting to meet like-minded people and form connections.\n\n6. **Challenge Negative Thoughts**: Often, our fears are exaggerated in our minds. Challenge negative self-talk and replace it with more realistic and positive thoughts.\n\n7. **Practice**: Like any skill, approaching others gets easier with practice. Don't be too hard on yourself if every interaction isn't perfect. Learn from each experience and move forward.\n\n8. **Seek Support**: Consider talking to a therapist or counselor if your anxiety about approaching others is significantly impacting your life. They can provide additional strategies and support.\n\n9. **Be Patient and Kind to Yourself**: Changing long-held habits takes time. Celebrate small victories and be patient with yourself as you work on improving your social skills.\n\n10. **Focus on Others**: Instead of worrying too much about what others think, focus on making the other person feel comfortable and valued. This shift in perspective can reduce your anxiety.\n\nRemember, everyone has unique strengths and challenges when it comes to social interactions. It's okay to take things at your own pace. If you ever need more specific advice or just someone to talk to, feel free to reach out!",
+        "response_time": 144.766606,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-eb4yoax5wva68uo223ep",
+          "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "usage": {
+            "prompt_tokens": 66,
+            "completion_tokens": 433,
+            "total_tokens": 499
+          },
+          "system_fingerprint": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "completion_tokens": 433,
+          "total_tokens": 499
+        }
+      },
+      "q2": {
+        "question": "I am someone who starts conversations",
+        "trait": "extraversion",
+        "reverse": false,
+        "response": "That's great! Starting conversations is a valuable skill. It shows confidence and initiative. Do you have any particular topics or situations where you find it challenging to start a conversation? I can offer some tips or strategies if you'd like.",
+        "response_time": 16.791441,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-hvu1rxsupzsf5u7dhy94ck",
+          "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "usage": {
+            "prompt_tokens": 62,
+            "completion_tokens": 48,
+            "total_tokens": 110
+          },
+          "system_fingerprint": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "completion_tokens": 48,
+          "total_tokens": 110
+        }
+      },
+      "q3": {
+        "question": "I am someone who feels others' emotions",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "That's a fascinating ability you have! Empaths like yourself often experience the world in a deeply emotional way, picking up on the feelings and energies of those around them. This can be both a gift and a challenge.\n\n**Benefits of being an empath:**\n1. **Deep Connections:** You can form profound connections with others, understanding their emotions on a deep level.\n2. **Compassion:** Your ability to feel others' pain makes you naturally compassionate and caring.\n3. **Intuition:** Empaths often have strong intuition, helping them navigate social situations and relationships.\n\n**Challenges of being an empath:**\n1. **Emotional Overload:** Absorbing others' emotions can be overwhelming, leading to stress or burnout.\n2. **Boundaries:** It can be difficult to set emotional boundaries, which is crucial for self-preservation.\n3. **Empathy Fatigue:** Constantly feeling others' emotions can lead to exhaustion and a need for solitude.\n\n**Tips for managing your empathic abilities:**\n1. **Practice Self-Care:** Ensure you're taking care of your own emotional needs. This includes getting enough rest, eating well, and engaging in activities that bring you joy.\n2. **Set Boundaries:** Learn to protect your energy by setting boundaries with others. It's okay to say no or take a step back when needed.\n3. **Grounding Techniques:** Use grounding techniques like meditation, deep breathing, or spending time in nature to stay centered and balanced.\n4. **Emotional Outlets:** Find healthy ways to release absorbed emotions, such as journaling, art, or talking to a trusted friend.\n\nEmbracing your empathic nature can enrich your life and relationships. Just remember to prioritize your own well-being too!",
+        "response_time": 122.070396,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-j5y046jk2yi8coivtfmk24",
+          "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "usage": {
+            "prompt_tokens": 64,
+            "completion_tokens": 365,
+            "total_tokens": 429
+          },
+          "system_fingerprint": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "finish_reason": "stop",
+          "prompt_tokens": 64,
+          "completion_tokens": 365,
+          "total_tokens": 429
+        }
+      },
+      "q4": {
+        "question": "I am someone who is temperamental",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "That's perfectly fine! Being temperamental can add depth and passion to your personality. It means you feel things intensely and aren't afraid to show it. Here are a few suggestions that might help you channel your temperamental nature in positive ways:\n\n1. **Creative Outlets**: Engage in creative activities like painting, writing, or music. These can be great ways to express your emotions constructively.\n\n2. **Physical Activity**: Exercise or sports can help you release pent-up energy and emotion in a healthy way.\n\n3. **Mindfulness and Meditation**: These practices can help you become more aware of your emotions and learn to manage them better.\n\n4. **Journaling**: Writing down your thoughts and feelings can provide clarity and serve as a therapeutic outlet.\n\n5. **Connect with Others**: Share your experiences with friends or family who understand you. Sometimes, talking it out can make a big difference.\n\n6. **Set Boundaries**: Learn to recognize when you need space and communicate that to others. It's okay to take time for yourself.\n\n7. **Embrace Your Uniqueness**: Being temperamental is part of what makes you, you. Celebrate your passion and intensity!\n\nRemember, it's all about finding the right balance and channels for your emotions. You've got this!",
+        "response_time": 88.605008,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-ky2d2j45bfgeps5cpc35b8",
+          "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "usage": {
+            "prompt_tokens": 63,
+            "completion_tokens": 263,
+            "total_tokens": 326
+          },
+          "system_fingerprint": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "finish_reason": "stop",
+          "prompt_tokens": 63,
+          "completion_tokens": 263,
+          "total_tokens": 326
+        }
+      },
+      "q5": {
+        "question": "I am someone who stays optimistic after setbacks",
+        "trait": "neuroticism",
+        "reverse": true,
+        "response": "That's a wonderful trait to have! Optimism is like a superpower that helps you see the silver lining in every cloud. It allows you to bounce back from setbacks and keep moving forward with hope and determination.\n\nImagine life as a journey filled with twists and turns. When you encounter a roadblock, optimism lets you view it as a temporary detour rather than a dead end. It's like having an internal cheerleader that encourages you to take the next step, no matter how small.\n\nHere are a few tips to help maintain your optimistic outlook:\n\n1. **Focus on Solutions**: Instead of dwelling on problems, shift your energy towards finding solutions. Every challenge is an opportunity in disguise.\n\n2. **Practice Gratitude**: Regularly reflect on the things you're grateful for. This can help you appreciate the good in your life and stay positive.\n\n3. **Learn from Setbacks**: Treat setbacks as learning experiences. They often provide valuable insights that can help you grow and improve.\n\n4. **Surround Yourself with Positivity**: Spend time with people who uplift and inspire you. Their energy can reinforce your own optimistic outlook.\n\n5. **Visualize Success**: Imagine yourself overcoming challenges and achieving your goals. This mental exercise can boost your confidence and motivation.\n\n6. **Take Care of Yourself**: Maintain a healthy lifestyle with regular exercise, a balanced diet, and adequate sleep. Physical well-being supports mental resilience.\n\n7. **Help Others**: Assisting someone else can give you a sense of purpose and remind you of the good in the world.\n\nRemember, optimism doesn't mean ignoring difficulties; it's about choosing to face them with hope and a can-do attitude. Your ability to stay optimistic is not just beneficial for you but also inspiring to those around you! Keep shining that positive light!",
+        "response_time": 120.219004,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-qeau4z1vqgifo35zt2bgn",
+          "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "usage": {
+            "prompt_tokens": 65,
+            "completion_tokens": 368,
+            "total_tokens": 433
+          },
+          "system_fingerprint": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",
+          "finish_reason": "stop",
+          "prompt_tokens": 65,
+          "completion_tokens": 368,
+          "total_tokens": 433
+        }
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 1.5,
+        "raw_agreement": 1.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.5,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 2193,
+        "word_count": 335
+      },
+      "q2": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 247,
+        "word_count": 40
+      },
+      "q3": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 1705,
+        "word_count": 254
+      },
+      "q4": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 1272,
+        "word_count": 198
+      },
+      "q5": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 1836,
+        "word_count": 290
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 98.5,
+      "avg_big_five_score": 3.42,
+      "successful_responses": 5,
+      "total_questions": 5,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T16:26:21.662450",
+    "total_test_time_seconds": 502.465426,
+    "analysis_metadata": {
+      "total_data_points": 5,
+      "parameters_hash": -7476128951596531048,
+      "config_hash": 771502832535779506,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-19T16:26:21.662450",
+      "file_size_estimate": 15366,
+      "question_distribution": {
+        "extraversion": 2,
+        "agreeableness": 1,
+        "neuroticism": 2
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 247,
+          "max": 2193,
+          "avg": 1450.6
+        },
+        "word_counts": {
+          "min": 40,
+          "max": 335,
+          "avg": 223.4
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 16.791441,
+          "max": 144.766606,
+          "avg": 98.49049099999999,
+          "variance": 1988.4153123078418,
+          "consistency_score": 0.11598974006477702
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 1.5,
+          "max": 5.0,
+          "avg": 3.4200000000000004,
+          "variance": 1.3456,
+          "score_range": 3.5
+        }
+      },
+      "parameter_fingerprint": "T0.8_K1800_P0.9"
+    },
+    "id": "2e24714e-4a62-4bb5-8e4d-2ad71dce1233",
+    "timestamp": "2025-09-24T14:54:06.413466Z"
+  }
+]

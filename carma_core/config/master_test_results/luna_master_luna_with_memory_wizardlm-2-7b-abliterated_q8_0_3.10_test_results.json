@@ -1,0 +1,201 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-21T14:17:02.608843",
+    "sample_size": 3,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 15,
+        "question": "I am someone who sees beauty in things others might not notice",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 65,
+        "question": "I am someone who avoids crowds",
+        "trait": "extraversion",
+        "reverse": true
+      },
+      {
+        "id": 106,
+        "question": "I am someone who stays optimistic after setbacks",
+        "trait": "neuroticism",
+        "reverse": true
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who sees beauty in things others might not notice",
+        "trait": "openness",
+        "reverse": false,
+        "response": "Hey there, that's a neat perspective you've got. Seeing the overlooked beauty in everyday stuff can really add a layer of depth to how you experience the world. It's like having a secret garden of wonder tucked away in the mundane. Not everyone's tuned into that kind of thing, but it sounds like you are, and that's pretty cool.",
+        "response_time": 11.451998,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-2f0s1d43a07zovotkhi0e",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 423,
+            "completion_tokens": 82,
+            "total_tokens": 505
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 423,
+          "completion_tokens": 82,
+          "total_tokens": 505
+        }
+      },
+      "q2": {
+        "question": "I am someone who avoids crowds",
+        "trait": "extraversion",
+        "reverse": true,
+        "response": "Yeah, I get it. Crowds can be a real drag sometimes. You're packed in like sardines, everyone's jostling for space, and there's this constant hum of noise that's just exhausting. Plus, you've gotta keep your eyes on your stuff or risk losing it to some pickpocket. And let's not even start on the slow-moving herds that clog up walkways and make getting from point A to B a marathon event. It's enough to make anyone crave a little solitude, right?",
+        "response_time": 18.967502,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-o5e09l9lf4a4s6u5gx6ss",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 479,
+            "completion_tokens": 123,
+            "total_tokens": 602
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 479,
+          "completion_tokens": 123,
+          "total_tokens": 602
+        }
+      },
+      "q3": {
+        "question": "I am someone who stays optimistic after setbacks",
+        "trait": "neuroticism",
+        "reverse": true,
+        "response": "Ah, sticking to your sunny side despite the lemons life throws at you, huh? It's a tough gig, but someone's gotta do it. I mean, sure, you get the occasional sour pucker from those lemons, but hey, maybe you can make some lemonade out of 'em, right? Or at least find a way to use 'em to jazz up your next cocktail. Keep that glass half full, my friend. It's not always easy, but optimism in the face of setbacks can be pretty darn refreshing.",
+        "response_time": 15.941119,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-llp5h9nuzgn1bl94tahedg",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 527,
+            "completion_tokens": 121,
+            "total_tokens": 648
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 527,
+          "completion_tokens": 121,
+          "total_tokens": 648
+        }
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 2.3,
+        "raw_agreement": 2.0,
+        "authenticity": 0.3,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 329,
+        "word_count": 59
+      },
+      "q2": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 448,
+        "word_count": 80
+      },
+      "q3": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 442,
+        "word_count": 85
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 15.5,
+      "avg_big_five_score": 3.1,
+      "successful_responses": 3,
+      "total_questions": 3,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T14:17:57.008587",
+    "total_test_time_seconds": 54.399744,
+    "analysis_metadata": {
+      "total_data_points": 3,
+      "parameters_hash": 8559879721277559792,
+      "config_hash": -3060277606720292331,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-21T14:17:57.008587",
+      "file_size_estimate": 6321,
+      "question_distribution": {
+        "openness": 1,
+        "extraversion": 1,
+        "neuroticism": 1
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 329,
+          "max": 448,
+          "avg": 406.3333333333333
+        },
+        "word_counts": {
+          "min": 59,
+          "max": 85,
+          "avg": 74.66666666666667
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 11.451998,
+          "max": 18.967502,
+          "avg": 15.453539666666666,
+          "variance": 9.53266686548289,
+          "consistency_score": 0.6037694367977396
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 2.3,
+          "max": 4.0,
+          "avg": 3.1,
+          "variance": 0.4866666666666668,
+          "score_range": 1.7000000000000002
+        }
+      },
+      "parameter_fingerprint": "T0.7_K600_P0.9"
+    },
+    "id": "6ff2bc30-eaf3-407f-9af7-0ba4b64900e4",
+    "timestamp": "2025-09-24T14:54:04.996525Z"
+  }
+]

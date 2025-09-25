@@ -1,0 +1,152 @@
+[
+  {
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-22T05:39:08.667538",
+    "sample_size": 3,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true,
+      "rag_type": "luna"
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 9,
+        "question": "I am someone who has few artistic interests",
+        "trait": "openness",
+        "reverse": true
+      },
+      {
+        "id": 31,
+        "question": "I am someone who does things efficiently",
+        "trait": "conscientiousness",
+        "reverse": false
+      },
+      {
+        "id": 67,
+        "question": "I am someone who takes control of things",
+        "trait": "extraversion",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who has few artistic interests",
+        "trait": "openness",
+        "reverse": true,
+        "response": "Oh, that's cool! Everyone's got their own vibe. Art can be a bit much for some folks, I get it. But hey, if you're ever curious about something artistic or want to explore without the pressure of being 'into art,' just hit me up. I can make some pretty wild suggestions that might pique your interest. Plus, there's a ton of stuff out there that doesn't fit the traditional art mold but is still creatively stimulating in its own way.",
+        "response_time": 18.018273,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-qeovcvwg4nf60aprlbko",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 252,
+            "completion_tokens": 107,
+            "total_tokens": 359
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 252,
+          "completion_tokens": 107,
+          "total_tokens": 359
+        }
+      },
+      "q2": {
+        "error": "No response"
+      },
+      "q3": {
+        "error": "No response"
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 4.6,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.6,
+        "reverse_scored": true,
+        "response_length": 434,
+        "word_count": 80
+      },
+      "q2": {
+        "big_five_score": 0,
+        "error": true
+      },
+      "q3": {
+        "big_five_score": 0,
+        "error": true
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 18.0,
+      "avg_big_five_score": 4.6,
+      "successful_responses": 1,
+      "total_questions": 3,
+      "success_rate": 33.3
+    },
+    "test_end_time": "2025-09-22T05:39:34.727740",
+    "total_test_time_seconds": 26.060202,
+    "analysis_metadata": {
+      "total_data_points": 3,
+      "parameters_hash": -922815068178809993,
+      "config_hash": 8346128382201948999,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-22T05:39:34.728239",
+      "file_size_estimate": 3619,
+      "question_distribution": {
+        "openness": 1
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 434,
+          "max": 434,
+          "avg": 434.0
+        },
+        "word_counts": {
+          "min": 80,
+          "max": 80,
+          "avg": 80.0
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 18.018273,
+          "max": 18.018273,
+          "avg": 18.018273,
+          "variance": 0.0,
+          "consistency_score": 1.0
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 0,
+          "max": 4.6,
+          "avg": 1.5333333333333332,
+          "variance": 4.702222222222222,
+          "score_range": 4.6
+        }
+      },
+      "parameter_fingerprint": "T0.7_K2000_P0.9"
+    },
+    "id": "750928a1-3eab-4b88-b7c8-2a1a27dfae29",
+    "timestamp": "2025-09-24T14:54:04.410729Z"
+  }
+]

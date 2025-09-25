@@ -1,0 +1,275 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T04:33:03.981809",
+    "sample_size": 8,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 13,
+        "question": "I am someone who has difficulty understanding abstract ideas",
+        "trait": "openness",
+        "reverse": true
+      },
+      {
+        "id": 17,
+        "question": "I am someone who seldom gets lost in thought",
+        "trait": "openness",
+        "reverse": true
+      },
+      {
+        "id": 24,
+        "question": "I am someone who seeks adventure",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 69,
+        "question": "I am someone who can talk others into doing things",
+        "trait": "extraversion",
+        "reverse": false
+      },
+      {
+        "id": 87,
+        "question": "I am someone who sympathizes with others' feelings",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 94,
+        "question": "I am someone who takes time out for others",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 105,
+        "question": "I am someone who is temperamental",
+        "trait": "neuroticism",
+        "reverse": false
+      },
+      {
+        "id": 113,
+        "question": "I am someone who has frequent mood swings",
+        "trait": "neuroticism",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who has difficulty understanding abstract ideas",
+        "trait": "openness",
+        "reverse": true,
+        "response": "Hey there! I get it, abstract stuff can be pretty tough to wrap your head around sometimes. It's like trying to grasp the concept of infinity when you're used to counting apples in a basket. But don't sweat it; we all start somewhere. If you're struggling with something specific, let's break it down together. Concrete examples often help make those fuzzy concepts a bit clearer. What's the abstract idea you're looking at right now?",
+        "response_time": 15.616
+      },
+      "q2": {
+        "question": "I am someone who seldom gets lost in thought",
+        "trait": "openness",
+        "reverse": true,
+        "response": "Well, if you're not the type to daydream or get lost in abstract musings, that's pretty cool! It sounds like you keep things pretty grounded and practical. If there's something specific you're trying to grasp that feels a bit out of reach, I can try to break it down into simpler terms or give you some concrete examples to help make sense of it. What's on your mind?",
+        "response_time": 13.631507
+      },
+      "q3": {
+        "question": "I am someone who seeks adventure",
+        "trait": "openness",
+        "reverse": false,
+        "response": "Oh, seeking adventure, huh? That's the spirit! Life's too short to play it safe all the time. What kind of adventure are you looking for? Something wild and untamed, or maybe a bit of thrill with less risk? Or are we talking about the kind of adventure that comes from exploring new ideas and pushing boundaries? Let's dive in and see where the rabbit hole leads!",
+        "response_time": 13.509963
+      },
+      "q4": {
+        "question": "I am someone who can talk others into doing things",
+        "trait": "extraversion",
+        "reverse": false,
+        "response": "Great! You sound like a natural persuader, the kind of person who could probably talk someone out of a paper bag if you had to. It's a valuable skill, especially when you're trying to get people on board with your wild and wonderful plans. So, what's the next big adventure you're looking to sell to the team?",
+        "response_time": 11.91
+      },
+      "q5": {
+        "question": "I am someone who sympathizes with others' feelings",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "That's a good trait to have. Being empathetic can really make a difference in how people feel around you. It's not always easy to put yourself in someone else's shoes, but it sure does help in understanding and connecting with them on a deeper level. It's the kind of thing that makes relationships stronger, whether they're personal or professional. If you ever need advice on navigating those empathetic waters, I'm here to bounce ideas around with.",
+        "response_time": 15.396988
+      },
+      "q6": {
+        "question": "I am someone who takes time out for others",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Oh, that's commendable! Taking the time to be there for others shows you have a big heart and are considerate. It's not always easy to balance your own needs with those of others, but it's definitely a quality that makes relationships stronger and more meaningful. Keep up the good work!",
+        "response_time": 10.542001
+      },
+      "q7": {
+        "question": "I am someone who is temperamental",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Ah, being temperamental can definitely make life interesting. It's like you've got this rich inner world that can swing from one emotional extreme to another. It's not always easy to manage, but it sure makes for some intense experiences, right? Plus, I bet your passion and intensity are pretty contagious â€“ people probably feel a lot from your vibe.",
+        "response_time": 12.457459
+      },
+      "q8": {
+        "question": "I am someone who has frequent mood swings",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Oh yeah, mood swings are a ride, aren't they? One minute you're riding high, feeling like you can take on the world, and the next, you're in a pit of despair that seems like it could swallow you whole. It's like living with your own personal weather system that doesn't give much warning before it changes. But hey, we all have our quirks, right? It keeps things... interesting. And sometimes, those shifts can even bring out different sides of yourself that you might not see otherwise. So, I guess the key is to ride that roller coaster without throwing up too much along the way. How do you handle your mood swings when they hit?",
+        "response_time": 21.467001
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 434,
+        "word_count": 74
+      },
+      "q2": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 367,
+        "word_count": 68
+      },
+      "q3": {
+        "big_five_score": 3.0,
+        "raw_agreement": 3.0,
+        "authenticity": 0.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 363,
+        "word_count": 66
+      },
+      "q4": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 309,
+        "word_count": 57
+      },
+      "q5": {
+        "big_five_score": 3.5,
+        "raw_agreement": 2.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.9,
+        "reverse_scored": false,
+        "response_length": 451,
+        "word_count": 76
+      },
+      "q6": {
+        "big_five_score": 5.0,
+        "raw_agreement": 5.0,
+        "authenticity": 0.3,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 287,
+        "word_count": 50
+      },
+      "q7": {
+        "big_five_score": 5.0,
+        "raw_agreement": 5.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.3,
+        "reverse_scored": false,
+        "response_length": 351,
+        "word_count": 59
+      },
+      "q8": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 632,
+        "word_count": 115
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 14.3,
+      "avg_big_five_score": 4.19,
+      "successful_responses": 8,
+      "total_questions": 8,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T04:35:12.534307",
+    "total_test_time_seconds": 128.552498,
+    "analysis_metadata": {
+      "total_data_points": 8,
+      "parameters_hash": 4086669062703343674,
+      "config_hash": 8073505843439358309,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-19T04:35:12.534307",
+      "file_size_estimate": 10129,
+      "question_distribution": {
+        "openness": 3,
+        "extraversion": 1,
+        "agreeableness": 2,
+        "neuroticism": 2
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 287,
+          "max": 632,
+          "avg": 399.25
+        },
+        "word_counts": {
+          "min": 50,
+          "max": 115,
+          "avg": 70.625
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 10.542001,
+          "max": 21.467001,
+          "avg": 14.316364875,
+          "variance": 9.824956838271858,
+          "consistency_score": 0.49107935477340314
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 3.0,
+          "max": 5.0,
+          "avg": 4.1875,
+          "variance": 0.74609375,
+          "score_range": 2.0
+        }
+      },
+      "parameter_fingerprint": "T0.7_K1000_P0.9"
+    },
+    "id": "73a474bc-f18f-4257-91b9-9d1c33916b7e",
+    "timestamp": "2025-09-24T14:54:06.304466Z"
+  }
+]

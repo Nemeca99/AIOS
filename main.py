@@ -36,6 +36,9 @@ from enterprise_core.enterprise_core import EnterpriseSystem, PiBasedEncryption,
 from luna_core.luna_core import LunaSystem
 from support_core.support_core import SupportSystem, SystemConfig, FilePaths, SystemMessages, ensure_directories
 
+# Import utilities
+from utils.aios_json_standards import AIOSJSONHandler, AIOSDataType, AIOSJSONStandards, ConversationMessage
+
 # === ENUMS AND DATA CLASSES ===
 
 class SystemMode(Enum):

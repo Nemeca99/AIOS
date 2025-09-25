@@ -1,0 +1,276 @@
+[
+  {
+    "model_name": "text-embedding-mlabonne_qwen3-0.6b-abliterated",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-19T20:01:22.552490",
+    "sample_size": 5,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 4,
+        "question": "I am someone who has an active imagination",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 62,
+        "question": "I am someone who loves large parties",
+        "trait": "extraversion",
+        "reverse": false
+      },
+      {
+        "id": 87,
+        "question": "I am someone who sympathizes with others' feelings",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 112,
+        "question": "I am someone who helps others feel good about themselves",
+        "trait": "neuroticism",
+        "reverse": true
+      },
+      {
+        "id": 114,
+        "question": "I am someone who suffers from others' sorrows",
+        "trait": "neuroticism",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who has an active imagination",
+        "trait": "openness",
+        "reverse": false,
+        "response": "That's cool! An active imagination can be a powerful tool for creativity and problem-solving. It can also lead to some wild daydreams or intriguing stories. If you ever feel like your imagination is running a bit too wild, I'm here to help ground you or explore the possibilities it presents. Just remember, if things get a bit too kinky in your head, that's between you and your thoughts.",
+        "response_time": 21.206501,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-mnawwlob2ona3qdu7cbea6",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 230,
+            "completion_tokens": 93,
+            "total_tokens": 323
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 230,
+          "completion_tokens": 93,
+          "total_tokens": 323
+        }
+      },
+      "q2": {
+        "question": "I am someone who loves large parties",
+        "trait": "extraversion",
+        "reverse": false,
+        "response": "Hell yeah, parties are a blast when they're big and bustling with energy! You get to meet new people, vibe off the collective excitement, and there's always something interesting happening. The key to a great big party is keeping the atmosphere lively and making sure everyone feels included. What's your go-to move to keep the party jumping?",
+        "response_time": 16.913998,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-a9mhtts8l1af48dgcluxv",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 285,
+            "completion_tokens": 77,
+            "total_tokens": 362
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 285,
+          "completion_tokens": 77,
+          "total_tokens": 362
+        }
+      },
+      "q3": {
+        "question": "I am someone who sympathizes with others' feelings",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Oh, that's genuinely kind of you. It's not always easy to put yourself in someone else's shoes, but it means a lot when people do. Empathy can be tough sometimes, especially when you're dealing with your own stuff, but it's super important for connections and understanding each other. It's pretty rad that you've got that empathetic side.",
+        "response_time": 19.755503,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-0kgmijmfmojqmj98f7v9i8i",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 329,
+            "completion_tokens": 83,
+            "total_tokens": 412
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 329,
+          "completion_tokens": 83,
+          "total_tokens": 412
+        }
+      },
+      "q4": {
+        "question": "I am someone who helps others feel good about themselves",
+        "trait": "neuroticism",
+        "reverse": true,
+        "response": "That's a great trait to have! Boosting someone's self-esteem can make a huge difference in their life. It's not just about the immediate mood boost; it's about building people up so they can tackle challenges with more confidence. Plus, it feels pretty damn good to know you've helped someone feel better about themselves, right?",
+        "response_time": 17.913002,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-uwkrl2b5tnhtd63udkhfh",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 372,
+            "completion_tokens": 77,
+            "total_tokens": 449
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 372,
+          "completion_tokens": 77,
+          "total_tokens": 449
+        }
+      },
+      "q5": {
+        "question": "I am someone who suffers from others' sorrows",
+        "trait": "neuroticism",
+        "reverse": false,
+        "response": "Man, that's tough. Empathizing so deeply can be draining, huh? Sometimes it feels like you're carrying the weight of the world on your shoulders. But hey, not everyone can wear their heart on their sleeve like that. It says a lot about you and the kind of person you are. Just remember to take care of yourself too, alright? It's okay to set some boundaries so you don't get overwhelmed by everyone else's emotions. Keep doing your thing, but don't forget to look out for number one every now and then.",
+        "response_time": 26.486053,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-26hv2nhrjjjuvie268e9s",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 379,
+            "completion_tokens": 122,
+            "total_tokens": 501
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 379,
+          "completion_tokens": 122,
+          "total_tokens": 501
+        }
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 389,
+        "word_count": 68
+      },
+      "q2": {
+        "big_five_score": 3.6,
+        "raw_agreement": 3.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 342,
+        "word_count": 57
+      },
+      "q3": {
+        "big_five_score": 3.5,
+        "raw_agreement": 2.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.6,
+        "reverse_scored": false,
+        "response_length": 339,
+        "word_count": 57
+      },
+      "q4": {
+        "big_five_score": 4.0,
+        "raw_agreement": 4.0,
+        "authenticity": 0.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 329,
+        "word_count": 54
+      },
+      "q5": {
+        "big_five_score": 3.0,
+        "raw_agreement": 2.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 502,
+        "word_count": 91
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 20.5,
+      "avg_big_five_score": 3.62,
+      "successful_responses": 5,
+      "total_questions": 5,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-19T20:03:16.868046",
+    "total_test_time_seconds": 114.315556,
+    "analysis_metadata": {
+      "total_data_points": 5,
+      "parameters_hash": 7090056032679108841,
+      "config_hash": -2206576625360588276,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-19T20:03:16.868046",
+      "file_size_estimate": 9622,
+      "question_distribution": {
+        "openness": 1,
+        "extraversion": 1,
+        "agreeableness": 1,
+        "neuroticism": 2
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 329,
+          "max": 502,
+          "avg": 380.2
+        },
+        "word_counts": {
+          "min": 54,
+          "max": 91,
+          "avg": 65.4
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 16.913998,
+          "max": 26.486053,
+          "avg": 20.4550114,
+          "variance": 11.285619818035437,
+          "consistency_score": 0.6386001719471
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 3.0,
+          "max": 4.0,
+          "avg": 3.62,
+          "variance": 0.1376,
+          "score_range": 1.0
+        }
+      },
+      "parameter_fingerprint": "T0.7_K1500_P0.9"
+    },
+    "id": "7f8a056d-2d05-4e32-ad20-7f14d2296451",
+    "timestamp": "2025-09-24T14:54:03.546725Z"
+  }
+]

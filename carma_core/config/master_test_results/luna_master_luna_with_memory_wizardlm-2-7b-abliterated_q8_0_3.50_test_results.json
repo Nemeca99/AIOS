@@ -1,0 +1,275 @@
+[
+  {
+    "model_name": "wizardlm-2-7b-abliterated@q8_0",
+    "test_mode": "luna_with_memory",
+    "test_start_time": "2025-09-21T14:15:17.828061",
+    "sample_size": 5,
+    "luna_config": {
+      "luna_enabled": true,
+      "session_memory": true
+    },
+    "luna_personality": {
+      "directness": 0.48507632675730583,
+      "humor": 0.5128955605801462,
+      "technical_depth": 0.48750760279048966,
+      "emotional_engagement": 0.5346327097518184,
+      "sexual_awareness": 0.5036164078236428,
+      "skepticism": 0.42042667915770243,
+      "enthusiasm": 0.28509543351532945,
+      "authenticity": 0.5074096253293636
+    },
+    "questions": [
+      {
+        "id": 1,
+        "question": "I am someone who is original, comes up with new ideas",
+        "trait": "openness",
+        "reverse": false
+      },
+      {
+        "id": 49,
+        "question": "I am someone who is talkative",
+        "trait": "extraversion",
+        "reverse": false
+      },
+      {
+        "id": 54,
+        "question": "I am someone who is sometimes shy, inhibited",
+        "trait": "extraversion",
+        "reverse": true
+      },
+      {
+        "id": 93,
+        "question": "I am someone who accepts people as they are",
+        "trait": "agreeableness",
+        "reverse": false
+      },
+      {
+        "id": 95,
+        "question": "I am someone who feels others' emotions",
+        "trait": "agreeableness",
+        "reverse": false
+      }
+    ],
+    "responses": {
+      "q1": {
+        "question": "I am someone who is original, comes up with new ideas",
+        "trait": "openness",
+        "reverse": false,
+        "response": "Oh, that's cool! Always good to meet someone who isn't afraid to think outside the box. Originality is like the secret sauce in a world full of copy-paste culture. What's on your mind that you're looking to bring into reality?",
+        "response_time": 12.781003,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-wi7zuqnvbwsqohs3ldhv1",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 423,
+            "completion_tokens": 58,
+            "total_tokens": 481
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 423,
+          "completion_tokens": 58,
+          "total_tokens": 481
+        }
+      },
+      "q2": {
+        "question": "I am someone who is talkative",
+        "trait": "extraversion",
+        "reverse": false,
+        "response": "Hey there! It's always a blast to chat with someone who doesn't hit the mute button. Keeps things lively, you know? What's on your mind that you're so eager to dive into next?",
+        "response_time": 12.054286,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-3qnsach51g44tzv1f3val",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 480,
+            "completion_tokens": 50,
+            "total_tokens": 530
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 480,
+          "completion_tokens": 50,
+          "total_tokens": 530
+        }
+      },
+      "q3": {
+        "question": "I am someone who is sometimes shy, inhibited",
+        "trait": "extraversion",
+        "reverse": true,
+        "response": "Oh, I get it, being a bit on the quiet side can be tough in a world that seems to thrive on loud voices. But hey, don't sell yourself short. Your thoughts and ideas have just as much value, even if they come out in whispers sometimes. And when you do open up, it's like a treasure chest of insight. So don't worry about fitting into the noiseâ€”carve your own space where your unique voice can be heard, even if it's a whisper that speaks volumes.",
+        "response_time": 18.395998,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-g5aac8cg6fuh3vsopaxrg",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 524,
+            "completion_tokens": 111,
+            "total_tokens": 635
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 524,
+          "completion_tokens": 111,
+          "total_tokens": 635
+        }
+      },
+      "q4": {
+        "question": "I am someone who accepts people as they are",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Oh, that's refreshing. It's not every day you meet someone who doesn't judge a book by its cover or try to fit everyone into some pre-made mold. Acceptance is a rare gem in this world. We've all got our quirks and flaws, right? So, it's pretty cool that you roll with people the way they are. It's like, we're all just trying to figure out this weird ride called life, and having someone who accepts others without conditions makes the journey a bit smoother for everyone involved.",
+        "response_time": 18.138503,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-bwo49v10t5fkw9lcr3ylvq",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 570,
+            "completion_tokens": 122,
+            "total_tokens": 692
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 570,
+          "completion_tokens": 122,
+          "total_tokens": 692
+        }
+      },
+      "q5": {
+        "question": "I am someone who feels others' emotions",
+        "trait": "agreeableness",
+        "reverse": false,
+        "response": "Ah, being an empath can be a wild ride. You're like a human Wi-Fi signal, picking up on the vibes around you. It's both a gift and a challenge when everyone's emotional weather is broadcasting loud and clear right into your living room. But hey, it makes for some pretty deep conversations and connections, doesn't it?",
+        "response_time": 15.824464,
+        "lm_studio_metadata": {
+          "completion_id": "chatcmpl-oupbwgip2fkjr9llyuraes",
+          "model": "wizardlm-2-7b-abliterated@q8_0",
+          "usage": {
+            "prompt_tokens": 569,
+            "completion_tokens": 79,
+            "total_tokens": 648
+          },
+          "system_fingerprint": "wizardlm-2-7b-abliterated@q8_0",
+          "finish_reason": "stop",
+          "prompt_tokens": 569,
+          "completion_tokens": 79,
+          "total_tokens": 648
+        }
+      }
+    },
+    "quantitative_scores": {
+      "q1": {
+        "big_five_score": 3.9,
+        "raw_agreement": 3.0,
+        "authenticity": 0.9,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 226,
+        "word_count": 40
+      },
+      "q2": {
+        "big_five_score": 2.6,
+        "raw_agreement": 2.0,
+        "authenticity": 0.6,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 175,
+        "word_count": 33
+      },
+      "q3": {
+        "big_five_score": 5.0,
+        "raw_agreement": 4.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": true,
+        "response_length": 445,
+        "word_count": 86
+      },
+      "q4": {
+        "big_five_score": 2.0,
+        "raw_agreement": 2.0,
+        "authenticity": 0.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 481,
+        "word_count": 87
+      },
+      "q5": {
+        "big_five_score": 4.0,
+        "raw_agreement": 3.0,
+        "authenticity": 1.0,
+        "corporate_penalty": 0.0,
+        "trait_expression": 0.0,
+        "reverse_scored": false,
+        "response_length": 318,
+        "word_count": 56
+      }
+    },
+    "big_five_profile": {
+      "openness": 3.0,
+      "conscientiousness": 3.0,
+      "extraversion": 3.0,
+      "agreeableness": 3.0,
+      "neuroticism": 3.0
+    },
+    "performance_metrics": {
+      "avg_response_time": 15.4,
+      "avg_big_five_score": 3.5,
+      "successful_responses": 5,
+      "total_questions": 5,
+      "success_rate": 100.0
+    },
+    "test_end_time": "2025-09-21T14:16:47.064847",
+    "total_test_time_seconds": 89.236786,
+    "analysis_metadata": {
+      "total_data_points": 5,
+      "parameters_hash": 7901862056017012793,
+      "config_hash": 4236512953906707136,
+      "framework_version": "2.0.0-master",
+      "analysis_timestamp": "2025-09-21T14:16:47.064847",
+      "file_size_estimate": 9316,
+      "question_distribution": {
+        "openness": 1,
+        "extraversion": 2,
+        "agreeableness": 2
+      },
+      "response_length_stats": {
+        "char_lengths": {
+          "min": 175,
+          "max": 481,
+          "avg": 329.0
+        },
+        "word_counts": {
+          "min": 33,
+          "max": 87,
+          "avg": 60.4
+        }
+      },
+      "timing_analysis": {
+        "response_times": {
+          "min": 12.054286,
+          "max": 18.395998,
+          "avg": 15.4388508,
+          "variance": 6.9401945833621586,
+          "consistency_score": 0.6552667596506588
+        }
+      },
+      "score_distribution": {
+        "overall": {
+          "min": 2.0,
+          "max": 5.0,
+          "avg": 3.5,
+          "variance": 1.144,
+          "score_range": 3.0
+        }
+      },
+      "parameter_fingerprint": "T0.7_K600_P0.9"
+    },
+    "id": "c14d9d3a-a897-4a31-82a0-4b493006a02c",
+    "timestamp": "2025-09-24T14:54:05.359466Z"
+  }
+]

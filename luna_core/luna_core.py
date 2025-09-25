@@ -28,19 +28,19 @@ sys.path.append(str(Path(__file__).parent.parent))
 # Import support modules
 from support_core.support_core import SystemConfig, FilePaths, SystemMessages, ensure_directories, SimpleEmbedder
 from carma_core.carma_core import CARMASystem
-from luna_ifs_personality_system import LunaIFSPersonalitySystem
-from luna_semantic_compression_filter import LunaSemanticCompressionFilter
-from luna_soul_metric_system import LunaSoulMetricSystem
-from luna_token_time_econometric_system import LunaTokenTimeEconometricSystem
-from luna_existential_budget_system import LunaExistentialBudgetSystem
-from luna_response_value_classifier import LunaResponseValueClassifier
-from luna_custom_inference_controller import LunaCustomInferenceController, InferenceControlConfig
-from luna_arbiter_system import LunaArbiterSystem
-from luna_cfia_system import LunaCFIASystem
+from .luna_ifs_personality_system import LunaIFSPersonalitySystem
+from .luna_semantic_compression_filter import LunaSemanticCompressionFilter
+from .luna_soul_metric_system import LunaSoulMetricSystem
+from .luna_token_time_econometric_system import LunaTokenTimeEconometricSystem
+from .luna_existential_budget_system import LunaExistentialBudgetSystem
+from .luna_response_value_classifier import LunaResponseValueClassifier
+from .luna_custom_inference_controller import LunaCustomInferenceController, InferenceControlConfig
+from .luna_arbiter_system import LunaArbiterSystem
+from .luna_cfia_system import LunaCFIASystem
 
 # Import AIOS JSON standards
 try:
-    from aios_json_standards import AIOSJSONHandler, AIOSDataType, AIOSJSONStandards, ConversationMessage
+    from utils.aios_json_standards import AIOSJSONHandler, AIOSDataType, AIOSJSONStandards, ConversationMessage
     AIOS_STANDARDS_AVAILABLE = True
 except ImportError:
     AIOS_STANDARDS_AVAILABLE = False
