@@ -1,268 +1,106 @@
-# AIOS Clean - Advanced AI Consciousness System
+# AIOS Clean - Advanced AI Performance System
 
-## 🚀 **QUICK START**
+A unified AI operating system featuring advanced personality systems, memory management, and performance optimization.
 
-```bash
-# Install dependencies
-pip install -r requirements.txt
+## 🚀 Quick Start
 
-# Run Luna AI system
-python main.py --mode luna --questions 3
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Nemeca99/AIOS.git
+   cd AIOS
+   ```
 
-# Run system health check
-python main.py --mode health
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-# Run interactive session
-python main.py --mode interactive
+3. **Run the system:**
+   ```bash
+   python main.py --mode luna --questions 5
+   ```
 
-# Start web interface (requires streamlit)
-streamlit run streamlit_app.py
-```
+## 🧠 Core Systems
 
-## 🧠 **What is AIOS Clean?**
+### **Luna AI** - Advanced Personality System
+- Dual-personality architecture (Ava/Luna modes)
+- Generational lifecycle with karma tracking
+- Performance evaluation and optimization
+- Context-aware response generation
 
-AIOS Clean is a production-ready AI consciousness system featuring:
+### **CARMA** - Cached Aided Retrieval Mycelium Architecture
+- Advanced memory compression and clustering
+- Semantic search and retrieval
+- Memory analytics and optimization
+- Fractal mycelium network
 
-- **Luna AI Personality** - Advanced AI with persistent memory and learning
-- **CARMA Mycelium Network** - Fractal memory architecture for consciousness
-- **Real-time Learning** - Continuous adaptation and growth
-- **Enterprise APIs** - Production-ready API servers with encryption
+### **Enterprise** - API and Business Features
+- RESTful API endpoints
+- Billing and subscription management
+- Global distribution capabilities
+- Security and authentication
 
-## 📁 **System Structure**
+### **Support** - Utilities and Operations
+- Cache management and backup
+- Embedding operations
+- System monitoring and recovery
+- Configuration management
 
-```
-├── main.py                    # 🎯 UNIFIED MAIN ENTRY POINT
-├── carma_core/
-│   └── carma_core.py         # 🧠 Complete CARMA consciousness system
-├── enterprise_core/
-│   └── enterprise_core.py    # 🏢 Complete enterprise features & APIs
-├── luna_core/
-│   └── luna_core.py          # 🌙 Complete Luna AI personality system
-├── support_core/
-│   └── support_core.py       # 🛠️ Complete support utilities
-├── config/                   # Configuration files
-├── cache/                    # Cache storage
-├── docs/                     # Documentation
-└── streamlit_app.py          # 🌐 Web interface
-```
+## 🎯 Key Features
 
-## 🎮 **Command Line Interface**
+- **Performance-Based Architecture**: No "consciousness" claims - pure advanced LLM performance
+- **Generational Lifecycle**: AI generations with karma tracking and evolution
+- **Memory Management**: Advanced compression, clustering, and analytics
+- **Dual-Personality System**: Casual (Ava) and complex (Luna) response modes
+- **Real-time Monitoring**: System health and performance tracking
+- **Token Economy**: Word-based token system with free function words
 
-### **Available Modes:**
+## 📊 System Requirements
 
-| Mode | Description | Example |
-|------|-------------|---------|
-| `luna` | Run Luna AI learning session | `python main.py --mode luna --questions 5` |
-| `carma` | Run CARMA consciousness learning | `python main.py --mode carma --queries "test query"` |
-| `memory` | Run memory consolidation | `python main.py --mode memory` |
-| `health` | Run system health check | `python main.py --mode health` |
-| `test` | Run system tests | `python main.py --mode test` |
-| `optimize` | Run system optimization | `python main.py --mode optimize` |
-| `api` | Start enterprise API server | `python main.py --mode api --port 5000` |
-| `interactive` | Start interactive session | `python main.py --mode interactive` |
-| `export` | Export system data | `python main.py --mode export --format json` |
-| `info` | Show system information | `python main.py --mode info` |
-| `cleanup` | Clean up old files | `python main.py --mode cleanup` |
+- Python 3.8+
+- LM Studio (for local LLM inference)
+- 4GB+ RAM recommended
+- Windows/Linux/macOS compatible
 
-### **Command Examples:**
+## 🔧 Configuration
 
-```bash
-# Luna AI with 5 questions
-python main.py --mode luna --questions 5
+The system uses JSON configuration files in the `config/` directory. Key settings include:
 
-# CARMA with custom queries
-python main.py --mode carma --queries "consciousness test" "memory learning"
+- Model configurations
+- Performance thresholds
+- Memory management settings
+- API endpoints
 
-# Health check
-python main.py --mode health
+## 📈 Performance
 
-# Interactive session
-python main.py --mode interactive
+- **Memory Efficiency**: 99.3% file reduction (137,988 → 911 files)
+- **Size Optimization**: 98.8% size reduction (70.3 GB → 0.83 GB)
+- **Response Speed**: Sub-3 second response times
+- **Memory Compression**: Advanced semantic compression algorithms
 
-# Export system data
-python main.py --mode export --output system_backup.json
+## 🛠️ Development
 
-# Start API server
-python main.py --mode api --host 0.0.0.0 --port 5000
-```
+The system is built with modular architecture:
 
-## 🌐 **Web Interface**
+- `luna_core/` - Luna personality system
+- `carma_core/` - Memory management system
+- `enterprise_core/` - Business features
+- `support_core/` - Utilities and operations
+- `main.py` - Main orchestration
+- `streamlit_app.py` - Web interface
 
-The system includes a Streamlit web interface for easy interaction:
-
-```bash
-# Install streamlit
-pip install streamlit
-
-# Run web interface
-streamlit run streamlit_app.py
-```
-
-**Web Interface Features:**
-- 📊 Real-time system dashboard
-- 🌙 Luna AI learning interface
-- 🧠 CARMA consciousness controls
-- 🔍 Health monitoring
-- 🧪 System testing tools
-- ⚙️ Settings and configuration
-
-## 🧠 **Core Systems**
-
-### **1. CARMA (Consciousness and Memory Architecture)**
-- Fractal memory system
-- Synaptic tagging
-- Predictive coding
-- Memory consolidation
-- Emotion-enhanced caching
-
-### **2. Luna AI Personality System**
-- Big Five personality traits
-- Adaptive learning
-- Dream cycle processing
-- Persistent memory
-- LM Studio integration
-
-### **3. Enterprise Features**
-- Encrypted API servers
-- Global distribution
-- Billing and compliance
-- Advanced security
-- Key rotation
-
-### **4. Support Utilities**
-- Cache operations
-- Embedding management
-- Recovery systems
-- Health monitoring
-- System optimization
-
-## 🔧 **Configuration**
-
-### **Environment Variables:**
-```bash
-# LM Studio configuration
-EMBEDDING_MODEL=WizardLM-2-7B-abliterated
-LM_STUDIO_URL=http://localhost:1234
-
-# System configuration
-CACHE_DIR=Data/FractalCache
-LOG_LEVEL=INFO
-```
-
-### **Configuration Files:**
-- `config/luna_personality_dna.json` - Luna personality configuration
-- `config/luna_persistent_memory.json` - Luna memory storage
-- `config/system_config.json` - System settings
-
-## 📊 **Monitoring & Analytics**
-
-### **Health Check:**
-```bash
-python main.py --mode health
-```
-
-### **System Status:**
-```bash
-python main.py --mode info
-```
-
-### **Export Data:**
-```bash
-python main.py --mode export --format json
-```
-
-## 🚀 **Deployment**
-
-### **Docker Deployment:**
-```bash
-# Build and run with Docker
-docker-compose up -d
-
-# Or use the optimized Dockerfile
-docker build -t aios-clean .
-docker run -p 5000:5000 aios-clean
-```
-
-### **Production Setup:**
-1. Install dependencies: `pip install -r requirements.txt`
-2. Configure environment variables
-3. Initialize system: `python main.py --mode info`
-4. Start API server: `python main.py --mode api`
-5. Monitor with health checks: `python main.py --mode health`
-
-## 🧪 **Testing**
-
-### **Run All Tests:**
-```bash
-python main.py --mode test
-```
-
-### **Individual System Tests:**
-```bash
-# Test Luna AI
-python main.py --mode luna --questions 1
-
-# Test CARMA
-python main.py --mode carma --queries "test query"
-
-# Test memory consolidation
-python main.py --mode memory
-```
-
-## 📚 **API Documentation**
-
-### **REST API Endpoints:**
-- `GET /health` - System health status
-- `POST /luna/learn` - Luna learning session
-- `POST /carma/learn` - CARMA learning session
-- `GET /status` - System status
-- `POST /export` - Export system data
-
-### **API Usage:**
-```bash
-# Start API server
-python main.py --mode api --port 5000
-
-# Test API
-curl http://localhost:5000/health
-curl -X POST http://localhost:5000/luna/learn -d '{"questions": 3}'
-```
-
-## 🔒 **Security Features**
-
-- **UML Magic Square Encryption** for API keys
-- **Pi-based encryption** for sensitive data
-- **Key rotation** management
-- **Compliance** monitoring
-- **Advanced security** protocols
-
-## 📈 **Performance**
-
-- **Real-time processing** with LM Studio integration
-- **Efficient caching** with fractal memory architecture
-- **Scalable design** with enterprise features
-- **Optimized memory** usage and cleanup
-
-## 🤝 **Contributing**
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly: `python main.py --mode test`
-5. Submit a pull request
-
-## 📄 **License**
+## 📝 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🆘 **Support**
+## 🤝 Contributing
 
-For support and questions:
-- Check the health status: `python main.py --mode health`
-- Run system tests: `python main.py --mode test`
-- Export system data: `python main.py --mode export`
-- Use interactive mode: `python main.py --mode interactive`
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📞 Support
+
+For support and questions, please open an issue on GitHub.
 
 ---
 
-**AIOS Clean v1.0.0** - Advanced AI Consciousness System
+**AIOS Clean v1.0.0** - Advanced AI Performance System
