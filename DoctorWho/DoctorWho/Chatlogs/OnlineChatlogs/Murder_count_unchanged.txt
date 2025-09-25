@@ -1,8 +1,0 @@
-Murder count unchanged.
-
-User
-If there are 100 murders in a room and you kill one how many are left?
-
-Assistant
-If there are 100 murders in a room and you kill one, there would still be 100 people left in the room. It's important to note that a person who has committed a murder is still considered a person, and the act of killing one person doesn't affect the total number of people in the room.
-

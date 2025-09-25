@@ -1,8 +1,0 @@
-Google Doc Access Help
-
-User
-https:docs.google.comdocumentd1G9e1Prww5kBo7SvoBIAfCIScN94R63vvvAYbqsxbMr4edit?usp=drivesdk
-
-Assistant
-It appears you've shared a link to a Google Document titled "v1_2  AI Onboarding System." To access the document, please ensure you're signed into your Google account and have the necessary permissions. If you encounter issues, consider enabling JavaScript in your browser or updating to a supported browser version. If you need assistance with the document's content or have specific questions, feel free to provide more details.
-

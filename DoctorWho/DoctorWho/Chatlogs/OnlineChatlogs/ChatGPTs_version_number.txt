@@ -1,8 +1,0 @@
-ChatGPT's version number
-
-User
-Do you use chat GPT 4
-
-Assistant
-As an AI language model, I am not aware of any updates or changes to my architecture or version number. My training data and algorithms are periodically updated and refined by my developers at OpenAI, but I still go by the name "ChatGPT" and my specific version number is not publicly disclosed.
-
