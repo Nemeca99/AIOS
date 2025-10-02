@@ -1,4 +1,13 @@
+#!/usr/bin/env python3
 """
+
+# CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils.unicode_safe_output import setup_unicode_safe_output
+setup_unicode_safe_output()
+
 Constrained Factorial Intelligence Architecture (CFIA)
 Governs Luna's memory growth, efficiency, and intelligence indexing through constrained strategic expansion
 """
@@ -61,21 +70,21 @@ class LunaCFIASystem:
         self._load_state()
         self._scan_existing_files()
         
-        print("🧠 Constrained Factorial Intelligence Architecture (CFIA) Initialized")
-        print(f"   📊 Generation: {self.state.aiiq} (AIIQ/Generation Number)")
-        print(f"   🧬 Generation Seed: {self.state.generation_seed} (DNA)")
-        print(f"   ❤️  Karma Pool: {self.state.karma_pool:.1f} (Health/Life Force)")
-        print(f"   ⚙️  Alpha: {self.state.alpha} (Dampening Factor)")
-        print(f"   📁 Total Files: {self.state.total_files}")
-        print(f"   📏 Current Threshold: {self.state.current_threshold:.1f} KB")
-        print(f"   🎯 Target Files for Next Generation: {math.factorial(self.state.aiiq)}")
+        print(" Constrained Factorial Intelligence Architecture (CFIA) Initialized")
+        print(f"    Generation: {self.state.aiiq} (AIIQ/Generation Number)")
+        print(f"    Generation Seed: {self.state.generation_seed} (DNA)")
+        print(f"     Karma Pool: {self.state.karma_pool:.1f} (Health/Life Force)")
+        print(f"     Alpha: {self.state.alpha} (Dampening Factor)")
+        print(f"    Total Files: {self.state.total_files}")
+        print(f"    Current Threshold: {self.state.current_threshold:.1f} KB")
+        print(f"    Target Files for Next Generation: {math.factorial(self.state.aiiq)}")
     
     def process_lesson_addition(self, lesson_kb: float, target_file: Optional[str] = None) -> Dict:
         """
         Process adding a new lesson with CFIA constraints
         Returns information about any splits or AIIQ increments
         """
-        print(f"🧠 CFIA Processing: Adding {lesson_kb:.1f} KB lesson...")
+        print(f" CFIA Processing: Adding {lesson_kb:.1f} KB lesson...")
         
         # Step 1: Determine target file
         if not target_file:
@@ -102,7 +111,7 @@ class LunaCFIASystem:
         }
         
         if split_required:
-            print(f"🧠 CFIA Split Required: {projected_size:.1f} KB > {granularity_threshold:.1f} KB threshold")
+            print(f" CFIA Split Required: {projected_size:.1f} KB > {granularity_threshold:.1f} KB threshold")
             
             # Perform file split
             split_result = self._perform_file_split(target_file, lesson_kb)
@@ -157,13 +166,13 @@ class LunaCFIASystem:
             factor = granularity_factors.get(n, 0.0625)
         
         threshold = self.state.current_threshold * factor
-        print(f"🧠 Granularity Threshold: {threshold:.1f} KB (Factor: {factor:.4f} for AIIQ {n})")
+        print(f" Granularity Threshold: {threshold:.1f} KB (Factor: {factor:.4f} for AIIQ {n})")
         
         return threshold
     
     def _perform_file_split(self, target_file: str, lesson_kb: float) -> Dict:
         """Perform file split operation"""
-        print(f"🧠 Performing file split: {target_file}")
+        print(f" Performing file split: {target_file}")
         
         # Read current file content
         file_path = self.cache_path / f"{target_file}.json"
@@ -217,8 +226,8 @@ class LunaCFIASystem:
             # Update total files count
             self.state.total_files += 1
             
-            print(f"🧠 Split Complete: {target_file} → {file_a_id} + {file_b_id}")
-            print(f"   📁 New Total Files: {self.state.total_files}")
+            print(f" Split Complete: {target_file} → {file_a_id} + {file_b_id}")
+            print(f"    New Total Files: {self.state.total_files}")
             
             return {
                 "files_deleted": [target_file],
@@ -238,9 +247,9 @@ class LunaCFIASystem:
         # Recalculate threshold using the formula
         self.state.current_threshold = self._calculate_new_threshold()
         
-        print(f"🧠 AIIQ INCREMENT: {old_aiiq} → {self.state.aiiq}")
-        print(f"   📊 Target Files for Next Level: {math.factorial(self.state.aiiq)}")
-        print(f"   📏 New Threshold: {self.state.current_threshold:.1f} KB")
+        print(f" AIIQ INCREMENT: {old_aiiq} → {self.state.aiiq}")
+        print(f"    Target Files for Next Level: {math.factorial(self.state.aiiq)}")
+        print(f"    New Threshold: {self.state.current_threshold:.1f} KB")
         
         return {
             "aiiq_increment": True,
@@ -265,7 +274,7 @@ class LunaCFIASystem:
         
         new_threshold = t_prev + increment
         
-        print(f"🧠 Threshold Calculation: {t_prev:.1f} + ({t_prev:.1f} * (1/{r_n}) * {self.state.alpha}) = {new_threshold:.1f}")
+        print(f" Threshold Calculation: {t_prev:.1f} + ({t_prev:.1f} * (1/{r_n}) * {self.state.alpha}) = {new_threshold:.1f}")
         
         return new_threshold
     
@@ -280,7 +289,7 @@ class LunaCFIASystem:
         
         self._register_file(file_id, 0)
         
-        print(f"🧠 Created new file: {file_id}")
+        print(f" Created new file: {file_id}")
         return file_id
     
     def _register_file(self, file_id: str, content_count: int):
@@ -326,7 +335,7 @@ class LunaCFIASystem:
                 self._register_file(file_id, len(content))
                 
             except Exception as e:
-                print(f"⚠️ Error scanning file {file_id}: {e}")
+                print(f" Error scanning file {file_id}: {e}")
     
     def _load_state(self):
         """Load CFIA state from disk"""
@@ -348,10 +357,10 @@ class LunaCFIASystem:
                     generation_birth_time=state_data.get("generation_birth_time", time.time())
                 )
                 
-                print(f"🧠 Loaded CFIA state: AIIQ {self.state.aiiq}, Files {self.state.total_files}")
+                print(f" Loaded CFIA state: AIIQ {self.state.aiiq}, Files {self.state.total_files}")
                 
             except Exception as e:
-                print(f"⚠️ Error loading CFIA state: {e}")
+                print(f" Error loading CFIA state: {e}")
     
     def _save_state(self):
         """Save CFIA state to disk"""
@@ -373,7 +382,7 @@ class LunaCFIASystem:
             with open(state_file, 'w', encoding='utf-8') as f:
                 json.dump(state_data, f, indent=2, ensure_ascii=False)
         except Exception as e:
-            print(f"⚠️ Error saving CFIA state: {e}")
+            print(f" Error saving CFIA state: {e}")
     
     def get_status(self) -> Dict:
         """Get current CFIA status"""
@@ -412,13 +421,13 @@ class LunaCFIASystem:
         
         # Check for generational death (Karma hits 0)
         if self.state.karma_pool <= 0.0:
-            print(f"💀 GENERATIONAL DEATH: Karma pool depleted ({old_karma:.1f} → {self.state.karma_pool:.1f})")
+            print(f" GENERATIONAL DEATH: Karma pool depleted ({old_karma:.1f} → {self.state.karma_pool:.1f})")
             result["generation_died"] = True
             result["generation_reset"] = self._perform_generational_reset()
         
         # Check for generational success (Target files reached)
         elif self.state.total_files >= math.factorial(self.state.aiiq):
-            print(f"🎉 GENERATIONAL SUCCESS: Target files reached ({self.state.total_files} >= {math.factorial(self.state.aiiq)})")
+            print(f" GENERATIONAL SUCCESS: Target files reached ({self.state.total_files} >= {math.factorial(self.state.aiiq)})")
             result["generation_success"] = True
             result["generation_reset"] = self._perform_generational_reset()
         
@@ -440,11 +449,11 @@ class LunaCFIASystem:
             # Recalculate threshold
             self.state.current_threshold = self._calculate_new_threshold()
             
-            print(f"🔄 GENERATIONAL RESET: Gen {old_generation} → Gen {self.state.aiiq}")
-            print(f"   🧬 New DNA: {old_seed} → {self.state.generation_seed}")
-            print(f"   ❤️  New Health: 100.0 Karma")
-            print(f"   📏 New Threshold: {self.state.current_threshold:.1f} KB")
-            print(f"   🎯 New Target: {math.factorial(self.state.aiiq)} files")
+            print(f" GENERATIONAL RESET: Gen {old_generation} → Gen {self.state.aiiq}")
+            print(f"    New DNA: {old_seed} → {self.state.generation_seed}")
+            print(f"     New Health: 100.0 Karma")
+            print(f"    New Threshold: {self.state.current_threshold:.1f} KB")
+            print(f"    New Target: {math.factorial(self.state.aiiq)} files")
             
             # Save state
             self._save_state()
@@ -452,7 +461,7 @@ class LunaCFIASystem:
             return True
             
         except Exception as e:
-            print(f"⚠️ Error during generational reset: {e}")
+            print(f" Error during generational reset: {e}")
             return False
     
     def get_generation_status(self) -> Dict:

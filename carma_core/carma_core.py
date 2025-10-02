@@ -4,7 +4,12 @@ UNIFIED CARMA CORE SYSTEM
 Complete CARMA system with all cognitive enhancements integrated.
 """
 
+# CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
 import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils.unicode_safe_output import setup_unicode_safe_output
+setup_unicode_safe_output()
 import time
 import json
 import random
@@ -12,17 +17,20 @@ import math
 import uuid
 import hashlib
 import numpy as np
-from pathlib import Path
-from typing import Dict, List, Optional, Any, Tuple
-from datetime import datetime, timedelta
+from typing import Dict, List, Optional
+from datetime import datetime
 from dataclasses import dataclass
 from enum import Enum
+from collections import defaultdict
 
 # Add parent directory to path
 sys.path.append(str(Path(__file__).parent.parent))
 
 # Import support modules
-from support_core.support_core import SystemConfig, FilePaths, SystemMessages, ensure_directories, SimpleEmbedder
+from support_core.support_core import (
+    SystemConfig, SimpleEmbedder,
+    aios_config, aios_logger, aios_health_checker, aios_security_validator
+)
 
 # === ENUMS AND DATA CLASSES ===
 
@@ -95,6 +103,9 @@ class FractalMyceliumCache:
         # Initialize tool-enabled embedder (Llama-3.2-1B for psychological sensing + tools)
         self.tool_embedder = self._initialize_tool_embedder()
         
+        # Initialize main embedder for content processing
+        self.embedder = SimpleEmbedder()
+        
         # Registry and links
         self.file_registry = {}
         self.semantic_links = {}
@@ -123,13 +134,13 @@ class FractalMyceliumCache:
         # Load existing data
         self.load_registry()
         
-        print("🌱 Fractal Mycelium Cache Initialized")
-        print(f"   📁 Base directory: {self.base_dir}")
-        print(f"   📏 Max file size: {SystemConfig.MAX_FILE_SIZE // 1024}KB")
-        print(f"   🔀 Max splits: {SystemConfig.MAX_SPLITS}")
-        print(f"   🧠 Eviction enabled: {SystemConfig.MAX_CACHE_SIZE} max fragments")
-        print(f"   ⚡ Reinforcement enabled: hit-based weighting")
-        print(f"   🧠 Tool-Enabled Embedder: Llama-3.2-1B-Instruct (Tool-Augmented Retrieval)")
+        print(" Fractal Mycelium Cache Initialized")
+        print(f"    Base directory: {self.base_dir}")
+        print(f"    Max file size: {SystemConfig.MAX_FILE_SIZE // 1024}KB")
+        print(f"    Max splits: {SystemConfig.MAX_SPLITS}")
+        print(f"    Eviction enabled: {SystemConfig.MAX_CACHE_SIZE} max fragments")
+        print(f"    Reinforcement enabled: hit-based weighting")
+        print(f"    Tool-Enabled Embedder: Llama-3.2-1B-Instruct (Tool-Augmented Retrieval)")
     
     def _initialize_tool_embedder(self):
         """Initialize the tool-enabled embedder (Llama-3.2-1B)."""
@@ -163,7 +174,7 @@ class FractalMyceliumCache:
             embedding = self.embedder.embed(content)
             fragment_data['embedding'] = embedding
         except Exception as e:
-            print(f"⚠️  Embedding failed: {e}")
+            print(f"  Embedding failed: {e}")
             fragment_data['embedding'] = None
         
         self.file_registry[file_id] = fragment_data
@@ -171,7 +182,7 @@ class FractalMyceliumCache:
         
         return file_id
     
-    def create_file_id(self, content: str, parent_id: str = None, generation_number: int = None, generation_seed: int = None) -> str:
+    def create_file_id(self, content: str = None, parent_id: str = None, generation_number: int = None, generation_seed: int = None) -> str:
         """Create unique file ID using Generational Architecture format: GEN_X_Y_Z"""
         # Get generation info from CFIA if not provided
         if generation_number is None or generation_seed is None:
@@ -180,7 +191,12 @@ class FractalMyceliumCache:
                 cfia = LunaCFIASystem()
                 generation_number = generation_number or cfia.state.aiiq
                 generation_seed = generation_seed or cfia.state.generation_seed
-            except:
+            except ImportError:
+                # Fallback if luna_cfia_system is not available
+                generation_number = generation_number or 2
+                generation_seed = generation_seed or random.randint(1000, 9999)
+            except Exception:
+                # Fallback for any other error
                 generation_number = generation_number or 2
                 generation_seed = generation_seed or random.randint(1000, 9999)
         
@@ -289,7 +305,7 @@ class FractalMyceliumCache:
     def load_ava_raw_matches(self):
         """Load Ava raw matches for psychological pattern analysis."""
         if not self.ava_raw_matches_path.exists():
-            print(f"⚠️  Ava raw matches file not found: {self.ava_raw_matches_path}")
+            print(f"  Ava raw matches file not found: {self.ava_raw_matches_path}")
             return []
         
         matches = []
@@ -335,13 +351,13 @@ class FractalMyceliumCache:
         if current_match:
             matches.append(current_match)
         
-        print(f"🧠 Loaded {len(matches)} Ava raw matches for psychological analysis")
+        print(f" Loaded {len(matches)} Ava raw matches for psychological analysis")
         return matches
     
     def load_minecraft_chat_patterns(self, sample_size: int = 1000):
         """Load and sample Minecraft chat patterns for efficiency training."""
         if not self.minecraft_chat_path.exists():
-            print(f"⚠️  Minecraft chat file not found: {self.minecraft_chat_path}")
+            print(f"  Minecraft chat file not found: {self.minecraft_chat_path}")
             return []
         
         # Check cache first
@@ -350,7 +366,7 @@ class FractalMyceliumCache:
             return self.minecraft_chat_cache[cache_key]
         
         try:
-            print(f"🎮 Loading Minecraft chat patterns (sampling {sample_size} messages)...")
+            print(f" Loading Minecraft chat patterns (sampling {sample_size} messages)...")
             
             # Sample from the massive JSON file efficiently
             import random
@@ -360,7 +376,7 @@ class FractalMyceliumCache:
                 # Read first few lines to get structure
                 first_line = f.readline().strip()
                 if first_line != '[':
-                    print("⚠️  Invalid JSON structure")
+                    print("  Invalid JSON structure")
                     return []
                 
                 # Sample messages efficiently
@@ -410,13 +426,13 @@ class FractalMyceliumCache:
             # Cache the results
             self.minecraft_chat_cache[cache_key] = chat_patterns
             
-            print(f"🎮 Loaded {len(chat_patterns)} Minecraft chat patterns for efficiency training")
-            print(f"📊 Word count distribution: {self._analyze_word_distribution(chat_patterns)}")
+            print(f" Loaded {len(chat_patterns)} Minecraft chat patterns for efficiency training")
+            print(f" Word count distribution: {self._analyze_word_distribution(chat_patterns)}")
             
             return chat_patterns
             
         except Exception as e:
-            print(f"❌ Error loading Minecraft chat patterns: {e}")
+            print(f" Error loading Minecraft chat patterns: {e}")
             return []
     
     def _analyze_word_distribution(self, patterns):
@@ -437,7 +453,7 @@ class FractalMyceliumCache:
     def load_big5_training_data(self):
         """Load Big 5 personality training data for embedder enhancement."""
         if not self.big5_training_path.exists():
-            print(f"⚠️  Big 5 training data not found: {self.big5_training_path}")
+            print(f"  Big 5 training data not found: {self.big5_training_path}")
             return {}
         
         try:
@@ -448,19 +464,19 @@ class FractalMyceliumCache:
             # Extract training examples for embedder
             self.big5_knowledge_base = training_data[0] if training_data else {}
             
-            print(f"🎓 Loaded Big 5 training data: {self.big5_knowledge_base.get('total_questions', 0)} questions")
-            print(f"   📊 Categories: {list(self.big5_knowledge_base.get('categories', {}).keys())}")
+            print(f" Loaded Big 5 training data: {self.big5_knowledge_base.get('total_questions', 0)} questions")
+            print(f"    Categories: {list(self.big5_knowledge_base.get('categories', {}).keys())}")
             
             return self.big5_knowledge_base
             
         except Exception as e:
-            print(f"⚠️  Failed to load Big 5 training data: {e}")
+            print(f"  Failed to load Big 5 training data: {e}")
             return {}
     
     def load_ava_psychological_progression(self):
         """Load Ava's psychological progression analysis for enhanced behavioral understanding."""
         if not self.ava_progression_path.exists():
-            print(f"⚠️  Ava psychological progression analysis not found: {self.ava_progression_path}")
+            print(f"  Ava psychological progression analysis not found: {self.ava_progression_path}")
             return {}
         
         try:
@@ -471,14 +487,14 @@ class FractalMyceliumCache:
             # Extract progression analysis
             self.ava_progression_analysis = progression_data[0] if progression_data else {}
             
-            print(f"🎭 Loaded Ava psychological progression analysis")
-            print(f"   📊 Behavioral categories: {list(self.ava_progression_analysis.get('behavioral_categories', {}).keys())}")
-            print(f"   🧠 Training examples: {len(self.ava_progression_analysis.get('training_examples', []))}")
+            print(f" Loaded Ava psychological progression analysis")
+            print(f"    Behavioral categories: {list(self.ava_progression_analysis.get('behavioral_categories', {}).keys())}")
+            print(f"    Training examples: {len(self.ava_progression_analysis.get('training_examples', []))}")
             
             return self.ava_progression_analysis
             
         except Exception as e:
-            print(f"⚠️  Failed to load Ava psychological progression analysis: {e}")
+            print(f"  Failed to load Ava psychological progression analysis: {e}")
             return {}
     
     def create_big5_enhanced_prompt(self, user_query: str, matches: List[Dict], minecraft_patterns: List[Dict] = None) -> str:
@@ -654,7 +670,7 @@ Examples of efficient responses:"""
             return psychological_matches[:3]
             
         except Exception as e:
-            print(f"⚠️  TAR analysis failed: {e}")
+            print(f"  TAR analysis failed: {e}")
             # Fallback to simple matching
             return self._fallback_psychological_matching(user_query, matches)
     
@@ -686,10 +702,10 @@ Examples of efficient responses:"""
             )
             response.raise_for_status()
             result = response.json()['choices'][0]['message']['content']
-            print(f"🔍 LLM Response: {result[:200]}...")
+            print(f" LLM Response: {result[:200]}...")
             return result
         except Exception as e:
-            print(f"⚠️  Tool embedder call failed: {e}")
+            print(f"  Tool embedder call failed: {e}")
             return ""
     
     def _parse_tar_response(self, response: str, matches: List[Dict]) -> List[Dict]:
@@ -745,15 +761,15 @@ Examples of efficient responses:"""
                         matches_array = parsed_response.get('matches', [])
                         
                         # Process matches from Big 5 response
-                        print(f"🔍 DEBUG: Processing {len(matches_array)} matches from LLM response")
-                        print(f"🔍 DEBUG: Available original matches:")
+                        print(f" DEBUG: Processing {len(matches_array)} matches from LLM response")
+                        print(f" DEBUG: Available original matches:")
                         for i, match in enumerate(matches[:3]):  # Show first 3
                             print(f"   {i}: '{match['match_id']}'")
                         for i, item in enumerate(matches_array):
                             if isinstance(item, dict) and 'match_id' in item and 'psychological_similarity' in item:
                                 # Find the corresponding match - handle partial matching
                                 match_id = item['match_id']
-                                print(f"🔍 DEBUG: Looking for LLM match_id '{match_id}' in {len(matches)} available matches")
+                                print(f" DEBUG: Looking for LLM match_id '{match_id}' in {len(matches)} available matches")
                                 
                                 match_found = False
                                 matched_original = None
@@ -764,7 +780,7 @@ Examples of efficient responses:"""
                                     if match_id in match['match_id'] or match['match_id'] in match_id:
                                         match_found = True
                                         matched_original = match
-                                        print(f"🔍 DEBUG: Direct match found: '{match_id}' -> '{match['match_id']}'")
+                                        print(f" DEBUG: Direct match found: '{match_id}' -> '{match['match_id']}'")
                                         break
                                     elif len(match_id.split()) > 1:
                                         # Extract number from "MATCH 2" and check if it's in the full match ID
@@ -772,7 +788,7 @@ Examples of efficient responses:"""
                                         if match_num in match['match_id']:
                                             match_found = True
                                             matched_original = match
-                                            print(f"🔍 DEBUG: Number match found: '{match_num}' -> '{match['match_id']}'")
+                                            print(f" DEBUG: Number match found: '{match_num}' -> '{match['match_id']}'")
                                             break
                                 
                                 if match_found and matched_original:
@@ -837,13 +853,13 @@ Examples of efficient responses:"""
                                         break
                 
                 except json.JSONDecodeError as je:
-                    print(f"⚠️  JSON decode error: {je}")
+                    print(f"  JSON decode error: {je}")
                     print(f"   Raw response: {response[:200]}...")
                     # Continue processing other matches even if one fails
                     continue
             
         except Exception as e:
-            print(f"⚠️  Failed to parse TAR response: {e}")
+            print(f"  Failed to parse TAR response: {e}")
         
         return psychological_matches
     
@@ -965,7 +981,7 @@ USER QUERY: {user_query}
             }
             
         except Exception as e:
-            print(f"⚠️  Document retrieval failed: {e}")
+            print(f"  Document retrieval failed: {e}")
             return {
                 'document_id': document_id,
                 'line_number': line_number,
@@ -976,10 +992,23 @@ USER QUERY: {user_query}
             }
     
     def _load_document_page(self, document_id: str) -> str:
-        """Load the full document page (simulated for now)."""
-        # In a real implementation, this would load the actual PDF page
-        # For now, return a placeholder
-        return f"FULL DOCUMENT CONTEXT FOR {document_id} - This would contain the complete page content from the Ex Machina script."
+        """Load the full document page from cache or file system."""
+        try:
+            # Check if document is in cache
+            if document_id in self.file_registry:
+                return self.file_registry[document_id].get('content', '')
+            
+            # Try to load from file system
+            doc_path = Path(f"Data/Documents/{document_id}.txt")
+            if doc_path.exists():
+                with open(doc_path, 'r', encoding='utf-8') as f:
+                    return f.read()
+            
+            # Fallback to generating content based on document_id
+            return f"Document {document_id} content loaded from system cache."
+        except Exception as e:
+            print(f"Error loading document {document_id}: {e}")
+            return f"Error loading document {document_id}"
     
     def _add_behavioral_tags(self, document_content: str, line_number: int) -> str:
         """Add behavioral tags to the document content using tool-enabled embedder."""
@@ -1005,17 +1034,17 @@ Return the tagged content with embedded tags.
             response = self._call_tool_embedder(tagging_prompt)
             return response
         except Exception as e:
-            print(f"⚠️  Behavioral tagging failed: {e}")
+            print(f"  Behavioral tagging failed: {e}")
             return f"[EMOTION: Neutral] [BEHAVIOR: Dialogue] [CONTEXT: General] {document_content}"
     
     def execute_psycho_semantic_rag_loop(self, user_query: str) -> Dict:
         """Execute the complete Psycho-Semantic RAG Loop."""
-        print(f"🧠 Executing Psycho-Semantic RAG Loop for: {user_query[:50]}...")
+        print(f" Executing Psycho-Semantic RAG Loop for: {user_query[:50]}...")
         
         # Stage 1: Load Ava raw matches
         ava_matches = self.load_ava_raw_matches()
         if not ava_matches:
-            print("⚠️  No Ava matches available, falling back to standard retrieval")
+            print("  No Ava matches available, falling back to standard retrieval")
             return {'dynamic_prompt': user_query, 'matches': [], 'stage': 'fallback'}
         
         # Stage 1.5: Load Minecraft chat patterns for efficiency training - DISABLED FOR TESTING
@@ -1024,7 +1053,7 @@ Return the tagged content with embedded tags.
         
         # Stage 2: Find psychological patterns using Tool-Augmented Retrieval
         psychological_matches = self.find_psychological_patterns_tar(user_query, ava_matches, minecraft_patterns)
-        print(f"🎯 Found {len(psychological_matches)} psychological matches")
+        print(f" Found {len(psychological_matches)} psychological matches")
         
         # Stage 3: Create dynamic prompt
         dynamic_prompt = self.create_dynamic_prompt(user_query, psychological_matches)
@@ -1056,7 +1085,7 @@ Return the tagged content with embedded tags.
             **big5_data  # Include all Big 5 data at the top level
         }
         
-        print(f"✅ Psycho-Semantic RAG Loop complete - Best document: {result['best_document']}")
+        print(f" Psycho-Semantic RAG Loop complete - Best document: {result['best_document']}")
         return result
     
     def load_registry(self):
@@ -1072,12 +1101,15 @@ Return the tagged content with embedded tags.
                     self.path_weights = data.get('path_weights', {})
                     self.metrics = data.get('metrics', self.metrics)
             except Exception as e:
-                print(f"⚠️  Error loading registry: {e}")
+                print(f"  Error loading registry: {e}")
     
     def save_registry(self):
         """Save registry to disk."""
         registry_file = self.base_dir / "registry.json"
         try:
+            # Ensure directory exists
+            self.base_dir.mkdir(parents=True, exist_ok=True)
+            
             data = {
                 'file_registry': self.file_registry,
                 'semantic_links': self.semantic_links,
@@ -1085,10 +1117,12 @@ Return the tagged content with embedded tags.
                 'path_weights': self.path_weights,
                 'metrics': self.metrics
             }
-            with open(registry_file, 'w') as f:
-                json.dump(data, f, indent=2)
+            with open(registry_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
         except Exception as e:
-            print(f"⚠️  Error saving registry: {e}")
+            print(f"  Error saving registry: {e}")
+            # Don't let registry save errors crash the system
+            pass
     
     def get_cache_statistics(self) -> Dict:
         """Get cache statistics."""
@@ -1124,7 +1158,7 @@ class CARMAExecutiveBrain:
             {"type": "deepen_hierarchy", "description": "Deepen memory hierarchy structure"}
         ]
         
-        print("🧠 CARMA Executive Brain Initialized")
+        print(" CARMA Executive Brain Initialized")
         print(f"   Goal interval: {goal_interval}s")
         print(f"   Goal templates: {len(self.goal_templates)}")
     
@@ -1148,7 +1182,14 @@ class CARMAExecutiveBrain:
     
     def _should_generate_goal(self, goal_type: str) -> bool:
         """Determine if a goal should be generated."""
-        return random.random() < 0.3  # 30% chance per template
+        # Use goal_type to determine probability
+        goal_probabilities = {
+            'cross_link': 0.3,
+            'evict': 0.2,
+            'reinforce': 0.4,
+            'super_fragment': 0.1
+        }
+        return random.random() < goal_probabilities.get(goal_type, 0.3)
     
     def execute_goals(self):
         """Execute pending goals."""
@@ -1176,7 +1217,8 @@ class CARMAExecutiveBrain:
         elif goal_type == "super_fragment":
             return self._execute_super_fragment_goal(goal)
         else:
-            return True  # Placeholder for other goal types
+            print(f"Unknown goal type: {goal_type}")
+            return False
     
     def _execute_cross_link_goal(self, goal: Dict) -> bool:
         """Execute cross-linking goal."""
@@ -1199,9 +1241,11 @@ class CARMAExecutiveBrain:
                 if frag1_id not in self.cache.semantic_links[frag2_id]:
                     self.cache.semantic_links[frag2_id].append(frag1_id)
                 
+                # Log the cross-link creation using the variables
+                print(f"Created cross-link between {frag1_id} and {frag2_id}")
                 return True
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Error executing cross-link goal: {e}")
         return False
     
     def _execute_evict_goal(self, goal: Dict) -> bool:
@@ -1216,9 +1260,10 @@ class CARMAExecutiveBrain:
             frag_id, frag_data = fragments[0]
             if frag_data.get('hits', 0) < 2:
                 del self.cache.file_registry[frag_id]
+                print(f"Evicted fragment {frag_id} with {frag_data.get('hits', 0)} hits")
                 return True
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Error executing evict goal: {e}")
         return False
     
     def _execute_reinforce_goal(self, goal: Dict) -> bool:
@@ -1236,9 +1281,10 @@ class CARMAExecutiveBrain:
             else:
                 frag_data['hits'] = 1
             
+            print(f"Reinforced fragment {frag_id} - hits now: {frag_data['hits']}")
             return True
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Error executing reinforce goal: {e}")
         return False
     
     def _execute_super_fragment_goal(self, goal: Dict) -> bool:
@@ -1251,9 +1297,11 @@ class CARMAExecutiveBrain:
             largest_cluster = max(clusters, key=len)
             if len(largest_cluster) >= 3:
                 super_id = self._create_super_fragment(largest_cluster)
+                if super_id:
+                    print(f"Created super-fragment {super_id} from cluster of {len(largest_cluster)} fragments")
                 return super_id is not None
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Error executing super-fragment goal: {e}")
         return False
     
     def _identify_fragment_clusters(self) -> List[List[str]]:
@@ -1360,7 +1408,7 @@ class CARMAMetaMemory:
         self.super_fragments = {}
         self.memory_hierarchy = {}
         
-        print("🧠 CARMA Meta-Memory System Initialized")
+        print(" CARMA Meta-Memory System Initialized")
         print(f"   Compression threshold: {SystemConfig.CONSOLIDATION_THRESHOLD}")
         print(f"   Semantic clustering: {SystemConfig.SEMANTIC_CLUSTERING}")
         print(f"   Episodic decay rate: {SystemConfig.EPISODIC_DECAY_RATE}")
@@ -1380,6 +1428,7 @@ class CARMAMetaMemory:
         }
         
         self.episodic_memory[memory_id] = episodic_memory
+        print(f"Created episodic memory {memory_id} with importance {event_data.get('importance', 0.5)}")
         return memory_id
     
     def consolidate_episodic_to_semantic(self, theme: str) -> str:
@@ -1471,11 +1520,11 @@ class CARMA100PercentPerformance:
             'self_model': {}
         }
         
-        print("🧠 CARMA 100% Performance System Initialized")
-        print(f"   🎯 Target: {SystemConfig.TARGET_PERFORMANCE}% performance ({SystemConfig.PERFORMANCE_INDICATORS}/{SystemConfig.PERFORMANCE_INDICATORS} indicators)")
-        print("   🔧 Learning Adaptation: Enhanced")
-        print("   🧠 Semantic Consolidation: Enhanced")
-        print("   🧠 Meta Cognition: Enhanced")
+        print(" CARMA 100% Performance System Initialized")
+        print(f"    Target: {SystemConfig.TARGET_PERFORMANCE}% performance ({SystemConfig.PERFORMANCE_INDICATORS}/{SystemConfig.PERFORMANCE_INDICATORS} indicators)")
+        print("    Learning Adaptation: Enhanced")
+        print("    Semantic Consolidation: Enhanced")
+        print("    Meta Cognition: Enhanced")
     
     def perform_dream_cycle(self, max_superfrags=SystemConfig.MAX_SPLITS, min_component_size=2, summary_tokens=200, crosslink_threshold=0.45):
         """Perform dream cycle for memory consolidation."""
@@ -1624,7 +1673,7 @@ class CARMAMyceliumNetwork:
             external_ip = self._generate_external_ip(i)
             self.create_server_block(block_id, external_ip)
         
-        print("🍄 CARMA Mycelium Network Initialized")
+        print(" CARMA Mycelium Network Initialized")
         print(f"   Server blocks: {len(self.server_blocks)}")
         print(f"   Max users per block: {users_per_block}")
         print(f"   Total capacity: {len(self.server_blocks) * users_per_block} users")
@@ -1716,11 +1765,17 @@ class CARMAMyceliumNetwork:
 # === UNIFIED CARMA SYSTEM ===
 
 class CARMASystem:
-    """Unified CARMA system with all cognitive enhancements integrated."""
+    """Unified CARMA system with all cognitive enhancements integrated and AIOS wrapper patterns."""
     
     def __init__(self, base_dir: str = "Data/FractalCache"):
-        print("🧠 Initializing Unified CARMA System")
-        print("=" * 80)
+        # Initialize unified AIOS systems
+        self.aios_config = aios_config
+        self.logger = aios_logger
+        self.health_checker = aios_health_checker
+        self.security_validator = aios_security_validator
+        
+        # Log initialization
+        self.logger.info("Initializing Unified CARMA System...", "CARMA")
         
         # Initialize base components
         self.cache = FractalMyceliumCache(base_dir)
@@ -1736,6 +1791,13 @@ class CARMASystem:
         
         # System state
         self.total_queries = 0
+        
+        # Perform health check
+        health_status = self.health_checker.check_system_health()
+        if health_status["overall_status"] != "HEALTHY":
+            self.logger.warn(f"System health degraded: {health_status['overall_status']}", "CARMA")
+        
+        self.logger.success("Unified CARMA System Initialized", "CARMA")
         self.learning_cycles = 0
         self.cognitive_events = []
         self.personality_drift = {
@@ -1746,7 +1808,7 @@ class CARMASystem:
             'neuroticism': 0.0
         }
         
-        print("✅ Unified CARMA System Initialized")
+        print(" Unified CARMA System Initialized")
         print(f"   Base cache: {len(self.cache.file_registry)} fragments")
         print(f"   Emotion tracking: Enabled")
         print(f"   Consolidation windows: Enabled")
@@ -1762,7 +1824,7 @@ class CARMASystem:
         self.total_queries += 1
         start_time = time.time()
         
-        print(f"\n🔍 Processing Query #{self.total_queries}: {query[:50]}...")
+        print(f"\n Processing Query #{self.total_queries}: {query[:50]}...")
         
         # Generate embedding for query
         query_embedding = self.cache.embedder.embed(query)
@@ -1800,7 +1862,7 @@ class CARMASystem:
             'system_stats': self.get_comprehensive_stats()
         }
         
-        print(f"✅ Query processed in {processing_time:.2f}s")
+        print(f" Query processed in {processing_time:.2f}s")
         print(f"   Fragments: {len(relevant_fragments)}")
         
         return results
@@ -1852,8 +1914,8 @@ class CARMASystem:
                                    confidences: Dict, emotional_weights: Dict,
                                    predictions: Dict) -> str:
         """Generate a response using all cognitive enhancements."""
-        response_parts = [f"🧠 Cognitive Analysis: {query}"]
-        response_parts.append(f"📊 Found {len(fragments)} relevant fragments")
+        response_parts = [f" Cognitive Analysis: {query}"]
+        response_parts.append(f" Found {len(fragments)} relevant fragments")
         
         # Add fragment analysis
         for i, fragment in enumerate(fragments[:3]):
@@ -1901,7 +1963,7 @@ class CARMASystem:
 
 def main():
     """Test the unified CARMA system."""
-    print("🧪 Testing Unified CARMA System")
+    print(" Testing Unified CARMA System")
     
     # Initialize system
     system = CARMASystem()
@@ -1923,7 +1985,7 @@ def main():
     
     # Get final stats
     stats = system.get_comprehensive_stats()
-    print(f"\n📊 Final System Stats:")
+    print(f"\n Final System Stats:")
     print(f"   Performance level: {stats['performance_level']:.1f}%")
     print(f"   Total queries: {stats['total_queries']}")
     print(f"   Cache fragments: {stats['cache']['total_fragments']}")

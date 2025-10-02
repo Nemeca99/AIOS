@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 """
+
+# CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils.unicode_safe_output import setup_unicode_safe_output
+setup_unicode_safe_output()
+
 Luna Soul Metric System
 Implements controlled imperfection and cognitive friction for authentic human simulation
 """
@@ -331,11 +339,11 @@ def main():
         }
     ]
     
-    print("🎭 LUNA SOUL METRIC SYSTEM TEST")
+    print(" LUNA SOUL METRIC SYSTEM TEST")
     print("=" * 60)
     
     for i, test in enumerate(test_cases, 1):
-        print(f"\n🎬 TEST {i}:")
+        print(f"\n TEST {i}:")
         print(f"   Original: {test['original']}")
         
         soul_enhanced = soul_system.apply_soul_metrics(test['original'], test['context'])

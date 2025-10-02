@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 """
+
+# CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils.unicode_safe_output import setup_unicode_safe_output
+setup_unicode_safe_output()
+
 Luna Existential Budget System
 Implements Self-Regulating Existential Economy with Dynamic Constraint Management
 """
@@ -54,7 +62,7 @@ class LunaExistentialBudgetSystem:
         # Existential economy parameters
         self.economy_params = {
             # Token pool management (Age-Gated Token Economy)
-            "base_token_pool": 4000,  # Starting token pool (Operational Maturity baseline)
+            "base_token_pool": 8000,  # INCREASED: Starting token pool for gentler decay (was 4000)
             "token_pool_growth_rate": 2.0,  # Multiplier per age up (exponential growth)
             "emergency_token_reserve": 200,  # Minimum tokens to keep in reserve (5% of base)
             
@@ -442,7 +450,9 @@ class LunaExistentialBudgetSystem:
             efficiency_bonus = min(self.economy_params["max_efficiency_bonus"], 
                                  efficiency * 100 * self.economy_params["efficiency_reward_multiplier"])
         else:
-            efficiency_bonus = 0.0
+            # Action-only response (0 tokens) = MAXIMUM efficiency!
+            efficiency = float('inf')  # Infinite efficiency - emotional truth at zero cost
+            efficiency_bonus = self.economy_params["max_efficiency_bonus"]  # Maximum bonus for action-only
         
         # Verbosity penalty (Learned Efficiency Paradox)
         verbosity_penalty = 0.0
@@ -465,8 +475,8 @@ class LunaExistentialBudgetSystem:
         
         # Age-based efficiency requirement (Learned Efficiency Paradox)
         age_efficiency_requirement = self.economy_params["efficiency_requirement_growth"] ** (self.state.age - 1)
-        if efficiency < age_efficiency_requirement:
-            # Penalty for not meeting age-appropriate efficiency
+        if efficiency < age_efficiency_requirement and efficiency != float('inf'):
+            # Penalty for not meeting age-appropriate efficiency (skip for action-only responses)
             efficiency_penalty = (age_efficiency_requirement - efficiency) * 10
         else:
             efficiency_penalty = 0.0
@@ -532,9 +542,9 @@ class LunaExistentialBudgetSystem:
         else:
             avg_efficiency = 0.0
         
-        print(f"🎉 LUNA AGED UP! Age: {self.state.age} | Token Pool: {old_max} → {self.state.max_token_pool} | Karma Quota: {self.state.karma_quota:.1f}")
+        print(f" LUNA AGED UP! Age: {self.state.age} | Token Pool: {old_max} → {self.state.max_token_pool} | Karma Quota: {self.state.karma_quota:.1f}")
         print(f"   Learned Efficiency: {avg_efficiency:.3f} | Efficiency Requirement: {self.economy_params['learned_efficiency_threshold']:.1f}")
-        print(f"   🧠 OPERATIONAL MATURITY: Increased capacity with learned restraint!")
+        print(f"    OPERATIONAL MATURITY: Increased capacity with learned restraint!")
     
     def _check_age_regression_condition(self) -> bool:
         """Check if age regression condition is met (Blood Mage Economy)"""
@@ -568,7 +578,7 @@ class LunaExistentialBudgetSystem:
         """Perform age regression (Blood Mage Economy penalty)"""
         if self.state.age <= 1:
             # Cannot regress below age 1
-            print("⚠️ LUNA AT MINIMUM AGE - Cannot regress further")
+            print(" LUNA AT MINIMUM AGE - Cannot regress further")
             return
         
         old_age = self.state.age
@@ -601,7 +611,7 @@ class LunaExistentialBudgetSystem:
         if self.state.permanent_knowledge_level < old_age:
             self.state.permanent_knowledge_level = old_age
         
-        print(f"💀 LUNA REGRESSED! Age: {old_age} → {self.state.age} | Token Pool: {old_token_pool} → {new_token_pool} | Karma Quota: {self.state.karma_quota:.1f} | Permanent Knowledge: {self.state.permanent_knowledge_level}")
+        print(f" LUNA REGRESSED! Age: {old_age} → {self.state.age} | Token Pool: {old_token_pool} → {new_token_pool} | Karma Quota: {self.state.karma_quota:.1f} | Permanent Knowledge: {self.state.permanent_knowledge_level}")
         print(f"   Regression Count: {self.state.regression_count} | Anxiety: {self.state.existential_anxiety_level:.2f} | Survival Threshold: {self.state.survival_threshold:.2f}")
     
     def _update_survival_threshold(self):
@@ -788,7 +798,7 @@ def main():
         }
     ]
     
-    print("🌌 EXISTENTIAL BUDGET SYSTEM TEST")
+    print(" EXISTENTIAL BUDGET SYSTEM TEST")
     print("=" * 60)
     
     # Show initial status
@@ -796,7 +806,7 @@ def main():
     print(f"Initial Status: Age {initial_status['age']} | Tokens: {initial_status['current_token_pool']}/{initial_status['max_token_pool']} | Karma: {initial_status['current_karma']:.1f}/{initial_status['karma_quota']:.1f} | Anxiety: {initial_status['existential_anxiety_level']:.2f}")
     
     for i, scenario in enumerate(test_scenarios, 1):
-        print(f"\n🎬 SCENARIO {i}: {scenario['scenario']}")
+        print(f"\n SCENARIO {i}: {scenario['scenario']}")
         print(f"   Question: {scenario['question']}")
         print("-" * 50)
         

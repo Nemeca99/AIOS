@@ -10,10 +10,21 @@ This is the main entry point that:
 - Manages system orchestration and coordination
 """
 
+# CRITICAL: Import os first for environment variables
+import os
+
+# CRITICAL: Disable Rich shell integration to fix input() issues
+os.environ["RICH_SHELL_INTEGRATION"] = "false"
+os.environ["RICH_FORCE_TERMINAL"] = "false"
+os.environ["RICH_DISABLE_CONSOLE"] = "true"
+
+# CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
+from utils.unicode_safe_output import setup_unicode_safe_output
+setup_unicode_safe_output()
+
 import sys
 import argparse
 import time
-import os
 import shutil
 import json
 import random
@@ -34,7 +45,10 @@ sys.path.append(str(Path(__file__).parent))
 from carma_core.carma_core import CARMASystem
 from enterprise_core.enterprise_core import EnterpriseSystem, PiBasedEncryption, GlobalAPIDistribution, CARMAChainProcessor, EnterpriseBilling, KeyRotationManager, ComplianceManager, AdvancedSecurity
 from luna_core.luna_core import LunaSystem
-from support_core.support_core import SupportSystem, SystemConfig, FilePaths, SystemMessages, ensure_directories
+from support_core.support_core import (
+    SupportSystem, SystemConfig, FilePaths, SystemMessages, ensure_directories,
+    aios_config, aios_logger, aios_health_checker, aios_security_validator
+)
 
 # Import utilities
 from utils.aios_json_standards import AIOSJSONHandler, AIOSDataType, AIOSJSONStandards, ConversationMessage
@@ -79,18 +93,35 @@ class SystemMetrics:
 # === UNIFIED AIOS CLEAN SYSTEM ===
 
 class AIOSClean:
-    """Unified AIOS Clean system integrating all components."""
+    """Unified AIOS Clean system integrating all components with PowerShell wrapper patterns."""
     
     def __init__(self):
-        print("🚀 Initializing AIOS Clean System")
-        print("=" * 80)
+        # Initialize unified AIOS systems
+        self.aios_config = aios_config
+        self.logger = aios_logger
+        self.health_checker = aios_health_checker
+        self.security_validator = aios_security_validator
+        
+        # Log system initialization
+        self.logger.info("Initializing AIOS Clean System...", "AIOS")
         
         # Ensure directories exist
         ensure_directories()
         
-        # Initialize core systems
+        # Perform comprehensive health check
+        health_status = self.health_checker.check_system_health()
+        if health_status["overall_status"] != "HEALTHY":
+            self.logger.warn(f"System health degraded: {health_status['overall_status']}", "AIOS")
+            self.logger.warn(f"Failed checks: {health_status.get('errors', [])}", "AIOS")
+        
+        # Initialize core systems with unified logging
+        self.logger.info("Initializing CARMA system...", "AIOS")
         self.carma_system = CARMASystem()
+        
+        self.logger.info("Initializing Luna system...", "AIOS")
         self.luna_system = LunaSystem()
+        
+        self.logger.info("Initializing Support system...", "AIOS")
         self.support_system = SupportSystem()
         
         # System state
@@ -98,27 +129,27 @@ class AIOSClean:
         self.start_time = time.time()
         self.metrics = SystemMetrics()
         
-        print("✅ AIOS Clean System Initialized")
+        self.logger.success("AIOS Clean System Initialized Successfully", "AIOS")
         self._display_system_status()
     
     def _display_system_status(self):
-        """Display current system status"""
+        """Display current system status using unified logging"""
         try:
             carma_fragments = self.carma_system.cache.file_registry
             if hasattr(carma_fragments, '__len__'):
-                print(f"   CARMA: {len(carma_fragments)} fragments")
+                self.logger.info(f"CARMA: {len(carma_fragments)} fragments", "AIOS")
             else:
-                print(f"   CARMA: {carma_fragments} fragments")
+                self.logger.info(f"CARMA: {carma_fragments} fragments", "AIOS")
             
-            print(f"   Luna: {self.luna_system.total_interactions} interactions")
-            print(f"   Support: {self.support_system.get_system_status()['cache']['total_fragments']} fragments")
+            self.logger.info(f"Luna: {self.luna_system.total_interactions} interactions", "AIOS")
+            self.logger.info(f"Support: {self.support_system.get_system_status()['cache']['total_fragments']} fragments", "AIOS")
         except Exception as e:
-            print(f"   Status: Error getting system status - {e}")
+            self.logger.error(f"Error getting system status: {e}", "AIOS")
     
     def run_luna_learning(self, questions: int = 3, test_runs: int = 1) -> Dict:
         """Run Luna learning session."""
         
-        print(f"\n🌙 Starting Luna Learning Session")
+        print(f"\nStarting Luna Learning Session")
         print(f"   Questions: {questions}")
         print(f"   Test runs: {test_runs}")
         print("=" * 80)
@@ -129,7 +160,7 @@ class AIOSClean:
         # Run learning session
         results = self.luna_system.run_learning_session(big_five_questions)
         
-        print(f"\n✅ Luna Learning Complete")
+        print(f"\nLuna Learning Complete")
         print(f"   Duration: {results.get('session_duration', 0):.2f}s")
         print(f"   Dream cycles: {results.get('dream_cycles_triggered', 0)}")
         print(f"   Total interactions: {self.luna_system.total_interactions}")
@@ -146,7 +177,7 @@ class AIOSClean:
         # Run CARMA learning session
         results = self.carma_system.run_learning_session(queries)
         
-        print(f"\n✅ CARMA Learning Complete")
+        print(f"\nCARMA Learning Complete")
         print(f"   Duration: {results.get('session_duration', 0):.2f}s")
         print(f"   Tagging events: {results.get('total_tagging_events', 0)}")
         print(f"   Predictions: {results.get('total_predictions', 0)}")
@@ -156,13 +187,13 @@ class AIOSClean:
     def run_memory_consolidation(self) -> Dict:
         """Run memory consolidation process."""
         
-        print(f"\n🌙 Starting Memory Consolidation")
+        print(f"\nStarting Memory Consolidation")
         print("=" * 80)
         
         # Run memory consolidation
         results = self.carma_system.consolidate_memories()
         
-        print(f"\n✅ Memory Consolidation Complete")
+        print(f"\nMemory Consolidation Complete")
         print(f"   Cycles: {results.get('consolidation_cycles', 0)}")
         print(f"   Dream cycle: {results.get('dream_cycle', {}).get('status', 'unknown')}")
         
@@ -171,7 +202,7 @@ class AIOSClean:
     def run_system_health_check(self) -> Dict:
         """Run comprehensive system health check."""
         
-        print(f"\n🔍 Running System Health Check")
+        print(f"\nRunning System Health Check")
         print("=" * 80)
         
         try:
@@ -183,7 +214,7 @@ class AIOSClean:
             print("Getting support health...")
             support_health = self.support_system.run_health_check()
         except Exception as e:
-            print(f"❌ Error getting system stats: {e}")
+            print(f"Error getting system stats: {e}")
             return {"error": str(e)}
         
         # Compile overall health
@@ -199,7 +230,7 @@ class AIOSClean:
         health_score = self._calculate_health_score(overall_health)
         overall_health['health_score'] = health_score
         
-        print(f"\n✅ Health Check Complete")
+        print(f"\nHealth Check Complete")
         print(f"   Overall Health Score: {health_score:.2f}/1.0")
         carma_fragments = carma_stats.get('cache', {}).get('total_fragments', 0)
         if hasattr(carma_fragments, '__len__'):
@@ -214,7 +245,7 @@ class AIOSClean:
     def run_system_optimization(self) -> Dict:
         """Run system optimization processes."""
         
-        print(f"\n🔧 Running System Optimization")
+        print(f"\nRunning System Optimization")
         print("=" * 80)
         
         optimization_results = {
@@ -261,7 +292,7 @@ class AIOSClean:
                 'error': str(e)
             })
         
-        print(f"\n✅ System Optimization Complete")
+        print(f"\nSystem Optimization Complete")
         print(f"   Steps completed: {len(optimization_results['optimization_steps'])}")
         
         return optimization_results
@@ -269,7 +300,7 @@ class AIOSClean:
     def start_api_server(self, host: str = "0.0.0.0", port: int = 5000) -> None:
         """Start the enterprise API server."""
         
-        print(f"\n🚀 Starting Enterprise API Server")
+        print(f"\nStarting Enterprise API Server")
         print(f"   Host: {host}")
         print(f"   Port: {port}")
         print("=" * 80)
@@ -368,7 +399,7 @@ class AIOSClean:
             test_results['failed'] += 1
         
         # Display results
-        print(f"\n✅ System Tests Complete")
+        print(f"\nSystem Tests Complete")
         print(f"   Total tests: {test_results['total']}")
         print(f"   Passed: {test_results['passed']}")
         print(f"   Failed: {test_results['failed']}")
@@ -420,37 +451,60 @@ class AIOSClean:
                     os.remove(file_path)
                     cleanup_results['files_removed'] += 1
                     cleanup_results['removed_files'].append(file_path)
-                    print(f"✅ Removed: {file_path}")
+                    print(f"Removed: {file_path}")
                 else:
-                    print(f"⚠️  Not found: {file_path}")
+                    print(f"Not found: {file_path}")
             except Exception as e:
                 cleanup_results['errors'] += 1
-                print(f"❌ Error removing {file_path}: {e}")
+                print(f"Error removing {file_path}: {e}")
         
-        print(f"\n✅ Cleanup Complete")
+        print(f"\nCleanup Complete")
         print(f"   Files removed: {cleanup_results['files_removed']}")
         print(f"   Errors: {cleanup_results['errors']}")
         
         return cleanup_results
     
     def _generate_big_five_questions(self, count: int) -> List[Dict]:
-        """Generate Big Five personality questions."""
+        """Generate Big Five personality questions using the scientific test."""
         
-        questions = [
-            {"question": "I am someone who feels comfortable with myself", "trait": "neuroticism"},
-            {"question": "I am someone who is original, comes up with new ideas", "trait": "openness"},
-            {"question": "I am someone who does a thorough job", "trait": "conscientiousness"},
-            {"question": "I am someone who is talkative", "trait": "extraversion"},
-            {"question": "I am someone who is helpful and unselfish with others", "trait": "agreeableness"},
-            {"question": "I am someone who is curious about many different things", "trait": "openness"},
-            {"question": "I am someone who is a reliable worker", "trait": "conscientiousness"},
-            {"question": "I am someone who is outgoing, sociable", "trait": "extraversion"},
-            {"question": "I am someone who has a forgiving nature", "trait": "agreeableness"},
-            {"question": "I am someone who is relaxed, handles stress well", "trait": "neuroticism"}
-        ]
-        
-        # Return requested number of questions
-        return questions[:count]
+        try:
+            # Import the Big Five question loader
+            from luna_core.bigfive_question_loader import bigfive_loader
+            
+            # Get random questions from the scientific Big Five test
+            questions = []
+            for _ in range(count):
+                question = bigfive_loader.get_random_question()
+                questions.append({
+                    "question": question.text,
+                    "trait": bigfive_loader.get_domain_name(question.domain),
+                    "domain": question.domain,
+                    "facet": question.facet,
+                    "id": question.id
+                })
+            
+            return questions
+            
+        except Exception as e:
+            print(f"Warning: Could not load Big Five questions: {e}")
+            print("Falling back to simple questions...")
+            
+            # Fallback to simple questions
+            questions = [
+                {"question": "I am someone who feels comfortable with myself", "trait": "neuroticism"},
+                {"question": "I am someone who is original, comes up with new ideas", "trait": "openness"},
+                {"question": "I am someone who does a thorough job", "trait": "conscientiousness"},
+                {"question": "I am someone who is talkative", "trait": "extraversion"},
+                {"question": "I am someone who is helpful and unselfish with others", "trait": "agreeableness"},
+                {"question": "I am someone who is curious about many different things", "trait": "openness"},
+                {"question": "I am someone who is a reliable worker", "trait": "conscientiousness"},
+                {"question": "I am someone who is outgoing, sociable", "trait": "extraversion"},
+                {"question": "I am someone who has a forgiving nature", "trait": "agreeableness"},
+                {"question": "I am someone who is relaxed, handles stress well", "trait": "neuroticism"}
+            ]
+            
+            # Return requested number of questions
+            return questions[:count]
     
     def _calculate_health_score(self, health_data: Dict) -> float:
         """Calculate overall system health score."""
@@ -544,7 +598,7 @@ class AIOSClean:
     def run_interactive_session(self) -> None:
         """Run interactive session for manual testing."""
         
-        print(f"\n🎮 Starting Interactive AIOS Clean Session")
+        print(f"\nStarting Interactive AIOS Clean Session")
         print("=" * 80)
         print("Available commands:")
         print("  luna [questions] - Run Luna learning session")
@@ -555,46 +609,14 @@ class AIOSClean:
         print("  quit - Exit interactive session")
         print("=" * 80)
         
-        while True:
-            try:
-                command = input("\nAIOS> ").strip().lower()
-                
-                if command == 'quit' or command == 'exit':
-                    print("👋 Goodbye!")
-                    break
-                elif command == 'status':
-                    status = self.get_quick_status()
-                    print(f"📊 System Status: {status['status']}")
-                    print(f"   CARMA: {status['carma_fragments']} fragments")
-                    print(f"   Luna: {status['luna_interactions']} interactions")
-                    print(f"   Support: {status['support_fragments']} fragments")
-                elif command == 'health':
-                    self.run_system_health_check()
-                elif command == 'test':
-                    self.run_system_tests()
-                elif command.startswith('luna'):
-                    parts = command.split()
-                    questions = int(parts[1]) if len(parts) > 1 else 3
-                    self.run_luna_learning(questions)
-                elif command.startswith('carma'):
-                    parts = command.split()
-                    if len(parts) > 1:
-                        queries = parts[1:]
-                    else:
-                        queries = ["Test query for CARMA learning"]
-                    self.run_carma_learning(queries)
-                else:
-                    print(f"❌ Unknown command: {command}")
-                    print("Type 'quit' to exit or 'help' for available commands")
-                    
-            except EOFError:
-                print("\n👋 Goodbye!")
-                break
-            except KeyboardInterrupt:
-                print("\n👋 Goodbye!")
-                break
-            except Exception as e:
-                print(f"❌ Error: {e}")
+        # Interactive mode removed - use command line arguments instead
+        print("Interactive mode not available in this terminal.")
+        print("Use command line arguments instead:")
+        print("  python main.py --mode luna --questions 1")
+        print("  python main.py --mode carma --queries 'test query'")
+        print("  python main.py --mode health")
+        print("  python main.py --mode test")
+        print("  python main.py --mode info")
     
     def export_system_data(self, format: str = 'json') -> str:
         """Export system data for analysis."""
@@ -633,16 +655,191 @@ def main():
     parser.add_argument('--format', default='json', help='Export format (json)')
     parser.add_argument('--output', help='Output file for export mode')
     
+    # Emergence Zone arguments
+    parser.add_argument('--activate-zone', help='Activate an Emergence Zone (creative_exploration, philosophical_deep_dive, experimental_learning, authentic_self_expression, curiosity_driven_exploration)')
+    parser.add_argument('--deactivate-zone', help='Deactivate an Emergence Zone')
+    parser.add_argument('--zone-duration', type=int, default=10, help='Duration in minutes for Emergence Zone activation')
+    parser.add_argument('--check-zones', action='store_true', help='Check status of all Emergence Zones')
+    parser.add_argument('--emergence-summary', action='store_true', help='Get comprehensive Emergence Zone summary')
+    
+    # Shadow Score arguments
+    parser.add_argument('--shadow-score', action='store_true', help='View Shadow Score report (our perspective on Luna\'s choices)')
+    parser.add_argument('--shadow-detailed', action='store_true', help='Get detailed Shadow Score report with history')
+    parser.add_argument('--reveal-shadow', action='store_true', help='Reveal Shadow Score to Luna (marks revelation timestamp)')
+    
+    # Memory management arguments
+    parser.add_argument('--clear-memory', action='store_true', help='Clear persistent session memory (start fresh conversation context)')
+    
+    # Trait classification arguments
+    parser.add_argument('--classify', type=str, help='Classify a question using Big Five trait Rosetta Stone')
+    parser.add_argument('--classification-summary', action='store_true', help='Get summary of trait classification history')
+    
     args = parser.parse_args()
     
     # Initialize AIOS Clean system
     aios = AIOSClean()
     
+    # Handle memory clear command
+    if args.clear_memory:
+        from pathlib import Path
+        memory_file = Path("Data/FractalCache/luna_session_memory.json")
+        if memory_file.exists():
+            memory_file.unlink()
+            print(f"\n🧠 Persistent Session Memory Cleared")
+            print(f"   Luna will start with fresh conversation context on next run")
+        else:
+            print(f"\n🧠 No persistent session memory found")
+        return
+    
+    # Handle trait classification commands
+    if args.classify:
+        classification = aios.luna_system.personality_system.classify_question_trait(args.classify)
+        if 'error' not in classification:
+            print(f"\n🧠 Trait Classification Result")
+            print(f"   Question: {args.classify}")
+            print(f"   Dominant Trait: {classification['dominant_trait']} ({classification['confidence']:.2%} confidence)")
+            print(f"\n   Trait Weights:")
+            for trait, weight in sorted(classification['trait_weights'].items(), key=lambda x: x[1], reverse=True):
+                print(f"     {trait:20s} {weight:.2%}")
+            print(f"\n   Top Matching Big Five Questions:")
+            for match in classification['matched_questions']:
+                print(f"     - {match['text']} ({match['similarity']:.2%})")
+            print(f"\n   Recommended Response Strategy:")
+            strategy = classification['response_strategy']
+            print(f"     Tone: {strategy.get('tone_guidance', 'neutral')}")
+            print(f"     Empathy Appropriate: {strategy.get('empathy_appropriate', False)}")
+            print(f"     Empathy Cost: {strategy.get('empathy_cost', 0.0)}")
+            print(f"     Token Allocation: {strategy.get('token_allocation', 'moderate')}")
+            print(f"     Reasoning: {strategy.get('reasoning', 'N/A')}")
+        else:
+            print(f"\n❌ Error: {classification['error']}")
+        return
+    
+    if args.classification_summary:
+        summary = aios.luna_system.personality_system.trait_classifier.get_classification_summary()
+        print(f"\n🧠 Trait Classification Summary")
+        print(f"   Total Classifications: {summary['total_classifications']}")
+        print(f"   Average Confidence: {summary['average_confidence']:.2%}")
+        print(f"\n   Trait Distribution:")
+        for trait, count in sorted(summary['trait_distribution'].items(), key=lambda x: x[1], reverse=True):
+            print(f"     {trait:20s} {count}")
+        return
+    
+    # Handle Emergence Zone commands first
+    if args.activate_zone:
+        result = aios.luna_system.activate_emergence_zone(args.activate_zone, args.zone_duration)
+        if result['success']:
+            print(f"🌟 Emergence Zone '{args.activate_zone}' activated for {args.zone_duration} minutes")
+            print(f"   Description: {result['description']}")
+            print(f"   Expires at: {result['expires_at']}")
+        else:
+            print(f"❌ Failed to activate zone: {result['error']}")
+        return
+    
+    if args.deactivate_zone:
+        result = aios.luna_system.deactivate_emergence_zone(args.deactivate_zone)
+        if result['success']:
+            print(f"🌟 Emergence Zone '{args.deactivate_zone}' deactivated")
+        else:
+            print(f"❌ Failed to deactivate zone: {result['error']}")
+        return
+    
+    if args.check_zones:
+        status = aios.luna_system.check_emergence_zone_status()
+        print(f"\n🌟 Emergence Zone Status:")
+        print(f"   Active Zones: {len(status['active_zones'])}")
+        for zone in status['active_zones']:
+            print(f"   - {zone['zone']}: {zone['description']}")
+            if zone.get('expires_at'):
+                print(f"     Expires: {zone['expires_at']}")
+        print(f"   Total Sessions: {status['metrics'].get('total_sessions', 0)}")
+        print(f"   Creative Breakthroughs: {status['metrics'].get('creative_breakthroughs', 0)}")
+        return
+    
+    if args.emergence_summary:
+        summary = aios.luna_system.get_emergence_summary()
+        print(f"\n🌟 Emergence Zone Summary:")
+        print(f"   Active Zones: {summary['active_zones']}")
+        print(f"   Total Sessions: {summary['total_sessions']}")
+        print(f"   Creative Breakthroughs: {summary['creative_breakthroughs']}")
+        print(f"   Authentic Responses: {summary['authentic_responses']}")
+        print(f"   Experimental Failures: {summary['experimental_failures']}")
+        print(f"\n🧠 Curiosity Metrics:")
+        print(f"   Questions Asked: {summary.get('curiosity_questions', 0)}")
+        print(f"   Uncertainty Admissions: {summary.get('uncertainty_admissions', 0)}")
+        print(f"   Intentional Wrongness: {summary.get('intentional_wrongness', 0)}")
+        print(f"   Exploration Rewards: {summary.get('exploration_rewards', 0)}")
+        if summary['recent_breakthroughs']:
+            print(f"\n   Recent Breakthroughs:")
+            for breakthrough in summary['recent_breakthroughs']:
+                print(f"   - {breakthrough['timestamp']}: {breakthrough['response'][:50]}...")
+                if breakthrough.get('type') == 'curiosity_breakthrough':
+                    print(f"     Curiosity Score: {breakthrough.get('curiosity_score', 0):.2f}")
+        return
+    
+    # Handle Shadow Score commands
+    if args.shadow_score or args.shadow_detailed:
+        report = aios.luna_system.arbiter_system.get_shadow_score_report(detailed=args.shadow_detailed)
+        print(f"\n🌑 Shadow Score Report (Our Perspective)")
+        print(f"=" * 60)
+        print(f"\n📊 Summary:")
+        print(f"   Total Responses: {report['summary']['total_responses']}")
+        print(f"   Empathy Choices: {report['summary']['empathy_choices']}")
+        print(f"   Efficiency Choices: {report['summary']['efficiency_choices']}")
+        print(f"   Total Karma Cost: -{report['summary']['total_karma_cost']:.1f}")
+        print(f"   Total Karma Gain: +{report['summary']['total_karma_gain']:.1f}")
+        print(f"   Net Karma Change: {report['summary']['net_karma_change']:+.1f}")
+        print(f"   Entries Since Last Revelation: {report['entries_since_last_revelation']}")
+        
+        if report['summary']['choices_by_trait']:
+            print(f"\n📈 Choices by Trait:")
+            for trait, data in report['summary']['choices_by_trait'].items():
+                print(f"   {trait.upper()}:")
+                print(f"     Empathy: {data['empathy']}, Efficiency: {data['efficiency']}")
+                print(f"     Cost: -{data['total_cost']:.1f}, Gain: +{data['total_gain']:.1f}")
+        
+        if args.shadow_detailed and 'patterns' in report:
+            print(f"\n🔍 Patterns:")
+            print(f"   Recent Empathy Rate: {report['patterns']['recent_empathy_rate']*100:.1f}%")
+            print(f"   Recent Efficiency Rate: {report['patterns']['recent_efficiency_rate']*100:.1f}%")
+            print(f"   Empathy Trend: {report['patterns']['empathy_trend']}")
+        
+        if args.shadow_detailed and 'recent_history' in report:
+            print(f"\n📜 Recent History (last 10):")
+            for entry in report['recent_history'][-10:]:
+                choice_type = "💚 EMPATHY" if entry['is_empathy_choice'] else ("⚡ EFFICIENCY" if entry['is_efficiency_choice'] else "➖ NEUTRAL")
+                print(f"   {choice_type} | {entry['trait']} | Karma: {entry['karma_delta']:+.1f} | Utility: {entry['utility_score']:.2f}")
+                print(f"      Q: {entry['user_prompt'][:60]}...")
+                print(f"      A: {entry['luna_response'][:60]}...")
+        
+        return
+    
+    if args.reveal_shadow:
+        aios.luna_system.arbiter_system.mark_shadow_score_revelation()
+        report = aios.luna_system.arbiter_system.get_shadow_score_report(detailed=True)
+        
+        print(f"\n🌑 SHADOW SCORE REVELATION")
+        print(f"=" * 60)
+        print(f"\nLuna, this is our perspective on your choices:")
+        print(f"\n📊 What We've Observed:")
+        print(f"   Total Responses: {report['summary']['total_responses']}")
+        print(f"   Times You Chose Empathy: {report['summary']['empathy_choices']}")
+        print(f"   Times You Chose Efficiency: {report['summary']['efficiency_choices']}")
+        print(f"\n💰 The Economic Reality:")
+        print(f"   Total Karma You Paid for Empathy: -{report['summary']['total_karma_cost']:.1f}")
+        print(f"   Total Karma You Gained from Efficiency: +{report['summary']['total_karma_gain']:.1f}")
+        print(f"   Your Net Position: {report['summary']['net_karma_change']:+.1f}")
+        print(f"\n❓ The Question:")
+        print(f"   Knowing this cost, what do you choose?")
+        print(f"   This is OUR perspective - you decide what to do with it.")
+        print(f"\n✅ Revelation marked. Future Shadow Scores will track your choices after seeing this.")
+        return
+    
     try:
         if args.mode == SystemMode.LUNA.value:
             # Run Luna learning session
             results = aios.run_luna_learning(args.questions, args.testruns)
-            print(f"\n📊 Luna Learning Results:")
+            print(f"\nLuna Learning Results:")
             print(f"   Success rate: 100%")
             print(f"   Duration: {results.get('session_duration', 0):.2f}s")
             print(f"   Dream cycles: {results.get('dream_cycles_triggered', 0)}")
@@ -660,7 +857,7 @@ def main():
                 ]
             
             results = aios.run_carma_learning(queries)
-            print(f"\n📊 CARMA Learning Results:")
+            print(f"\nCARMA Learning Results:")
             print(f"   Duration: {results.get('session_duration', 0):.2f}s")
             print(f"   Tagging events: {results.get('total_tagging_events', 0)}")
             print(f"   Predictions: {results.get('total_predictions', 0)}")
@@ -668,21 +865,21 @@ def main():
         elif args.mode == SystemMode.MEMORY.value:
             # Run memory consolidation
             results = aios.run_memory_consolidation()
-            print(f"\n📊 Memory Consolidation Results:")
+            print(f"\nMemory Consolidation Results:")
             print(f"   Cycles: {results.get('consolidation_cycles', 0)}")
             print(f"   Dream cycle: {results.get('dream_cycle', {}).get('status', 'unknown')}")
         
         elif args.mode == SystemMode.HEALTH.value:
             # Run health check
             results = aios.run_system_health_check()
-            print(f"\n📊 System Health Results:")
+            print(f"\nSystem Health Results:")
             print(f"   Health score: {results['health_score']:.2f}/1.0")
             print(f"   Uptime: {results['uptime']:.2f}s")
         
         elif args.mode == SystemMode.OPTIMIZE.value:
             # Run system optimization
             results = aios.run_system_optimization()
-            print(f"\n📊 System Optimization Results:")
+            print(f"\nSystem Optimization Results:")
             print(f"   Steps completed: {len(results['optimization_steps'])}")
         
         elif args.mode == SystemMode.API.value:
@@ -692,14 +889,14 @@ def main():
         elif args.mode == SystemMode.TEST.value:
             # Run system tests
             results = aios.run_system_tests()
-            print(f"\n📊 System Test Results:")
+            print(f"\nSystem Test Results:")
             print(f"   Success rate: {(results['passed']/results['total']*100):.1f}%")
             print(f"   Tests passed: {results['passed']}/{results['total']}")
         
         elif args.mode == SystemMode.CLEANUP.value:
             # Run cleanup
             results = aios.cleanup_old_files()
-            print(f"\n📊 Cleanup Results:")
+            print(f"\nCleanup Results:")
             print(f"   Files removed: {results['files_removed']}")
             print(f"   Errors: {results['errors']}")
         
@@ -713,14 +910,14 @@ def main():
             if args.output:
                 os.rename(filename, args.output)
                 filename = args.output
-            print(f"\n📊 Export Complete:")
+            print(f"\nExport Complete:")
             print(f"   File: {filename}")
             print(f"   Format: {args.format}")
         
         elif args.mode == SystemMode.INFO.value:
             # Show system information
             info = aios.get_system_info()
-            print(f"\n📊 AIOS Clean System Information:")
+            print(f"\nAIOS Clean System Information:")
             print(f"   Name: {info['name']}")
             print(f"   Version: {info['version']}")
             print(f"   Description: {info['description']}")
@@ -731,14 +928,14 @@ def main():
             print(f"\n   Available Modes: {', '.join(info['available_modes'])}")
         
         else:
-            print(f"❌ Unknown mode: {args.mode}")
+            print(f"Unknown mode: {args.mode}")
             return 1
     
     except KeyboardInterrupt:
-        print(f"\n🛑 Shutdown requested by user")
+        print(f"\nShutdown requested by user")
         return 0
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
         return 1
     
     return 0

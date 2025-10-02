@@ -1,4 +1,13 @@
+#!/usr/bin/env python3
 """
+
+# CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils.unicode_safe_output import setup_unicode_safe_output
+setup_unicode_safe_output()
+
 Luna Response Value Classifier (RVC) System
 ============================================
 
@@ -105,24 +114,24 @@ class LunaResponseValueClassifier:
             ]
         }
         
-        # Token allocation tiers - RELAXED FOR BREATHING ROOM + FREE TOKEN SYSTEM
+        # Token allocation tiers - TIGHTENED FOR BETTER EFFICIENCY
         self.token_tiers = {
             ResponseValueTier.TRIVIAL: (15, 25),    # 20 free + 5-15 from pool
-            ResponseValueTier.LOW: (25, 40),        # 20 free + 5-20 from pool  
+            ResponseValueTier.LOW: (15, 25),        # Ava personality mode: 10-20 words + actions allowed
             ResponseValueTier.MODERATE: (40, 80),   # 20 free + 20-60 from pool
             ResponseValueTier.HIGH: (80, 150),      # 20 free + 60-130 from pool
             ResponseValueTier.CRITICAL: (100, 200), # 20 free + 80-180 from pool
             ResponseValueTier.MAXIMUM: (500, 1000)
         }
         
-        # Efficiency requirements per tier - FINE-TUNED FOR BETTER SUCCESS RATES
+        # Efficiency requirements per tier - MICRO-TUNED FOR SMOOTHER PERFORMANCE CURVE
         self.efficiency_requirements = {
-            ResponseValueTier.TRIVIAL: 0.6,    # 60% efficiency required (reduced from 70%)
-            ResponseValueTier.LOW: 0.03,       # 3% efficiency required (reduced from 5%)
-            ResponseValueTier.MODERATE: 0.25,  # 25% efficiency required (reduced from 30%)
-            ResponseValueTier.HIGH: 0.20,      # 20% efficiency required (reduced from 25%)
-            ResponseValueTier.CRITICAL: 0.15,  # 15% efficiency required (reduced from 20%)
-            ResponseValueTier.MAXIMUM: 0.10    # 10% efficiency required (reduced from 15%)
+            ResponseValueTier.TRIVIAL: 0.5,    # 50% efficiency required (adjusted for ultra-short responses)
+            ResponseValueTier.LOW: 0.05,       # 5% efficiency required (Ava personality with actions needs headroom)
+            ResponseValueTier.MODERATE: 0.4,   # 40% efficiency required (balanced for moderate complexity)
+            ResponseValueTier.HIGH: 0.35,      # 35% efficiency required (slightly lower for complex responses)
+            ResponseValueTier.CRITICAL: 0.3,   # 30% efficiency required (allows for philosophical depth)
+            ResponseValueTier.MAXIMUM: 0.25    # 25% efficiency required (maximum complexity allowance)
         }
     
     def classify_response_value(self, user_input: str, context: Dict = None) -> ResponseValueAssessment:
@@ -387,11 +396,11 @@ def main():
         "What's your favorite color?"
     ]
     
-    print("🧠 LUNA RESPONSE VALUE CLASSIFIER (RVC) TEST")
+    print(" LUNA RESPONSE VALUE CLASSIFIER (RVC) TEST")
     print("=" * 60)
     
     for i, test_input in enumerate(test_cases, 1):
-        print(f"\n📝 Test Case {i}: '{test_input}'")
+        print(f"\n Test Case {i}: '{test_input}'")
         print("-" * 40)
         
         assessment = rvc.classify_response_value(test_input)

@@ -57,13 +57,34 @@ temp/
 cache/
 logs/
 *.log
+log/
+*.pkl
+*.bak
 
 # AIOS Data Directories
 Data/
+Data_Backup_Analysis/
 config/master_test_results/
 config/luna_learning_history.json
 config/luna_ava_*.json
 config/voice_profile.json
+config/embedder_cache/
+
+# Streamlit and UI
+streamlit_components/
+streamlit_docs/
+streamlit_examples/
+streamlit_frontend/
+streamlit_llm_examples/
+streamlit_main/
+AIOS_Clean.code-workspace
+
+# Large Documentation
+Onboarding AI/
+journey_dont_delete/
+
+# Backup and Recovery
+backups/
 
 # Test and Results Files
 ava_*.txt

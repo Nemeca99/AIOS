@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 """
+
+# CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils.unicode_safe_output import setup_unicode_safe_output
+setup_unicode_safe_output()
+
 Luna IFS (Internal Family Systems) Personality System
 Implements dual personality with dynamic blending
 """
@@ -365,11 +373,11 @@ def main():
         "I feel anxious and overwhelmed by everything"
     ]
     
-    print("🎭 LUNA IFS PERSONALITY SYSTEM TEST")
+    print(" LUNA IFS PERSONALITY SYSTEM TEST")
     print("=" * 60)
     
     for i, question in enumerate(test_questions, 1):
-        print(f"\n🧪 Test {i}: {question}")
+        print(f"\n Test {i}: {question}")
         
         guidance = ifs_system.get_personality_guidance(question, "openness")
         print(guidance)

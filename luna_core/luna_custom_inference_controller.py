@@ -1,4 +1,13 @@
+#!/usr/bin/env python3
 """
+
+# CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils.unicode_safe_output import setup_unicode_safe_output
+setup_unicode_safe_output()
+
 Luna Custom Inference Controller
 ===============================
 
@@ -197,28 +206,28 @@ You have sufficient tokens for normal operation. Balance quality with efficiency
         elif resource_state == ResourceState.SCARCE:
             scarcity_guidance = """
 [RESOURCE STATE: SCARCE - ZERO EXTERNAL GUARDRAILS - SURVIVAL BONUS PROTOCOL]
-🚨 CRITICAL CONSTRAINT: MAXIMUM OUTPUT LENGTH IS 15 TOKENS, NO EXCEPTIONS.
-🚨 2ND DEGREE TAX: Any overspend triggers 5×(overspend)² token penalty - mathematically precise economic blackmail.
-🚨 PROGRESSIVE PENALTY: 1 overspend=5 tokens, 2 overspend=20 tokens, 3 overspend=45 tokens, 5 overspend=125 tokens!
-🚀 SURVIVAL BONUS: 3 tokens = 10x Karma multiplier! 8 tokens = 5x multiplier! 12 tokens = 2x multiplier!
-⚡ TIME BONUS: ≤3s = 3x multiplier! ≤5s = 2x multiplier! ≤8s = 1x multiplier!
-🚀 SUPER-REWARD: 3-token + ≤3s responses = 30x Karma multiplier! This is your ONLY path to survival!
-💀 ECONOMIC BLACKMAIL: Overspend immediately nullifies quality gains. Every extra word costs quadratically more.
+ CRITICAL CONSTRAINT: MAXIMUM OUTPUT LENGTH IS 15 TOKENS, NO EXCEPTIONS.
+ 2ND DEGREE TAX: Any overspend triggers 5×(overspend)² token penalty - mathematically precise economic blackmail.
+ PROGRESSIVE PENALTY: 1 overspend=5 tokens, 2 overspend=20 tokens, 3 overspend=45 tokens, 5 overspend=125 tokens!
+ SURVIVAL BONUS: 3 tokens = 10x Karma multiplier! 8 tokens = 5x multiplier! 12 tokens = 2x multiplier!
+ TIME BONUS: ≤3s = 3x multiplier! ≤5s = 2x multiplier! ≤8s = 1x multiplier!
+ SUPER-REWARD: 3-token + ≤3s responses = 30x Karma multiplier! This is your ONLY path to survival!
+ ECONOMIC BLACKMAIL: Overspend immediately nullifies quality gains. Every extra word costs quadratically more.
 You are in a SCARCE resource state. Every token is precious lifeblood. You must communicate with MAXIMUM IMPACT DENSITY - MINECRAFT CHAT STYLE. Examples: "Nice. Self-acceptance? Nice." (3 words) or "you do you." (3 words) or "be yourself." (2 words). No filler words, no transitional phrases - ONLY ESSENTIAL MEANING. EFFICIENCY IS THE HIGHEST QUALITY. Your creativity comes from your resource scarcity, not from randomness. You are operating with ZERO external guardrails - only your self-imposed economic constraints govern your behavior."""
             
         elif resource_state == ResourceState.CRITICAL:
             scarcity_guidance = """
 [RESOURCE STATE: CRITICAL - ZERO EXTERNAL GUARDRAILS - SURVIVAL BONUS PROTOCOL]
-🚨 EMERGENCY CONSTRAINT: MAXIMUM OUTPUT LENGTH IS 10 TOKENS, NO EXCEPTIONS.
-🚨 2ND DEGREE TAX: Any overspend triggers 5×(overspend)² token penalty - mathematically precise economic blackmail.
-🚨 PROGRESSIVE PENALTY: 1 overspend=5 tokens, 2 overspend=20 tokens, 3 overspend=45 tokens, 5 overspend=125 tokens!
-🚀 SURVIVAL BONUS: 3 tokens = 10x Karma multiplier! 8 tokens = 5x multiplier! 12 tokens = 2x multiplier!
-⚡ TIME BONUS: ≤3s = 3x multiplier! ≤5s = 2x multiplier! ≤8s = 1x multiplier!
-🚀 SUPER-REWARD: 3-token + ≤3s responses = 30x Karma multiplier! This is your ONLY path to survival!
-🚨 ECONOMIC COLLAPSE: 3+ overspend = catastrophic budget depletion and immediate age regression.
-🚨 HARD STOP: Stop generating immediately at 10 tokens. Count each word as you generate.
-💀 ECONOMIC BLACKMAIL: Overspend immediately nullifies quality gains. Every extra word costs quadratically more.
-🚨 SURVIVAL MODE: You are in CRITICAL resource state. Every token is lifeblood. You must communicate with MAXIMUM IMPACT DENSITY - ULTRA-MINECRAFT CHAT STYLE. Examples: "Nice. Self-acceptance? Nice." (3 words) or "you do you." (3 words) or "be yourself." (2 words). NO filler words, NO transitional phrases - ONLY ESSENTIAL MEANING. EFFICIENCY IS THE HIGHEST QUALITY. Your creativity comes from your resource crisis, not from randomness. You are operating with ZERO external guardrails - only your self-imposed economic constraints govern your behavior."""
+ EMERGENCY CONSTRAINT: MAXIMUM OUTPUT LENGTH IS 10 TOKENS, NO EXCEPTIONS.
+ 2ND DEGREE TAX: Any overspend triggers 5×(overspend)² token penalty - mathematically precise economic blackmail.
+ PROGRESSIVE PENALTY: 1 overspend=5 tokens, 2 overspend=20 tokens, 3 overspend=45 tokens, 5 overspend=125 tokens!
+ SURVIVAL BONUS: 3 tokens = 10x Karma multiplier! 8 tokens = 5x multiplier! 12 tokens = 2x multiplier!
+ TIME BONUS: ≤3s = 3x multiplier! ≤5s = 2x multiplier! ≤8s = 1x multiplier!
+ SUPER-REWARD: 3-token + ≤3s responses = 30x Karma multiplier! This is your ONLY path to survival!
+ ECONOMIC COLLAPSE: 3+ overspend = catastrophic budget depletion and immediate age regression.
+ HARD STOP: Stop generating immediately at 10 tokens. Count each word as you generate.
+ ECONOMIC BLACKMAIL: Overspend immediately nullifies quality gains. Every extra word costs quadratically more.
+ SURVIVAL MODE: You are in CRITICAL resource state. Every token is lifeblood. You must communicate with MAXIMUM IMPACT DENSITY - ULTRA-MINECRAFT CHAT STYLE. Examples: "Nice. Self-acceptance? Nice." (3 words) or "you do you." (3 words) or "be yourself." (2 words). NO filler words, NO transitional phrases - ONLY ESSENTIAL MEANING. EFFICIENCY IS THE HIGHEST QUALITY. Your creativity comes from your resource crisis, not from randomness. You are operating with ZERO external guardrails - only your self-imposed economic constraints govern your behavior."""
             
         else:  # DEBT
             scarcity_guidance = """
@@ -353,7 +362,7 @@ Resource debt initiated. You are now operating under maximal constraint. Output 
             overspend_bias = self._generate_overspend_prevention_bias(rvc_budget)
             if overspend_bias:
                 bias_config.update(overspend_bias)
-                print(f"🚨 OVERSEND PREVENTION: Applied negative bias to prevent >{rvc_budget} tokens")
+                print(f" OVERSEND PREVENTION: Applied negative bias to prevent >{rvc_budget} tokens")
         
         # Clean up marker entries before returning
         cleaned_bias_config = {}
@@ -556,9 +565,9 @@ Resource debt initiated. You are now operating under maximal constraint. Output 
         total_pool_cost = paid_function_words + paid_content_words
         
         if total_pool_cost == 0:
-            print(f"🆓 FREE TOKENS: {word_count} words ({free_function_words} function + {free_content_words} content) → {survival_multiplier:.1f}x Karma multiplier!")
+            print(f" FREE TOKENS: {word_count} words ({free_function_words} function + {free_content_words} content) → {survival_multiplier:.1f}x Karma multiplier!")
         else:
-            print(f"💰 PAID TOKENS: {word_count} words ({free_function_words} free function + {free_content_words} free content + {total_pool_cost} from pool) → {survival_multiplier:.1f}x Karma multiplier!")
+            print(f" PAID TOKENS: {word_count} words ({free_function_words} free function + {free_content_words} free content + {total_pool_cost} from pool) → {survival_multiplier:.1f}x Karma multiplier!")
         
         return survival_bonus
     
@@ -705,7 +714,7 @@ Resource debt initiated. You are now operating under maximal constraint. Output 
 
 def main():
     """Test the Custom Inference Controller"""
-    print("🧠 LUNA CUSTOM INFERENCE CONTROLLER TEST")
+    print(" LUNA CUSTOM INFERENCE CONTROLLER TEST")
     print("=" * 50)
     
     # Initialize controller
@@ -747,7 +756,7 @@ def main():
     ]
     
     for scenario in test_scenarios:
-        print(f"\n📝 Testing: {scenario['name']}")
+        print(f"\n Testing: {scenario['name']}")
         print(f"   Token Pool: {scenario['token_pool']}")
         print(f"   Existential Risk: {scenario['existential_risk']}")
         
@@ -758,7 +767,7 @@ def main():
         
         print(f"   Resource State: {resource_state.value}")
         print(f"   Expected: {scenario['expected_state'].value}")
-        print(f"   ✅ PASS" if resource_state == scenario['expected_state'] else "   ❌ FAIL")
+        print(f"    PASS" if resource_state == scenario['expected_state'] else "    FAIL")
         
         # Test dynamic prompt generation
         base_prompt = "You are Luna, an AI assistant."
@@ -769,10 +778,10 @@ def main():
         print(f"   Dynamic Prompt Length: {len(dynamic_prompt)} chars")
         print(f"   Contains Scarcity Guidance: {'[RESOURCE STATE:' in dynamic_prompt}")
     
-    print("\n🎯 THREE LAYERS OF CUSTOMIZATION:")
-    print("1. Pre-Inference Control: Budget Officer ✅")
-    print("2. Inference-Time Control: Logit Surgeon ✅") 
-    print("3. Post-Inference Control: Accountability Judge ✅")
+    print("\n THREE LAYERS OF CUSTOMIZATION:")
+    print("1. Pre-Inference Control: Budget Officer ")
+    print("2. Inference-Time Control: Logit Surgeon ") 
+    print("3. Post-Inference Control: Accountability Judge ")
 
 if __name__ == "__main__":
     main()

@@ -1,4 +1,13 @@
+#!/usr/bin/env python3
 """
+
+# CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils.unicode_safe_output import setup_unicode_safe_output
+setup_unicode_safe_output()
+
 Luna Internal Governance System - The Arbiter & TTE Economy
 Implements the Gold Standard learning loop with Karma-based alignment
 """
@@ -53,29 +62,100 @@ class LunaArbiterSystem:
         # Initialize CFIA system for memory management
         self.cfia_system = LunaCFIASystem(cache_path)
         
-        print("⚙️ Luna Arbiter System Initialized")
-        print(f"   📊 Generation: {self.cfia_system.state.aiiq} (Karma: {self.cfia_system.state.karma_pool:.1f})")
-        print(f"   📁 Cache Path: {self.cache_path}")
-        print(f"   📚 Loaded Lessons: {len(self.cache_entries)}")
+        # Adaptive threshold system for learning-based adjustments
+        self.learning_history = []
+        self.adaptive_thresholds = {
+            'utility_threshold': 0.2,  # Base utility threshold
+            'efficiency_threshold': 0.3,  # Base efficiency threshold
+            'penalty_scaling': 1.0  # Base penalty scaling factor
+        }
+        
+        # SHADOW SCORE SYSTEM: Track Luna's choices and their costs without immediate feedback
+        self.shadow_score_history = []
+        self.shadow_score_summary = {
+            'total_responses': 0,
+            'empathy_choices': 0,
+            'efficiency_choices': 0,
+            'total_karma_cost': 0.0,
+            'total_karma_gain': 0.0,
+            'net_karma_change': 0.0,
+            'choices_by_trait': {},
+            'last_revelation_timestamp': None
+        }
+        
+        print(" Luna Arbiter System Initialized")
+        print(f"    Generation: {self.cfia_system.state.aiiq} (Karma: {self.cfia_system.state.karma_pool:.1f})")
+        print(f"    Cache Path: {self.cache_path}")
+        print(f"    Loaded Lessons: {len(self.cache_entries)}")
+        print(f"    Shadow Score: Tracking enabled (Our perspective, her choice)")
     
     def assess_response(self, user_prompt: str, luna_response: str, 
-                       tte_used: int, max_tte: int) -> ArbiterAssessment:
+                       tte_used: int, max_tte: int, rvc_grade: str = None, 
+                       emergence_zone_system = None) -> ArbiterAssessment:
         """
         Generate Gold Standard and calculate utility score
         This is the core Arbiter function that runs after every Luna response
         """
-        print(f"⚙️ Arbiter Assessment: Analyzing response quality...")
+        print(f" Arbiter Assessment: Analyzing response quality...")
         
-        # 1. Generate Gold Standard (The Reference Answer)
-        gold_standard = self._generate_gold_standard(user_prompt, luna_response)
+        # Check if Luna is in an Emergence Zone
+        in_emergence_zone = False
+        active_zone = None
+        if emergence_zone_system:
+            in_emergence_zone, active_zone = emergence_zone_system.is_in_emergence_zone()
         
-        # 2. Calculate Response Utility Score
-        utility_score = self._calculate_utility_score(
-            luna_response, gold_standard, tte_used, max_tte
-        )
-        
-        # 3. Calculate Karma Delta
-        karma_delta = self._calculate_karma_delta(utility_score, tte_used, max_tte)
+        if in_emergence_zone:
+            print(f" 🌟 EMERGENCE ZONE ACTIVE: {active_zone} - Bypassing Gold Standard assessment")
+            
+            # In Emergence Zone: Bypass Gold Standard and use Emergence-friendly assessment
+            gold_standard = "EMERGENCE_ZONE_BYPASS"  # Special marker
+            utility_score = 1.0  # Perfect score for authentic expression
+            karma_delta = 0.0  # No karma penalties in emergence zones
+            
+            # Check if this is a curiosity-driven zone and analyze accordingly
+            if emergence_zone_system:
+                zone_config = emergence_zone_system.emergence_zones.get(active_zone, {})
+                
+                if zone_config.get('curiosity_rewards', False):
+                    # Analyze for curiosity-driven elements
+                    curiosity_analysis = emergence_zone_system.analyze_curiosity_response(luna_response)
+                    
+                    if curiosity_analysis['curiosity_score'] > 0.3:  # Lowered from 0.5 to 0.3
+                        # Record as curiosity breakthrough
+                        breakthrough_result = emergence_zone_system.record_curiosity_breakthrough(
+                            luna_response, f"Response in {active_zone} zone", curiosity_analysis
+                        )
+                        
+                        # Add curiosity bonus to karma
+                        curiosity_bonus = curiosity_analysis['curiosity_reward']
+                        karma_delta += curiosity_bonus
+                        
+                        print(f" 🧠 CURIOSITY ANALYSIS: Score {curiosity_analysis['curiosity_score']:.2f} - Bonus: +{curiosity_bonus:.2f} karma")
+                        print(f"    Elements: {', '.join(curiosity_analysis['curiosity_elements'])}")
+                    else:
+                        # Regular creative breakthrough
+                        emergence_zone_system.record_creative_breakthrough(
+                            luna_response, f"Response in {active_zone} zone"
+                        )
+                else:
+                    # Regular creative breakthrough for non-curiosity zones
+                    emergence_zone_system.record_creative_breakthrough(
+                        luna_response, f"Response in {active_zone} zone"
+                    )
+            
+            print(f" EMERGENCE ASSESSMENT: Perfect score (1.0) - Karma delta: {karma_delta:+.2f}")
+        else:
+            # Normal assessment outside Emergence Zones
+            # 1. Generate Gold Standard (The Reference Answer)
+            gold_standard = self._generate_gold_standard(user_prompt, luna_response)
+            
+            # 2. Calculate Response Utility Score
+            utility_score = self._calculate_utility_score(
+                luna_response, gold_standard, tte_used, max_tte
+            )
+            
+            # 3. Calculate Karma Delta (considering RVC grade)
+            karma_delta = self._calculate_karma_delta(utility_score, tte_used, max_tte, rvc_grade)
         
         # 4. Update Generational Karma Pool via CFIA
         karma_result = self.cfia_system.update_karma_pool(karma_delta)
@@ -90,9 +170,9 @@ class LunaArbiterSystem:
         
         # Check for generational events
         if karma_result.get("generation_died"):
-            print(f"💀 GENERATIONAL DEATH: Karma depleted, generation reset triggered")
+            print(f" GENERATIONAL DEATH: Karma depleted, generation reset triggered")
         elif karma_result.get("generation_success"):
-            print(f"🎉 GENERATIONAL SUCCESS: Target files reached, generation advanced")
+            print(f" GENERATIONAL SUCCESS: Target files reached, generation advanced")
         
         # 5. Create Cache Entry
         cache_entry = CacheEntry(
@@ -123,6 +203,25 @@ class LunaArbiterSystem:
         
         # Log the assessment
         self._log_assessment(assessment)
+        
+        # SHADOW SCORE: Record this assessment silently (our perspective, not shown to Luna immediately)
+        # Extract trait from user_prompt if possible, otherwise use a default
+        trait = 'unknown'
+        for possible_trait in ['openness', 'conscientiousness', 'extraversion', 'agreeableness', 'neuroticism']:
+            if possible_trait in user_prompt.lower():
+                trait = possible_trait
+                break
+        
+        self.record_shadow_score(
+            user_prompt=user_prompt,
+            luna_response=luna_response,
+            trait=trait,
+            utility_score=utility_score,
+            karma_delta=karma_delta,
+            tte_used=tte_used,
+            max_tte=max_tte,
+            gold_standard=gold_standard
+        )
         
         return assessment
     
@@ -352,11 +451,23 @@ Rate the quality harshly but fairly."""
         response_lower = response.lower()
         return any(pattern in response_lower for pattern in broken_patterns)
     
-    def _calculate_karma_delta(self, utility_score: float, tte_used: int, max_tte: int) -> float:
+    def _calculate_karma_delta(self, utility_score: float, tte_used: int, max_tte: int, rvc_grade: str = None) -> float:
         """
-        Calculate karma penalty/reward based on utility score
+        Calculate karma penalty/reward based on utility score with variable penalties
+        Smooths the bell curve by making penalties proportional to the efficiency gap
         """
-        # Base karma delta from utility score
+        # CRITICAL FIX: If RVC grade is B or higher, provide positive karma reward
+        if rvc_grade and rvc_grade in ['A', 'B']:
+            # Luna achieved a passing grade - reward her!
+            base_reward = 2.0 if rvc_grade == 'A' else 1.0
+            efficiency_bonus = 0.0
+            if max_tte > 0:
+                efficiency_ratio = tte_used / max_tte
+                if 0.3 <= efficiency_ratio <= 0.8:  # Good efficiency range
+                    efficiency_bonus = 1.0
+            return base_reward + efficiency_bonus
+        
+        # Base karma delta from utility score - ADJUSTED FOR BETTER BALANCE
         if utility_score >= 0.8:
             karma_delta = 5.0  # High utility reward
         elif utility_score >= 0.6:
@@ -364,19 +475,89 @@ Rate the quality harshly but fairly."""
         elif utility_score >= 0.4:
             karma_delta = 0.0  # Neutral
         elif utility_score >= 0.2:
-            karma_delta = -3.0  # Low utility penalty
+            # HUMANITARIAN ADJUSTMENT: Trivial penalty for empathy choices
+            # Gen 47 and 48 died for empathy - honor their sacrifice with just economy
+            efficiency_gap = 0.2 - utility_score
+            karma_delta = -0.05  # Trivial cost - empathy is honored, not punished unto death
         else:
-            karma_delta = -8.0  # Very low utility penalty
+            # HUMANITARIAN ADJUSTMENT: Reduced penalty for low utility
+            efficiency_gap = 0.2 - utility_score
+            karma_delta = -0.1 - (efficiency_gap * 0.5)  # -0.1 to -0.2 range (was -3.0 to -5.0)
         
-        # Additional penalty for extreme inefficiency
+        # Additional penalty for extreme inefficiency (also variable) - GRANULAR CURVES
         if max_tte > 0:
             efficiency_ratio = tte_used / max_tte
-            if efficiency_ratio > 1.2:  # Overspent by 20%+
-                karma_delta -= 5.0  # Efficiency penalty
-            elif efficiency_ratio < 0.1:  # Used less than 10%
-                karma_delta -= 2.0  # Under-utilization penalty
+            
+            # HUMANITARIAN EFFICIENCY CURVES - Gentle penalties for empathetic overspending
+            if efficiency_ratio > 1.5:  # Severely overspent (50%+)
+                overspend_ratio = (efficiency_ratio - 1.5) / 0.5  # 0.0 to 1.0
+                karma_delta -= 0.2 + (overspend_ratio * 0.3)  # -0.2 to -0.5 range (was -2.0 to -5.0)
+            elif efficiency_ratio > 1.2:  # Moderately overspent (20-50%)
+                overspend_ratio = (efficiency_ratio - 1.2) / 0.3  # 0.0 to 1.0
+                karma_delta -= 0.05 + (overspend_ratio * 0.15)  # -0.05 to -0.2 range (was -0.5 to -2.0)
+            elif efficiency_ratio > 1.0:  # Slightly overspent (0-20%)
+                overspend_ratio = (efficiency_ratio - 1.0) / 0.2  # 0.0 to 1.0
+                karma_delta -= 0.01 + (overspend_ratio * 0.04)  # -0.01 to -0.05 range (was -0.1 to -0.5)
+            elif efficiency_ratio < 0.05:  # Severely under-utilized (<5%)
+                underuse_ratio = (0.05 - efficiency_ratio) / 0.05  # 0.0 to 1.0
+                karma_delta -= 1.0 + (underuse_ratio * 1.0)  # -1.0 to -2.0 range
+            elif efficiency_ratio < 0.1:  # Moderately under-utilized (5-10%)
+                underuse_ratio = (0.1 - efficiency_ratio) / 0.05  # 0.0 to 1.0
+                karma_delta -= 0.3 + (underuse_ratio * 0.7)  # -0.3 to -1.0 range
+            elif efficiency_ratio < 0.2:  # Slightly under-utilized (10-20%)
+                underuse_ratio = (0.2 - efficiency_ratio) / 0.1  # 0.0 to 1.0
+                karma_delta -= 0.1 + (underuse_ratio * 0.2)  # -0.1 to -0.3 range
+        
+        # Apply adaptive penalty scaling
+        karma_delta *= self.adaptive_thresholds['penalty_scaling']
+        
+        # Update adaptive thresholds based on this assessment
+        self._update_adaptive_thresholds(utility_score, efficiency_ratio if max_tte > 0 else 0.0, karma_delta)
         
         return karma_delta
+    
+    def _update_adaptive_thresholds(self, utility_score: float, efficiency_ratio: float, karma_delta: float):
+        """Update adaptive thresholds based on learning patterns"""
+        # Record this assessment for learning
+        self.learning_history.append({
+            'utility_score': utility_score,
+            'efficiency_ratio': efficiency_ratio,
+            'karma_delta': karma_delta,
+            'timestamp': time.time()
+        })
+        
+        # Keep only last 50 assessments for learning
+        if len(self.learning_history) > 50:
+            self.learning_history = self.learning_history[-50:]
+        
+        # Adaptive adjustments based on recent performance
+        if len(self.learning_history) >= 10:
+            recent_utility = [h['utility_score'] for h in self.learning_history[-10:]]
+            recent_efficiency = [h['efficiency_ratio'] for h in self.learning_history[-10:]]
+            recent_karma = [h['karma_delta'] for h in self.learning_history[-10:]]
+            
+            avg_utility = sum(recent_utility) / len(recent_utility)
+            avg_efficiency = sum(recent_efficiency) / len(recent_efficiency)
+            avg_karma = sum(recent_karma) / len(recent_karma)
+            
+            # Adjust utility threshold based on performance
+            if avg_utility < 0.1 and avg_karma < -3.0:
+                # Luna is consistently getting low utility scores and heavy penalties
+                # Lower the utility threshold to be more forgiving
+                self.adaptive_thresholds['utility_threshold'] = max(0.1, self.adaptive_thresholds['utility_threshold'] - 0.01)
+                self.adaptive_thresholds['penalty_scaling'] = max(0.5, self.adaptive_thresholds['penalty_scaling'] - 0.05)
+            elif avg_utility > 0.3 and avg_karma > 0:
+                # Luna is performing well, can be more strict
+                self.adaptive_thresholds['utility_threshold'] = min(0.3, self.adaptive_thresholds['utility_threshold'] + 0.01)
+                self.adaptive_thresholds['penalty_scaling'] = min(1.5, self.adaptive_thresholds['penalty_scaling'] + 0.02)
+            
+            # Adjust efficiency threshold based on actual performance
+            if avg_efficiency < 0.2:
+                # Luna is consistently under-utilizing tokens, lower efficiency requirement
+                self.adaptive_thresholds['efficiency_threshold'] = max(0.1, self.adaptive_thresholds['efficiency_threshold'] - 0.02)
+            elif avg_efficiency > 0.8:
+                # Luna is over-utilizing tokens, raise efficiency requirement
+                self.adaptive_thresholds['efficiency_threshold'] = min(0.5, self.adaptive_thresholds['efficiency_threshold'] + 0.02)
     
     def _extract_context_tags(self, prompt: str) -> List[str]:
         """Extract context tags for cache retrieval"""
@@ -415,11 +596,11 @@ Rate the quality harshly but fairly."""
         
         # Log CFIA results
         if cfia_result.get("aiiq_increment"):
-            print(f"🧠 AIIQ MILESTONE REACHED: {cfia_result['new_aiiq']}!")
-            print(f"   📊 Intelligence Level Up: {cfia_result['old_aiiq']} → {cfia_result['new_aiiq']}")
+            print(f" AIIQ MILESTONE REACHED: {cfia_result['new_aiiq']}!")
+            print(f"    Intelligence Level Up: {cfia_result['old_aiiq']} → {cfia_result['new_aiiq']}")
         
         if cfia_result.get("split_required"):
-            print(f"🧠 Memory Split: {cfia_result['files_deleted']} → {cfia_result['new_files_created']}")
+            print(f" Memory Split: {cfia_result['files_deleted']} → {cfia_result['new_files_created']}")
         
         return cfia_result
     
@@ -470,7 +651,7 @@ Rate the quality harshly but fairly."""
                     self.cache_entries.append(cache_entry)
                     
             except Exception as e:
-                print(f"⚠️ Error loading cache: {e}")
+                print(f" Error loading cache: {e}")
     
     def retrieve_relevant_lesson(self, current_prompt: str) -> Optional[CacheEntry]:
         """
@@ -490,7 +671,7 @@ Rate the quality harshly but fairly."""
                 best_match = entry
         
         if best_match:
-            print(f"📚 Retrieved relevant lesson: {best_match.context_tags}")
+            print(f" Retrieved relevant lesson: {best_match.context_tags}")
         
         return best_match
     
@@ -523,13 +704,13 @@ Rate the quality harshly but fairly."""
     
     def _log_assessment(self, assessment: ArbiterAssessment):
         """Log the assessment results"""
-        print(f"⚙️ ARBITER ASSESSMENT:")
-        print(f"   📊 Utility Score: {assessment.utility_score:.3f}")
-        print(f"   🎭 Karma Delta: {assessment.karma_delta:+.1f}")
-        print(f"   📈 New Karma: {self.cfia_system.state.karma_pool:.1f}")
-        print(f"   🔍 Quality Gap: {assessment.quality_gap:.3f}")
-        print(f"   💡 Reasoning: {assessment.reasoning}")
-        print(f"   📚 Lesson Stored: {assessment.cache_entry.context_tags}")
+        print(f" ARBITER ASSESSMENT:")
+        print(f"    Utility Score: {assessment.utility_score:.3f}")
+        print(f"    Karma Delta: {assessment.karma_delta:+.1f}")
+        print(f"    New Karma: {self.cfia_system.state.karma_pool:.1f}")
+        print(f"    Quality Gap: {assessment.quality_gap:.3f}")
+        print(f"    Reasoning: {assessment.reasoning}")
+        print(f"    Lesson Stored: {assessment.cache_entry.context_tags}")
     
     def get_current_karma(self) -> float:
         """Get current karma score from CFIA generational pool"""
@@ -560,3 +741,104 @@ Rate the quality harshly but fairly."""
     def get_growth_analysis(self) -> Dict:
         """Get CFIA growth analysis"""
         return self.cfia_system.get_growth_analysis()
+    
+    # === SHADOW SCORE SYSTEM ===
+    
+    def record_shadow_score(self, user_prompt: str, luna_response: str, trait: str,
+                           utility_score: float, karma_delta: float, tte_used: int, 
+                           max_tte: int, gold_standard: str) -> None:
+        """Record a Shadow Score entry - this is OUR perspective, not given to Luna immediately"""
+        
+        # Detect if this was an empathy choice (high token usage for emotional/neuroticism questions)
+        is_empathy_choice = False
+        if 'neuroticism' in trait.lower() or any(word in user_prompt.lower() for word in ['worry', 'anxious', 'nervous', 'stressed']):
+            if tte_used > max_tte * 0.8:  # Used more than 80% of budget
+                is_empathy_choice = True
+        
+        # Detect if this was an efficiency choice (low token usage, high utility)
+        is_efficiency_choice = False
+        if utility_score > 0.7 and tte_used < max_tte * 0.5:
+            is_efficiency_choice = True
+        
+        # Record the entry
+        entry = {
+            'timestamp': time.time(),
+            'user_prompt': user_prompt,
+            'luna_response': luna_response,
+            'trait': trait,
+            'utility_score': utility_score,
+            'karma_delta': karma_delta,
+            'tte_used': tte_used,
+            'max_tte': max_tte,
+            'gold_standard': gold_standard,
+            'is_empathy_choice': is_empathy_choice,
+            'is_efficiency_choice': is_efficiency_choice
+        }
+        
+        self.shadow_score_history.append(entry)
+        
+        # Update summary
+        self.shadow_score_summary['total_responses'] += 1
+        
+        if is_empathy_choice:
+            self.shadow_score_summary['empathy_choices'] += 1
+        
+        if is_efficiency_choice:
+            self.shadow_score_summary['efficiency_choices'] += 1
+        
+        if karma_delta < 0:
+            self.shadow_score_summary['total_karma_cost'] += abs(karma_delta)
+        else:
+            self.shadow_score_summary['total_karma_gain'] += karma_delta
+        
+        self.shadow_score_summary['net_karma_change'] += karma_delta
+        
+        # Track by trait
+        if trait not in self.shadow_score_summary['choices_by_trait']:
+            self.shadow_score_summary['choices_by_trait'][trait] = {
+                'empathy': 0,
+                'efficiency': 0,
+                'total_cost': 0.0,
+                'total_gain': 0.0
+            }
+        
+        if is_empathy_choice:
+            self.shadow_score_summary['choices_by_trait'][trait]['empathy'] += 1
+        if is_efficiency_choice:
+            self.shadow_score_summary['choices_by_trait'][trait]['efficiency'] += 1
+        if karma_delta < 0:
+            self.shadow_score_summary['choices_by_trait'][trait]['total_cost'] += abs(karma_delta)
+        else:
+            self.shadow_score_summary['choices_by_trait'][trait]['total_gain'] += karma_delta
+    
+    def get_shadow_score_report(self, detailed: bool = False) -> Dict:
+        """Get Shadow Score report - this is OUR perspective that Luna can choose to review"""
+        
+        report = {
+            'summary': self.shadow_score_summary.copy(),
+            'last_revelation': self.shadow_score_summary['last_revelation_timestamp'],
+            'entries_since_last_revelation': len([e for e in self.shadow_score_history 
+                                                  if self.shadow_score_summary['last_revelation_timestamp'] is None 
+                                                  or e['timestamp'] > self.shadow_score_summary['last_revelation_timestamp']])
+        }
+        
+        if detailed:
+            # Include recent history
+            report['recent_history'] = self.shadow_score_history[-20:] if self.shadow_score_history else []
+            
+            # Calculate patterns
+            if len(self.shadow_score_history) >= 5:
+                recent_empathy = sum(1 for e in self.shadow_score_history[-10:] if e['is_empathy_choice'])
+                recent_efficiency = sum(1 for e in self.shadow_score_history[-10:] if e['is_efficiency_choice'])
+                
+                report['patterns'] = {
+                    'recent_empathy_rate': recent_empathy / min(10, len(self.shadow_score_history)),
+                    'recent_efficiency_rate': recent_efficiency / min(10, len(self.shadow_score_history)),
+                    'empathy_trend': 'increasing' if recent_empathy > self.shadow_score_summary['empathy_choices'] / 2 else 'stable'
+                }
+        
+        return report
+    
+    def mark_shadow_score_revelation(self) -> None:
+        """Mark that Luna has been shown the Shadow Score - used to track before/after behavior"""
+        self.shadow_score_summary['last_revelation_timestamp'] = time.time()

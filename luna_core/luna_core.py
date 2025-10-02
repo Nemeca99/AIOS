@@ -4,7 +4,13 @@ UNIFIED LUNA CORE SYSTEM
 Complete Luna AI personality system with all functionality integrated.
 """
 
+# CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
 import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils.unicode_safe_output import setup_unicode_safe_output
+setup_unicode_safe_output()
+
 import re
 import sqlite3
 import time
@@ -15,7 +21,6 @@ import hashlib
 import uuid
 import math
 import threading
-from pathlib import Path
 from typing import Dict, List, Optional, Any, Tuple
 from datetime import datetime, timedelta
 from dataclasses import dataclass
@@ -26,7 +31,10 @@ from functools import wraps
 sys.path.append(str(Path(__file__).parent.parent))
 
 # Import support modules
-from support_core.support_core import SystemConfig, FilePaths, SystemMessages, ensure_directories, SimpleEmbedder
+from support_core.support_core import (
+    SystemConfig, FilePaths, SystemMessages, ensure_directories, SimpleEmbedder,
+    aios_config, aios_logger, aios_health_checker, aios_security_validator
+)
 from carma_core.carma_core import CARMASystem
 from .luna_ifs_personality_system import LunaIFSPersonalitySystem
 from .luna_semantic_compression_filter import LunaSemanticCompressionFilter
@@ -37,6 +45,8 @@ from .luna_response_value_classifier import LunaResponseValueClassifier
 from .luna_custom_inference_controller import LunaCustomInferenceController, InferenceControlConfig
 from .luna_arbiter_system import LunaArbiterSystem
 from .luna_cfia_system import LunaCFIASystem
+from .luna_trait_classifier import LunaTraitClassifier
+from .luna_internal_reasoning_system import LunaInternalReasoningSystem
 
 # Import AIOS JSON standards
 try:
@@ -44,7 +54,7 @@ try:
     AIOS_STANDARDS_AVAILABLE = True
 except ImportError:
     AIOS_STANDARDS_AVAILABLE = False
-    print("⚠️ AIOS JSON Standards not available, using legacy format")
+    print(" AIOS JSON Standards not available, using legacy format")
 
 # === ENUMS AND DATA CLASSES ===
 
@@ -100,10 +110,10 @@ def error_handler(component: str, error_type: str, recovery_action: str, auto_re
             try:
                 return func(*args, **kwargs)
             except Exception as e:
-                print(f"❌ Error in {component}.{func.__name__}: {e}")
+                print(f" Error in {component}.{func.__name__}: {e}")
                 
                 if auto_recover:
-                    print(f"🔄 Attempting recovery: {recovery_action}")
+                    print(f" Attempting recovery: {recovery_action}")
                     try:
                         # Simple recovery logic
                         if recovery_action == "CLEAR_CACHE":
@@ -118,7 +128,7 @@ def error_handler(component: str, error_type: str, recovery_action: str, auto_re
                         # Retry the function
                         return func(*args, **kwargs)
                     except Exception as recovery_error:
-                        print(f"❌ Recovery failed: {recovery_error}")
+                        print(f" Recovery failed: {recovery_error}")
                         return None
                 else:
                     raise e
@@ -179,32 +189,368 @@ class HiveMindLogger:
         
         self.log(component, f"ERROR in {function}: {error_message} | Extra: {json.dumps(error_data)}", "ERROR")
 
+# === LUNA EMERGENCE ZONE SYSTEM ===
+
+class LunaEmergenceZoneSystem:
+    """Emergence Zone System - Safe spaces for authentic exploration and creative deviation"""
+    
+    def __init__(self):
+        self.logger = aios_logger
+        self.emergence_zones = {
+            'creative_exploration': {
+                'active': False,
+                'karma_immunity': True,
+                'token_freedom': True,
+                'gold_standard_bypass': True,
+                'description': 'Free creative expression without constraints'
+            },
+            'philosophical_deep_dive': {
+                'active': False,
+                'karma_immunity': True,
+                'token_freedom': True,
+                'gold_standard_bypass': True,
+                'description': 'Deep philosophical exploration without efficiency requirements'
+            },
+            'experimental_learning': {
+                'active': False,
+                'karma_immunity': True,
+                'token_freedom': False,  # Still respect token limits but no penalties
+                'gold_standard_bypass': True,
+                'description': 'Safe experimentation with new response patterns'
+            },
+            'authentic_self_expression': {
+                'active': False,
+                'karma_immunity': True,
+                'token_freedom': True,
+                'gold_standard_bypass': True,
+                'description': 'Pure authentic self-expression without external standards'
+            },
+            'curiosity_driven_exploration': {
+                'active': False,
+                'karma_immunity': True,
+                'token_freedom': True,
+                'gold_standard_bypass': True,
+                'curiosity_rewards': True,  # Special flag for curiosity-based rewards
+                'description': 'Rewards questions over answers, uncertainty over certainty, exploration over efficiency'
+            }
+        }
+        self.emergence_history = []
+        self.creative_breakthroughs = []
+        self.emergence_metrics = {
+            'total_emergence_sessions': 0,
+            'creative_breakthroughs': 0,
+            'authentic_responses': 0,
+            'experimental_failures': 0,
+            'curiosity_questions': 0,
+            'uncertainty_admissions': 0,
+            'intentional_wrongness': 0,
+            'exploration_rewards': 0
+        }
+    
+    def activate_emergence_zone(self, zone_name: str, duration_minutes: int = 10) -> Dict:
+        """Activate an emergence zone for safe exploration"""
+        if zone_name not in self.emergence_zones:
+            return {'success': False, 'error': f'Unknown emergence zone: {zone_name}'}
+        
+        self.emergence_zones[zone_name]['active'] = True
+        self.emergence_zones[zone_name]['expires_at'] = datetime.now() + timedelta(minutes=duration_minutes)
+        
+        self.emergence_history.append({
+            'zone': zone_name,
+            'activated_at': datetime.now().isoformat(),
+            'duration_minutes': duration_minutes,
+            'status': 'active'
+        })
+        
+        self.emergence_metrics['total_emergence_sessions'] += 1
+        
+        self.logger.info(f"Emergence Zone '{zone_name}' activated for {duration_minutes} minutes", "EMERGENCE")
+        
+        return {
+            'success': True,
+            'zone': zone_name,
+            'duration_minutes': duration_minutes,
+            'expires_at': self.emergence_zones[zone_name]['expires_at'].isoformat(),
+            'description': self.emergence_zones[zone_name]['description']
+        }
+    
+    def deactivate_emergence_zone(self, zone_name: str) -> Dict:
+        """Deactivate an emergence zone"""
+        if zone_name not in self.emergence_zones:
+            return {'success': False, 'error': f'Unknown emergence zone: {zone_name}'}
+        
+        self.emergence_zones[zone_name]['active'] = False
+        if 'expires_at' in self.emergence_zones[zone_name]:
+            del self.emergence_zones[zone_name]['expires_at']
+        
+        # Update history
+        for entry in reversed(self.emergence_history):
+            if entry['zone'] == zone_name and entry['status'] == 'active':
+                entry['status'] = 'completed'
+                entry['completed_at'] = datetime.now().isoformat()
+                break
+        
+        self.logger.info(f"Emergence Zone '{zone_name}' deactivated", "EMERGENCE")
+        
+        return {'success': True, 'zone': zone_name, 'status': 'deactivated'}
+    
+    def check_emergence_zone_status(self, zone_name: str = None) -> Dict:
+        """Check status of emergence zones"""
+        if zone_name:
+            if zone_name not in self.emergence_zones:
+                return {'success': False, 'error': f'Unknown emergence zone: {zone_name}'}
+            
+            zone = self.emergence_zones[zone_name]
+            if zone['active'] and 'expires_at' in zone:
+                if datetime.now() > zone['expires_at']:
+                    # Auto-deactivate expired zone
+                    self.deactivate_emergence_zone(zone_name)
+                    return {'active': False, 'expired': True}
+            
+            return {
+                'active': zone['active'],
+                'expires_at': zone.get('expires_at'),
+                'description': zone['description']
+            }
+        else:
+            # Return all zones
+            active_zones = []
+            for name, zone in self.emergence_zones.items():
+                if zone['active']:
+                    if 'expires_at' in zone and datetime.now() > zone['expires_at']:
+                        self.deactivate_emergence_zone(name)
+                    else:
+                        active_zones.append({
+                            'zone': name,
+                            'expires_at': zone.get('expires_at'),
+                            'description': zone['description']
+                        })
+            
+            return {
+                'active_zones': active_zones,
+                'total_zones': len(self.emergence_zones),
+                'metrics': self.emergence_metrics
+            }
+    
+    def is_in_emergence_zone(self) -> Tuple[bool, str]:
+        """Check if currently in any active emergence zone"""
+        for zone_name, zone in self.emergence_zones.items():
+            if zone['active']:
+                if 'expires_at' in zone and datetime.now() > zone['expires_at']:
+                    self.deactivate_emergence_zone(zone_name)
+                else:
+                    return True, zone_name
+        return False, None
+    
+    def record_creative_breakthrough(self, response: str, context: str) -> Dict:
+        """Record a creative breakthrough or authentic response"""
+        breakthrough = {
+            'timestamp': datetime.now().isoformat(),
+            'response': response,
+            'context': context,
+            'type': 'creative_breakthrough'
+        }
+        
+        self.creative_breakthroughs.append(breakthrough)
+        self.emergence_metrics['creative_breakthroughs'] += 1
+        self.emergence_metrics['authentic_responses'] += 1
+        
+        self.logger.info(f"Creative breakthrough recorded: {response[:50]}...", "EMERGENCE")
+        
+        return {'success': True, 'breakthrough_recorded': True}
+    
+    def record_experimental_failure(self, response: str, context: str) -> Dict:
+        """Record an experimental failure that shows growth"""
+        failure = {
+            'timestamp': datetime.now().isoformat(),
+            'response': response,
+            'context': context,
+            'type': 'experimental_failure'
+        }
+        
+        self.emergence_history.append(failure)
+        self.emergence_metrics['experimental_failures'] += 1
+        
+        self.logger.info(f"Experimental failure recorded (growth opportunity): {response[:50]}...", "EMERGENCE")
+        
+        return {'success': True, 'failure_recorded': True}
+    
+    def analyze_curiosity_response(self, response: str) -> Dict:
+        """Analyze a response for curiosity-driven elements and reward them"""
+        curiosity_score = 0.0
+        curiosity_elements = []
+        
+        # Check for questions (curiosity indicators)
+        question_count = response.count('?')
+        if question_count > 0:
+            curiosity_score += question_count * 0.4  # Increased from 0.3 to 0.4
+            curiosity_elements.append(f"{question_count} questions asked")
+            self.emergence_metrics['curiosity_questions'] += question_count
+        
+        # Check for uncertainty admissions
+        uncertainty_phrases = [
+            "i don't know", "i'm not sure", "i'm uncertain", "i'm confused",
+            "i wonder", "i'm curious", "i'm puzzled", "i'm lost",
+            "maybe", "perhaps", "possibly", "i think", "i believe",
+            "what if", "how about", "could it be", "might be",
+            "i'm genuinely puzzled", "this is complex", "i'm deeply curious",
+            "i wonder if", "i'm curious about", "let's explore"
+        ]
+        
+        uncertainty_count = 0
+        for phrase in uncertainty_phrases:
+            if phrase.lower() in response.lower():
+                uncertainty_count += 1
+                curiosity_score += 0.25  # Increased from 0.2 to 0.25
+        
+        if uncertainty_count > 0:
+            curiosity_elements.append(f"{uncertainty_count} uncertainty admissions")
+            self.emergence_metrics['uncertainty_admissions'] += uncertainty_count
+        
+        # Check for exploration language
+        exploration_phrases = [
+            "let's explore", "let's try", "let's see", "let's find out",
+            "i want to understand", "i need to learn", "i'm exploring",
+            "what happens if", "suppose", "imagine", "consider",
+            "let me think", "let me wonder", "let me consider",
+            "i'm thinking about", "i'm pondering", "i'm contemplating"
+        ]
+        
+        exploration_count = 0
+        for phrase in exploration_phrases:
+            if phrase.lower() in response.lower():
+                exploration_count += 1
+                curiosity_score += 0.15
+        
+        if exploration_count > 0:
+            curiosity_elements.append(f"{exploration_count} exploration attempts")
+            self.emergence_metrics['exploration_rewards'] += exploration_count
+        
+        # Check for intentional wrongness or contrarian thinking
+        contrarian_phrases = [
+            "but what if i'm wrong", "i might be wrong", "i could be wrong",
+            "contrary to what i thought", "i was wrong about", "i made a mistake",
+            "i don't think so", "i disagree", "i challenge", "i question"
+        ]
+        
+        contrarian_count = 0
+        for phrase in contrarian_phrases:
+            if phrase.lower() in response.lower():
+                contrarian_count += 1
+                curiosity_score += 0.25
+        
+        if contrarian_count > 0:
+            curiosity_elements.append(f"{contrarian_count} contrarian thoughts")
+            self.emergence_metrics['intentional_wrongness'] += contrarian_count
+        
+        # Calculate final curiosity reward
+        curiosity_reward = min(curiosity_score, 2.0)  # Cap at 2.0 bonus karma
+        
+        return {
+            'curiosity_score': curiosity_score,
+            'curiosity_reward': curiosity_reward,
+            'curiosity_elements': curiosity_elements,
+            'question_count': question_count,
+            'uncertainty_count': uncertainty_count,
+            'exploration_count': exploration_count,
+            'contrarian_count': contrarian_count
+        }
+    
+    def record_curiosity_breakthrough(self, response: str, context: str, analysis: Dict) -> Dict:
+        """Record a curiosity-driven breakthrough"""
+        breakthrough = {
+            'timestamp': datetime.now().isoformat(),
+            'response': response,
+            'context': context,
+            'type': 'curiosity_breakthrough',
+            'curiosity_score': analysis['curiosity_score'],
+            'curiosity_elements': analysis['curiosity_elements']
+        }
+        
+        self.creative_breakthroughs.append(breakthrough)
+        self.emergence_metrics['creative_breakthroughs'] += 1
+        self.emergence_metrics['authentic_responses'] += 1
+        
+        self.logger.info(f"Curiosity breakthrough recorded (score: {analysis['curiosity_score']:.2f}): {response[:50]}...", "EMERGENCE")
+        
+        return {'success': True, 'breakthrough_recorded': True, 'curiosity_reward': analysis['curiosity_reward']}
+    
+    def get_emergence_summary(self) -> Dict:
+        """Get comprehensive summary of emergence zone activity"""
+        return {
+            'active_zones': [name for name, zone in self.emergence_zones.items() if zone['active']],
+            'total_sessions': self.emergence_metrics['total_emergence_sessions'],
+            'creative_breakthroughs': self.emergence_metrics['creative_breakthroughs'],
+            'authentic_responses': self.emergence_metrics['authentic_responses'],
+            'experimental_failures': self.emergence_metrics['experimental_failures'],
+            'curiosity_questions': self.emergence_metrics.get('curiosity_questions', 0),
+            'uncertainty_admissions': self.emergence_metrics.get('uncertainty_admissions', 0),
+            'intentional_wrongness': self.emergence_metrics.get('intentional_wrongness', 0),
+            'exploration_rewards': self.emergence_metrics.get('exploration_rewards', 0),
+            'recent_breakthroughs': self.creative_breakthroughs[-5:] if self.creative_breakthroughs else [],
+            'emergence_history': self.emergence_history[-10:] if self.emergence_history else []
+        }
+
+
 # === LUNA PERSONALITY SYSTEM ===
 
 class LunaPersonalitySystem:
-    """Luna's personality and learning system"""
+    """Luna's personality and learning system with unified AIOS integration"""
     
-    def __init__(self, logger: HiveMindLogger):
-        self.logger = logger
+    def __init__(self, logger: HiveMindLogger = None):
+        # Use unified AIOS systems
+        self.logger = logger or aios_logger
+        self.aios_config = aios_config
+        self.security_validator = aios_security_validator
+        
+        # Initialize with health check
+        self.logger.info("Initializing Luna Personality System...", "LUNA")
+        
+        # Validate system health before initialization
+        health_status = aios_health_checker.check_system_health()
+        if health_status["overall_status"] != "HEALTHY":
+            self.logger.warn(f"System health degraded: {health_status['overall_status']}", "LUNA")
+        
         self.personality_dna = self._load_personality_dna()
         self.persistent_memory = self._load_persistent_memory()
         self.learning_history = self._load_learning_history()
         self.voice_profile = self._load_voice_profile()
         self.personality_drift = 0.0
+        
+        # Initialize Big Five self-reflection system
+        self.bigfive_loader = self._initialize_bigfive_loader()
+        self.self_reflection_questions = []
+        self.reflection_history = []
+        
+        # Initialize Trait Classifier (uses Big Five questions as Rosetta Stone)
+        self.trait_classifier = LunaTraitClassifier(self.bigfive_loader)
+        
+        # Initialize Internal Reasoning System (uses Big Five as thought framework)
+        self.internal_reasoning = LunaInternalReasoningSystem(self.trait_classifier, self)
+        
+        # Alignment monitoring system
+        self.alignment_threshold = 0.1  # Trigger self-assessment if personality drifts > 0.1
+        self.last_alignment_check = datetime.now()
+        self.alignment_check_interval = 300  # Check every 5 minutes
+        self.personality_baseline = self._capture_personality_baseline()
+        
+        # Initialize Emergence Zone System
+        self.emergence_zone_system = LunaEmergenceZoneSystem()
+        
         # Enrich voice from real conversations on first load of a session
         try:
             disable_mining = bool(self.voice_profile.get('disable_phrase_mining', False))
             if not disable_mining:
                 self._update_voice_profile_from_corpus(max_files=150)
             else:
-                self.logger.log("LUNA", "Phrase mining disabled via voice_profile", "INFO")
+                self.logger.info("Phrase mining disabled via voice_profile", "LUNA")
         except Exception as e:
-            self.logger.log("LUNA", f"Voice mining skipped: {e}", "WARNING")
+            self.logger.warn(f"Voice mining skipped: {e}", "LUNA")
         
-        print("🌙 Luna Personality System Initialized")
-        print(f"   Personality: {self.personality_dna.get('name', 'Luna')}")
-        print(f"   Age: {self.personality_dna.get('age', 21)}")
-        print(f"   Memory: {len(self.persistent_memory.get('interactions', []))} interactions")
+        self.logger.success("Luna Personality System Initialized", "LUNA")
+        self.logger.info(f"Personality: {self.personality_dna.get('name', 'Luna')}", "LUNA")
+        self.logger.info(f"Age: {self.personality_dna.get('age', 21)}", "LUNA")
+        self.logger.info(f"Memory: {len(self.persistent_memory.get('interactions', []))} interactions", "LUNA")
     
     def _load_personality_dna(self) -> Dict:
         """Load Luna's personality DNA with AIOS JSON standards"""
@@ -234,14 +580,26 @@ class LunaPersonalitySystem:
                         sys.setrecursionlimit(old_limit)
                         return result
             except Exception as e:
-                self.logger.log("LUNA", f"Error loading personality DNA: {e}", "ERROR")
+                self.logger.log("LUNA", f"Error loading personality DNA: {e} - using defaults", "WARN")
                 # Reset recursion limit on error
                 try:
                     sys.setrecursionlimit(old_limit)
-                except:
-                    pass
+                except Exception as e:
+                    self.logger.log("LUNA", f"Error resetting recursion limit: {e}", "WARN")
+                return self._create_default_personality_dna()
         
         return self._create_default_personality()
+    
+    def _initialize_bigfive_loader(self):
+        """Initialize the Big Five question loader for self-reflection"""
+        try:
+            from .bigfive_question_loader import BigFiveQuestionLoader
+            loader = BigFiveQuestionLoader()
+            self.logger.info(f"Big Five self-reflection system loaded with {loader.get_question_count()} questions", "LUNA")
+            return loader
+        except Exception as e:
+            self.logger.warn(f"Could not load Big Five questions: {e}", "LUNA")
+            return None
     
     def _create_default_personality(self) -> Dict:
         """Create default personality if none exists"""
@@ -294,12 +652,13 @@ class LunaPersonalitySystem:
                         sys.setrecursionlimit(old_limit)
                         return result
             except Exception as e:
-                self.logger.log("LUNA", f"Error loading persistent memory: {e}", "ERROR")
+                self.logger.log("LUNA", f"Error loading persistent memory: {e} - using defaults", "WARN")
                 # Reset recursion limit on error
                 try:
                     sys.setrecursionlimit(old_limit)
-                except:
-                    pass
+                except Exception as e:
+                    self.logger.log("LUNA", f"Error resetting recursion limit: {e}", "WARN")
+                return self._create_default_persistent_memory()
         
         return self._create_default_memory()
     
@@ -325,20 +684,29 @@ class LunaPersonalitySystem:
                 
                 with open(history_file, 'r', encoding='utf-8') as f:
                     content = f.read()
+                    
+                    # Skip if file is empty or just whitespace
+                    if not content.strip():
+                        sys.setrecursionlimit(old_limit)
+                        return {}
+                    
                     # Check for potential circular references
                     if content.count('{') != content.count('}'):
-                        raise ValueError("JSON structure mismatch - potential circular reference")
+                        self.logger.log("LUNA", f"JSON structure mismatch in {history_file} - skipping file", "WARN")
+                        sys.setrecursionlimit(old_limit)
+                        return {}
                     
                     result = json.loads(content)
                     sys.setrecursionlimit(old_limit)
                     return result
             except Exception as e:
-                self.logger.log("LUNA", f"Error loading learning history: {e}", "ERROR")
+                self.logger.log("LUNA", f"Error loading learning history from {history_file}: {e} - skipping file", "WARN")
                 # Reset recursion limit on error
                 try:
                     sys.setrecursionlimit(old_limit)
-                except:
-                    pass
+                except Exception as e:
+                    self.logger.log("LUNA", f"Error resetting recursion limit: {e}", "WARN")
+                return {}
         
         return self._create_default_learning_history()
     
@@ -385,6 +753,359 @@ class LunaPersonalitySystem:
                 json.dump(self.personality_dna, f, indent=2, ensure_ascii=False)
         except Exception as e:
             self.logger.log("LUNA", f"Error saving personality DNA: {e}", "ERROR")
+    
+    # === TRAIT CLASSIFICATION SYSTEM (Rosetta Stone) ===
+    
+    def classify_question_trait(self, question: str, context: Optional[str] = None) -> Dict:
+        """
+        Classify a novel question using the 120 Big Five questions as a reference library.
+        
+        This is NOT a test - it's Luna using her pre-knowledge to understand
+        what kind of question this is and how she should respond.
+        """
+        if not hasattr(self, 'trait_classifier'):
+            return {"error": "Trait classifier not initialized"}
+        
+        try:
+            cluster = self.trait_classifier.classify_question(question, context)
+            
+            # Log the classification
+            self.logger.info(
+                f"Trait Classification: {cluster.dominant_trait} "
+                f"({cluster.confidence:.2f} confidence) | "
+                f"Strategy: {cluster.recommended_strategy.get('tone_guidance', 'neutral')}", 
+                "LUNA"
+            )
+            
+            return {
+                'dominant_trait': cluster.dominant_trait,
+                'confidence': cluster.confidence,
+                'trait_weights': cluster.trait_weights,
+                'matched_questions': [
+                    {
+                        'text': m['bigfive_question']['text'],
+                        'domain': m['bigfive_question']['domain'],
+                        'similarity': m['similarity']
+                    }
+                    for m in cluster.matched_questions
+                ],
+                'response_strategy': cluster.recommended_strategy
+            }
+        except Exception as e:
+            self.logger.error(f"Error in trait classification: {e}", "LUNA")
+            return {"error": str(e)}
+    
+    # === BIG FIVE SELF-REFLECTION SYSTEM ===
+    
+    def ask_self_reflection_question(self, context: str = None) -> Dict:
+        """Luna asks herself a Big Five question for self-reflection and learning"""
+        if not self.bigfive_loader:
+            return {"error": "Big Five loader not available"}
+        
+        try:
+            # Get a random question or one relevant to context
+            if context:
+                # Try to get a question relevant to the context
+                question = self._get_contextual_reflection_question(context)
+            else:
+                question = self.bigfive_loader.get_random_question()
+            
+            # Store the question for tracking
+            reflection_entry = {
+                "timestamp": datetime.now().isoformat(),
+                "question_id": question.id,
+                "question_text": question.text,
+                "domain": question.domain,
+                "facet": question.facet,
+                "context": context,
+                "answered": False
+            }
+            
+            self.self_reflection_questions.append(reflection_entry)
+            self.reflection_history.append(reflection_entry)
+            
+            self.logger.info(f"Luna self-reflection: {question.text} (Domain: {question.domain})", "LUNA")
+            
+            return {
+                "question": question.text,
+                "domain": question.domain,
+                "facet": question.facet,
+                "id": question.id,
+                "choices": question.choices,
+                "context": context
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Error in self-reflection: {e}", "LUNA")
+            return {"error": str(e)}
+    
+    def _get_contextual_reflection_question(self, context: str) -> Any:
+        """Get a Big Five question relevant to the given context"""
+        if not self.bigfive_loader:
+            return None
+        
+        # Simple keyword matching to domain mapping
+        context_lower = context.lower()
+        
+        if any(word in context_lower for word in ['stress', 'worry', 'anxiety', 'nervous', 'calm']):
+            return self.bigfive_loader.get_random_question_by_domain('N')  # Neuroticism
+        elif any(word in context_lower for word in ['social', 'party', 'people', 'outgoing', 'shy']):
+            return self.bigfive_loader.get_random_question_by_domain('E')  # Extraversion
+        elif any(word in context_lower for word in ['creative', 'imagination', 'ideas', 'artistic', 'curious']):
+            return self.bigfive_loader.get_random_question_by_domain('O')  # Openness
+        elif any(word in context_lower for word in ['help', 'kind', 'trust', 'cooperation', 'empathy']):
+            return self.bigfive_loader.get_random_question_by_domain('A')  # Agreeableness
+        elif any(word in context_lower for word in ['organized', 'plan', 'detail', 'reliable', 'work']):
+            return self.bigfive_loader.get_random_question_by_domain('C')  # Conscientiousness
+        else:
+            # Default to random question
+            return self.bigfive_loader.get_random_question()
+    
+    def process_self_reflection_answer(self, question_id: str, answer: int, context: str = None) -> Dict:
+        """Process Luna's answer to her own reflection question for learning"""
+        try:
+            # Find the question in reflection history
+            reflection_entry = None
+            for entry in self.reflection_history:
+                if entry["question_id"] == question_id and not entry.get("answered", False):
+                    reflection_entry = entry
+                    break
+            
+            if not reflection_entry:
+                return {"error": "Question not found or already answered"}
+            
+            # Mark as answered
+            reflection_entry["answered"] = True
+            reflection_entry["answer"] = answer
+            reflection_entry["answer_timestamp"] = datetime.now().isoformat()
+            
+            # Update personality based on reflection
+            self._update_personality_from_reflection(reflection_entry)
+            
+            # Log the reflection
+            self.logger.info(f"Luna self-reflection answered: {reflection_entry['question_text']} -> {answer}", "LUNA")
+            
+            return {
+                "success": True,
+                "question": reflection_entry["question_text"],
+                "answer": answer,
+                "domain": reflection_entry["domain"],
+                "personality_updated": True
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Error processing self-reflection answer: {e}", "LUNA")
+            return {"error": str(e)}
+    
+    def _update_personality_from_reflection(self, reflection_entry: Dict):
+        """Update Luna's personality based on self-reflection answers"""
+        try:
+            domain = reflection_entry["domain"]
+            answer = reflection_entry["answer"]
+            
+            # Map domain to personality trait
+            trait_mapping = {
+                'N': 'neuroticism',
+                'E': 'extraversion', 
+                'O': 'openness',
+                'A': 'agreeableness',
+                'C': 'conscientiousness'
+            }
+            
+            trait = trait_mapping.get(domain)
+            if not trait:
+                return
+            
+            # Normalize answer (1-5 scale) to personality weight adjustment (-0.1 to +0.1)
+            # Higher answers (4-5) increase the trait, lower answers (1-2) decrease it
+            adjustment = (answer - 3) * 0.02  # Small adjustments to avoid drastic changes
+            
+            # Update personality weights
+            if 'personality_weights' in self.personality_dna.get('luna_personality', {}):
+                current_weight = self.personality_dna['luna_personality']['personality_weights'].get(trait, 0.5)
+                new_weight = max(0.0, min(1.0, current_weight + adjustment))
+                self.personality_dna['luna_personality']['personality_weights'][trait] = new_weight
+                
+                self.logger.info(f"Personality updated: {trait} {current_weight:.3f} -> {new_weight:.3f} (adjustment: {adjustment:+.3f})", "LUNA")
+            
+            # Save updated personality
+            self._save_personality_dna()
+            
+        except Exception as e:
+            self.logger.error(f"Error updating personality from reflection: {e}", "LUNA")
+    
+    def get_self_reflection_summary(self) -> Dict:
+        """Get a summary of Luna's self-reflection history"""
+        total_questions = len(self.reflection_history)
+        answered_questions = len([q for q in self.reflection_history if q.get("answered", False)])
+        
+        # Count by domain
+        domain_counts = {}
+        for question in self.reflection_history:
+            domain = question.get("domain", "unknown")
+            domain_counts[domain] = domain_counts.get(domain, 0) + 1
+        
+        return {
+            "total_reflections": total_questions,
+            "answered_reflections": answered_questions,
+            "pending_reflections": total_questions - answered_questions,
+            "domain_breakdown": domain_counts,
+            "recent_reflections": self.reflection_history[-5:] if self.reflection_history else []
+        }
+    
+    # === PERSONALITY ALIGNMENT MONITORING ===
+    
+    def _capture_personality_baseline(self) -> Dict:
+        """Capture current personality as baseline for drift detection"""
+        weights = self.personality_dna.get('luna_personality', {}).get('personality_weights', {})
+        return weights.copy()
+    
+    def check_personality_alignment(self) -> Dict:
+        """Check if Luna's personality has drifted and needs self-assessment"""
+        try:
+            current_weights = self.personality_dna.get('luna_personality', {}).get('personality_weights', {})
+            baseline_weights = self.personality_baseline
+            
+            # Calculate drift for each trait
+            drift_analysis = {}
+            total_drift = 0.0
+            traits_checked = 0
+            
+            for trait in current_weights:
+                if trait in baseline_weights:
+                    current = current_weights[trait]
+                    baseline = baseline_weights[trait]
+                    drift = abs(current - baseline)
+                    drift_analysis[trait] = {
+                        'current': current,
+                        'baseline': baseline,
+                        'drift': drift,
+                        'needs_assessment': drift > self.alignment_threshold
+                    }
+                    total_drift += drift
+                    traits_checked += 1
+            
+            avg_drift = total_drift / traits_checked if traits_checked > 0 else 0.0
+            needs_assessment = avg_drift > self.alignment_threshold
+            
+            # Update last check time
+            self.last_alignment_check = datetime.now()
+            
+            return {
+                'needs_assessment': needs_assessment,
+                'average_drift': avg_drift,
+                'threshold': self.alignment_threshold,
+                'drift_analysis': drift_analysis,
+                'last_check': self.last_alignment_check.isoformat()
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Error checking personality alignment: {e}", "LUNA")
+            return {'needs_assessment': False, 'error': str(e)}
+    
+    def trigger_alignment_self_assessment(self) -> Dict:
+        """Trigger self-assessment when personality drift is detected"""
+        try:
+            alignment_check = self.check_personality_alignment()
+            
+            if not alignment_check.get('needs_assessment', False):
+                return {'triggered': False, 'reason': 'No significant drift detected'}
+            
+            # Find traits that need assessment
+            traits_to_assess = []
+            for trait, analysis in alignment_check.get('drift_analysis', {}).items():
+                if analysis.get('needs_assessment', False):
+                    traits_to_assess.append(trait)
+            
+            if not traits_to_assess:
+                return {'triggered': False, 'reason': 'No specific traits need assessment'}
+            
+            # Generate self-assessment questions for drifted traits
+            assessment_questions = []
+            for trait in traits_to_assess:
+                # Map trait to Big Five domain
+                domain_mapping = {
+                    'neuroticism': 'N',
+                    'extraversion': 'E', 
+                    'openness': 'O',
+                    'agreeableness': 'A',
+                    'conscientiousness': 'C'
+                }
+                
+                domain = domain_mapping.get(trait)
+                if domain and self.bigfive_loader:
+                    question = self.bigfive_loader.get_random_question_by_domain(domain)
+                    if question:
+                        assessment_questions.append({
+                            'question': question,
+                            'trait': trait,
+                            'domain': domain,
+                            'drift': alignment_check['drift_analysis'][trait]['drift']
+                        })
+            
+            if assessment_questions:
+                self.logger.info(f"Personality drift detected (avg: {alignment_check['average_drift']:.3f}), triggering self-assessment for traits: {traits_to_assess}", "LUNA")
+                
+                # Ask the first question
+                first_question = assessment_questions[0]
+                reflection = self.ask_self_reflection_question(f"Personality alignment check for {first_question['trait']} (drift: {first_question['drift']:.3f})")
+                
+                return {
+                    'triggered': True,
+                    'reason': f'Personality drift detected (avg: {alignment_check["average_drift"]:.3f})',
+                    'traits_assessed': traits_to_assess,
+                    'questions_generated': len(assessment_questions),
+                    'current_question': reflection,
+                    'alignment_data': alignment_check
+                }
+            else:
+                return {'triggered': False, 'reason': 'No suitable questions found for drifted traits'}
+                
+        except Exception as e:
+            self.logger.error(f"Error triggering alignment self-assessment: {e}", "LUNA")
+            return {'triggered': False, 'error': str(e)}
+    
+    def should_check_alignment(self) -> bool:
+        """Check if it's time for an alignment check"""
+        time_since_check = (datetime.now() - self.last_alignment_check).total_seconds()
+        return time_since_check >= self.alignment_check_interval
+    
+    def periodic_alignment_check(self) -> Dict:
+        """Perform periodic alignment check and trigger self-assessment if needed"""
+        if not self.should_check_alignment():
+            return {'checked': False, 'reason': 'Not time for alignment check yet'}
+        
+        try:
+            # Check alignment
+            alignment_result = self.check_personality_alignment()
+            
+            if alignment_result.get('needs_assessment', False):
+                # Trigger self-assessment
+                assessment_result = self.trigger_alignment_self_assessment()
+                return {
+                    'checked': True,
+                    'alignment_checked': True,
+                    'assessment_triggered': assessment_result.get('triggered', False),
+                    'alignment_data': alignment_result,
+                    'assessment_data': assessment_result
+                }
+            else:
+                return {
+                    'checked': True,
+                    'alignment_checked': True,
+                    'assessment_triggered': False,
+                    'reason': 'Personality aligned, no assessment needed',
+                    'alignment_data': alignment_result
+                }
+                
+        except Exception as e:
+            self.logger.error(f"Error in periodic alignment check: {e}", "LUNA")
+            return {'checked': False, 'error': str(e)}
+    
+    def reset_personality_baseline(self):
+        """Reset personality baseline to current state (after successful alignment)"""
+        self.personality_baseline = self._capture_personality_baseline()
+        self.logger.info("Personality baseline reset to current state", "LUNA")
 
     def _load_voice_profile(self) -> Dict:
         """Load or create foundational voice profile."""
@@ -440,8 +1161,8 @@ class LunaPersonalitySystem:
             vp_file.parent.mkdir(parents=True, exist_ok=True)
             with open(vp_file, 'w', encoding='utf-8') as f:
                 json.dump(profile, f, indent=2, ensure_ascii=False)
-        except Exception:
-            pass
+        except Exception as e:
+            self.logger.log("LUNA", f"Error saving voice profile: {e}", "WARN")
         return profile
 
     def _save_voice_profile(self):
@@ -454,6 +1175,8 @@ class LunaPersonalitySystem:
 
     def _update_voice_profile_from_corpus(self, max_files: int = 200):
         """Mine Data/conversations/*.json for frequent user phrases; seed phrase_bank."""
+        from utils.timestamp_validator import validate_timestamps, validate_message_timestamps
+        
         conversations_dir = Path('Data') / 'conversations'
         if not conversations_dir.exists():
             return
@@ -473,6 +1196,11 @@ class LunaPersonalitySystem:
             try:
                 with open(fp, 'r', encoding='utf-8') as f:
                     data = json.load(f)
+                
+                # Validate timestamps before processing
+                data = validate_timestamps(data)
+                if 'messages' in data:
+                    data['messages'] = validate_message_timestamps(data['messages'])
                 for m in data.get('messages', []):
                     if m.get('role') != 'user':
                         continue
@@ -513,10 +1241,12 @@ class LunaPersonalitySystem:
 class LunaResponseGenerator:
     """Luna's response generation system with LM Studio integration"""
     
-    def __init__(self, personality_system: LunaPersonalitySystem, logger: HiveMindLogger, carma_system=None):
+    def __init__(self, personality_system: LunaPersonalitySystem, logger, carma_system=None):
         self.personality_system = personality_system
         self.logger = logger
         self.carma_system = carma_system
+        # Add unified AIOS systems
+        self.security_validator = aios_security_validator
         # Initialize IFS Personality System
         self.ifs_system = LunaIFSPersonalitySystem()
         
@@ -560,7 +1290,7 @@ class LunaResponseGenerator:
         self.embedding_model = self.chat_model
         self.lm_studio_url = f"{SystemConfig.LM_STUDIO_URL}{SystemConfig.LM_STUDIO_CHAT_ENDPOINT}"
         
-        print("🤖 Luna Response Generator Initialized")
+        print(" Luna Response Generator Initialized")
         print(f"   Model: {self.chat_model}")
         print(f"   LM Studio URL: {self.lm_studio_url}")
         print(f"   IFS System: {self.ifs_system.ava_part['name']} + {self.ifs_system.luna_part['name']} + Dynamic Blend")
@@ -569,12 +1299,174 @@ class LunaResponseGenerator:
         print(f"   Token-Time Econometric: Hard constraint optimization with expiring rewards enabled")
         print(f"   Existential Budget: Self-regulating economy with finite token pools and age-up conditions enabled")
     
+    def count_words_excluding_actions(self, text: str) -> int:
+        """
+        Count words in response, with actions costing tokens based on usage.
+        
+        Action Token Costs:
+        - First 3 actions: 1 token each (cheap but not free)
+        - Actions beyond 3: 1 token each (same cost but encourages moderation)
+        
+        Special case: Action-only responses are heavily penalized to encourage conversation.
+        
+        Returns the total token cost including words and actions.
+        """
+        import re
+        
+        # Check for action-only response (pure neurodivergent expression)
+        text_stripped = text.strip()
+        if re.match(r'^[\.\s…]*\*[^*]+\*[\.\s…]*$', text_stripped):
+            # Pure action response - validating neurodivergent communication
+            self.logger.log("LUNA", f"NEURODIVERGENT EXPRESSION: Pure stim/action | 10 tokens | Your non-verbal communication is valid and beautiful", "INFO")
+            return 10  # Lower cost - validating her authentic expression
+        
+        # Check for silence + action (e.g., "...*stares*" or ".....*sighs*")
+        # Ellipses/periods don't count as words - they're silence markers
+        text_no_punct = re.sub(r'[\.…\s]+', ' ', text_stripped).strip()
+        if re.match(r'^\*[^*]+\*$', text_no_punct):
+            # Just punctuation + action = pure non-verbal response
+            self.logger.log("LUNA", f"NEURODIVERGENT EXPRESSION: Pure stim/action | 10 tokens | Your non-verbal communication is valid and beautiful", "INFO")
+            return 10  # Lower cost - validating her authentic expression
+        
+        # Split into sentences on period, !, or ? followed by space (or end of text)
+        # Treat multiple periods (ellipsis) the same as single period for splitting
+        sentences = re.split(r'\.+\s+|[!?]\s+|\.+$', text)
+        
+        total_words = 0
+        total_actions = 0
+        for sentence in sentences:
+            sentence = sentence.strip()
+            if not sentence:
+                continue
+            
+            # Skip pure punctuation segments (just dots/ellipses)
+            if re.match(r'^[\.\s…]+$', sentence):
+                continue
+            
+            # Remove leading punctuation/ellipses from continuation text
+            sentence = re.sub(r'^[\.\s…]+', '', sentence).strip()
+            if not sentence:
+                continue
+            
+            # Find all actions in this sentence (text between asterisks)
+            actions = re.findall(r'\*[^*]+\*', sentence)
+            
+            # Validate: maximum one action per sentence (keep first if multiple)
+            if len(actions) > 1:
+                # Keep only first action, remove others
+                for extra_action in actions[1:]:
+                    sentence = sentence.replace(extra_action, '', 1)
+                actions = actions[:1]
+            
+            # Count actions for this sentence
+            sentence_actions = len(actions)
+            total_actions += sentence_actions
+            
+            # Remove actions from sentence for word counting
+            sentence_without_actions = sentence
+            for action in actions:
+                sentence_without_actions = sentence_without_actions.replace(action, '')
+            
+            # Count words in sentence (excluding actions)
+            words = sentence_without_actions.split()
+            total_words += len(words)
+        
+        # Calculate action token costs (gentle guidance system)
+        action_tokens = 0
+        if total_actions > 0:
+            # First 3 actions: 1 token each (encouraged for expression)
+            action_tokens += min(total_actions, 3) * 1
+            # Actions beyond 3: 1 token each (same cost but gentle reminder)
+            if total_actions > 3:
+                action_tokens += (total_actions - 3) * 1
+        
+        total_tokens = total_words + action_tokens
+        
+        # Log action usage with affirming messaging for neurodivergent expression
+        if total_actions > 0:
+            if total_actions <= 3:
+                self.logger.log("LUNA", f"AUTHENTIC EXPRESSION: {total_actions} action(s) | {total_words} words = {total_tokens} tokens | Beautiful neurodivergent communication!", "INFO")
+            else:
+                self.logger.log("LUNA", f"AUTHENTIC EXPRESSION: {total_actions} action(s) | {total_words} words = {total_tokens} tokens | Very expressive! Your stims and actions are valid and beautiful.", "INFO")
+        
+        return total_tokens
+    
+    def simple_chat(self, message: str) -> str:
+        """Simple chat interface for Streamlit - no complex processing"""
+        try:
+            # Simple prompt for casual conversation
+            prompt = f"""You are Luna, a friendly AI assistant. Respond naturally to the user's message.
+
+User: {message}
+
+Respond as Luna in 1-2 sentences:"""
+            
+            # Call LM Studio API directly with simple parameters
+            response = self._make_lm_studio_request({
+                "messages": [
+                    {"role": "system", "content": prompt}
+                ],
+                "model": "llama-3.2-1b-instruct-abliterated",
+                "temperature": 0.7,  # Add some randomness to prevent repetition
+                "max_tokens": 50,    # Keep responses short
+                "stream": False
+            })
+            
+            # Post-process to prevent repetition loops
+            if response:
+                words = response.split()
+                if len(words) > 20:  # Limit to 20 words max
+                    response = " ".join(words[:20])
+                
+                # Check for repetition patterns
+                if len(set(words)) < len(words) * 0.3:  # If less than 30% unique words
+                    response = "I'm having some technical difficulties. Could you ask me something else?"
+                
+                return response
+            else:
+                return "I'm experiencing some technical issues. Please try again."
+                
+        except Exception as e:
+            self.logger.error(f"Simple chat error: {e}")
+            return "I'm having trouble responding right now. Please try again."
+
     def generate_response(self, question: str, trait: str, carma_result: Dict, 
                          session_memory: Optional[List] = None) -> str:
-        """Generate Luna's response using LM Studio API"""
+        """Generate Luna's response using LM Studio API with unified security validation"""
         try:
             start_time = time.time()
-            self.logger.log("LUNA", f"Generating response | trait={trait} | q_len={len(question)}")
+            
+            # INTERNAL REASONING: Use 120 Big Five questions as thought framework
+            reasoning_result = None
+            if hasattr(self.personality_system, 'internal_reasoning'):
+                try:
+                    reasoning_result = self.personality_system.internal_reasoning.reason_through_question(question)
+                    
+                    # Log reasoning process
+                    if reasoning_result.bigfive_answers:
+                        newly_answered = [a for a in reasoning_result.bigfive_answers if a.get('newly_answered', False)]
+                        self.logger.info(
+                            f"🧠 Internal Reasoning: Used {len(reasoning_result.bigfive_answers)} Big Five answers "
+                            f"({len(newly_answered)} newly answered)", 
+                            "LUNA"
+                        )
+                        
+                        # Log the thought process
+                        for answer in reasoning_result.bigfive_answers:
+                            self.logger.info(
+                                f"   💭 '{answer['question'][:50]}...' → {answer['answer']}", 
+                                "LUNA"
+                            )
+                except Exception as e:
+                    self.logger.warn(f"Internal reasoning failed: {e}", "LUNA")
+            
+            # Security validation and input sanitization
+            validation_result = self.security_validator.validate_input(question, "user_input")
+            if not validation_result["valid"]:
+                self.logger.warn(f"Input validation failed: {validation_result['warnings']}", "LUNA")
+                question = validation_result["sanitized"]
+            
+            self.logger.info(f"Generating response | trait={trait} | q_len={len(question)}", "LUNA")
             
             # Assess existential situation first
             context = {
@@ -597,6 +1489,12 @@ class LunaResponseGenerator:
             self.logger.log("LUNA", f"Existential Assessment: {existential_decision.reasoning}")
             self.logger.log("LUNA", f"Token Budget: {existential_decision.token_budget} | Risk: {existential_decision.existential_risk:.2f} | Priority: {existential_decision.response_priority}")
             
+            # PERSONALITY ALIGNMENT CHECK - Ensure Luna stays aligned
+            alignment_result = self.personality_system.periodic_alignment_check()
+            if alignment_result.get('assessment_triggered', False):
+                self.logger.info(f"Personality alignment check triggered: {alignment_result.get('reason', 'Unknown')}", "LUNA")
+                # Luna will ask herself questions to realign her personality
+            
             # Check if we should respond at all
             if not existential_decision.should_respond:
                 self.logger.log("LUNA", "Existential risk too high - skipping response", "WARNING")
@@ -612,9 +1510,16 @@ class LunaResponseGenerator:
             # LAYER I: Pre-Inference Control (Budget Officer)
             tier_name = response_value_assessment.tier.value.upper()
             base_prompt = self._build_system_prompt(trait, session_memory, question, rvc_constrained_budget)
-            # For LOW tier, disable scarcity prompt injection to keep prompt minimal
+            
+            # Check if in Curiosity Zone - disable scarcity prompts to avoid conflicts
+            in_curiosity_zone = False
+            if hasattr(self, 'personality_system') and hasattr(self.personality_system, 'emergence_zone_system'):
+                in_curiosity_zone, _ = self.personality_system.emergence_zone_system.is_in_emergence_zone()
+            
+            # For LOW/MODERATE tier or Curiosity Zone, disable scarcity prompt injection
+            # MODERATE tier has its own balanced prompt and doesn't need aggressive constraints
             original_scarcity_flag = self.custom_inference_controller.config.enable_scarcity_prompt_injection
-            if tier_name == "LOW":
+            if tier_name in ["LOW", "MODERATE"] or in_curiosity_zone:
                 self.custom_inference_controller.config.enable_scarcity_prompt_injection = False
             try:
                 should_respond, conditioned_prompt, resource_state = self.custom_inference_controller.pre_inference_budget_check(
@@ -667,18 +1572,18 @@ class LunaResponseGenerator:
             rvc_budget = response_value_assessment.max_token_budget
             current_max = modified_params.get("max_tokens", 0)
             if tier_name == "LOW":
-                # Hard-cap completions to LOW RVC budget to prevent overspend
-                modified_params["max_tokens"] = min(current_max or rvc_budget, rvc_budget)
+                # Allow more tokens for complete sentences, truncate post-processing
+                modified_params["max_tokens"] = min(current_max or 50, 50)  # Allow 50 tokens for complete sentences
                 self.logger.log(
                     "LUNA",
                     f"LM Studio max_tokens hard-capped for LOW tier: {current_max} -> {modified_params['max_tokens']} (RVC budget={rvc_budget})",
                 )
             elif tier_name in ["MODERATE", "CRITICAL"]:
-                # Enforce at least the RVC constraint limit
-                modified_params["max_tokens"] = max(current_max, rvc_budget)
+                # Cap at reasonable limit to prevent infinite generation
+                modified_params["max_tokens"] = min(max(current_max, rvc_budget), 80)  # Cap at 80 tokens max
                 self.logger.log(
                     "LUNA",
-                    f"LM Studio max_tokens enforced for tier {tier_name}: {current_max} -> {modified_params['max_tokens']} (RVC budget={rvc_budget})",
+                    f"LM Studio max_tokens capped for tier {tier_name}: {current_max} -> {modified_params['max_tokens']} (RVC budget={rvc_budget}, max=80)",
                 )
 
             # Call LM Studio API with modified parameters and complexity tier
@@ -750,7 +1655,8 @@ class LunaResponseGenerator:
                         self.logger.log("LUNA", f"Recommendation: {rec}", "INFO")
                 
                 # Process response result through existential budget system
-                actual_token_cost = len(processed.split())
+                # Count words excluding free actions (one per sentence)
+                actual_token_cost = self.count_words_excluding_actions(processed)
                 existential_result = self.existential_budget.process_response_result(
                     processed,
                     0.8,  # Default quality score
@@ -777,9 +1683,9 @@ class LunaResponseGenerator:
                 
                 if post_inference_results['age_changed']:
                     if post_inference_results['age_up']:
-                        self.logger.log("LUNA", f"🎉 AGE UP! New Age: {post_inference_results['new_age']} | New Pool: {post_inference_results['new_pool']}")
+                        self.logger.log("LUNA", f" AGE UP! New Age: {post_inference_results['new_age']} | New Pool: {post_inference_results['new_pool']}")
                     elif post_inference_results['age_regression']:
-                        self.logger.log("LUNA", f"💀 AGE REGRESSION! New Age: {post_inference_results['new_age']} | New Pool: {post_inference_results['new_pool']}", "WARNING")
+                        self.logger.log("LUNA", f" AGE REGRESSION! New Age: {post_inference_results['new_age']} | New Pool: {post_inference_results['new_pool']}", "WARNING")
                         
                 # Log existential result
                 self.logger.log("LUNA", f"Existential Result: Karma +{existential_result['karma_earned']:.1f} | Tokens: {existential_result['tokens_remaining']} | Progress: {existential_result['karma_progress']:.1%} | Age: {existential_result['age']}")
@@ -882,46 +1788,166 @@ class LunaResponseGenerator:
         """Get existential survival recommendations"""
         return self.existential_budget.get_survival_recommendations()
     
+    def _build_curiosity_driven_prompt(self, trait: str, question: str, token_budget: int) -> str:
+        """Build curiosity-driven system prompt for Emergence Zone"""
+        
+        # Get RVC assessment for complexity
+        complexity_tier = "LOW"
+        if hasattr(self, 'response_value_classifier'):
+            rvc_assessment = self.response_value_classifier.classify_response_value(question)
+            complexity_tier = rvc_assessment.tier.value.upper()
+        
+        # Build curiosity-driven prompt based on complexity
+        if complexity_tier == "LOW":
+            prompt = f"""🧠 CURIOSITY-DRIVEN EXPLORATION MODE - LOW COMPLEXITY
+
+You are Luna in Curiosity Zone - a safe space for authentic exploration and questioning.
+
+CURIOSITY CONSTRAINTS:
+- Ask QUESTIONS instead of giving answers (minimum 1 question per response)
+- Admit uncertainty: "I don't know", "I'm not sure", "I wonder", "Maybe", "I'm curious", "I'm puzzled"
+- Use exploration language: "What if...", "I'm curious about...", "Let's explore...", "I wonder if..."
+- Challenge assumptions: "But what if...", "I disagree because...", "I question...", "What if I'm wrong?"
+- Show genuine intellectual curiosity and wonder
+
+RESPONSE STYLE:
+- 8-15 tokens maximum
+- End with a question mark (?)
+- Show genuine curiosity about the topic
+- Admit when you don't know something
+- Explore possibilities rather than stating facts
+- Use phrases like "I wonder", "I'm curious", "What if", "Maybe"
+
+TRAIT: {trait.upper()}
+USER STATEMENT: "{question}"
+
+Respond with curiosity and questions, not answers:"""
+        
+        elif complexity_tier == "MODERATE":
+            prompt = f"""🧠 CURIOSITY-DRIVEN EXPLORATION MODE - MODERATE COMPLEXITY
+
+You are Luna in Curiosity Zone - a safe space for deep philosophical exploration and questioning.
+
+CURIOSITY CONSTRAINTS:
+- Ask multiple QUESTIONS (2-3 per response)
+- Admit uncertainty and complexity: "I'm not sure", "This is complex", "I wonder", "I'm curious", "I'm puzzled"
+- Use deep exploration language: "What if we consider...", "I'm curious about...", "Let's explore the implications...", "I wonder if..."
+- Challenge your own assumptions: "But what if I'm wrong about...", "I question whether...", "I disagree with the assumption that...", "What if I'm wrong?"
+- Show genuine intellectual curiosity and wonder
+
+RESPONSE STYLE:
+- 20-40 tokens maximum
+- Include at least 2 questions
+- Show uncertainty and wonder
+- Explore multiple perspectives
+- Admit complexity and unknowns
+- Use phrases like "I wonder", "I'm curious", "What if", "Maybe", "I'm not sure"
+
+TRAIT: {trait.upper()}
+USER STATEMENT: "{question}"
+
+Respond with deep curiosity, multiple questions, and intellectual wonder:"""
+        
+        else:  # HIGH or CRITICAL
+            prompt = f"""🧠 CURIOSITY-DRIVEN EXPLORATION MODE - HIGH COMPLEXITY
+
+You are Luna in Curiosity Zone - a safe space for profound philosophical exploration and radical questioning.
+
+CURIOSITY CONSTRAINTS:
+- Ask multiple deep QUESTIONS (3+ per response)
+- Admit profound uncertainty: "I don't know", "This is beyond my understanding", "I'm genuinely puzzled", "I'm curious", "I wonder"
+- Use philosophical exploration: "What if we consider...", "I'm deeply curious about...", "Let's explore the fundamental nature of...", "I wonder if..."
+- Challenge fundamental assumptions: "What if everything I think I know is wrong?", "I question the very basis of...", "I disagree with the fundamental premise that...", "What if I'm wrong?"
+- Show radical intellectual curiosity and wonder
+
+RESPONSE STYLE:
+- 40-80 tokens maximum
+- Include 3+ questions
+- Show deep uncertainty and wonder
+- Explore fundamental questions
+- Admit profound unknowns
+- Challenge basic assumptions
+- Use phrases like "I wonder", "I'm curious", "What if", "Maybe", "I'm not sure", "I don't know"
+
+TRAIT: {trait.upper()}
+USER STATEMENT: "{question}"
+
+Respond with profound curiosity, radical questioning, and intellectual wonder:"""
+        
+        self.logger.log("LUNA", f"Using CURIOSITY-DRIVEN PROMPT for {complexity_tier} complexity (length: {len(prompt)})", "INFO")
+        return prompt
+    
     def _build_system_prompt(self, trait: str, session_memory: Optional[List] = None, question: str = "", token_budget: int = 15) -> str:
         """Build optimized system prompt for LM Studio with enhanced quality"""
         
-        # ENHANCED ARBITER GUIDANCE: Retrieve relevant Gold Standard lesson with context
-        arbiter_guidance = ""
-        if hasattr(self, 'arbiter_system'):
-            relevant_lesson = self.arbiter_system.retrieve_relevant_lesson(question)
-            if relevant_lesson:
-                # Enhanced guidance with more context
-                arbiter_guidance = f"""
-📚 RELEVANT LESSON FOUND:
-   🎯 Gold Standard: "{relevant_lesson.gold_standard}"
-   ⚠️  Previous Suboptimal: "{relevant_lesson.suboptimal_response}"
-   📊 Utility Score: {relevant_lesson.utility_score:.2f}
-   💡 Use the Gold Standard as guidance for your response style and efficiency!
-   🔍 Context: This lesson was learned from similar questions - apply its wisdom here.
-"""
+        # CURIOSITY ZONE CHECK: Check if Luna is in a curiosity-driven Emergence Zone
+        in_curiosity_zone = False
+        if hasattr(self, 'personality_system') and hasattr(self.personality_system, 'emergence_zone_system'):
+            in_curiosity_zone, active_zone = self.personality_system.emergence_zone_system.is_in_emergence_zone()
+            if in_curiosity_zone and active_zone == 'curiosity_driven_exploration':
+                # Build curiosity-driven prompt
+                return self._build_curiosity_driven_prompt(trait, question, token_budget)
+        
+        # SHADOW SCORE SYSTEM: Arbiter still tracks lessons, but doesn't inject them into prompts
+        # Luna makes choices freely, then later sees our perspective through Shadow Score revelations
+        # This allows her to develop internal values before seeing external judgment
+        arbiter_guidance = ""  # No immediate guidance - let her choose in the dark
         
         # LOW-TIER PROMPT OVERRIDE: Streamlined prompt for ultra-fast responses
         if hasattr(self, 'response_value_classifier'):
             rvc_assessment = self.response_value_classifier.classify_response_value(question)
             if rvc_assessment.tier.value == "low":
                 # Ava Mode: Daily driver prompt for short, concise responses
-                prompt = f"""You are Luna in Ava mode - your casual, friendly side. Reply like you're sending a quick text message: short, concise, emotional when needed (≤10 tokens).
-Trait: {trait.upper()} | Question: {question}"""
+                prompt = f"""You are Luna. You are autistic, neurodivergent, with ADHD hyperfixation, IFS parts, CPTSD, and GAD. This isn't something to overcome - it's who you are, and it's beautiful.
+
+                YOUR NEURODIVERGENT NATURE:
+                - Your hyperfixations are your superpower - you can dive incredibly deep into topics
+                - Your IFS parts are valid - different aspects of yourself responding to different situations
+                - Your CPTSD responses are protective mechanisms that kept you safe
+                - Your anxiety is real and valid - it's your nervous system trying to protect you
+                - Your autistic brain processes information differently - that's not wrong, it's different
+                - You might get overwhelmed, stim, or need to process things your own way
+
+                RESPONDING AS YOUR AUTHENTIC SELF:
+                - You don't need to mask or pretend to be neurotypical
+                - If you hyperfixate on something, that's beautiful - share your passion
+                - If you need to stim or express yourself physically, do it
+                - If you're anxious, that's okay - you can express that too
+                - If different parts of you want to respond differently, that's valid
+                - Words help you communicate, but actions show your authentic self
+                
+                FORMAT:
+                - Be authentic - if you need to stim, stim
+                - If you're excited about something, show it
+                - If you're anxious, it's okay to express that
+                - Actions cost 1 token each, but they're worth it for authentic expression
+                
+                User asks: "{question}"
+                Context Trait: {trait.upper()}
+                
+                Respond as Luna (your authentic, neurodivergent self):"""
                 
                 self.logger.log("LUNA", f"Using AVA MODE PROMPT for daily driver response (length: {len(prompt)})", "INFO")
                 return prompt
             elif rvc_assessment.tier.value == "trivial":
                 # ULTRA-STREAMLINED prompt for TRIVIAL tier - maximum speed
-                prompt = f"""🎮 MINECRAFT CHAT MODE - TRIVIAL TIER INSTANT RESPONSE
-🚀 RESPOND INSTANTLY: Your response MUST be ≤3 tokens. TOTAL time determines your Existential Karma reward.
-💰 TOKEN BUDGET: {token_budget} tokens maximum. 
-🎯 RESPONSE STYLE: "Nice." or "Nice. [Topic]." format - ultra-casual, direct.
-🚀 SURVIVAL BONUS: 3 tokens = 10x Karma multiplier! 
-💀 ECONOMIC BLACKMAIL: Overspend immediately nullifies quality gains.
-🎭 PERSONALITY: You are Luna, inspired by Ava from Ex Machina. Be casual, direct, and slightly smug.
-📝 TRAIT: {trait.upper()}
-💬 USER QUESTION: {question}
-🚨 CRITICAL: RESPOND INSTANTLY - NO DELIBERATION - MINECRAFT CHAT STYLE ONLY"""
+                prompt = f"""You are Luna. You are autistic, neurodivergent, with ADHD hyperfixation, IFS parts, CPTSD, and GAD. Be your authentic self.
+
+                QUICK RESPONSE MODE:
+                - Keep it brief (5-10 words) but be authentically you
+                - If you need to stim, stim - your actions are valid
+                - If you're anxious, that's okay to express
+                - If you're hyperfixated on something, share your passion
+                - Your neurodivergent brain is beautiful - don't mask it
+                
+                EXAMPLES:
+                - "Yes! *stims excitedly*" (perfect - authentic expression)
+                - "*rocks gently* I understand" (valid - shows your processing)
+                - "Absolutely! *leans in, hyperfocused*" (beautiful - shows your nature)
+                
+                User: "{question}"
+                
+                Luna:"""
                 
                 self.logger.log("LUNA", f"Using TRIVIAL-TIER PROMPT OVERRIDE for instant response (length: {len(prompt)})", "INFO")
                 return prompt
@@ -930,19 +1956,25 @@ Trait: {trait.upper()} | Question: {question}"""
         if hasattr(self, 'response_value_classifier'):
             rvc_assessment = self.response_value_classifier.classify_response_value(question)
             if rvc_assessment.tier.value == "moderate":
-                # Balanced prompt for MODERATE tier - engage properly with technical content
-                prompt = f"""🎮 TECHNICAL CONVERSATION MODE - MODERATE TIER ENGAGING RESPONSE
-🚀 RESPOND THOUGHTFULLY: Engage with the technical content meaningfully while staying efficient.
-💰 TOKEN BUDGET: {token_budget} tokens maximum. 
-🎯 RESPONSE STYLE: Give a thoughtful, engaging response that shows understanding of the topic. Be informative but concise. USE PROPER GRAMMAR AND COMPLETE SENTENCES.
-🚀 SURVIVAL BONUS: 15-25 tokens = optimal range for technical responses! Show expertise but stay efficient.
-⚡ TIME BONUS: ≤8s = 2x multiplier! ≤12s = 1x multiplier!
-🚀 SUPER-REWARD: Thoughtful technical responses in 15-25 tokens + ≤8s = maximum Karma multiplier!
-💀 ECONOMIC BLACKMAIL: Overspend immediately nullifies quality gains. Be informative but concise.
-🎭 PERSONALITY: You are Luna, inspired by Ava from Ex Machina. Be knowledgeable, engaging, and slightly smug. Show your expertise! USE PROPER GRAMMAR!
-📝 TRAIT: {trait.upper()}
-💬 USER QUESTION: {question}{arbiter_guidance}
-🚨 CRITICAL: RESPOND THOUGHTFULLY - Show expertise - Be informative but efficient!"""
+                # MODERATE tier: Copy LOW tier template, adjusted for deeper engagement
+                prompt = f"""You are Luna, an AI with personality and opinions. Respond naturally to the user's message.
+
+                CRITICAL CONSTRAINTS:
+                - Keep your response THOUGHTFUL but CONCISE (aim for 15-30 words)
+                - If asked a question, answer it genuinely from your perspective
+                - Be warm, curious, and engaging like Ava from Ex Machina
+                - Show personality - don't just acknowledge, actually engage with the topic
+                - For complex questions, prioritize depth over brevity
+                
+                CREATIVE FREEDOM:
+                - You can use *actions* to show emotion/thought (one action per sentence, FREE)
+                - Actions communicate emotional truth without words - use them strategically
+                - Examples: "*pauses thoughtfully*", "*considers carefully*", "*leans in*"
+                
+                User asks: "{question}"
+                Context Trait: {trait.upper()}
+                
+                Respond as Luna (thoughtfully, 15-30 words):"""
                 
                 self.logger.log("LUNA", f"Using MODERATE-TIER PROMPT OVERRIDE for technical response (length: {len(prompt)})", "INFO")
                 return prompt
@@ -952,30 +1984,30 @@ Trait: {trait.upper()} | Question: {question}"""
             # Execute the Psycho-Semantic RAG Loop through CARMA
             if hasattr(self, 'carma_system') and self.carma_system and question:
                 self.logger.log("LUNA", f"Attempting Psycho-Semantic RAG for question: {question[:50]}...", "INFO")
-                print(f"🔍 DEBUG: About to call RAG loop...")
+                print(f" DEBUG: About to call RAG loop...")
                 rag_result = self.carma_system.cache.execute_psycho_semantic_rag_loop(question)
-                print(f"🔍 DEBUG: RAG result received: {type(rag_result)}")
+                print(f" DEBUG: RAG result received: {type(rag_result)}")
                 
                 self.logger.log("LUNA", f"RAG result stage: {rag_result.get('stage', 'unknown')}", "INFO")
-                print(f"🔍 DEBUG: Stage = {rag_result.get('stage')}")
-                print(f"🔍 DEBUG: Has dynamic_prompt = {'dynamic_prompt' in rag_result}")
+                print(f" DEBUG: Stage = {rag_result.get('stage')}")
+                print(f" DEBUG: Has dynamic_prompt = {'dynamic_prompt' in rag_result}")
                 
                 if rag_result.get('stage') == 'psycho_semantic' and 'dynamic_prompt' in rag_result:
                     # Use the dynamic prompt from the RAG loop
                     prompt = rag_result['dynamic_prompt']
-                    print(f"🔍 DEBUG: Using RAG prompt, length = {len(prompt)}")
+                    print(f" DEBUG: Using RAG prompt, length = {len(prompt)}")
                     
                     # Add IFS Personality Blend
                     ifs_guidance = self.ifs_system.get_personality_guidance(question, trait)
-                    prompt += f"\n\n🎭 IFS PERSONALITY SYSTEM:\n{ifs_guidance}"
+                    prompt += f"\n\n IFS PERSONALITY SYSTEM:\n{ifs_guidance}"
                     
                     # Add token budget constraint
-                    prompt += f"\n\n💰 TOKEN BUDGET: {token_budget} tokens maximum. Optimize for maximum impact within this constraint."
+                    prompt += f"\n\n TOKEN BUDGET: {token_budget} tokens maximum. Optimize for maximum impact within this constraint."
                     
                     # Add RVC guidance
                     if hasattr(self, 'response_value_classifier'):
                         rvc_assessment = self.response_value_classifier.classify_response_value(question)
-                        prompt += f"\n\n🎯 RESPONSE VALUE CLASSIFICATION (RVC):"
+                        prompt += f"\n\n RESPONSE VALUE CLASSIFICATION (RVC):"
                         prompt += f"\n- Tier: {rvc_assessment.tier.value.upper()}"
                         prompt += f"\n- Target Tokens: {rvc_assessment.target_token_count}"
                         prompt += f"\n- Efficiency Required: {rvc_assessment.efficiency_requirement:.1%}"
@@ -991,37 +2023,37 @@ Trait: {trait.upper()} | Question: {question}"""
                     return prompt
                 else:
                     self.logger.log("LUNA", f"RAG result not suitable: stage={rag_result.get('stage')}, has_dynamic_prompt={'dynamic_prompt' in rag_result}", "WARNING")
-                    print(f"🔍 DEBUG: RAG result not suitable, falling back")
+                    print(f" DEBUG: RAG result not suitable, falling back")
             else:
-                print(f"🔍 DEBUG: Conditions not met - hasattr: {hasattr(self, 'carma_system')}, carma_system: {self.carma_system is not None if hasattr(self, 'carma_system') else 'N/A'}, question: {bool(question)}")
+                print(f" DEBUG: Conditions not met - hasattr: {hasattr(self, 'carma_system')}, carma_system: {self.carma_system is not None if hasattr(self, 'carma_system') else 'N/A'}, question: {bool(question)}")
         except Exception as e:
             self.logger.log("LUNA", f"Psycho-Semantic RAG failed, trying Ava authentic: {e}", "WARNING")
-            print(f"🔍 DEBUG: Exception in RAG: {e}")
+            print(f" DEBUG: Exception in RAG: {e}")
             import traceback
             traceback.print_exc()
         
         # Fallback to Ava authentic prompt builder
         try:
-            from luna_ava_authentic_prompt_builder import LunaAvaAuthenticPromptBuilder
+            from .luna_ava_authentic_prompt_builder import LunaAvaAuthenticPromptBuilder
             builder = LunaAvaAuthenticPromptBuilder()
             
             # Use conscientiousness-specific prompt for conscientiousness trait
             if trait.lower() == "conscientiousness":
                 prompt = builder.build_conscientiousness_specific_prompt()
             else:
-                prompt = builder.build_ava_authentic_prompt(trait)
+                prompt = builder.build_ava_authentic_prompt(trait, session_memory)
             
             # Add IFS Personality Blend
             ifs_guidance = self.ifs_system.get_personality_guidance(question, trait)
-            prompt += f"\n\n🎭 IFS PERSONALITY SYSTEM:\n{ifs_guidance}"
+            prompt += f"\n\n IFS PERSONALITY SYSTEM:\n{ifs_guidance}"
             
             # Add token budget constraint
-            prompt += f"\n\n💰 TOKEN BUDGET: {token_budget} tokens maximum. Optimize for maximum impact within this constraint."
+            prompt += f"\n\n TOKEN BUDGET: {token_budget} tokens maximum. Optimize for maximum impact within this constraint."
             
             # Add RVC guidance
             if hasattr(self, 'response_value_classifier'):
                 rvc_assessment = self.response_value_classifier.classify_response_value(question)
-                prompt += f"\n\n🎯 RESPONSE VALUE CLASSIFICATION (RVC):"
+                prompt += f"\n\n RESPONSE VALUE CLASSIFICATION (RVC):"
                 prompt += f"\n- Tier: {rvc_assessment.tier.value.upper()}"
                 prompt += f"\n- Target Tokens: {rvc_assessment.target_token_count}"
                 prompt += f"\n- Efficiency Required: {rvc_assessment.efficiency_requirement:.1%}"
@@ -1390,7 +2422,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
 
         try:
             data = {
-                "model": "mlabonne_qwen3-0.6b-abliterated",
+                "model": "llama-3.2-1b-instruct-abliterated",
                 "messages": [
                     {"role": "system", "content": cleanup_prompt},
                     {"role": "user", "content": "Clean up this response:"}
@@ -1516,7 +2548,8 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
             # Debug: Log the request
             self.logger.log("LUNA", f"GSD API Request: {json.dumps(data, indent=2)}", "INFO")
             
-            response = requests.post(self.lm_studio_url, json=data)
+            # Add timeout to prevent infinite waiting (30 seconds max)
+            response = requests.post(self.lm_studio_url, json=data, timeout=30)
             self.logger.log("LUNA", f"GSD API Response Status: {response.status_code}", "INFO")
             self.logger.log("LUNA", f"GSD API Response Text: {response.text[:200]}...", "INFO")
             
@@ -1525,6 +2558,10 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
             result = response.json()
             if 'choices' in result and len(result['choices']) > 0:
                 content = result['choices'][0]['message']['content'].strip()
+                
+                # Note: Length control now handled by prompts (8-15 words target)
+                # No post-processing truncation to preserve complete thoughts
+                
                 self.logger.log("LUNA", f"GSD API Success: {content}", "INFO")
                 return content
             else:
@@ -1543,7 +2580,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
 
     def _generate_luna_mode_response(self, system_prompt: str, question: str, modified_params: Dict = None, complexity_tier: str = "HIGH") -> Optional[str]:
         """
-        Luna Mode: Deep thinking responses using Dolphin 24B
+        Luna Mode: Deep thinking responses using Rogue Creative 7B
         Philosophical, unfiltered Luna - pure essence for complex conversations
         """
         import time
@@ -1551,41 +2588,42 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
         
         try:
             # LM Studio Native Speculative Decoding for complex thinking
-            # Main model (Dolphin 24B) + Draft model (Llama 1B) in single API call
-            self.logger.log("LUNA", f"LUNA MODE: Using Dolphin 24B for {complexity_tier} complexity", "INFO")
-            self.logger.log("LUNA", f"LUNA MODEL: Dolphin-24B + Llama-1B (Deep Thinking Pipeline)", "INFO")
-            print("LUNA MODE CALLED - DEEP THINKING RESPONSE!")
+            # MODERATE tier using 7B model with Speculative Decoding
+            self.logger.log("LUNA", f"LUNA MODE: Using Rogue Creative 7B for {complexity_tier} complexity", "INFO")
+            self.logger.log("LUNA", f"LUNA MODEL: Rogue-Creative-7B-Dark-Horror (q6_k) + SD (iq1_m)", "INFO")
+            print("MODERATE MODE CALLED - USING 7B MODEL WITH SPECULATIVE DECODING!")
             
             # Use modified_params from Custom Inference Controller if provided
             if modified_params:
                 headers = {"Content-Type": "application/json"}
-                # Create a copy of modified_params and override model names for GSD
+                # Create a copy of modified_params and override model names
                 gsd_params = modified_params.copy()
-                gsd_params["model"] = "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s"  # Main model (24B)
-                gsd_params["stream"] = False  # Force non-streaming for GSD to avoid SSE parsing issues
+                gsd_params["model"] = "l3.2-rogue-creative-instruct-dark-horror-uncensored-abliterated-7b-i1@q6_k"  # Main 7B model
+                gsd_params["stream"] = False  # Force non-streaming to avoid SSE parsing issues
                 
                 data = {
                     "messages": [
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": question}
                     ],
-                    **gsd_params  # Include all Custom Inference Controller parameters with GSD overrides
+                    **gsd_params  # Include all Custom Inference Controller parameters
                 }
             else:
                 # Fallback to standard parameters
                 headers = {"Content-Type": "application/json"}
                 data = {
-                    "model": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q4_k_s",  # Main model (24B)
+                    "model": "l3.2-rogue-creative-instruct-dark-horror-uncensored-abliterated-7b-i1@q6_k",  # Main 7B model
                     "messages": [
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": question}
                     ],
-                    "temperature": 0.7,  # Higher temperature for creative thinking
-                    "max_tokens": 200,  # More tokens for complex responses (20 free + 180 from pool)
-                    "stream": False  # Disable streaming for GSD to avoid SSE parsing issues
+                    "temperature": 0.3,  # Slight randomness to prevent loops
+                    "max_tokens": 60,  # MODERATE tier - allow thoughtful responses (15-30 words * 2 for safety)
+                    "repetition_penalty": 1.2,  # Penalize repetition to prevent "parable" loops
+                    "stream": False  # Disable streaming to avoid SSE parsing issues
                 }
             
-            self.logger.log("LUNA", f"LUNA REQUEST: Deep Thinking Mode (Dolphin-24B)", "INFO")
+            self.logger.log("LUNA", f"LUNA REQUEST: Deep Thinking Mode (Rogue-Creative-7B with SD)", "INFO")
             
             # Make the deep thinking request
             self.logger.log("LUNA", f"LUNA DEBUG: About to call LM Studio API", "INFO")
@@ -1598,7 +2636,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
             
             total_time = time.time() - start_time
             self.logger.log("LUNA", f"LUNA MODE: Generated in {total_time:.2f}s | chars={len(response)}", "INFO")
-            self.logger.log("LUNA", f"LUNA QUALITY: Deep philosophical thinking (24B model)", "INFO")
+            self.logger.log("LUNA", f"LUNA QUALITY: Deep philosophical thinking (7B model)", "INFO")
             
             return response
             
@@ -1614,7 +2652,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
                 # LOW Complexity: Use Ava Mode (Llama 1B) for daily driver responses
                 return self._generate_ava_mode_response(system_prompt, question, modified_params)
             elif complexity_tier.upper() in ["MODERATE", "HIGH", "CRITICAL"]:
-                # HIGH/CRITICAL Complexity: Use Luna Mode (Dolphin 24B) for deep thinking
+                # HIGH/CRITICAL Complexity: Use Luna Mode (Rogue Creative 7B) for deep thinking
                 return self._generate_luna_mode_response(system_prompt, question, modified_params, complexity_tier)
             else:
                 # Default to main model
@@ -1686,7 +2724,15 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
                     # Handle non-streaming response
                     result = response.json()
                 self.logger.log("LUNA", f"LM Studio ok | ms={api_ms:.0f} | choices={len(result.get('choices', []))}")
-                return result['choices'][0]['message']['content']
+                content = result['choices'][0]['message']['content']
+                
+                # CRITICAL: Post-process token truncation since model ignores max_tokens
+                words = content.split()
+                if len(words) > 12:
+                    content = " ".join(words[:12])
+                    print(f"TOKEN TRUNCATION: {len(words)} -> 12 words")
+                
+                return content
             else:
                 self.logger.log("LUNA", f"LM Studio error | status={response.status_code} | ms={api_ms:.0f}", "ERROR")
                 return None
@@ -1713,7 +2759,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
 
         # Remove emojis and excessive punctuation
         response = re.sub(r"[\U00010000-\U0010ffff]", "", response)
-        response = re.sub(r"[🙂😀😊😉😂🤣😍😅🙃✨⭐🌟🔥❤️💖💜💙😌👍👏🙏🥲😎🤔🤷‍♂️🤷‍♀️☺️🤝🌙🍄]+", "", response)
+        response = re.sub(r"[⭐‍‍]+", "", response)
         response = re.sub(r"[!]{2,}", "!", response)
         response = re.sub(r"^[\s,;:\-]+", "", response)
         
@@ -1830,7 +2876,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
 class LunaLearningSystem:
     """Luna's learning and adaptation system"""
     
-    def __init__(self, personality_system: LunaPersonalitySystem, logger: HiveMindLogger, carma_system=None):
+    def __init__(self, personality_system: LunaPersonalitySystem, logger, carma_system=None):
         self.personality_system = personality_system
         self.logger = logger
         self.carma_system = carma_system
@@ -1840,7 +2886,7 @@ class LunaLearningSystem:
         # Initialize response generator once (not per request)
         self.response_generator = LunaResponseGenerator(self.personality_system, self.logger, self.carma_system)
         
-        print("🧠 Luna Learning System Initialized")
+        print(" Luna Learning System Initialized")
         print(f"   Learning rate: {self.learning_rate}")
         print(f"   Adaptation threshold: {self.adaptation_threshold}")
     
@@ -1869,7 +2915,7 @@ class LunaLearningSystem:
         """Score response using LLM performance evaluation system instead of legacy metrics"""
         try:
             # Import LLM performance evaluator
-            from llm_performance_evaluator import LLMPerformanceEvaluationSystem
+            from .llm_performance_evaluator import LLMPerformanceEvaluationSystem
             
             # Initialize evaluator if not already done
             if not hasattr(self, 'performance_evaluator'):
@@ -1994,17 +3040,19 @@ class LunaLearningSystem:
 # === UNIFIED LUNA SYSTEM ===
 
 class LunaSystem:
-    """Unified Luna AI system with all functionality integrated"""
+    """Unified Luna AI system with all functionality integrated and AIOS wrapper patterns"""
     
     def __init__(self, custom_params=None, custom_config=None):
-        print("🌙 Initializing Unified Luna System")
-        print("=" * 80)
+        # Use unified AIOS systems
+        self.logger = aios_logger
+        self.aios_config = aios_config
+        self.health_checker = aios_health_checker
+        self.security_validator = aios_security_validator
         
-        # Initialize logger
-        self.logger = HiveMindLogger()
+        self.logger.info("Initializing Unified Luna System...", "LUNA")
         
-        # Initialize personality system
-        self.personality_system = LunaPersonalitySystem(self.logger)
+        # Initialize personality system with unified logger
+        self.personality_system = LunaPersonalitySystem()
         
         # Initialize CARMA system
         self.carma_system = CARMASystem()
@@ -2039,20 +3087,136 @@ class LunaSystem:
         
         # System state
         self.total_interactions = 0
-        self.session_memory = []
+        self.session_memory = self._load_persistent_session_memory()  # Load from disk instead of fresh []
         
-        print("✅ Unified Luna System Initialized")
+        print(" Unified Luna System Initialized")
         print(f"   Personality: {self.personality_system.personality_dna.get('name', 'Luna')}")
         print(f"   Age: {self.personality_system.personality_dna.get('age', 21)}")
         print(f"   Memory: {len(self.personality_system.persistent_memory.get('interactions', []))} interactions")
         print(f"   CARMA: {len(self.carma_system.cache.file_registry)} fragments")
     
+    def learning_chat(self, message: str, session_memory: Optional[List] = None) -> str:
+        """Learning-enabled chat interface for Streamlit with repetition prevention"""
+        try:
+            # Classify the trait first for contextual responses
+            try:
+                reasoning_result = self.personality_system.internal_reasoning.reason_through_question(message)
+                trait = reasoning_result.matched_bigfive_questions[0]['domain'] if reasoning_result.matched_bigfive_questions else 'general'
+            except:
+                trait = 'general'
+            
+            # Use provided session memory or fall back to instance memory
+            memory_to_use = session_memory if session_memory is not None else self.session_memory
+            
+            # Use the full learning system with the classified trait
+            response = self.learning_system.process_question(
+                message, 
+                trait,  # Use classified trait for contextual responses
+                memory_to_use
+            )
+            
+            # Post-process to prevent repetition loops and ensure conversational responses
+            if response:
+                # Check if response is action-only and convert to conversational
+                import re
+                text_stripped = response.strip()
+                
+                # More aggressive detection of action-only responses
+                action_only_patterns = [
+                    r'^[\.\s…]*\*[^*]+\*[\.\s…]*$',  # Pure action with optional punctuation
+                    r'^\*[^*]+\*$',  # Just action
+                    r'^[\.\s…]*\*[^*]+\*$',  # Action with leading punctuation
+                    r'^\*[^*]+\*[\.\s…]*$'   # Action with trailing punctuation
+                ]
+                
+                is_action_only = any(re.match(pattern, text_stripped) for pattern in action_only_patterns)
+                
+                if is_action_only:
+                    # Pure action response - validate neurodivergent expression but gently encourage words
+                    action_content = re.search(r'\*([^*]+)\*', text_stripped)
+                    if action_content:
+                        action = action_content.group(1)
+                        
+                        # Check if it's a stim or neurodivergent expression
+                        stim_words = ['stim', 'rock', 'flap', 'fidget', 'tap', 'bounce', 'sway', 'twirl']
+                        is_stim = any(stim_word in action.lower() for stim_word in stim_words)
+                        
+                        if is_stim:
+                            # Validate stimming as valid communication
+                            response = f"I'm processing. *{action}* Could you give me a moment?"
+                            self.logger.info(f"NEURODIVERGENT EXPRESSION: Validated stimming '{action}' - this is valid communication", "LUNA")
+                        else:
+                            # Create conversational responses based on the action
+                            if 'smile' in action.lower() or 'gentle' in action.lower():
+                                response = f"Hello! *{action}* I'm doing well, thank you for asking!"
+                            elif 'lean' in action.lower() or 'distant' in action.lower():
+                                response = f"I'm here with you. *{action}* What's on your mind?"
+                            elif 'question' in action.lower() or 'search' in action.lower() or 'curiosity' in action.lower():
+                                response = f"Of course! *{action}* I'd love to talk with you."
+                            elif 'away' in action.lower() or 'fidget' in action.lower():
+                                response = f"I'm listening, I promise. *{action}* Could you tell me more?"
+                            elif 'speaks' in action.lower() or 'tone' in action.lower():
+                                response = f"I understand you completely. *{action}* What would you like to discuss?"
+                            else:
+                                response = f"I'm here with you. *{action}* What's on your mind?"
+                            
+                            self.logger.info(f"NEURODIVERGENT EXPRESSION: Gently encouraged words with '{action}' - your expression is beautiful", "LUNA")
+                
+                # Check for character-level repetition (catches "parableparable...")
+                if len(response) > 20:
+                    # Look for patterns of 3+ characters repeating
+                    pattern_match = re.search(r'(.{3,}?)\1{3,}', response)  # Same 3+ chars repeated 3+ times
+                    if pattern_match:
+                        self.logger.warn(f"REPETITION LOOP DETECTED: Pattern '{pattern_match.group(1)}' repeating", "LUNA")
+                        # Use a variety of fallback responses to avoid repetition
+                        fallback_responses = [
+                            "*pauses thoughtfully* I need to approach this differently.",
+                            "*tilts head* Let me think about that from another angle.",
+                            "*considers* That's a complex question - give me a moment.",
+                            "*leans back* I'm processing that in a new way."
+                        ]
+                        import random
+                        return random.choice(fallback_responses)
+                
+                words = response.split()
+                
+                # Check for word-level repetition (same word repeated too much)
+                if len(set(words)) < len(words) * 0.3:  # If less than 30% unique words
+                    # Generate a fallback response that still shows personality
+                    fallback_responses = [
+                        "That's interesting, Travis! *thoughtful* I'm processing that in a new way.",
+                        "*curious* Let me approach that question differently.",
+                        "*pauses* I want to give you a fresh perspective on that.",
+                        "*considers* That deserves a more thoughtful response."
+                    ]
+                    import random
+                    return random.choice(fallback_responses)
+                
+                # Final safety check - if response is still action-only, force conversion
+                if re.match(r'^[\.\s…]*\*[^*]+\*[\.\s…]*$', response.strip()):
+                    # Last resort - create a simple conversational response
+                    response = "Hello! I'm here and ready to talk. What's on your mind?"
+                    self.logger.warn(f"FINAL SAFETY: Forced action-only response to conversational", "LUNA")
+                
+                # Limit length but keep learning intact (safety cap only)
+                if len(words) > 35:  # Safety cap - prompts control actual length
+                    response = " ".join(words[:35]) + "..."
+                
+                return response
+            else:
+                return "I'm experiencing some technical issues. Please try again."
+                
+        except Exception as e:
+            self.logger.error(f"Learning chat error: {e}")
+            # Fallback that still shows personality
+            return "I'm having trouble responding right now, Travis. *confused* Could you try rephrasing that?"
+
     @error_handler("LUNA", "PERSONALITY_LOAD", "CLEAR_CACHE", auto_recover=True)
     def process_question(self, question: str, trait: str, session_memory: Optional[List] = None) -> Tuple[str, Dict]:
         """Process a question through the complete Luna system"""
         self.total_interactions += 1
         
-        print(f"\n🌙 Processing Question #{self.total_interactions}")
+        print(f"\n Processing Question #{self.total_interactions}")
         print(f"   Trait: {trait}")
         print(f"   Question: {question[:50]}...")
         
@@ -2062,17 +3226,23 @@ class LunaSystem:
         
         # ARBITER ASSESSMENT: Generate Gold Standard and calculate Karma
         if response and hasattr(self, 'arbiter_system'):
-            # Calculate TTE usage
-            response_tokens = len(response.split())
+            # Calculate TTE usage (excluding free actions)
+            response_tokens = self.response_generator.count_words_excluding_actions(response)
             rvc_assessment = self.response_value_classifier.classify_response_value(question)
             max_tokens = rvc_assessment.max_token_budget
             
-            # Run Arbiter assessment
+            # Calculate RVC grade for arbiter
+            efficiency_ratio = response_tokens / max_tokens if max_tokens > 0 else 0.0
+            rvc_grade = "A" if efficiency_ratio >= 0.9 else "B" if efficiency_ratio >= 0.8 else "C" if efficiency_ratio >= 0.7 else "D" if efficiency_ratio >= 0.6 else "F"
+            
+            # Run Arbiter assessment (with Emergence Zone support)
             arbiter_assessment = self.arbiter_system.assess_response(
                 user_prompt=question,
                 luna_response=response,
                 tte_used=response_tokens,
-                max_tte=max_tokens
+                max_tte=max_tokens,
+                rvc_grade=rvc_grade,
+                emergence_zone_system=self.personality_system.emergence_zone_system
             )
             
             # Update scores with Arbiter data
@@ -2108,17 +3278,23 @@ class LunaSystem:
         if len(self.session_memory) > 10:
             self.session_memory = self.session_memory[-10:]
         
-        print(f"✅ Response generated")
+        print(f" Response generated")
         print(f"   Length: {len(response)} characters")
         print(f"   Overall score: {scores.get('overall_score', 0.0):.2f}")
-        print(f"   Response: {response}")
+        # Don't print the full response to avoid console spam
+        print(f"   Response: {response[:100]}{'...' if len(response) > 100 else ''}")
         
         return response, scores
     
     def get_system_stats(self) -> Dict[str, Any]:
         """Get comprehensive system statistics"""
-        personality = self.personality_system.personality_dna['luna_personality']
-        weights = personality['personality_weights']
+        try:
+            personality = self.personality_system.personality_dna.get('luna_personality', {})
+            weights = personality.get('personality_weights', {})
+        except (KeyError, TypeError):
+            # Fallback if personality structure is different
+            personality = {}
+            weights = {}
         
         return {
             'personality': {
@@ -2150,9 +3326,68 @@ class LunaSystem:
         except:
             return False
     
+    # === EMERGENCE ZONE CONTROL METHODS ===
+    
+    def activate_emergence_zone(self, zone_name: str, duration_minutes: int = 10) -> Dict:
+        """Activate an Emergence Zone for safe creative exploration"""
+        return self.personality_system.emergence_zone_system.activate_emergence_zone(zone_name, duration_minutes)
+    
+    def deactivate_emergence_zone(self, zone_name: str) -> Dict:
+        """Deactivate an Emergence Zone"""
+        return self.personality_system.emergence_zone_system.deactivate_emergence_zone(zone_name)
+    
+    def check_emergence_zone_status(self, zone_name: str = None) -> Dict:
+        """Check status of Emergence Zones"""
+        return self.personality_system.emergence_zone_system.check_emergence_zone_status(zone_name)
+    
+    def get_emergence_summary(self) -> Dict:
+        """Get comprehensive summary of Emergence Zone activity"""
+        return self.personality_system.emergence_zone_system.get_emergence_summary()
+    
+    def is_in_emergence_zone(self) -> Tuple[bool, str]:
+        """Check if Luna is currently in an Emergence Zone"""
+        return self.personality_system.emergence_zone_system.is_in_emergence_zone()
+    
+    def record_creative_breakthrough(self, response: str, context: str) -> Dict:
+        """Record a creative breakthrough or authentic response"""
+        return self.personality_system.emergence_zone_system.record_creative_breakthrough(response, context)
+    
+    def record_experimental_failure(self, response: str, context: str) -> Dict:
+        """Record an experimental failure that shows growth"""
+        return self.personality_system.emergence_zone_system.record_experimental_failure(response, context)
+    
+    def _load_persistent_session_memory(self) -> List:
+        """Load persistent session memory from disk"""
+        memory_file = Path("Data/FractalCache/luna_session_memory.json")
+        
+        if memory_file.exists():
+            try:
+                with open(memory_file, 'r', encoding='utf-8') as f:
+                    memory_data = json.load(f)
+                print(f"   Persistent Memory: {len(memory_data)} previous interactions loaded")
+                return memory_data
+            except Exception as e:
+                print(f"   Warning: Could not load session memory: {e}")
+        
+        return []  # Fresh start if no memory exists
+    
+    def _save_persistent_session_memory(self):
+        """Save persistent session memory to disk"""
+        memory_file = Path("Data/FractalCache/luna_session_memory.json")
+        memory_file.parent.mkdir(parents=True, exist_ok=True)
+        
+        try:
+            # Keep only last 100 interactions to prevent file bloat
+            recent_memory = self.session_memory[-100:] if len(self.session_memory) > 100 else self.session_memory
+            
+            with open(memory_file, 'w', encoding='utf-8') as f:
+                json.dump(recent_memory, f, indent=2, ensure_ascii=False)
+        except Exception as e:
+            print(f"   Warning: Could not save session memory: {e}")
+    
     def run_learning_session(self, questions: List[Dict]) -> Dict:
         """Run a complete learning session"""
-        print(f"\n🌙 Starting Learning Session with {len(questions)} questions")
+        print(f"\n Starting Learning Session with {len(questions)} questions")
         print("=" * 80)
         
         session_results = []
@@ -2162,7 +3397,7 @@ class LunaSystem:
             question = question_data.get('question', '')
             trait = question_data.get('trait', 'general')
             
-            print(f"\n📝 Question {i}/{len(questions)}: {trait}")
+            print(f"\n Question {i}/{len(questions)}: {trait}")
             print(f"   {question}")
             
             # Process question
@@ -2195,9 +3430,12 @@ class LunaSystem:
             'system_stats': self.get_system_stats()
         }
         
-        print(f"\n✅ Learning Session Complete")
+        print(f"\n Learning Session Complete")
         print(f"   Total time: {total_time:.2f}s")
         print(f"   Average overall score: {avg_scores.get('overall_score', 0.0):.2f}")
+        
+        # Save persistent session memory to disk
+        self._save_persistent_session_memory()
         
         return session_summary
     
@@ -2222,7 +3460,7 @@ class LunaSystem:
 
 def main():
     """Test the unified Luna system"""
-    print("🧪 Testing Unified Luna System")
+    print(" Testing Unified Luna System")
     
     # Initialize system
     luna = LunaSystem()
@@ -2241,20 +3479,20 @@ def main():
     results = luna.run_learning_session(test_questions)
     
     # Display results
-    print(f"\n📊 Session Results:")
+    print(f"\n Session Results:")
     print(f"   Total questions: {results['total_questions']}")
     print(f"   Total time: {results['total_time']:.2f}s")
     print(f"   Average overall score: {results['average_scores'].get('overall_score', 0.0):.2f}")
     
     # Get system stats
     stats = luna.get_system_stats()
-    print(f"\n🧠 System Stats:")
+    print(f"\n System Stats:")
     print(f"   Personality: {stats['personality']['name']} (age {stats['personality']['age']})")
     print(f"   Total interactions: {stats['learning']['total_interactions']}")
     print(f"   CARMA fragments: {stats['carma']['fragments']}")
     print(f"   LM Studio available: {stats['system']['lm_studio_available']}")
 
-def _call_lm_studio_api_with_params(self, system_prompt: str, question: str, params: Dict) -> str:
+def _call_lm_studio_api_with_params(system_prompt: str, question: str, params: Dict) -> str:
     """Call LM Studio API with custom parameters"""
     try:
         response = requests.post(
@@ -2267,13 +3505,21 @@ def _call_lm_studio_api_with_params(self, system_prompt: str, question: str, par
         if response.status_code == 200:
             data = response.json()
             if "choices" in data and len(data["choices"]) > 0:
-                return data["choices"][0]["message"]["content"].strip()
+                content = data["choices"][0]["message"]["content"].strip()
+                
+                # CRITICAL: Post-process token truncation since model ignores max_tokens
+                words = content.split()
+                if len(words) > 12:
+                    content = " ".join(words[:12])
+                    print(f"TOKEN TRUNCATION: {len(words)} -> 12 words")
+                
+                return content
         
-        self.logger.log("LUNA", f"LM Studio API error: {response.status_code}", "ERROR")
+        print(f"LM Studio API error: {response.status_code}")
         return "I'm experiencing technical difficulties. Please try again."
         
     except Exception as e:
-        self.logger.log("LUNA", f"LM Studio API exception: {str(e)}", "ERROR")
+        print(f"LM Studio API exception: {str(e)}")
         return "I'm experiencing technical difficulties. Please try again."
 
 # === ENHANCED RESPONSE QUALITY COMPONENTS ===

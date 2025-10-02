@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 """
+
+# CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils.unicode_safe_output import setup_unicode_safe_output
+setup_unicode_safe_output()
+
 LLM PERFORMANCE EVALUATION SYSTEM
 Advanced evaluation system for measuring LLM performance and personality consistency in Luna.
 """
@@ -67,7 +75,7 @@ class ArchitectEvaluator:
                 'performance_expression'
             ]
         
-        print("🏗️ Architect Evaluation System Initialized")
+        print(" Architect Evaluation System Initialized")
         print(f"   Evaluation criteria: {len(self.evaluation_criteria)}")
     
     def _load_evaluation_config(self) -> List[Dict]:
@@ -78,13 +86,13 @@ class ArchitectEvaluator:
                 with open(config_file, 'r') as f:
                     return json.load(f)
             except Exception as e:
-                print(f"❌ Error loading evaluation config: {e}")
+                print(f" Error loading evaluation config: {e}")
         return []
     
     def evaluate_response(self, trait: str, question: str, response: str) -> Dict[str, Any]:
         """Present response to architect for manual evaluation"""
         print(f"\n{'='*80}")
-        print(f"🏗️ ARCHITECT EVALUATION REQUIRED")
+        print(f" ARCHITECT EVALUATION REQUIRED")
         print(f"{'='*80}")
         print(f"Trait: {trait}")
         print(f"Question: {question}")
@@ -133,7 +141,7 @@ class SemanticAlignmentEvaluator:
         self.trait_embeddings = {}
         self._precompute_trait_embeddings()
         
-        print("🧠 Semantic Alignment Evaluator Initialized")
+        print(" Semantic Alignment Evaluator Initialized")
         print(f"   Target traits: {len(self.target_traits)}")
     
     def _precompute_trait_embeddings(self):
@@ -183,7 +191,7 @@ Evaluate on these criteria (1-10 scale):
 
 Provide scores and brief reflection on your performance expression."""
 
-        print("🔄 Recursive Self-Evaluator Initialized")
+        print(" Recursive Self-Evaluator Initialized")
     
     def evaluate_response(self, trait: str, question: str, response: str) -> Dict[str, Any]:
         """Have AI evaluate its own response"""
@@ -224,7 +232,7 @@ Please evaluate your response:"""
             }
             
         except Exception as e:
-            print(f"❌ Self-evaluation error: {e}")
+            print(f" Self-evaluation error: {e}")
             return {
                 'self_evaluation_scores': {},
                 'self_reflection': f"Self-evaluation failed: {e}"
@@ -258,7 +266,7 @@ class LLMPerformanceEvaluationSystem:
         self.self_evaluator = RecursiveSelfEvaluator(luna_system)
         self.evaluation_config = self._load_evaluation_config()
         
-        print("🧠 Performance Evaluation System Initialized")
+        print(" Performance Evaluation System Initialized")
         print("   Architect evaluation: Enabled")
         print("   Semantic alignment: Enabled") 
         print("   Recursive self-evaluation: Enabled")
@@ -271,7 +279,7 @@ class LLMPerformanceEvaluationSystem:
                 with open(config_file, 'r') as f:
                     return json.load(f)
             except Exception as e:
-                print(f"❌ Error loading config: {e}")
+                print(f" Error loading config: {e}")
         return []
     
     def evaluate_response(self, trait: str, question: str, response: str, response_id: str = None) -> LLMPerformanceEvaluation:
@@ -279,13 +287,13 @@ class LLMPerformanceEvaluationSystem:
         if not response_id:
             response_id = f"eval_{int(time.time())}"
         
-        print(f"\n🧠 Evaluating performance expression...")
+        print(f"\n Evaluating performance expression...")
         print(f"   Response ID: {response_id}")
         print(f"   Trait: {trait}")
         
         try:
             # 1. Architect evaluation (human-in-the-loop) - Skip for automated testing
-            print(f"\n🏗️ Skipping architect evaluation (automated mode)...")
+            print(f"\n Skipping architect evaluation (automated mode)...")
             architect_result = {
                 'architect_scores': {
                     'personality_authenticity': 7.0,
@@ -297,11 +305,11 @@ class LLMPerformanceEvaluationSystem:
             }
             
             # 2. Semantic alignment evaluation
-            print(f"\n🧠 Computing semantic alignment...")
+            print(f"\n Computing semantic alignment...")
             semantic_result = self.semantic_evaluator.evaluate_response(response)
             
             # 3. Recursive self-evaluation - Skip for now to avoid complexity
-            print(f"\n🔄 Skipping recursive self-evaluation (simplified mode)...")
+            print(f"\n Skipping recursive self-evaluation (simplified mode)...")
             self_eval_result = {
                 'self_evaluation_scores': {
                     'self_awareness': 6.0,
@@ -339,7 +347,7 @@ class LLMPerformanceEvaluationSystem:
             return evaluation
             
         except Exception as e:
-            print(f"❌ Error in performance evaluation: {e}")
+            print(f" Error in performance evaluation: {e}")
             # Return minimal evaluation
             return LLMPerformanceEvaluation(
                 response_id=response_id,
@@ -461,10 +469,10 @@ class LLMPerformanceEvaluationSystem:
             conn.commit()
             conn.close()
             
-            print(f"✅ Evaluation saved to database")
+            print(f" Evaluation saved to database")
             
         except Exception as e:
-            print(f"❌ Error saving evaluation: {e}")
+            print(f" Error saving evaluation: {e}")
     
     def get_evaluation_summary(self) -> Dict[str, Any]:
         """Get summary of all evaluations"""
@@ -501,12 +509,12 @@ class LLMPerformanceEvaluationSystem:
             }
             
         except Exception as e:
-            print(f"❌ Error getting evaluation summary: {e}")
+            print(f" Error getting evaluation summary: {e}")
             return {'error': str(e)}
 
 def main():
     """Test the performance evaluation system"""
-    print("🧠 Testing Performance Evaluation System")
+    print(" Testing Performance Evaluation System")
     print("="*80)
     
     evaluator = LLMPerformanceEvaluationSystem()
@@ -520,13 +528,13 @@ def main():
         response=test_response
     )
     
-    print(f"\n📊 EVALUATION COMPLETE")
+    print(f"\n EVALUATION COMPLETE")
     print(f"   Performance Score: {evaluation.performance_score}/10")
     print(f"   Performance Level: {evaluation.performance_level}")
     
     # Get summary
     summary = evaluator.get_evaluation_summary()
-    print(f"\n📈 Evaluation Summary:")
+    print(f"\n Evaluation Summary:")
     print(f"   Total evaluations: {summary.get('total_evaluations', 0)}")
     print(f"   Average score: {summary.get('average_performance_score', 0)}")
 

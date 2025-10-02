@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 """
+
+# CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils.unicode_safe_output import setup_unicode_safe_output
+setup_unicode_safe_output()
+
 Luna Token-Time Econometric System
 Implements Hard Constraint Econometric Model with Expiring Reward Function
 """
@@ -392,11 +400,11 @@ def main():
         }
     ]
     
-    print("💰 TOKEN-TIME ECONOMETRIC SYSTEM TEST")
+    print(" TOKEN-TIME ECONOMETRIC SYSTEM TEST")
     print("=" * 60)
     
     for i, test in enumerate(test_cases, 1):
-        print(f"\n📊 TEST {i}: {test['scenario']}")
+        print(f"\n TEST {i}: {test['scenario']}")
         print("-" * 50)
         
         evaluation = econometric_system.evaluate_response(
@@ -422,7 +430,7 @@ def main():
                 print(f"  - {rec}")
     
     # Performance summary
-    print(f"\n📈 PERFORMANCE SUMMARY")
+    print(f"\n PERFORMANCE SUMMARY")
     print("=" * 60)
     summary = econometric_system.get_performance_summary()
     print(f"Total Responses: {summary['total_responses']}")
