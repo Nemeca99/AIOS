@@ -47,7 +47,7 @@ class LunaCFIASystem:
     Manages memory growth through factorial intelligence indexing and constrained expansion
     """
     
-    def __init__(self, cache_path: str = "Data/ArbiterCache"):
+    def __init__(self, cache_path: str = "data_core/ArbiterCache"):
         """Initialize the CFIA system"""
         self.cache_path = Path(cache_path)
         self.cache_path.mkdir(parents=True, exist_ok=True)

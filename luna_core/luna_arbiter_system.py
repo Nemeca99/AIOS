@@ -47,7 +47,7 @@ class LunaArbiterSystem:
     Operates outside TTE constraints to enforce alignment and generate learning materials
     """
     
-    def __init__(self, cache_path: str = "Data/ArbiterCache"):
+    def __init__(self, cache_path: str = "data_core/ArbiterCache"):
         """Initialize the Arbiter system"""
         self.cache_path = Path(cache_path)
         self.cache_path.mkdir(parents=True, exist_ok=True)

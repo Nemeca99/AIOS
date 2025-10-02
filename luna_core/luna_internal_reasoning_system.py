@@ -19,7 +19,7 @@ This is Luna THINKING THROUGH a question by relating it to her psychological fra
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
-from utils.unicode_safe_output import setup_unicode_safe_output
+from utils_core.unicode_safe_output import setup_unicode_safe_output
 setup_unicode_safe_output()
 
 import json
@@ -63,7 +63,7 @@ class LunaInternalReasoningSystem:
     
     def _load_bigfive_answers(self) -> Dict:
         """Load Luna's previous answers to Big Five questions"""
-        answer_file = Path("Data/FractalCache/luna_bigfive_answers.json")
+        answer_file = Path("data_core/FractalCache/luna_bigfive_answers.json")
         
         if answer_file.exists():
             try:
@@ -78,7 +78,7 @@ class LunaInternalReasoningSystem:
     
     def _save_bigfive_answers(self):
         """Save Luna's Big Five answers"""
-        answer_file = Path("Data/FractalCache/luna_bigfive_answers.json")
+        answer_file = Path("data_core/FractalCache/luna_bigfive_answers.json")
         answer_file.parent.mkdir(parents=True, exist_ok=True)
         
         try:

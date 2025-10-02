@@ -8,7 +8,7 @@ Complete Luna AI personality system with all functionality integrated.
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
-from utils.unicode_safe_output import setup_unicode_safe_output
+from utils_core.unicode_safe_output import setup_unicode_safe_output
 setup_unicode_safe_output()
 
 import re
@@ -1175,9 +1175,9 @@ class LunaPersonalitySystem:
 
     def _update_voice_profile_from_corpus(self, max_files: int = 200):
         """Mine Data/conversations/*.json for frequent user phrases; seed phrase_bank."""
-        from utils.timestamp_validator import validate_timestamps, validate_message_timestamps
+        from utils_core.timestamp_validator import validate_timestamps, validate_message_timestamps
         
-        conversations_dir = Path('Data') / 'conversations'
+        conversations_dir = Path('data_core') / 'conversations'
         if not conversations_dir.exists():
             return
         # Only run if phrase_bank is small to avoid unbounded growth per run
@@ -2593,26 +2593,37 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
             self.logger.log("LUNA", f"LUNA MODEL: Rogue-Creative-7B-Dark-Horror (q6_k) + SD (iq1_m)", "INFO")
             print("MODERATE MODE CALLED - USING 7B MODEL WITH SPECULATIVE DECODING!")
             
-            # Use modified_params from Custom Inference Controller if provided
+            # Clean GSD - disable problematic Custom Inference Controller params
             if modified_params:
                 headers = {"Content-Type": "application/json"}
-                # Create a copy of modified_params and override model names
+                # Use clean GSD parameters - NO logit_bias from Custom Inference Controller
                 gsd_params = modified_params.copy()
-                gsd_params["model"] = "l3.2-rogue-creative-instruct-dark-horror-uncensored-abliterated-7b-i1@q6_k"  # Main 7B model
-                gsd_params["stream"] = False  # Force non-streaming to avoid SSE parsing issues
+                gsd_params["model"] = "llama-3.2-pkd-deckard-almost-human-abliterated-uncensored-7b-i1"
+                gsd_params["stream"] = False
                 
+                # Remove problematic logit_bias that causes "parable" loops
+                if "logit_bias" in gsd_params:
+                    del gsd_params["logit_bias"]
+                
+                # Clean GSD settings - like LM Studio defaults
                 data = {
                     "messages": [
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": question}
                     ],
-                    **gsd_params  # Include all Custom Inference Controller parameters
+                    "temperature": 0.4,  # Slightly higher for more variety
+                    "max_tokens": 80,     # MODERATE tier
+                    "repetition_penalty": 1.1,  # Conservative repetition control
+                    "top_p": 0.9,         # Standard top-p
+                    "top_k": 40,          # Conservative top-k
+                    **gsd_params  # Include clean GSD parameters (no logit_bias)
                 }
-            else:
+            
+            if False:  # Disabled alternate path
                 # Fallback to standard parameters
                 headers = {"Content-Type": "application/json"}
                 data = {
-                    "model": "l3.2-rogue-creative-instruct-dark-horror-uncensored-abliterated-7b-i1@q6_k",  # Main 7B model
+                    "model": "llama-3.2-pkd-deckard-almost-human-abliterated-uncensored-7b-i1",  # Main model
                     "messages": [
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": question}
@@ -3358,7 +3369,7 @@ class LunaSystem:
     
     def _load_persistent_session_memory(self) -> List:
         """Load persistent session memory from disk"""
-        memory_file = Path("Data/FractalCache/luna_session_memory.json")
+        memory_file = Path("data_core/FractalCache/luna_session_memory.json")
         
         if memory_file.exists():
             try:
@@ -3373,7 +3384,7 @@ class LunaSystem:
     
     def _save_persistent_session_memory(self):
         """Save persistent session memory to disk"""
-        memory_file = Path("Data/FractalCache/luna_session_memory.json")
+        memory_file = Path("data_core/FractalCache/luna_session_memory.json")
         memory_file.parent.mkdir(parents=True, exist_ok=True)
         
         try:

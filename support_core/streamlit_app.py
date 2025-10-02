@@ -8,7 +8,7 @@ Web interface for the AIOS Clean system using the unified main.py as foundation.
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent))
-from utils.unicode_safe_output import setup_unicode_safe_output
+from utils_core.unicode_safe_output import setup_unicode_safe_output
 setup_unicode_safe_output()
 
 import streamlit as st

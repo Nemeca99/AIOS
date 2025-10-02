@@ -8,7 +8,7 @@ Complete CARMA system with all cognitive enhancements integrated.
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
-from utils.unicode_safe_output import setup_unicode_safe_output
+from utils_core.unicode_safe_output import setup_unicode_safe_output
 setup_unicode_safe_output()
 import time
 import json
@@ -96,7 +96,7 @@ class ServerBlock:
 class FractalMyceliumCache:
     """Fractal Mycelium Cache with Psycho-Semantic RAG Loop integration."""
     
-    def __init__(self, base_dir: str = "Data/FractalCache"):
+    def __init__(self, base_dir: str = "data_core/FractalCache"):
         self.base_dir = Path(base_dir)
         self.base_dir.mkdir(parents=True, exist_ok=True)
         
@@ -679,7 +679,7 @@ Examples of efficient responses:"""
         import requests
         
         payload = {
-            "model": "exaone-3.5-2.4b-instruct-abliterated",
+            "model": "llama-3.2-1b-instruct-abliterated",
             "messages": [
                 {
                     "role": "system",
@@ -1560,6 +1560,8 @@ class CARMA100PercentPerformance:
         
         # Create super-fragments
         superfrags = []
+        fragments_to_remove = set()  # Track original fragments to remove
+        
         for comp in components:
             comp_texts = []
             for fid in comp[:50]:
@@ -1601,8 +1603,16 @@ class CARMA100PercentPerformance:
             fragments[super_id] = super_frag
             superfrags.append(super_id)
             
+            # Mark original fragments for removal
+            fragments_to_remove.update(comp)
+            
             if len(superfrags) >= max_superfrags:
                 break
+        
+        # Remove original fragments that were consolidated
+        for fid in fragments_to_remove:
+            if fid in fragments:
+                del fragments[fid]
         
         # Cross-link superfrags
         emb_map = {}
@@ -1628,7 +1638,7 @@ class CARMA100PercentPerformance:
         self.cache.save_registry()
         
         elapsed = time.time() - start
-        return {"superfrags_created": len(superfrags), "time": elapsed, "fragments_processed": len(fragments)}
+        return {"superfrags_created": len(superfrags), "time": elapsed, "fragments_processed": len(fragments_to_remove)}
     
     def get_performance_level(self) -> float:
         """Return current performance percentage."""
@@ -1767,7 +1777,7 @@ class CARMAMyceliumNetwork:
 class CARMASystem:
     """Unified CARMA system with all cognitive enhancements integrated and AIOS wrapper patterns."""
     
-    def __init__(self, base_dir: str = "Data/FractalCache"):
+    def __init__(self, base_dir: str = "data_core/FractalCache"):
         # Initialize unified AIOS systems
         self.aios_config = aios_config
         self.logger = aios_logger

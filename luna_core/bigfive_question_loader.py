@@ -22,7 +22,7 @@ class BigFiveQuestion:
 class BigFiveQuestionLoader:
     """Loads and manages Big Five personality test questions"""
     
-    def __init__(self, data_path: str = "Data/bigfive-web-3.0.2"):
+    def __init__(self, data_path: str = "data_core/bigfive-web-3.0.2"):
         self.data_path = data_path
         self.questions: List[BigFiveQuestion] = []
         self.domain_mapping = {
@@ -53,9 +53,9 @@ class BigFiveQuestionLoader:
         try:
             # Look for Big Five data files
             data_files = [
-                "Data/bigfive-web-3.0.2/questions.json",
-                "Data/bigfive/questions.json", 
-                "Data/bigfive_questions.json"
+                "data_core/bigfive-web-3.0.2/questions.json",
+                "data_core/bigfive/questions.json", 
+                "data_core/bigfive_questions.json"
             ]
             
             for file_path in data_files:

@@ -55,7 +55,7 @@ class LunaExistentialBudgetSystem:
     - Expanding Pool on Age-Up (Simulated Growth)
     """
     
-    def __init__(self, state_file: str = "Data/FractalCache/luna_existential_state.json"):
+    def __init__(self, state_file: str = "data_core/FractalCache/luna_existential_state.json"):
         self.state_file = Path(state_file)
         self.state_file.parent.mkdir(parents=True, exist_ok=True)
         

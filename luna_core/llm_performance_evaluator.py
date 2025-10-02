@@ -418,7 +418,7 @@ class LLMPerformanceEvaluationSystem:
     def _save_evaluation(self, evaluation: LLMPerformanceEvaluation):
         """Save evaluation to database"""
         try:
-            db_path = Path("Data/AIOS_Database/database/performance_evaluations.db")
+            db_path = Path("data_core/AIOS_Database/database/performance_evaluations.db")
             db_path.parent.mkdir(parents=True, exist_ok=True)
             
             conn = sqlite3.connect(str(db_path))
@@ -477,7 +477,7 @@ class LLMPerformanceEvaluationSystem:
     def get_evaluation_summary(self) -> Dict[str, Any]:
         """Get summary of all evaluations"""
         try:
-            db_path = Path("Data/AIOS_Database/database/performance_evaluations.db")
+            db_path = Path("data_core/AIOS_Database/database/performance_evaluations.db")
             if not db_path.exists():
                 return {'total_evaluations': 0}
             

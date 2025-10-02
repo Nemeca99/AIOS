@@ -5,7 +5,7 @@
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
-from utils.unicode_safe_output import setup_unicode_safe_output
+from utils_core.unicode_safe_output import setup_unicode_safe_output
 setup_unicode_safe_output()
 
 AIOS Launcher - Choose between CLI, GUI, or Monitoring Dashboard

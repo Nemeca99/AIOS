@@ -5,7 +5,7 @@
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
-from utils.unicode_safe_output import setup_unicode_safe_output
+from utils_core.unicode_safe_output import setup_unicode_safe_output
 setup_unicode_safe_output()
 
 AIOS Visual Monitoring Dashboard
@@ -23,7 +23,7 @@ import psutil
 import json
 from datetime import datetime, timedelta
 from collections import deque
-from utils.powershell_bridge import PowerShellBridge
+from utils_core.powershell_bridge import PowerShellBridge
 
 # Set matplotlib style
 plt.style.use('dark_background')

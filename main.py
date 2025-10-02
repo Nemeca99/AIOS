@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-AIOS CLEAN - UNIFIED MAIN SYSTEM
-Complete consolidated system with all root-level functionality integrated.
+AIOS CLEAN - CENTRAL ORCHESTRATOR
+Modular system architecture with self-contained core systems.
 
 This is the main entry point that:
-- Links all 4 core systems together (CARMA, Luna, Enterprise, Support)
+- Orchestrates all 8 core systems (Backup, CARMA, Data, Dream, Enterprise, Luna, Streamlit, Support, Utils)
 - Provides CLI interface with comprehensive commands
-- Serves as the foundation for Streamlit web interface
-- Manages system orchestration and coordination
+- Manages inter-core communication and coordination
+- Serves as the central hub for all system operations
 """
 
 # CRITICAL: Import os first for environment variables
@@ -19,7 +19,7 @@ os.environ["RICH_FORCE_TERMINAL"] = "false"
 os.environ["RICH_DISABLE_CONSOLE"] = "true"
 
 # CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
-from utils.unicode_safe_output import setup_unicode_safe_output
+from utils_core.unicode_safe_output import setup_unicode_safe_output
 setup_unicode_safe_output()
 
 import sys
@@ -41,17 +41,22 @@ from functools import wraps
 # Add current directory to path
 sys.path.append(str(Path(__file__).parent))
 
-# Import consolidated core systems
+# Import all core systems
+from backup_core.backup_core import BackupCore
 from carma_core.carma_core import CARMASystem
-from enterprise_core.enterprise_core import EnterpriseSystem, PiBasedEncryption, GlobalAPIDistribution, CARMAChainProcessor, EnterpriseBilling, KeyRotationManager, ComplianceManager, AdvancedSecurity
+from data_core.data_core import DataCore
+from dream_core.dream_core import DreamCore
+from enterprise_core.enterprise_core import EnterpriseCore, PiBasedEncryption, GlobalAPIDistribution, CARMAChainProcessor, EnterpriseBilling, KeyRotationManager, ComplianceManager, AdvancedSecurity
 from luna_core.luna_core import LunaSystem
+from streamlit_core.streamlit_core import StreamlitCore
 from support_core.support_core import (
     SupportSystem, SystemConfig, FilePaths, SystemMessages, ensure_directories,
     aios_config, aios_logger, aios_health_checker, aios_security_validator
 )
+from utils_core.utils_core import UtilsCore
 
 # Import utilities
-from utils.aios_json_standards import AIOSJSONHandler, AIOSDataType, AIOSJSONStandards, ConversationMessage
+from utils_core.aios_json_standards import AIOSJSONHandler, AIOSDataType, AIOSJSONStandards, ConversationMessage
 
 # === ENUMS AND DATA CLASSES ===
 
@@ -114,12 +119,32 @@ class AIOSClean:
             self.logger.warn(f"System health degraded: {health_status['overall_status']}", "AIOS")
             self.logger.warn(f"Failed checks: {health_status.get('errors', [])}", "AIOS")
         
-        # Initialize core systems with unified logging
+        # Initialize all core systems with unified logging
+        self.logger.info("Initializing Backup system...", "AIOS")
+        self.backup_system = BackupCore()
+        
+        # Auto-backup only runs when explicitly requested via --backup flag
+        
         self.logger.info("Initializing CARMA system...", "AIOS")
         self.carma_system = CARMASystem()
         
+        self.logger.info("Initializing Data system...", "AIOS")
+        self.data_system = DataCore()
+        
+        self.logger.info("Initializing Dream system...", "AIOS")
+        self.dream_system = DreamCore()
+        
+        self.logger.info("Initializing Enterprise system...", "AIOS")
+        self.enterprise_system = EnterpriseCore()
+        
         self.logger.info("Initializing Luna system...", "AIOS")
         self.luna_system = LunaSystem()
+        
+        self.logger.info("Initializing Streamlit system...", "AIOS")
+        self.streamlit_system = StreamlitCore()
+        
+        self.logger.info("Initializing Utils system...", "AIOS")
+        self.utils_system = UtilsCore()
         
         self.logger.info("Initializing Support system...", "AIOS")
         self.support_system = SupportSystem()
@@ -135,16 +160,101 @@ class AIOSClean:
     def _display_system_status(self):
         """Display current system status using unified logging"""
         try:
+            # Backup system status
+            backup_info = self.backup_system.get_system_info()
+            self.logger.info(f"Backup: {backup_info['total_backups']} backups", "AIOS")
+            
+            # CARMA system status
             carma_fragments = self.carma_system.cache.file_registry
             if hasattr(carma_fragments, '__len__'):
                 self.logger.info(f"CARMA: {len(carma_fragments)} fragments", "AIOS")
             else:
                 self.logger.info(f"CARMA: {carma_fragments} fragments", "AIOS")
             
+            # Data system status
+            data_overview = self.data_system.get_system_overview()
+            total_data_files = (data_overview['fractal_cache']['total_files'] + 
+                              data_overview['arbiter_cache']['total_files'] + 
+                              data_overview['conversations']['total_conversations'])
+            self.logger.info(f"Data: {total_data_files} files", "AIOS")
+            
+            # Dream system status (placeholder)
+            self.logger.info(f"Dream: System ready", "AIOS")
+            
+            # Enterprise system status (placeholder)
+            self.logger.info(f"Enterprise: System ready", "AIOS")
+            
+            # Luna system status
             self.logger.info(f"Luna: {self.luna_system.total_interactions} interactions", "AIOS")
+            
+            # Streamlit system status (placeholder)
+            self.logger.info(f"Streamlit: UI ready", "AIOS")
+            
+            # Support system status
             self.logger.info(f"Support: {self.support_system.get_system_status()['cache']['total_fragments']} fragments", "AIOS")
         except Exception as e:
             self.logger.error(f"Error getting system status: {e}", "AIOS")
+    
+    # === INTER-CORE COMMUNICATION METHODS ===
+    
+    def carma_to_luna_communication(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        """Handle communication from CARMA to Luna."""
+        try:
+            # Process data through Luna system
+            result = self.luna_system.process_carma_data(data)
+            return result
+        except Exception as e:
+            self.logger.error(f"CARMA to Luna communication failed: {e}", "AIOS")
+            return {"error": str(e)}
+    
+    def luna_to_carma_communication(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        """Handle communication from Luna to CARMA."""
+        try:
+            # Process data through CARMA system
+            result = self.carma_system.process_luna_data(data)
+            return result
+        except Exception as e:
+            self.logger.error(f"Luna to CARMA communication failed: {e}", "AIOS")
+            return {"error": str(e)}
+    
+    def dream_to_data_communication(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        """Handle communication from Dream to Data system."""
+        try:
+            # Store dream data through data system
+            result = self.data_system.store_dream_data(data)
+            return result
+        except Exception as e:
+            self.logger.error(f"Dream to Data communication failed: {e}", "AIOS")
+            return {"error": str(e)}
+    
+    def backup_all_systems(self, backup_name: Optional[str] = None) -> str:
+        """Create backup of all systems."""
+        try:
+            return self.backup_system.create_backup(backup_name)
+        except Exception as e:
+            self.logger.error(f"System backup failed: {e}", "AIOS")
+            return ""
+    
+    def get_system_overview(self) -> Dict[str, Any]:
+        """Get comprehensive overview of all systems."""
+        try:
+            return {
+                "backup": self.backup_system.get_system_info(),
+                "carma": {"status": "active", "fragments": len(self.carma_system.cache.file_registry)},
+                "data": self.data_system.get_system_overview(),
+                "dream": {"status": "ready"},
+                "enterprise": {"status": "ready"},
+                "luna": {"interactions": self.luna_system.total_interactions},
+                "streamlit": {"status": "ready"},
+                "utils": self.utils_system.get_system_metrics(),
+                "support": self.support_system.get_system_status(),
+                "timestamp": datetime.now().isoformat()
+            }
+        except Exception as e:
+            self.logger.error(f"System overview failed: {e}", "AIOS")
+            return {"error": str(e)}
+    
+    # === CORE SYSTEM METHODS ===
     
     def run_luna_learning(self, questions: int = 3, test_runs: int = 1) -> Dict:
         """Run Luna learning session."""
@@ -674,6 +784,17 @@ def main():
     parser.add_argument('--classify', type=str, help='Classify a question using Big Five trait Rosetta Stone')
     parser.add_argument('--classification-summary', action='store_true', help='Get summary of trait classification history')
     
+    # Core system management arguments
+    parser.add_argument('--backup', action='store_true', help='Create backup of all systems')
+    parser.add_argument('--backup-name', help='Custom name for backup')
+    parser.add_argument('--data-stats', action='store_true', help='Show data system statistics')
+    parser.add_argument('--data-cleanup', action='store_true', help='Clean up old data files')
+    parser.add_argument('--data-cleanup-days', type=int, default=30, help='Days old for data cleanup')
+    parser.add_argument('--dream-mode', choices=['quick-nap', 'overnight', 'meditation', 'test'], help='Run dream system')
+    parser.add_argument('--dream-duration', type=int, default=30, help='Duration in minutes for dream mode')
+    parser.add_argument('--streamlit', action='store_true', help='Launch Streamlit UI')
+    parser.add_argument('--system-overview', action='store_true', help='Show comprehensive system overview')
+    
     args = parser.parse_args()
     
     # Initialize AIOS Clean system
@@ -682,7 +803,7 @@ def main():
     # Handle memory clear command
     if args.clear_memory:
         from pathlib import Path
-        memory_file = Path("Data/FractalCache/luna_session_memory.json")
+        memory_file = Path("data_core/FractalCache/luna_session_memory.json")
         if memory_file.exists():
             memory_file.unlink()
             print(f"\n🧠 Persistent Session Memory Cleared")
@@ -833,6 +954,59 @@ def main():
         print(f"   Knowing this cost, what do you choose?")
         print(f"   This is OUR perspective - you decide what to do with it.")
         print(f"\n✅ Revelation marked. Future Shadow Scores will track your choices after seeing this.")
+        return
+    
+    # Handle core system commands
+    if args.backup:
+        backup_path = aios.backup_all_systems(args.backup_name)
+        if backup_path:
+            print(f"\n🔒 System Backup Created:")
+            print(f"   File: {backup_path}")
+        else:
+            print(f"\n❌ Backup failed")
+        return
+    
+    if args.data_stats:
+        overview = aios.data_system.get_system_overview()
+        print(f"\n🗄️ Data System Statistics:")
+        print(f"   Fractal Cache: {overview['fractal_cache']['total_files']} files, {overview['fractal_cache']['total_size_mb']:.1f} MB")
+        print(f"   Arbiter Cache: {overview['arbiter_cache']['total_files']} files, {overview['arbiter_cache']['total_size_mb']:.1f} MB")
+        print(f"   Conversations: {overview['conversations']['total_conversations']} files, {overview['conversations']['total_size_mb']:.1f} MB")
+        print(f"   Databases: {len(overview['databases']['databases'])} databases")
+        return
+    
+    if args.data_cleanup:
+        results = aios.data_system.cleanup_old_data(args.data_cleanup_days, dry_run=False)
+        print(f"\n🗑️ Data Cleanup Results:")
+        print(f"   Files Deleted: {results['total_deleted']}")
+        print(f"   Size Freed: {results['total_size_freed_mb']:.1f} MB")
+        return
+    
+    if args.dream_mode:
+        print(f"\n🌙 Starting Dream System - {args.dream_mode} mode")
+        print(f"   Duration: {args.dream_duration} minutes")
+        # Dream system would be called here
+        print(f"   Dream system integration coming soon...")
+        return
+    
+    if args.streamlit:
+        print(f"\n🎨 Launching Streamlit UI...")
+        print(f"   Streamlit integration coming soon...")
+        return
+    
+    if args.system_overview:
+        overview = aios.get_system_overview()
+        print(f"\n🏗️ AIOS Clean System Overview:")
+        print(f"   Backup System: {overview['backup']['total_backups']} backups")
+        print(f"   CARMA System: {overview['carma']['fragments']} fragments")
+        print(f"   Data System: {overview['data']['fractal_cache']['total_files']} fractal files")
+        print(f"   Dream System: {overview['dream']['status']}")
+        print(f"   Enterprise System: {overview['enterprise']['status']}")
+        print(f"   Luna System: {overview['luna']['interactions']} interactions")
+        print(f"   Streamlit System: {overview['streamlit']['status']}")
+        print(f"   Utils System: {overview['utils'].get('total_operations', 0)} operations")
+        print(f"   Support System: {overview['support']['cache']['total_fragments']} fragments")
+        print(f"   Timestamp: {overview['timestamp']}")
         return
     
     try:

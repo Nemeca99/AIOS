@@ -25,13 +25,13 @@ from dataclasses import dataclass
 from enum import Enum
 
 class ResponseValueTier(Enum):
-    """Response value tiers based on complexity and stakes"""
-    TRIVIAL = "trivial"           # 2-4 tokens (greetings, simple acknowledgments)
-    LOW = "low"                   # 3-5 tokens (ultra-concise minecraft chat style)
-    MODERATE = "moderate"         # 15-25 tokens (substantial questions)
-    HIGH = "high"                 # 50-100 tokens (complex topics)
-    CRITICAL = "critical"         # 150-300 tokens (philosophical, high-stakes)
-    MAXIMUM = "maximum"           # 500+ tokens (maximum complexity)
+    """Response value tiers based on complexity and stakes - BALANCED FOR OPTIMAL MODEL USAGE"""
+    TRIVIAL = "trivial"           # 8-15 tokens (greetings, simple acknowledgments)
+    LOW = "low"                   # 20-35 tokens (1B daily driver: simple questions, brief responses)
+    MODERATE = "moderate"         # 50-80 tokens (transition zone: medium complexity)
+    HIGH = "high"                 # 100-200 tokens (20B muscle car: complex topics, emotional support)
+    CRITICAL = "critical"         # 200-400 tokens (high-stakes: philosophical, crisis support)
+    MAXIMUM = "maximum"           # 500-1000 tokens (maximum: deep analysis, complex reasoning)
 
 @dataclass
 class ResponseValueAssessment:
@@ -97,41 +97,50 @@ class LunaResponseValueClassifier:
             r"^(bye|goodbye|see you|later)\b"
         ]
         
-        # Emotional stakes indicators
+        # Emotional stakes indicators - ENHANCED FOR BETTER TIER DISTRIBUTION
         self.emotional_stakes_patterns = {
             "high_stakes": [
                 r"\b(crisis|emergency|urgent|critical|serious)\b",
                 r"\b(problem|issue|challenge|difficulty|struggle)\b",
                 r"\b(help|support|advice|guidance|assistance)\b",
                 r"\b(personal|private|confidential|sensitive)\b",
-                r"\b(important|significant|meaningful|valuable)\b"
+                r"\b(important|significant|meaningful|valuable)\b",
+                r"\b(anxiety|overwhelmed|drowning|hard time|disappear)\b",
+                r"\b(crawl under|blanket|feel like|can't|don't know)\b",
+                r"\b(relationship|family|work|health|mental|emotional)\b",
+                r"\b(trauma|ptsd|depression|panic|fear|worry)\b"
+            ],
+            "medium_stakes": [
+                r"\b(question|ask|wonder|curious|think|opinion)\b",
+                r"\b(like|dislike|prefer|enjoy|hate|love)\b",
+                r"\b(experience|feeling|emotion|mood|state)\b"
             ],
             "low_stakes": [
                 r"\b(casual|informal|just|simply|basic)\b",
                 r"\b(quick|brief|short|simple|easy)\b",
                 r"\b(chat|talk|conversation|discussion)\b",
-                r"\b(question|ask|wonder|curious)\b"
+                r"\b(hello|hi|hey|thanks|okay|sure)\b"
             ]
         }
         
-        # Token allocation tiers - TIGHTENED FOR BETTER EFFICIENCY
+        # Token allocation tiers - BALANCED FOR OPTIMAL MODEL USAGE
         self.token_tiers = {
-            ResponseValueTier.TRIVIAL: (15, 25),    # 20 free + 5-15 from pool
-            ResponseValueTier.LOW: (15, 25),        # Ava personality mode: 10-20 words + actions allowed
-            ResponseValueTier.MODERATE: (40, 80),   # 20 free + 20-60 from pool
-            ResponseValueTier.HIGH: (80, 150),      # 20 free + 60-130 from pool
-            ResponseValueTier.CRITICAL: (100, 200), # 20 free + 80-180 from pool
-            ResponseValueTier.MAXIMUM: (500, 1000)
+            ResponseValueTier.TRIVIAL: (8, 15),     # Ultra-minimal: greetings, acknowledgments
+            ResponseValueTier.LOW: (20, 35),        # Daily driver (1B): simple questions, brief responses
+            ResponseValueTier.MODERATE: (50, 80),   # Transition zone: medium complexity
+            ResponseValueTier.HIGH: (100, 200),     # Muscle car (20B): complex topics, emotional support
+            ResponseValueTier.CRITICAL: (200, 400), # High-stakes: philosophical, crisis support
+            ResponseValueTier.MAXIMUM: (500, 1000)  # Maximum: deep analysis, complex reasoning
         }
         
-        # Efficiency requirements per tier - MICRO-TUNED FOR SMOOTHER PERFORMANCE CURVE
+        # Efficiency requirements per tier - BALANCED FOR NEW TOKEN ALLOCATIONS
         self.efficiency_requirements = {
-            ResponseValueTier.TRIVIAL: 0.5,    # 50% efficiency required (adjusted for ultra-short responses)
-            ResponseValueTier.LOW: 0.05,       # 5% efficiency required (Ava personality with actions needs headroom)
-            ResponseValueTier.MODERATE: 0.4,   # 40% efficiency required (balanced for moderate complexity)
-            ResponseValueTier.HIGH: 0.35,      # 35% efficiency required (slightly lower for complex responses)
-            ResponseValueTier.CRITICAL: 0.3,   # 30% efficiency required (allows for philosophical depth)
-            ResponseValueTier.MAXIMUM: 0.25    # 25% efficiency required (maximum complexity allowance)
+            ResponseValueTier.TRIVIAL: 0.6,    # 60% efficiency for ultra-short responses
+            ResponseValueTier.LOW: 0.15,       # 15% efficiency for 1B daily driver responses
+            ResponseValueTier.MODERATE: 0.25,  # 25% efficiency for transition zone
+            ResponseValueTier.HIGH: 0.20,      # 20% efficiency for 20B muscle car responses
+            ResponseValueTier.CRITICAL: 0.15,  # 15% efficiency for high-stakes responses
+            ResponseValueTier.MAXIMUM: 0.10    # 10% efficiency for maximum complexity
         }
     
     def classify_response_value(self, user_input: str, context: Dict = None) -> ResponseValueAssessment:
@@ -245,13 +254,18 @@ class LunaResponseValueClassifier:
         return final_score
     
     def _calculate_emotional_stakes(self, text: str) -> float:
-        """Calculate emotional stakes score"""
+        """Calculate emotional stakes score - ENHANCED FOR BETTER TIER DISTRIBUTION"""
         score = 0.0
         
         # Check for high stakes indicators
         for pattern in self.emotional_stakes_patterns["high_stakes"]:
             matches = len(re.findall(pattern, text, re.IGNORECASE))
-            score += matches * 0.3
+            score += matches * 0.4  # Increased weight for high stakes
+        
+        # Check for medium stakes indicators
+        for pattern in self.emotional_stakes_patterns["medium_stakes"]:
+            matches = len(re.findall(pattern, text, re.IGNORECASE))
+            score += matches * 0.15  # Moderate weight for medium stakes
         
         # Check for low stakes indicators
         for pattern in self.emotional_stakes_patterns["low_stakes"]:
@@ -261,6 +275,7 @@ class LunaResponseValueClassifier:
         # Personal pronouns increase stakes
         personal_pronouns = len(re.findall(r"\b(i|me|my|myself|you|your|yourself)\b", text, re.IGNORECASE))
         score += personal_pronouns * 0.05
+        
         
         return max(0.0, min(1.0, score))
     
@@ -283,16 +298,18 @@ class LunaResponseValueClassifier:
         # Weighted combination
         combined_score = (complexity * 0.5) + (emotional_stakes * 0.3) + (semantic_density * 0.2)
         
-        if combined_score >= 0.8:
+        
+        # BALANCED THRESHOLDS FOR OPTIMAL MODEL DISTRIBUTION
+        if combined_score >= 0.75:
             return ResponseValueTier.MAXIMUM
-        elif combined_score >= 0.6:
+        elif combined_score >= 0.55:
             return ResponseValueTier.CRITICAL
-        elif combined_score >= 0.4:
-            return ResponseValueTier.HIGH
-        elif combined_score >= 0.25:
-            return ResponseValueTier.MODERATE
-        elif combined_score >= 0.1:
-            return ResponseValueTier.LOW
+        elif combined_score >= 0.35:
+            return ResponseValueTier.HIGH      # 20B model territory
+        elif combined_score >= 0.20:
+            return ResponseValueTier.MODERATE  # Transition zone
+        elif combined_score >= 0.08:
+            return ResponseValueTier.LOW       # 1B model territory
         else:
             return ResponseValueTier.TRIVIAL
     

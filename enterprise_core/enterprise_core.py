@@ -26,7 +26,7 @@ import shutil
 sys.path.append(str(Path(__file__).parent.parent))
 
 # Setup Unicode safety
-from utils.unicode_safe_output import setup_unicode_safe_output
+from utils_core.unicode_safe_output import setup_unicode_safe_output
 setup_unicode_safe_output()
 
 # Import support modules
@@ -306,7 +306,7 @@ class PiBasedEncryption:
 class EnterpriseBilling:
     """Enterprise billing and usage tracking system"""
     
-    def __init__(self, billing_file: str = "Data/billing_metrics.json"):
+    def __init__(self, billing_file: str = "data_core/billing_metrics.json"):
         self.billing_file = Path(billing_file)
         self.billing_file.parent.mkdir(parents=True, exist_ok=True)
         self.metrics = {}
@@ -488,7 +488,7 @@ class EnterpriseBilling:
 class KeyRotationManager:
     """Enterprise key rotation and compliance management"""
     
-    def __init__(self, rotation_file: str = "Data/key_rotation.json"):
+    def __init__(self, rotation_file: str = "data_core/key_rotation.json"):
         self.rotation_file = Path(rotation_file)
         self.rotation_file.parent.mkdir(parents=True, exist_ok=True)
         self.rotation_data = {}
@@ -604,7 +604,7 @@ class KeyRotationManager:
 class ComplianceManager:
     """Enterprise compliance and audit management"""
     
-    def __init__(self, audit_file: str = "Data/audit_log.json"):
+    def __init__(self, audit_file: str = "data_core/audit_log.json"):
         self.audit_file = Path(audit_file)
         self.audit_file.parent.mkdir(parents=True, exist_ok=True)
         self.audit_log = []
@@ -1446,6 +1446,46 @@ class EnterpriseSystem:
             self.chain_processor.start_processing()
         
         return {"success": True, "operation_id": operation_id}
+
+# === ENTERPRISE CORE WRAPPER ===
+
+class EnterpriseCore:
+    """
+    Self-contained enterprise system for AIOS Clean.
+    Wraps all enterprise functionality in a simple interface.
+    """
+    
+    def __init__(self, server_ip: str = "localhost"):
+        """Initialize the enterprise core system."""
+        self.server_ip = server_ip
+        self.enterprise_dir = Path("enterprise_core")
+        self.enterprise_dir.mkdir(exist_ok=True)
+        
+        print(f"🏢 Enterprise Core System Initialized")
+        print(f"   Server IP: {server_ip}")
+        print(f"   Enterprise Directory: {self.enterprise_dir}")
+    
+    def get_system_status(self) -> Dict[str, Any]:
+        """Get enterprise system status."""
+        return {
+            "status": "ready",
+            "server_ip": self.server_ip,
+            "enterprise_directory": str(self.enterprise_dir),
+            "available_features": [
+                "encryption", "billing", "security", "distribution", 
+                "compliance", "chain_processing"
+            ]
+        }
+    
+    def process_request(self, operation_type: str, user_id: str, data: Dict) -> Dict:
+        """Process an enterprise request."""
+        # Placeholder for enterprise request processing
+        return {
+            "success": True,
+            "operation_type": operation_type,
+            "user_id": user_id,
+            "message": "Enterprise request processed"
+        }
 
 # === MAIN ENTRY POINT ===
 

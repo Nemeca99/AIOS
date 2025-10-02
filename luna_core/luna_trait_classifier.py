@@ -12,7 +12,7 @@ This is NOT a test - it's Luna's pre-knowledge base for understanding human psyc
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
-from utils.unicode_safe_output import setup_unicode_safe_output
+from utils_core.unicode_safe_output import setup_unicode_safe_output
 setup_unicode_safe_output()
 
 import json
