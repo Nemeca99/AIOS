@@ -1587,36 +1587,43 @@ def handle_model_management(args):
         show_all_model_configs()
         return True
     
+    if args.config_health:
+        check_config_health()
+        return True
+    
     if args.modchange and args.model_name and not any([args.luna, args.carma, args.support, args.backup, args.dream, args.enterprise, args.streamlit, args.utils, args.data]):
         if args.main:
             change_all_models('main_llm', args.model_name)
         elif args.embed:
             change_all_models('embedder', args.model_name)
+        elif args.sd:
+            change_all_models('draft_model', args.model_name)
         else:
-            print("❌ Specify --main or --embed with --modchange")
+            print("❌ Specify --main, --embed, or --sd with --modchange")
         return True
     
     # Handle specific system model changes
     if any([args.luna, args.carma, args.support, args.backup, args.dream, args.enterprise, args.streamlit, args.utils, args.data]):
         if args.modchange and args.model_name:
+            model_type = 'main_llm' if args.main else ('embedder' if args.embed else 'draft_model')
             if args.luna:
-                change_system_model('luna', 'main_llm' if args.main else 'embedder', args.model_name)
+                change_system_model('luna', model_type, args.model_name)
             elif args.carma:
-                change_system_model('carma', 'main_llm' if args.main else 'embedder', args.model_name)
+                change_system_model('carma', model_type, args.model_name)
             elif args.support:
-                change_system_model('support', 'main_llm' if args.main else 'embedder', args.model_name)
+                change_system_model('support', model_type, args.model_name)
             elif args.backup:
-                change_system_model('backup', 'main_llm' if args.main else 'embedder', args.model_name)
+                change_system_model('backup', model_type, args.model_name)
             elif args.dream:
-                change_system_model('dream', 'main_llm' if args.main else 'embedder', args.model_name)
+                change_system_model('dream', model_type, args.model_name)
             elif args.enterprise:
-                change_system_model('enterprise', 'main_llm' if args.main else 'embedder', args.model_name)
+                change_system_model('enterprise', model_type, args.model_name)
             elif args.streamlit:
-                change_system_model('streamlit', 'main_llm' if args.main else 'embedder', args.model_name)
+                change_system_model('streamlit', model_type, args.model_name)
             elif args.utils:
-                change_system_model('utils', 'main_llm' if args.main else 'embedder', args.model_name)
+                change_system_model('utils', model_type, args.model_name)
             elif args.data:
-                change_system_model('data', 'main_llm' if args.main else 'embedder', args.model_name)
+                change_system_model('data', model_type, args.model_name)
         else:
             show_system_model_configs(args)
         return True
@@ -1647,10 +1654,12 @@ def show_all_model_configs():
                 
                 main_model = config["model_config"]["models"]["main_llm"]["name"]
                 embedder_model = config["model_config"]["models"]["embedder"]["name"]
+                draft_model = config["model_config"]["models"]["draft_model"]["name"]
                 
                 print(f"📁 {system.upper()} Core:")
                 print(f"   Main: {main_model}")
                 print(f"   Embedder: {embedder_model}")
+                print(f"   Draft/SD: {draft_model}")
                 print()
             except Exception as e:
                 print(f"❌ {system.upper()} Core: Error reading config - {e}")
@@ -1757,13 +1766,74 @@ def show_system_model_configs(args):
         
         main_model = config["model_config"]["models"]["main_llm"]["name"]
         embedder_model = config["model_config"]["models"]["embedder"]["name"]
+        draft_model = config["model_config"]["models"]["draft_model"]["name"]
         
         print(f"🤖 {system_name.upper()} Core Model Configuration:")
         print(f"   Main: {main_model}")
         print(f"   Embedder: {embedder_model}")
+        print(f"   Draft/SD: {draft_model}")
         
     except Exception as e:
         print(f"❌ {system_name.upper()} Core: Error reading config - {e}")
+
+def check_config_health():
+    """Check configuration health for all cores."""
+    import json
+    from pathlib import Path
+    
+    print("🔍 Configuration Health Check:")
+    print("=" * 50)
+    
+    core_systems = ['luna', 'carma', 'data', 'backup', 'dream', 'enterprise', 'streamlit', 'support', 'utils']
+    healthy_cores = 0
+    total_cores = len(core_systems)
+    
+    for system in core_systems:
+        config_path = Path(f"{system}_core/config/model_config.json")
+        
+        if not config_path.exists():
+            print(f"❌ {system.upper()}: Config file missing")
+            continue
+        
+        try:
+            with open(config_path, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+            
+            # Check required keys
+            required_keys = [
+                "model_config.models.main_llm.name",
+                "model_config.models.embedder.name", 
+                "model_config.models.draft_model.name",
+                "model_config.model_switching.current_main",
+                "model_config.model_switching.current_embedder"
+            ]
+            
+            missing_keys = []
+            for key_path in required_keys:
+                keys = key_path.split('.')
+                current = config
+                try:
+                    for key in keys:
+                        current = current[key]
+                    if not current or current.strip() == "":
+                        missing_keys.append(key_path)
+                except (KeyError, TypeError):
+                    missing_keys.append(key_path)
+            
+            if missing_keys:
+                print(f"❌ {system.upper()}: Missing/invalid keys: {', '.join(missing_keys)}")
+            else:
+                print(f"✅ {system.upper()}: All required keys present")
+                healthy_cores += 1
+                
+        except Exception as e:
+            print(f"❌ {system.upper()}: Config parsing error - {e}")
+    
+    print(f"\n📊 Health Summary: {healthy_cores}/{total_cores} cores healthy")
+    if healthy_cores == total_cores:
+        print("🎉 All core configurations are healthy!")
+    else:
+        print(f"⚠️  {total_cores - healthy_cores} cores need attention")
 
 # === MAIN ENTRY POINT ===
 
@@ -1885,8 +1955,10 @@ def main():
     parser.add_argument('--modchange', action='store_true', help='Change model configuration')
     parser.add_argument('--main', action='store_true', help='Change main model')
     parser.add_argument('--embed', action='store_true', help='Change embedder model')
+    parser.add_argument('--sd', action='store_true', help='Change speculative decoding model')
     parser.add_argument('--model-name', type=str, help='New model name to set')
     parser.add_argument('--show-models', action='store_true', help='Show current model configurations for all systems')
+    parser.add_argument('--config-health', action='store_true', help='Check configuration health for all cores')
     
     # Trait classification arguments
     parser.add_argument('--classify', type=str, help='Classify a question using Big Five trait Rosetta Stone')
