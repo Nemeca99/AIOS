@@ -128,6 +128,25 @@ This system may be useful for:
 
 This is primarily a research project. Contributions that help explore the theoretical concepts are welcome.
 
+## Irrefutable Proof Checklist
+
+✅ **Model Verification:**
+- `python main.py --system --luna --whoami` shows {main, embedder, sd} + hashes + quant
+
+✅ **Configuration Health:**
+- `python main.py --system --config-health` passes schema v1 for all cores
+
+✅ **Deterministic Testing:**
+- `python main.py --execution-mode real --deterministic --test-suite --golden` passes with provenance lines
+
+✅ **Execution Mode:**
+- `execution_mode=real` watermark present in all outputs
+- Mock mode fails loudly when used with golden tests
+
+✅ **Traceability:**
+- `git_rev` present in every provenance block
+- NDJSON provenance log in `data_core/analytics/provenance.ndjson`
+
 ## License
 
 MIT License - see LICENSE file for details.

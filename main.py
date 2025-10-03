@@ -1935,6 +1935,39 @@ def extract_quantization(model_name):
             return pattern
     return 'unknown'
 
+def get_environment_info():
+    """Get environment information for provenance."""
+    import platform
+    import sys
+    
+    env_info = {
+        "python_version": f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}",
+        "platform": platform.system(),
+        "platform_version": platform.version(),
+        "architecture": platform.machine()
+    }
+    
+    # Try to get CPU info
+    try:
+        import cpuinfo
+        cpu_info = cpuinfo.get_cpu_info()
+        env_info["cpu_model"] = cpu_info.get('brand_raw', 'unknown')
+    except ImportError:
+        env_info["cpu_model"] = platform.processor()
+    
+    # Try to get GPU info
+    try:
+        import torch
+        if torch.cuda.is_available():
+            env_info["gpu"] = torch.cuda.get_device_name(0)
+            env_info["cuda_version"] = torch.version.cuda
+        else:
+            env_info["gpu"] = "none"
+    except ImportError:
+        env_info["gpu"] = "unknown"
+    
+    return env_info
+
 def print_provenance_header(core_name, mode, models, tier=None, backend=None, cold_warm=None, 
                            inference_params=None, retrieval_params=None, spec_decode_params=None, seed=None):
     """Print compact JSON provenance block for every run/request."""
@@ -1957,6 +1990,9 @@ def print_provenance_header(core_name, mode, models, tier=None, backend=None, co
     except:
         pass  # Git not available or not in repo
     
+    # Get environment info (once per run)
+    env_info = get_environment_info()
+    
     # Generate model hashes
     model_hashes = {}
     for model_type, model_name in models.items():
@@ -1976,6 +2012,7 @@ def print_provenance_header(core_name, mode, models, tier=None, backend=None, co
         "mode": mode,
         "execution_mode": EXECUTION_MODE,
         "git_rev": git_rev,
+        "env": env_info,
         "models": {
             "main": models.get('main', 'N/A'),
             "embedder": models.get('embedder', 'N/A'),
@@ -2015,6 +2052,16 @@ def print_provenance_header(core_name, mode, models, tier=None, backend=None, co
     # Print compact JSON (single line)
     provenance_json = json.dumps(provenance_data, separators=(',', ':'))
     print(f"\n🔍 PROVENANCE: {provenance_json}")
+    
+    # Append to NDJSON log file
+    try:
+        log_path = Path("data_core/analytics/provenance.ndjson")
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(log_path, 'a', encoding='utf-8') as f:
+            f.write(provenance_json + '\n')
+    except Exception as e:
+        print(f"⚠️  Could not write provenance log: {e}")
+    
     return provenance_json
 
 def run_golden_prompts_test(report_file=None):
@@ -2325,6 +2372,15 @@ def main():
     
     # Handle golden prompts testing
     if args.test_suite and args.golden:
+        # Fail loudly if trying to run tests in mock mode
+        if args.execution_mode == 'mock':
+            print("\n" + "="*80)
+            print("🚨 CRITICAL ERROR: Cannot run golden tests in MOCK mode!")
+            print("="*80)
+            print("Golden prompts tests require --execution-mode real for valid benchmarking.")
+            print("Mock mode results are NOT valid for research or publication.")
+            print("="*80)
+            return 1
         return run_golden_prompts_test(args.report)
     
     # Check if this is a chat command and handle it directly without initialization
