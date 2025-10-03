@@ -41,6 +41,44 @@ This is an experimental system under active development. Results are preliminary
 - LM Studio (for local LLM inference)
 - Various Python packages (see requirements.txt)
 
+## Quick Operations
+
+### Model Management
+```bash
+# Show all model configurations
+python main.py --system --show-models
+
+# Check configuration health
+python main.py --system --config-health
+
+# Show exact model triplet for Luna
+python main.py --system --luna --whoami
+
+# Change Luna's main model
+python main.py --system --luna --modchange --main --model-name "qwen/qwen3-4b-thinking-2507 Q8_0"
+
+# Change Luna's speculative decoding model
+python main.py --system --luna --modchange --sd --model-name "new-sd-model"
+
+# Run with real LLM calls (default)
+python main.py --execution-mode real --system --luna --message "hello"
+
+# Run with mock responses (for testing)
+python main.py --execution-mode mock --system --luna --message "hello"
+```
+
+### Testing & Validation
+```bash
+# Run smoke tests
+python smoke_test.py
+
+# Run golden prompts regression tests
+python main.py --test --golden --report data_core/analytics/golden_report.json
+
+# Update all config files with schema versioning
+python update_config_schema.py
+```
+
 ## Usage
 
 ```bash

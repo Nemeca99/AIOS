@@ -1,30 +1,53 @@
-# Rust build artifacts
-**/target/
-**/*.dll
-**/*.lib
-**/*.pdb
-**/*.exp
+# AIOS Clean .gitignore
 
-# Large database files
-data_core/AIOS_Database/database/conversations.db
-data_core/database/conversations.json
-
-# Backup directories
-backup_core/active_backup/
-backup_core/archive_backup/
+# Virtual environments
+venv/
+env/
+ENV/
 
 # Python cache
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
+*.py[cod]
+*$py.class
 *.so
 
-# Virtual environment
-venv/
-env/
-.venv/
+# Large data files and caches
+data_core/FractalCache/
+data_core/ArbiterCache/
+data_core/exports/
+data_core/embeddings/
+data_core/analytics/
+data_core/temp/
+data_core/logs/
+data_core/cache/
+data_core/conversations/
+
+# Backup files
+backup_core/*.zip
+backup_core/active_backup/
+backup_core/archive_backup/
+
+# Model files and caches
+*.bin
+*.gguf
+*.safetensors
+*.pt
+*.pth
+*.onnx
+
+# Large databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+log/
+
+# Temporary files
+temp/
+tmp/
+*.tmp
 
 # IDE files
 .vscode/
@@ -36,9 +59,10 @@ env/
 .DS_Store
 Thumbs.db
 
-# Log files
-*.log
+# Test outputs
+test_output/
+test_results/
+*.report.json
 
-# Temporary files
-*.tmp
-*.temp
+# Streamlit cache
+.streamlit/

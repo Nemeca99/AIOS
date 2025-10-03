@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "model_config": {
     "version": "1.0",
     "last_updated": "2025-10-03",
@@ -20,7 +21,7 @@
         "fallback_dimension": 1024
       },
       "draft_model": {
-        "name": "mlabonne_qwen3-0.6b-abliterated",
+        "name": "test-sd-model",
         "type": "draft_model",
         "description": "Fast draft model for speculative decoding",
         "tier": "draft",
@@ -45,7 +46,8 @@
     "model_switching": {
       "instructions": "To switch models, update the 'name' field in the active model section above",
       "current_main": "llama-3.2-pkd-deckard-almost-human-abliterated-uncensored-7b-i1",
-      "current_embedder": "llama-3.2-1b-instruct-abliterated"
+      "current_embedder": "llama-3.2-1b-instruct-abliterated",
+      "current_draft": "test-sd-model"
     }
   }
 }

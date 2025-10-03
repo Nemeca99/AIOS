@@ -2,8 +2,13 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AIOS Core Model Config",
   "type": "object",
-  "required": ["model_config"],
+  "required": ["schema_version", "model_config"],
   "properties": {
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Schema version for migration compatibility"
+    },
     "model_config": {
       "type": "object",
       "required": ["models", "model_switching"],
