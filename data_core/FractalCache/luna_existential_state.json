@@ -1,10 +1,10 @@
 {
   "age": 2,
-  "current_token_pool": 15735,
+  "current_token_pool": 13875,
   "max_token_pool": 16000,
   "karma_quota": 1574.6399999999999,
-  "current_karma": 31.838368636863535,
-  "total_responses": 1277,
+  "current_karma": 50.91499283585274,
+  "total_responses": 1355,
   "last_age_up": 1759378695.5948184,
   "last_regression": 1759283828.7030027,
   "survival_threshold": 2.0,

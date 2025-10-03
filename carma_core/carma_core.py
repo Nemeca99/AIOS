@@ -1802,10 +1802,7 @@ class CARMASystem:
         # System state
         self.total_queries = 0
         
-        # Perform health check
-        health_status = self.health_checker.check_system_health()
-        if health_status["overall_status"] != "HEALTHY":
-            self.logger.warn(f"System health degraded: {health_status['overall_status']}", "CARMA")
+        # Health check moved to main system initialization
         
         self.logger.success("Unified CARMA System Initialized", "CARMA")
         self.learning_cycles = 0
@@ -1839,11 +1836,17 @@ class CARMASystem:
         # Generate embedding for query
         query_embedding = self.cache.embedder.embed(query)
         
-        # Find relevant fragments
+        # Find relevant fragments from both FractalCache and conversation files
         relevant_fragments = self.cache.find_relevant(query_embedding, topk=5)
         
+        # Also search conversation files for relevant memories
+        conversation_memories = self._find_conversation_memories(query, query_embedding, topk=3)
+        
+        # Combine fragments and conversation memories
+        all_relevant_memories = relevant_fragments + conversation_memories
+        
         # Generate cognitive response
-        response = self._generate_cognitive_response(query, relevant_fragments, {}, {}, {})
+        response = self._generate_cognitive_response(query, all_relevant_memories, {}, {}, {})
         
         # Update personality based on all cognitive factors
         self._update_cognitive_personality(query, response, {}, {}, {})
@@ -1856,6 +1859,7 @@ class CARMASystem:
             'query': query,
             'processing_time': processing_time,
             'fragments_found': len(relevant_fragments),
+            'conversation_memories_found': len(conversation_memories),
             'personality_drift': self.personality_drift.copy()
         }
         self.cognitive_events.append(cognitive_event)
@@ -1866,7 +1870,9 @@ class CARMASystem:
             'response': response,
             'processing_time': processing_time,
             'fragments_found': len(relevant_fragments),
+            'conversation_memories_found': len(conversation_memories),
             'fragments_found': [f.id for f in relevant_fragments],
+            'conversation_memories_found': [f.id for f in conversation_memories],
             'personality_drift': self.personality_drift.copy(),
             'cognitive_event': cognitive_event,
             'system_stats': self.get_comprehensive_stats()
@@ -1874,8 +1880,83 @@ class CARMASystem:
         
         print(f" Query processed in {processing_time:.2f}s")
         print(f"   Fragments: {len(relevant_fragments)}")
+        print(f"   Conversation memories: {len(conversation_memories)}")
         
         return results
+    
+    def _find_conversation_memories(self, query: str, query_embedding: List[float], topk: int = 3) -> List:
+        """Find relevant conversation memories using embedding similarity."""
+        conversation_memories = []
+        
+        try:
+            # Get conversation directory
+            conversation_dir = Path("data_core/conversations")
+            if not conversation_dir.exists():
+                return conversation_memories
+            
+            # Get all conversation files
+            conversation_files = list(conversation_dir.glob("conversation_*.json"))
+            
+            # For each conversation file, check if it has embeddings
+            for conv_file in conversation_files[-50:]:  # Check last 50 conversation files
+                try:
+                    with open(conv_file, 'r', encoding='utf-8') as f:
+                        conv_data = json.load(f)
+                    
+                    conv_id = conv_data.get('id', 'unknown')
+                    messages = conv_data.get('messages', [])
+                    
+                    # Search through messages in the conversation
+                    for message in messages:
+                        content = message.get('content', '')
+                        message_id = message.get('id', 'unknown')
+                        timestamp = message.get('timestamp', 0)
+                        
+                        if isinstance(content, str) and content:
+                            # Generate embedding for this message content
+                            try:
+                                message_embedding = self.cache.embedder.embed(content[:1000])  # Limit content for embedding
+                                
+                                # Calculate similarity with query
+                                if query_embedding and message_embedding:
+                                    similarity = self.cache.calculate_similarity(query_embedding, message_embedding)
+                                    
+                                    if similarity > 0.3:  # Threshold for relevance
+                                        # Create a memory fragment with file IDs and metadata
+                                        class ConversationMemory:
+                                            def __init__(self, conv_id, message_id, content, similarity, timestamp):
+                                                self.id = f"conv_{conv_id}_{message_id}"
+                                                self.conv_id = conv_id
+                                                self.message_id = message_id
+                                                self.content = content[:500]  # Truncate for performance
+                                                self.score = similarity
+                                                self.timestamp = timestamp
+                                                self.hits = 1
+                                                self.level = 0
+                                                self.source = "conversation"
+                                                self.file_path = str(conv_file)  # Full path for embedder access
+                                        
+                                        memory = ConversationMemory(
+                                            conv_id,
+                                            message_id,
+                                            content,
+                                            similarity,
+                                            timestamp
+                                        )
+                                        conversation_memories.append(memory)
+                            except Exception as e:
+                                continue
+                
+                except Exception as e:
+                    continue
+            
+            # Sort by similarity score and return top k
+            conversation_memories.sort(key=lambda x: x.score, reverse=True)
+            return conversation_memories[:topk]
+            
+        except Exception as e:
+            print(f"   Error searching conversation memories: {e}")
+            return conversation_memories
     
     def compress_memories(self, algorithm: str = 'semantic') -> Dict:
         """Compress memory fragments using advanced compression."""

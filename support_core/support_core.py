@@ -582,8 +582,8 @@ class AIOSHealthChecker:
         import threading
         self._lock = threading.Lock()
         
-    def check_system_health(self, async_checks: bool = True) -> Dict[str, Any]:
-        """Comprehensive system health check with parallel execution"""
+    def check_system_health(self, async_checks: bool = True, quick_mode: bool = False) -> Dict[str, Any]:
+        """Comprehensive system health check with parallel execution and quick mode option"""
         self.logger.info("Starting comprehensive AIOS system health check...")
         start_time = time.time()
         
@@ -595,11 +595,15 @@ class AIOSHealthChecker:
             "errors": [],
             "warnings": [],
             "performance_metrics": {},
-            "check_duration": 0
+            "check_duration": 0,
+            "quick_mode": quick_mode
         }
         
         try:
-            if async_checks:
+            if quick_mode:
+                # Run only essential checks for fast initialization
+                health_results["checks"] = self._run_quick_checks()
+            elif async_checks:
                 # Run checks in parallel for better performance
                 health_results["checks"] = self._run_parallel_checks()
             else:
@@ -609,8 +613,9 @@ class AIOSHealthChecker:
             # Analyze results and determine overall status
             health_results.update(self._analyze_health_results(health_results["checks"]))
             
-            # Add performance metrics
-            health_results["performance_metrics"] = self._collect_performance_metrics()
+            # Add performance metrics (skip in quick mode)
+            if not quick_mode:
+                health_results["performance_metrics"] = self._collect_performance_metrics()
             
             # Store in history
             self._store_health_history(health_results)
@@ -625,7 +630,8 @@ class AIOSHealthChecker:
             self.health_status = health_results
             self.last_check = datetime.now()
             
-            self.logger.info(f"Health check completed in {health_results['check_duration']:.2f}s. Status: {health_results['overall_status']}")
+            mode_text = "quick mode" if quick_mode else "full mode"
+            self.logger.info(f"Health check completed in {health_results['check_duration']:.2f}s ({mode_text}). Status: {health_results['overall_status']}")
         
         return health_results
     
@@ -656,6 +662,30 @@ class AIOSHealthChecker:
                     "status": False,
                     "error": str(e),
                     "message": f"Check failed with exception: {e}"
+                }
+        
+        return results
+    
+    def _run_quick_checks(self) -> Dict[str, Any]:
+        """Run only essential checks for fast initialization"""
+        results = {}
+        
+        # Only check critical components that could prevent system startup
+        essential_checks = [
+            ("python_environment", self._check_python_environment),
+            ("file_system", self._check_file_system),
+            ("memory", self._check_memory_usage)
+        ]
+        
+        for check_name, check_func in essential_checks:
+            try:
+                results[check_name] = check_func()
+            except Exception as e:
+                results[check_name] = {
+                    "status": False,
+                    "error": str(e),
+                    "message": f"Quick check failed: {e}",
+                    "critical": True
                 }
         
         return results
@@ -1685,7 +1715,8 @@ class CacheRegistry:
             try:
                 with open(self.registry_file, 'r') as f:
                     data = json.load(f)
-                    self.fragments = data.get('fragments', {})
+                    # Check for both 'fragments' and 'file_registry' keys
+                    self.fragments = data.get('file_registry', data.get('fragments', {}))
             except Exception as e:
                 print(f"  Error loading registry: {e}")
                 self.fragments = {}
@@ -1919,6 +1950,11 @@ class FAISSOperations:
         print(f"   Index path: {index_path or 'None'}")
         
         try:
+            # Suppress FAISS AVX512 warnings - this is normal fallback behavior
+            import logging
+            faiss_logger = logging.getLogger('faiss.loader')
+            faiss_logger.setLevel(logging.ERROR)
+            
             import faiss
             self.faiss = faiss
             self.index = faiss.IndexFlatIP(dimension)  # Inner product for cosine similarity
@@ -2129,12 +2165,19 @@ class RecoveryOperations:
         
         for fragment_file in cache_dir.glob("*.json"):
             try:
+                # Skip system files that don't have content/pattern fields
+                system_files = ['luna_bigfive_answers.json', 'luna_existential_state.json', 
+                              'master_cache.json', 'registry.json', 'embeddings.json']
+                if fragment_file.name in system_files:
+                    continue
+                
                 with open(fragment_file, 'r') as f:
                     fragment = json.load(f)
                 
                 # Handle both list and dict formats
                 if isinstance(fragment, dict):
-                    content = fragment.get('content', '')
+                    # Check for both 'content' and 'pattern' fields
+                    content = fragment.get('content', fragment.get('pattern', ''))
                 else:
                     content = str(fragment)
                 

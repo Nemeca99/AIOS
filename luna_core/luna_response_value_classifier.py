@@ -198,7 +198,7 @@ class LunaResponseValueClassifier:
         # Check for trivial patterns (low complexity) - FORCE TRIVIAL TIER
         for pattern in self.trivial_patterns:
             if re.search(pattern, text, re.IGNORECASE):
-                return 0.05  # Force TRIVIAL tier for simple greetings
+                return 0.005  # Force TRIVIAL tier for simple greetings (EVEN LOWER)
         
         # HIGH-COMPLEXITY DOMAINS - REDUCED TO PREVENT OVER-CLASSIFICATION
         high_complexity_domains = {
@@ -285,6 +285,11 @@ class LunaResponseValueClassifier:
         if word_count == 0:
             return 0.0
         
+        # Check for trivial patterns first - these should have very low semantic density
+        for pattern in self.trivial_patterns:
+            if re.search(pattern, text, re.IGNORECASE):
+                return 0.01  # Force very low semantic density for trivial patterns
+        
         # Count meaningful words (excluding common words)
         common_words = {"the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of", "with", "by", "is", "are", "was", "were", "be", "been", "have", "has", "had", "do", "does", "did", "will", "would", "could", "should", "may", "might", "can", "this", "that", "these", "those"}
         
@@ -299,19 +304,19 @@ class LunaResponseValueClassifier:
         combined_score = (complexity * 0.5) + (emotional_stakes * 0.3) + (semantic_density * 0.2)
         
         
-        # BALANCED THRESHOLDS FOR OPTIMAL MODEL DISTRIBUTION
+        # BALANCED THRESHOLDS FOR OPTIMAL MODEL DISTRIBUTION - ADJUSTED FOR BETTER TIER DISTRIBUTION
         if combined_score >= 0.75:
             return ResponseValueTier.MAXIMUM
         elif combined_score >= 0.55:
             return ResponseValueTier.CRITICAL
         elif combined_score >= 0.35:
             return ResponseValueTier.HIGH      # 20B model territory
-        elif combined_score >= 0.20:
+        elif combined_score >= 0.25:           # INCREASED from 0.20
             return ResponseValueTier.MODERATE  # Transition zone
-        elif combined_score >= 0.08:
+        elif combined_score >= 0.12:           # INCREASED from 0.08
             return ResponseValueTier.LOW       # 1B model territory
         else:
-            return ResponseValueTier.TRIVIAL
+            return ResponseValueTier.TRIVIAL   # Simple greetings, acknowledgments
     
     def _generate_reasoning(self, tier: ResponseValueTier, complexity: float, emotional_stakes: float, semantic_density: float) -> str:
         """Generate reasoning for the classification"""

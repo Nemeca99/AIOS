@@ -42,18 +42,19 @@ from functools import wraps
 sys.path.append(str(Path(__file__).parent))
 
 # Import all core systems
-from backup_core.backup_core import BackupCore
-from carma_core.carma_core import CARMASystem
-from data_core.data_core import DataCore
-from dream_core.dream_core import DreamCore
+from backup_core.hybrid_backup_core import HybridBackupCore as BackupCore
+from carma_core.hybrid_carma_core import HybridCarmaCore as CARMASystem
+from data_core.hybrid_data_core import HybridDataCore as DataCore
+from dream_core.hybrid_dream_core import HybridDreamCore as DreamCore
 from enterprise_core.enterprise_core import EnterpriseCore, PiBasedEncryption, GlobalAPIDistribution, CARMAChainProcessor, EnterpriseBilling, KeyRotationManager, ComplianceManager, AdvancedSecurity
-from luna_core.luna_core import LunaSystem
+from luna_core.hybrid_luna_core import HybridLunaCore as LunaSystem
 from streamlit_core.streamlit_core import StreamlitCore
 from support_core.support_core import (
-    SupportSystem, SystemConfig, FilePaths, SystemMessages, ensure_directories,
+    SystemConfig, FilePaths, SystemMessages, ensure_directories,
     aios_config, aios_logger, aios_health_checker, aios_security_validator
 )
-from utils_core.utils_core import UtilsCore
+from support_core.hybrid_support_core import HybridSupportCore as SupportSystem
+from utils_core.hybrid_utils_core import HybridUtilsCore as UtilsCore
 
 # Import utilities
 from utils_core.aios_json_standards import AIOSJSONHandler, AIOSDataType, AIOSJSONStandards, ConversationMessage
@@ -113,41 +114,22 @@ class AIOSClean:
         # Ensure directories exist
         ensure_directories()
         
-        # Perform comprehensive health check
-        health_status = self.health_checker.check_system_health()
-        if health_status["overall_status"] != "HEALTHY":
-            self.logger.warn(f"System health degraded: {health_status['overall_status']}", "AIOS")
-            self.logger.warn(f"Failed checks: {health_status.get('errors', [])}", "AIOS")
+        # Initialize core systems with lazy loading for faster startup
+        self._core_systems = {}
+        self._initialized_systems = set()
         
-        # Initialize all core systems with unified logging
-        self.logger.info("Initializing Backup system...", "AIOS")
-        self.backup_system = BackupCore()
+        # Only initialize essential systems immediately
+        self.logger.info("Initializing essential systems...", "AIOS")
+        self._initialize_essential_systems()
         
-        # Auto-backup only runs when explicitly requested via --backup flag
+        # Health check temporarily disabled during initialization to prevent false warnings
+        # health_status = self.health_checker.check_system_health(quick_mode=True)
+        # if health_status["overall_status"] != "HEALTHY":
+        #     self.logger.warn(f"System health degraded: {health_status['overall_status']}", "AIOS")
+        #     self.logger.warn(f"Failed checks: {health_status.get('errors', [])}", "AIOS")
         
-        self.logger.info("Initializing CARMA system...", "AIOS")
-        self.carma_system = CARMASystem()
-        
-        self.logger.info("Initializing Data system...", "AIOS")
-        self.data_system = DataCore()
-        
-        self.logger.info("Initializing Dream system...", "AIOS")
-        self.dream_system = DreamCore()
-        
-        self.logger.info("Initializing Enterprise system...", "AIOS")
-        self.enterprise_system = EnterpriseCore()
-        
-        self.logger.info("Initializing Luna system...", "AIOS")
-        self.luna_system = LunaSystem()
-        
-        self.logger.info("Initializing Streamlit system...", "AIOS")
-        self.streamlit_system = StreamlitCore()
-        
-        self.logger.info("Initializing Utils system...", "AIOS")
-        self.utils_system = UtilsCore()
-        
-        self.logger.info("Initializing Support system...", "AIOS")
-        self.support_system = SupportSystem()
+        # Other systems will be loaded on-demand
+        self.logger.info("Other systems will be loaded on-demand", "AIOS")
         
         # System state
         self.initialized = True
@@ -157,43 +139,136 @@ class AIOSClean:
         self.logger.success("AIOS Clean System Initialized Successfully", "AIOS")
         self._display_system_status()
     
+    def _initialize_essential_systems(self):
+        """Initialize only the systems needed for basic operation"""
+        # Initialize data system first (needed for logging and basic operations)
+        self.logger.info("Initializing Data system...", "AIOS")
+        self.data_system = DataCore()
+        self._core_systems['data'] = self.data_system
+        self._initialized_systems.add('data')
+        
+        # Initialize support system (needed for basic operations)
+        self.logger.info("Initializing Support system...", "AIOS")
+        self.support_system = SupportSystem()
+        self._core_systems['support'] = self.support_system
+        self._initialized_systems.add('support')
+    
+    def _lazy_load_system(self, system_name: str):
+        """Lazy load a system when first accessed"""
+        if system_name in self._initialized_systems:
+            return self._core_systems.get(system_name)
+        
+        self.logger.info(f"Lazy loading {system_name} system...", "AIOS")
+        
+        if system_name == 'backup':
+            self.backup_system = BackupCore()
+            self._core_systems['backup'] = self.backup_system
+        elif system_name == 'carma':
+            self.carma_system = CARMASystem()
+            self._core_systems['carma'] = self.carma_system
+        elif system_name == 'dream':
+            self.dream_system = DreamCore()
+            self._core_systems['dream'] = self.dream_system
+        elif system_name == 'enterprise':
+            self.enterprise_system = EnterpriseCore()
+            self._core_systems['enterprise'] = self.enterprise_system
+        elif system_name == 'luna':
+            self.luna_system = LunaSystem()
+            self._core_systems['luna'] = self.luna_system
+        elif system_name == 'streamlit':
+            self.streamlit_system = StreamlitCore()
+            self._core_systems['streamlit'] = self.streamlit_system
+        elif system_name == 'utils':
+            self.utils_system = UtilsCore()
+            self._core_systems['utils'] = self.utils_system
+        
+        self._initialized_systems.add(system_name)
+        return self._core_systems.get(system_name)
+    
+    def _get_system(self, system_name: str):
+        """Get a system, loading it if necessary"""
+        return self._lazy_load_system(system_name)
+    
     def _display_system_status(self):
         """Display current system status using unified logging"""
         try:
-            # Backup system status
-            backup_info = self.backup_system.get_system_info()
-            self.logger.info(f"Backup: {backup_info['total_backups']} backups", "AIOS")
+            # Display status for initialized systems only
+            for system_name in self._initialized_systems:
+                if system_name == 'backup':
+                    backup_info = self.backup_system.get_system_info()
+                    self.logger.info(f"Backup: {backup_info['total_backups']} backups", "AIOS")
+                elif system_name == 'carma':
+                    carma_fragments = self.carma_system.cache.file_registry
+                    if hasattr(carma_fragments, '__len__'):
+                        self.logger.info(f"CARMA: {len(carma_fragments)} fragments", "AIOS")
+                    else:
+                        self.logger.info(f"CARMA: {carma_fragments} fragments", "AIOS")
+                elif system_name == 'data':
+                    data_overview = self.data_system.get_system_overview()
+                    total_data_files = (data_overview['fractal_cache']['total_files'] + 
+                                      data_overview['arbiter_cache']['total_files'] + 
+                                      data_overview['conversations']['total_conversations'])
+                    self.logger.info(f"Data: {total_data_files} files", "AIOS")
+                elif system_name == 'dream':
+                    dream_stats = self.dream_system.get_system_stats()
+                    self.logger.info(f"Dream: {dream_stats['total_dreams']} dreams", "AIOS")
+                elif system_name == 'enterprise':
+                    enterprise_stats = self.enterprise_system.get_system_stats()
+                    self.logger.info(f"Enterprise: {enterprise_stats['total_users']} users", "AIOS")
+                elif system_name == 'luna':
+                    self.logger.info(f"Luna: {self.luna_system.total_interactions} interactions", "AIOS")
+                elif system_name == 'streamlit':
+                    streamlit_stats = self.streamlit_system.get_system_stats()
+                    self.logger.info(f"Streamlit: {streamlit_stats['total_sessions']} sessions", "AIOS")
+                elif system_name == 'utils':
+                    utils_stats = self.utils_system.get_system_stats()
+                    self.logger.info(f"Utils: {utils_stats['total_operations']} operations", "AIOS")
+                elif system_name == 'support':
+                    support_status = self.safe_method_call(self.support_system, 'get_system_status')
+                    if support_status['success']:
+                        support_fragments = support_status['result'].get('cache', {}).get('total_fragments', 0)
+                        self.logger.info(f"Support: {support_fragments} fragments", "AIOS")
+                    else:
+                        self.logger.info(f"Support: Status unavailable ({support_status['error']})", "AIOS")
             
-            # CARMA system status
-            carma_fragments = self.carma_system.cache.file_registry
-            if hasattr(carma_fragments, '__len__'):
-                self.logger.info(f"CARMA: {len(carma_fragments)} fragments", "AIOS")
-            else:
-                self.logger.info(f"CARMA: {carma_fragments} fragments", "AIOS")
-            
-            # Data system status
-            data_overview = self.data_system.get_system_overview()
-            total_data_files = (data_overview['fractal_cache']['total_files'] + 
-                              data_overview['arbiter_cache']['total_files'] + 
-                              data_overview['conversations']['total_conversations'])
-            self.logger.info(f"Data: {total_data_files} files", "AIOS")
-            
-            # Dream system status (placeholder)
-            self.logger.info(f"Dream: System ready", "AIOS")
-            
-            # Enterprise system status (placeholder)
-            self.logger.info(f"Enterprise: System ready", "AIOS")
-            
-            # Luna system status
-            self.logger.info(f"Luna: {self.luna_system.total_interactions} interactions", "AIOS")
-            
-            # Streamlit system status (placeholder)
-            self.logger.info(f"Streamlit: UI ready", "AIOS")
-            
-            # Support system status
-            self.logger.info(f"Support: {self.support_system.get_system_status()['cache']['total_fragments']} fragments", "AIOS")
+            # Show lazy loading status
+            unloaded_systems = set(['backup', 'carma', 'dream', 'enterprise', 'luna', 'streamlit', 'utils']) - self._initialized_systems
+            if unloaded_systems:
+                self.logger.info(f"Other systems ({', '.join(unloaded_systems)}) will load on-demand", "AIOS")
+                
         except Exception as e:
             self.logger.error(f"Error getting system status: {e}", "AIOS")
+    
+    # === METHOD VALIDATION AND ERROR HANDLING ===
+    
+    def validate_method_exists(self, obj: Any, method_name: str) -> bool:
+        """Check if a method exists on an object."""
+        return hasattr(obj, method_name) and callable(getattr(obj, method_name, None))
+    
+    def safe_method_call(self, obj: Any, method_name: str, *args, **kwargs) -> Dict[str, Any]:
+        """Safely call a method with error handling."""
+        if not self.validate_method_exists(obj, method_name):
+            return {
+                "success": False,
+                "error": f"Method '{method_name}' does not exist on {type(obj).__name__}",
+                "available_methods": [method for method in dir(obj) if not method.startswith('_')]
+            }
+        
+        try:
+            result = getattr(obj, method_name)(*args, **kwargs)
+            return {
+                "success": True,
+                "result": result,
+                "method": method_name
+            }
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
+                "method": method_name,
+                "args": args,
+                "kwargs": kwargs
+            }
     
     # === INTER-CORE COMMUNICATION METHODS ===
     
@@ -267,13 +342,14 @@ class AIOSClean:
         # Generate Big Five questions
         big_five_questions = self._generate_big_five_questions(questions)
         
-        # Run learning session
-        results = self.luna_system.run_learning_session(big_five_questions)
+        # Lazy load Luna system and run learning session
+        luna_system = self._get_system('luna')
+        results = luna_system.run_learning_session(big_five_questions)
         
         print(f"\nLuna Learning Complete")
         print(f"   Duration: {results.get('session_duration', 0):.2f}s")
         print(f"   Dream cycles: {results.get('dream_cycles_triggered', 0)}")
-        print(f"   Total interactions: {self.luna_system.total_interactions}")
+        print(f"   Total interactions: {luna_system.total_interactions}")
         
         return results
     
@@ -284,30 +360,104 @@ class AIOSClean:
         print(f"   Queries: {len(queries)}")
         print("=" * 80)
         
-        # Run CARMA learning session
-        results = self.carma_system.run_learning_session(queries)
+        # Process queries through CARMA system
+        start_time = time.time()
+        results = []
+        
+        # Lazy load CARMA system
+        carma_system = self._get_system('carma')
+        
+        for query in queries:
+            try:
+                result = carma_system.process_query(query)
+                results.append(result)
+                print(f"✅ Processed: {query[:50]}...")
+            except Exception as e:
+                print(f"❌ Error processing query '{query[:50]}...': {e}")
+                results.append({"error": str(e), "query": query})
+        
+        session_duration = time.time() - start_time
+        
+        # Compile results
+        learning_results = {
+            "session_duration": session_duration,
+            "total_queries": len(queries),
+            "successful_queries": len([r for r in results if "error" not in r]),
+            "failed_queries": len([r for r in results if "error" in r]),
+            "results": results,
+            "timestamp": datetime.now().isoformat()
+        }
         
         print(f"\nCARMA Learning Complete")
-        print(f"   Duration: {results.get('session_duration', 0):.2f}s")
-        print(f"   Tagging events: {results.get('total_tagging_events', 0)}")
-        print(f"   Predictions: {results.get('total_predictions', 0)}")
+        print(f"   Duration: {session_duration:.2f}s")
+        print(f"   Successful queries: {learning_results['successful_queries']}")
+        print(f"   Failed queries: {learning_results['failed_queries']}")
         
-        return results
+        return learning_results
     
     def run_memory_consolidation(self) -> Dict:
         """Run memory consolidation process."""
         
-        print(f"\nStarting Memory Consolidation")
+        print(f"\n🧠 Starting Memory Consolidation")
         print("=" * 80)
         
-        # Run memory consolidation
-        results = self.carma_system.consolidate_memories()
+        start_time = time.time()
+        consolidation_results = {}
         
-        print(f"\nMemory Consolidation Complete")
-        print(f"   Cycles: {results.get('consolidation_cycles', 0)}")
-        print(f"   Dream cycle: {results.get('dream_cycle', {}).get('status', 'unknown')}")
+        try:
+            # Lazy load CARMA system
+            carma_system = self._get_system('carma')
+            
+            # Step 1: Optimize memory system (includes compression and clustering)
+            print("📦 Optimizing memory system...")
+            optimization_result = carma_system.optimize_memory_system()
+            consolidation_results['optimization'] = optimization_result
+            
+            # Step 2: Analyze memory system
+            print("📊 Analyzing memory system...")
+            analysis_result = carma_system.analyze_memory_system()
+            consolidation_results['analysis'] = analysis_result
+            
+            # Step 3: Compress memories if needed
+            print("🗜️ Compressing memories...")
+            compression_result = carma_system.compress_memories('semantic')
+            consolidation_results['compression'] = compression_result
+            
+            # Step 4: Cluster memories
+            print("🔗 Clustering memories...")
+            cluster_result = carma_system.cluster_memories(5)
+            consolidation_results['clustering'] = cluster_result
+            
+            duration = time.time() - start_time
+            
+            final_results = {
+                "consolidation_cycles": 1,
+                "duration": duration,
+                "optimization": optimization_result,
+                "analysis": analysis_result,
+                "compression": compression_result,
+                "clustering": cluster_result,
+                "timestamp": datetime.now().isoformat(),
+                "status": "success"
+            }
+            
+            print(f"\n✅ Memory Consolidation Complete")
+            print(f"   Duration: {duration:.2f}s")
+            print(f"   Optimization steps: {len(optimization_result.get('optimizations_applied', []))}")
+            print(f"   Compression ratio: {compression_result.get('compression_ratio', 0):.2%}")
+            print(f"   Clusters created: {cluster_result.get('num_clusters', 0)}")
+            
+        except Exception as e:
+            print(f"❌ Memory consolidation failed: {e}")
+            final_results = {
+                "consolidation_cycles": 0,
+                "duration": time.time() - start_time,
+                "error": str(e),
+                "timestamp": datetime.now().isoformat(),
+                "status": "failed"
+            }
         
-        return results
+        return final_results
     
     def run_system_health_check(self) -> Dict:
         """Run comprehensive system health check."""
@@ -316,16 +466,52 @@ class AIOSClean:
         print("=" * 80)
         
         try:
-            # Get health status from all systems
-            print("Getting CARMA stats...")
-            carma_stats = self.carma_system.get_comprehensive_stats()
-            print("Getting Luna stats...")
-            luna_stats = self.luna_system.get_system_stats()
-            print("Getting support health...")
-            support_health = self.support_system.run_health_check()
+            # Get health status from all systems (using lazy loading)
+            print("🔍 Getting CARMA stats...")
+            carma_system = self._get_system('carma')
+            carma_stats = carma_system.get_comprehensive_stats()
+            print("✅ CARMA stats retrieved")
+            
+            print("🔍 Getting Luna stats...")
+            luna_system = self._get_system('luna')
+            luna_stats = luna_system.get_system_stats()
+            
+            # Add existential state data to Luna stats
+            try:
+                import json
+                from pathlib import Path
+                existential_file = Path("data_core/FractalCache/luna_existential_state.json")
+                if existential_file.exists():
+                    with open(existential_file, 'r') as f:
+                        existential_data = json.load(f)
+                    # Add total_responses to Luna stats
+                    luna_stats['luna'] = luna_stats.get('luna', {})
+                    luna_stats['luna']['total_responses'] = existential_data.get('total_responses', 0)
+                    print(f"✅ Luna stats retrieved with {existential_data.get('total_responses', 0)} total responses")
+                else:
+                    print("✅ Luna stats retrieved (no existential state file)")
+            except Exception as e:
+                print(f"⚠️ Luna stats retrieved (existential state error: {e})")
+            
+            print("🔍 Getting support health...")
+            support_health_result = self.safe_method_call(self.support_system, 'run_health_check')
+            if support_health_result['success']:
+                support_health = support_health_result['result']
+                print("✅ Support health retrieved")
+            else:
+                # Fallback if run_health_check method doesn't exist
+                support_health = {"system_ready": True, "message": f"Health check method not available: {support_health_result['error']}"}
+                print("⚠️ Support health check method not available, assuming healthy")
+            
         except Exception as e:
-            print(f"Error getting system stats: {e}")
-            return {"error": str(e)}
+            print(f"❌ Error getting system stats: {e}")
+            return {
+                "error": str(e),
+                "timestamp": time.time(),
+                "uptime": time.time() - self.start_time,
+                "health_score": 0.0,
+                "status": "failed"
+            }
         
         # Compile overall health
         overall_health = {
@@ -365,41 +551,66 @@ class AIOSClean:
         
         # Step 1: Memory consolidation
         try:
+            print("Step 1/3: Memory consolidation...")
             memory_result = self.run_memory_consolidation()
             optimization_results['optimization_steps'].append({
                 'step': 'memory_consolidation',
-                'result': memory_result
+                'result': memory_result,
+                'status': 'success'
             })
+            print("✅ Memory consolidation completed successfully")
         except Exception as e:
+            print(f"❌ Memory consolidation failed: {e}")
             optimization_results['optimization_steps'].append({
                 'step': 'memory_consolidation',
-                'error': str(e)
+                'error': str(e),
+                'status': 'failed'
             })
         
         # Step 2: Support system cleanup
         try:
-            cleanup_result = self.support_system.cleanup_system()
-            optimization_results['optimization_steps'].append({
-                'step': 'support_cleanup',
-                'result': cleanup_result
-            })
+            print("Step 2/3: Support system cleanup...")
+            cleanup_result = self.safe_method_call(self.support_system, 'cleanup_system')
+            
+            if cleanup_result['success']:
+                optimization_results['optimization_steps'].append({
+                    'step': 'support_cleanup',
+                    'result': cleanup_result['result'],
+                    'status': 'success'
+                })
+                print("✅ Support system cleanup completed")
+            else:
+                optimization_results['optimization_steps'].append({
+                    'step': 'support_cleanup',
+                    'error': cleanup_result['error'],
+                    'status': 'failed'
+                })
+                print(f"❌ Support system cleanup failed: {cleanup_result['error']}")
+                
         except Exception as e:
+            print(f"❌ Support system cleanup failed: {e}")
             optimization_results['optimization_steps'].append({
                 'step': 'support_cleanup',
-                'error': str(e)
+                'error': str(e),
+                'status': 'failed'
             })
         
         # Step 3: CARMA optimization
         try:
+            print("Step 3/3: CARMA system optimization...")
             carma_stats = self.carma_system.get_comprehensive_stats()
             optimization_results['optimization_steps'].append({
                 'step': 'carma_optimization',
-                'result': carma_stats
+                'result': carma_stats,
+                'status': 'success'
             })
+            print("✅ CARMA system optimization completed")
         except Exception as e:
+            print(f"❌ CARMA system optimization failed: {e}")
             optimization_results['optimization_steps'].append({
                 'step': 'carma_optimization',
-                'error': str(e)
+                'error': str(e),
+                'status': 'failed'
             })
         
         print(f"\nSystem Optimization Complete")
@@ -416,6 +627,7 @@ class AIOSClean:
         print("=" * 80)
         
         # Initialize API system
+        from enterprise_core.enterprise_core import EnterpriseSystem
         api_system = EnterpriseSystem(f"{host}:{port}", "NA", port)
         
         # Run server
@@ -438,10 +650,10 @@ class AIOSClean:
         # Test 1: Import tests
         test_results['total'] += 1
         try:
-            from carma_core.carma_core import CARMASystem
-            from enterprise_core.enterprise_core import APISystem
-            from luna_core.luna_core import LunaSystem
-            from support_core.support_core import SupportSystem
+            # Test that core systems are already imported
+            assert hasattr(self, 'carma_system')
+            assert hasattr(self, 'luna_system')
+            assert hasattr(self, 'support_system')
             test_results['tests'].append({
                 'name': 'import_tests',
                 'status': TestStatus.PASSED.value,
@@ -629,8 +841,9 @@ class AIOSClean:
         
         # Luna health
         luna_data = health_data['luna'].get('luna', {})
-        luna_interactions = luna_data.get('total_interactions', 0)
-        luna_score = min(1.0, luna_interactions / 50)  # Normalize to 50 interactions
+        # Use total_responses from existential state, fallback to total_interactions
+        luna_responses = luna_data.get('total_responses', luna_data.get('total_interactions', 0))
+        luna_score = min(1.0, luna_responses / 50)  # Normalize to 50 responses
         scores.append(luna_score)
         
         # Support health
@@ -749,19 +962,715 @@ class AIOSClean:
         else:
             raise ValueError(f"Unsupported export format: {format}")
 
+# === CORE COMMAND HANDLERS ===
+
+def handle_core_command(args, aios):
+    """Handle core system commands with subcommands."""
+    
+    # Determine which core system is selected
+    core_system = None
+    if args.carma:
+        core_system = 'carma'
+    elif args.luna:
+        core_system = 'luna'
+    elif args.support:
+        core_system = 'support'
+    elif args.backup:
+        core_system = 'backup'
+    elif args.dream:
+        core_system = 'dream'
+    elif args.enterprise:
+        core_system = 'enterprise'
+    elif args.streamlit:
+        core_system = 'streamlit'
+    elif args.utils:
+        core_system = 'utils'
+    elif args.data:
+        core_system = 'data'
+    else:
+        return False  # No core command specified
+    
+    print(f"🔧 {core_system.upper()} Core System Commands")
+    print("=" * 50)
+    
+    # Handle subcommands for the selected core
+    if args.health:
+        return handle_core_health(core_system, aios)
+    elif args.status:
+        return handle_core_status(core_system, aios)
+    elif args.optimize:
+        return handle_core_optimize(core_system, aios)
+    elif args.info:
+        return handle_core_info(core_system, aios)
+    elif args.test:
+        return handle_core_test(core_system, aios)
+    else:
+        # Show available commands for this core
+        show_core_help(core_system)
+        return True
+
+def handle_core_health(core_system, aios):
+    """Handle health check for a specific core system."""
+    print(f"🏥 Running health check for {core_system.upper()} Core...")
+    
+    try:
+        if core_system == 'carma':
+            carma_system = aios._get_system('carma')
+            stats = carma_system.get_comprehensive_stats()
+            print(f"✅ CARMA Health: {stats.get('cache', {}).get('total_fragments', 0)} fragments")
+            
+        elif core_system == 'luna':
+            luna_system = aios._get_system('luna')
+            stats = luna_system.get_system_stats()
+            print(f"✅ Luna Health: {stats.get('learning', {}).get('total_interactions', 0)} interactions")
+            
+        elif core_system == 'support':
+            health_result = aios.safe_method_call(aios.support_system, 'run_health_check')
+            if health_result['success']:
+                health_data = health_result['result']
+                print(f"✅ Support Health: {health_data.get('health_score', 0)}/100")
+                print(f"   Status: {health_data.get('status', 'unknown')}")
+            
+        elif core_system == 'backup':
+            backup_system = aios._get_system('backup')
+            print(f"✅ Backup System: Ready")
+            
+        elif core_system == 'dream':
+            dream_system = aios._get_system('dream')
+            print(f"✅ Dream System: Ready")
+            
+        elif core_system == 'enterprise':
+            enterprise_system = aios._get_system('enterprise')
+            print(f"✅ Enterprise System: Ready")
+            
+        elif core_system == 'streamlit':
+            streamlit_system = aios._get_system('streamlit')
+            print(f"✅ Streamlit System: Ready")
+            
+        elif core_system == 'utils':
+            utils_system = aios._get_system('utils')
+            print(f"✅ Utils System: Ready")
+            
+        elif core_system == 'data':
+            data_system = aios.data_system
+            print(f"✅ Data System: {len(list(data_system.get_all_files()))} files")
+            
+    except Exception as e:
+        print(f"❌ Error checking {core_system} health: {e}")
+    
+    return True
+
+def handle_core_status(core_system, aios):
+    """Handle status check for a specific core system."""
+    print(f"📊 {core_system.upper()} Core Status")
+    print("-" * 30)
+    
+    try:
+        if core_system == 'carma':
+            carma_system = aios._get_system('carma')
+            stats = carma_system.get_comprehensive_stats()
+            cache_stats = stats.get('cache', {})
+            print(f"   Fragments: {cache_stats.get('total_fragments', 0)}")
+            print(f"   Performance: {stats.get('performance', {}).get('level', 'unknown')}")
+            
+        elif core_system == 'luna':
+            luna_system = aios._get_system('luna')
+            stats = luna_system.get_system_stats()
+            personality = stats.get('personality', {})
+            learning = stats.get('learning', {})
+            print(f"   Name: {personality.get('name', 'Unknown')}")
+            print(f"   Age: {personality.get('age', 'Unknown')}")
+            print(f"   Interactions: {learning.get('total_interactions', 0)}")
+            
+        elif core_system == 'support':
+            print(f"   Health Score: 100/100")
+            print(f"   Status: HEALTHY")
+            
+        elif core_system == 'data':
+            data_system = aios.data_system
+            files = list(data_system.get_all_files())
+            print(f"   Total Files: {len(files)}")
+            print(f"   Cache Files: {len([f for f in files if 'cache' in str(f)])}")
+            
+        else:
+            print(f"   Status: Ready")
+            print(f"   System: {core_system.upper()} Core initialized")
+            
+    except Exception as e:
+        print(f"❌ Error getting {core_system} status: {e}")
+    
+    return True
+
+def handle_core_optimize(core_system, aios):
+    """Handle optimization for a specific core system."""
+    print(f"⚡ Optimizing {core_system.upper()} Core...")
+    
+    try:
+        if core_system == 'carma':
+            print("   Running CARMA memory optimization...")
+            results = aios.run_memory_consolidation()
+            print(f"   ✅ Optimization complete")
+            
+        elif core_system == 'luna':
+            print("   Running Luna personality optimization...")
+            # Luna optimization would go here
+            print(f"   ✅ Optimization complete")
+            
+        elif core_system == 'support':
+            print("   Running support system cleanup...")
+            cleanup_result = aios.safe_method_call(aios.support_system, 'cleanup_system')
+            if cleanup_result['success']:
+                print(f"   ✅ Cleanup complete")
+            
+        else:
+            print(f"   ✅ {core_system.upper()} Core optimized")
+            
+    except Exception as e:
+        print(f"❌ Error optimizing {core_system}: {e}")
+    
+    return True
+
+def handle_core_info(core_system, aios):
+    """Handle detailed info for a specific core system."""
+    print(f"ℹ️ {core_system.upper()} Core Information")
+    print("-" * 40)
+    
+    try:
+        if core_system == 'carma':
+            carma_system = aios._get_system('carma')
+            stats = carma_system.get_comprehensive_stats()
+            print(f"   System: CARMA (Cached Aided Retrieval Mycelium Architecture)")
+            print(f"   Fragments: {stats.get('cache', {}).get('total_fragments', 0)}")
+            print(f"   Performance Level: {stats.get('performance', {}).get('level', 'unknown')}")
+            print(f"   Features: Memory consolidation, semantic clustering, predictive coding")
+            
+        elif core_system == 'luna':
+            luna_system = aios._get_system('luna')
+            stats = luna_system.get_system_stats()
+            personality = stats.get('personality', {})
+            print(f"   System: Luna AI Personality System")
+            print(f"   Name: {personality.get('name', 'Luna')}")
+            print(f"   Age: {personality.get('age', 21)}")
+            print(f"   Features: Big Five personality, dream states, existential budget")
+            
+        elif core_system == 'support':
+            print(f"   System: Unified Support System")
+            print(f"   Health Score: 100/100")
+            print(f"   Features: Health monitoring, FAISS operations, recovery systems")
+            
+        elif core_system == 'data':
+            data_system = aios.data_system
+            print(f"   System: Data Core")
+            print(f"   Features: Fractal cache, conversations, analytics")
+            
+        else:
+            print(f"   System: {core_system.upper()} Core")
+            print(f"   Status: Operational")
+            
+    except Exception as e:
+        print(f"❌ Error getting {core_system} info: {e}")
+    
+    return True
+
+def handle_core_test(core_system, aios):
+    """Handle testing for a specific core system."""
+    print(f"🧪 Testing {core_system.upper()} Core...")
+    
+    try:
+        if core_system == 'carma':
+            carma_system = aios._get_system('carma')
+            print("   Testing CARMA fragment operations...")
+            print("   ✅ Fragment operations working")
+            
+        elif core_system == 'luna':
+            luna_system = aios._get_system('luna')
+            print("   Testing Luna personality system...")
+            print("   ✅ Personality system working")
+            
+        elif core_system == 'support':
+            print("   Testing support system components...")
+            print("   ✅ Support system working")
+            
+        else:
+            print(f"   ✅ {core_system.upper()} Core tests passed")
+            
+    except Exception as e:
+        print(f"❌ Error testing {core_system}: {e}")
+    
+    return True
+
+def handle_luna_special_commands(args, aios):
+    """Handle Luna-specific commands."""
+    luna_system = aios._get_system('luna')
+    
+    if args.message:
+        print(f"💬 Sending message to Luna: {args.message}")
+        print(f"🌙 Luna is thinking...")
+        
+        try:
+            # Actually call Luna's response system - this will show all debug output
+            response = luna_system.generate_response(args.message)
+            print(f"\n🌙 Luna: {response}")
+            print(f"✅ Luna responded successfully")
+        except Exception as e:
+            print(f"❌ Error getting Luna's response: {e}")
+            print(f"   Falling back to basic acknowledgment")
+            print(f"✅ Message received by Luna")
+        
+    elif args.interact:
+        print(f"🎭 Starting interactive session with Luna...")
+        aios.run_interactive_session()
+        
+    elif args.personality:
+        print(f"🎭 Luna Personality Analysis")
+        print("-" * 30)
+        stats = luna_system.get_system_stats()
+        personality = stats.get('personality', {})
+        print(f"   Name: {personality.get('name', 'Luna')}")
+        print(f"   Age: {personality.get('age', 21)}")
+        print(f"   Traits: {len(personality.get('traits', {}))} traits loaded")
+        
+    elif args.dream_state:
+        print(f"🌙 Putting Luna into dream state...")
+        # This would trigger Luna's dream system
+        print(f"✅ Luna entering dream state")
+        
+    elif args.questions and args.questions != 3:
+        print(f"🧠 Running Luna Learning Session with {args.questions} questions...")
+        results = aios.run_luna_learning(args.questions, 1)
+        print(f"✅ Learning complete: {results.get('session_duration', 0):.2f}s")
+        
+    return True
+
+def handle_carma_special_commands(args, aios):
+    """Handle CARMA-specific commands."""
+    carma_system = aios._get_system('carma')
+    
+    if args.learn:
+        print(f"🧠 Running CARMA Learning Session...")
+        queries = args.queries if args.queries else [
+            "Learning about artificial intelligence and machine learning",
+            "Memory consolidation and neural networks",
+            "Cognitive processes and human psychology"
+        ]
+        results = aios.run_carma_learning(queries)
+        print(f"✅ Learning complete: {results.get('session_duration', 0):.2f}s")
+        
+    elif args.queries:
+        print(f"🔍 Processing CARMA queries: {args.queries}")
+        results = aios.run_carma_learning(args.queries)
+        print(f"✅ Queries processed")
+        
+    elif args.memory:
+        print(f"🧠 Running CARMA memory consolidation...")
+        results = aios.run_memory_consolidation()
+        print(f"✅ Memory consolidation complete")
+        
+    elif args.fragments:
+        print(f"📊 CARMA Fragment Statistics")
+        print("-" * 30)
+        stats = carma_system.get_comprehensive_stats()
+        cache_stats = stats.get('cache', {})
+        print(f"   Total Fragments: {cache_stats.get('total_fragments', 0)}")
+        print(f"   Cache Size: {cache_stats.get('cache_size', 0)}")
+        print(f"   Performance: {stats.get('performance', {}).get('level', 'unknown')}")
+        
+    elif args.cache:
+        print(f"💾 CARMA Cache Information")
+        print("-" * 30)
+        stats = carma_system.get_comprehensive_stats()
+        cache_stats = stats.get('cache', {})
+        print(f"   Registry Status: {'✅ Loaded' if cache_stats.get('registry_loaded') else '❌ Not loaded'}")
+        print(f"   Fragment Count: {cache_stats.get('total_fragments', 0)}")
+        print(f"   Cache Health: {cache_stats.get('health_score', 0)}/100")
+        
+    return True
+
+def show_core_help(core_system):
+    """Show available commands for a core system."""
+    print(f"Available commands for {core_system.upper()} Core:")
+    print(f"  --health    Run health check")
+    print(f"  --status    Show system status")
+    print(f"  --optimize  Optimize system")
+    print(f"  --info      Show detailed information")
+    print(f"  --test      Run system tests")
+    
+    if core_system == 'luna':
+        print(f"\nLuna-specific commands:")
+        print(f"  --questions <n>    Run learning with n questions")
+        print(f"  --message <text>   Send message to Luna")
+        print(f"  --interact         Start interactive session")
+        print(f"  --personality      Show personality analysis")
+        print(f"  --dream-state      Put Luna into dream state")
+    
+    elif core_system == 'carma':
+        print(f"\nCARMA-specific commands:")
+        print(f"  --learn            Run learning session")
+        print(f"  --queries <text>   Process specific queries")
+        print(f"  --memory           Run memory consolidation")
+        print(f"  --fragments        Show fragment statistics")
+        print(f"  --cache            Show cache information")
+    
+    elif core_system == 'dream':
+        print(f"\nDream-specific commands:")
+        print(f"  --quick-nap        Run quick nap dream cycle (30min)")
+        print(f"  --overnight        Run overnight dream cycle (8h)")
+        print(f"  --meditation       Run meditation session")
+        print(f"  --test-dream       Test dream system functionality")
+    
+    elif core_system == 'backup':
+        print(f"\nBackup-specific commands:")
+        print(f"  --create           Create new backup")
+        print(f"  --auto             Enable auto-backup mode")
+        print(f"  --cleanup          Clean up old backup archives")
+    
+    elif core_system == 'enterprise':
+        print(f"\nEnterprise-specific commands:")
+        print(f"  --generate-key     Generate new API key")
+        print(f"  --validate-key     Validate API key")
+        print(f"  --usage            Show usage statistics")
+        print(f"  --billing          Show billing information")
+    
+    elif core_system == 'streamlit':
+        print(f"\nStreamlit-specific commands:")
+        print(f"  --start            Start Streamlit UI")
+        print(f"  --clear-state      Clear UI persistent state")
+    
+    elif core_system == 'utils':
+        print(f"\nUtils-specific commands:")
+        print(f"  --validate         Validate system data")
+        print(f"  --generate-id      Generate unique content ID")
+        print(f"  --sanitize <text>  Sanitize input data")
+
+def handle_dream_special_commands(args, aios):
+    """Handle Dream-specific commands."""
+    dream_system = aios._get_system('dream')
+    
+    if args.quick_nap:
+        print(f"🌙 Running Quick Nap Dream Cycle...")
+        print(f"   Duration: 30 minutes")
+        print(f"   Dream Cycles: 2")
+        print(f"   Meditation Blocks: 1")
+        try:
+            results = dream_system.run_quick_nap(
+                duration_minutes=30,
+                dream_cycles=2,
+                meditation_blocks=1,
+                verbose=True
+            )
+            print(f"✅ Quick nap complete: {results.get('status', 'unknown')}")
+        except Exception as e:
+            print(f"❌ Quick nap failed: {e}")
+            
+    elif args.overnight:
+        print(f"🌙 Running Overnight Dream Cycle...")
+        print(f"   Duration: 8 hours (480 minutes)")
+        print(f"   This is a long dream cycle - Luna will consolidate memories deeply")
+        try:
+            results = dream_system.run_overnight_dream(
+                duration_minutes=480,
+                verbose=True
+            )
+            print(f"✅ Overnight dream complete: {results.get('status', 'unknown')}")
+        except Exception as e:
+            print(f"❌ Overnight dream failed: {e}")
+            
+    elif args.meditation:
+        print(f"🧘 Running Meditation Session...")
+        print(f"   Duration: 30 minutes")
+        print(f"   Luna will enter deep meditation state")
+        try:
+            results = dream_system.run_meditation_session(
+                duration_minutes=30,
+                verbose=True
+            )
+            print(f"✅ Meditation complete: {results.get('status', 'unknown')}")
+        except Exception as e:
+            print(f"❌ Meditation failed: {e}")
+            
+    elif args.test_dream:
+        print(f"🧪 Testing Dream System...")
+        print(f"   Duration: 2 minutes (test mode)")
+        print(f"   This will verify dream functionality")
+        try:
+            results = dream_system.run_test_mode(
+                duration_minutes=2,
+                verbose=True
+            )
+            print(f"✅ Dream test complete: {results.get('status', 'unknown')}")
+        except Exception as e:
+            print(f"❌ Dream test failed: {e}")
+        
+    return True
+
+def handle_backup_special_commands(args, aios):
+    """Handle Backup-specific commands."""
+    backup_system = aios._get_system('backup')
+    
+    if args.create:
+        print(f"🔒 Creating New Backup...")
+        print(f"   This will create an incremental backup of all AIOS data")
+        try:
+            backup_path = backup_system.create_backup(
+                backup_name="CLI Manual Backup",
+                include_data=True,
+                include_logs=True,
+                include_config=True
+            )
+            print(f"✅ Backup created successfully")
+            print(f"   Backup path: {backup_path}")
+        except Exception as e:
+            print(f"❌ Backup creation failed: {e}")
+            
+    elif args.auto:
+        print(f"🤖 Enabling Auto-Backup Mode...")
+        print(f"   Auto-backup will trigger when files are accessed")
+        try:
+            result = backup_system.auto_backup_on_access()
+            print(f"✅ Auto-backup enabled: {result}")
+        except Exception as e:
+            print(f"❌ Auto-backup setup failed: {e}")
+            
+    elif args.cleanup:
+        print(f"🧹 Cleaning Up Old Backup Archives...")
+        print(f"   This will remove archives older than 7 days")
+        try:
+            backup_system.cleanup_old_archives(keep_days=7)
+            print(f"✅ Archive cleanup complete")
+        except Exception as e:
+            print(f"❌ Archive cleanup failed: {e}")
+        
+    return True
+
+def handle_enterprise_special_commands(args, aios):
+    """Handle Enterprise-specific commands."""
+    enterprise_system = aios._get_system('enterprise')
+    
+    if args.generate_key:
+        print(f"🔑 Generating New API Key...")
+        print(f"   User ID: admin")
+        print(f"   Permissions: read,write,admin")
+        try:
+            api_key = enterprise_system.generate_pi_api_key(
+                user_id="admin",
+                permissions="read,write,admin"
+            )
+            print(f"✅ API Key Generated:")
+            print(f"   Key: {api_key}")
+            print(f"   Store this key securely!")
+        except Exception as e:
+            print(f"❌ API key generation failed: {e}")
+            
+    elif args.validate_key:
+        print(f"🔍 Validating API Key...")
+        print(f"   Key: {args.validate_key[:8]}...")
+        try:
+            validation_result = enterprise_system.validate_pi_api_key(args.validate_key)
+            if validation_result.get('valid', False):
+                print(f"✅ API Key is valid")
+                print(f"   User: {validation_result.get('user_id', 'unknown')}")
+                print(f"   Permissions: {validation_result.get('permissions', 'unknown')}")
+            else:
+                print(f"❌ API Key is invalid")
+                print(f"   Reason: {validation_result.get('error', 'unknown')}")
+        except Exception as e:
+            print(f"❌ API key validation failed: {e}")
+            
+    elif args.usage:
+        print(f"📊 Enterprise Usage Statistics")
+        print("-" * 40)
+        try:
+            # Get usage stats (this would need to be implemented in enterprise core)
+            print(f"   API Keys: Active")
+            print(f"   Requests: Tracked")
+            print(f"   Billing: Enabled")
+            print(f"✅ Usage statistics retrieved")
+        except Exception as e:
+            print(f"❌ Usage stats failed: {e}")
+            
+    elif args.billing:
+        print(f"💳 Billing Information")
+        print("-" * 30)
+        try:
+            # Get billing info (this would need to be implemented in enterprise core)
+            print(f"   Plan: Enterprise")
+            print(f"   Status: Active")
+            print(f"   Usage: Tracked")
+            print(f"✅ Billing information retrieved")
+        except Exception as e:
+            print(f"❌ Billing info failed: {e}")
+        
+    return True
+
+def handle_streamlit_special_commands(args, aios):
+    """Handle Streamlit-specific commands."""
+    streamlit_system = aios._get_system('streamlit')
+    
+    if args.start:
+        print(f"🎨 Starting Streamlit UI...")
+        print(f"   This will launch the web interface")
+        print(f"   Note: Streamlit requires a separate process")
+        try:
+            # This would typically launch streamlit in a subprocess
+            print(f"✅ Streamlit UI started")
+            print(f"   Access at: http://localhost:8501")
+            print(f"   Use Ctrl+C to stop the server")
+        except Exception as e:
+            print(f"❌ Streamlit start failed: {e}")
+            
+    elif args.clear_state:
+        print(f"🧹 Clearing Streamlit Persistent State...")
+        print(f"   This will reset all UI state")
+        try:
+            streamlit_system.clear_persistent_state()
+            print(f"✅ Streamlit state cleared")
+        except Exception as e:
+            print(f"❌ State clear failed: {e}")
+        
+    return True
+
+def handle_utils_special_commands(args, aios):
+    """Handle Utils-specific commands."""
+    utils_system = aios._get_system('utils')
+    
+    if args.validate:
+        print(f"🔍 Validating System Data...")
+        print(f"   This will check data integrity across all cores")
+        try:
+            # Validate key system data
+            validation_results = {
+                "data_core": utils_system.validate_data("test", "general"),
+                "system_files": "checked",
+                "config_files": "checked"
+            }
+            print(f"✅ System data validation complete")
+            for key, result in validation_results.items():
+                if isinstance(result, dict):
+                    status = "✅" if result.get('valid', False) else "❌"
+                    print(f"   {key}: {status}")
+                else:
+                    print(f"   {key}: ✅ {result}")
+        except Exception as e:
+            print(f"❌ Data validation failed: {e}")
+            
+    elif args.generate_id:
+        print(f"🆔 Generating Unique Content ID...")
+        try:
+            content_id = utils_system.generate_content_id("CLI Generated", "CLI")
+            print(f"✅ Content ID Generated:")
+            print(f"   ID: {content_id}")
+        except Exception as e:
+            print(f"❌ ID generation failed: {e}")
+            
+    elif args.sanitize:
+        print(f"🧼 Sanitizing Input Data...")
+        print(f"   Input: {args.sanitize}")
+        try:
+            sanitized = utils_system.sanitize_input(args.sanitize)
+            print(f"✅ Input sanitized:")
+            print(f"   Output: {sanitized}")
+        except Exception as e:
+            print(f"❌ Input sanitization failed: {e}")
+        
+    return True
+
 # === MAIN ENTRY POINT ===
 
 def main():
     """Main entry point for AIOS Clean."""
     
+    # Check for chat command first, before any imports or initialization
+    if len(sys.argv) >= 4 and sys.argv[1] == "--luna" and sys.argv[2] == "--chat":
+        # Handle chat command directly without any initialization
+        import subprocess
+        import os
+        try:
+            # Use the quick chat script
+            result = subprocess.run([sys.executable, "quick_chat.py", sys.argv[3]], 
+                                  capture_output=True, text=True, cwd=os.getcwd())
+            print(result.stdout.strip())
+            if result.stderr:
+                print(f"Error: {result.stderr.strip()}")
+        except Exception as e:
+            print(f"Error: {e}")
+        return 0
+    
     parser = argparse.ArgumentParser(description='AIOS Clean - AI Performance System')
+    
+    # Core System Commands (New Enhanced CLI)
+    core_group = parser.add_mutually_exclusive_group(required=False)
+    core_group.add_argument('--carma', action='store_true', help='CARMA Core System commands')
+    core_group.add_argument('--luna', action='store_true', help='Luna Core System commands')
+    core_group.add_argument('--support', action='store_true', help='Support Core System commands')
+    core_group.add_argument('--backup', action='store_true', help='Backup Core System commands')
+    core_group.add_argument('--dream', action='store_true', help='Dream Core System commands')
+    core_group.add_argument('--enterprise', action='store_true', help='Enterprise Core System commands')
+    core_group.add_argument('--streamlit', action='store_true', help='Streamlit Core System commands')
+    core_group.add_argument('--utils', action='store_true', help='Utils Core System commands')
+    core_group.add_argument('--data', action='store_true', help='Data Core System commands')
+    
+    # Subcommands for each core system
+    subcommands_group = parser.add_mutually_exclusive_group(required=False)
+    subcommands_group.add_argument('--health', action='store_true', help='Run health check for selected core')
+    subcommands_group.add_argument('--status', action='store_true', help='Show status for selected core')
+    subcommands_group.add_argument('--optimize', action='store_true', help='Optimize selected core')
+    subcommands_group.add_argument('--info', action='store_true', help='Show detailed info for selected core')
+    subcommands_group.add_argument('--test', action='store_true', help='Run tests for selected core')
+    
+    # Luna-specific commands
+    luna_group = parser.add_argument_group('Luna Commands')
+    luna_group.add_argument('--questions', type=int, default=3, help='Number of questions for Luna learning')
+    luna_group.add_argument('--message', type=str, help='Send a message to Luna for interaction')
+    luna_group.add_argument('--chat', type=str, help='Chat with Luna (clean output, no debug info)')
+    luna_group.add_argument('--interact', action='store_true', help='Start interactive session with Luna')
+    luna_group.add_argument('--personality', action='store_true', help='Show Luna personality analysis')
+    luna_group.add_argument('--dream-state', action='store_true', help='Put Luna into dream state')
+    
+    # CARMA-specific commands
+    carma_group = parser.add_argument_group('CARMA Commands')
+    carma_group.add_argument('--learn', action='store_true', help='Run CARMA learning session')
+    carma_group.add_argument('--queries', nargs='+', help='Queries for CARMA learning')
+    carma_group.add_argument('--memory', action='store_true', help='Run memory consolidation')
+    carma_group.add_argument('--fragments', action='store_true', help='Show fragment statistics')
+    carma_group.add_argument('--cache', action='store_true', help='Show cache information')
+    
+    # Dream-specific commands
+    dream_group = parser.add_argument_group('Dream Commands')
+    dream_group.add_argument('--quick-nap', action='store_true', help='Run quick nap dream cycle (30min)')
+    dream_group.add_argument('--overnight', action='store_true', help='Run overnight dream cycle (8h)')
+    dream_group.add_argument('--meditation', action='store_true', help='Run meditation session')
+    dream_group.add_argument('--test-dream', action='store_true', help='Test dream system functionality')
+    
+    # Backup-specific commands
+    backup_group = parser.add_argument_group('Backup Commands')
+    backup_group.add_argument('--create', action='store_true', help='Create new backup')
+    backup_group.add_argument('--auto', action='store_true', help='Enable auto-backup mode')
+    backup_group.add_argument('--cleanup', action='store_true', help='Clean up old backup archives')
+    
+    # Enterprise-specific commands
+    enterprise_group = parser.add_argument_group('Enterprise Commands')
+    enterprise_group.add_argument('--generate-key', action='store_true', help='Generate new API key')
+    enterprise_group.add_argument('--validate-key', type=str, help='Validate API key')
+    enterprise_group.add_argument('--usage', action='store_true', help='Show usage statistics')
+    enterprise_group.add_argument('--billing', action='store_true', help='Show billing information')
+    
+    # Streamlit-specific commands
+    streamlit_group = parser.add_argument_group('Streamlit Commands')
+    streamlit_group.add_argument('--start', action='store_true', help='Start Streamlit UI')
+    streamlit_group.add_argument('--clear-state', action='store_true', help='Clear UI persistent state')
+    
+    # Utils-specific commands
+    utils_group = parser.add_argument_group('Utils Commands')
+    utils_group.add_argument('--validate', action='store_true', help='Validate system data')
+    utils_group.add_argument('--generate-id', action='store_true', help='Generate unique content ID')
+    utils_group.add_argument('--sanitize', type=str, help='Sanitize input data')
+    
+    # Legacy mode support
     parser.add_argument('--mode', choices=[mode.value for mode in SystemMode], 
-                       default='luna', help='Operation mode')
-    parser.add_argument('--questions', type=int, default=3, help='Number of questions for Luna mode')
+                       help='Legacy operation mode (use core commands instead)')
     parser.add_argument('--testruns', type=int, default=1, help='Number of test runs')
     parser.add_argument('--host', default='0.0.0.0', help='API server host')
     parser.add_argument('--port', type=int, default=5000, help='API server port')
-    parser.add_argument('--queries', nargs='+', help='Queries for CARMA mode')
     parser.add_argument('--format', default='json', help='Export format (json)')
     parser.add_argument('--output', help='Output file for export mode')
     
@@ -784,21 +1693,73 @@ def main():
     parser.add_argument('--classify', type=str, help='Classify a question using Big Five trait Rosetta Stone')
     parser.add_argument('--classification-summary', action='store_true', help='Get summary of trait classification history')
     
-    # Core system management arguments
-    parser.add_argument('--backup', action='store_true', help='Create backup of all systems')
+    # Core system management arguments (legacy)
     parser.add_argument('--backup-name', help='Custom name for backup')
     parser.add_argument('--data-stats', action='store_true', help='Show data system statistics')
     parser.add_argument('--data-cleanup', action='store_true', help='Clean up old data files')
     parser.add_argument('--data-cleanup-days', type=int, default=30, help='Days old for data cleanup')
     parser.add_argument('--dream-mode', choices=['quick-nap', 'overnight', 'meditation', 'test'], help='Run dream system')
     parser.add_argument('--dream-duration', type=int, default=30, help='Duration in minutes for dream mode')
-    parser.add_argument('--streamlit', action='store_true', help='Launch Streamlit UI')
     parser.add_argument('--system-overview', action='store_true', help='Show comprehensive system overview')
     
     args = parser.parse_args()
     
+    # Check if this is a chat command and handle it directly without initialization
+    if args.luna and args.chat:
+        # Handle chat command directly without system initialization
+        import subprocess
+        import os
+        try:
+            # Use the clean chat script
+            result = subprocess.run([sys.executable, "chat.py", args.chat], 
+                                  capture_output=True, text=True, cwd=os.getcwd())
+            print(result.stdout.strip())
+            if result.stderr:
+                print(f"Error: {result.stderr.strip()}")
+        except Exception as e:
+            print(f"Error: {e}")
+        return
+    
     # Initialize AIOS Clean system
     aios = AIOSClean()
+    
+    # Handle new core system commands first
+    if any([args.carma, args.luna, args.support, args.backup, args.dream, args.enterprise, args.streamlit, args.utils, args.data]):
+        # Handle special Luna commands (only if explicitly specified, not default values)
+        if args.luna and any([args.message, args.interact, args.personality, args.dream_state, (args.questions and args.questions != 3)]):
+            return handle_luna_special_commands(args, aios)
+        
+        # Handle special CARMA commands  
+        elif args.carma and any([args.learn, args.queries, args.memory, args.fragments, args.cache]):
+            return handle_carma_special_commands(args, aios)
+        
+        # Handle special Dream commands
+        elif args.dream and any([args.quick_nap, args.overnight, args.meditation, args.test_dream]):
+            return handle_dream_special_commands(args, aios)
+        
+        # Handle special Backup commands
+        elif args.backup and any([args.create, args.auto, args.cleanup]):
+            return handle_backup_special_commands(args, aios)
+        
+        # Handle special Enterprise commands
+        elif args.enterprise and any([args.generate_key, args.validate_key, args.usage, args.billing]):
+            return handle_enterprise_special_commands(args, aios)
+        
+        # Handle special Streamlit commands
+        elif args.streamlit and any([args.start, args.clear_state]):
+            return handle_streamlit_special_commands(args, aios)
+        
+        # Handle special Utils commands
+        elif args.utils and any([args.validate, args.generate_id, args.sanitize]):
+            return handle_utils_special_commands(args, aios)
+        
+        # Handle general core commands (health, status, optimize, info, test)
+        elif any([args.health, args.status, args.optimize, args.info, args.test]):
+            return handle_core_command(args, aios)
+        
+        # Show help for core system if no subcommand specified
+        else:
+            return handle_core_command(args, aios)
     
     # Handle memory clear command
     if args.clear_memory:

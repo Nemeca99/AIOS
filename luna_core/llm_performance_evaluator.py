@@ -247,9 +247,12 @@ Please evaluate your response:"""
             if ':' in line:
                 parts = line.split(':')
                 if len(parts) == 2:
-                    criterion = parts[0].strip().lower().replace(' ', '_')
+                    # Ensure parts are strings, not tuples
+                    part0 = str(parts[0]) if not isinstance(parts[0], str) else parts[0]
+                    part1 = str(parts[1]) if not isinstance(parts[1], str) else parts[1]
+                    criterion = part0.strip().lower().replace(' ', '_')
                     try:
-                        score = float(parts[1].strip())
+                        score = float(part1.strip())
                         if 0 <= score <= 10:
                             scores[criterion] = score
                     except ValueError:

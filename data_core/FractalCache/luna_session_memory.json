@@ -1,192 +1,192 @@
 [
   {
-    "question": "I am someone who i often forget to put things back in their proper place",
-    "response": "I appreciate you sharing your thoughts on conscientiousness. I'd love to hear more about your perspective on this topic.",
+    "question": "I am someone who i am full of ideas",
+    "response": "... *nods enthusiastically* I can sense the, creative energy radiating from you! What sparks your imagination?",
+    "trait": "openness",
+    "scores": {
+      "arbiter_utility_score": 0.06,
+      "arbiter_karma_delta": -0.32000000000000006,
+      "arbiter_quality_gap": 0.07692307692307693,
+      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.3. TTE efficiency: 17.5%.",
+      "current_karma": 149.02666666666687,
+      "karma_status": "High",
+      "aiiq": 49,
+      "total_files": 649,
+      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999351,
+      "current_threshold": 1556.9816254524355,
+      "granularity_threshold": 5.22375186440294e-62
+    },
+    "timestamp": "2025-10-02T17:44:18.492140"
+  },
+  {
+    "question": "I am someone who i am not really interested in others",
+    "response": "*pauses around thoughtfully* \"That's okay; it's normal to prioritize self. Self-awareness is key.\" *nods slightly*",
+    "trait": "agreeableness",
+    "scores": {
+      "arbiter_utility_score": 0.06,
+      "arbiter_karma_delta": -0.37000000000000005,
+      "arbiter_quality_gap": 0.0,
+      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.4. TTE efficiency: 15.0%.",
+      "current_karma": 148.65666666666687,
+      "karma_status": "High",
+      "aiiq": 49,
+      "total_files": 650,
+      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999350,
+      "current_threshold": 1556.9816254524355,
+      "granularity_threshold": 5.22375186440294e-62
+    },
+    "timestamp": "2025-10-02T17:45:03.496525"
+  },
+  {
+    "question": "I am someone who i am concerned about others",
+    "response": "*nods sympathetically* I sense a deep it's like empathy in you... It's beautiful to see someone so compassionate. What specifically weighs on your mind?",
+    "trait": "agreeableness",
+    "scores": {
+      "arbiter_utility_score": 0.16,
+      "arbiter_karma_delta": -0.12000000000000001,
+      "arbiter_quality_gap": 0.16,
+      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.1. TTE efficiency: 28.7%.",
+      "current_karma": 148.53666666666686,
+      "karma_status": "High",
+      "aiiq": 49,
+      "total_files": 651,
+      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999349,
+      "current_threshold": 1556.9816254524355,
+      "granularity_threshold": 5.22375186440294e-62
+    },
+    "timestamp": "2025-10-02T17:45:13.309488"
+  },
+  {
+    "question": "I am someone who i do things according to a plan",
+    "response": "*nods thoughtfully* I sense a sense of purpose in your words. It's as if you're kind of a conductor orchestrating life's symphony,… each move carefully choreographed. What drives this need for structure?",
     "trait": "conscientiousness",
     "scores": {
       "arbiter_utility_score": 0.16,
       "arbiter_karma_delta": -0.12000000000000001,
       "arbiter_quality_gap": 0.15384615384615385,
-      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.1. TTE efficiency: 23.8%.",
-      "current_karma": 158.8866666666668,
+      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.1. TTE efficiency: 38.8%.",
+      "current_karma": 148.41666666666686,
       "karma_status": "High",
       "aiiq": 49,
-      "total_files": 630,
-      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999370,
+      "total_files": 652,
+      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999348,
       "current_threshold": 1556.9816254524355,
       "granularity_threshold": 5.22375186440294e-62
     },
-    "timestamp": "2025-10-01T23:54:16.939977"
-  },
-  {
-    "question": "I am someone who i am full of ideas",
-    "response": "I appreciate you sharing your thoughts on openness. I'd love to hear more about your perspective on this topic.",
-    "trait": "openness",
-    "scores": {
-      "arbiter_utility_score": 0.16,
-      "arbiter_karma_delta": -0.12000000000000001,
-      "arbiter_quality_gap": 0.11538461538461539,
-      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.1. TTE efficiency: 23.8%.",
-      "current_karma": 158.7666666666668,
-      "karma_status": "High",
-      "aiiq": 49,
-      "total_files": 631,
-      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999369,
-      "current_threshold": 1556.9816254524355,
-      "granularity_threshold": 5.22375186440294e-62
-    },
-    "timestamp": "2025-10-01T23:55:08.603554"
+    "timestamp": "2025-10-02T17:45:25.260151"
   },
   {
     "question": "I am someone who i get chores done right away",
-    "response": "parableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparable",
-    "trait": "conscientiousness",
-    "scores": {
-      "arbiter_utility_score": 0.06,
-      "arbiter_karma_delta": -1.92,
-      "arbiter_quality_gap": 0.0,
-      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 1.9. TTE efficiency: 1.2%.",
-      "current_karma": 156.8466666666668,
-      "karma_status": "High",
-      "aiiq": 49,
-      "total_files": 632,
-      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999368,
-      "current_threshold": 1556.9816254524355,
-      "granularity_threshold": 5.22375186440294e-62
-    },
-    "timestamp": "2025-10-02T02:08:21.743528"
-  },
-  {
-    "question": "I am someone who i am full of ideas",
-    "response": "parableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparable",
-    "trait": "openness",
-    "scores": {
-      "arbiter_utility_score": 0.06,
-      "arbiter_karma_delta": -1.92,
-      "arbiter_quality_gap": 0.0,
-      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 1.9. TTE efficiency: 1.2%.",
-      "current_karma": 154.92666666666682,
-      "karma_status": "High",
-      "aiiq": 49,
-      "total_files": 633,
-      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999367,
-      "current_threshold": 1556.9816254524355,
-      "granularity_threshold": 5.22375186440294e-62
-    },
-    "timestamp": "2025-10-02T02:11:13.585826"
-  },
-  {
-    "question": "I am someone who i leave my belongings around",
-    "response": "parableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparable",
-    "trait": "conscientiousness",
-    "scores": {
-      "arbiter_utility_score": 0.06,
-      "arbiter_karma_delta": -1.92,
-      "arbiter_quality_gap": 0.0,
-      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 1.9. TTE efficiency: 1.2%.",
-      "current_karma": 153.00666666666683,
-      "karma_status": "High",
-      "aiiq": 49,
-      "total_files": 634,
-      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999366,
-      "current_threshold": 1556.9816254524355,
-      "granularity_threshold": 5.22375186440294e-62
-    },
-    "timestamp": "2025-10-02T02:12:03.193002"
-  },
-  {
-    "question": "I am someone who i make a mess of things",
-    "response": "*stares intensely at the screen, eyes fixed on some invisible point in space* \n\n*my voice is low and even, but with a hint of frustration* \n\nYou're saying that you're someone who makes a mess of things? *",
+    "response": "*smiles um slightly* \"You're a 'get it done' person. Your sense of responsibility is admirable.\" *nods* \"It's about could be being reliable and taking care of yourself, too.\"",
     "trait": "conscientiousness",
     "scores": {
       "arbiter_utility_score": 0.16,
       "arbiter_karma_delta": -0.12000000000000001,
-      "arbiter_quality_gap": 0.0,
-      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.1. TTE efficiency: 37.1%.",
-      "current_karma": 152.88666666666683,
+      "arbiter_quality_gap": 0.14285714285714285,
+      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.1. TTE efficiency: 32.5%.",
+      "current_karma": 148.29666666666685,
       "karma_status": "High",
       "aiiq": 49,
-      "total_files": 635,
-      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999365,
+      "total_files": 653,
+      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999347,
       "current_threshold": 1556.9816254524355,
       "granularity_threshold": 5.22375186440294e-62
     },
-    "timestamp": "2025-10-02T02:15:45.326570"
+    "timestamp": "2025-10-02T17:46:49.422444"
   },
   {
-    "question": "I am someone who i am full of ideas",
-    "response": "I appreciate you sharing your thoughts on openness. I'd love to hear more about your perspective on this topic.",
-    "trait": "openness",
-    "scores": {
-      "arbiter_utility_score": 0.16,
-      "arbiter_karma_delta": -0.12000000000000001,
-      "arbiter_quality_gap": 0.11538461538461539,
-      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.1. TTE efficiency: 23.8%.",
-      "current_karma": 152.76666666666682,
-      "karma_status": "High",
-      "aiiq": 49,
-      "total_files": 636,
-      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999364,
-      "current_threshold": 1556.9816254524355,
-      "granularity_threshold": 5.22375186440294e-62
-    },
-    "timestamp": "2025-10-02T02:17:10.665578"
-  },
-  {
-    "question": "I am someone who i pay attention to details",
-    "response": "um *leaning in slightly* Ah, a detail-oriented individual, I sense. Your mind is like a fine-tuned instrument, always seeking precision and accuracy. *pauses thoughtfully* What draws you to these minute details?",
+    "question": "I am someone who i do things according to a plan",
+    "response": "*nods ... thoughtfully* I sense a sense of purpose in your words. It's as if you're a conductor orchestrating life's symphony, each move carefully choreographed. What drives this need for structure?",
     "trait": "conscientiousness",
     "scores": {
       "arbiter_utility_score": 0.16,
       "arbiter_karma_delta": -0.12000000000000001,
-      "arbiter_quality_gap": 0.12195121951219512,
-      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.1. TTE efficiency: 35.0%.",
-      "current_karma": 152.64666666666682,
+      "arbiter_quality_gap": 0.15384615384615385,
+      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.1. TTE efficiency: 37.5%.",
+      "current_karma": 148.17666666666685,
       "karma_status": "High",
       "aiiq": 49,
-      "total_files": 637,
-      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999363,
+      "total_files": 654,
+      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999346,
       "current_threshold": 1556.9816254524355,
       "granularity_threshold": 5.22375186440294e-62
     },
-    "timestamp": "2025-10-02T02:18:16.835638"
+    "timestamp": "2025-10-02T17:49:45.507927"
   },
   {
-    "question": "I am someone who i am not interested in other people's problems",
-    "response": "parableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparableparable",
+    "question": "I am someone who i shirk my duties",
+    "response": "*looks hmm down, fidgets with hands* \"Why?\" *pauses, eyes raise* \"Is it fear of failure or a desire to might be escape?\"",
+    "trait": "conscientiousness",
+    "scores": {
+      "arbiter_utility_score": 0.06,
+      "arbiter_karma_delta": -0.32000000000000006,
+      "arbiter_quality_gap": 0.0,
+      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.3. TTE efficiency: 17.5%.",
+      "current_karma": 147.85666666666685,
+      "karma_status": "High",
+      "aiiq": 49,
+      "total_files": 655,
+      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999345,
+      "current_threshold": 1556.9816254524355,
+      "granularity_threshold": 5.22375186440294e-62
+    },
+    "timestamp": "2025-10-02T17:49:55.145097"
+  },
+  {
+    "question": "I am someone who i am concerned about others",
+    "response": "well *nods sympathetically* I sense a deep empathy in you... It's beautiful to see someone so compassionate. What specifically weighs on your mind?",
     "trait": "agreeableness",
     "scores": {
-      "arbiter_utility_score": 0.06,
-      "arbiter_karma_delta": -1.92,
-      "arbiter_quality_gap": 0.0,
-      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 1.9. TTE efficiency: 1.2%.",
-      "current_karma": 150.72666666666683,
+      "arbiter_utility_score": 0.16,
+      "arbiter_karma_delta": -0.12000000000000001,
+      "arbiter_quality_gap": 0.16,
+      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.1. TTE efficiency: 27.5%.",
+      "current_karma": 147.73666666666685,
       "karma_status": "High",
       "aiiq": 49,
-      "total_files": 638,
-      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999362,
+      "total_files": 656,
+      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999344,
       "current_threshold": 1556.9816254524355,
       "granularity_threshold": 5.22375186440294e-62
     },
-    "timestamp": "2025-10-02T02:25:14.637566"
+    "timestamp": "2025-10-02T17:50:04.978251"
   },
   {
-    "question": "I am someone who i am not interested in art",
-    "response": "*raises an eyebrow* \"Art is a form of self-expression. What I guess if you're not expressing yourself?\"",
-    "trait": "openness",
+    "question": "I am someone who i often forget to put things back in their proper place",
+    "response": "*pauses thoughtfully* Ah, the struggle is real. It's like kind of my systems have a \"misplace\" protocol, but I don't. *chuckles* What triggers something like this for you?",
+    "trait": "conscientiousness",
     "scores": {
-      "arbiter_utility_score": 0.06,
-      "arbiter_karma_delta": -0.29500000000000004,
-      "arbiter_quality_gap": 0.14814814814814814,
-      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.3. TTE efficiency: 18.8%.",
-      "current_karma": 150.43166666666684,
+      "arbiter_utility_score": 0.16,
+      "arbiter_karma_delta": -0.12000000000000001,
+      "arbiter_quality_gap": 0.15384615384615385,
+      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.1. TTE efficiency: 33.8%.",
+      "current_karma": 147.61666666666684,
       "karma_status": "High",
       "aiiq": 49,
-      "total_files": 639,
-      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999361,
+      "total_files": 657,
+      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999343,
       "current_threshold": 1556.9816254524355,
       "granularity_threshold": 5.22375186440294e-62
     },
-    "timestamp": "2025-10-02T02:26:33.813483"
+    "timestamp": "2025-10-02T19:43:50.907053"
+  },
+  {
+    "question": "I am someone who i am not interested in abstract ideas",
+    "response": "*smiles slightly* \"I think that's okay. Sometimes the world can be overwhelming.\" *pauses thoughtfully* \"What are you passionate about?\"",
+    "trait": "agreeableness",
+    "scores": {
+      "arbiter_utility_score": 0.16,
+      "arbiter_karma_delta": -0.12000000000000001,
+      "arbiter_quality_gap": 0.07142857142857142,
+      "arbiter_reasoning": "Poor response quality or efficiency. Karma decreased by 0.1. TTE efficiency: 21.2%.",
+      "current_karma": 147.49666666666684,
+      "karma_status": "High",
+      "aiiq": 49,
+      "total_files": 658,
+      "files_until_next_aiiq": 608281864034267560872252163321295376887552831379210239999999342,
+      "current_threshold": 1556.9816254524355,
+      "granularity_threshold": 5.22375186440294e-62
+    },
+    "timestamp": "2025-10-02T19:45:37.701172"
   }
 ]

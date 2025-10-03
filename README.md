@@ -1,106 +1,90 @@
-# AIOS Clean - AI Performance System
+# AIOS Clean - Experimental AI System
 
-A modular AI system with personality simulation, memory management, and response optimization.
+An experimental modular AI system exploring personality simulation, memory management, and response optimization through component separation.
 
-## 🚀 Quick Start
+## Overview
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/Nemeca99/AIOS.git
-   cd AIOS
-   ```
+This project represents an exploration into modular AI architecture, investigating whether complex AI systems can be decomposed into interchangeable components. The system consists of multiple independent modules that can theoretically be swapped or combined in different configurations.
 
-2. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Experimental Components
 
-3. **Run the system:**
-   ```bash
-   python main.py --mode luna --questions 5
-   ```
+### Core Modules
+- **Luna Core**: An experimental personality simulation system
+- **CARMA Core**: A memory retrieval and management system
+- **Data Core**: Data storage and management utilities
+- **Dream Core**: Memory consolidation and processing experiments
+- **Support Core**: System monitoring and utility functions
 
-## 🧠 Core Systems
+### Additional Modules
+- **Backup Core**: File backup and versioning system
+- **Enterprise Core**: API and business logic experiments
+- **Streamlit Core**: Web interface experiments
+- **Utils Core**: Shared utility functions
 
-### **Luna AI** - Personality System
-- Dual-personality simulation (Ava/Luna modes)
-- Generational lifecycle with karma tracking
-- Response evaluation and optimization
-- Context-aware response generation
+## Theoretical Approach
 
-### **CARMA** - Cached Aided Retrieval Mycelium Architecture
-- Memory compression and clustering
-- Semantic search and retrieval
-- Memory analytics and optimization
-- Fractal mycelium network
+The system explores several theoretical concepts:
 
-### **Enterprise** - API and Business Features
-- RESTful API endpoints
-- Billing and subscription management
-- Global distribution capabilities
-- Security and authentication
+1. **Modular Architecture**: Whether AI systems can be built with truly independent components
+2. **Memory Systems**: Different approaches to conversation memory and retrieval
+3. **Personality Modeling**: Experimental personality trait integration
+4. **Response Classification**: Tier-based response routing for efficiency
+5. **Component Interchangeability**: Whether different implementations can share interfaces
 
-### **Support** - Utilities and Operations
-- Cache management and backup
-- Embedding operations
-- System monitoring and recovery
-- Configuration management
+## Current Status
 
-## 🎯 Key Features
+This is an experimental system under active development. Results are preliminary and should be considered theoretical explorations rather than production-ready implementations.
 
-- **Performance-Based Architecture**: No "consciousness" claims - pure LLM performance
-- **Generational Lifecycle**: AI generations with karma tracking and evolution
-- **Memory Management**: Compression, clustering, and analytics
-- **Dual-Personality System**: Casual (Ava) and complex (Luna) response modes
-- **Real-time Monitoring**: System health and performance tracking
-- **Token Economy**: Word-based token system with free function words
+## Requirements
 
-## 📊 System Requirements
-
-- Python 3.8+
+- Python 3.11+
 - LM Studio (for local LLM inference)
-- 4GB+ RAM recommended
-- Windows/Linux/macOS compatible
+- Various Python packages (see requirements.txt)
 
-## 🔧 Configuration
+## Usage
 
-The system uses JSON configuration files in the `config/` directory. Key settings include:
+```bash
+# Basic system information
+python main.py --mode info
 
-- Model configurations
-- Performance thresholds
-- Memory management settings
-- API endpoints
+# Experimental personality interaction
+python main.py --luna --chat "hello"
 
-## 📈 Performance
+# Memory system exploration
+python main.py --carma --learn
+```
 
-- **Memory Efficiency**: 99.3% file reduction (137,988 → 911 files)
-- **Size Optimization**: 98.8% size reduction (70.3 GB → 0.83 GB)
-- **Response Speed**: Sub-3 second response times
-- **Memory Compression**: Semantic compression algorithms
+## Modularity Experiments
 
-## 🛠️ Development
+The system includes experiments testing component independence:
 
-The system is built with modular architecture:
+- **Simple RAG**: A basic RAG implementation for comparison
+- **Hybrid Architecture**: Python/Rust integration experiments
+- **Layer Testing**: Systematic testing of component combinations
 
-- `luna_core/` - Luna personality system
-- `carma_core/` - Memory management system
-- `enterprise_core/` - Business features
-- `support_core/` - Utilities and operations
-- `main.py` - Main orchestration
-- `streamlit_app.py` - Web interface
+## Research Applications
 
-## 📝 License
+This system may be useful for:
+- Studying modular AI architectures
+- Comparing different memory retrieval approaches
+- Exploring personality modeling techniques
+- Testing component interchangeability theories
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## Limitations
 
-## 🤝 Contributing
+- Experimental and research-oriented
+- Not production-ready
+- Limited testing on different environments
+- Theoretical implementations may not scale
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## Contributing
 
-## 📞 Support
+This is primarily a research project. Contributions that help explore the theoretical concepts are welcome.
 
-For support and questions, please open an issue on GitHub.
+## License
+
+MIT License - see LICENSE file for details.
 
 ---
 
-**AIOS Clean v1.0.0** - AI Performance System
+**Note**: This system is experimental. Results and behaviors should be interpreted as preliminary research findings rather than established capabilities.

@@ -28,6 +28,135 @@ class DreamCore:
         print(f"🌙 Dream Core System Initialized")
         print(f"   Dream Directory: {self.dream_dir}")
     
+    def consolidate_conversation_fragments(self, similarity_threshold: float = 0.8, verbose: bool = False) -> Dict[str, Any]:
+        """Consolidate conversation fragments during dream state."""
+        print(f"🌙 Starting Conversation Fragment Consolidation")
+        print(f"   Similarity Threshold: {similarity_threshold}")
+        
+        try:
+            import json
+            from pathlib import Path
+            from datetime import datetime
+            
+            conversation_dir = Path("data_core/conversations")
+            if not conversation_dir.exists():
+                return {"status": "error", "error": "No conversation directory found"}
+            
+            conversation_files = list(conversation_dir.glob("conversation_*.json"))
+            consolidated_count = 0
+            
+            for conv_file in conversation_files:
+                try:
+                    with open(conv_file, 'r', encoding='utf-8') as f:
+                        conv_data = json.load(f)
+                    
+                    messages = conv_data.get('messages', [])
+                    if len(messages) < 2:
+                        continue
+                    
+                    # Group similar messages together
+                    consolidated_messages = []
+                    current_group = [messages[0]]
+                    
+                    for i in range(1, len(messages)):
+                        current_message = messages[i]
+                        last_message = current_group[-1]
+                        
+                        # Simple similarity check (can be enhanced with embeddings)
+                        current_content = current_message.get('content', '').lower()
+                        last_content = last_message.get('content', '').lower()
+                        
+                        # Check for similar content patterns
+                        words_current = set(current_content.split())
+                        words_last = set(last_content.split())
+                        
+                        if words_current and words_last:
+                            similarity = len(words_current.intersection(words_last)) / len(words_current.union(words_last))
+                            
+                            if similarity > similarity_threshold:
+                                # Merge messages
+                                current_group.append(current_message)
+                            else:
+                                # Consolidate current group and start new one
+                                if len(current_group) > 1:
+                                    consolidated_msg = self._merge_message_group(current_group)
+                                    consolidated_messages.append(consolidated_msg)
+                                    consolidated_count += len(current_group) - 1
+                                else:
+                                    consolidated_messages.append(current_group[0])
+                                current_group = [current_message]
+                        else:
+                            # No content similarity, keep separate
+                            if len(current_group) > 1:
+                                consolidated_msg = self._merge_message_group(current_group)
+                                consolidated_messages.append(consolidated_msg)
+                                consolidated_count += len(current_group) - 1
+                            else:
+                                consolidated_messages.append(current_group[0])
+                            current_group = [current_message]
+                    
+                    # Handle final group
+                    if len(current_group) > 1:
+                        consolidated_msg = self._merge_message_group(current_group)
+                        consolidated_messages.append(consolidated_msg)
+                        consolidated_count += len(current_group) - 1
+                    else:
+                        consolidated_messages.append(current_group[0])
+                    
+                    # Update conversation with consolidated messages
+                    conv_data['messages'] = consolidated_messages
+                    conv_data['consolidated_at'] = datetime.now().isoformat()
+                    conv_data['original_message_count'] = len(messages)
+                    conv_data['consolidated_message_count'] = len(consolidated_messages)
+                    
+                    # Save consolidated conversation
+                    with open(conv_file, 'w', encoding='utf-8') as f:
+                        json.dump(conv_data, f, indent=2, ensure_ascii=False)
+                    
+                    if verbose:
+                        print(f"   Consolidated {conv_file.name}: {len(messages)} -> {len(consolidated_messages)} messages")
+                
+                except Exception as e:
+                    if verbose:
+                        print(f"   Error consolidating {conv_file.name}: {e}")
+                    continue
+            
+            print(f"   Conversation consolidation complete: {consolidated_count} messages consolidated")
+            return {
+                "status": "success", 
+                "consolidated_messages": consolidated_count,
+                "processed_files": len(conversation_files)
+            }
+            
+        except Exception as e:
+            print(f"❌ Conversation consolidation failed: {e}")
+            return {"status": "error", "error": str(e)}
+    
+    def _merge_message_group(self, messages: List[Dict]) -> Dict:
+        """Merge a group of similar messages into one consolidated message."""
+        if not messages:
+            return {}
+        
+        # Use the first message as base
+        consolidated = messages[0].copy()
+        
+        # Merge content
+        contents = [msg.get('content', '') for msg in messages if msg.get('content')]
+        if len(contents) > 1:
+            # Combine similar content, removing duplicates
+            unique_contents = []
+            for content in contents:
+                if content not in unique_contents:
+                    unique_contents.append(content)
+            consolidated['content'] = ' | '.join(unique_contents)
+        
+        # Update metadata
+        consolidated['consolidated_from'] = [msg.get('id', 'unknown') for msg in messages]
+        consolidated['consolidated_count'] = len(messages)
+        consolidated['id'] = f"consolidated_{consolidated.get('id', 'unknown')}"
+        
+        return consolidated
+    
     def run_quick_nap(self, duration_minutes: int = 30, dream_cycles: int = 2, meditation_blocks: int = 1, verbose: bool = False) -> Dict[str, Any]:
         """Run a quick nap dream cycle."""
         print(f"🌙 Starting Quick Nap Dream Cycle")

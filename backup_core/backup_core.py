@@ -114,9 +114,8 @@ class BackupCore:
         """Get list of files to include in backup."""
         files_to_backup = []
         
-        # Core directories to backup
+        # Core directories to backup (exclude backup_core to avoid recursion)
         core_dirs = [
-            "backup_core",
             "carma_core", 
             "data_core",
             "dream_core",
@@ -127,33 +126,75 @@ class BackupCore:
             "utils_core"
         ]
         
-        # Add core files
+        # Add core files with permission handling
         for core_dir in core_dirs:
             if Path(core_dir).exists():
-                for file_path in Path(core_dir).rglob("*"):
-                    if file_path.is_file():
-                        files_to_backup.append(file_path)
+                try:
+                    for file_path in Path(core_dir).rglob("*"):
+                        if file_path.is_file():
+                            # Skip problematic directories
+                            if any(part in ['.git', '__pycache__', '.pytest_cache', 'node_modules'] for part in file_path.parts):
+                                continue
+                            try:
+                                # Test file access before adding
+                                with open(file_path, 'rb') as f:
+                                    f.read(1)  # Read first byte to test access
+                                files_to_backup.append(file_path)
+                            except (PermissionError, OSError) as e:
+                                print(f"⚠️ Skipping {file_path} (permission denied or locked): {e}")
+                                continue
+                except (PermissionError, OSError) as e:
+                    print(f"⚠️ Cannot access directory {core_dir}: {e}")
+                    continue
         
-        # Add main files
+        # Add main files with permission handling
         main_files = ["main.py", "requirements.txt", "README.md"]
         for main_file in main_files:
-            if Path(main_file).exists():
-                files_to_backup.append(Path(main_file))
+            file_path = Path(main_file)
+            if file_path.exists():
+                try:
+                    # Test file access before adding
+                    with open(file_path, 'rb') as f:
+                        f.read(1)  # Read first byte to test access
+                    files_to_backup.append(file_path)
+                except (PermissionError, OSError) as e:
+                    print(f"⚠️ Skipping {file_path} (permission denied or locked): {e}")
+                    continue
         
-        # Conditionally add other directories
+        # Conditionally add other directories with permission handling
         if include_config:
             config_dir = Path("config")
             if config_dir.exists():
-                for file_path in config_dir.rglob("*"):
-                    if file_path.is_file():
-                        files_to_backup.append(file_path)
+                try:
+                    for file_path in config_dir.rglob("*"):
+                        if file_path.is_file():
+                            try:
+                                # Test file access before adding
+                                with open(file_path, 'rb') as f:
+                                    f.read(1)  # Read first byte to test access
+                                files_to_backup.append(file_path)
+                            except (PermissionError, OSError) as e:
+                                print(f"⚠️ Skipping {file_path} (permission denied or locked): {e}")
+                                continue
+                except (PermissionError, OSError) as e:
+                    print(f"⚠️ Cannot access config directory: {e}")
         
         if include_logs:
             log_dir = Path("log")
             if log_dir.exists():
-                for file_path in log_dir.rglob("*"):
-                    if file_path.is_file():
-                        files_to_backup.append(file_path)
+                try:
+                    for file_path in log_dir.rglob("*"):
+                        if file_path.is_file():
+                            try:
+                                # Test file access before adding
+                                with open(file_path, 'rb') as f:
+                                    f.read(1)  # Read first byte to test access
+                                files_to_backup.append(file_path)
+                            except (PermissionError, OSError) as e:
+                                print(f"⚠️ Skipping {file_path} (permission denied or locked): {e}")
+                                continue
+                except (PermissionError, OSError) as e:
+                    print(f"⚠️ Cannot access log directory: {e}")
         
         return files_to_backup
     
@@ -179,10 +220,16 @@ class BackupCore:
         return changed_files
     
     def _archive_changed_files(self, changed_files: List[Path]):
-        """Archive old versions of changed files before updating."""
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        archive_dir = self.archive_backup_dir / f"archive_{timestamp}"
-        archive_dir.mkdir(exist_ok=True)
+        """
+        Archive old versions of changed files before updating.
+        Git-like: Single archive that gets overwritten each cycle.
+        """
+        # Clear existing archive (Git-like: fresh archive each cycle)
+        if self.archive_backup_dir.exists():
+            shutil.rmtree(self.archive_backup_dir)
+        self.archive_backup_dir.mkdir(exist_ok=True)
+        
+        print(f"🧹 Cleared archive, creating fresh archive for {len(changed_files)} changed files...")
         
         for file_path in changed_files:
             try:
@@ -198,7 +245,7 @@ class BackupCore:
                     relative_path = file_path
                 
                 # Create archive path maintaining directory structure
-                archive_file_path = archive_dir / relative_path
+                archive_file_path = self.archive_backup_dir / relative_path
                 archive_file_path.parent.mkdir(parents=True, exist_ok=True)
                 
                 # Copy old version from active backup to archive
