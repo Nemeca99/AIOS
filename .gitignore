@@ -66,3 +66,30 @@ test_results/
 
 # Streamlit cache
 .streamlit/
+
+# Rust build artifacts
+**/target/
+**/Cargo.lock
+**/rust_*/target/
+**/rust_*/Cargo.lock
+backup_core/rust_backup/target/
+carma_core/rust_carma/target/
+data_core/rust_data/target/
+support_core/rust_support/target/
+utils_core/rust_utils/target/
+
+# Generated files and caches
+*.json.backup
+backup_core/backup_tracking.json
+backup_core/file_checksums.json
+*.code-workspace
+
+# Large data analysis files
+data_core/Data_Backup_Analysis/
+support_core/usage-events-*.csv
+
+# Test and report files
+test_*.json
+demo_*.json
+*_report.json
+cross_arch_results.json
