@@ -86,6 +86,9 @@ python cross_arch_benchmark.py
 
 # Irrefutable one-screen demo
 python demo_irrefutable.py
+
+# Generate publication-ready results from provenance logs
+python provenance_to_results.py --input data_core/analytics/provenance.ndjson --outdir analytics_out
 ```
 
 ## Usage
@@ -123,6 +126,26 @@ This system may be useful for:
 - Not production-ready
 - Limited testing on different environments
 - Theoretical implementations may not scale
+
+## Publication-Ready Results
+
+The system automatically generates publication-ready results from provenance logs:
+
+```bash
+# 1. Run deterministic golden tests (generates provenance.ndjson)
+python main.py --execution-mode real --deterministic --test-suite --golden --report results.json
+
+# 2. Convert provenance to publication tables
+python provenance_to_results.py --input data_core/analytics/provenance.ndjson --outdir analytics_out
+
+# 3. Use generated RESULTS.md in your paper
+cat analytics_out/RESULTS.md
+```
+
+**Generated outputs:**
+- `summary_by_arch_layer_backend.csv` - Latency percentiles, accept rates, token counts
+- `routing_accuracy.csv` - Tier routing accuracy by architecture  
+- `RESULTS.md` - Auto-generated tables ready for papers
 
 ## Contributing
 
