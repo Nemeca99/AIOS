@@ -1591,6 +1591,10 @@ def handle_model_management(args):
         check_config_health()
         return True
     
+    if args.whoami:
+        show_whoami(args)
+        return True
+    
     if args.modchange and args.model_name and not any([args.luna, args.carma, args.support, args.backup, args.dream, args.enterprise, args.streamlit, args.utils, args.data]):
         if args.main:
             change_all_models('main_llm', args.model_name)
@@ -1777,12 +1781,23 @@ def show_system_model_configs(args):
         print(f"❌ {system_name.upper()} Core: Error reading config - {e}")
 
 def check_config_health():
-    """Check configuration health for all cores."""
+    """Check configuration health for all cores with JSON schema validation."""
     import json
     from pathlib import Path
     
     print("🔍 Configuration Health Check:")
     print("=" * 50)
+    
+    # Load JSON schema
+    schema_path = Path("config_schema.json")
+    schema = None
+    if schema_path.exists():
+        try:
+            with open(schema_path, 'r', encoding='utf-8') as f:
+                schema = json.load(f)
+            print("📋 Using JSON schema validation")
+        except Exception as e:
+            print(f"⚠️  Schema loading failed: {e}, using basic validation")
     
     core_systems = ['luna', 'carma', 'data', 'backup', 'dream', 'enterprise', 'streamlit', 'support', 'utils']
     healthy_cores = 0
@@ -1799,7 +1814,20 @@ def check_config_health():
             with open(config_path, 'r', encoding='utf-8') as f:
                 config = json.load(f)
             
-            # Check required keys
+            # JSON Schema validation if available
+            schema_errors = []
+            if schema:
+                try:
+                    from jsonschema import validate, ValidationError
+                    validate(instance=config, schema=schema)
+                except ImportError:
+                    schema_errors.append("jsonschema package not installed")
+                except ValidationError as e:
+                    schema_errors.append(f"Schema violation: {e.message}")
+                except Exception as e:
+                    schema_errors.append(f"Schema validation error: {e}")
+            
+            # Basic key validation
             required_keys = [
                 "model_config.models.main_llm.name",
                 "model_config.models.embedder.name", 
@@ -1820,10 +1848,16 @@ def check_config_health():
                 except (KeyError, TypeError):
                     missing_keys.append(key_path)
             
-            if missing_keys:
-                print(f"❌ {system.upper()}: Missing/invalid keys: {', '.join(missing_keys)}")
+            # Report results
+            if missing_keys or schema_errors:
+                error_parts = []
+                if missing_keys:
+                    error_parts.append(f"Missing keys: {', '.join(missing_keys)}")
+                if schema_errors:
+                    error_parts.append(f"Schema errors: {'; '.join(schema_errors)}")
+                print(f"❌ {system.upper()}: {'; '.join(error_parts)}")
             else:
-                print(f"✅ {system.upper()}: All required keys present")
+                print(f"✅ {system.upper()}: Schema valid, all keys present")
                 healthy_cores += 1
                 
         except Exception as e:
@@ -1834,6 +1868,116 @@ def check_config_health():
         print("🎉 All core configurations are healthy!")
     else:
         print(f"⚠️  {total_cores - healthy_cores} cores need attention")
+
+def show_whoami(args):
+    """Show exact model triplet this core will use right now."""
+    import json
+    from pathlib import Path
+    import hashlib
+    
+    system_name = None
+    if args.luna:
+        system_name = 'luna'
+    elif args.carma:
+        system_name = 'carma'
+    elif args.support:
+        system_name = 'support'
+    elif args.backup:
+        system_name = 'backup'
+    elif args.dream:
+        system_name = 'dream'
+    elif args.enterprise:
+        system_name = 'enterprise'
+    elif args.streamlit:
+        system_name = 'streamlit'
+    elif args.utils:
+        system_name = 'utils'
+    elif args.data:
+        system_name = 'data'
+    
+    if not system_name:
+        print("❌ No system specified")
+        return
+    
+    config_path = Path(f"{system_name}_core/config/model_config.json")
+    if not config_path.exists():
+        print(f"❌ {system_name.upper()} Core: Config file not found")
+        return
+    
+    try:
+        with open(config_path, 'r', encoding='utf-8') as f:
+            config = json.load(f)
+        
+        main_model = config["model_config"]["models"]["main_llm"]["name"]
+        embedder_model = config["model_config"]["models"]["embedder"]["name"]
+        draft_model = config["model_config"]["models"]["draft_model"]["name"]
+        
+        # Generate short hashes for model verification
+        main_hash = hashlib.md5(main_model.encode()).hexdigest()[:8]
+        embedder_hash = hashlib.md5(embedder_model.encode()).hexdigest()[:8]
+        draft_hash = hashlib.md5(draft_model.encode()).hexdigest()[:8]
+        
+        # Extract quantization info if present
+        main_quant = extract_quantization(main_model)
+        embedder_quant = extract_quantization(embedder_model)
+        draft_quant = extract_quantization(draft_model)
+        
+        print(f"core={system_name} | main={main_model} | embedder={embedder_model} | sd={draft_model} | main_quant={main_quant} | embedder_quant={embedder_quant} | sd_quant={draft_quant} | main_hash={main_hash} | embedder_hash={embedder_hash} | sd_hash={draft_hash}")
+        
+    except Exception as e:
+        print(f"❌ {system_name.upper()} Core: Error reading config - {e}")
+
+def extract_quantization(model_name):
+    """Extract quantization info from model name."""
+    quant_patterns = ['Q8_0', 'Q6_K', 'Q4_K_M', 'Q3_K_L', 'Q2_K', 'iq1_m', 'f16']
+    for pattern in quant_patterns:
+        if pattern in model_name:
+            return pattern
+    return 'unknown'
+
+def print_provenance_header(core_name, mode, models, tier=None, backend=None, cold_warm=None):
+    """Print provenance header for every run/request."""
+    import hashlib
+    import time
+    
+    timestamp = int(time.time())
+    
+    # Generate model hashes
+    model_hashes = {}
+    for model_type, model_name in models.items():
+        model_hashes[model_type] = hashlib.md5(model_name.encode()).hexdigest()[:8]
+    
+    # Extract quantization info
+    model_quants = {}
+    for model_type, model_name in models.items():
+        model_quants[model_type] = extract_quantization(model_name)
+    
+    # Build provenance string
+    provenance_parts = [
+        f"timestamp={timestamp}",
+        f"core={core_name}",
+        f"mode={mode}",
+        f"main={models.get('main', 'N/A')}",
+        f"embedder={models.get('embedder', 'N/A')}",
+        f"sd={models.get('sd', 'N/A')}",
+        f"main_quant={model_quants.get('main', 'unknown')}",
+        f"embedder_quant={model_quants.get('embedder', 'unknown')}",
+        f"sd_quant={model_quants.get('sd', 'unknown')}",
+        f"main_hash={model_hashes.get('main', 'N/A')}",
+        f"embedder_hash={model_hashes.get('embedder', 'N/A')}",
+        f"sd_hash={model_hashes.get('sd', 'N/A')}"
+    ]
+    
+    if tier:
+        provenance_parts.append(f"router_tier={tier}")
+    if backend:
+        provenance_parts.append(f"backend={backend}")
+    if cold_warm:
+        provenance_parts.append(f"cold_warm={cold_warm}")
+    
+    provenance_line = " | ".join(provenance_parts)
+    print(f"\n🔍 PROVENANCE: {provenance_line}")
+    return provenance_line
 
 # === MAIN ENTRY POINT ===
 
@@ -1959,6 +2103,8 @@ def main():
     parser.add_argument('--model-name', type=str, help='New model name to set')
     parser.add_argument('--show-models', action='store_true', help='Show current model configurations for all systems')
     parser.add_argument('--config-health', action='store_true', help='Check configuration health for all cores')
+    parser.add_argument('--whoami', action='store_true', help='Show exact model triplet this core will use right now')
+    parser.add_argument('--execution-mode', choices=['real', 'mock'], default='real', help='Execution mode: real (actual LLM calls) or mock (simulated responses)')
     
     # Trait classification arguments
     parser.add_argument('--classify', type=str, help='Classify a question using Big Five trait Rosetta Stone')
@@ -1974,6 +2120,15 @@ def main():
     parser.add_argument('--system-overview', action='store_true', help='Show comprehensive system overview')
     
     args = parser.parse_args()
+    
+    # Print mode watermark
+    if args.execution_mode == 'mock':
+        print("\n" + "="*80)
+        print("🚨 [MOCK MODE – NOT BENCHMARK VALID] 🚨")
+        print("="*80)
+        print("This run is using simulated responses. Results are NOT valid for benchmarking.")
+        print("Use --execution-mode real for actual LLM calls and valid performance measurements.")
+        print("="*80 + "\n")
     
     # Handle model management commands FIRST (before any initialization)
     if args.system:
