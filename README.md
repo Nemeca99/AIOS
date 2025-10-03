@@ -89,6 +89,9 @@ python demo_irrefutable.py
 
 # Generate publication-ready results from provenance logs
 python provenance_to_results.py --input data_core/analytics/provenance.ndjson --outdir analytics_out
+
+# Generate complete paper from template + results
+python generate_paper.py --results analytics_out/RESULTS.md --template PAPER_METHODS_RESULTS.md --output AIOS_Clean_Paper.md
 ```
 
 ## Usage
@@ -138,8 +141,11 @@ python main.py --execution-mode real --deterministic --test-suite --golden --rep
 # 2. Convert provenance to publication tables
 python provenance_to_results.py --input data_core/analytics/provenance.ndjson --outdir analytics_out
 
-# 3. Use generated RESULTS.md in your paper
-cat analytics_out/RESULTS.md
+# 3. Generate complete paper from template + results
+python generate_paper.py --results analytics_out/RESULTS.md --template PAPER_METHODS_RESULTS.md --output AIOS_Clean_Paper.md
+
+# 4. Your publication-ready paper is ready!
+cat AIOS_Clean_Paper.md
 ```
 
 **Generated outputs:**
