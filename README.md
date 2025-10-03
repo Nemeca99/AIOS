@@ -73,10 +73,19 @@ python main.py --execution-mode mock --system --luna --message "hello"
 python smoke_test.py
 
 # Run golden prompts regression tests
-python main.py --test --golden --report data_core/analytics/golden_report.json
+python main.py --test-suite --golden --report data_core/analytics/golden_report.json
+
+# Run deterministic golden tests with provenance
+python main.py --execution-mode real --deterministic --test-suite --golden --report results.json
 
 # Update all config files with schema versioning
 python update_config_schema.py
+
+# Cross-architecture benchmark (LLaMA, Qwen, Phi)
+python cross_arch_benchmark.py
+
+# Irrefutable one-screen demo
+python demo_irrefutable.py
 ```
 
 ## Usage

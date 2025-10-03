@@ -1941,10 +1941,21 @@ def print_provenance_header(core_name, mode, models, tier=None, backend=None, co
     import hashlib
     import time
     import json
+    import subprocess
     from datetime import datetime
     
     # Generate ISO timestamp
     timestamp = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+    
+    # Get Git commit hash
+    git_rev = "unknown"
+    try:
+        result = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], 
+                              capture_output=True, text=True, timeout=5)
+        if result.returncode == 0:
+            git_rev = result.stdout.strip()
+    except:
+        pass  # Git not available or not in repo
     
     # Generate model hashes
     model_hashes = {}
@@ -1964,6 +1975,7 @@ def print_provenance_header(core_name, mode, models, tier=None, backend=None, co
         "core": core_name,
         "mode": mode,
         "execution_mode": EXECUTION_MODE,
+        "git_rev": git_rev,
         "models": {
             "main": models.get('main', 'N/A'),
             "embedder": models.get('embedder', 'N/A'),
@@ -1990,6 +2002,15 @@ def print_provenance_header(core_name, mode, models, tier=None, backend=None, co
         provenance_data["cold_warm"] = cold_warm
     if seed:
         provenance_data["seed"] = seed
+    
+    # Add deterministic mode settings
+    if DETERMINISTIC_MODE:
+        provenance_data["deterministic"] = True
+        provenance_data["temperature"] = 0.0
+        if not seed:
+            # Generate a fixed seed for deterministic mode
+            import random
+            provenance_data["seed"] = 42
     
     # Print compact JSON (single line)
     provenance_json = json.dumps(provenance_data, separators=(',', ':'))
@@ -2071,17 +2092,24 @@ def run_golden_prompts_test(report_file=None):
                 # Check tier routing
                 if test_result["actual_tier"] != expected_tier:
                     test_result["status"] = "failed"
-                    test_result["error"] = f"Tier mismatch: expected {expected_tier}, got {test_result['actual_tier']}"
+                    test_result["error"] = f"tier={expected_tier} expected, saw {test_result['actual_tier']}"
+                    print(f"      ❌ FAIL: tier={expected_tier} expected, saw {test_result['actual_tier']}")
                 
                 # Check fragments range
                 elif not (expected_fragments[0] <= test_result["actual_fragments"] <= expected_fragments[1]):
                     test_result["status"] = "failed"
-                    test_result["error"] = f"Fragments out of range: expected {expected_fragments}, got {test_result['actual_fragments']}"
+                    test_result["error"] = f"fragments {test_result['actual_fragments']} outside range [{expected_fragments[0]}, {expected_fragments[1]}]"
+                    print(f"      ❌ FAIL: fragments {test_result['actual_fragments']} outside range [{expected_fragments[0]}, {expected_fragments[1]}]")
                 
                 # Check accept rate
                 elif not (min_accept_rate <= test_result["accept_rate"] <= max_accept_rate):
                     test_result["status"] = "failed"
-                    test_result["error"] = f"Accept rate out of range: expected [{min_accept_rate}, {max_accept_rate}], got {test_result['accept_rate']}"
+                    if test_result["accept_rate"] < min_accept_rate:
+                        test_result["error"] = f"accept_rate {test_result['accept_rate']:.3f} < {min_accept_rate} floor"
+                        print(f"      ❌ FAIL: accept_rate {test_result['accept_rate']:.3f} < {min_accept_rate} floor")
+                    else:
+                        test_result["error"] = f"accept_rate {test_result['accept_rate']:.3f} > {max_accept_rate} ceiling"
+                        print(f"      ❌ FAIL: accept_rate {test_result['accept_rate']:.3f} > {max_accept_rate} ceiling")
                 
                 else:
                     test_result["status"] = "passed"
@@ -2129,6 +2157,7 @@ def run_golden_prompts_test(report_file=None):
 
 # === GLOBAL VARIABLES ===
 EXECUTION_MODE = 'real'
+DETERMINISTIC_MODE = False
 
 # === MAIN ENTRY POINT ===
 
@@ -2256,6 +2285,7 @@ def main():
     parser.add_argument('--config-health', action='store_true', help='Check configuration health for all cores')
     parser.add_argument('--whoami', action='store_true', help='Show exact model triplet this core will use right now')
     parser.add_argument('--execution-mode', choices=['real', 'mock'], default='real', help='Execution mode: real (actual LLM calls) or mock (simulated responses)')
+    parser.add_argument('--deterministic', action='store_true', help='Deterministic mode: sets temperature=0 and fixes seed')
     parser.add_argument('--test-suite', action='store_true', help='Run tests')
     parser.add_argument('--golden', action='store_true', help='Run golden prompts regression tests')
     parser.add_argument('--report', type=str, help='Output file for test report')
@@ -2284,9 +2314,10 @@ def main():
         print("Use --execution-mode real for actual LLM calls and valid performance measurements.")
         print("="*80 + "\n")
     
-    # Set global execution mode for provenance
-    global EXECUTION_MODE
+    # Set global execution mode and deterministic settings for provenance
+    global EXECUTION_MODE, DETERMINISTIC_MODE
     EXECUTION_MODE = args.execution_mode
+    DETERMINISTIC_MODE = args.deterministic
     
     # Handle model management commands FIRST (before any initialization)
     if args.system:
