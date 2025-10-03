@@ -59,6 +59,8 @@ from utils_core.hybrid_utils_core import HybridUtilsCore as UtilsCore
 # Import utilities
 from utils_core.aios_json_standards import AIOSJSONHandler, AIOSDataType, AIOSJSONStandards, ConversationMessage
 
+# No model configuration needed - each core handles its own
+
 # === ENUMS AND DATA CLASSES ===
 
 class SystemMode(Enum):
@@ -206,8 +208,12 @@ class AIOSClean:
                 elif system_name == 'data':
                     data_overview = self.data_system.get_system_overview()
                     total_data_files = (data_overview['fractal_cache']['total_files'] + 
-                                      data_overview['arbiter_cache']['total_files'] + 
-                                      data_overview['conversations']['total_conversations'])
+                                      data_overview['arbiter_cache']['total_files'])
+                    
+                    # Add conversations count if available (Python vs Rust implementation difference)
+                    if 'conversations' in data_overview and 'total_conversations' in data_overview['conversations']:
+                        total_data_files += data_overview['conversations']['total_conversations']
+                    
                     self.logger.info(f"Data: {total_data_files} files", "AIOS")
                 elif system_name == 'dream':
                     dream_stats = self.dream_system.get_system_stats()
@@ -1574,6 +1580,191 @@ def handle_utils_special_commands(args, aios):
         
     return True
 
+def handle_model_management(args):
+    """Handle model configuration management commands."""
+    
+    if args.show_models:
+        show_all_model_configs()
+        return True
+    
+    if args.modchange and args.model_name and not any([args.luna, args.carma, args.support, args.backup, args.dream, args.enterprise, args.streamlit, args.utils, args.data]):
+        if args.main:
+            change_all_models('main_llm', args.model_name)
+        elif args.embed:
+            change_all_models('embedder', args.model_name)
+        else:
+            print("❌ Specify --main or --embed with --modchange")
+        return True
+    
+    # Handle specific system model changes
+    if any([args.luna, args.carma, args.support, args.backup, args.dream, args.enterprise, args.streamlit, args.utils, args.data]):
+        if args.modchange and args.model_name:
+            if args.luna:
+                change_system_model('luna', 'main_llm' if args.main else 'embedder', args.model_name)
+            elif args.carma:
+                change_system_model('carma', 'main_llm' if args.main else 'embedder', args.model_name)
+            elif args.support:
+                change_system_model('support', 'main_llm' if args.main else 'embedder', args.model_name)
+            elif args.backup:
+                change_system_model('backup', 'main_llm' if args.main else 'embedder', args.model_name)
+            elif args.dream:
+                change_system_model('dream', 'main_llm' if args.main else 'embedder', args.model_name)
+            elif args.enterprise:
+                change_system_model('enterprise', 'main_llm' if args.main else 'embedder', args.model_name)
+            elif args.streamlit:
+                change_system_model('streamlit', 'main_llm' if args.main else 'embedder', args.model_name)
+            elif args.utils:
+                change_system_model('utils', 'main_llm' if args.main else 'embedder', args.model_name)
+            elif args.data:
+                change_system_model('data', 'main_llm' if args.main else 'embedder', args.model_name)
+        else:
+            show_system_model_configs(args)
+        return True
+    
+    print("❌ Invalid model management command")
+    print("Usage:")
+    print("  python main.py --system --show-models")
+    print("  python main.py --system --modchange --main --model-name 'new-model'")
+    print("  python main.py --system --luna --modchange --main --model-name 'new-model'")
+    return True
+
+def show_all_model_configs():
+    """Show current model configurations for all systems."""
+    import json
+    from pathlib import Path
+    
+    print("🤖 Current Model Configurations:")
+    print("=" * 60)
+    
+    core_systems = ['luna', 'carma', 'data', 'backup', 'dream', 'enterprise', 'streamlit', 'support', 'utils']
+    
+    for system in core_systems:
+        config_path = Path(f"{system}_core/config/model_config.json")
+        if config_path.exists():
+            try:
+                with open(config_path, 'r', encoding='utf-8') as f:
+                    config = json.load(f)
+                
+                main_model = config["model_config"]["models"]["main_llm"]["name"]
+                embedder_model = config["model_config"]["models"]["embedder"]["name"]
+                
+                print(f"📁 {system.upper()} Core:")
+                print(f"   Main: {main_model}")
+                print(f"   Embedder: {embedder_model}")
+                print()
+            except Exception as e:
+                print(f"❌ {system.upper()} Core: Error reading config - {e}")
+        else:
+            print(f"❌ {system.upper()} Core: Config file not found")
+
+def change_all_models(model_type, new_model_name):
+    """Change model for all systems."""
+    import json
+    from pathlib import Path
+    
+    print(f"🔄 Changing {model_type} to '{new_model_name}' for all systems...")
+    
+    core_systems = ['luna', 'carma', 'data', 'backup', 'dream', 'enterprise', 'streamlit', 'support', 'utils']
+    updated_count = 0
+    
+    for system in core_systems:
+        config_path = Path(f"{system}_core/config/model_config.json")
+        if config_path.exists():
+            try:
+                with open(config_path, 'r', encoding='utf-8') as f:
+                    config = json.load(f)
+                
+                old_model = config["model_config"]["models"][model_type]["name"]
+                config["model_config"]["models"][model_type]["name"] = new_model_name
+                config["model_config"]["model_switching"][f"current_{model_type.split('_')[0]}"] = new_model_name
+                
+                with open(config_path, 'w', encoding='utf-8') as f:
+                    json.dump(config, f, indent=2, ensure_ascii=False)
+                
+                print(f"✅ {system.upper()}: {old_model} → {new_model_name}")
+                updated_count += 1
+                
+            except Exception as e:
+                print(f"❌ {system.upper()}: Error updating config - {e}")
+        else:
+            print(f"❌ {system.upper()}: Config file not found")
+    
+    print(f"\n🎉 Updated {updated_count}/{len(core_systems)} systems")
+
+def change_system_model(system_name, model_type, new_model_name):
+    """Change model for a specific system."""
+    import json
+    from pathlib import Path
+    
+    config_path = Path(f"{system_name}_core/config/model_config.json")
+    if not config_path.exists():
+        print(f"❌ {system_name.upper()} Core: Config file not found")
+        return
+    
+    try:
+        with open(config_path, 'r', encoding='utf-8') as f:
+            config = json.load(f)
+        
+        old_model = config["model_config"]["models"][model_type]["name"]
+        config["model_config"]["models"][model_type]["name"] = new_model_name
+        config["model_config"]["model_switching"][f"current_{model_type.split('_')[0]}"] = new_model_name
+        
+        with open(config_path, 'w', encoding='utf-8') as f:
+            json.dump(config, f, indent=2, ensure_ascii=False)
+        
+        print(f"✅ {system_name.upper()} Core: {old_model} → {new_model_name}")
+        
+    except Exception as e:
+        print(f"❌ {system_name.upper()} Core: Error updating config - {e}")
+
+def show_system_model_configs(args):
+    """Show model configuration for specific system."""
+    import json
+    from pathlib import Path
+    
+    system_name = None
+    if args.luna:
+        system_name = 'luna'
+    elif args.carma:
+        system_name = 'carma'
+    elif args.support:
+        system_name = 'support'
+    elif args.backup:
+        system_name = 'backup'
+    elif args.dream:
+        system_name = 'dream'
+    elif args.enterprise:
+        system_name = 'enterprise'
+    elif args.streamlit:
+        system_name = 'streamlit'
+    elif args.utils:
+        system_name = 'utils'
+    elif args.data:
+        system_name = 'data'
+    
+    if not system_name:
+        print("❌ No system specified")
+        return
+    
+    config_path = Path(f"{system_name}_core/config/model_config.json")
+    if not config_path.exists():
+        print(f"❌ {system_name.upper()} Core: Config file not found")
+        return
+    
+    try:
+        with open(config_path, 'r', encoding='utf-8') as f:
+            config = json.load(f)
+        
+        main_model = config["model_config"]["models"]["main_llm"]["name"]
+        embedder_model = config["model_config"]["models"]["embedder"]["name"]
+        
+        print(f"🤖 {system_name.upper()} Core Model Configuration:")
+        print(f"   Main: {main_model}")
+        print(f"   Embedder: {embedder_model}")
+        
+    except Exception as e:
+        print(f"❌ {system_name.upper()} Core: Error reading config - {e}")
+
 # === MAIN ENTRY POINT ===
 
 def main():
@@ -1689,6 +1880,14 @@ def main():
     # Memory management arguments
     parser.add_argument('--clear-memory', action='store_true', help='Clear persistent session memory (start fresh conversation context)')
     
+    # Model configuration management arguments
+    parser.add_argument('--system', action='store_true', help='System model configuration commands')
+    parser.add_argument('--modchange', action='store_true', help='Change model configuration')
+    parser.add_argument('--main', action='store_true', help='Change main model')
+    parser.add_argument('--embed', action='store_true', help='Change embedder model')
+    parser.add_argument('--model-name', type=str, help='New model name to set')
+    parser.add_argument('--show-models', action='store_true', help='Show current model configurations for all systems')
+    
     # Trait classification arguments
     parser.add_argument('--classify', type=str, help='Classify a question using Big Five trait Rosetta Stone')
     parser.add_argument('--classification-summary', action='store_true', help='Get summary of trait classification history')
@@ -1703,6 +1902,10 @@ def main():
     parser.add_argument('--system-overview', action='store_true', help='Show comprehensive system overview')
     
     args = parser.parse_args()
+    
+    # Handle model management commands FIRST (before any initialization)
+    if args.system:
+        return handle_model_management(args)
     
     # Check if this is a chat command and handle it directly without initialization
     if args.luna and args.chat:
@@ -1760,6 +1963,7 @@ def main():
         # Show help for core system if no subcommand specified
         else:
             return handle_core_command(args, aios)
+    
     
     # Handle memory clear command
     if args.clear_memory:

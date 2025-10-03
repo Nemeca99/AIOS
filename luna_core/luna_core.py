@@ -48,6 +48,9 @@ from .luna_cfia_system import LunaCFIASystem
 from .luna_trait_classifier import LunaTraitClassifier
 from .luna_internal_reasoning_system import LunaInternalReasoningSystem
 
+# Import model configuration loader
+from .model_config import get_main_model, get_embedder_model, get_draft_model
+
 # Import AIOS JSON standards
 try:
     from utils.aios_json_standards import AIOSJSONHandler, AIOSDataType, AIOSJSONStandards, ConversationMessage
@@ -1403,7 +1406,7 @@ Respond as Luna in 1-2 sentences:"""
                 "messages": [
                     {"role": "system", "content": prompt}
                 ],
-                "model": "llama-3.2-1b-instruct-abliterated",
+                "model": get_main_model(),
                 "temperature": 0.7,  # Add some randomness to prevent repetition
                 "max_tokens": 50,    # Keep responses short
                 "stream": False
@@ -2473,7 +2476,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
 
         try:
             data = {
-                "model": "llama-3.2-1b-instruct-abliterated",
+                "model": get_main_model(),
                 "messages": [
                     {"role": "system", "content": cleanup_prompt},
                     {"role": "user", "content": "Clean up this response:"}
@@ -2541,7 +2544,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
             # LM Studio Native Speculative Decoding
             # Main model (Llama 7B) + Draft model (Qwen 0.6B) in single API call
             self.logger.log("LUNA", f"AVA MODE: Using 7B Llama for daily driver responses", "INFO")
-            self.logger.log("LUNA", f"AVA MODEL: llama-3.2-pkd-deckard-almost-human-abliterated-uncensored-7b-i1 (Main Model)", "INFO")
+            self.logger.log("LUNA", f"AVA MODEL: {get_main_model()} (Main Model)", "INFO")
             print("AVA MODE CALLED - DAILY DRIVER RESPONSE!")
             
             # Use modified_params from Custom Inference Controller if provided
@@ -2549,7 +2552,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
                 headers = {"Content-Type": "application/json"}
                 # Create a copy of modified_params and override model names for GSD
                 gsd_params = modified_params.copy()
-                gsd_params["model"] = "llama-3.2-pkd-deckard-almost-human-abliterated-uncensored-7b-i1"  # Main model for quality responses
+                gsd_params["model"] = get_main_model()  # Main model for quality responses
                 # gsd_params["draft_model"] = "mlabonne_qwen3-0.6b-abliterated"  # Draft model (Fast) - DISABLED for testing
                 gsd_params["stream"] = False  # Force non-streaming for GSD to avoid SSE parsing issues
                 
@@ -2564,7 +2567,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
                 # Fallback to standard parameters
                 headers = {"Content-Type": "application/json"}
                 data = {
-                    "model": "llama-3.2-pkd-deckard-almost-human-abliterated-uncensored-7b-i1",  # Main model for quality responses
+                    "model": get_main_model(),  # Main model for quality responses
                     # "draft_model": "mlabonne_qwen3-0.6b-abliterated",  # Draft model (Fast) - DISABLED for testing
                     "messages": [
                         {"role": "system", "content": system_prompt},
@@ -2661,7 +2664,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
                 headers = {"Content-Type": "application/json"}
                 # Use clean GSD parameters - NO logit_bias from Custom Inference Controller
                 gsd_params = modified_params.copy()
-                gsd_params["model"] = "llama-3.2-pkd-deckard-almost-human-abliterated-uncensored-7b-i1"
+                gsd_params["model"] = get_main_model()
                 gsd_params["stream"] = False
                 
                 # Remove problematic logit_bias that causes "parable" loops
@@ -2686,7 +2689,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
                 # Fallback to standard parameters
                 headers = {"Content-Type": "application/json"}
                 data = {
-                    "model": "llama-3.2-pkd-deckard-almost-human-abliterated-uncensored-7b-i1",  # Main model
+                    "model": get_main_model(),  # Main model
                     "messages": [
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": question}

@@ -23,19 +23,31 @@ def benchmark_layer(layer_name: str, backend: str, queries: List[str], warm_up: 
     
     # Initialize the system (this is the cold start)
     if layer_name == "Raw":
-        # Mock raw LLM
-        llm_mock = Mock(return_value="I'm a raw LLM response.")
+        # Import actual LLM system for real testing
+        try:
+            from luna_core.luna_core import LunaSystem
+            raw_llm_system = LunaSystem()
+            print("   Raw LLM system initialized")
+        except Exception as e:
+            print(f"Error importing Raw LLM system: {e}")
+            return results
         
     elif layer_name == "Basic":
-        # Mock basic personality
-        basic_personality = Mock()
-        basic_personality.generate_response = Mock(return_value="I'm a basic AI assistant.")
+        # Import actual basic personality system
+        try:
+            from luna_core.luna_core import LunaSystem
+            basic_personality = LunaSystem()
+            print("   Basic personality system initialized")
+        except Exception as e:
+            print(f"Error importing Basic personality system: {e}")
+            return results
         
     elif layer_name == "Luna":
         # Import Luna system
         try:
             from luna_core.hybrid_luna_core import HybridLunaCore
             luna_system = HybridLunaCore()
+            print("   Luna system initialized")
         except Exception as e:
             print(f"Error importing Luna: {e}")
             return results
@@ -60,18 +72,19 @@ def benchmark_layer(layer_name: str, backend: str, queries: List[str], warm_up: 
     if warm_up:
         print("   Warming up system...")
         warm_up_query = "Hello, this is a warm-up query."
-        if layer_name == "Luna" and backend == "CARMA":
-            try:
-                luna_system.generate_response(warm_up_query)
+        try:
+            if layer_name == "Raw":
+                raw_llm_system.process_question(warm_up_query, "general", [])
+            elif layer_name == "Basic":
+                basic_personality.process_question(warm_up_query, "general", [])
+            elif layer_name == "Luna" and backend == "CARMA":
                 carma_system.process_query(warm_up_query)
-            except:
-                pass
-        elif layer_name == "Luna" and backend == "Simple_RAG":
-            try:
                 luna_system.generate_response(warm_up_query)
+            elif layer_name == "Luna" and backend == "Simple_RAG":
                 rag_system.process_query(warm_up_query)
-            except:
-                pass
+                luna_system.generate_response(warm_up_query)
+        except Exception as e:
+            print(f"   Warm-up failed (this is normal): {e}")
     
     # Run benchmarks
     for i, query in enumerate(queries):
@@ -81,17 +94,19 @@ def benchmark_layer(layer_name: str, backend: str, queries: List[str], warm_up: 
         
         try:
             if layer_name == "Raw":
-                response = llm_mock()
+                # Call actual LLM system
+                response, metadata = raw_llm_system.process_question(query, "general", [])
                 fragments_found = 0
                 tokens_in = len(query.split())
-                tokens_out = len(response.split())
+                tokens_out = len(response.split()) if isinstance(response, str) else 0
                 tier = "raw"
                 
             elif layer_name == "Basic":
-                response = basic_personality.generate_response()
+                # Call actual basic personality system
+                response, metadata = basic_personality.process_question(query, "general", [])
                 fragments_found = 0
                 tokens_in = len(query.split())
-                tokens_out = len(response.split())
+                tokens_out = len(response.split()) if isinstance(response, str) else 0
                 tier = "basic"
                 
             elif layer_name == "Luna":
@@ -183,8 +198,8 @@ def main():
         "Can you describe the memory optimization strategies used in DreamCore?"
     ]
     
-    # Combine queries for testing
-    all_queries = trivial_queries[:10] + moderate_queries[:10]  # 20 total queries
+    # Use only complex queries to actually test the main model (configured in data_core/config/model_config.json)
+    all_queries = moderate_queries[:20]  # 20 complex queries that will hit main model
     
     # Define layer/backend combinations
     test_combinations = [
