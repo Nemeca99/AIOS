@@ -2,11 +2,11 @@
 
 ## Abstract
 
-We present AIOS Clean, a modular operating system architecture for large language models that enables runtime model swapping, tier-based routing, and speculative decoding across multiple architectures (LLaMA, Qwen, Phi). Our system provides complete provenance tracking and deterministic reproducibility, achieving cross-architecture portability while maintaining performance characteristics. We demonstrate that OS-level modularity, survival-economy cognition shaping, and provenance-stamped execution can be combined into a single reproducible AI framework, with a publication workflow that eliminates "trust me" papers by providing complete traceability from data collection to publication-ready results.
+We present AIOS Clean, a modular operating system architecture for large language models that enables runtime model swapping, tier-based routing, and speculative decoding across multiple architectures (LLaMA, Qwen, Liquid). Our system provides complete provenance tracking and deterministic reproducibility, achieving cross-architecture portability while maintaining performance characteristics. We demonstrate that OS-level modularity, survival-economy cognition shaping, and provenance-stamped execution can be combined into a single reproducible AI framework, with a publication workflow that eliminates "trust me" papers by providing complete traceability from data collection to publication-ready results.
 
 ## 1. Introduction
 
-The rapid evolution of large language models has created a fragmented ecosystem where different model architectures (LLaMA, Qwen, Phi) require specialized deployment pipelines. This fragmentation limits researchers' ability to perform fair comparisons and hinders reproducible research. We address these challenges through AIOS Clean, a modular operating system that abstracts model-specific details while providing complete provenance tracking.
+The rapid evolution of large language models has created a fragmented ecosystem where different model architectures (LLaMA, Qwen, Liquid) require specialized deployment pipelines. This fragmentation limits researchers' ability to perform fair comparisons and hinders reproducible research. We address these challenges through AIOS Clean, a modular operating system that abstracts model-specific details while providing complete provenance tracking.
 
 ## 2. Methods
 
@@ -97,7 +97,7 @@ Runs can be flagged as `real` or `mock`, with benchmarks failing fast if mock is
 
 ### 2.7 Cross-Architecture Benchmarking
 
-Identical harnesses were run on three model families: **LLaMA**, **Qwen**, and **Phi**. Model configs were swapped via CLI without code changes.
+Identical harnesses were run on three model families: **LLaMA**, **Qwen**, and **Liquid**. Model configs were swapped via CLI without code changes.
 
 ### 2.8 Results Processing
 
@@ -113,7 +113,7 @@ We provide a companion utility (`provenance_to_results.py`) that converts NDJSON
 **Models**: We evaluate across three architectures:
 - **LLaMA**: `llama-3.2-pkd-deckard-7b-i1` (Q4_K_M quantization)
 - **Qwen**: `qwen/qwen3-4b-thinking-2507` (Q8_0 quantization)  
-- **Phi**: `phi-3-medium-4k-instruct` (Q4_K_M quantization)
+- **Liquid**: `liquid/lfm2-1.2b` (standard quantization)
 
 **Hardware**: [AUTO-GENERATED FROM ENV]
 - Python: [VERSION]
@@ -137,7 +137,7 @@ Tier routing matched expectations in 100% of trivial prompts and ≥[AUTO-GENERA
 |-------------|---------|----------|------|
 | LLaMA | [AUTO-GENERATED] | [AUTO-GENERATED] | [AUTO-GENERATED] |
 | Qwen | [AUTO-GENERATED] | [AUTO-GENERATED] | [AUTO-GENERATED] |
-| Phi | [AUTO-GENERATED] | [AUTO-GENERATED] | [AUTO-GENERATED] |
+| Liquid | [AUTO-GENERATED] | [AUTO-GENERATED] | [AUTO-GENERATED] |
 
 ### 3.2 Speculative Decoding
 
@@ -145,14 +145,14 @@ Acceptance rates:
 
 * LLaMA: [AUTO-GENERATED]%
 * Qwen: [AUTO-GENERATED]%
-* Phi: [AUTO-GENERATED]%
+* Liquid: [AUTO-GENERATED]%
 
 ### 3.3 Latency
 
 Warm p95 latencies (ms):
 
-| Layer | Backend | LLaMA | Qwen | Phi |
-|-------|---------|-------|------|-----|
+| Layer | Backend | LLaMA | Qwen | Liquid |
+|-------|---------|-------|------|--------|
 | Luna | CARMA | [AUTO-GENERATED] | [AUTO-GENERATED] | [AUTO-GENERATED] |
 | Luna | Simple_RAG | [AUTO-GENERATED] | [AUTO-GENERATED] | [AUTO-GENERATED] |
 | Basic | CARMA | [AUTO-GENERATED] | [AUTO-GENERATED] | [AUTO-GENERATED] |

@@ -36,6 +36,12 @@
         "description": "Alternative main model - Qwen3 4B Thinking",
         "tier": "high_complexity"
       },
+      "liquid_lfm2": {
+        "name": "liquid/lfm2-1.2b",
+        "type": "main_model",
+        "description": "Alternative main model - Liquid LFM2 1.2B for cross-architecture comparison",
+        "tier": "high_complexity"
+      },
       "llama_7b_rogue": {
         "name": "Rogue-Creative-7B-Dark-Horror",
         "type": "main_model",

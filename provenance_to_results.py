@@ -55,6 +55,8 @@ def extract_architecture(model_name):
         return 'LLaMA'
     elif 'qwen' in model_lower:
         return 'Qwen'
+    elif 'liquid' in model_lower:
+        return 'Liquid'
     elif 'phi' in model_lower:
         return 'Phi'
     elif 'mistral' in model_lower:
