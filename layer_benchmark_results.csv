@@ -1,0 +1,241 @@
+layer,backend,tier,prompt_id,cold_warm,latency_ms,fragments_found,tokens_in,tokens_out,query
+Raw,None,raw,1,cold,1.0,0,1,5,hi
+Raw,None,raw,2,cold,0.0,0,1,5,hello
+Raw,None,raw,3,cold,0.0,0,1,5,hey
+Raw,None,raw,4,cold,0.0,0,1,5,yo
+Raw,None,raw,5,cold,0.0,0,1,5,sup
+Raw,None,raw,6,cold,0.0,0,2,5,whats up
+Raw,None,raw,7,cold,0.0,0,1,5,howdy
+Raw,None,raw,8,cold,0.0,0,1,5,greetings
+Raw,None,raw,9,cold,0.0,0,2,5,good morning
+Raw,None,raw,10,cold,0.0,0,2,5,good afternoon
+Raw,None,raw,11,cold,0.0,0,10,5,"Hello, how are you today? I hope you're doing well."
+Raw,None,raw,12,cold,0.0,0,12,5,Can you tell me about your memory system and how it works?
+Raw,None,raw,13,cold,0.0,0,10,5,What is the difference between CARMA and traditional RAG systems?
+Raw,None,raw,14,cold,0.0,0,12,5,How does the tier system determine which model to use for responses?
+Raw,None,raw,15,cold,0.0,0,11,5,Can you explain how Luna's personality system integrates with the memory?
+Raw,None,raw,16,cold,0.0,0,11,5,What are the benefits of the modular architecture in AIOS Clean?
+Raw,None,raw,17,cold,0.0,0,9,5,How does speculative decoding improve performance in your system?
+Raw,None,raw,18,cold,0.0,0,10,5,Can you describe the dream consolidation process for memory optimization?
+Raw,None,raw,19,cold,0.0,0,8,5,What makes the hybrid Python/Rust implementation more efficient?
+Raw,None,raw,20,cold,0.0,0,10,5,How does the karma economy system work for response evaluation?
+Raw,None,raw,1,warm,0.0,0,1,5,hi
+Raw,None,raw,2,warm,0.0,0,1,5,hello
+Raw,None,raw,3,warm,0.0,0,1,5,hey
+Raw,None,raw,4,warm,0.0,0,1,5,yo
+Raw,None,raw,5,warm,0.0,0,1,5,sup
+Raw,None,raw,6,warm,0.0,0,2,5,whats up
+Raw,None,raw,7,warm,0.0,0,1,5,howdy
+Raw,None,raw,8,warm,0.0,0,1,5,greetings
+Raw,None,raw,9,warm,0.0,0,2,5,good morning
+Raw,None,raw,10,warm,0.0,0,2,5,good afternoon
+Raw,None,raw,11,warm,0.0,0,10,5,"Hello, how are you today? I hope you're doing well."
+Raw,None,raw,12,warm,0.0,0,12,5,Can you tell me about your memory system and how it works?
+Raw,None,raw,13,warm,0.0,0,10,5,What is the difference between CARMA and traditional RAG systems?
+Raw,None,raw,14,warm,0.0,0,12,5,How does the tier system determine which model to use for responses?
+Raw,None,raw,15,warm,0.0,0,11,5,Can you explain how Luna's personality system integrates with the memory?
+Raw,None,raw,16,warm,0.0,0,11,5,What are the benefits of the modular architecture in AIOS Clean?
+Raw,None,raw,17,warm,0.0,0,9,5,How does speculative decoding improve performance in your system?
+Raw,None,raw,18,warm,0.0,0,10,5,Can you describe the dream consolidation process for memory optimization?
+Raw,None,raw,19,warm,0.0,0,8,5,What makes the hybrid Python/Rust implementation more efficient?
+Raw,None,raw,20,warm,0.0,0,10,5,How does the karma economy system work for response evaluation?
+Basic,None,basic,1,cold,0.0,0,1,5,hi
+Basic,None,basic,2,cold,0.0,0,1,5,hello
+Basic,None,basic,3,cold,0.0,0,1,5,hey
+Basic,None,basic,4,cold,0.0,0,1,5,yo
+Basic,None,basic,5,cold,0.0,0,1,5,sup
+Basic,None,basic,6,cold,0.0,0,2,5,whats up
+Basic,None,basic,7,cold,0.0,0,1,5,howdy
+Basic,None,basic,8,cold,0.0,0,1,5,greetings
+Basic,None,basic,9,cold,0.0,0,2,5,good morning
+Basic,None,basic,10,cold,0.0,0,2,5,good afternoon
+Basic,None,basic,11,cold,0.0,0,10,5,"Hello, how are you today? I hope you're doing well."
+Basic,None,basic,12,cold,0.0,0,12,5,Can you tell me about your memory system and how it works?
+Basic,None,basic,13,cold,0.0,0,10,5,What is the difference between CARMA and traditional RAG systems?
+Basic,None,basic,14,cold,0.0,0,12,5,How does the tier system determine which model to use for responses?
+Basic,None,basic,15,cold,0.0,0,11,5,Can you explain how Luna's personality system integrates with the memory?
+Basic,None,basic,16,cold,0.0,0,11,5,What are the benefits of the modular architecture in AIOS Clean?
+Basic,None,basic,17,cold,0.0,0,9,5,How does speculative decoding improve performance in your system?
+Basic,None,basic,18,cold,0.0,0,10,5,Can you describe the dream consolidation process for memory optimization?
+Basic,None,basic,19,cold,0.0,0,8,5,What makes the hybrid Python/Rust implementation more efficient?
+Basic,None,basic,20,cold,0.0,0,10,5,How does the karma economy system work for response evaluation?
+Basic,None,basic,1,warm,0.0,0,1,5,hi
+Basic,None,basic,2,warm,0.0,0,1,5,hello
+Basic,None,basic,3,warm,0.0,0,1,5,hey
+Basic,None,basic,4,warm,0.0,0,1,5,yo
+Basic,None,basic,5,warm,0.0,0,1,5,sup
+Basic,None,basic,6,warm,0.0,0,2,5,whats up
+Basic,None,basic,7,warm,0.0,0,1,5,howdy
+Basic,None,basic,8,warm,0.0,0,1,5,greetings
+Basic,None,basic,9,warm,0.0,0,2,5,good morning
+Basic,None,basic,10,warm,0.0,0,2,5,good afternoon
+Basic,None,basic,11,warm,0.0,0,10,5,"Hello, how are you today? I hope you're doing well."
+Basic,None,basic,12,warm,0.0,0,12,5,Can you tell me about your memory system and how it works?
+Basic,None,basic,13,warm,0.0,0,10,5,What is the difference between CARMA and traditional RAG systems?
+Basic,None,basic,14,warm,0.0,0,12,5,How does the tier system determine which model to use for responses?
+Basic,None,basic,15,warm,0.0,0,11,5,Can you explain how Luna's personality system integrates with the memory?
+Basic,None,basic,16,warm,0.0,0,11,5,What are the benefits of the modular architecture in AIOS Clean?
+Basic,None,basic,17,warm,0.0,0,9,5,How does speculative decoding improve performance in your system?
+Basic,None,basic,18,warm,0.0,0,10,5,Can you describe the dream consolidation process for memory optimization?
+Basic,None,basic,19,warm,0.0,0,8,5,What makes the hybrid Python/Rust implementation more efficient?
+Basic,None,basic,20,warm,0.0,0,10,5,How does the karma economy system work for response evaluation?
+Basic,CARMA,basic,1,cold,0.0,0,1,5,hi
+Basic,CARMA,basic,2,cold,0.0,0,1,5,hello
+Basic,CARMA,basic,3,cold,0.0,0,1,5,hey
+Basic,CARMA,basic,4,cold,0.0,0,1,5,yo
+Basic,CARMA,basic,5,cold,0.0,0,1,5,sup
+Basic,CARMA,basic,6,cold,0.0,0,2,5,whats up
+Basic,CARMA,basic,7,cold,0.0,0,1,5,howdy
+Basic,CARMA,basic,8,cold,0.0,0,1,5,greetings
+Basic,CARMA,basic,9,cold,0.0,0,2,5,good morning
+Basic,CARMA,basic,10,cold,0.0,0,2,5,good afternoon
+Basic,CARMA,basic,11,cold,0.0,0,10,5,"Hello, how are you today? I hope you're doing well."
+Basic,CARMA,basic,12,cold,0.0,0,12,5,Can you tell me about your memory system and how it works?
+Basic,CARMA,basic,13,cold,0.0,0,10,5,What is the difference between CARMA and traditional RAG systems?
+Basic,CARMA,basic,14,cold,0.0,0,12,5,How does the tier system determine which model to use for responses?
+Basic,CARMA,basic,15,cold,0.0,0,11,5,Can you explain how Luna's personality system integrates with the memory?
+Basic,CARMA,basic,16,cold,0.0,0,11,5,What are the benefits of the modular architecture in AIOS Clean?
+Basic,CARMA,basic,17,cold,0.0,0,9,5,How does speculative decoding improve performance in your system?
+Basic,CARMA,basic,18,cold,0.0,0,10,5,Can you describe the dream consolidation process for memory optimization?
+Basic,CARMA,basic,19,cold,0.0,0,8,5,What makes the hybrid Python/Rust implementation more efficient?
+Basic,CARMA,basic,20,cold,0.0,0,10,5,How does the karma economy system work for response evaluation?
+Basic,CARMA,basic,1,warm,0.0,0,1,5,hi
+Basic,CARMA,basic,2,warm,0.0,0,1,5,hello
+Basic,CARMA,basic,3,warm,0.0,0,1,5,hey
+Basic,CARMA,basic,4,warm,0.0,0,1,5,yo
+Basic,CARMA,basic,5,warm,0.0,0,1,5,sup
+Basic,CARMA,basic,6,warm,0.0,0,2,5,whats up
+Basic,CARMA,basic,7,warm,0.0,0,1,5,howdy
+Basic,CARMA,basic,8,warm,0.0,0,1,5,greetings
+Basic,CARMA,basic,9,warm,0.0,0,2,5,good morning
+Basic,CARMA,basic,10,warm,0.0,0,2,5,good afternoon
+Basic,CARMA,basic,11,warm,0.0,0,10,5,"Hello, how are you today? I hope you're doing well."
+Basic,CARMA,basic,12,warm,1.0,0,12,5,Can you tell me about your memory system and how it works?
+Basic,CARMA,basic,13,warm,0.0,0,10,5,What is the difference between CARMA and traditional RAG systems?
+Basic,CARMA,basic,14,warm,0.0,0,12,5,How does the tier system determine which model to use for responses?
+Basic,CARMA,basic,15,warm,0.0,0,11,5,Can you explain how Luna's personality system integrates with the memory?
+Basic,CARMA,basic,16,warm,0.0,0,11,5,What are the benefits of the modular architecture in AIOS Clean?
+Basic,CARMA,basic,17,warm,0.0,0,9,5,How does speculative decoding improve performance in your system?
+Basic,CARMA,basic,18,warm,0.0,0,10,5,Can you describe the dream consolidation process for memory optimization?
+Basic,CARMA,basic,19,warm,0.0,0,8,5,What makes the hybrid Python/Rust implementation more efficient?
+Basic,CARMA,basic,20,warm,0.0,0,10,5,How does the karma economy system work for response evaluation?
+Basic,Simple_RAG,basic,1,cold,0.0,0,1,5,hi
+Basic,Simple_RAG,basic,2,cold,0.0,0,1,5,hello
+Basic,Simple_RAG,basic,3,cold,0.0,0,1,5,hey
+Basic,Simple_RAG,basic,4,cold,0.0,0,1,5,yo
+Basic,Simple_RAG,basic,5,cold,0.0,0,1,5,sup
+Basic,Simple_RAG,basic,6,cold,0.0,0,2,5,whats up
+Basic,Simple_RAG,basic,7,cold,0.0,0,1,5,howdy
+Basic,Simple_RAG,basic,8,cold,0.0,0,1,5,greetings
+Basic,Simple_RAG,basic,9,cold,0.0,0,2,5,good morning
+Basic,Simple_RAG,basic,10,cold,0.0,0,2,5,good afternoon
+Basic,Simple_RAG,basic,11,cold,0.0,0,10,5,"Hello, how are you today? I hope you're doing well."
+Basic,Simple_RAG,basic,12,cold,0.0,0,12,5,Can you tell me about your memory system and how it works?
+Basic,Simple_RAG,basic,13,cold,0.0,0,10,5,What is the difference between CARMA and traditional RAG systems?
+Basic,Simple_RAG,basic,14,cold,0.0,0,12,5,How does the tier system determine which model to use for responses?
+Basic,Simple_RAG,basic,15,cold,0.0,0,11,5,Can you explain how Luna's personality system integrates with the memory?
+Basic,Simple_RAG,basic,16,cold,0.0,0,11,5,What are the benefits of the modular architecture in AIOS Clean?
+Basic,Simple_RAG,basic,17,cold,0.0,0,9,5,How does speculative decoding improve performance in your system?
+Basic,Simple_RAG,basic,18,cold,0.0,0,10,5,Can you describe the dream consolidation process for memory optimization?
+Basic,Simple_RAG,basic,19,cold,0.0,0,8,5,What makes the hybrid Python/Rust implementation more efficient?
+Basic,Simple_RAG,basic,20,cold,0.0,0,10,5,How does the karma economy system work for response evaluation?
+Basic,Simple_RAG,basic,1,warm,0.0,0,1,5,hi
+Basic,Simple_RAG,basic,2,warm,0.0,0,1,5,hello
+Basic,Simple_RAG,basic,3,warm,0.0,0,1,5,hey
+Basic,Simple_RAG,basic,4,warm,0.0,0,1,5,yo
+Basic,Simple_RAG,basic,5,warm,0.0,0,1,5,sup
+Basic,Simple_RAG,basic,6,warm,0.0,0,2,5,whats up
+Basic,Simple_RAG,basic,7,warm,0.0,0,1,5,howdy
+Basic,Simple_RAG,basic,8,warm,0.0,0,1,5,greetings
+Basic,Simple_RAG,basic,9,warm,0.0,0,2,5,good morning
+Basic,Simple_RAG,basic,10,warm,0.0,0,2,5,good afternoon
+Basic,Simple_RAG,basic,11,warm,0.0,0,10,5,"Hello, how are you today? I hope you're doing well."
+Basic,Simple_RAG,basic,12,warm,0.0,0,12,5,Can you tell me about your memory system and how it works?
+Basic,Simple_RAG,basic,13,warm,0.0,0,10,5,What is the difference between CARMA and traditional RAG systems?
+Basic,Simple_RAG,basic,14,warm,0.0,0,12,5,How does the tier system determine which model to use for responses?
+Basic,Simple_RAG,basic,15,warm,0.0,0,11,5,Can you explain how Luna's personality system integrates with the memory?
+Basic,Simple_RAG,basic,16,warm,0.0,0,11,5,What are the benefits of the modular architecture in AIOS Clean?
+Basic,Simple_RAG,basic,17,warm,0.0,0,9,5,How does speculative decoding improve performance in your system?
+Basic,Simple_RAG,basic,18,warm,0.0,0,10,5,Can you describe the dream consolidation process for memory optimization?
+Basic,Simple_RAG,basic,19,warm,0.0,0,8,5,What makes the hybrid Python/Rust implementation more efficient?
+Basic,Simple_RAG,basic,20,warm,0.0,0,10,5,How does the karma economy system work for response evaluation?
+Luna,CARMA,luna_carma,1,cold,18886.03,5,1,3,hi
+Luna,CARMA,luna_carma,2,cold,8248.77,5,1,2,hello
+Luna,CARMA,luna_carma,3,cold,8210.44,5,1,2,hey
+Luna,CARMA,luna_carma,4,cold,8189.15,5,1,3,yo
+Luna,CARMA,luna_carma,5,cold,8190.15,5,1,5,sup
+Luna,CARMA,luna_carma,6,cold,8183.36,5,2,4,whats up
+Luna,CARMA,luna_carma,7,cold,8337.93,5,1,5,howdy
+Luna,CARMA,luna_carma,8,cold,8141.48,5,1,3,greetings
+Luna,CARMA,luna_carma,9,cold,8128.7,5,2,3,good morning
+Luna,CARMA,luna_carma,10,cold,8169.21,5,2,3,good afternoon
+Luna,CARMA,luna_carma,11,cold,11117.57,5,10,27,"Hello, how are you today? I hope you're doing well."
+Luna,CARMA,luna_carma,12,cold,16041.63,5,12,36,Can you tell me about your memory system and how it works?
+Luna,CARMA,luna_carma,13,cold,13479.97,5,10,18,What is the difference between CARMA and traditional RAG systems?
+Luna,CARMA,luna_carma,14,cold,16436.72,5,12,33,How does the tier system determine which model to use for responses?
+Luna,CARMA,luna_carma,15,cold,40268.17,5,11,19,Can you explain how Luna's personality system integrates with the memory?
+Luna,CARMA,luna_carma,16,cold,13400.16,5,11,24,What are the benefits of the modular architecture in AIOS Clean?
+Luna,CARMA,luna_carma,17,cold,40202.56,5,9,19,How does speculative decoding improve performance in your system?
+Luna,CARMA,luna_carma,18,cold,35764.14,5,10,33,Can you describe the dream consolidation process for memory optimization?
+Luna,CARMA,luna_carma,19,cold,13737.79,5,8,22,What makes the hybrid Python/Rust implementation more efficient?
+Luna,CARMA,luna_carma,20,cold,40211.99,5,10,19,How does the karma economy system work for response evaluation?
+Luna,CARMA,luna_carma,1,warm,8108.18,5,1,3,hi
+Luna,CARMA,luna_carma,2,warm,8242.09,5,1,2,hello
+Luna,CARMA,luna_carma,3,warm,8310.53,5,1,2,hey
+Luna,CARMA,luna_carma,4,warm,8196.24,5,1,3,yo
+Luna,CARMA,luna_carma,5,warm,8229.54,5,1,5,sup
+Luna,CARMA,luna_carma,6,warm,8209.4,5,2,4,whats up
+Luna,CARMA,luna_carma,7,warm,8219.99,5,1,5,howdy
+Luna,CARMA,luna_carma,8,warm,8299.47,5,1,3,greetings
+Luna,CARMA,luna_carma,9,warm,8399.6,5,2,3,good morning
+Luna,CARMA,luna_carma,10,warm,8273.14,5,2,3,good afternoon
+Luna,CARMA,luna_carma,11,warm,11030.17,5,10,28,"Hello, how are you today? I hope you're doing well."
+Luna,CARMA,luna_carma,12,warm,15298.19,5,12,39,Can you tell me about your memory system and how it works?
+Luna,CARMA,luna_carma,13,warm,14817.37,5,10,19,What is the difference between CARMA and traditional RAG systems?
+Luna,CARMA,luna_carma,14,warm,16640.4,5,12,34,How does the tier system determine which model to use for responses?
+Luna,CARMA,luna_carma,15,warm,40784.87,5,11,19,Can you explain how Luna's personality system integrates with the memory?
+Luna,CARMA,luna_carma,16,warm,14049.89,5,11,24,What are the benefits of the modular architecture in AIOS Clean?
+Luna,CARMA,luna_carma,17,warm,40560.63,5,9,19,How does speculative decoding improve performance in your system?
+Luna,CARMA,luna_carma,18,warm,35617.46,5,10,39,Can you describe the dream consolidation process for memory optimization?
+Luna,CARMA,luna_carma,19,warm,14358.82,5,8,22,What makes the hybrid Python/Rust implementation more efficient?
+Luna,CARMA,luna_carma,20,warm,40514.26,5,10,19,How does the karma economy system work for response evaluation?
+Luna,Simple_RAG,error,1,cold,620.4,0,1,0,hi
+Luna,Simple_RAG,error,2,cold,6.0,0,1,0,hello
+Luna,Simple_RAG,error,3,cold,14.0,0,1,0,hey
+Luna,Simple_RAG,error,4,cold,13.0,0,1,0,yo
+Luna,Simple_RAG,error,5,cold,20.0,0,1,0,sup
+Luna,Simple_RAG,error,6,cold,12.0,0,2,0,whats up
+Luna,Simple_RAG,error,7,cold,9.52,0,1,0,howdy
+Luna,Simple_RAG,error,8,cold,13.0,0,1,0,greetings
+Luna,Simple_RAG,error,9,cold,9.0,0,2,0,good morning
+Luna,Simple_RAG,error,10,cold,8.53,0,2,0,good afternoon
+Luna,Simple_RAG,error,11,cold,25.0,0,10,0,"Hello, how are you today? I hope you're doing well."
+Luna,Simple_RAG,error,12,cold,16.51,0,12,0,Can you tell me about your memory system and how it works?
+Luna,Simple_RAG,error,13,cold,16.0,0,10,0,What is the difference between CARMA and traditional RAG systems?
+Luna,Simple_RAG,error,14,cold,9.52,0,12,0,How does the tier system determine which model to use for responses?
+Luna,Simple_RAG,error,15,cold,26.0,0,11,0,Can you explain how Luna's personality system integrates with the memory?
+Luna,Simple_RAG,error,16,cold,31.51,0,11,0,What are the benefits of the modular architecture in AIOS Clean?
+Luna,Simple_RAG,error,17,cold,22.51,0,9,0,How does speculative decoding improve performance in your system?
+Luna,Simple_RAG,error,18,cold,17.53,0,10,0,Can you describe the dream consolidation process for memory optimization?
+Luna,Simple_RAG,error,19,cold,29.0,0,8,0,What makes the hybrid Python/Rust implementation more efficient?
+Luna,Simple_RAG,error,20,cold,13.51,0,10,0,How does the karma economy system work for response evaluation?
+Luna,Simple_RAG,error,1,warm,7.0,0,1,0,hi
+Luna,Simple_RAG,error,2,warm,8.0,0,1,0,hello
+Luna,Simple_RAG,error,3,warm,8.0,0,1,0,hey
+Luna,Simple_RAG,error,4,warm,8.0,0,1,0,yo
+Luna,Simple_RAG,error,5,warm,7.0,0,1,0,sup
+Luna,Simple_RAG,error,6,warm,8.0,0,2,0,whats up
+Luna,Simple_RAG,error,7,warm,8.0,0,1,0,howdy
+Luna,Simple_RAG,error,8,warm,7.0,0,1,0,greetings
+Luna,Simple_RAG,error,9,warm,7.0,0,2,0,good morning
+Luna,Simple_RAG,error,10,warm,8.0,0,2,0,good afternoon
+Luna,Simple_RAG,error,11,warm,10.0,0,10,0,"Hello, how are you today? I hope you're doing well."
+Luna,Simple_RAG,error,12,warm,9.0,0,12,0,Can you tell me about your memory system and how it works?
+Luna,Simple_RAG,error,13,warm,8.0,0,10,0,What is the difference between CARMA and traditional RAG systems?
+Luna,Simple_RAG,error,14,warm,9.0,0,12,0,How does the tier system determine which model to use for responses?
+Luna,Simple_RAG,error,15,warm,9.0,0,11,0,Can you explain how Luna's personality system integrates with the memory?
+Luna,Simple_RAG,error,16,warm,7.0,0,11,0,What are the benefits of the modular architecture in AIOS Clean?
+Luna,Simple_RAG,error,17,warm,8.0,0,9,0,How does speculative decoding improve performance in your system?
+Luna,Simple_RAG,error,18,warm,8.0,0,10,0,Can you describe the dream consolidation process for memory optimization?
+Luna,Simple_RAG,error,19,warm,7.0,0,8,0,What makes the hybrid Python/Rust implementation more efficient?
+Luna,Simple_RAG,error,20,warm,7.0,0,10,0,How does the karma economy system work for response evaluation?
