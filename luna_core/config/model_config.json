@@ -6,7 +6,7 @@
     "description": "Centralized model configuration for AIOS Clean - change models here instead of hardcoding",
     "models": {
       "main_llm": {
-        "name": "llama-3.2-pkd-deckard-almost-human-abliterated-uncensored-7b-i1",
+        "name": "openhermes-2.5-mistral-7b",
         "type": "main_model",
         "description": "Primary LLM for complex queries and responses",
         "tier": "high_complexity",
@@ -21,7 +21,7 @@
         "fallback_dimension": 1024
       },
       "draft_model": {
-        "name": "test-sd-model",
+        "name": "mlabonne_qwen3-0.6b-abliterated",
         "type": "draft_model",
         "description": "Fast draft model for speculative decoding",
         "tier": "draft",
@@ -36,6 +36,12 @@
         "description": "Alternative main model - Qwen3 4B Thinking",
         "tier": "high_complexity"
       },
+      "liquid_lfm2": {
+        "name": "liquid/lfm2-1.2b",
+        "type": "main_model",
+        "description": "Alternative main model - Liquid LFM2 1.2B for cross-architecture comparison",
+        "tier": "high_complexity"
+      },
       "llama_7b_rogue": {
         "name": "Rogue-Creative-7B-Dark-Horror",
         "type": "main_model",
@@ -45,9 +51,8 @@
     },
     "model_switching": {
       "instructions": "To switch models, update the 'name' field in the active model section above",
-      "current_main": "llama-3.2-pkd-deckard-almost-human-abliterated-uncensored-7b-i1",
-      "current_embedder": "llama-3.2-1b-instruct-abliterated",
-      "current_draft": "test-sd-model"
+      "current_main": "openhermes-2.5-mistral-7b",
+      "current_embedder": "llama-3.2-1b-instruct-abliterated"
     }
   }
 }

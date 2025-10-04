@@ -1246,6 +1246,109 @@ def handle_luna_special_commands(args, aios):
         results = aios.run_luna_learning(args.questions, 1)
         print(f"✅ Learning complete: {results.get('session_duration', 0):.2f}s")
         
+    elif args.benchmark:
+        print(f"🔥 AIOS Clean Benchmark - Raw Terminal Dump")
+        print("=" * 60)
+        print("🚨 FORCING REAL EXECUTION MODE - NO MOCK RESPONSES")
+        print("=" * 60)
+        
+        # Force real execution mode for benchmark
+        global EXECUTION_MODE
+        EXECUTION_MODE = 'real'
+        
+        # Questions across different complexity levels - ALL GO TO MAIN MODEL
+        questions = [
+            # Trivial (now routed to main model)
+            "hi", "hello",
+            # Moderate (routed to main model)
+            "How are you?", "What's your name?",
+            # Complex (routed to main model)
+            "Explain quantum computing in simple terms",
+            "How does machine learning work?"
+        ]
+        
+        print(f"🧪 Running {len(questions)} questions through AIOS...")
+        print(f"   ALL questions routed to MAIN MODEL (no embedder shortcuts)")
+        print(f"   Each question will show FULL terminal output")
+        print(f"   NO filtering, NO truncation - RAW DUMP")
+        
+        results = []
+        start_time = time.time()
+        
+        for i, question in enumerate(questions, 1):
+            print(f"\n{'='*80}")
+            print(f"QUESTION {i}/{len(questions)}: {question}")
+            print(f"{'='*80}")
+            
+            try:
+                question_start = time.time()
+                
+                # Call Luna directly with full output
+                response = luna_system.generate_response(question)
+                
+                question_end = time.time()
+                latency_ms = (question_end - question_start) * 1000
+                
+                print(f"\n{'='*80}")
+                print(f"RESPONSE: {response}")
+                print(f"LATENCY: {latency_ms:.1f}ms")
+                print(f"{'='*80}")
+                
+                results.append({
+                    "question": question,
+                    "response": response,
+                    "latency_ms": latency_ms,
+                    "success": True
+                })
+                
+            except Exception as e:
+                print(f"\n{'='*80}")
+                print(f"ERROR: {e}")
+                print(f"{'='*80}")
+                
+                results.append({
+                    "question": question,
+                    "response": "",
+                    "latency_ms": 0,
+                    "success": False,
+                    "error": str(e)
+                })
+        
+        total_time = time.time() - start_time
+        
+        # Save results
+        timestamp = time.strftime('%Y%m%d_%H%M%S')
+        results_file = f"benchmark_raw_dump_{timestamp}.json"
+        
+        benchmark_data = {
+            "timestamp": timestamp,
+            "total_time_seconds": round(total_time, 2),
+            "questions_count": len(questions),
+            "results": results,
+            "summary": {
+                "successful": sum(1 for r in results if r['success']),
+                "failed": sum(1 for r in results if not r['success']),
+                "avg_latency_ms": round(sum(r['latency_ms'] for r in results if r['success']) / max(1, sum(1 for r in results if r['success'])), 2)
+            }
+        }
+        
+        with open(results_file, 'w', encoding='utf-8') as f:
+            json.dump(benchmark_data, f, indent=2, ensure_ascii=False)
+        
+        # Final summary
+        successful = benchmark_data['summary']['successful']
+        failed = benchmark_data['summary']['failed']
+        avg_latency = benchmark_data['summary']['avg_latency_ms']
+        
+        print(f"\n{'='*80}")
+        print(f"BENCHMARK COMPLETE")
+        print(f"{'='*80}")
+        print(f"Total time: {total_time:.1f}s")
+        print(f"Questions: {successful}/{len(questions)} successful")
+        print(f"Average latency: {avg_latency:.1f}ms")
+        print(f"Results saved to: {results_file}")
+        print(f"{'='*80}")
+        
     return True
 
 def handle_carma_special_commands(args, aios):
@@ -2257,6 +2360,7 @@ def main():
     luna_group.add_argument('--interact', action='store_true', help='Start interactive session with Luna')
     luna_group.add_argument('--personality', action='store_true', help='Show Luna personality analysis')
     luna_group.add_argument('--dream-state', action='store_true', help='Put Luna into dream state')
+    luna_group.add_argument('--benchmark', action='store_true', help='Run benchmark with raw terminal dump')
     
     # CARMA-specific commands
     carma_group = parser.add_argument_group('CARMA Commands')
@@ -2405,7 +2509,7 @@ def main():
     # Handle new core system commands first
     if any([args.carma, args.luna, args.support, args.backup, args.dream, args.enterprise, args.streamlit, args.utils, args.data]):
         # Handle special Luna commands (only if explicitly specified, not default values)
-        if args.luna and any([args.message, args.interact, args.personality, args.dream_state, (args.questions and args.questions != 3)]):
+        if args.luna and any([args.message, args.interact, args.personality, args.dream_state, args.benchmark, (args.questions and args.questions != 3)]):
             return handle_luna_special_commands(args, aios)
         
         # Handle special CARMA commands  
