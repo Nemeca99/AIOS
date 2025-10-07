@@ -1,0 +1,32 @@
+{
+  "created": "2025-10-07T17:38:05.818233",
+  "version": "1.0",
+  "test_cases": [
+    {
+      "id": "qa_1",
+      "question": "What is AI?",
+      "expected_fragments": [
+        "fragment_76f54754",
+        "fragment_9e76c84a"
+      ],
+      "min_recall": 0.8
+    },
+    {
+      "id": "qa_2",
+      "question": "Tell me about neural networks",
+      "expected_fragments": [
+        "fragment_8a9fbb7c",
+        "fragment_90013071"
+      ],
+      "min_recall": 0.8
+    },
+    {
+      "id": "qa_3",
+      "question": "How do I stay organized?",
+      "expected_fragments": [
+        "fragment_b438ce2c"
+      ],
+      "min_recall": 0.8
+    }
+  ]
+}
