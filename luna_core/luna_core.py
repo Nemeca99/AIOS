@@ -28,6 +28,14 @@ try:
 except ImportError:
     CONVERSATION_MATH_AVAILABLE = False
     print("⚠️ Conversation Math Engine not available")
+
+# Add CARMA hypothesis integration
+try:
+    from carma_hypothesis_integration import CARMAHypothesisIntegration
+    HYPOTHESIS_INTEGRATION_AVAILABLE = True
+except ImportError:
+    HYPOTHESIS_INTEGRATION_AVAILABLE = False
+    print("⚠️ CARMA Hypothesis Integration not available")
 import uuid
 import math
 import threading
@@ -2980,6 +2988,15 @@ class LunaLearningSystem:
             self.conversation_math = None
             print("   Conversation Math Engine not available")
         
+        # Initialize CARMA hypothesis integration for continuous learning
+        if HYPOTHESIS_INTEGRATION_AVAILABLE:
+            self.hypothesis_integration = CARMAHypothesisIntegration()
+            print("   CARMA Hypothesis Integration initialized")
+            print(f"   Testing {len(self.hypothesis_integration.tester.hypotheses)} hypotheses")
+        else:
+            self.hypothesis_integration = None
+            print("   CARMA Hypothesis Integration not available")
+        
         print(" Luna Learning System Initialized")
         print(f"   Learning rate: {self.learning_rate}")
         print(f"   Adaptation threshold: {self.adaptation_threshold}")
@@ -3063,6 +3080,25 @@ class LunaLearningSystem:
             # Update personality drift
             self._update_personality_drift(scores)
             
+            # LOG DATA FOR HYPOTHESIS TESTING
+            if self.hypothesis_integration:
+                hypothesis_message_data = {
+                    "calculated_weight": message_weight.calculated_weight if self.conversation_math else 0.495,
+                    "source": source,
+                    "response_time_ms": 0,  # Will be calculated by caller
+                    "question_complexity": message_weight.question_complexity if self.conversation_math else 0.5,
+                    "user_engagement": message_weight.user_engagement if self.conversation_math else 0.5,
+                    "fragments_found": carma_memories.get('fragments_found', 0),
+                    "context_messages": [],  # Will be populated by caller
+                    "response_quality": scores.get('overall', 0.5)
+                }
+                
+                # Generate conversation ID (use session memory or generate new)
+                conversation_id = session_memory[0].get('conversation_id', f"conv_{uuid.uuid4().hex[:8]}") if session_memory else f"conv_{uuid.uuid4().hex[:8]}"
+                
+                # Log to hypothesis integration
+                self.hypothesis_integration.log_conversation_data(conversation_id, hypothesis_message_data)
+            
             return response, {
                 'source': source,
                 'tier': tier,
@@ -3117,11 +3153,27 @@ class LunaLearningSystem:
             return f"Direct response: {question.lower()}"
     
     def get_conversation_summary(self) -> Dict[str, Any]:
-        """Get mathematical summary of conversation"""
+        """Get mathematical summary of conversation with hypothesis testing results"""
+        summary = {}
+        
+        # Get conversation math summary
         if self.conversation_math:
-            return self.conversation_math.get_conversation_summary()
+            summary["conversation_math"] = self.conversation_math.get_conversation_summary()
         else:
-            return {"status": "Conversation math engine not available"}
+            summary["conversation_math"] = {"status": "Conversation math engine not available"}
+        
+        # Get hypothesis testing summary
+        if self.hypothesis_integration:
+            summary["hypothesis_testing"] = {
+                "status": self.hypothesis_integration.tester.get_hypothesis_status(),
+                "buffer_size": len(self.hypothesis_integration.conversation_buffer),
+                "last_test_time": self.hypothesis_integration.last_test_time.isoformat() if self.hypothesis_integration.last_test_time else None,
+                "recent_results": self.hypothesis_integration.test_results
+            }
+        else:
+            summary["hypothesis_testing"] = {"status": "Hypothesis integration not available"}
+        
+        return summary
     
     def _score_response(self, response: str, trait: str, question: str = "") -> Dict[str, float]:
         """Score response using LLM performance evaluation system instead of legacy metrics"""
