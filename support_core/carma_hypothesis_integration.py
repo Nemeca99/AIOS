@@ -13,6 +13,14 @@ from pathlib import Path
 # Add qec_integration to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'qec_integration'))
 
+# Add provenance logging
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'utils_core'))
+try:
+    from provenance import get_hypothesis_logger, log_hypothesis_event
+    PROVENANCE_AVAILABLE = True
+except ImportError:
+    PROVENANCE_AVAILABLE = False
+
 try:
     from aios_hypothesis_tester import AIOSHypothesisTester, AIOSHypothesisData
     HYPOTHESIS_TESTER_AVAILABLE = True
@@ -90,8 +98,14 @@ class CARMAHypothesisIntegration:
         # Convert buffer to AIOSHypothesisData format
         hypothesis_data = self._convert_buffer_to_hypothesis_data()
         
+        # Get provenance logger if available
+        prov_logger = None
+        if PROVENANCE_AVAILABLE:
+            prov_logger = get_hypothesis_logger()
+        
         # Test each hypothesis
         all_results = {}
+        test_id = f"test_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
         
         for hyp in self.tester.hypotheses:
             try:
@@ -100,6 +114,24 @@ class CARMAHypothesisIntegration:
                 
                 # Store in CARMA for learning
                 self._store_in_carma(hyp.id, result)
+                
+                # EMIT TO PROVENANCE LOG (CARMA EMITTER)
+                if prov_logger:
+                    log_hypothesis_event(
+                        prov_logger,
+                        conv_id=test_id,
+                        hypo_id=hyp.id,
+                        status='supported' if result.get('is_supported', False) else 'not_supported',
+                        metric=result.get('metric_value', 0.0),
+                        p_value=None,  # Can be calculated later
+                        effect_size=result.get('confidence', 0.0),
+                        rec=self._get_recommendation(hyp.id, result),
+                        metadata={
+                            'data_points': result.get('data_points', 0),
+                            'threshold': result.get('threshold', 0.0),
+                            'hypothesis_name': result.get('hypothesis_name', 'Unknown')
+                        }
+                    )
                 
             except Exception as e:
                 print(f"⚠️ Failed to test {hyp.id}: {e}")
@@ -318,6 +350,29 @@ class CARMAHypothesisIntegration:
         print(f"📦 Created CARMA learning fragment: {fragment['fragment_id']}")
         
         return fragment
+    
+    def _get_recommendation(self, hypo_id: str, result: Dict[str, Any]) -> str:
+        """Generate recommendation based on hypothesis result"""
+        if result.get('is_supported', False):
+            recommendations = {
+                'H_AIOS_1': 'Continue using dynamic weighting - quality correlation confirmed',
+                'H_AIOS_2': 'Context pressure confirmed - optimize for speed',
+                'H_AIOS_3': 'Embedder efficiency confirmed - increase simple query routing',
+                'H_AIOS_4': 'Dynamic accumulation working - maintain current logic',
+                'H_AIOS_5': 'CARMA advantage confirmed - prioritize fragment retrieval',
+                'H_AIOS_6': 'Dreaming equilibrium achieved - maintain dreaming logic'
+            }
+        else:
+            recommendations = {
+                'H_AIOS_1': 'Weight-quality correlation weak - recalibrate weight formula',
+                'H_AIOS_2': 'Context pressure not significant - review context handling',
+                'H_AIOS_3': 'Embedder not fast enough - optimize embedder calls',
+                'H_AIOS_4': 'Dynamic accumulation not working - review accumulation logic',
+                'H_AIOS_5': 'CARMA not improving quality - improve fragment selection',
+                'H_AIOS_6': 'Dreaming not converging - adjust dreaming algorithm'
+            }
+        
+        return recommendations.get(hypo_id, 'No specific recommendation')
 
 def integrate_with_luna_learning(luna_learning_system):
     """

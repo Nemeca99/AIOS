@@ -36,6 +36,15 @@ try:
 except ImportError:
     HYPOTHESIS_INTEGRATION_AVAILABLE = False
     print("⚠️ CARMA Hypothesis Integration not available")
+
+# Add provenance logging
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'utils_core'))
+try:
+    from provenance import ProvenanceLogger, log_response_event, log_hypothesis_event, get_hypothesis_logger
+    PROVENANCE_AVAILABLE = True
+except ImportError:
+    PROVENANCE_AVAILABLE = False
+    print("⚠️ Provenance logging not available")
 import uuid
 import math
 import threading
@@ -2997,6 +3006,15 @@ class LunaLearningSystem:
             self.hypothesis_integration = None
             print("   CARMA Hypothesis Integration not available")
         
+        # Initialize provenance logger for closed-loop evaluation
+        if PROVENANCE_AVAILABLE:
+            self.provenance_logger = get_hypothesis_logger()
+            print("   Provenance logging initialized")
+            print("   Analytics: data_core/analytics/hypotheses.ndjson")
+        else:
+            self.provenance_logger = None
+            print("   Provenance logging not available")
+        
         print(" Luna Learning System Initialized")
         print(f"   Learning rate: {self.learning_rate}")
         print(f"   Adaptation threshold: {self.adaptation_threshold}")
@@ -3080,6 +3098,10 @@ class LunaLearningSystem:
             # Update personality drift
             self._update_personality_drift(scores)
             
+            # Generate conversation ID (use session memory or generate new)
+            conversation_id = session_memory[0].get('conversation_id', f"conv_{uuid.uuid4().hex[:8]}") if session_memory else f"conv_{uuid.uuid4().hex[:8]}"
+            msg_id = session_memory[0].get('msg_count', 0) + 1 if session_memory else 1
+            
             # LOG DATA FOR HYPOTHESIS TESTING
             if self.hypothesis_integration:
                 hypothesis_message_data = {
@@ -3093,11 +3115,33 @@ class LunaLearningSystem:
                     "response_quality": scores.get('overall', 0.5)
                 }
                 
-                # Generate conversation ID (use session memory or generate new)
-                conversation_id = session_memory[0].get('conversation_id', f"conv_{uuid.uuid4().hex[:8]}") if session_memory else f"conv_{uuid.uuid4().hex[:8]}"
-                
                 # Log to hypothesis integration
                 self.hypothesis_integration.log_conversation_data(conversation_id, hypothesis_message_data)
+            
+            # LOG PROVENANCE FOR CLOSED-LOOP EVALUATION
+            if self.provenance_logger:
+                # Prepare math weights data
+                math_weights_data = None
+                if self.conversation_math and message_weight:
+                    math_weights_data = {
+                        'calculated_weight': message_weight.calculated_weight,
+                        'question_complexity': message_weight.question_complexity,
+                        'user_engagement': message_weight.user_engagement,
+                        'mode': message_weight.mode.value
+                    }
+                
+                # Log response event
+                log_response_event(
+                    self.provenance_logger,
+                    conv_id=conversation_id,
+                    msg_id=msg_id,
+                    question=question,
+                    trait=trait,
+                    response=response,
+                    meta={'source': source, 'tier': tier, 'response_type': response_type},
+                    carma=carma_memories,
+                    math_weights=math_weights_data
+                )
             
             return response, {
                 'source': source,
