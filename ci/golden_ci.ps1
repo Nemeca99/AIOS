@@ -34,3 +34,7 @@ py tools\golden_runner.py compare --set $GOLDEN_SET --baseline $BASELINE --thres
 # 0 = PASS, 1 = FAIL
 exit $LASTEXITCODE
 
+
+
+
+

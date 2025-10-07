@@ -343,5 +343,20 @@
     "answer": "Moderately Inaccurate (Score: 2/5, Weight: 0.30)",
     "timestamp": 1759459344.8759046,
     "trait": "neuroticism"
+  },
+  "N6": {
+    "answer": "Moderately Inaccurate (Score: 2/5, Weight: 0.30)",
+    "timestamp": 1759865760.4533632,
+    "trait": "neuroticism"
+  },
+  "O34": {
+    "answer": "Moderately Accurate (Score: 4/5, Weight: 0.70)",
+    "timestamp": 1759868887.6603699,
+    "trait": "openness"
+  },
+  "A42": {
+    "answer": "Very Accurate (Score: 5/5, Weight: 0.90)",
+    "timestamp": 1759868987.2415168,
+    "trait": "agreeableness"
   }
 }

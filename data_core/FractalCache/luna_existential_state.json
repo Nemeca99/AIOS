@@ -1,14 +1,14 @@
 {
-  "age": 2,
-  "current_token_pool": 13875,
-  "max_token_pool": 16000,
-  "karma_quota": 1574.6399999999999,
-  "current_karma": 50.91499283585274,
-  "total_responses": 1355,
+  "age": 1,
+  "current_token_pool": 7684,
+  "max_token_pool": 8000,
+  "karma_quota": 1889.5679999999998,
+  "current_karma": 16.006037664333828,
+  "total_responses": 1384,
   "last_age_up": 1759378695.5948184,
-  "last_regression": 1759283828.7030027,
-  "survival_threshold": 2.0,
+  "last_regression": 1759870145.216391,
+  "survival_threshold": 2.2,
   "existential_anxiety_level": 0.4,
-  "regression_count": 4,
+  "regression_count": 5,
   "permanent_knowledge_level": 2
 }
