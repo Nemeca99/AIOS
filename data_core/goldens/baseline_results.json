@@ -1,0 +1,61 @@
+{
+  "timestamp": "2025-10-07T15:27:25.886647",
+  "golden_set": "data_core\\goldens\\sample_set.json",
+  "total_tests": 10,
+  "tests": [
+    {
+      "id": "trivial_greeting_1",
+      "question": "hi",
+      "error": "too many values to unpack (expected 2)"
+    },
+    {
+      "id": "trivial_greeting_2",
+      "question": "hello",
+      "error": "too many values to unpack (expected 2)"
+    },
+    {
+      "id": "moderate_question_1",
+      "question": "How are you doing today?",
+      "error": "too many values to unpack (expected 2)"
+    },
+    {
+      "id": "moderate_question_2",
+      "question": "What's your name?",
+      "error": "too many values to unpack (expected 2)"
+    },
+    {
+      "id": "high_complexity_1",
+      "question": "Explain quantum computing in simple terms",
+      "error": "too many values to unpack (expected 2)"
+    },
+    {
+      "id": "high_complexity_2",
+      "question": "How does machine learning work?",
+      "error": "too many values to unpack (expected 2)"
+    },
+    {
+      "id": "personality_openness_1",
+      "question": "I am someone who i like music",
+      "error": "too many values to unpack (expected 2)"
+    },
+    {
+      "id": "personality_neuroticism_1",
+      "question": "I am someone who i get stressed easily",
+      "error": "too many values to unpack (expected 2)"
+    },
+    {
+      "id": "context_test_1",
+      "question": "Can you help me understand neural networks?",
+      "error": "too many values to unpack (expected 2)"
+    },
+    {
+      "id": "simple_affirmation_1",
+      "question": "ok",
+      "error": "too many values to unpack (expected 2)"
+    }
+  ],
+  "summary": {
+    "total": 0,
+    "errors": 10
+  }
+}
