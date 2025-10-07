@@ -38,11 +38,11 @@ except ImportError as e:
     print(f"⚠️ AIOSSchemaValidator not available: {e}")
 
 try:
-    from .qec_hypothesis_tester import QECHypothesisTester as AIOSHypothesisTester
+    from .aios_hypothesis_tester import AIOSHypothesisTester
     __all__.append('AIOSHypothesisTester')
 except ImportError as e:
     print(f"⚠️ AIOSHypothesisTester not available: {e}")
-    print(f"   (Requires QEC-specific dependencies - will need adaptation)")
+    print(f"   (Check dependencies)")
 
 if len(__all__) == 0:
     INTEGRATION_AVAILABLE = False
