@@ -187,14 +187,28 @@ def main():
         evaluator.evaluate_retrieval(k=args.k)
     
     elif args.command == 'create':
-        # Create sample QA set
+        # Create expanded QA set
         evaluator = RetrievalEvaluator()
         
-        # Sample questions and expected fragments
+        # Expanded QA set with more diverse questions
         sample_qa = [
+            # Technical questions
             ("What is AI?", {"fragment_9e76c84a", "fragment_76f54754"}),
             ("Tell me about neural networks", {"fragment_90013071", "fragment_8a9fbb7c"}),
+            ("How does machine learning work?", {"fragment_9e76c84a", "fragment_90013071"}),
+            
+            # Organization/conscientiousness
             ("How do I stay organized?", {"fragment_b438ce2c"}),
+            ("What's the best way to plan my day?", {"fragment_b438ce2c"}),
+            
+            # Social/emotional
+            ("How do I connect with people?", {"fragment_59c869ea"}),
+            ("I feel anxious", {"fragment_0267e826"}),
+            
+            # General
+            ("Tell me about yourself", {"fragment_762518da"}),
+            ("What can you help me with?", {"fragment_76f54754"}),
+            ("Hello", {"fragment_59c869ea", "fragment_762518da"}),
         ]
         
         questions = [q for q, _ in sample_qa]
@@ -203,10 +217,15 @@ def main():
         qa_set = evaluator.create_qa_set(questions, expected)
         
         print("="*70)
-        print("QA SET CREATED")
+        print("EXPANDED QA SET CREATED")
         print("="*70)
         print(f"File: {evaluator.qa_set_file}")
         print(f"Test cases: {len(qa_set['test_cases'])}")
+        print("\nCategories:")
+        print(f"  Technical: 3")
+        print(f"  Organization: 2")
+        print(f"  Social/Emotional: 2")
+        print(f"  General: 3")
         print("\nTo evaluate:")
         print(f"  py tools\\retrieval_eval.py eval --qa-set {evaluator.qa_set_file}")
         print("="*70)
