@@ -192,10 +192,22 @@ class GoldenRunner:
             })
             comparison['status'] = 'FAIL'
         
+        # Add metrics for SLO monitoring
+        # Extract latencies from current test results
+        current_latencies = [t['latency_ms'] for t in current['tests'] if 'error' not in t and 'latency_ms' in t]
+        sorted_latencies = sorted(current_latencies) if current_latencies else []
+        
+        comparison['metrics'] = {
+            'pass_rate': 1.0 if comparison['status'] == 'PASS' else 0.0,
+            'p50_ms': sorted_latencies[len(sorted_latencies)//2] if sorted_latencies else 0.0,
+            'p95_ms': sorted_latencies[int(len(sorted_latencies)*0.95)] if sorted_latencies else 0.0,
+            'mean_ms': current_latency if current['summary']['total'] > 0 else 0.0
+        }
+        
         # Print results
         self._print_comparison(comparison)
         
-        # Save comparison
+        # Save comparison (timestamped)
         comparison_file = self.output_dir / f"comparison_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
         with open(comparison_file, 'w') as f:
             json.dump(comparison, f, indent=2)
@@ -335,6 +347,7 @@ def main():
     compare_parser.add_argument('--set', required=True, help='Golden set JSON file')
     compare_parser.add_argument('--baseline', required=True, help='Baseline results file')
     compare_parser.add_argument('--threshold', type=float, default=0.1, help='Regression threshold (default: 0.1 = 10%)')
+    compare_parser.add_argument('--out', help='Output file for comparison results (default: data_core/goldens/last_report.json)')
     
     args = parser.parse_args()
     
@@ -350,6 +363,14 @@ def main():
     
     elif args.command == 'compare':
         comparison = runner.compare_to_baseline(args.set, args.baseline, args.threshold)
+        
+        # Save to specified output file if provided
+        if args.out:
+            output_path = Path(args.out)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(output_path, 'w') as f:
+                json.dump(comparison, f, indent=2)
+            print(f"\n📝 Comparison saved to: {args.out}")
         
         # Exit with error code if regressions detected
         if comparison['status'] == 'FAIL':
