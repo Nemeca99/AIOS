@@ -42,42 +42,46 @@
 
 ### System Components
 
-| Core | Function | Implementation | Performance Gain |
-|:-----|:----------|:---------------|:----------------|
-| **Luna** | Personality & Response Generation | Python + Rust | 94% faster trivial responses |
-| **CARMA** | Memory Retrieval & Consolidation | Python + Rust | 77% faster similarity search |
-| **Data** | Storage & Analytics | Python + Rust | 65% faster file operations |
-| **Dream** | Memory Consolidation Cycles | Python | 47% memory optimization |
-| **Support** | Health & Monitoring | Python + Rust | 83% faster health checks |
-| **Backup** | Version Control & Recovery | Python + Rust | 65% faster backup operations |
-| **Enterprise** | Multi-user & Compliance | Python | Scalable to enterprise |
-| **Streamlit** | Web Interface | Python | Real-time user interaction |
-| **Utils** | Shared Utilities | Python + Rust | Cross-core optimization |
+| Core | Function | Implementation | Status |
+|:-----|:----------|:---------------|:-------|
+| **Luna** | Personality & Response Generation | Python + Rust (fallback) | Operational |
+| **CARMA** | Memory Retrieval & Consolidation | Python + Rust (fallback) | Operational (129 fragments) |
+| **Data** | Storage & Analytics | Python + Rust (fallback) | Operational |
+| **Dream** | Memory Consolidation Cycles | Python | Available |
+| **Support** | Health & Monitoring | Python + Rust (fallback) | Operational |
+| **Backup** | Version Control & Recovery | Python + Rust (fallback) | Available |
+| **Enterprise** | Multi-user & Compliance | Python | Available |
+| **Streamlit** | Web Interface | Python | Operational (dashboard) |
+| **Utils** | Shared Utilities | Python + Rust (fallback) | Operational |
 
-### Performance Metrics
+Note: Rust implementations optional. System fully functional with Python fallbacks.
 
-- **Response Latency**: 94% improvement for trivial queries (50ms vs 800ms)
-- **Token Efficiency**: 40% overall savings across all query types
-- **Memory Optimization**: 32% reduction through DreamCore consolidation
-- **System Stability**: 99.2% uptime over 72-hour stress tests
-- **Modularity Validation**: 92% component independence success rate
+### Performance Metrics (Validated)
 
-## Research Contributions
+- **Modularity Validation**: 92% component independence success rate (empirically tested)
+- **Retrieval Quality**: 100% recall@5 on internal QA set (10 test cases)
+- **Golden Test Pass Rate**: 100% (10/10 baseline tests)
+- **Current P95 Latency**: 17.7s (LM Studio with 7B models)
+- **Routing Stability**: 60/40 main/embedder split maintained across tests
 
-### 1. Novel Architecture Pattern
-AIOS Clean introduces the first comprehensive AI Operating System architecture, treating AI systems as composed of independent, swappable modules rather than monolithic neural networks.
+Note: Performance comparisons require external baselines (planned for v1.1+)
 
-### 2. Memory Consolidation Innovation
-DreamCore implements neuroscience-inspired memory consolidation cycles, achieving 47% performance improvement through intelligent fragment merging and hierarchical memory organization.
+## Design Approaches (Implemented)
 
-### 3. Cognitive Load Balancing
-The Tier System provides intelligent query routing based on complexity analysis, achieving 94% latency reduction for simple interactions while maintaining response quality.
+### 1. Modular Architecture Pattern
+AIOS Clean treats AI systems as composed of independent, swappable modules. Modularity validated through component tests showing Luna works with different RAG backends (CARMA, Simple RAG, or none).
 
-### 4. Hybrid Performance Optimization
-The Python/Rust hybrid architecture demonstrates that AI systems can achieve production-level performance (77% faster operations) while maintaining development flexibility.
+### 2. Language-First Mathematical Refinement
+Conversation routing uses natural language context to establish baseline, then applies mathematical refinement (±0.005 from 0.5 boundary). Inverse of typical embedding-first approaches.
 
-### 5. Transparent AI Learning
-The karma-based economy and generational learning cycles provide observable, measurable AI personality development, addressing the "black box" problem in AI systems.
+### 3. Tier-Based Query Routing
+Complexity analysis routes simple queries to fast embedder (40% of traffic), complex queries to main model (60% of traffic). Reduces average latency while maintaining quality for complex cases.
+
+### 4. Hybrid Python/Rust Design
+Optional Rust implementations for performance-critical paths with automatic Python fallback. Currently operational in pure Python mode (Rust optional).
+
+### 5. Observable AI State
+Karma-based economy, personality trait tracking, and provenance logging make system behavior transparent and measurable. All state changes logged to NDJSON.
 
 ## Paradigm Validation
 
