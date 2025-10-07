@@ -101,9 +101,15 @@ class GoldenRunner:
         print(f"\n✅ Baseline recorded to: {output_file}")
         print(f"\n📊 Summary:")
         print(f"   Total tests: {results['summary']['total']}")
-        print(f"   Avg latency: {results['summary']['avg_latency_ms']:.0f}ms")
-        print(f"   Main model: {results['summary']['main_model_count']} ({results['summary']['main_model_percent']:.1f}%)")
-        print(f"   Embedder: {results['summary']['embedder_count']} ({results['summary']['embedder_percent']:.1f}%)")
+        
+        # Only print detailed stats if we have valid tests
+        if results['summary']['total'] > 0:
+            print(f"   Avg latency: {results['summary']['avg_latency_ms']:.0f}ms")
+            print(f"   Main model: {results['summary']['main_model_count']} ({results['summary']['main_model_percent']:.1f}%)")
+            print(f"   Embedder: {results['summary']['embedder_count']} ({results['summary']['embedder_percent']:.1f}%)")
+        else:
+            print(f"   ❌ All tests failed - check LM Studio is running with models loaded")
+            print(f"   Errors: {results['summary']['errors']}")
         
         return results
     
@@ -137,6 +143,17 @@ class GoldenRunner:
             'improvements_detected': [],
             'status': 'PASS'
         }
+        
+        # Check if current tests produced valid results
+        if current['summary']['total'] == 0:
+            print("\n❌ CI FAIL: All current tests failed - cannot compare to baseline")
+            comparison['status'] = 'FAIL'
+            comparison['regressions_detected'].append({
+                'metric': 'test_execution',
+                'error': f"All {current['summary']['errors']} tests failed - check LM Studio is running"
+            })
+            self._print_comparison(comparison)
+            return comparison
         
         # Compare latency
         baseline_latency = baseline['summary']['avg_latency_ms']
@@ -283,9 +300,13 @@ class GoldenRunner:
             print(f"\n❌ REGRESSIONS DETECTED ({len(comparison['regressions_detected'])}):")
             for reg in comparison['regressions_detected']:
                 print(f"   - {reg['metric']}:")
-                print(f"     Baseline: {reg['baseline']:.2f}")
-                print(f"     Current:  {reg['current']:.2f}")
-                print(f"     Change:   {reg.get('change_percent', reg.get('change', 0)):.1f}%")
+                # Handle error regressions (no baseline/current values)
+                if 'error' in reg:
+                    print(f"     Error: {reg['error']}")
+                else:
+                    print(f"     Baseline: {reg['baseline']:.2f}")
+                    print(f"     Current:  {reg['current']:.2f}")
+                    print(f"     Change:   {reg.get('change_percent', reg.get('change', 0)):.1f}%")
         else:
             print("\n✅ NO REGRESSIONS DETECTED")
         

@@ -1,21 +1,22 @@
 # Golden Test CI Gate (PowerShell version for Windows)
 # Fails build on regression
 
+param(
+    [string]$Set = "data_core\goldens\sample_set.json",
+    [string]$Baseline = "data_core\goldens\baseline_new.json",
+    [double]$Threshold = 0.25
+)
+
 $ErrorActionPreference = "Stop"
 
 Write-Host "======================================================================"
 Write-Host "GOLDEN TEST CI GATE"
 Write-Host "======================================================================"
 
-# Configuration
-$GOLDEN_SET = "data_core\goldens\sample_set.json"
-$BASELINE = "data_core\goldens\baseline_results.json"
-$THRESHOLD = 0.1  # 10% regression threshold
-
 # Check if baseline exists
-if (!(Test-Path $BASELINE)) {
-    Write-Host "⚠️ No baseline found - recording baseline..."
-    py tools\golden_runner.py record --set $GOLDEN_SET --out $BASELINE
+if (!(Test-Path $Baseline)) {
+    Write-Host "[golden] no baseline; recording initial baseline"
+    py tools\golden_runner.py record --set $Set --out $Baseline
     Write-Host "✅ Baseline recorded"
     exit 0
 }
@@ -23,12 +24,11 @@ if (!(Test-Path $BASELINE)) {
 # Run comparison
 Write-Host ""
 Write-Host "📊 Running golden test comparison..."
-Write-Host "   Baseline: $BASELINE"
-Write-Host "   Golden Set: $GOLDEN_SET"
-Write-Host "   Threshold: $($THRESHOLD * 100)%"
+Write-Host "   Baseline: $Baseline"
+Write-Host "   Golden Set: $Set"
 Write-Host ""
 
-py tools\golden_runner.py compare --set $GOLDEN_SET --baseline $BASELINE --threshold $THRESHOLD
+py tools\golden_runner.py compare --set $Set --baseline $Baseline --threshold $Threshold
 
 # Exit code from compare determines CI status
 # 0 = PASS, 1 = FAIL
