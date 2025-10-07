@@ -8,12 +8,22 @@ Schema Version: 1.0
 import json
 import os
 import threading
+import hashlib
 from typing import Dict, Any, Optional
 from datetime import datetime
 from pathlib import Path
 
 # NDJSON Schema Version
 SCHEMA_VERSION = "1.0"
+
+# Privacy settings
+AUTO_HASH_CONV_ID = True  # Automatically hash conversation IDs for privacy
+
+def hash_conv_id(conv_id: str) -> str:
+    """Hash conversation ID for privacy while preserving grouping"""
+    if conv_id.startswith('hashed_'):
+        return conv_id  # Already hashed
+    return f"hashed_{hashlib.sha256(f'aios_conv:{conv_id}'.encode()).hexdigest()[:16]}"
 
 class ProvenanceLogger:
     """
@@ -86,6 +96,10 @@ def log_response_event(logger: ProvenanceLogger,
         carma: CARMA data (fragments_found, etc.)
         math_weights: Mathematical weight data (optional)
     """
+    # Hash conv_id for privacy if enabled
+    if AUTO_HASH_CONV_ID:
+        conv_id = hash_conv_id(conv_id)
+    
     event = {
         'schema_version': SCHEMA_VERSION,
         'event_type': 'response',
@@ -128,6 +142,10 @@ def log_hypothesis_event(logger: ProvenanceLogger,
         rec: Recommendation based on result (optional)
         metadata: Additional metadata (optional)
     """
+    # Hash conv_id for privacy if enabled
+    if AUTO_HASH_CONV_ID:
+        conv_id = hash_conv_id(conv_id)
+    
     event = {
         'schema_version': SCHEMA_VERSION,
         'event_type': 'hypothesis_test',
