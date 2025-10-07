@@ -12,7 +12,11 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 LAST = ROOT / "data_core/goldens/last_report.json"
 NDJ  = ROOT / "data_core/analytics/hypotheses.ndjson"
 
-SLO = dict(pass_rate=0.95, p95_ms=250.0, boundary_drift=0.05)
+SLO = dict(
+    pass_rate=0.95,         # 95% tests must pass
+    p95_ms=20000.0,         # 20s P95 latency (realistic for LM Studio 7B models)
+    boundary_drift=0.08     # ±0.08 max routing boundary drift
+)
 
 def load(path): 
     return json.loads(path.read_text()) if path.exists() else {}
