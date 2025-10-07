@@ -1,6 +1,8 @@
 """
 Provenance Logging System
 Atomic NDJSON writer for conversation and hypothesis tracking
+
+Schema Version: 1.0
 """
 
 import json
@@ -9,6 +11,9 @@ import threading
 from typing import Dict, Any, Optional
 from datetime import datetime
 from pathlib import Path
+
+# NDJSON Schema Version
+SCHEMA_VERSION = "1.0"
 
 class ProvenanceLogger:
     """
@@ -82,6 +87,8 @@ def log_response_event(logger: ProvenanceLogger,
         math_weights: Mathematical weight data (optional)
     """
     event = {
+        'schema_version': SCHEMA_VERSION,
+        'event_type': 'response',
         'ts': datetime.now().isoformat(),
         'conv_id': conv_id,
         'msg_id': msg_id,
@@ -122,6 +129,8 @@ def log_hypothesis_event(logger: ProvenanceLogger,
         metadata: Additional metadata (optional)
     """
     event = {
+        'schema_version': SCHEMA_VERSION,
+        'event_type': 'hypothesis_test',
         'ts': datetime.now().isoformat(),
         'conv_id': conv_id,
         'hypo_id': hypo_id,

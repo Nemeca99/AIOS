@@ -1,0 +1,22 @@
+# AIOS Core Dependencies
+# Pinned versions for reproducibility
+
+# Core libraries
+requests==2.32.4
+pandas==2.2.3
+
+# LLM & AI
+# transformers (managed separately - has install issues)
+
+# Visualization (for dashboard)
+plotly==6.3.0
+streamlit==1.49.1
+
+# Optional: Dashboard extras
+# streamlit-drawable-canvas==0.9.3
+# streamlit-keyup==0.3.0
+
+# Python version: 3.11+
+# Tested with: Python 3.11, LM Studio 0.3.x
+# OS: Windows 10/11, Linux (Ubuntu 22.04+)
+
