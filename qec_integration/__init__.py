@@ -15,24 +15,37 @@ __version__ = "1.0.0"
 __author__ = "Travis Miner"
 
 # Import key components
+INTEGRATION_AVAILABLE = True
+__all__ = []
+
+# Try to import each component separately
 try:
-    from .aios_invariant_budget import QECInvariantBudget as AIOSInvariantBudget
-    from .aios_performance_benchmarks import QECPerformanceBenchmark as AIOSPerformanceBenchmark
-    from .aios_schema_validator import QECSchemaValidator as AIOSSchemaValidator
-    from .aios_hypothesis_tester import QECHypothesisTester as AIOSHypothesisTester
-    
-    __all__ = [
-        'AIOSInvariantBudget',
-        'AIOSPerformanceBenchmark',
-        'AIOSSchemaValidator',
-        'AIOSHypothesisTester'
-    ]
-    
-    INTEGRATION_AVAILABLE = True
+    from .qec_invariant_budget import QECInvariantBudget as AIOSInvariantBudget
+    __all__.append('AIOSInvariantBudget')
 except ImportError as e:
-    print(f"⚠️ QEC Integration not fully available: {e}")
+    print(f"⚠️ AIOSInvariantBudget not available: {e}")
+
+try:
+    from .qec_performance_benchmarks import QECPerformanceBenchmark as AIOSPerformanceBenchmark
+    __all__.append('AIOSPerformanceBenchmark')
+except ImportError as e:
+    print(f"⚠️ AIOSPerformanceBenchmark not available: {e}")
+
+try:
+    from .qec_schema_validator import QECSchemaValidator as AIOSSchemaValidator
+    __all__.append('AIOSSchemaValidator')
+except ImportError as e:
+    print(f"⚠️ AIOSSchemaValidator not available: {e}")
+
+try:
+    from .qec_hypothesis_tester import QECHypothesisTester as AIOSHypothesisTester
+    __all__.append('AIOSHypothesisTester')
+except ImportError as e:
+    print(f"⚠️ AIOSHypothesisTester not available: {e}")
+    print(f"   (Requires QEC-specific dependencies - will need adaptation)")
+
+if len(__all__) == 0:
     INTEGRATION_AVAILABLE = False
-    __all__ = []
 
 # Integration status
 print(f"🎯 QEC → AIOS Integration v{__version__}")
