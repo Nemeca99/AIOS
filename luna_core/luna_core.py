@@ -3044,6 +3044,13 @@ class LunaLearningSystem:
         if isinstance(trait, tuple):
             trait = trait[0] if trait else "general"
         try:
+            # Generate conversation ID early for adaptive routing
+            conversation_id = session_memory[0].get('conversation_id', f"conv_{uuid.uuid4().hex[:8]}") if session_memory else f"conv_{uuid.uuid4().hex[:8]}"
+            msg_id = session_memory[0].get('msg_count', 0) + 1 if session_memory else 1
+            
+            # Initialize message_weight to None (will be set by conversation_math if available)
+            message_weight = None
+            
             # Get relevant memories from CARMA
             carma_memories = {}
             embedder_can_answer = False
@@ -3126,18 +3133,14 @@ class LunaLearningSystem:
             # Update personality drift
             self._update_personality_drift(scores)
             
-            # Generate conversation ID (use session memory or generate new)
-            conversation_id = session_memory[0].get('conversation_id', f"conv_{uuid.uuid4().hex[:8]}") if session_memory else f"conv_{uuid.uuid4().hex[:8]}"
-            msg_id = session_memory[0].get('msg_count', 0) + 1 if session_memory else 1
-            
             # LOG DATA FOR HYPOTHESIS TESTING
             if self.hypothesis_integration:
                 hypothesis_message_data = {
-                    "calculated_weight": message_weight.calculated_weight if self.conversation_math else 0.495,
+                    "calculated_weight": message_weight.calculated_weight if message_weight else 0.495,
                     "source": source,
                     "response_time_ms": 0,  # Will be calculated by caller
-                    "question_complexity": message_weight.question_complexity if self.conversation_math else 0.5,
-                    "user_engagement": message_weight.user_engagement if self.conversation_math else 0.5,
+                    "question_complexity": message_weight.question_complexity if message_weight else 0.5,
+                    "user_engagement": message_weight.user_engagement if message_weight else 0.5,
                     "fragments_found": carma_memories.get('fragments_found', 0),
                     "context_messages": [],  # Will be populated by caller
                     "response_quality": scores.get('overall', 0.5)
@@ -3174,7 +3177,7 @@ class LunaLearningSystem:
             if self.provenance_logger:
                 # Prepare math weights data
                 math_weights_data = None
-                if self.conversation_math and message_weight:
+                if message_weight:
                     math_weights_data = {
                         'calculated_weight': message_weight.calculated_weight,
                         'question_complexity': message_weight.question_complexity,
