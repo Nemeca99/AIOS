@@ -22,3 +22,11 @@ jobs:
         run: |
           echo "::warning::Quality SLO violation detected"
           echo "Check the quality_alert.py output for details"
+      - name: Slack notification (optional)
+        if: steps.slo_check.outcome == 'failure' && env.SLACK_WEBHOOK_URL != ''
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          curl -X POST $SLACK_WEBHOOK_URL \
+            -H 'Content-Type: application/json' \
+            -d "{\"text\":\"🚨 AIOS Quality Alert: SLO violation detected. Check GitHub Actions for details.\"}"

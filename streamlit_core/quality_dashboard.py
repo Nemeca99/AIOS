@@ -198,6 +198,44 @@ with T2:
 
 with T3:
     st.subheader("Boundary drift and adaptive signals")
+    
+    # SLO overlay section
+    col_a, col_b = st.columns(2)
+    
+    # Boundary drift alert
+    if adaptive_state.get("buckets"):
+        treatment = adaptive_state["buckets"].get("treatment", {})
+        boundary_offset = treatment.get("boundary_offset", 0.0)
+        
+        drift_status = "NORMAL" if abs(boundary_offset) <= 0.05 else "WARNING" if abs(boundary_offset) <= 0.08 else "CRITICAL"
+        drift_color = "green" if drift_status == "NORMAL" else "orange" if drift_status == "WARNING" else "red"
+        
+        col_a.metric(
+            "Boundary drift",
+            f"{boundary_offset:+.3f}",
+            delta=drift_status,
+            help="Treatment bucket boundary offset from baseline (0.5). SLO: ≤0.08"
+        )
+        
+        if drift_status != "NORMAL":
+            col_a.warning(f"⚠ Boundary drift {drift_status}: {abs(boundary_offset):.3f} (SLO: ≤0.08)")
+    
+    # Latency SLO
+    if last_report.get("metrics"):
+        p95 = last_report["metrics"].get("p95_ms", 0)
+        slo_p95 = 20000.0
+        latency_status = "PASS" if p95 <= slo_p95 else "FAIL"
+        
+        col_b.metric(
+            "P95 latency",
+            f"{p95/1000:.1f}s",
+            delta=f"{latency_status} (SLO: ≤20s)",
+            help="95th percentile latency. SLO: ≤20,000ms"
+        )
+        
+        if latency_status == "FAIL":
+            col_b.error(f"❌ P95 latency exceeds SLO: {p95/1000:.1f}s > 20s")
+    
     if rdf.empty:
         st.info("No response events yet.")
     else:
@@ -214,11 +252,22 @@ with T3:
             dfb = dfv.dropna(subset=[boundary_col]).copy()
             if not dfb.empty:
                 dfb["timestamp"] = pd.to_datetime(dfb[time_col])
-                st.plotly_chart(
-                    px.line(dfb, x="timestamp", y=boundary_col, 
-                           title="Effective routing boundary over time"),
-                    use_container_width=True
-                )
+                
+                # Create chart with SLO lines
+                import plotly.graph_objects as go
+                fig = go.Figure()
+                fig.add_trace(go.Scatter(
+                    x=dfb["timestamp"],
+                    y=dfb[boundary_col],
+                    mode='lines+markers',
+                    name='Boundary'
+                ))
+                # Add SLO boundaries
+                fig.add_hline(y=0.5, line_dash="dash", line_color="gray", annotation_text="Baseline (0.5)")
+                fig.add_hline(y=0.58, line_dash="dot", line_color="red", annotation_text="SLO Max (+0.08)")
+                fig.add_hline(y=0.42, line_dash="dot", line_color="red", annotation_text="SLO Min (-0.08)")
+                fig.update_layout(title="Effective routing boundary over time (with SLO limits)")
+                st.plotly_chart(fig, use_container_width=True)
             else:
                 st.info("No boundary data in logs yet (adaptive routing may not have adjusted yet)")
         
@@ -226,11 +275,20 @@ with T3:
             dfw = dfv.dropna(subset=[weight_col]).copy()
             if not dfw.empty:
                 dfw["timestamp"] = pd.to_datetime(dfw[time_col])
-                st.plotly_chart(
-                    px.scatter(dfw, x="timestamp", y=weight_col, 
-                             title="Calculated conversation weight over time", opacity=0.6),
-                    use_container_width=True
-                )
+                
+                # Create chart with routing threshold
+                import plotly.graph_objects as go
+                fig = go.Figure()
+                fig.add_trace(go.Scatter(
+                    x=dfw["timestamp"],
+                    y=dfw[weight_col],
+                    mode='markers',
+                    name='Weight',
+                    opacity=0.6
+                ))
+                fig.add_hline(y=0.5, line_dash="dash", line_color="blue", annotation_text="Routing threshold (0.5)")
+                fig.update_layout(title="Calculated conversation weight over time")
+                st.plotly_chart(fig, use_container_width=True)
         
         # Notes from adaptive
         if "math_weights.adaptive.adaptive_metadata" in dfv.columns:
