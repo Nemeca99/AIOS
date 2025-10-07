@@ -45,6 +45,14 @@ try:
 except ImportError:
     PROVENANCE_AVAILABLE = False
     print("⚠️ Provenance logging not available")
+
+# Add adaptive routing
+try:
+    from adaptive_routing import AdaptiveRouter, AdaptiveConfig, get_adaptive_router
+    ADAPTIVE_ROUTING_AVAILABLE = True
+except ImportError:
+    ADAPTIVE_ROUTING_AVAILABLE = False
+    print("⚠️ Adaptive routing not available")
 import uuid
 import math
 import threading
@@ -3015,6 +3023,15 @@ class LunaLearningSystem:
             self.provenance_logger = None
             print("   Provenance logging not available")
         
+        # Initialize adaptive routing for A/B testing and dynamic weight adjustment
+        if ADAPTIVE_ROUTING_AVAILABLE:
+            self.adaptive_router = get_adaptive_router()
+            print("   Adaptive routing initialized")
+            print("   A/B buckets: control (50%) / treatment (50%)")
+        else:
+            self.adaptive_router = None
+            print("   Adaptive routing not available")
+        
         print(" Luna Learning System Initialized")
         print(f"   Learning rate: {self.learning_rate}")
         print(f"   Adaptation threshold: {self.adaptation_threshold}")
@@ -3041,10 +3058,21 @@ class LunaLearningSystem:
                     }
                     print(f"   CARMA found {carma_memories['fragments_found']} fragments and {len(carma_memories['conversation_memories_found'])} conversation memories")
                     
-                    # MATHEMATICAL EMBEDDER DECISION LOGIC
+                    # MATHEMATICAL EMBEDDER DECISION LOGIC with ADAPTIVE ROUTING
                     # Use conversation math engine to determine routing
                     if self.conversation_math:
-                        use_main_model, message_weight = self.conversation_math.should_use_main_model(question)
+                        # Get adaptive boundary if available
+                        adaptive_boundary = 0.5  # Default
+                        adaptive_metadata = None
+                        if self.adaptive_router:
+                            adaptive_boundary = self.adaptive_router.current_boundary(conversation_id)
+                            print(f"   ADAPTIVE ROUTING: boundary={adaptive_boundary:.3f} (bucket: {self.adaptive_router.assign_bucket(conversation_id)})")
+                        
+                        # Use conversation math with adaptive boundary
+                        use_main_model, message_weight = self.conversation_math.should_use_main_model(
+                            question,
+                            custom_boundary=adaptive_boundary
+                        )
                         embedder_can_answer = not use_main_model
                         
                         print(f"   MATHEMATICAL DECISION:")
@@ -3117,6 +3145,30 @@ class LunaLearningSystem:
                 
                 # Log to hypothesis integration
                 self.hypothesis_integration.log_conversation_data(conversation_id, hypothesis_message_data)
+                
+                # UPDATE ADAPTIVE ROUTING based on hypothesis results
+                if self.adaptive_router and len(self.hypothesis_integration.conversation_buffer) > 0:
+                    # Get hypothesis test results
+                    hypothesis_results = {
+                        'rates': {
+                            'quality': scores.get('overall', 0.5),
+                            'latency': 0.0,  # Will be calculated by caller
+                            'memory': 0.1
+                        },
+                        'passed': sum(1 for r in self.hypothesis_integration.test_results if r.get('passed', False)),
+                        'failed': sum(1 for r in self.hypothesis_integration.test_results if not r.get('passed', True))
+                    }
+                    
+                    # Update adaptive routing
+                    adaptive_metadata = self.adaptive_router.update_from_hypotheses(
+                        hypothesis_results,
+                        msg_seq=msg_id,
+                        conv_id=conversation_id
+                    )
+                    
+                    if adaptive_metadata.get('adaptive', {}).get('adapted', False):
+                        print(f"   ADAPTIVE: {adaptive_metadata['adaptive']['direction']} - {adaptive_metadata['adaptive']['reason']}")
+                        print(f"   ADAPTIVE: New boundary: {adaptive_metadata['boundary']:.3f}")
             
             # LOG PROVENANCE FOR CLOSED-LOOP EVALUATION
             if self.provenance_logger:
@@ -3129,6 +3181,14 @@ class LunaLearningSystem:
                         'user_engagement': message_weight.user_engagement,
                         'mode': message_weight.mode.value
                     }
+                    
+                    # Add adaptive routing data if available
+                    if self.adaptive_router:
+                        math_weights_data['adaptive'] = {
+                            'bucket': self.adaptive_router.assign_bucket(conversation_id),
+                            'boundary': self.adaptive_router.current_boundary(conversation_id),
+                            'adaptive_metadata': adaptive_metadata if 'adaptive_metadata' in locals() else None
+                        }
                 
                 # Log response event
                 log_response_event(

@@ -242,13 +242,24 @@ class ConversationMathEngine:
             if older_weights:
                 self.context.engagement_trend = (sum(recent_weights) / len(recent_weights)) - (sum(older_weights) / len(older_weights))
     
-    def should_use_main_model(self, question: str) -> Tuple[bool, MessageWeight]:
-        """Determine if question should use main model or embedder"""
+    def should_use_main_model(self, question: str, custom_boundary: float = 0.5) -> Tuple[bool, MessageWeight]:
+        """
+        Determine if question should use main model or embedder
+        
+        Args:
+            question: The question to evaluate
+            custom_boundary: Custom routing boundary (default 0.5, can be adjusted by adaptive routing)
+        
+        Returns:
+            Tuple of (use_main_model, message_weight)
+        """
         message_weight = self.calculate_message_weight(question)
         self.update_conversation_context(message_weight)
         
-        # Use main model if weight > 0.495 (engaging mode)
-        use_main_model = message_weight.calculated_weight > 0.495
+        # Use custom boundary for adaptive routing (default 0.5)
+        # Adjust threshold slightly below boundary to account for floating point precision
+        threshold = custom_boundary - 0.005
+        use_main_model = message_weight.calculated_weight > threshold
         
         return use_main_model, message_weight
     
