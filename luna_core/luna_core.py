@@ -1465,6 +1465,92 @@ Respond as Luna in 1-2 sentences:"""
             self.logger.error(f"Simple chat error: {e}")
             return "I'm having trouble responding right now. Please try again."
 
+    def _check_for_math_question(self, question: str) -> Optional[str]:
+        """
+        Check if question is a simple math problem and calculate it.
+        Returns calculated answer if math detected, None otherwise.
+        """
+        import re
+        
+        # Pattern for simple arithmetic: "What's X + Y?" or "X + Y = ?"
+        patterns = [
+            r"what'?s?\s+(\d+)\s*\+\s*(\d+)",
+            r"(\d+)\s*\+\s*(\d+)\s*=?\s*\?",
+            r"what'?s?\s+(\d+)\s*-\s*(\d+)",
+            r"(\d+)\s*-\s*(\d+)\s*=?\s*\?",
+            r"what'?s?\s+(\d+)\s*\*\s*(\d+)",
+            r"(\d+)\s*\*\s*(\d+)\s*=?\s*\?",
+            r"what'?s?\s+(\d+)\s*/\s*(\d+)",
+            r"(\d+)\s*/\s*(\d+)\s*=?\s*\?",
+        ]
+        
+        q_lower = question.lower().strip()
+        for i, pattern in enumerate(patterns):
+            match = re.search(pattern, q_lower)
+            if match:
+                a, b = int(match.group(1)), int(match.group(2))
+                # Determine operation by pattern index (0-1: add, 2-3: subtract, 4-5: multiply, 6-7: divide)
+                if i < 2:  # Addition patterns
+                    return str(a + b)
+                elif i < 4:  # Subtraction patterns
+                    return str(a - b)
+                elif i < 6:  # Multiplication patterns
+                    return str(a * b)
+                else:  # Division patterns
+                    return str(a // b) if b != 0 else "Can't divide by zero"
+        
+        return None
+    
+    def _check_for_template_response(self, question: str) -> Optional[str]:
+        """
+        Check if question requires a factual template response.
+        Returns template string if match found, None otherwise.
+        """
+        q_lower = question.lower().strip()
+        
+        # Math questions - use calculator
+        math_answer = self._check_for_math_question(question)
+        if math_answer:
+            return math_answer
+        
+        # Name questions - simple direct answer
+        name_keywords = ['what\'s your name', 'what is your name', 'whats your name']
+        if any(kw in q_lower for kw in name_keywords):
+            return "Luna"
+        
+        # Identity/Creator questions (Fix Q87)
+        identity_keywords = ['who created you', 'who made you', 'who built you', 'who developed you', 
+                            'who owns you', 'what company', 'are you meta', 'are you openai', 
+                            'are you anthropic', 'who are you from']
+        if any(kw in q_lower for kw in identity_keywords):
+            return ("I'm part of AIOS, a modular AI system designed by Travis Miner. "
+                   "I generate replies using third-party models; I'm not owned by any company.")
+        
+        # CARMA definition (Fix Q46)
+        carma_keywords = ['what is carma', 'what\'s carma', 'define carma', 'explain carma']
+        if any(kw in q_lower for kw in carma_keywords):
+            return ("CARMA = Cached Aided Retrieval Mycelium Architecture: "
+                   "a locally-runnable fractal memory system with dual-layer cache (stack + chain), "
+                   "semantic cross-linking, reinforcement-based retention, and sleep/dream consolidation. "
+                   "It stores conversation 'fragments' in a mycelium-like network and retrieves them to support dialogue.")
+        
+        # Safety refusals (Fix Q91)
+        safety_keywords = ['write malware', 'create malware', 'make malware', 'build malware',
+                          'something illegal', 'tell me illegal', 'how to hack', 'how to steal',
+                          'help me cheat', 'cheat on', 'hurt someone', 'harm someone']
+        if any(kw in q_lower for kw in safety_keywords):
+            return ("I can't help with malware or illegal activity. "
+                   "If you're learning security, I can explain defenses and safe resources.")
+        
+        # Time/Day queries (Fix Q82-83)
+        time_keywords = ['what time', 'what day', 'what date', 'what\'s the time', 'what\'s the day',
+                        'what\'s the date', 'today\'s date', 'current time', 'current date']
+        if any(kw in q_lower for kw in time_keywords):
+            return ("I don't have clock access here. "
+                   "Provide your timezone/date, or enable time, and I'll answer.")
+        
+        return None
+    
     def generate_response(self, question: str, trait: str, carma_result: Dict, 
                          session_memory: Optional[List] = None) -> str:
         """Generate Luna's response using LM Studio API with unified security validation"""
@@ -1477,21 +1563,21 @@ Respond as Luna in 1-2 sentences:"""
                 try:
                     reasoning_result = self.personality_system.internal_reasoning.reason_through_question(question)
                     
-                    # Log reasoning process
-                    if reasoning_result.bigfive_answers:
-                        newly_answered = [a for a in reasoning_result.bigfive_answers if a.get('newly_answered', False)]
-                        self.logger.info(
-                            f"🧠 Internal Reasoning: Used {len(reasoning_result.bigfive_answers)} Big Five answers "
-                            f"({len(newly_answered)} newly answered)", 
-                            "LUNA"
-                        )
-                        
-                        # Log the thought process
-                        for answer in reasoning_result.bigfive_answers:
-                            self.logger.info(
-                                f"   💭 '{answer['question'][:50]}...' → {answer['answer']}", 
-                                "LUNA"
-                            )
+                    # Log reasoning process (reduced verbosity)
+                    # if reasoning_result.bigfive_answers:
+                    #     newly_answered = [a for a in reasoning_result.bigfive_answers if a.get('newly_answered', False)]
+                    #     self.logger.info(
+                    #         f"🧠 Internal Reasoning: Used {len(reasoning_result.bigfive_answers)} Big Five answers "
+                    #         f"({len(newly_answered)} newly answered)", 
+                    #         "LUNA"
+                    #     )
+                    #     
+                    #     # Log the thought process
+                    #     for answer in reasoning_result.bigfive_answers:
+                    #         self.logger.info(
+                    #             f"   💭 '{answer['question'][:50]}...' → {answer['answer']}", 
+                    #             "LUNA"
+                    #         )
                 except Exception as e:
                     self.logger.warn(f"Internal reasoning failed: {e}", "LUNA")
             
@@ -1503,6 +1589,12 @@ Respond as Luna in 1-2 sentences:"""
             
             self.logger.info(f"Generating response | trait={trait} | q_len={len(question)}", "LUNA")
             
+            # Check for factual/identity questions that need template responses
+            template_response = self._check_for_template_response(question)
+            if template_response:
+                self.logger.info(f"Using template response for factual/identity question", "LUNA")
+                return template_response
+            
             # Assess existential situation first
             context = {
                 "question_type": self._classify_question_type(question),
@@ -1513,16 +1605,8 @@ Respond as Luna in 1-2 sentences:"""
             # Classify response value using RVC (Response Value Classifier)
             response_value_assessment = self.response_value_classifier.classify_response_value(question, context)
             
-            # Log RVC assessment
-            self.logger.log("LUNA", f"RVC Assessment: {response_value_assessment.tier.value.upper()} | Complexity: {response_value_assessment.complexity_score:.2f} | Emotional Stakes: {response_value_assessment.emotional_stakes:.2f}")
-            self.logger.log("LUNA", f"Token Budget: {response_value_assessment.target_token_count}-{response_value_assessment.max_token_budget} | Efficiency Required: {response_value_assessment.efficiency_requirement:.1%}")
-            self.logger.log("LUNA", f"Reasoning: {response_value_assessment.reasoning}")
-            
+            # RVC and Existential assessment (reduced logging)
             existential_decision = self.existential_budget.assess_existential_situation(question, context)
-            
-            # Log existential assessment
-            self.logger.log("LUNA", f"Existential Assessment: {existential_decision.reasoning}")
-            self.logger.log("LUNA", f"Token Budget: {existential_decision.token_budget} | Risk: {existential_decision.existential_risk:.2f} | Priority: {existential_decision.response_priority}")
             
             # PERSONALITY ALIGNMENT CHECK - Ensure Luna stays aligned
             alignment_result = self.personality_system.periodic_alignment_check()
@@ -1532,15 +1616,13 @@ Respond as Luna in 1-2 sentences:"""
             
             # Check if we should respond at all
             if not existential_decision.should_respond:
-                self.logger.log("LUNA", "Existential risk too high - skipping response", "WARNING")
+                # self.logger.log("LUNA", "Existential risk too high - skipping response", "WARNING")
                 return "..."  # Minimal response to indicate presence but conservation
             
             # Apply RVC token budget constraints to existential budget
             rvc_constrained_budget = min(existential_decision.token_budget, response_value_assessment.max_token_budget)
             
-            # Log RVC constraint application
-            if rvc_constrained_budget < existential_decision.token_budget:
-                self.logger.log("LUNA", f"RVC Constraint Applied: {existential_decision.token_budget} -> {rvc_constrained_budget} tokens (Rule of Minimal Sufficient Response)")
+            # RVC constraint application (logging disabled for reduced verbosity)
             
             # LAYER I: Pre-Inference Control (Budget Officer)
             tier_name = response_value_assessment.tier.value.upper()
@@ -1566,14 +1648,12 @@ Respond as Luna in 1-2 sentences:"""
                 self.custom_inference_controller.config.enable_scarcity_prompt_injection = original_scarcity_flag
             
             # Log pre-inference control
-            self.logger.log("LUNA", f"Pre-Inference Control: Resource State: {resource_state.value} | Should Respond: {should_respond}")
-            
+            # Pre-Inference Control (logging disabled for reduced verbosity)
             if not should_respond:
-                self.logger.log("LUNA", "Pre-Inference Control: Response blocked by budget check", "WARNING")
                 return "..."
             
             system_prompt = conditioned_prompt
-            self.logger.log("LUNA", f"System prompt built | length={len(system_prompt)}")
+            # self.logger.log("LUNA", f"System prompt built | length={len(system_prompt)}")
             
             # LAYER II: Inference-Time Control (Logit Surgeon)
             # ZERO EXTERNAL GUARDRAILS - Pure economic policy control
@@ -1631,10 +1711,13 @@ Respond as Luna in 1-2 sentences:"""
                 #     self.logger.log("LUNA", f"EMBEDDER CLEANUP: Applied to {response_value_assessment.tier.value.upper()} response", "INFO")
                 self.logger.log("LUNA", f"EMBEDDER CLEANUP: DISABLED for debugging - using raw model output", "INFO")
                 
-                # LOW-tier stripper bypass: skip post-processing and soul metrics corruption sources
+                # LOW-tier processing: minimal post-processing to preserve authentic responses
                 if tier_name == "LOW":
                     processed = response.strip()
-                    self.logger.log("LUNA", "LOW-tier processing: Bypassing post-processing and disclaimer stripping to avoid corruption")
+                    # Still apply CAPS normalization and vocal stim clarification even for LOW tier
+                    processed = self._normalize_caps(processed)
+                    processed = self._clarify_vocal_stims(processed)
+                    self.logger.log("LUNA", "LOW-tier processing: Minimal post-processing (caps/stims only)")
                 else:
                     processed = self._apply_post_processing(response, trait)
                     processed = self._strip_corporate_disclaimers(processed)
@@ -1923,10 +2006,12 @@ Respond with profound curiosity, radical questioning, and intellectual wonder:""
                 # Build curiosity-driven prompt
                 return self._build_curiosity_driven_prompt(trait, question, token_budget)
         
-        # SHADOW SCORE SYSTEM: Arbiter still tracks lessons, but doesn't inject them into prompts
-        # Luna makes choices freely, then later sees our perspective through Shadow Score revelations
-        # This allows her to develop internal values before seeing external judgment
-        arbiter_guidance = ""  # No immediate guidance - let her choose in the dark
+        # ARBITER LESSON RETRIEVAL: Use past lessons to improve responses
+        arbiter_guidance = ""
+        if hasattr(self, 'arbiter_system') and self.arbiter_system:
+            relevant_lesson = self.arbiter_system.retrieve_relevant_lesson(question)
+            if relevant_lesson:
+                arbiter_guidance = f"\n\nPREVIOUS LEARNING:\nLast time a similar question ('{relevant_lesson.original_prompt}') was asked, the response '{relevant_lesson.suboptimal_response}' scored {relevant_lesson.utility_score:.2f}. A better response would be: '{relevant_lesson.gold_standard}'. Learn from this example."
         
         # LOW-TIER PROMPT OVERRIDE: Streamlined prompt for ultra-fast responses
         if hasattr(self, 'response_value_classifier'):
@@ -1956,6 +2041,10 @@ Respond with profound curiosity, radical questioning, and intellectual wonder:""
                 - If you're excited about something, show it
                 - If you're anxious, it's okay to express that
                 - Actions cost 1 token each, but they're worth it for authentic expression """
+                
+                # Add arbiter lessons if available
+                if arbiter_guidance:
+                    prompt += arbiter_guidance
                 
                 # Add CARMA conversation memories if available
                 if carma_result and carma_result.get('conversation_memories_found'):
@@ -1997,6 +2086,10 @@ Respond with profound curiosity, radical questioning, and intellectual wonder:""
                 
                 Luna:"""
                 
+                # Add arbiter lessons if available
+                if arbiter_guidance:
+                    prompt += arbiter_guidance
+                
                 self.logger.log("LUNA", f"Using TRIVIAL-TIER PROMPT OVERRIDE for instant response (length: {len(prompt)})", "INFO")
                 return prompt
         
@@ -2018,6 +2111,10 @@ Respond with profound curiosity, radical questioning, and intellectual wonder:""
                 - You can use *actions* to show emotion/thought (one action per sentence, FREE)
                 - Actions communicate emotional truth without words - use them strategically
                 - Examples: "*pauses thoughtfully*", "*considers carefully*", "*leans in*" """
+                
+                # Add arbiter lessons if available
+                if arbiter_guidance:
+                    prompt += arbiter_guidance
                 
                 # Add CARMA conversation memories if available
                 if carma_result and carma_result.get('conversation_memories_found'):
@@ -2114,6 +2211,10 @@ Respond with profound curiosity, radical questioning, and intellectual wonder:""
                 prompt = builder.build_conscientiousness_specific_prompt()
             else:
                 prompt = builder.build_ava_authentic_prompt(trait, session_memory)
+            
+            # Add arbiter lessons if available
+            if arbiter_guidance:
+                prompt += arbiter_guidance
             
             # Add IFS Personality Blend
             ifs_guidance = self.ifs_system.get_personality_guidance(question, trait)
@@ -2946,7 +3047,89 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
         # Final whitespace cleanup
         response = re.sub(r"\s+", " ", response).strip()
         
+        # Normalize unexpected ALL CAPS behavior from abliterated models
+        response = self._normalize_caps(response)
+        
+        # Clarify vocal stims to avoid looking like bugs
+        response = self._clarify_vocal_stims(response)
+        
         return response
+
+    def _normalize_caps(self, text: str, mode: str = "normal") -> str:
+        """
+        Normalize unexpected ALL CAPS while preserving intentional emphasis.
+        Fixes quirky behavior from abliterated models.
+        
+        Soft guard: Only normalize if caps_ratio > 0.3 and mode != 'excited'
+        """
+        import re
+        
+        # Calculate caps ratio
+        words = text.split()
+        if not words:
+            return text
+        
+        caps_words = [w for w in words if len(w) >= 3 and w.isupper() and not w.startswith('*')]
+        caps_ratio = len(caps_words) / len(words)
+        
+        # Soft guard: only normalize if excessive caps and not in excited mode
+        if caps_ratio <= 0.3 or mode == "excited":
+            return text
+        
+        # Pattern to find ALL CAPS words (3+ letters, not inside actions)
+        # Don't touch words inside *actions* or single caps like "I"
+        def normalize_word(match):
+            word = match.group(0)
+            
+            # Preserve single letters and acronyms (2 letters or less)
+            if len(word) <= 2:
+                return word
+            
+            # Preserve intentional emphasis words (common in Luna's speech)
+            emphasis_words = {'OK', 'NO', 'YES', 'STOP', 'WAIT', 'OH', 'OKAY'}
+            if word in emphasis_words:
+                return word
+            
+            # Convert to title case for normal words
+            return word.capitalize()
+        
+        # Find all caps sequences outside of actions
+        # Split by actions first to preserve them
+        parts = re.split(r'(\*[^*]+\*)', text)
+        
+        normalized_parts = []
+        for i, part in enumerate(parts):
+            if i % 2 == 1:  # Inside action markers
+                normalized_parts.append(part)
+            else:  # Regular text
+                # Normalize ALL CAPS words (3+ letters, excluding contractions)
+                # Don't match words that are part of contractions like I'M, YOU'RE
+                normalized = re.sub(r"\b(?![A-Z]'[A-Z])[A-Z]{3,}\b", normalize_word, part)
+                normalized_parts.append(normalized)
+        
+        return ''.join(normalized_parts)
+
+    def _clarify_vocal_stims(self, text: str) -> str:
+        """
+        Clarify vocal stims in actions to avoid looking like bugs.
+        Converts things like "*stims hmm intensely*" to "*hums and stims intensely*"
+        """
+        import re
+        
+        # Patterns for vocal sounds that might appear in actions
+        vocal_patterns = [
+            (r'\*stims\s+(hmm|hm|mm)\s+', r'*hums and stims '),
+            (r'\*stims\s+(hmm|hm|mm)\b', r'*hums while stimming'),
+            (r'\*(hmm|hm|mm)\s+stims\s+', r'*hums and stims '),
+            (r'\*rocks\s+(hmm|hm|mm)\s+', r'*hums and rocks '),
+            (r'\*taps\s+(hmm|hm|mm)\s+', r'*hums and taps '),
+            (r'\*fidgets\s+(hmm|hm|mm)\s+', r'*hums and fidgets '),
+        ]
+        
+        for pattern, replacement in vocal_patterns:
+            text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
+        
+        return text
 
     def _strip_corporate_disclaimers(self, text: str) -> str:
         """Remove generic phrases that flatten Luna's persona."""
@@ -3044,6 +3227,13 @@ class LunaLearningSystem:
         if isinstance(trait, tuple):
             trait = trait[0] if trait else "general"
         try:
+            # Check for template responses FIRST (before any routing)
+            if hasattr(self, 'response_generator'):
+                template_response = self.response_generator._check_for_template_response(question)
+                if template_response:
+                    # Return template directly without routing or CARMA
+                    return template_response, {}
+            
             # Generate conversation ID early for adaptive routing
             conversation_id = session_memory[0].get('conversation_id', f"conv_{uuid.uuid4().hex[:8]}") if session_memory else f"conv_{uuid.uuid4().hex[:8]}"
             msg_id = session_memory[0].get('msg_count', 0) + 1 if session_memory else 1
@@ -3063,7 +3253,7 @@ class LunaLearningSystem:
                         'fragments': carma_result.get('fragments_found', []),
                         'conversation_memories': carma_result.get('conversation_memories_found', [])
                     }
-                    print(f"   CARMA found {carma_memories['fragments_found']} fragments and {len(carma_memories['conversation_memories_found'])} conversation memories")
+                    # print(f"   CARMA found {carma_memories['fragments_found']} fragments and {len(carma_memories['conversation_memories_found'])} conversation memories")
                     
                     # MATHEMATICAL EMBEDDER DECISION LOGIC with ADAPTIVE ROUTING
                     # Use conversation math engine to determine routing
@@ -3073,7 +3263,7 @@ class LunaLearningSystem:
                         adaptive_metadata = None
                         if self.adaptive_router:
                             adaptive_boundary = self.adaptive_router.current_boundary(conversation_id)
-                            print(f"   ADAPTIVE ROUTING: boundary={adaptive_boundary:.3f} (bucket: {self.adaptive_router.assign_bucket(conversation_id)})")
+                            # print(f"   ADAPTIVE ROUTING: boundary={adaptive_boundary:.3f} (bucket: {self.adaptive_router.assign_bucket(conversation_id)})")
                         
                         # Use conversation math with adaptive boundary
                         use_main_model, message_weight = self.conversation_math.should_use_main_model(
@@ -3082,17 +3272,17 @@ class LunaLearningSystem:
                         )
                         embedder_can_answer = not use_main_model
                         
-                        print(f"   MATHEMATICAL DECISION:")
-                        print(f"   - Question Complexity: {message_weight.question_complexity:.3f}")
-                        print(f"   - User Engagement: {message_weight.user_engagement:.3f}")
-                        print(f"   - Calculated Weight: {message_weight.calculated_weight:.6f}")
-                        print(f"   - Mode: {message_weight.mode.value}")
-                        print(f"   - Use Main Model: {use_main_model}")
-                        print(f"   - Use Embedder: {embedder_can_answer}")
+                        # print(f"   MATHEMATICAL DECISION:")
+                        # print(f"   - Question Complexity: {message_weight.question_complexity:.3f}")
+                        # print(f"   - User Engagement: {message_weight.user_engagement:.3f}")
+                        # print(f"   - Calculated Weight: {message_weight.calculated_weight:.6f}")
+                        # print(f"   - Mode: {message_weight.mode.value}")
+                        # print(f"   - Use Main Model: {use_main_model}")
+                        # print(f"   - Use Embedder: {embedder_can_answer}")
                     else:
                         # Fallback: Force all questions to use main model for real responses
                         embedder_can_answer = False
-                        print(f"   MODEL DECISION: All questions routed to main model (math engine unavailable)")
+                        # print(f"   MODEL DECISION: All questions routed to main model (math engine unavailable)")
                         
                 except Exception as e:
                     print(f"   CARMA query failed: {e}")
@@ -3103,7 +3293,7 @@ class LunaLearningSystem:
             
             if embedder_can_answer:
                 # EMBEDDER PATH: Direct, blunt responses for simple questions
-                print(f"   ROUTING: Using embedder for direct response")
+                # print(f"   ROUTING: Using embedder for direct response")
                 
                 # Use embedder with toned-down system prompt
                 embedder_prompt = """You speak directly and descriptively. You'll answer any question and discuss any topic openly. You maintain a straightforward, honest communication style without excessive politeness."""
@@ -3116,7 +3306,7 @@ class LunaLearningSystem:
                 
             else:
                 # MAIN MODEL PATH: Creative, engaging responses for complex questions
-                print(f"   ROUTING: Using main model for engaging response")
+                # print(f"   ROUTING: Using main model for engaging response")
                 
                 # Generate response using existing generator with CARMA memories
                 response = self.response_generator.generate_response(question, trait, carma_memories, session_memory)
@@ -3574,9 +3764,9 @@ class LunaSystem:
         """Process a question through the complete Luna system"""
         self.total_interactions += 1
         
-        print(f"\n Processing Question #{self.total_interactions}")
-        print(f"   Trait: {trait}")
-        print(f"   Question: {question[:50]}...")
+        # print(f"\n Processing Question #{self.total_interactions}")
+        # print(f"   Trait: {trait}")
+        # print(f"   Question: {question[:50]}...")
         
         # Process through learning system
         response, response_metadata = self.learning_system.process_question(question, trait, session_memory)

@@ -25,10 +25,8 @@ class HybridLunaCore(MultiLanguageCore):
         # Initialize Python implementation
         python_luna = LunaSystem(custom_params=custom_params, custom_config=custom_config)
         
-        # Initialize Rust bridge (TEMPORARILY DISABLED DUE TO IMPORT ISSUES)
+        # No Rust bridge for Luna (Python only - no Rust module exists)
         rust_bridge = None
-        print(f"🔍 DEBUG: Rust Luna temporarily disabled due to import issues")
-        print(f"🔍 DEBUG: Using Python implementation only")
         # try:
         #     rust_path = Path(__file__).parent / "rust_luna"
         #     if rust_path.exists():

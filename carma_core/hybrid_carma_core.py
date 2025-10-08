@@ -32,21 +32,19 @@ class HybridCarmaCore(MultiLanguageCore):
         # Initialize Python implementation
         python_carma = CARMASystem(base_dir=base_dir)
         
-        # Initialize Rust bridge (TEMPORARILY DISABLED DUE TO IMPORT ISSUES)
+        # Initialize Rust bridge
         rust_bridge = None
-        print(f"🔍 DEBUG: Rust CARMA temporarily disabled due to import issues")
-        print(f"🔍 DEBUG: Using Python implementation only")
-        # try:
-        #     rust_path = Path(__file__).parent / "rust_carma"
-        #     if rust_path.exists():
-        #         rust_bridge = RustBridge("carma", str(rust_path))
-        #         
-        #         # Try to compile and load Rust module
-        #         if rust_bridge.compile_rust_module():
-        #             rust_bridge.load_rust_module()
-        # except Exception as e:
-        #     print(f"⚠️ Rust CARMA initialization failed: {e}")
-        #     print("   Falling back to Python implementation")
+        try:
+            rust_path = Path(__file__).parent / "rust_carma"
+            if rust_path.exists():
+                rust_bridge = RustBridge("carma", str(rust_path))
+                
+                # Try to compile and load Rust module
+                if rust_bridge.compile_rust_module():
+                    rust_bridge.load_rust_module()
+        except Exception as e:
+            print(f"⚠️ Rust CARMA initialization failed: {e}")
+            print("   Falling back to Python implementation")
         
         # Initialize multi-language core
         super().__init__("carma", python_carma, rust_bridge)

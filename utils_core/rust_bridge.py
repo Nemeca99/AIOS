@@ -161,6 +161,15 @@ class RustBridge:
         if self.compiled_module is not None:
             return True
         
+        # Try to load the module directly first
+        try:
+            import importlib
+            self.compiled_module = importlib.import_module(self.module_name)
+            print(f"✅ Rust module {self.module_name} loaded successfully")
+            return True
+        except ImportError:
+            pass
+        
         # Check if module is available externally (lazy loading approach)
         try:
             import subprocess
@@ -168,7 +177,15 @@ class RustBridge:
                 [self.python_executable, '-c', f'import {self.module_name}; print("SUCCESS")'],
                 capture_output=True, text=True
             )
-            return result.returncode == 0
+            if result.returncode == 0:
+                # Module is available externally, try to load it again
+                try:
+                    import importlib
+                    self.compiled_module = importlib.import_module(self.module_name)
+                    return True
+                except ImportError:
+                    pass
+            return False
         except Exception:
             return False
     

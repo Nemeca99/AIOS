@@ -87,9 +87,9 @@ class LunaExistentialBudgetSystem:
             "max_efficiency_bonus": 3.0,  # Maximum efficiency bonus multiplier
             
             # Existential anxiety parameters
-            "high_anxiety_threshold": 0.8,  # When anxiety becomes high
-            "low_token_anxiety_threshold": 20,  # Tokens below this trigger anxiety
-            "anxiety_decay_rate": 0.1,  # How fast anxiety decreases
+            "high_anxiety_threshold": 0.85,  # When anxiety becomes high (loosened from 0.8)
+            "low_token_anxiety_threshold": 15,  # Tokens below this trigger anxiety (loosened from 20)
+            "anxiety_decay_rate": 0.15,  # How fast anxiety decreases (faster decay from 0.1)
             
             # Response cost tiers (Learned Efficiency Paradox)
             "token_cost_tiers": {
@@ -285,15 +285,15 @@ class LunaExistentialBudgetSystem:
         """Determine if we should respond at all"""
         # If extremely low on tokens, only respond to high-value questions
         if self.state.current_token_pool <= self.economy_params["emergency_token_reserve"]:
-            return question_assessment["potential_quality"] >= 0.7
+            return question_assessment["potential_quality"] >= 0.6  # Loosened from 0.7
         
         # If high anxiety, be more selective
-        if anxiety_level >= 0.8:
-            return question_assessment["potential_quality"] >= 0.5
+        if anxiety_level >= 0.85:  # Loosened from 0.8
+            return question_assessment["potential_quality"] >= 0.4  # Loosened from 0.5
         
         # If moderate anxiety, respond to most questions
         if anxiety_level >= 0.5:
-            return question_assessment["potential_quality"] >= 0.3
+            return question_assessment["potential_quality"] >= 0.2  # Loosened from 0.3
         
         # Low anxiety - respond to most questions
         return True

@@ -2171,7 +2171,7 @@ class RecoveryOperations:
                 if fragment_file.name in system_files:
                     continue
                 
-                with open(fragment_file, 'r') as f:
+                with open(fragment_file, 'r', encoding='utf-8', errors='replace') as f:
                     fragment = json.load(f)
                 
                 # Handle both list and dict formats

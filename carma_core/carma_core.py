@@ -1831,7 +1831,7 @@ class CARMASystem:
         self.total_queries += 1
         start_time = time.time()
         
-        print(f"\n Processing Query #{self.total_queries}: {query[:50]}...")
+        # print(f"\n Processing Query #{self.total_queries}: {query[:50]}...")
         
         # Generate embedding for query
         query_embedding = self.cache.embedder.embed(query)
@@ -1878,9 +1878,9 @@ class CARMASystem:
             'system_stats': self.get_comprehensive_stats()
         }
         
-        print(f" Query processed in {processing_time:.2f}s")
-        print(f"   Fragments: {len(relevant_fragments)}")
-        print(f"   Conversation memories: {len(conversation_memories)}")
+        # print(f" Query processed in {processing_time:.2f}s")
+        # print(f"   Fragments: {len(relevant_fragments)}")
+        # print(f"   Conversation memories: {len(conversation_memories)}")
         
         return results
     
