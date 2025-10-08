@@ -463,7 +463,7 @@ with about:
     with col1:
         st.markdown("""
         <div class="card">
-            <h3 class="card-title">🎯 Mission</h3>
+            <h3 class="card-title">Mission</h3>
             <div class="card-content">
                 Building AI systems that think differently - starting with language, refining with math.
                 Creating intelligent systems that adapt, learn, and evolve in real-time.
@@ -471,7 +471,7 @@ with about:
         </div>
         
         <div class="card">
-            <h3 class="card-title">🧠 Philosophy</h3>
+            <h3 class="card-title">Philosophy</h3>
             <div class="card-content">
                 <strong>"AI is a mirror, build backwards"</strong><br><br>
                 Start with natural conversation, then layer intelligence on top. 
@@ -480,7 +480,7 @@ with about:
         </div>
         
         <div class="card">
-            <h3 class="card-title">🚀 Focus Areas</h3>
+            <h3 class="card-title">Focus Areas</h3>
             <div class="card-content">
                 • <strong>Conversation Routing Systems</strong><br>
                 • <strong>Adaptive AI Architecture</strong><br>
@@ -493,7 +493,7 @@ with about:
     with col2:
         st.markdown("""
         <div class="card">
-            <h3 class="card-title">🛠️ Technical Stack</h3>
+            <h3 class="card-title">Technical Stack</h3>
             <div class="tech-grid">
                 <div class="tech-category">
                     <h4>Backend & AI</h4>
@@ -521,7 +521,7 @@ with about:
         </div>
         
         <div class="card">
-            <h3 class="card-title">📊 Performance Metrics</h3>
+            <h3 class="card-title">Performance Metrics</h3>
             <div class="metrics-grid">
                 <div class="metric-card">
                     <div class="metric-value">94.2%</div>
@@ -543,7 +543,7 @@ with about:
         </div>
         
         <div class="card">
-            <h3 class="card-title">📄 Resume</h3>
+            <h3 class="card-title">Resume</h3>
             <div class="card-content">
                 Download my resume for a comprehensive overview of my experience and skills.
             </div>
@@ -594,10 +594,13 @@ with projects:
     st.markdown('<div class="section">', unsafe_allow_html=True)
     st.markdown('<h2 class="section-title">Featured Projects</h2>', unsafe_allow_html=True)
     
-    st.markdown("""
-    <div class="project-showcase">
+    # Project showcase with visual elements
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("""
         <div class="project-card">
-            <h3 class="project-title">🧠 AIOS - Modular AI Operating System</h3>
+            <h3 class="project-title">AIOS - Modular AI Operating System</h3>
             <div class="project-description">
                 Production-grade conversation system with language-first routing and mathematical refinement. 
                 Features dynamic model switching, adaptive boundaries, and real-time learning capabilities.
@@ -611,9 +614,33 @@ with projects:
             </div>
             <a href="https://github.com/Nemeca99/AIOS" class="project-link">View Repository</a>
         </div>
+        """, unsafe_allow_html=True)
         
+        # Add a visual element for AIOS
+        st.markdown("**System Architecture:**")
+        st.code("""
+        ┌─────────────────┐    ┌──────────────────┐
+        │  Conversation   │───▶│   Math Engine    │
+        │    Context      │    │  (Weight Calc)   │
+        └─────────────────┘    └──────────────────┘
+                    │                    │
+                    ▼                    ▼
+        ┌─────────────────┐    ┌──────────────────┐
+        │   Luna Core     │◀───│  Adaptive Router │
+        │ (Response Gen)  │    │  (A/B Testing)   │
+        └─────────────────┘    └──────────────────┘
+                    │
+                    ▼
+        ┌─────────────────┐
+        │  CARMA Learning │
+        │ (Memory Frags)  │
+        └─────────────────┘
+        """)
+    
+    with col2:
+        st.markdown("""
         <div class="project-card">
-            <h3 class="project-title">💼 Professional Portfolio</h3>
+            <h3 class="project-title">Professional Portfolio</h3>
             <div class="project-description">
                 Modern, interactive portfolio showcasing AI systems and development capabilities. 
                 Features real-time demos, performance metrics, and professional presentation.
@@ -626,8 +653,24 @@ with projects:
             </div>
             <a href="https://dj9k9jkcrqvbshyp4qdpfz.streamlit.app/" class="project-link">Live Demo</a>
         </div>
-    </div>
-    """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
+        
+        # Add metrics visualization
+        st.markdown("**Performance Metrics:**")
+        import plotly.graph_objects as go
+        
+        fig = go.Figure(data=[
+            go.Bar(name='Accuracy', x=['Routing', 'Tests', 'Uptime'], y=[94.2, 100, 100], marker_color='#667eea'),
+        ])
+        fig.update_layout(
+            title="System Performance",
+            xaxis_title="Metrics",
+            yaxis_title="Percentage",
+            template="plotly_dark",
+            height=300,
+            showlegend=False
+        )
+        st.plotly_chart(fig, use_container_width=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -640,7 +683,7 @@ with services:
     with col1:
         st.markdown("""
         <div class="card">
-            <h3 class="card-title">🚀 Quick Projects</h3>
+            <h3 class="card-title">Quick Projects</h3>
             <div class="card-content">
                 <div style="font-size: 2rem; font-weight: 700; color: #667eea; margin-bottom: 1rem;">$200–$500</div>
                 <ul>
@@ -657,7 +700,7 @@ with services:
     with col2:
         st.markdown("""
         <div class="card" style="border: 2px solid #667eea; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));">
-            <h3 class="card-title">🎯 Featured: AI Systems</h3>
+            <h3 class="card-title">Featured: AI Systems</h3>
             <div class="card-content">
                 <div style="font-size: 2rem; font-weight: 700; color: #667eea; margin-bottom: 1rem;">$500–$2000</div>
                 <ul>
@@ -676,7 +719,7 @@ with services:
     with col3:
         st.markdown("""
         <div class="card">
-            <h3 class="card-title">🏗️ Enterprise</h3>
+            <h3 class="card-title">Enterprise</h3>
             <div class="card-content">
                 <div style="font-size: 2rem; font-weight: 700; color: #667eea; margin-bottom: 1rem;">$2000+</div>
                 <ul>
@@ -694,7 +737,7 @@ with services:
     
     st.markdown("""
     <div class="card">
-        <h3 class="card-title">🛡️ Quality Guarantees</h3>
+        <h3 class="card-title">Quality Guarantees</h3>
         <div class="card-content">
             • <strong>GDPR-aligned data handling</strong> - Privacy-first approach<br>
             • <strong>Production-ready code</strong> - Tested and documented<br>
@@ -704,7 +747,7 @@ with services:
     </div>
     
     <div class="card" style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.1)); border: 1px solid rgba(46, 204, 113, 0.3);">
-        <h3 class="card-title" style="color: #2ecc71;">✅ Proven Results</h3>
+        <h3 class="card-title" style="color: #2ecc71;">Proven Results</h3>
         <div class="card-content">
             <strong>Real Performance Metrics from AIOS:</strong><br>
             • <strong>10/10 Golden Tests</strong> - Zero regression failures<br>
@@ -715,6 +758,43 @@ with services:
     </div>
     """, unsafe_allow_html=True)
     
+    # Add a visual timeline or process flow
+    st.markdown("### Development Process")
+    
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        st.markdown("""
+        <div class="card" style="text-align: center; padding: 1rem;">
+            <h4 style="color: #667eea;">1. Discovery</h4>
+            <p style="font-size: 0.9rem;">Understand requirements and scope</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown("""
+        <div class="card" style="text-align: center; padding: 1rem;">
+            <h4 style="color: #667eea;">2. Design</h4>
+            <p style="font-size: 0.9rem;">Architecture and system design</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col3:
+        st.markdown("""
+        <div class="card" style="text-align: center; padding: 1rem;">
+            <h4 style="color: #667eea;">3. Development</h4>
+            <p style="font-size: 0.9rem;">Implementation and testing</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col4:
+        st.markdown("""
+        <div class="card" style="text-align: center; padding: 1rem;">
+            <h4 style="color: #667eea;">4. Deployment</h4>
+            <p style="font-size: 0.9rem;">Production deployment and support</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
     st.markdown('</div>', unsafe_allow_html=True)
 
 with demo:
@@ -723,7 +803,7 @@ with demo:
     
     st.markdown("""
     <div class="card">
-        <h3 class="card-title">🤖 Live System Demonstration</h3>
+        <h3 class="card-title">Live System Demonstration</h3>
         <div class="card-content">
             Experience the AIOS conversation system with real logs and outputs. 
             See how language-first routing and mathematical refinement create intelligent, adaptive responses.
@@ -731,8 +811,20 @@ with demo:
     </div>
     """, unsafe_allow_html=True)
     
+    # Add a visual flow diagram
+    st.markdown("### System Flow")
+    st.code("""
+    User Input → Language Analysis → Weight Calculation → Model Selection → Response Generation
+         ↓              ↓                ↓                ↓              ↓
+    Context      Complexity      Math Engine      Routing        Luna Core
+    Analysis     Analysis        (0.0-1.0)       Decision       (AIOS)
+         ↓              ↓                ↓                ↓              ↓
+    Conversation → Dynamic → Boundary → Embedder/ → Intelligent
+    History      Context   Adjustment  Main Model   Response
+    """)
+    
     # Sample conversations
-    with st.expander("💬 Simple Question → Embedder Model (DIRECT)", expanded=True):
+    with st.expander("Simple Question → Embedder Model (DIRECT)", expanded=True):
         st.markdown("**User:** What's 2+2?")
         st.code("""
         Message Weight Calculation:
@@ -747,7 +839,7 @@ with demo:
         st.success("**Luna's Response:** 4")
         st.caption("Direct, factual response from embedder model")
     
-    with st.expander("🧠 Complex Question → Main Model (ENGAGING)", expanded=True):
+    with st.expander("Complex Question → Main Model (ENGAGING)", expanded=True):
         st.markdown("**User:** Explain how neural networks learn through backpropagation and gradient descent.")
         st.code("""
         Message Weight Calculation:
@@ -776,7 +868,7 @@ with demo:
         """)
         st.caption("Engaging, detailed response from main model")
     
-    with st.expander("🔄 Dynamic Context Accumulation", expanded=True):
+    with st.expander("Dynamic Context Accumulation", expanded=True):
         st.code("""
         Message 1: "Hi" (Weight: 0.30)
         Message 2: "How are you?" (Weight: 0.25) 
@@ -791,7 +883,7 @@ with demo:
         st.success("✅ **Adaptive routing** - Context influenced boundary adjustment")
     
     # Technical logs
-    with st.expander("🔍 Technical Logs Sample"):
+    with st.expander("Technical Logs Sample"):
         st.code("""
         2025-10-07 19:45:23 [INFO] Conversation started: conv_abc123
         2025-10-07 19:45:23 [DEBUG] Message weight: 0.85, Boundary: 0.497
@@ -804,7 +896,7 @@ with demo:
     
     st.markdown("""
     <div class="card">
-        <h3 class="card-title">🧪 Local Testing</h3>
+        <h3 class="card-title">Local Testing</h3>
         <div class="card-content">
             <strong>Want to test AIOS locally?</strong><br><br>
             ```bash
@@ -834,21 +926,21 @@ with contact:
     
     st.markdown("""
     <div class="card" style="background: rgba(255, 255, 255, 0.1);">
-        <h3 class="card-title">📞 Get In Touch</h3>
+        <h3 class="card-title">Get In Touch</h3>
         <div class="card-content">
             Ready to bring your AI vision to life? Whether you need a quick automation script or a full-scale intelligent system, I'm here to help.
             <br><br>
             <strong>Contact Information:</strong><br>
-            📧 <strong>Email:</strong> travis@example.com<br>
-            💼 <strong>LinkedIn:</strong> linkedin.com/in/travis-miner<br>
-            🐙 <strong>GitHub:</strong> github.com/Nemeca99<br>
-            🚀 <strong>Portfolio:</strong> [Live Demo](https://dj9k9jkcrqvbshyp4qdpfz.streamlit.app/)
+            <strong>Email:</strong> travis@example.com<br>
+            <strong>LinkedIn:</strong> linkedin.com/in/travis-miner<br>
+            <strong>GitHub:</strong> github.com/Nemeca99<br>
+            <strong>Portfolio:</strong> [Live Demo](https://dj9k9jkcrqvbshyp4qdpfz.streamlit.app/)
         </div>
     </div>
     """, unsafe_allow_html=True)
     
     # Contact form
-    st.markdown("### 💬 Send a Message")
+    st.markdown("### Send a Message")
     with st.form("contact_form"):
         col1, col2 = st.columns(2)
         
@@ -883,7 +975,7 @@ st.markdown("""
         </div>
         
         <p style="margin-top: 2rem; opacity: 0.6;">
-            Built with ❤️ using Streamlit | © 2025 Travis Miner
+            Built with passion using Streamlit | © 2025 Travis Miner
         </p>
     </div>
 </div>
