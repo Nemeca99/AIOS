@@ -565,8 +565,10 @@ with live_demo:
     st.markdown("## 🤖 Live AI Demo")
     st.markdown("**Experience my AI systems in action!** Talk to Luna, my modular AI assistant, and see the language-first mathematical refinement routing in real-time.")
     
-    # LM Studio Configuration
-    LM_STUDIO_URL = "http://192.168.1.21:1234/v1/chat/completions"
+    # AIOS API Proxy Configuration (Docker middleman)
+    # Local development: http://localhost:8000
+    # Production: http://your-server-ip:8000
+    LM_STUDIO_URL = "http://localhost:8000/v1/chat/completions"
     
     # Initialize chat history
     if "messages" not in st.session_state:
@@ -617,8 +619,8 @@ with live_demo:
     # Connection Status
     st.markdown("### 📡 Connection Status")
     try:
-        # Test connection to LM Studio
-        response = requests.get("http://192.168.1.21:1234/v1/models", timeout=2)
+        # Test connection to AIOS API Proxy
+        response = requests.get("http://localhost:8000/v1/models", timeout=2)
         if response.status_code == 200:
             st.success("✅ **Connected to LM Studio** - Ready for live conversation!")
             models = response.json()
@@ -629,7 +631,7 @@ with live_demo:
         else:
             st.error("❌ **LM Studio not responding** - Please ensure LM Studio is running")
     except requests.exceptions.RequestException:
-        st.error("❌ **Cannot connect to LM Studio** - Please ensure LM Studio is running on 192.168.1.21:1234")
+        st.error("❌ **Cannot connect to AIOS API Proxy** - Please ensure the Docker container is running on localhost:8000")
     
     # Chat Interface
     st.markdown("### 💬 Chat with Luna")
