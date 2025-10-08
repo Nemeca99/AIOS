@@ -618,20 +618,30 @@ with live_demo:
     
     # Connection Status
     st.markdown("### 📡 Connection Status")
+    
+    # Debug information
+    st.markdown("**Debug Info:**")
+    st.code(f"Trying to connect to: http://localhost:8000/v1/models")
+    
     try:
         # Test connection to AIOS API Proxy
-        response = requests.get("http://localhost:8000/v1/models", timeout=2)
+        response = requests.get("http://localhost:8000/v1/models", timeout=5)
+        st.code(f"Response status: {response.status_code}")
+        st.code(f"Response headers: {dict(response.headers)}")
+        
         if response.status_code == 200:
             st.success("✅ **Connected to LM Studio** - Ready for live conversation!")
             models = response.json()
+            st.code(f"Models response: {models}")
             if 'data' in models and models['data']:
                 st.info(f"🤖 **Active Model:** {models['data'][0].get('id', 'Unknown')}")
             else:
                 st.warning("⚠️ **No models loaded** - Please start a model in LM Studio")
         else:
-            st.error("❌ **LM Studio not responding** - Please ensure LM Studio is running")
-    except requests.exceptions.RequestException:
-        st.error("❌ **Cannot connect to AIOS API Proxy** - Please ensure the Docker container is running on localhost:8000")
+            st.error(f"❌ **API Error** - Status: {response.status_code}, Response: {response.text}")
+    except requests.exceptions.RequestException as e:
+        st.error(f"❌ **Cannot connect to AIOS API Proxy** - Error: {str(e)}")
+        st.info("💡 **Troubleshooting:** Make sure Docker container is running: `cd docker-api && docker-compose up -d`")
     
     # Chat Interface
     st.markdown("### 💬 Chat with Luna")
