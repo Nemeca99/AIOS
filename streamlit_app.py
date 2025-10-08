@@ -428,7 +428,11 @@ st.markdown("""
 <div class="hero-container">
     <div class="hero-content">
         <h1 class="hero-title">Travis Miner</h1>
-        <p class="hero-subtitle">AI Systems Architect • Building the Future of Intelligent Systems</p>
+        <p class="hero-subtitle">Systems Theorist • Game Theorist • Recursive Systems Hobbyist</p>
+        <p style="font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto 2rem auto;">
+            Self-taught systems enthusiast with 20+ years exploring game theory, recursive thinking, and symbolic logic. 
+            Passionate about understanding how systems work and finding elegant solutions to complex problems.
+        </p>
         <div class="cta-buttons">
             <a href="#contact" class="btn-primary">Start a Project</a>
             <a href="#projects" class="btn-secondary">View Work</a>
@@ -483,8 +487,8 @@ with about:
         <div class="card">
             <h3 class="card-title">Mission</h3>
             <div class="card-content">
-                Building AI systems that think differently - starting with language, refining with math.
-                Creating intelligent systems that adapt, learn, and evolve in real-time.
+                Exploring how systems work through recursive thinking and symbolic logic. 
+                Learning to build AI systems that start with language and refine with mathematics.
             </div>
         </div>
         
@@ -492,18 +496,19 @@ with about:
             <h3 class="card-title">Philosophy</h3>
             <div class="card-content">
                 <strong>"AI is a mirror, build backwards"</strong><br><br>
-                Start with natural conversation, then layer intelligence on top. 
-                Language-first architecture with mathematical refinement for optimal performance.
+                I believe in starting with natural conversation, then layering intelligence on top. 
+                Language-first architecture with mathematical refinement.
             </div>
         </div>
         
         <div class="card">
-            <h3 class="card-title">Focus Areas</h3>
-            <div class="card-content">
-                • <strong>Conversation Routing Systems</strong><br>
-                • <strong>Adaptive AI Architecture</strong><br>
-                • <strong>Production-Grade AI Infrastructure</strong><br>
-                • <strong>Neurodivergent-Inclusive Design</strong>
+            <h3 class="card-title">Areas of Interest</h3>
+                <div class="card-content">
+                • <strong>Game Theory & Systems Optimization</strong><br>
+                • <strong>Recursive Thinking & Symbolic Logic</strong><br>
+                • <strong>AI Conversation Systems</strong><br>
+                • <strong>SCADA Interface Design</strong><br>
+                • <strong>Economic System Modeling</strong>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -511,59 +516,59 @@ with about:
     with col2:
         st.markdown("""
         <div class="card">
-            <h3 class="card-title">Technical Stack</h3>
+            <h3 class="card-title">Tools & Technologies</h3>
             <div class="tech-grid">
                 <div class="tech-category">
-                    <h4>Backend & AI</h4>
+                    <h4>Programming & AI</h4>
                     <span class="tech-item">Python</span>
-                    <span class="tech-item">FastAPI</span>
                     <span class="tech-item">LM Studio</span>
-                    <span class="tech-item">Ollama</span>
+                    <span class="tech-item">Streamlit</span>
                     <span class="tech-item">SQLite</span>
                 </div>
                 <div class="tech-category">
-                    <h4>Frontend & Viz</h4>
-                    <span class="tech-item">Streamlit</span>
-                    <span class="tech-item">React</span>
-                    <span class="tech-item">Plotly</span>
-                    <span class="tech-item">D3.js</span>
+                    <h4>Systems & Modeling</h4>
+                    <span class="tech-item">Game Theory</span>
+                    <span class="tech-item">Recursive Logic</span>
+                    <span class="tech-item">Symbolic Systems</span>
+                    <span class="tech-item">SCADA Design</span>
                 </div>
                 <div class="tech-category">
-                    <h4>Infrastructure</h4>
-                    <span class="tech-item">Docker</span>
-                    <span class="tech-item">Railway</span>
-                    <span class="tech-item">GitHub Actions</span>
-                    <span class="tech-item">NDJSON</span>
+                    <h4>Learning & Exploration</h4>
+                    <span class="tech-item">Self-Directed Study</span>
+                    <span class="tech-item">Theory Development</span>
+                    <span class="tech-item">System Analysis</span>
+                    <span class="tech-item">Hobby Projects</span>
                 </div>
             </div>
         </div>
         
         <div class="card">
-            <h3 class="card-title">Performance Metrics</h3>
+            <h3 class="card-title">Learning Journey</h3>
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <div class="metric-value">94.2%</div>
-                    <div class="metric-label">Routing Accuracy</div>
+                    <div class="metric-value">20+</div>
+                    <div class="metric-label">Years Exploring Systems</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">1.3s</div>
-                    <div class="metric-label">Avg Response Time</div>
+                    <div class="metric-value">Self</div>
+                    <div class="metric-label">Taught & Motivated</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">10/10</div>
-                    <div class="metric-label">Golden Tests</div>
+                    <div class="metric-value">Hobby</div>
+                    <div class="metric-label">Based Learning</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">100%</div>
-                    <div class="metric-label">Uptime</div>
+                    <div class="metric-value">Theory</div>
+                    <div class="metric-label">Driven Approach</div>
                 </div>
             </div>
         </div>
         
         <div class="card">
-            <h3 class="card-title">Resume</h3>
+            <h3 class="card-title">Background</h3>
             <div class="card-content">
-                Download my resume for a comprehensive overview of my experience and skills.
+                Self-taught systems enthusiast with a passion for understanding how things work. 
+                No formal degrees, just curiosity and 20+ years of exploration.
             </div>
         </div>
         """, unsafe_allow_html=True)
