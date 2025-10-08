@@ -1,6 +1,6 @@
 """
 Travis Miner - AI Systems Architect
-Professional Portfolio & AIOS Demo
+Professional Portfolio - Modern Design
 """
 
 import streamlit as st
@@ -11,256 +11,550 @@ from datetime import datetime
 # Page configuration
 st.set_page_config(
     page_title="Travis Miner — AI Systems Architect",
-    page_icon="🚀",
+    page_icon="⚡",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
-# Custom CSS for professional styling
+# Professional CSS - Modern, sophisticated design
 st.markdown("""
 <style>
-    /* Import Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    /* Import modern fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
     
-    /* Global styles */
+    /* Reset and base styles */
     .main {
         font-family: 'Inter', sans-serif;
+        background: #0a0a0a;
+        color: #ffffff;
     }
     
-    .main-header {
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-        padding: 2rem;
-        border-radius: 15px;
-        color: white;
-        text-align: center;
-        margin-bottom: 2rem;
-        box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
-    }
+    /* Hide Streamlit branding */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
     
-    .hero-section {
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        padding: 3rem;
-        border-radius: 20px;
-        text-align: center;
-        margin-bottom: 2rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    .project-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        border-left: 5px solid #667eea;
-        margin-bottom: 1.5rem;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .project-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-    }
-    
-    .service-tier {
-        background: #f8f9fa;
-        padding: 2rem;
-        border-radius: 15px;
-        border: 2px solid #e9ecef;
-        text-align: center;
-        margin-bottom: 1rem;
-        transition: transform 0.3s ease;
-    }
-    
-    .service-tier:hover {
-        transform: translateY(-3px);
-    }
-    
-    .service-tier.featured {
-        border-color: #667eea;
+    /* Custom header */
+    .hero-container {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        transform: scale(1.05);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-    }
-    
-    .contact-box {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2rem;
-        border-radius: 20px;
-        color: white;
+        padding: 4rem 2rem;
         text-align: center;
-        box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+        position: relative;
+        overflow: hidden;
     }
     
-    .metric-card {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        border-top: 4px solid #667eea;
+    .hero-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        opacity: 0.3;
     }
     
-    .tech-badge {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin: 0;
+        background: linear-gradient(45deg, #ffffff, #e0e7ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.3rem;
+        font-weight: 400;
+        margin: 1rem 0 2rem 0;
+        opacity: 0.9;
+    }
+    
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.3);
         color: white;
-        padding: 0.4rem 1rem;
-        border-radius: 25px;
-        font-size: 0.85rem;
-        margin: 0.3rem;
-        display: inline-block;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+    
+    .btn-primary:hover {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .btn-secondary {
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    /* Navigation */
+    .nav-container {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(20px);
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    
+    .nav-content {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+    
+    .nav-link {
+        color: #ffffff;
+        text-decoration: none;
         font-weight: 500;
-        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
     }
     
-    .stats-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        padding: 2rem;
-        border-radius: 15px;
-        margin: 2rem 0;
-        text-align: center;
+    .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #667eea;
     }
     
-    .footer {
-        background: #2c3e50;
-        color: #ecf0f1;
-        padding: 2rem;
-        border-radius: 15px;
+    /* Content sections */
+    .section {
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
         text-align: center;
+        margin-bottom: 3rem;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    /* Cards */
+    .card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 2rem;
+        backdrop-filter: blur(20px);
+        transition: all 0.3s ease;
+        margin-bottom: 2rem;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(102, 126, 234, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #ffffff;
+    }
+    
+    .card-content {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+    }
+    
+    /* Tech stack */
+    .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
         margin-top: 2rem;
     }
     
-    .footer h3 {
+    .tech-category {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .tech-category h4 {
         color: #667eea;
         margin-bottom: 1rem;
+        font-weight: 600;
     }
     
-    .proven-results {
-        background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    .tech-item {
+        background: linear-gradient(135deg, #667eea, #764ba2);
         color: white;
-        padding: 1.5rem;
-        border-radius: 12px;
-        text-align: center;
-        margin: 1rem 0;
-        box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin: 0.3rem;
+        display: inline-block;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
     }
     
-    .proven-results h3 {
-        color: white;
-        margin-bottom: 1rem;
-    }
-    
-    /* Responsive design */
-    @media (max-width: 768px) {
-        .hero-section {
-            padding: 2rem 1rem;
-        }
-        
-        .project-card {
-            padding: 1.5rem;
-        }
-    }
-    
-    /* Animation for metrics */
-    @keyframes countUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+    /* Metrics */
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
     }
     
     .metric-card {
-        animation: countUp 0.6s ease-out;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        border: 1px solid rgba(102, 126, 234, 0.2);
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    
+    .metric-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(102, 126, 234, 0.4);
+        box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
+    }
+    
+    .metric-value {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #667eea;
+        margin-bottom: 0.5rem;
+    }
+    
+    .metric-label {
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 500;
+    }
+    
+    /* Project showcase */
+    .project-showcase {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+    
+    .project-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 2rem;
+        backdrop-filter: blur(20px);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .project-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+    
+    .project-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(102, 126, 234, 0.3);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    }
+    
+    .project-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #ffffff;
+    }
+    
+    .project-description {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+    
+    .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .project-link {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+    
+    .project-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    }
+    
+    /* Contact form */
+    .contact-section {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        border-radius: 20px;
+        padding: 3rem;
+        border: 1px solid rgba(102, 126, 234, 0.2);
+    }
+    
+    .contact-title {
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #ffffff;
+    }
+    
+    /* Footer */
+    .footer {
+        background: rgba(0, 0, 0, 0.8);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 3rem 2rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .footer-link {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-link:hover {
+        color: #667eea;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+        
+        .section {
+            padding: 2rem 1rem;
+        }
+        
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .nav-content {
+            gap: 1rem;
+        }
+    }
+    
+    /* Animation */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .animate-in {
+        animation: fadeInUp 0.6s ease-out;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# Header
+# Hero Section
 st.markdown("""
-<div class="main-header">
-    <h1>🚀 Travis Miner</h1>
-    <h2>AI Systems Architect</h2>
-    <p>Building the future of intelligent systems, one conversation at a time</p>
+<div class="hero-container">
+    <div class="hero-content">
+        <h1 class="hero-title">Travis Miner</h1>
+        <p class="hero-subtitle">AI Systems Architect • Building the Future of Intelligent Systems</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn-primary">Start a Project</a>
+            <a href="#projects" class="btn-secondary">View Work</a>
+        </div>
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Hero Section
+# Navigation
 st.markdown("""
-<div class="hero-section">
-    <h2>🧠 Specialized in Modular AI Architecture</h2>
-    <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-        Creating intelligent systems that adapt, learn, and evolve. 
-        From conversation routing to production-grade AI infrastructure.
-    </p>
-    <div style="display: flex; gap: 1rem; justify-content: center;">
-        <a href="mailto:travis@example.com" style="background: #667eea; color: white; padding: 1rem 2rem; border-radius: 5px; text-decoration: none; font-weight: bold;">📞 Book a Call</a>
-        <a href="https://github.com/Nemeca99/AIOS" style="background: white; color: #667eea; padding: 1rem 2rem; border-radius: 5px; text-decoration: none; font-weight: bold; border: 2px solid #667eea;">🧠 View AIOS</a>
+<div class="nav-container">
+    <div class="nav-content">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#demo" class="nav-link">AIOS Demo</a>
+        <a href="#contact" class="nav-link">Contact</a>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
 # Navigation Tabs
 st.markdown("---")
-about, projects, services, aios_demo, contact = st.tabs(["About", "Projects", "Services", "AIOS Demo", "Contact"])
+about, projects, services, demo, contact = st.tabs(["About", "Projects", "Services", "AIOS Demo", "Contact"])
 
 with about:
-    st.markdown("## 👋 About Me")
+    st.markdown('<div class="section">', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-title">About Me</h2>', unsafe_allow_html=True)
     
-    col1, col2 = st.columns([1, 2])
+    col1, col2 = st.columns([1, 1])
     
     with col1:
         st.markdown("""
-        ### 🎯 Mission
-        Building AI systems that think differently - starting with language, refining with math.
+        <div class="card">
+            <h3 class="card-title">🎯 Mission</h3>
+            <div class="card-content">
+                Building AI systems that think differently - starting with language, refining with math.
+                Creating intelligent systems that adapt, learn, and evolve in real-time.
+            </div>
+        </div>
         
-        ### 🧠 Philosophy
-        **"AI is a mirror, build backwards"** - Start with natural conversation, then layer intelligence on top.
+        <div class="card">
+            <h3 class="card-title">🧠 Philosophy</h3>
+            <div class="card-content">
+                <strong>"AI is a mirror, build backwards"</strong><br><br>
+                Start with natural conversation, then layer intelligence on top. 
+                Language-first architecture with mathematical refinement for optimal performance.
+            </div>
+        </div>
         
-        ### 🚀 Focus Areas
-        - **Conversation Routing Systems**
-        - **Adaptive AI Architecture** 
-        - **Production-Grade AI Infrastructure**
-        - **Neurodivergent-Inclusive Design**
-        """)
+        <div class="card">
+            <h3 class="card-title">🚀 Focus Areas</h3>
+            <div class="card-content">
+                • <strong>Conversation Routing Systems</strong><br>
+                • <strong>Adaptive AI Architecture</strong><br>
+                • <strong>Production-Grade AI Infrastructure</strong><br>
+                • <strong>Neurodivergent-Inclusive Design</strong>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
     
     with col2:
         st.markdown("""
-        ### 🛠️ Technical Stack
+        <div class="card">
+            <h3 class="card-title">🛠️ Technical Stack</h3>
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <h4>Backend & AI</h4>
+                    <span class="tech-item">Python</span>
+                    <span class="tech-item">FastAPI</span>
+                    <span class="tech-item">LM Studio</span>
+                    <span class="tech-item">Ollama</span>
+                    <span class="tech-item">SQLite</span>
+                </div>
+                <div class="tech-category">
+                    <h4>Frontend & Viz</h4>
+                    <span class="tech-item">Streamlit</span>
+                    <span class="tech-item">React</span>
+                    <span class="tech-item">Plotly</span>
+                    <span class="tech-item">D3.js</span>
+                </div>
+                <div class="tech-category">
+                    <h4>Infrastructure</h4>
+                    <span class="tech-item">Docker</span>
+                    <span class="tech-item">Railway</span>
+                    <span class="tech-item">GitHub Actions</span>
+                    <span class="tech-item">NDJSON</span>
+                </div>
+            </div>
+        </div>
         
-        **Backend & AI:**
-        <span class="tech-badge">Python</span>
-        <span class="tech-badge">FastAPI</span>
-        <span class="tech-badge">LM Studio</span>
-        <span class="tech-badge">Ollama</span>
-        <span class="tech-badge">SQLite</span>
+        <div class="card">
+            <h3 class="card-title">📊 Performance Metrics</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">94.2%</div>
+                    <div class="metric-label">Routing Accuracy</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">1.3s</div>
+                    <div class="metric-label">Avg Response Time</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">10/10</div>
+                    <div class="metric-label">Golden Tests</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Uptime</div>
+                </div>
+            </div>
+        </div>
         
-        **Frontend & Visualization:**
-        <span class="tech-badge">Streamlit</span>
-        <span class="tech-badge">React</span>
-        <span class="tech-badge">Plotly</span>
-        <span class="tech-badge">D3.js</span>
+        <div class="card">
+            <h3 class="card-title">📄 Resume</h3>
+            <div class="card-content">
+                Download my resume for a comprehensive overview of my experience and skills.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
         
-        **Infrastructure:**
-        <span class="tech-badge">Docker</span>
-        <span class="tech-badge">Railway</span>
-        <span class="tech-badge">GitHub Actions</span>
-        <span class="tech-badge">NDJSON Logging</span>
-        
-        ### 📊 Recent Achievements
-        - **AIOS v1.0** - Production-ready modular AI system
-        - **10/10 Golden Tests** - Passing regression detection
-        - **94.2% Routing Accuracy** - Optimized conversation flow
-        - **Real-time Adaptation** - Dynamic boundary adjustment
-        
-        ### 📄 Resume
-        **Download my resume for a quick overview:**
-        """)
-        
-        # Create a simple resume download button
-        resume_content = """
-# Travis Miner - AI Systems Architect
+        # Resume download
+        resume_content = """# Travis Miner - AI Systems Architect
 
 ## Professional Summary
-Specialized in building modular AI systems with language-first routing and mathematical refinement. 
-Expert in conversation systems, adaptive routing, and production-grade AI infrastructure.
+Specialized in building modular AI systems with language-first routing and mathematical refinement. Expert in conversation systems, adaptive routing, and production-grade AI infrastructure.
 
 ## Technical Skills
 - **AI/ML**: Python, FastAPI, LM Studio, Ollama, Neural Networks
@@ -287,171 +581,159 @@ Portfolio: [Live Demo](https://dj9k9jkcrqvbshyp4qdpfz.streamlit.app/)
         """
         
         st.download_button(
-            label="📄 Download Resume (PDF)",
+            label="📄 Download Resume",
             data=resume_content,
             file_name="Travis_Miner_Resume.md",
             mime="text/markdown",
-            help="Click to download my resume in Markdown format"
+            help="Download my resume in Markdown format"
         )
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
 with projects:
-    st.markdown("## 🚀 Featured Projects")
+    st.markdown('<div class="section">', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-title">Featured Projects</h2>', unsafe_allow_html=True)
     
-    # AIOS Project
-    with st.container():
-        st.markdown('<div class="project-card">', unsafe_allow_html=True)
-        st.markdown("### 🧠 AIOS — Modular AI Operating System")
-        st.markdown("""
-        **Production-grade conversation system** with language-first routing and mathematical refinement.
+    st.markdown("""
+    <div class="project-showcase">
+        <div class="project-card">
+            <h3 class="project-title">🧠 AIOS - Modular AI Operating System</h3>
+            <div class="project-description">
+                Production-grade conversation system with language-first routing and mathematical refinement. 
+                Features dynamic model switching, adaptive boundaries, and real-time learning capabilities.
+            </div>
+            <div class="project-tech">
+                <span class="tech-item">Python</span>
+                <span class="tech-item">FastAPI</span>
+                <span class="tech-item">LM Studio</span>
+                <span class="tech-item">SQLite</span>
+                <span class="tech-item">Docker</span>
+            </div>
+            <a href="https://github.com/Nemeca99/AIOS" class="project-link">View Repository</a>
+        </div>
         
-        **Key Features:**
-        - **Dynamic Model Switching** - Simple questions → embedder, complex → main model
-        - **Adaptive Boundaries** - Self-improving routing based on context
-        - **CARMA Learning Core** - Accumulates knowledge fragments over time
-        - **Hypothesis Testing** - Continuous system validation and optimization
-        - **Golden Test Sets** - Regression detection and quality assurance
-        - **SLO Monitoring** - Performance tracking with alerts
-        - **Provenance Logging** - Full conversation traceability
-        
-        **Stack:** Python · FastAPI · LM Studio · SQLite · Streamlit · Docker
-        """)
-        st.link_button("🔗 View Repository", "https://github.com/Nemeca99/AIOS")
-        st.markdown('</div>', unsafe_allow_html=True)
+        <div class="project-card">
+            <h3 class="project-title">💼 Professional Portfolio</h3>
+            <div class="project-description">
+                Modern, interactive portfolio showcasing AI systems and development capabilities. 
+                Features real-time demos, performance metrics, and professional presentation.
+            </div>
+            <div class="project-tech">
+                <span class="tech-item">Streamlit</span>
+                <span class="tech-item">Python</span>
+                <span class="tech-item">CSS3</span>
+                <span class="tech-item">GitHub</span>
+            </div>
+            <a href="https://dj9k9jkcrqvbshyp4qdpfz.streamlit.app/" class="project-link">Live Demo</a>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
-    # Portfolio Project
-    with st.container():
-        st.markdown('<div class="project-card">', unsafe_allow_html=True)
-        st.markdown("### 💼 Professional Portfolio")
-        st.markdown("""
-        **Interactive web portfolio** showcasing AI systems and development capabilities.
-        
-        **Features:**
-        - **Real-time AI Demo** - Live conversation with Luna personality
-        - **Project Showcases** - Detailed technical breakdowns
-        - **Service Offerings** - Clear pricing and deliverables
-        - **Professional Design** - Modern, accessible interface
-        
-        **Stack:** Streamlit · Python · Custom CSS · GitHub Pages
-        """)
-        st.link_button("🔗 Live Demo", "https://dj9k9jkcrqvbshyp4qdpfz.streamlit.app/")
-        st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 with services:
-    st.markdown("## 💼 Services & Pricing")
+    st.markdown('<div class="section">', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-title">Services & Pricing</h2>', unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.markdown('<div class="service-tier">', unsafe_allow_html=True)
-        st.markdown("### 🚀 Quick Projects")
-        st.markdown("**$200–$500**")
         st.markdown("""
-        - **2–5 days** delivery
-        - **1 revision** included
-        - **Basic AI integration**
-        - **Simple automation**
-        - **Documentation** included
-        """)
-        st.markdown('</div>', unsafe_allow_html=True)
+        <div class="card">
+            <h3 class="card-title">🚀 Quick Projects</h3>
+            <div class="card-content">
+                <div style="font-size: 2rem; font-weight: 700; color: #667eea; margin-bottom: 1rem;">$200–$500</div>
+                <ul>
+                    <li><strong>2–5 days</strong> delivery</li>
+                    <li><strong>1 revision</strong> included</li>
+                    <li>Basic AI integration</li>
+                    <li>Simple automation</li>
+                    <li>Documentation included</li>
+                </ul>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
     
     with col2:
-        st.markdown('<div class="service-tier featured">', unsafe_allow_html=True)
-        st.markdown("### 🎯 **Featured: AI Systems**")
-        st.markdown("**$500–$2000**")
         st.markdown("""
-        - **1–2 weeks** delivery
-        - **2 revisions** included
-        - **Custom AI architecture**
-        - **Conversation routing**
-        - **Production deployment**
-        - **Full documentation**
-        - **30-day support**
-        """)
-        st.markdown('</div>', unsafe_allow_html=True)
+        <div class="card" style="border: 2px solid #667eea; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));">
+            <h3 class="card-title">🎯 Featured: AI Systems</h3>
+            <div class="card-content">
+                <div style="font-size: 2rem; font-weight: 700; color: #667eea; margin-bottom: 1rem;">$500–$2000</div>
+                <ul>
+                    <li><strong>1–2 weeks</strong> delivery</li>
+                    <li><strong>2 revisions</strong> included</li>
+                    <li>Custom AI architecture</li>
+                    <li>Conversation routing</li>
+                    <li>Production deployment</li>
+                    <li>Full documentation</li>
+                    <li><strong>30-day support</strong></li>
+                </ul>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
     
     with col3:
-        st.markdown('<div class="service-tier">', unsafe_allow_html=True)
-        st.markdown("### 🏗️ Enterprise")
-        st.markdown("**$2000+**")
         st.markdown("""
-        - **2+ weeks** delivery
-        - **Unlimited revisions**
-        - **Complex AI systems**
-        - **Multi-model integration**
-        - **Scalable architecture**
-        - **Ongoing maintenance**
-        - **Custom SLAs**
-        """)
-        st.markdown('</div>', unsafe_allow_html=True)
+        <div class="card">
+            <h3 class="card-title">🏗️ Enterprise</h3>
+            <div class="card-content">
+                <div style="font-size: 2rem; font-weight: 700; color: #667eea; margin-bottom: 1rem;">$2000+</div>
+                <ul>
+                    <li><strong>2+ weeks</strong> delivery</li>
+                    <li><strong>Unlimited revisions</strong></li>
+                    <li>Complex AI systems</li>
+                    <li>Multi-model integration</li>
+                    <li>Scalable architecture</li>
+                    <li>Ongoing maintenance</li>
+                    <li>Custom SLAs</li>
+                </ul>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
     
-    st.markdown("### 🛡️ Quality Guarantees")
     st.markdown("""
-    - **GDPR-aligned data handling** - Privacy-first approach
-    - **Production-ready code** - Tested and documented
-    - **Source code included** - Full transparency
-    - **30-day support** - Post-delivery assistance
-    """)
+    <div class="card">
+        <h3 class="card-title">🛡️ Quality Guarantees</h3>
+        <div class="card-content">
+            • <strong>GDPR-aligned data handling</strong> - Privacy-first approach<br>
+            • <strong>Production-ready code</strong> - Tested and documented<br>
+            • <strong>Source code included</strong> - Full transparency<br>
+            • <strong>30-day support</strong> - Post-delivery assistance
+        </div>
+    </div>
     
-    # Proven Results Section
-    st.markdown('<div class="proven-results">', unsafe_allow_html=True)
-    st.markdown("### ✅ Proven Results")
-    st.markdown("""
-    **Real Performance Metrics from AIOS:**
-    - **10/10 Golden Tests** - Zero regression failures
-    - **94.2% Routing Accuracy** - Optimized conversation flow  
-    - **1.3s Average Response Time** - Lightning-fast AI responses
-    - **100% Uptime** - Production-grade reliability
-    """)
+    <div class="card" style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.1)); border: 1px solid rgba(46, 204, 113, 0.3);">
+        <h3 class="card-title" style="color: #2ecc71;">✅ Proven Results</h3>
+        <div class="card-content">
+            <strong>Real Performance Metrics from AIOS:</strong><br>
+            • <strong>10/10 Golden Tests</strong> - Zero regression failures<br>
+            • <strong>94.2% Routing Accuracy</strong> - Optimized conversation flow<br>
+            • <strong>1.3s Average Response Time</strong> - Lightning-fast AI responses<br>
+            • <strong>100% Uptime</strong> - Production-grade reliability
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
     st.markdown('</div>', unsafe_allow_html=True)
 
-with aios_demo:
-    st.markdown("## 🤖 AIOS System Demo")
-    st.markdown("**Experience the AIOS conversation system with real logs and outputs.**")
+with demo:
+    st.markdown('<div class="section">', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-title">AIOS System Demo</h2>', unsafe_allow_html=True)
     
-    # What You're Seeing
-    with st.expander("🧠 What You're Seeing", expanded=True):
-        st.markdown("""
-        **AIOS Conversation System** featuring:
-        
-        * **Language-first routing** (not embeddings-first)
-        * **Mathematical refinement** (±0.005 boundary adjustment)
-        * **Dynamic weight accumulation** across conversations
-        * **Real-time model switching** based on complexity
-        * **Production-grade response generation**
-        
-        **System Components:**
-        * **Conversation Math Engine** - Calculates routing weights
-        * **Luna Personality System** - Generates authentic responses
-        * **CARMA Learning Core** - Accumulates knowledge fragments
-        * **Adaptive Routing** - A/B tests and optimizes performance
-        """)
+    st.markdown("""
+    <div class="card">
+        <h3 class="card-title">🤖 Live System Demonstration</h3>
+        <div class="card-content">
+            Experience the AIOS conversation system with real logs and outputs. 
+            See how language-first routing and mathematical refinement create intelligent, adaptive responses.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
-    # Technical Details
-    with st.expander("🔧 Technical Architecture"):
-        st.markdown("""
-        **Routing System:**
-        * Simple questions → Fast embedder model (DIRECT mode)
-        * Complex questions → Main language model (ENGAGING mode)
-        * Dynamic boundary adjustment based on conversation context
-        
-        **Learning Components:**
-        * **CARMA Core** - Memory fragment accumulation
-        * **Hypothesis Testing** - Continuous system validation
-        * **Adaptive Boundaries** - Self-improving routing decisions
-        
-        **Quality Assurance:**
-        * **Golden Test Sets** - Regression detection
-        * **SLO Monitoring** - Performance tracking
-        * **Provenance Logging** - Full conversation traceability
-        """)
-    
-    # Sample Conversations
-    st.markdown("### 📝 Sample Conversations")
-    
-    # Conversation 1: Simple Question
+    # Sample conversations
     with st.expander("💬 Simple Question → Embedder Model (DIRECT)", expanded=True):
         st.markdown("**User:** What's 2+2?")
-        st.markdown("**System Analysis:**")
         st.code("""
         Message Weight Calculation:
         - Complexity: 0.1 (simple arithmetic)
@@ -462,14 +744,11 @@ with aios_demo:
         Model: Fast embedder model
         Response Type: Blunt, direct answer
         """)
-        st.markdown("**Luna's Response:**")
-        st.success("4")
-        st.markdown("*Direct, factual response from embedder model*")
+        st.success("**Luna's Response:** 4")
+        st.caption("Direct, factual response from embedder model")
     
-    # Conversation 2: Complex Question
     with st.expander("🧠 Complex Question → Main Model (ENGAGING)", expanded=True):
         st.markdown("**User:** Explain how neural networks learn through backpropagation and gradient descent.")
-        st.markdown("**System Analysis:**")
         st.code("""
         Message Weight Calculation:
         - Complexity: 0.9 (technical explanation required)
@@ -480,9 +759,8 @@ with aios_demo:
         Model: Main language model
         Response Type: Detailed, engaging explanation
         """)
-        st.markdown("**Luna's Response:**")
         st.info("""
-        Neural networks learn through a fascinating process called backpropagation! 
+        **Luna's Response:** Neural networks learn through a fascinating process called backpropagation! 
         Think of it like teaching someone to recognize patterns by showing them examples 
         and correcting their mistakes.
         
@@ -496,11 +774,9 @@ with aios_demo:
         It's like a sculptor refining their work - each iteration gets closer to the 
         perfect form. The network literally rewires itself based on experience!
         """)
-        st.markdown("*Engaging, detailed response from main model*")
+        st.caption("Engaging, detailed response from main model")
     
-    # Conversation 3: Dynamic Context
     with st.expander("🔄 Dynamic Context Accumulation", expanded=True):
-        st.markdown("**Conversation Flow:**")
         st.code("""
         Message 1: "Hi" (Weight: 0.30)
         Message 2: "How are you?" (Weight: 0.25) 
@@ -512,29 +788,10 @@ with aios_demo:
         
         Routing Decision: 0.85 > 0.497 → Use MAIN MODEL
         """)
-        st.markdown("**System Response:**")
         st.success("✅ **Adaptive routing** - Context influenced boundary adjustment")
     
-    # System Metrics
-    st.markdown("### 📊 System Performance")
-    
-    col1, col2, col3, col4 = st.columns(4)
-    
-    with col1:
-        st.metric("Routing Accuracy", "94.2%", "2.1%")
-    
-    with col2:
-        st.metric("Avg Response Time", "1.3s", "0.2s")
-    
-    with col3:
-        st.metric("Model Switch Rate", "67%", "5%")
-    
-    with col4:
-        st.metric("User Satisfaction", "4.8/5", "0.3")
-    
-    # Technical Logs
+    # Technical logs
     with st.expander("🔍 Technical Logs Sample"):
-        st.markdown("**Recent System Activity:**")
         st.code("""
         2025-10-07 19:45:23 [INFO] Conversation started: conv_abc123
         2025-10-07 19:45:23 [DEBUG] Message weight: 0.85, Boundary: 0.497
@@ -545,79 +802,89 @@ with aios_demo:
         2025-10-07 19:45:25 [INFO] Conversation completed: 2.1s
         """)
     
-    # Local Testing
-    st.markdown("### 🧪 Local Testing")
-    st.markdown("**Want to test AIOS locally?**")
-    st.code("""
-    # Clone the repository
-    git clone https://github.com/Nemeca99/AIOS.git
-    cd AIOS
+    st.markdown("""
+    <div class="card">
+        <h3 class="card-title">🧪 Local Testing</h3>
+        <div class="card-content">
+            <strong>Want to test AIOS locally?</strong><br><br>
+            ```bash
+            # Clone the repository
+            git clone https://github.com/Nemeca99/AIOS.git
+            cd AIOS
+            
+            # Install dependencies
+            pip install -r requirements.txt
+            
+            # Run the system
+            python main.py
+            
+            # Test conversation routing
+            python support_core/test_dynamic_weights.py
+            ```
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
-    # Install dependencies
-    pip install -r requirements.txt
-    
-    # Run the system
-    python main.py
-    
-    # Test conversation routing
-    python support_core/test_dynamic_weights.py
-    """)
-    
-    st.info("💡 **Note**: This demo shows you exactly what the system does with real logs and outputs!")
+    st.markdown('</div>', unsafe_allow_html=True)
 
 with contact:
-    st.markdown('<div class="contact-box">', unsafe_allow_html=True)
-    st.markdown("## 📞 Let's Build Something Amazing Together")
+    st.markdown('<div class="section">', unsafe_allow_html=True)
+    st.markdown('<div class="contact-section">', unsafe_allow_html=True)
+    st.markdown('<h2 class="contact-title">Let\'s Build Something Amazing Together</h2>', unsafe_allow_html=True)
+    
     st.markdown("""
-    **Ready to bring your AI vision to life?** Whether you need a quick automation script or a full-scale intelligent system, I'm here to help.
+    <div class="card" style="background: rgba(255, 255, 255, 0.1);">
+        <h3 class="card-title">📞 Get In Touch</h3>
+        <div class="card-content">
+            Ready to bring your AI vision to life? Whether you need a quick automation script or a full-scale intelligent system, I'm here to help.
+            <br><br>
+            <strong>Contact Information:</strong><br>
+            📧 <strong>Email:</strong> travis@example.com<br>
+            💼 <strong>LinkedIn:</strong> linkedin.com/in/travis-miner<br>
+            🐙 <strong>GitHub:</strong> github.com/Nemeca99<br>
+            🚀 <strong>Portfolio:</strong> [Live Demo](https://dj9k9jkcrqvbshyp4qdpfz.streamlit.app/)
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
-    **Get in touch:**
-    - 📧 **Email**: travis@example.com
-    - 💼 **LinkedIn**: [linkedin.com/in/travis-miner](https://linkedin.com/in/travis-miner)
-    - 🐙 **GitHub**: [github.com/Nemeca99](https://github.com/Nemeca99)
-    - 🚀 **Portfolio**: [Your Portfolio URL](https://your-portfolio-url.com)
-    """)
-    
-    # Contact Form
+    # Contact form
     st.markdown("### 💬 Send a Message")
     with st.form("contact_form"):
-        name = st.text_input("Name")
-        email = st.text_input("Email")
-        project_type = st.selectbox("Project Type", ["Quick Project", "AI System", "Enterprise", "Consultation"])
-        message = st.text_area("Message", placeholder="Tell me about your project...")
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            name = st.text_input("Name", placeholder="Your name")
+            email = st.text_input("Email", placeholder="your@email.com")
+        
+        with col2:
+            project_type = st.selectbox("Project Type", ["Quick Project", "AI System", "Enterprise", "Consultation"])
+            budget = st.selectbox("Budget Range", ["$200-500", "$500-2000", "$2000+", "Discuss"])
+        
+        message = st.text_area("Message", placeholder="Tell me about your project...", height=100)
         
         if st.form_submit_button("Send Message", type="primary"):
             st.success("Thanks for reaching out! I'll get back to you within 24 hours.")
     
     st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Footer
-st.markdown("---")
-st.markdown('<div class="footer">', unsafe_allow_html=True)
-st.markdown("### 🚀 Ready to Build Something Amazing?")
 st.markdown("""
-**Let's create intelligent systems that adapt, learn, and evolve together.**
-
-**Quick Stats:**
-- **10/10 Golden Tests** - Zero regression failures
-- **94.2% Routing Accuracy** - Optimized AI performance  
-- **1.3s Response Time** - Lightning-fast interactions
-- **100% Uptime** - Production-grade reliability
-""")
-
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.markdown("**📧 Contact**")
-    st.markdown("[travis@example.com](mailto:travis@example.com)")
-    
-with col2:
-    st.markdown("**🔗 Connect**")
-    st.markdown("[GitHub](https://github.com/Nemeca99) | [LinkedIn](https://linkedin.com/in/travis-miner)")
-    
-with col3:
-    st.markdown("**🚀 Portfolio**")
-    st.markdown("[Live Demo](https://dj9k9jkcrqvbshyp4qdpfz.streamlit.app/)")
-
-st.markdown("---")
-st.markdown("**Built with ❤️ using Streamlit | © 2025 Travis Miner**")
-st.markdown('</div>', unsafe_allow_html=True)
+<div class="footer">
+    <div class="footer-content">
+        <h3>Ready to Build Something Amazing?</h3>
+        <p>Let's create intelligent systems that adapt, learn, and evolve together.</p>
+        
+        <div class="footer-links">
+            <a href="mailto:travis@example.com" class="footer-link">Email</a>
+            <a href="https://github.com/Nemeca99" class="footer-link">GitHub</a>
+            <a href="https://linkedin.com/in/travis-miner" class="footer-link">LinkedIn</a>
+            <a href="https://dj9k9jkcrqvbshyp4qdpfz.streamlit.app/" class="footer-link">Portfolio</a>
+        </div>
+        
+        <p style="margin-top: 2rem; opacity: 0.6;">
+            Built with ❤️ using Streamlit | © 2025 Travis Miner
+        </p>
+    </div>
+</div>
+""", unsafe_allow_html=True)
