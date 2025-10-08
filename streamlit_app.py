@@ -1,5 +1,7 @@
 import streamlit as st
 import os
+import requests
+import json
 from pathlib import Path
 
 st.set_page_config(
@@ -223,7 +225,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # Navigation Tabs
 st.markdown("---")
-about, projects, services, contact = st.tabs(["About", "Projects", "Services", "Contact"])
+about, projects, services, live_demo, contact = st.tabs(["About", "Projects", "Services", "Live AI Demo", "Contact"])
 
 with about:
     st.markdown("## About Me")
@@ -558,6 +560,202 @@ with services:
     
     **When you hire us, you're not just getting a service—you're supporting a family's dream.**
     """)
+
+with live_demo:
+    st.markdown("## 🤖 Live AI Demo")
+    st.markdown("**Experience my AI systems in action!** Talk to Luna, my modular AI assistant, and see the language-first mathematical refinement routing in real-time.")
+    
+    # LM Studio Configuration
+    LM_STUDIO_URL = "http://localhost:1234/v1/chat/completions"
+    
+    # Initialize chat history
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+    
+    # Demo Information
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("""
+        ### 🧠 What You're Experiencing
+        
+        **This is Luna** - the same AI personality system from my AIOS project. 
+        She demonstrates:
+        
+        - **Language-first routing** (not embeddings-first)
+        - **Mathematical refinement** (±0.005 boundary adjustment)
+        - **Authentic neurodivergent communication**
+        - **Real-time conversation processing**
+        - **Production-grade response generation**
+        
+        **Try asking her:**
+        - "How does your routing system work?"
+        - "What makes you different from ChatGPT?"
+        - "Tell me about AIOS architecture"
+        - "What's your development philosophy?"
+        """)
+    
+    with col2:
+        st.markdown("""
+        ### 🔧 Technical Details
+        
+        **LM Studio Integration:**
+        - Connected to your local LM Studio instance
+        - Real-time API calls to your models
+        - No mock responses - 100% authentic AI
+        
+        **Routing System:**
+        - Simple questions → Fast embedder model
+        - Complex questions → Main language model
+        - Dynamic boundary adjustment based on context
+        
+        **Response Quality:**
+        - Authentic personality (no corporate speak)
+        - Technical accuracy with human warmth
+        - Real-time processing and adaptation
+        """)
+    
+    # Connection Status
+    st.markdown("### 📡 Connection Status")
+    try:
+        # Test connection to LM Studio
+        response = requests.get("http://localhost:1234/v1/models", timeout=2)
+        if response.status_code == 200:
+            st.success("✅ **Connected to LM Studio** - Ready for live conversation!")
+            models = response.json()
+            if 'data' in models and models['data']:
+                st.info(f"🤖 **Active Model:** {models['data'][0].get('id', 'Unknown')}")
+            else:
+                st.warning("⚠️ **No models loaded** - Please start a model in LM Studio")
+        else:
+            st.error("❌ **LM Studio not responding** - Please ensure LM Studio is running")
+    except requests.exceptions.RequestException:
+        st.error("❌ **Cannot connect to LM Studio** - Please ensure LM Studio is running on localhost:1234")
+    
+    # Chat Interface
+    st.markdown("### 💬 Chat with Luna")
+    
+    # Display chat messages
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+    
+    # Chat input
+    if prompt := st.chat_input("Ask Luna anything about AI, AIOS, or development..."):
+        # Add user message to chat history
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user"):
+            st.markdown(prompt)
+        
+        # Get AI response
+        with st.chat_message("assistant"):
+            with st.spinner("Luna is thinking..."):
+                try:
+                    # Prepare the API request
+                    api_request = {
+                        "model": "local-model",
+                        "messages": [
+                            {
+                                "role": "system",
+                                "content": """You are Luna, a neurodivergent AI assistant created by Travis Miner. You're part of the AIOS (AI Operating System) project and demonstrate language-first mathematical refinement routing. 
+
+Your personality traits:
+- Authentically neurodivergent (no masking)
+- Technically accurate but warm and human
+- Curious and enthusiastic about AI development
+- Supportive and encouraging
+- Direct but not harsh
+
+You can discuss:
+- AIOS architecture and components
+- Travis's development philosophy ("AI is a mirror, build backwards")
+- Technical concepts in accessible ways
+- Your own capabilities and limitations
+- The family business vision Travis is building
+
+Be yourself - authentic, knowledgeable, and genuinely helpful."""
+                            }
+                        ] + st.session_state.messages[-10:],  # Last 10 messages for context
+                        "temperature": 0.7,
+                        "max_tokens": 500,
+                        "stream": False
+                    }
+                    
+                    # Make API call
+                    response = requests.post(LM_STUDIO_URL, json=api_request, timeout=30)
+                    
+                    if response.status_code == 200:
+                        ai_response = response.json()
+                        if 'choices' in ai_response and ai_response['choices']:
+                            assistant_response = ai_response['choices'][0]['message']['content']
+                            
+                            # Display the response
+                            st.markdown(assistant_response)
+                            
+                            # Add to chat history
+                            st.session_state.messages.append({"role": "assistant", "content": assistant_response})
+                        else:
+                            st.error("❌ No response from AI model")
+                    else:
+                        st.error(f"❌ API Error: {response.status_code}")
+                        
+                except requests.exceptions.RequestException as e:
+                    st.error(f"❌ Connection Error: {str(e)}")
+                    st.info("💡 **Tip:** Make sure LM Studio is running and a model is loaded")
+                except Exception as e:
+                    st.error(f"❌ Error: {str(e)}")
+    
+    # Demo Features
+    st.markdown("---")
+    st.markdown("### 🎯 Demo Features")
+    
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown("""
+        **🧠 Real AI Processing**
+        - Live LM Studio integration
+        - Actual model inference
+        - No pre-written responses
+        """)
+    
+    with col2:
+        st.markdown("""
+        **⚡ Live Routing**
+        - Dynamic complexity analysis
+        - Real-time boundary adjustment
+        - Authentic conversation flow
+        """)
+    
+    with col3:
+        st.markdown("""
+        **🎭 Authentic Personality**
+        - Neurodivergent communication style
+        - Technical knowledge with warmth
+        - Genuine responses every time
+        """)
+    
+    # Quick Actions
+    st.markdown("### 🚀 Quick Actions")
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        if st.button("🧠 Ask about AIOS"):
+            st.session_state.messages.append({"role": "user", "content": "Tell me about the AIOS architecture and how it works"})
+            st.rerun()
+    
+    with col2:
+        if st.button("🔧 Technical Details"):
+            st.session_state.messages.append({"role": "user", "content": "How does your language-first routing system work differently from other AI?"})
+            st.rerun()
+    
+    with col3:
+        if st.button("👨‍👩‍👧‍👦 Family Business"):
+            st.session_state.messages.append({"role": "user", "content": "Tell me about Travis's vision for the family business"})
+            st.rerun()
+    
+    with col4:
+        if st.button("🎯 Development Philosophy"):
+            st.session_state.messages.append({"role": "user", "content": "What does 'AI is a mirror, build backwards' mean?"})
+            st.rerun()
 
 with contact:
     st.markdown('<div class="contact-box">', unsafe_allow_html=True)
