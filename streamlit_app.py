@@ -1032,23 +1032,20 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Footer
-st.markdown("""
-<div class="footer">
-    <div class="footer-content">
-        <h3>Ready to Build Something Amazing?</h3>
-        <p>Let's create intelligent systems that adapt, learn, and evolve together.</p>
-        
-        <div class="footer-links">
-            <a href="mailto:travis@example.com" class="footer-link">Email</a>
-            <a href="https://github.com/Nemeca99" class="footer-link">GitHub</a>
-            <a href="https://linkedin.com/in/travis-miner" class="footer-link">LinkedIn</a>
-            <a href="https://dj9k9jkcrqvbshyp4qdpfz.streamlit.app/" class="footer-link">Portfolio</a>
-        </div>
-        
-        <p style="margin-top: 2rem; opacity: 0.6;">
-            Built with passion using Streamlit | © 2025 Travis Miner
-        </p>
-    </div>
-</div>
-""", unsafe_allow_html=True)
+# Footer - Simplified to fix HTML rendering
+st.markdown("### Ready to Build Something Amazing?")
+st.markdown("Let's create intelligent systems that adapt, learn, and evolve together.")
+
+# Footer links using Streamlit components
+col1, col2, col3, col4 = st.columns(4)
+with col1:
+    st.markdown("[Email](mailto:travis@example.com)")
+with col2:
+    st.markdown("[GitHub](https://github.com/Nemeca99)")
+with col3:
+    st.markdown("[LinkedIn](https://linkedin.com/in/travis-miner)")
+with col4:
+    st.markdown("[Portfolio](https://dj9k9jkcrqvbshyp4qdpfz.streamlit.app/)")
+
+st.markdown("---")
+st.markdown("*Built with passion using Streamlit | © 2025 Travis Miner*")
