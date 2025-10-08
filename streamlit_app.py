@@ -437,6 +437,15 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# HERO IMAGE PLACEHOLDER
+st.markdown("""
+<div style="text-align: center; padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 15px; margin: 2rem 0; border: 2px dashed #667eea;">
+    <h4 style="color: #667eea; margin-bottom: 1rem;">[PLACEHOLDER_1 - HERO IMAGE]</h4>
+    <p style="opacity: 0.7;">Professional headshot or AI/tech-themed hero image</p>
+    <p style="font-size: 0.9rem; opacity: 0.5;">Recommended: 800x600px, professional photo or AI system visualization</p>
+</div>
+""", unsafe_allow_html=True)
+
 # Navigation
 st.markdown("""
 <div class="nav-container">
@@ -461,6 +470,15 @@ with about:
     col1, col2 = st.columns([1, 1])
     
     with col1:
+        # ABOUT SECTION IMAGE PLACEHOLDER
+        st.markdown("""
+        <div style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 2rem; border: 2px dashed #667eea;">
+            <h4 style="color: #667eea; margin-bottom: 1rem;">[PLACEHOLDER_2 - ABOUT IMAGE]</h4>
+            <p style="opacity: 0.7;">Professional photo, working setup, or AI visualization</p>
+            <p style="font-size: 0.8rem; opacity: 0.5;">Recommended: 400x300px</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
         st.markdown("""
         <div class="card">
             <h3 class="card-title">Mission</h3>
@@ -616,6 +634,15 @@ with projects:
         </div>
         """, unsafe_allow_html=True)
         
+        # PROJECT SCREENSHOT PLACEHOLDER
+        st.markdown("""
+        <div style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 12px; margin: 1rem 0; border: 2px dashed #667eea;">
+            <h4 style="color: #667eea; margin-bottom: 1rem;">[PLACEHOLDER_3 - AIOS SCREENSHOT]</h4>
+            <p style="opacity: 0.7;">AIOS system interface, dashboard, or code visualization</p>
+            <p style="font-size: 0.8rem; opacity: 0.5;">Recommended: 600x400px, system UI or code screenshots</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
         # Add a visual element for AIOS
         st.markdown("**System Architecture:**")
         st.code("""
@@ -655,6 +682,15 @@ with projects:
         </div>
         """, unsafe_allow_html=True)
         
+        # PORTFOLIO PROJECT IMAGE PLACEHOLDER
+        st.markdown("""
+        <div style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 12px; margin: 1rem 0; border: 2px dashed #667eea;">
+            <h4 style="color: #667eea; margin-bottom: 1rem;">[PLACEHOLDER_4 - PORTFOLIO SCREENSHOT]</h4>
+            <p style="opacity: 0.7;">Portfolio website screenshots or design mockups</p>
+            <p style="font-size: 0.8rem; opacity: 0.5;">Recommended: 600x400px, website design or UI mockups</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
         # Add metrics visualization
         st.markdown("**Performance Metrics:**")
         import plotly.graph_objects as go
@@ -677,6 +713,15 @@ with projects:
 with services:
     st.markdown('<div class="section">', unsafe_allow_html=True)
     st.markdown('<h2 class="section-title">Services & Pricing</h2>', unsafe_allow_html=True)
+    
+    # SERVICES VISUAL PLACEHOLDER
+    st.markdown("""
+    <div style="text-align: center; padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 15px; margin: 2rem 0; border: 2px dashed #667eea;">
+        <h4 style="color: #667eea; margin-bottom: 1rem;">[PLACEHOLDER_5 - SERVICES VISUAL]</h4>
+        <p style="opacity: 0.7;">Services illustration, pricing graphics, or process visualization</p>
+        <p style="font-size: 0.9rem; opacity: 0.5;">Recommended: 800x400px, infographic or service illustration</p>
+    </div>
+    """, unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns(3)
     
@@ -811,6 +856,15 @@ with demo:
     </div>
     """, unsafe_allow_html=True)
     
+    # DEMO VISUAL PLACEHOLDER
+    st.markdown("""
+    <div style="text-align: center; padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 15px; margin: 2rem 0; border: 2px dashed #667eea;">
+        <h4 style="color: #667eea; margin-bottom: 1rem;">[PLACEHOLDER_6 - DEMO VISUALIZATION]</h4>
+        <p style="opacity: 0.7;">AIOS system demo screenshots, interface mockups, or workflow diagrams</p>
+        <p style="font-size: 0.9rem; opacity: 0.5;">Recommended: 800x500px, system interface or demo screenshots</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
     # Add a visual flow diagram
     st.markdown("### System Flow")
     st.code("""
@@ -924,6 +978,15 @@ with contact:
     st.markdown('<div class="contact-section">', unsafe_allow_html=True)
     st.markdown('<h2 class="contact-title">Let\'s Build Something Amazing Together</h2>', unsafe_allow_html=True)
     
+    # CONTACT VISUAL PLACEHOLDER
+    st.markdown("""
+    <div style="text-align: center; padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 15px; margin: 2rem 0; border: 2px dashed #667eea;">
+        <h4 style="color: #667eea; margin-bottom: 1rem;">[PLACEHOLDER_7 - CONTACT VISUAL]</h4>
+        <p style="opacity: 0.7;">Contact illustration, collaboration image, or professional networking graphic</p>
+        <p style="font-size: 0.9rem; opacity: 0.5;">Recommended: 600x300px, professional contact or collaboration image</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
     st.markdown("""
     <div class="card" style="background: rgba(255, 255, 255, 0.1);">
         <h3 class="card-title">Get In Touch</h3>
@@ -959,6 +1022,15 @@ with contact:
     
     st.markdown('</div>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
+
+# FOOTER VISUAL PLACEHOLDER
+st.markdown("""
+<div style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 12px; margin: 2rem 0; border: 2px dashed #667eea;">
+    <h4 style="color: #667eea; margin-bottom: 1rem;">[PLACEHOLDER_8 - FOOTER VISUAL]</h4>
+    <p style="opacity: 0.7;">Footer logo, signature, or closing visual element</p>
+    <p style="font-size: 0.8rem; opacity: 0.5;">Recommended: 400x200px, logo or signature image</p>
+</div>
+""", unsafe_allow_html=True)
 
 # Footer
 st.markdown("""
