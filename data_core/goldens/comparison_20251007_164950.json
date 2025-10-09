@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-10-07T16:49:50.901680",
+  "baseline_timestamp": "2025-10-07T15:52:46.955122",
+  "regression_threshold": 0.25,
+  "regressions_detected": [
+    {
+      "metric": "main_model_routing_percent",
+      "baseline": 60.0,
+      "current": 0.0,
+      "change": 60.0,
+      "threshold": 25.0
+    }
+  ],
+  "improvements_detected": [],
+  "status": "FAIL"
+}

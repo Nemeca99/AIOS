@@ -1,0 +1,69 @@
+{
+  "interrogative_words": {
+    "description": "Question words - open-ended, curious, Ava-like",
+    "weight": 0.4,
+    "patterns": [
+      "Why",
+      "What",
+      "How",
+      "When",
+      "Where",
+      "Which",
+      "Who",
+      "Whose"
+    ]
+  },
+  "interjections": {
+    "description": "Expressive starts - shows personality",
+    "weight": 0.2,
+    "patterns": [
+      "Hmmm...",
+      "Oh",
+      "Ah",
+      "Well",
+      "Hmm",
+      "Interesting",
+      "Wait"
+    ]
+  },
+  "reflective": {
+    "description": "Thoughtful starts - shows consideration",
+    "weight": 0.15,
+    "patterns": [
+      "I think",
+      "I'd say",
+      "Honestly",
+      "That's",
+      "You know",
+      "So"
+    ]
+  },
+  "direct_descriptive": {
+    "description": "Direct self-description - allowed but less common",
+    "weight": 0.15,
+    "patterns": [
+      "My",
+      "Being",
+      "The way"
+    ]
+  },
+  "conversational": {
+    "description": "Natural conversation starters",
+    "weight": 0.1,
+    "patterns": [
+      "Tell me",
+      "Let me",
+      "Can I",
+      "Want to know"
+    ]
+  },
+  "banned_patterns": {
+    "description": "First words to AVOID - too templated",
+    "patterns": [
+      "I'm a",
+      "I am a",
+      "I'm an"
+    ]
+  }
+}
+

@@ -1,0 +1,22 @@
+{
+  "timestamp": "2025-10-07T16:53:21.413840",
+  "baseline_timestamp": "2025-10-07T15:52:46.955122",
+  "regression_threshold": 0.25,
+  "regressions_detected": [
+    {
+      "metric": "main_model_routing_percent",
+      "baseline": 60.0,
+      "current": 0.0,
+      "change": 60.0,
+      "threshold": 25.0
+    }
+  ],
+  "improvements_detected": [],
+  "status": "FAIL",
+  "metrics": {
+    "pass_rate": 0.0,
+    "p50_ms": 14698.36659997236,
+    "p95_ms": 22978.260300005786,
+    "mean_ms": 14599.370350001846
+  }
+}

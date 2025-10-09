@@ -1541,7 +1541,7 @@ class SystemConfig:
     
     # Embedding Settings
     DEFAULT_EMBEDDING_DIMENSION = 1024  # mixedbread-ai/mxbai-embed-large-v1 uses 1024 dimensions
-    DEFAULT_EMBEDDING_MODEL = "llama-3.2-1b-instruct-abliterated"  # Use available model for embeddings
+    DEFAULT_EMBEDDING_MODEL = "lite-mistral-150m-v2-instruct@q6_k_l"  # Ultra-fast 150M Llama-arch model (0.15GB)
     EMBEDDING_BATCH_SIZE = 32
     FALLBACK_DIMENSION = 1024
     

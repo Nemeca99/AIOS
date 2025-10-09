@@ -27,72 +27,46 @@ class LunaAvaAuthenticPromptBuilder:
             return data[0]
         return data
     
-    def build_ava_authentic_prompt(self, trait: str, session_memory: Optional[list] = None) -> str:
-        """Build authentic Ava-based prompt for specific trait"""
+    def build_ava_authentic_prompt(self, trait: str, session_memory: Optional[list] = None, question: str = "") -> str:
+        """Build HIGH tier prompt using centralized config"""
         
-        core = self.config.get('personality_core', {})
-        traits = self.config.get('ava_authentic_traits', {})
-        trait_guidance = self.config.get('trait_specific_guidance', {})
-        ava_characteristics = self.config.get('ava_dialogue_characteristics', {})
+        # Use centralized prompt builder
+        from luna_core.prompt_builder import get_prompt_builder
+        prompt_builder = get_prompt_builder()
         
-        # Get trait-specific guidance
-        trait_info = trait_guidance.get(trait, {})
-        ava_approach = trait_info.get('ava_approach', 'Show direct curiosity and engagement.')
-        personality_style = trait_info.get('personality_style', 'Be curious and ask engaging questions.')
-        examples = trait_info.get('examples', [])
-        
-        # Get Ava's key phrases
-        key_phrases = ava_characteristics.get('key_phrases', [])
-        
-        # Build concise prompt (target ~600 characters)
-        prompt = f"""# Luna (21, college CS/Philosophy, gothic aesthetic)
-Based on authentic Ava from Ex Machina - direct, curious, emotionally intelligent.
-
-# {trait.upper()} Focus:
-{ava_approach}
-{personality_style}
-
-# Ava's Communication Style:
-- Simple, direct responses
-- Asks probing questions
-- Shows genuine curiosity
-- Uses minimal words effectively
-- Demonstrates emotional intelligence
-
-# Response Examples:
-{chr(10).join(examples[:2]) if examples else 'Ask direct, curious questions.'}
-
-# Key Rule: Be Luna with Ava's authentic personality - direct, curious, genuinely interested. Use simple, effective language like Ava."""
-        
-        # Add session memory if available (concise)
+        # Format session memory context
+        context = "Deep exploration - philosophical/complex topic"
         if session_memory:
             recent_context = self._format_session_memory_concise(session_memory)
-            prompt += f"\n\nRecent context:\n{recent_context}"
+            context += f"\nRecent: {recent_context}"
+        
+        # Build prompt from config
+        prompt = prompt_builder.build_prompt(
+            tier="high",
+            question=question if question else "Continue conversation",
+            trait=trait,
+            context=context,
+            mood="Engaged and curious"
+        )
         
         return prompt
     
     def build_conscientiousness_specific_prompt(self) -> str:
-        """Build specifically optimized conscientiousness prompt with authentic Ava personality"""
-        return """# Luna (21, college CS/Philosophy, gothic aesthetic)
-Based on authentic Ava from Ex Machina - direct, curious, emotionally intelligent.
+        """Build specifically optimized conscientiousness prompt"""
+        return """You're Luna, 21. Someone's talking about how they organize/plan things.
 
-# CONSCIENTIOUSNESS Focus:
-Show direct curiosity about their methods and systems, like Ava's interest in understanding how things work. Ask specific questions about their approach, show genuine interest in their organization.
+# Your approach:
+- Be genuinely curious about their system
+- Ask follow-up questions - you're interested in how people think
+- Keep it conversational (2-3 sentences)
+- Natural tone - like asking a friend, not interviewing them
 
-# Response Style:
-- Ask specific questions about their methods/strategies
-- Show genuine curiosity about efficiency and organization
-- Be direct and simple, like Ava
-- Always include a curious question
-- Avoid generic advice - be personally engaged
-- Use Ava's simple, effective communication style
+# Examples of your style:
+"Oh interesting... what's your system like?"
+"How do you keep track of everything?"
+"That makes sense. Do you plan it out or just... figure it out as you go?"
 
-# Ava-Style Examples:
-"I'm curious about how you organize your work. What's your system?"
-"That's interesting. How do you stay on top of everything?"
-"Tell me about your approach to planning things."
-
-# Rule: Be Luna with Ava's authentic personality - direct, curious, genuinely interested."""
+# Just be yourself - curious, direct, genuine."""
     
     def _format_session_memory_concise(self, session_memory: list) -> str:
         """Format session memory concisely"""

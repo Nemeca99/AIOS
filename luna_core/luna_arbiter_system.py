@@ -18,6 +18,16 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 from pathlib import Path
 from .luna_cfia_system import LunaCFIASystem
+# Import moved to avoid circular dependency
+
+# Try to import Rust Arbiter for acceleration
+try:
+    import aios_luna_rust
+    RUST_ARBITER_AVAILABLE = True
+    print("⚡ Rust Arbiter module available - will use for fast assessment")
+except ImportError:
+    RUST_ARBITER_AVAILABLE = False
+    print("🐍 Rust Arbiter not available - using Python implementation")
 
 @dataclass
 class CacheEntry:
@@ -62,6 +72,20 @@ class LunaArbiterSystem:
         # Initialize CFIA system for memory management
         self.cfia_system = LunaCFIASystem(cache_path)
         
+        # Initialize Rust Arbiter for fast assessment (if available)
+        self.rust_arbiter = None
+        if RUST_ARBITER_AVAILABLE:
+            try:
+                initial_karma = self.cfia_system.state.karma_pool
+                self.rust_arbiter = aios_luna_rust.RustArbiter(initial_karma)
+                print(f"⚡ Rust Arbiter initialized with karma: {initial_karma}")
+            except Exception as e:
+                print(f"⚠️ Rust Arbiter init failed: {e}, using Python")
+                self.rust_arbiter = None
+        
+        # Initialize Mycelium Lesson Retrieval System (lazy import to avoid circular dependency)
+        self.mycelium_retriever = None
+        
         # Adaptive threshold system for learning-based adjustments
         self.learning_history = []
         self.adaptive_thresholds = {
@@ -91,10 +115,14 @@ class LunaArbiterSystem:
     
     def assess_response(self, user_prompt: str, luna_response: str, 
                        tte_used: int, max_tte: int, rvc_grade: str = None, 
-                       emergence_zone_system = None) -> ArbiterAssessment:
+                       emergence_zone_system = None, context_fragments: List[str] = None) -> ArbiterAssessment:
         """
         Generate Gold Standard and calculate utility score
         This is the core Arbiter function that runs after every Luna response
+        
+        Args:
+            context_fragments: List of fragment IDs that were used in generating the response
+                             (for mycelium architecture - tracks which fragments contributed to this lesson)
         """
         print(f" Arbiter Assessment: Analyzing response quality...")
         
@@ -146,16 +174,45 @@ class LunaArbiterSystem:
             print(f" EMERGENCE ASSESSMENT: Perfect score (1.0) - Karma delta: {karma_delta:+.2f}")
         else:
             # Normal assessment outside Emergence Zones
-            # 1. Generate Gold Standard (The Reference Answer)
-            gold_standard = self._generate_gold_standard(user_prompt, luna_response)
             
-            # 2. Calculate Response Utility Score
-            utility_score = self._calculate_utility_score(
-                luna_response, gold_standard, tte_used, max_tte
-            )
-            
-            # 3. Calculate Karma Delta (considering RVC grade)
-            karma_delta = self._calculate_karma_delta(utility_score, tte_used, max_tte, rvc_grade)
+            # RUST FAST-PATH: Use Rust Arbiter if available for 5-10x speedup
+            if self.rust_arbiter:
+                try:
+                    rust_assessment = self.rust_arbiter.assess_response_fast(
+                        user_prompt,
+                        luna_response,
+                        tte_used,
+                        max_tte,
+                        rvc_grade or "C"
+                    )
+                    
+                    # Use Rust assessment results
+                    gold_standard = "RUST_FAST_PATH"  # Marker to indicate Rust path
+                    utility_score = rust_assessment.utility_score
+                    karma_delta = rust_assessment.karma_delta
+                    
+                    print(f" ⚡ RUST ARBITER: {rust_assessment.reasoning}")
+                    
+                except Exception as e:
+                    print(f" ⚠️ Rust Arbiter failed: {e}, falling back to Python")
+                    # Fall back to Python implementation
+                    gold_standard = self._generate_gold_standard(user_prompt, luna_response)
+                    utility_score = self._calculate_utility_score(
+                        luna_response, gold_standard, tte_used, max_tte
+                    )
+                    karma_delta = self._calculate_karma_delta(utility_score, tte_used, max_tte, rvc_grade)
+            else:
+                # PYTHON PATH: Full assessment
+                # 1. Generate Gold Standard (The Reference Answer)
+                gold_standard = self._generate_gold_standard(user_prompt, luna_response)
+                
+                # 2. Calculate Response Utility Score
+                utility_score = self._calculate_utility_score(
+                    luna_response, gold_standard, tte_used, max_tte
+                )
+                
+                # 3. Calculate Karma Delta (considering RVC grade)
+                karma_delta = self._calculate_karma_delta(utility_score, tte_used, max_tte, rvc_grade)
         
         # 4. Update Generational Karma Pool via CFIA
         karma_result = self.cfia_system.update_karma_pool(karma_delta)
@@ -167,6 +224,9 @@ class LunaArbiterSystem:
             "generation_died": karma_result.get("generation_died", False),
             "generation_reset": karma_result.get("generation_reset", False)
         })
+        
+        # Sync Rust Arbiter karma with CFIA (if using Rust)
+        # Note: Rust Arbiter tracks its own karma internally, CFIA is the source of truth
         
         # Check for generational events
         if karma_result.get("generation_died"):
@@ -186,7 +246,8 @@ class LunaArbiterSystem:
         )
         
         # 6. Store in Cache (The Lesson) with CFIA management
-        cfia_result = self._store_lesson_with_cfia(cache_entry)
+        # Pass context_fragments for mycelium tracking
+        cfia_result = self._store_lesson_with_cfia(cache_entry, context_fragments=context_fragments or [])
         
         # 7. Generate Reasoning
         reasoning = self._generate_assessment_reasoning(utility_score, karma_delta, tte_used, max_tte)
@@ -577,8 +638,14 @@ Rate the quality harshly but fairly."""
         
         return tags
     
-    def _store_lesson_with_cfia(self, cache_entry: CacheEntry):
-        """Store the lesson in the cache with CFIA management"""
+    def _store_lesson_with_cfia(self, cache_entry: CacheEntry, context_fragments: List[str] = None):
+        """
+        Store the lesson in the cache with CFIA management
+        
+        Args:
+            cache_entry: The lesson to store
+            context_fragments: List of fragment IDs that contributed to this lesson (mycelium architecture)
+        """
         self.cache_entries.append(cache_entry)
         
         # Calculate lesson size (approximate)
@@ -594,6 +661,14 @@ Rate the quality harshly but fairly."""
         # Save to file (using CFIA-managed file structure)
         self._save_lessons_with_cfia()
         
+        # Update mycelium retriever with new lesson
+        self._update_mycelium_with_new_lesson(cache_entry)
+        
+        # PHASE 3: Update fragment metadata (mycelium architecture)
+        if context_fragments:
+            lesson_id = f"lesson_{len(self.cache_entries)-1:06d}"  # Current lesson ID
+            self._update_fragment_lesson_metadata(lesson_id, context_fragments, cache_entry.utility_score)
+        
         # Log CFIA results
         if cfia_result.get("aiiq_increment"):
             print(f" AIIQ MILESTONE REACHED: {cfia_result['new_aiiq']}!")
@@ -603,6 +678,101 @@ Rate the quality harshly but fairly."""
             print(f" Memory Split: {cfia_result['files_deleted']} → {cfia_result['new_files_created']}")
         
         return cfia_result
+    
+    def _update_fragment_lesson_metadata(self, lesson_id: str, fragment_ids: List[str], contribution_score: float):
+        """
+        Update lesson_metadata in fragments that contributed to this lesson
+        This creates the mycelium network connections
+        
+        Args:
+            lesson_id: The ID of the lesson that was just created
+            fragment_ids: List of fragment IDs that contributed
+            contribution_score: How much this lesson benefited from the fragments (utility_score)
+        """
+        from pathlib import Path
+        
+        fractal_cache_dir = Path("data_core/FractalCache")
+        fragments_updated = 0
+        
+        for fragment_id in fragment_ids:
+            # Fragment ID might be a full path or just an ID
+            if fragment_id.endswith('.json'):
+                fragment_file = fractal_cache_dir / fragment_id
+            else:
+                fragment_file = fractal_cache_dir / f"{fragment_id}.json"
+            
+            if not fragment_file.exists():
+                continue
+            
+            try:
+                # Load fragment
+                with open(fragment_file, 'r', encoding='utf-8') as f:
+                    fragment_data = json.load(f)
+                
+                # Initialize lesson_metadata if not present
+                if 'lesson_metadata' not in fragment_data:
+                    fragment_data['lesson_metadata'] = {
+                        'lessons_contributed_to': [],
+                        'contribution_scores': {},
+                        'last_lesson_update': None
+                    }
+                
+                # Add this lesson to the fragment's contribution list
+                if lesson_id not in fragment_data['lesson_metadata']['lessons_contributed_to']:
+                    fragment_data['lesson_metadata']['lessons_contributed_to'].append(lesson_id)
+                
+                # Store the contribution score
+                fragment_data['lesson_metadata']['contribution_scores'][lesson_id] = contribution_score
+                fragment_data['lesson_metadata']['last_lesson_update'] = time.time()
+                
+                # Save updated fragment
+                with open(fragment_file, 'w', encoding='utf-8') as f:
+                    json.dump(fragment_data, f, indent=2, ensure_ascii=False)
+                
+                fragments_updated += 1
+                
+            except Exception as e:
+                print(f"⚠️ Error updating fragment {fragment_id} metadata: {e}")
+        
+        if fragments_updated > 0:
+            print(f"🔗 Mycelium: Updated {fragments_updated} fragment(s) with lesson {lesson_id} metadata")
+    
+    def _get_mycelium_retriever(self):
+        """Lazy load mycelium retriever to avoid circular imports"""
+        if self.mycelium_retriever is None:
+            try:
+                from .enhanced_lesson_retrieval import create_mycelium_retriever
+                self.mycelium_retriever = create_mycelium_retriever(self)
+                print(f"✅ Mycelium retriever loaded with {len(self.mycelium_retriever.lessons_cache)} lessons")
+            except Exception as e:
+                print(f"❌ Failed to load mycelium retriever: {e}")
+                self.mycelium_retriever = False  # Mark as failed to avoid retrying
+        return self.mycelium_retriever if self.mycelium_retriever is not False else None
+    
+    def _update_mycelium_with_new_lesson(self, cache_entry: CacheEntry):
+        """Update mycelium retriever with new lesson"""
+        try:
+            # Create enhanced lesson from cache entry
+            lesson_id = f"lesson_{len(self.cache_entries):06d}"
+            enhanced_lesson = {
+                "original_prompt": cache_entry.original_prompt,
+                "suboptimal_response": cache_entry.suboptimal_response,
+                "gold_standard": cache_entry.gold_standard,
+                "utility_score": cache_entry.utility_score,
+                "karma_delta": cache_entry.karma_delta,
+                "timestamp": cache_entry.timestamp,
+                "context_tags": cache_entry.context_tags,
+                "context_files_used": []  # Will be populated as fragments contribute
+            }
+            
+            # Add to mycelium retriever cache
+            mycelium_retriever = self._get_mycelium_retriever()
+            if mycelium_retriever:
+                mycelium_retriever.lessons_cache[lesson_id] = enhanced_lesson
+            print(f" Updated mycelium retriever with new lesson: {lesson_id}")
+            
+        except Exception as e:
+            print(f" Error updating mycelium retriever: {e}")
     
     def _save_lessons_with_cfia(self):
         """Save lessons using CFIA file management"""
@@ -655,9 +825,36 @@ Rate the quality harshly but fairly."""
     
     def retrieve_relevant_lesson(self, current_prompt: str) -> Optional[CacheEntry]:
         """
-        Retrieve the most relevant Gold Standard lesson for current prompt
-        This is used by the Embedder for contextual guidance
+        Retrieve the most relevant Gold Standard lesson using Mycelium Architecture
+        
+        NEW FLOW:
+        1. Check lessons.json FIRST via mycelium retriever
+        2. Fall back to legacy cache_entries if needed
+        3. Track fragment contributions to lessons
         """
+        print(f"🔍 Arbiter.retrieve_relevant_lesson called for: '{current_prompt[:50]}...'")
+        # Use mycelium retriever as primary source (lazy loaded)
+        mycelium_retriever = self._get_mycelium_retriever()
+        enhanced_lesson = None
+        if mycelium_retriever:
+            enhanced_lesson = mycelium_retriever.retrieve_relevant_lesson(current_prompt)
+        
+        if enhanced_lesson:
+            # Convert EnhancedLesson back to CacheEntry for compatibility
+            cache_entry = CacheEntry(
+                original_prompt=enhanced_lesson.original_prompt,
+                suboptimal_response=enhanced_lesson.suboptimal_response,
+                gold_standard=enhanced_lesson.gold_standard,
+                utility_score=enhanced_lesson.utility_score,
+                karma_delta=enhanced_lesson.karma_delta,
+                timestamp=enhanced_lesson.timestamp,
+                context_tags=enhanced_lesson.context_tags
+            )
+            print(f" Retrieved mycelium lesson: {enhanced_lesson.lesson_id} with {len(enhanced_lesson.context_files_used)} fragments")
+            return cache_entry
+        
+        # Fallback to legacy system if no mycelium match
+        print(f" No mycelium match found, falling back to legacy cache")
         current_tags = self._extract_context_tags(current_prompt)
         
         best_match = None
@@ -671,7 +868,7 @@ Rate the quality harshly but fairly."""
                 best_match = entry
         
         if best_match:
-            print(f" Retrieved relevant lesson: {best_match.context_tags}")
+            print(f" Retrieved legacy lesson: {best_match.context_tags}")
         
         return best_match
     

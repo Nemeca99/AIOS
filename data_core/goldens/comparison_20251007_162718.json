@@ -1,0 +1,8 @@
+{
+  "timestamp": "2025-10-07T16:27:18.937703",
+  "baseline_timestamp": "2025-10-07T15:52:46.955122",
+  "regression_threshold": 0.25,
+  "regressions_detected": [],
+  "improvements_detected": [],
+  "status": "PASS"
+}

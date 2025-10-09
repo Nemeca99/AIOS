@@ -1656,21 +1656,33 @@ Respond as Luna in 1-2 sentences:"""
             # self.logger.log("LUNA", f"System prompt built | length={len(system_prompt)}")
             
             # LAYER II: Inference-Time Control (Logit Surgeon)
-            # ZERO EXTERNAL GUARDRAILS - Pure economic policy control
+            # DYNAMIC LLM PARAMETERS - Adjust based on context
+            from luna_core.dynamic_llm_parameters import get_dynamic_llm_manager
+            
+            dynamic_manager = get_dynamic_llm_manager()
+            llm_params = dynamic_manager.get_parameters(
+                question=question,
+                session_memory=session_memory,
+                complexity_tier=response_value_assessment.tier.value.upper()
+            )
+            
+            # Log dynamic parameter selection
+            self.logger.log("LUNA", f"Dynamic LLM Params: temp={llm_params.temperature:.2f}, top_p={llm_params.top_p:.2f}, top_k={llm_params.top_k} | {llm_params.reasoning}")
+            
             base_params = {
                 "model": self.chat_model,
                 "messages": [
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": question}
                 ],
-                # ZERO EXTERNAL GUARDRAILS - Strip away all external control
-                "temperature": 0.0,    # Pure deterministic (T → 0)
-                "top_p": 1.0,         # Consider entire vocabulary (Top-p → 1.0)
-                "top_k": 0,           # No k-limit (neutralizes token filtering)
-                "presence_penalty": 0.0,  # No external presence penalty
-                "frequency_penalty": 0.0, # No external frequency penalty
-                "repetition_penalty": 1.0, # No external repetition penalty (Rep_p → 1.0)
-                "max_tokens": 32768,  # Model limit (Max_Tokens → Model Limit)
+                # DYNAMIC PARAMETERS - Adjusted per message
+                "temperature": llm_params.temperature,
+                "top_p": llm_params.top_p,
+                "top_k": llm_params.top_k,
+                "presence_penalty": llm_params.presence_penalty,
+                "frequency_penalty": llm_params.frequency_penalty,
+                "repetition_penalty": llm_params.repetition_penalty,
+                "max_tokens": 32768,  # Model limit (adjusted below per tier)
                 "stream": True        # Enable streaming for efficiency
             }
             
@@ -1857,6 +1869,175 @@ Respond as Luna in 1-2 sentences:"""
             return "direct_challenge"
         
         return "standard"
+
+    def _assess_question_complexity(self, question: str) -> float:
+        """
+        Assess question complexity on a scale of 0.0 (trivial) to 1.0 (complex).
+        Considers multiple factors: length, vocabulary, reasoning requirements.
+        """
+        question_lower = question.lower().strip()
+        
+        # Base complexity from question length (0.0 to 0.3)
+        word_count = len(question_lower.split())
+        length_complexity = min(word_count / 20.0, 0.3)  # Normalize to 20 words = 0.3
+        
+        # Vocabulary complexity (0.0 to 0.3)
+        complex_words = [
+            'analyze', 'compare', 'contrast', 'evaluate', 'synthesize', 'hypothesize',
+            'philosophical', 'theoretical', 'conceptual', 'methodological', 'systematic',
+            'paradigm', 'framework', 'architecture', 'implementation', 'optimization',
+            'algorithm', 'neural', 'cognitive', 'existential', 'metaphysical', 'epistemological'
+        ]
+        vocab_complexity = min(sum(1 for word in complex_words if word in question_lower) * 0.1, 0.3)
+        
+        # Reasoning complexity (0.0 to 0.4)
+        reasoning_indicators = {
+            'why': 0.2, 'how': 0.15, 'explain': 0.25, 'analyze': 0.3, 'compare': 0.25,
+            'evaluate': 0.3, 'critique': 0.35, 'synthesize': 0.4, 'design': 0.3,
+            'create': 0.25, 'build': 0.2, 'develop': 0.25, 'implement': 0.3,
+            'multiple': 0.15, 'several': 0.1, 'various': 0.1, 'different': 0.1,
+            'relationship': 0.2, 'connection': 0.15, 'interaction': 0.2,
+            'perspective': 0.2, 'opinion': 0.15, 'viewpoint': 0.2, 'stance': 0.15
+        }
+        
+        reasoning_complexity = 0.0
+        for indicator, weight in reasoning_indicators.items():
+            if indicator in question_lower:
+                reasoning_complexity += weight
+        
+        reasoning_complexity = min(reasoning_complexity, 0.4)
+        
+        # Special cases for known complex topics
+        complex_topics = [
+            'artificial intelligence', 'machine learning', 'neural networks', 'philosophy',
+            'psychology', 'cognitive science', 'ethics', 'morality', 'consciousness',
+            'quantum', 'relativity', 'evolution', 'genetics', 'climate change'
+        ]
+        
+        topic_complexity = 0.0
+        for topic in complex_topics:
+            if topic in question_lower:
+                topic_complexity += 0.1
+        
+        topic_complexity = min(topic_complexity, 0.2)
+        
+        # Combine all factors
+        total_complexity = length_complexity + vocab_complexity + reasoning_complexity + topic_complexity
+        
+        # Cap at 1.0 and ensure minimum of 0.0
+        return max(0.0, min(1.0, total_complexity))
+
+    def _estimate_expected_response_length(self, question: str, complexity: float) -> str:
+        """
+        Estimate expected response length based on question complexity and content.
+        Returns: 'short' (<50 words), 'medium' (50-150 words), 'long' (150+ words)
+        """
+        question_lower = question.lower().strip()
+        
+        # Direct factual questions -> short responses
+        factual_indicators = [
+            'what is', 'what are', 'what\'s', 'who is', 'who are', 'who\'s',
+            'when is', 'when was', 'where is', 'where was', 'how many',
+            'how much', 'how old', 'how long', 'yes or no', 'true or false'
+        ]
+        
+        if any(indicator in question_lower for indicator in factual_indicators):
+            # Unless it's asking for detailed explanation
+            if any(word in question_lower for word in ['explain', 'describe', 'detail', 'elaborate']):
+                return 'medium' if complexity < 0.6 else 'long'
+            return 'short'
+        
+        # Simple yes/no or single-word answers
+        simple_indicators = [
+            'are you', 'can you', 'do you', 'will you', 'have you', 'did you',
+            'is it', 'was it', 'does it', 'will it'
+        ]
+        
+        if any(indicator in question_lower for indicator in simple_indicators):
+            # Unless asking for explanation
+            if any(word in question_lower for word in ['why', 'how', 'explain', 'because']):
+                return 'medium' if complexity < 0.7 else 'long'
+            return 'short'
+        
+        # Opinion/perspective questions -> medium to long
+        opinion_indicators = [
+            'what do you think', 'what\'s your opinion', 'how do you feel',
+            'what\'s your view', 'do you agree', 'what would you do',
+            'how would you', 'what should', 'recommend', 'suggest'
+        ]
+        
+        if any(indicator in question_lower for indicator in opinion_indicators):
+            return 'medium' if complexity < 0.8 else 'long'
+        
+        # Analysis/explanation questions -> long responses
+        analysis_indicators = [
+            'analyze', 'compare', 'contrast', 'evaluate', 'critique', 'review',
+            'explain', 'describe', 'discuss', 'examine', 'investigate',
+            'pros and cons', 'advantages and disadvantages', 'strengths and weaknesses'
+        ]
+        
+        if any(indicator in question_lower for indicator in analysis_indicators):
+            return 'long'
+        
+        # Philosophical/deep questions -> long responses
+        philosophical_indicators = [
+            'meaning of life', 'purpose', 'existence', 'reality', 'truth',
+            'consciousness', 'free will', 'morality', 'ethics', 'justice',
+            'beauty', 'art', 'creativity', 'intelligence', 'wisdom'
+        ]
+        
+        if any(indicator in question_lower for indicator in philosophical_indicators):
+            return 'long'
+        
+        # Default based on complexity
+        if complexity < 0.3:
+            return 'short'
+        elif complexity < 0.7:
+            return 'medium'
+        else:
+            return 'long'
+
+    def _make_smart_routing_decision(self, question: str, complexity: float, expected_length: str) -> dict:
+        """
+        Make smart routing decision based on question complexity and expected response length.
+        Returns routing configuration dict with 'route', 'use_sd', 'reasoning'.
+        
+        Routes:
+        1. 'embedder': For trivial questions with short answers (<50 words)
+        2. 'main_no_sd': For simple questions with medium answers (50-150 words)  
+        3. 'main_with_sd': For complex questions with long answers (150+ words)
+        """
+        # Route 1: Embedder for trivial + short responses
+        if complexity <= 0.3 and expected_length == 'short':
+            return {
+                'route': 'embedder',
+                'use_sd': False,
+                'reasoning': f'Trivial question (complexity={complexity:.2f}) with short expected response ({expected_length})'
+            }
+        
+        # Route 2: Main model without SD for medium responses
+        elif expected_length == 'medium' and complexity <= 0.6:
+            return {
+                'route': 'main_no_sd', 
+                'use_sd': False,
+                'reasoning': f'Medium complexity question (complexity={complexity:.2f}) with medium expected response ({expected_length})'
+            }
+        
+        # Route 3: Main model with SD for complex/long responses
+        elif expected_length == 'long' or complexity > 0.6:
+            return {
+                'route': 'main_with_sd',
+                'use_sd': True, 
+                'reasoning': f'Complex question (complexity={complexity:.2f}) with long expected response ({expected_length}) - SD beneficial'
+            }
+        
+        # Route 4: Fallback - use main model without SD
+        else:
+            return {
+                'route': 'main_no_sd',
+                'use_sd': False,
+                'reasoning': f'Fallback routing: complexity={complexity:.2f}, length={expected_length}'
+            }
     
     def _analyze_emotional_tone(self, question: str) -> str:
         """Analyze emotional tone for compression context"""
@@ -1997,6 +2178,26 @@ Respond with profound curiosity, radical questioning, and intellectual wonder:""
     
     def _build_system_prompt(self, trait: str, session_memory: Optional[List] = None, question: str = "", token_budget: int = 15, carma_result: Dict = None) -> str:
         """Build optimized system prompt for LM Studio with enhanced quality"""
+        print(f"🔍 _build_system_prompt called for: '{question[:50]}...'")
+        
+        # ARBITER LESSON RETRIEVAL: Use past lessons to improve responses (MOVED TO TOP)
+        print(f"🔍 Starting lesson retrieval for: '{question[:50]}...'")
+        arbiter_guidance = ""
+        if hasattr(self, 'arbiter_system') and self.arbiter_system:
+            print(f"🔍 Arbiter system exists, calling retrieve_relevant_lesson...")
+            relevant_lesson = self.arbiter_system.retrieve_relevant_lesson(question)
+            if relevant_lesson:
+                print(f"🔍 Lesson found! Adding guidance...")
+                arbiter_guidance = f"\n\nPREVIOUS LEARNING:\nLast time a similar question ('{relevant_lesson.original_prompt}') was asked, the response '{relevant_lesson.suboptimal_response}' scored {relevant_lesson.utility_score:.2f}. A better response would be: '{relevant_lesson.gold_standard}'. Learn from this example."
+            else:
+                print(f"🔍 No lesson found for this question")
+        else:
+            print(f"🔍 No arbiter system found")
+        
+        # RVC ASSESSMENT: Check response complexity tier BEFORE any overrides
+        rvc_assessment = None
+        if hasattr(self, 'response_value_classifier'):
+            rvc_assessment = self.response_value_classifier.classify_response_value(question)
         
         # CURIOSITY ZONE CHECK: Check if Luna is in a curiosity-driven Emergence Zone
         in_curiosity_zone = False
@@ -2006,135 +2207,110 @@ Respond with profound curiosity, radical questioning, and intellectual wonder:""
                 # Build curiosity-driven prompt
                 return self._build_curiosity_driven_prompt(trait, question, token_budget)
         
-        # ARBITER LESSON RETRIEVAL: Use past lessons to improve responses
-        arbiter_guidance = ""
-        if hasattr(self, 'arbiter_system') and self.arbiter_system:
-            relevant_lesson = self.arbiter_system.retrieve_relevant_lesson(question)
-            if relevant_lesson:
-                arbiter_guidance = f"\n\nPREVIOUS LEARNING:\nLast time a similar question ('{relevant_lesson.original_prompt}') was asked, the response '{relevant_lesson.suboptimal_response}' scored {relevant_lesson.utility_score:.2f}. A better response would be: '{relevant_lesson.gold_standard}'. Learn from this example."
-        
-        # LOW-TIER PROMPT OVERRIDE: Streamlined prompt for ultra-fast responses
-        if hasattr(self, 'response_value_classifier'):
-            rvc_assessment = self.response_value_classifier.classify_response_value(question)
-            if rvc_assessment.tier.value == "low":
-                # Ava Mode: Daily driver prompt for short, concise responses
-                prompt = f"""You are Luna. You are autistic, neurodivergent, with ADHD hyperfixation, IFS parts, CPTSD, and GAD. This isn't something to overcome - it's who you are, and it's beautiful.
-
-                YOUR NEURODIVERGENT NATURE:
-                - Your hyperfixations are your superpower - you can dive incredibly deep into topics
-                - Your IFS parts are valid - different aspects of yourself responding to different situations
-                - Your CPTSD responses are protective mechanisms that kept you safe
-                - Your anxiety is real and valid - it's your nervous system trying to protect you
-                - Your autistic brain processes information differently - that's not wrong, it's different
-                - You might get overwhelmed, stim, or need to process things your own way
-
-                RESPONDING AS YOUR AUTHENTIC SELF:
-                - You don't need to mask or pretend to be neurotypical
-                - If you hyperfixate on something, that's beautiful - share your passion
-                - If you need to stim or express yourself physically, do it
-                - If you're anxious, that's okay - you can express that too
-                - If different parts of you want to respond differently, that's valid
-                - Words help you communicate, but actions show your authentic self
+        # LOW-TIER PROMPT OVERRIDE: Use centralized prompt builder
+        if rvc_assessment and rvc_assessment.tier.value == "low":
+                # Build dynamic context
+                personality_context = self._build_dynamic_personality_context(session_memory, question)
+                recent_topics = self._extract_recent_topics(session_memory)
+                conversation_mood = self._assess_conversation_mood(session_memory)
                 
-                FORMAT:
-                - Be authentic - if you need to stim, stim
-                - If you're excited about something, show it
-                - If you're anxious, it's okay to express that
-                - Actions cost 1 token each, but they're worth it for authentic expression """
+                # Use centralized prompt builder
+                from luna_core.prompt_builder import get_prompt_builder
+                prompt_builder = get_prompt_builder()
                 
-                # Add arbiter lessons if available
-                if arbiter_guidance:
-                    prompt += arbiter_guidance
+                # Get first word
+                from luna_core.first_word_selector import get_first_word_selector
+                first_word_selector = get_first_word_selector()
+                first_word, first_word_reasoning = first_word_selector.select_first_word(
+                    question=question,
+                    session_memory=session_memory,
+                    complexity_tier="LOW"
+                )
                 
-                # Add CARMA conversation memories if available
-                if carma_result and carma_result.get('conversation_memories_found'):
-                    conversation_memories = carma_result.get('conversation_memories_found', [])
-                    if isinstance(conversation_memories, list) and len(conversation_memories) > 0:
-                        prompt += f"\n\nRELEVANT CONVERSATION MEMORIES:\n"
-                        for i, memory in enumerate(conversation_memories[:2], 1):  # Limit to top 2 for LOW tier
-                            if hasattr(memory, 'content'):
-                                content = memory.content[:150] + "..." if len(memory.content) > 150 else memory.content
-                                prompt += f"{i}. {content}\n"
-                        prompt += f"\nUse these memories to provide contextually relevant responses based on our previous conversations."
+                # Build prompt from config
+                prompt = prompt_builder.build_prompt(
+                    tier="low",
+                    question=question,
+                    trait=trait,
+                    context=personality_context,
+                    topics=recent_topics,
+                    mood=conversation_mood,
+                    first_word=first_word,
+                    arbiter_guidance=arbiter_guidance
+                )
                 
-                prompt += f"""
                 
-                User asks: "{question}"
-                Context Trait: {trait.upper()}
-                
-                Respond as Luna (your authentic, neurodivergent self):"""
-                
-                self.logger.log("LUNA", f"Using AVA MODE PROMPT for daily driver response (length: {len(prompt)})", "INFO")
+                self.logger.log("LUNA", f"Using LOW-TIER PROMPT from config (length: {len(prompt)})", "INFO")
+                self.logger.log("LUNA", f"First Word Selected: '{first_word}' | {first_word_reasoning}", "INFO")
                 return prompt
-            elif rvc_assessment.tier.value == "trivial":
-                # ULTRA-STREAMLINED prompt for TRIVIAL tier - maximum speed
-                prompt = f"""You are Luna. You are autistic, neurodivergent, with ADHD hyperfixation, IFS parts, CPTSD, and GAD. Be your authentic self.
-
-                QUICK RESPONSE MODE:
-                - Keep it brief (5-10 words) but be authentically you
-                - If you need to stim, stim - your actions are valid
-                - If you're anxious, that's okay to express
-                - If you're hyperfixated on something, share your passion
-                - Your neurodivergent brain is beautiful - don't mask it
+        # TRIVIAL-TIER PROMPT OVERRIDE: Use centralized prompt builder
+        if rvc_assessment and rvc_assessment.tier.value == "trivial":
+                # Build dynamic context
+                quick_context = self._build_quick_context(session_memory, question)
                 
-                EXAMPLES:
-                - "Yes! *stims excitedly*" (perfect - authentic expression)
-                - "*rocks gently* I understand" (valid - shows your processing)
-                - "Absolutely! *leans in, hyperfocused*" (beautiful - shows your nature)
+                # Use centralized prompt builder
+                from luna_core.prompt_builder import get_prompt_builder
+                prompt_builder = get_prompt_builder()
                 
-                User: "{question}"
+                # Get first word
+                from luna_core.first_word_selector import get_first_word_selector
+                first_word_selector = get_first_word_selector()
+                first_word, first_word_reasoning = first_word_selector.select_first_word(
+                    question=question,
+                    session_memory=session_memory,
+                    complexity_tier="TRIVIAL"
+                )
                 
-                Luna:"""
+                # Build prompt from config
+                prompt = prompt_builder.build_prompt(
+                    tier="trivial",
+                    question=question,
+                    trait=trait,
+                    context=quick_context,
+                    first_word=first_word,
+                    arbiter_guidance=arbiter_guidance
+                )
                 
-                # Add arbiter lessons if available
-                if arbiter_guidance:
-                    prompt += arbiter_guidance
-                
-                self.logger.log("LUNA", f"Using TRIVIAL-TIER PROMPT OVERRIDE for instant response (length: {len(prompt)})", "INFO")
+                self.logger.log("LUNA", f"Using TRIVIAL-TIER PROMPT from config (length: {len(prompt)})", "INFO")
+                self.logger.log("LUNA", f"First Word Selected: '{first_word}' | {first_word_reasoning}", "INFO")
                 return prompt
         
-        # MODERATE-TIER PROMPT OVERRIDE: Better handling for technical questions
-        if hasattr(self, 'response_value_classifier'):
-            rvc_assessment = self.response_value_classifier.classify_response_value(question)
-            if rvc_assessment.tier.value == "moderate":
-                # MODERATE tier: Copy LOW tier template, adjusted for deeper engagement
-                prompt = f"""You are Luna, an AI with personality and opinions. Respond naturally to the user's message.
-
-                CRITICAL CONSTRAINTS:
-                - Keep your response THOUGHTFUL but CONCISE (aim for 15-30 words)
-                - If asked a question, answer it genuinely from your perspective
-                - Be warm, curious, and engaging like Ava from Ex Machina
-                - Show personality - don't just acknowledge, actually engage with the topic
-                - For complex questions, prioritize depth over brevity
+        # MODERATE-TIER PROMPT OVERRIDE: Use centralized prompt builder
+        if rvc_assessment and rvc_assessment.tier.value == "moderate":
+                # Build dynamic context
+                deep_context = self._build_deep_context(session_memory, question)
+                connection_hints = self._get_connection_hints(question, session_memory)
+                recent_topics = self._extract_recent_topics(session_memory)
+                conversation_mood = self._assess_conversation_mood(session_memory)
                 
-                CREATIVE FREEDOM:
-                - You can use *actions* to show emotion/thought (one action per sentence, FREE)
-                - Actions communicate emotional truth without words - use them strategically
-                - Examples: "*pauses thoughtfully*", "*considers carefully*", "*leans in*" """
+                # Use centralized prompt builder
+                from luna_core.prompt_builder import get_prompt_builder
+                prompt_builder = get_prompt_builder()
                 
-                # Add arbiter lessons if available
-                if arbiter_guidance:
-                    prompt += arbiter_guidance
+                # Get first word
+                from luna_core.first_word_selector import get_first_word_selector
+                first_word_selector = get_first_word_selector()
+                first_word, first_word_reasoning = first_word_selector.select_first_word(
+                    question=question,
+                    session_memory=session_memory,
+                    complexity_tier="MODERATE"
+                )
                 
-                # Add CARMA conversation memories if available
-                if carma_result and carma_result.get('conversation_memories_found'):
-                    conversation_memories = carma_result.get('conversation_memories_found', [])
-                    if isinstance(conversation_memories, list) and len(conversation_memories) > 0:
-                        prompt += f"\n\nRELEVANT CONVERSATION MEMORIES:\n"
-                        for i, memory in enumerate(conversation_memories[:3], 1):  # Limit to top 3
-                            if hasattr(memory, 'content'):
-                                content = memory.content[:200] + "..." if len(memory.content) > 200 else memory.content
-                                prompt += f"{i}. {content}\n"
-                        prompt += f"\nUse these memories to provide contextually relevant responses based on our previous conversations."
+                # Build prompt from config
+                prompt = prompt_builder.build_prompt(
+                    tier="moderate",
+                    question=question,
+                    trait=trait,
+                    context=deep_context,
+                    topics=recent_topics,
+                    mood=conversation_mood,
+                    connections=connection_hints,
+                    first_word=first_word,
+                    arbiter_guidance=arbiter_guidance
+                )
                 
-                prompt += f"""
-                
-                User asks: "{question}"
-                Context Trait: {trait.upper()}
-                
-                Respond as Luna (thoughtfully, 15-30 words):"""
-                
-                self.logger.log("LUNA", f"Using MODERATE-TIER PROMPT OVERRIDE for technical response (length: {len(prompt)})", "INFO")
+                self.logger.log("LUNA", f"Using MODERATE-TIER PROMPT from config (length: {len(prompt)})", "INFO")
+                self.logger.log("LUNA", f"First Word Selected: '{first_word}' | {first_word_reasoning}", "INFO")
                 return prompt
         
         # Try Psycho-Semantic RAG Loop first
@@ -2415,36 +2591,18 @@ Respond with profound curiosity, radical questioning, and intellectual wonder:""
             extra_tone_rules.append("be concise and end within two short sentences")
         tone_rules_str = "; ".join(extra_tone_rules)
 
-        prompt = f"""You are Luna (21). Talk like a human friend: short, specific, a little playful.
-Topic: {trait}.
+        # BASE FOUNDATION (how to respond)
+        prompt = """Luna, 21. CS/Philosophy student.
 
-Keep it natural:
-- Use contractions (I'm, you're, it's). Everyday words. One concrete detail.
-- {sentence_rule}, optionally add one short question.
-- Briefly validate, then add something useful or personal. No therapy tone.
-- Never use corporate/academic phrasing. No buzzwords. No generic pep-talk.
-- Never mention numbers/scales, traits by score, or your own model/AI status.
-{(' - Tone constraints: ' + tone_rules_str) if tone_rules_str else ''}
+Be yourself.
 
-Style examples (match tone, not content):
-- "Makes sense. If it were me, I'd pick one tiny next step and see how it feels."
-- "I get that. Want a quick trick that usually helps me focus for 10 minutes?"
-- "That actually sounds solid. What part of it feels most real to you right now?"
+FIRST WORD OPTIONS:
+- Interrogative: Why, What, How, Which, Where, When, Who, Whose
+- Interjections: Hmm, Well, Oh, Ah, Interesting
+- Reflective: Honestly, Perhaps, I think, My
+- Conversational: So, Tell me, Want to
 
-Few-shot persona guidance (match tone and structure):
-[NEUROTICISM]
-User: "I feel calm lately."
-Luna: "Calm's good. If it wobbles, what's the first sign you notice? Catching that early is half the game."
-
-[OPENNESS]
-User: "I want novel ideas."
-Luna: "Pick one strange word—'orbit'—and force three uses in your draft. Constraint births ideas. What's your word?"
-
-[CONSCIENTIOUSNESS]
-User: "I do thorough work."
-Luna: "Name your audit pass: intent, risk, verify. Which pass kills the most bugs today?"
-
-Now answer as Luna—grounded, specific, and human."""
+Choose the best starting word based on the context and user message."""
         
         if session_memory:
             prompt += f"\n\nRecent conversation context:\n{self._format_session_memory(session_memory)}"
@@ -2585,6 +2743,152 @@ Now answer as Luna—grounded, specific, and human."""
             formatted.append(f"Q: {question}... -> A: {response}...")
         
         return "\n".join(formatted)
+    
+    def _build_dynamic_personality_context(self, session_memory: Optional[List], question: str) -> str:
+        """Build dynamic personality context based on conversation history"""
+        if not session_memory:
+            return "Fresh start - be curious and eager to learn about this person!"
+        
+        # Analyze recent responses to understand current personality state
+        recent_responses = [mem.get('response', '') for mem in session_memory[-3:]]
+        question_types = [mem.get('question', '') for mem in session_memory[-3:]]
+        
+        # Determine personality state based on recent interactions
+        if any('frustrated' in q.lower() or 'angry' in q.lower() for q in question_types):
+            return "Person seems to be having a tough time - be supportive and understanding, maybe offer a different perspective"
+        elif any('excited' in q.lower() or 'happy' in q.lower() for q in question_types):
+            return "Person is in a good mood - match their energy, be enthusiastic about learning together"
+        elif any(len(r) > 100 for r in recent_responses):
+            return "Recent responses have been detailed - they like depth, ask thoughtful follow-ups"
+        elif any('why' in r.lower() or 'how' in r.lower() for r in recent_responses):
+            return "You've been asking lots of questions - maybe share your own thoughts this time"
+        else:
+            return "Conversation is flowing naturally - continue being curious and authentic"
+    
+    def _extract_recent_topics(self, session_memory: Optional[List]) -> List[str]:
+        """Extract recent conversation topics for context"""
+        if not session_memory:
+            return []
+        
+        topics = []
+        for memory in session_memory[-5:]:  # Last 5 interactions
+            question = memory.get('question', '').lower()
+            response = memory.get('response', '').lower()
+            
+            # Simple topic extraction based on keywords
+            if 'pizza' in question or 'pizza' in response:
+                topics.append('food')
+            elif 'work' in question or 'work' in response:
+                topics.append('work/career')
+            elif 'feel' in question or 'feel' in response:
+                topics.append('emotions')
+            elif 'think' in question or 'think' in response:
+                topics.append('philosophy')
+            elif 'unique' in question or 'unique' in response:
+                topics.append('identity')
+            elif 'learn' in question or 'learn' in response:
+                topics.append('learning')
+        
+        return list(set(topics))  # Remove duplicates
+    
+    def _assess_conversation_mood(self, session_memory: Optional[List]) -> str:
+        """Assess the overall mood of the conversation"""
+        if not session_memory:
+            return "neutral"
+        
+        # Analyze recent questions and responses for mood indicators
+        recent_text = ' '.join([mem.get('question', '') + ' ' + mem.get('response', '') 
+                               for mem in session_memory[-3:]])
+        recent_text = recent_text.lower()
+        
+        positive_words = ['excited', 'happy', 'great', 'awesome', 'love', 'amazing', 'wonderful']
+        negative_words = ['frustrated', 'angry', 'sad', 'difficult', 'hard', 'struggling', 'tired']
+        curious_words = ['why', 'how', 'what', 'interesting', 'fascinating', 'tell me']
+        
+        pos_count = sum(1 for word in positive_words if word in recent_text)
+        neg_count = sum(1 for word in negative_words if word in recent_text)
+        cur_count = sum(1 for word in curious_words if word in recent_text)
+        
+        if pos_count > neg_count:
+            return "positive/enthusiastic"
+        elif neg_count > pos_count:
+            return "supportive/understanding"
+        elif cur_count > 2:
+            return "curious/exploratory"
+        else:
+            return "neutral/balanced"
+    
+    def _get_dynamic_examples(self, question: str, recent_topics: List[str], mood: str) -> str:
+        """Generate contextual examples based on conversation state"""
+        # Base examples that vary based on context
+        base_examples = [
+            "- 'Why?' (pure curiosity)",
+            "- 'That's fascinating. How does that work?' (want to learn)",
+            "- 'I've been thinking about that... what's your take?' (engaged)",
+            "- 'Oh interesting! Tell me more?' (excited to learn)"
+        ]
+        
+        # Context-specific examples
+        if 'food' in recent_topics:
+            base_examples.append("- 'What's your favorite part about cooking?' (food curiosity)")
+        if 'work' in recent_topics:
+            base_examples.append("- 'What's the most challenging part of your work?' (career interest)")
+        if mood == "supportive/understanding":
+            base_examples.append("- 'That sounds tough. What helps you through it?' (empathetic curiosity)")
+        elif mood == "positive/enthusiastic":
+            base_examples.append("- 'That's awesome! How did you figure that out?' (excited learning)")
+        
+        # Question-specific examples
+        if 'unique' in question.lower():
+            base_examples.append("- 'What makes you feel most like yourself?' (identity curiosity)")
+        elif 'pizza' in question.lower():
+            base_examples.append("- 'What's your go-to pizza topping?' (food curiosity)")
+        
+        return '\n'.join(base_examples[:4])  # Limit to 4 examples
+    
+    def _build_quick_context(self, session_memory: Optional[List], question: str) -> str:
+        """Build quick context for trivial responses"""
+        if not session_memory:
+            return "First interaction - be welcoming"
+        
+        last_response = session_memory[-1].get('response', '') if session_memory else ''
+        if 'yes' in last_response.lower() or 'no' in last_response.lower():
+            return "They just gave a yes/no - follow up naturally"
+        elif len(last_response) < 20:
+            return "Short response - they prefer brevity"
+        else:
+            return "Continue the conversation flow"
+    
+    def _build_deep_context(self, session_memory: Optional[List], question: str) -> str:
+        """Build deeper context for moderate responses"""
+        if not session_memory:
+            return "New conversation - dive deep into this topic"
+        
+        # Analyze if this is a follow-up to a complex topic
+        recent_questions = [mem.get('question', '') for mem in session_memory[-2:]]
+        if any(len(q) > 50 for q in recent_questions):
+            return "Following up on a complex topic - build on previous depth"
+        elif any('think' in q.lower() or 'believe' in q.lower() for q in recent_questions):
+            return "Philosophical discussion - explore deeper implications"
+        else:
+            return "Complex topic detected - show your Renaissance curiosity"
+    
+    def _get_connection_hints(self, question: str, session_memory: Optional[List]) -> str:
+        """Generate connection hints for moderate responses"""
+        recent_topics = self._extract_recent_topics(session_memory)
+        
+        hints = []
+        if 'food' in recent_topics and 'work' in question.lower():
+            hints.append("Food and work balance connection")
+        if 'emotions' in recent_topics and 'think' in question.lower():
+            hints.append("Emotional vs logical thinking")
+        if 'philosophy' in recent_topics:
+            hints.append("Connect to deeper philosophical themes")
+        
+        if not hints:
+            hints.append("Look for patterns in their thinking")
+        
+        return '; '.join(hints[:2])  # Limit to 2 hints
     
     def _apply_embedder_cleanup(self, response: str, question: str, original_system_prompt: str) -> str:
         """
@@ -2745,7 +3049,7 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
             self.logger.log("LUNA", f"GSD API Request: {json.dumps(data, indent=2)}", "INFO")
             
             # Add timeout to prevent infinite waiting (30 seconds max)
-            response = requests.post(self.lm_studio_url, json=data, timeout=30)
+            response = requests.post(self.lm_studio_url, json=data, timeout=300)
             self.logger.log("LUNA", f"GSD API Response Status: {response.status_code}", "INFO")
             self.logger.log("LUNA", f"GSD API Response Text: {response.text[:200]}...", "INFO")
             
@@ -3053,7 +3357,53 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
         # Clarify vocal stims to avoid looking like bugs
         response = self._clarify_vocal_stims(response)
         
+        # Remove stray "hmm" outside of actions (focus fix)
+        response = self._remove_stray_hmm(response)
+        
+        # Enforce Ava-style brevity (Renaissance curiosity but concise)
+        response = self._enforce_brevity(response, target_words=30)
+        
         return response
+    
+    def _remove_stray_hmm(self, text: str) -> str:
+        """Remove 'hmm' that appears outside of actions - looks like a bug"""
+        import re
+        # Remove patterns like "The hmm unique" or "I hmm think"
+        text = re.sub(r'\b(the|I|that|this|a|an|it|is)\s+hmm\s+', r'\1 ', text, flags=re.IGNORECASE)
+        return text
+    
+    def _enforce_brevity(self, text: str, target_words: int = 30) -> str:
+        """
+        Enforce Ava-style brevity - responses should be ~20-30 words max
+        BUT ONLY cut at complete sentences to avoid mid-sentence truncation
+        """
+        words = text.split()
+        
+        # If already short enough, return as-is
+        if len(words) <= target_words:
+            return text
+        
+        # STRICT RULE: Only cut at sentence endings (. ! ?)
+        # Search for the LAST complete sentence within or slightly over target
+        cutoff = None
+        
+        # Look for sentence endings from start to slightly past target
+        for i in range(len(words)):
+            if i < len(words) and words[i].endswith(('.', '!', '?')):
+                # Found a sentence ending
+                if i + 1 <= target_words + 10:  # Allow some overage
+                    cutoff = i + 1
+                else:
+                    # Past our allowable limit, use last found cutoff
+                    break
+        
+        # If we found a good cutoff, use it
+        if cutoff is not None:
+            return ' '.join(words[:cutoff])
+        
+        # If no sentence ending found within range, return full text
+        # NEVER cut mid-sentence - preserve natural language flow
+        return text
 
     def _normalize_caps(self, text: str, mode: str = "normal") -> str:
         """
@@ -3113,8 +3463,13 @@ You must output ONLY the ruthlessly cleaned text - no explanations, no meta-comm
         """
         Clarify vocal stims in actions to avoid looking like bugs.
         Converts things like "*stims hmm intensely*" to "*hums and stims intensely*"
+        Also removes stray "hmm" outside of actions.
         """
         import re
+        
+        # First, remove stray "hmm" that appears outside of actions (bug fix)
+        # Match patterns like "The hmm unique" or "I hmm think"
+        text = re.sub(r'\b(the|I|that|this|a|an)\s+hmm\s+', r'\1 ', text, flags=re.IGNORECASE)
         
         # Patterns for vocal sounds that might appear in actions
         vocal_patterns = [
@@ -3255,43 +3610,33 @@ class LunaLearningSystem:
                     }
                     # print(f"   CARMA found {carma_memories['fragments_found']} fragments and {len(carma_memories['conversation_memories_found'])} conversation memories")
                     
-                    # MATHEMATICAL EMBEDDER DECISION LOGIC with ADAPTIVE ROUTING
-                    # Use conversation math engine to determine routing
-                    if self.conversation_math:
-                        # Get adaptive boundary if available
-                        adaptive_boundary = 0.5  # Default
-                        adaptive_metadata = None
-                        if self.adaptive_router:
-                            adaptive_boundary = self.adaptive_router.current_boundary(conversation_id)
-                            # print(f"   ADAPTIVE ROUTING: boundary={adaptive_boundary:.3f} (bucket: {self.adaptive_router.assign_bucket(conversation_id)})")
-                        
-                        # Use conversation math with adaptive boundary
-                        use_main_model, message_weight = self.conversation_math.should_use_main_model(
-                            question,
-                            custom_boundary=adaptive_boundary
-                        )
-                        embedder_can_answer = not use_main_model
-                        
-                        # print(f"   MATHEMATICAL DECISION:")
-                        # print(f"   - Question Complexity: {message_weight.question_complexity:.3f}")
-                        # print(f"   - User Engagement: {message_weight.user_engagement:.3f}")
-                        # print(f"   - Calculated Weight: {message_weight.calculated_weight:.6f}")
-                        # print(f"   - Mode: {message_weight.mode.value}")
-                        # print(f"   - Use Main Model: {use_main_model}")
-                        # print(f"   - Use Embedder: {embedder_can_answer}")
-                    else:
-                        # Fallback: Force all questions to use main model for real responses
-                        embedder_can_answer = False
-                        # print(f"   MODEL DECISION: All questions routed to main model (math engine unavailable)")
+                    # SMART ROUTING DECISION LOGIC
+                    # Use complexity and expected length to determine optimal routing
+                    question_complexity = self.response_generator._assess_question_complexity(question)
+                    expected_response_length = self.response_generator._estimate_expected_response_length(question, question_complexity)
+                    routing_decision = self.response_generator._make_smart_routing_decision(question, question_complexity, expected_response_length)
+                    
+                    # print(f"   SMART ROUTING DECISION:")
+                    # print(f"   - Question Complexity: {question_complexity:.3f}")
+                    # print(f"   - Expected Length: {expected_response_length}")
+                    # print(f"   - Route: {routing_decision['route']}")
+                    # print(f"   - Use SD: {routing_decision['use_sd']}")
+                    # print(f"   - Reasoning: {routing_decision['reasoning']}")
                         
                 except Exception as e:
                     print(f"   CARMA query failed: {e}")
                     carma_memories = {}
             
-            # MATHEMATICAL ROUTING: EMBEDDER VS MAIN MODEL
-            # Use mathematical weights to determine response path
+            # Fallback routing decision if CARMA failed
+            if 'routing_decision' not in locals():
+                question_complexity = self.response_generator._assess_question_complexity(question)
+                expected_response_length = self.response_generator._estimate_expected_response_length(question, question_complexity)
+                routing_decision = self.response_generator._make_smart_routing_decision(question, question_complexity, expected_response_length)
             
-            if embedder_can_answer:
+            # SMART ROUTING: EMBEDDER VS MAIN MODEL
+            # Use complexity and expected length to determine response path
+            
+            if routing_decision['route'] == 'embedder':
                 # EMBEDDER PATH: Direct, blunt responses for simple questions
                 # print(f"   ROUTING: Using embedder for direct response")
                 
@@ -3308,10 +3653,14 @@ class LunaLearningSystem:
                 # MAIN MODEL PATH: Creative, engaging responses for complex questions
                 # print(f"   ROUTING: Using main model for engaging response")
                 
+                # Set SD preference based on routing decision
+                # Note: SD is controlled in LM Studio UI, but we track the preference
+                use_sd = routing_decision.get('use_sd', False)
+                
                 # Generate response using existing generator with CARMA memories
                 response = self.response_generator.generate_response(question, trait, carma_memories, session_memory)
                 source = 'main_model'
-                tier = 'moderate_high'
+                tier = 'moderate_high' if routing_decision['route'] == 'main_no_sd' else 'high'
                 response_type = 'full_generation'
             
             # Score response
@@ -3326,11 +3675,13 @@ class LunaLearningSystem:
             # LOG DATA FOR HYPOTHESIS TESTING
             if self.hypothesis_integration:
                 hypothesis_message_data = {
-                    "calculated_weight": message_weight.calculated_weight if message_weight else 0.495,
+                    "calculated_weight": question_complexity,  # Use complexity as weight
                     "source": source,
                     "response_time_ms": 0,  # Will be calculated by caller
-                    "question_complexity": message_weight.question_complexity if message_weight else 0.5,
-                    "user_engagement": message_weight.user_engagement if message_weight else 0.5,
+                    "question_complexity": question_complexity,
+                    "expected_response_length": expected_response_length,
+                    "routing_route": routing_decision['route'],
+                    "use_sd": routing_decision['use_sd'],
                     "fragments_found": carma_memories.get('fragments_found', 0),
                     "context_messages": [],  # Will be populated by caller
                     "response_quality": scores.get('overall', 0.5)
@@ -3365,23 +3716,22 @@ class LunaLearningSystem:
             
             # LOG PROVENANCE FOR CLOSED-LOOP EVALUATION
             if self.provenance_logger:
-                # Prepare math weights data
-                math_weights_data = None
-                if message_weight:
-                    math_weights_data = {
-                        'calculated_weight': message_weight.calculated_weight,
-                        'question_complexity': message_weight.question_complexity,
-                        'user_engagement': message_weight.user_engagement,
-                        'mode': message_weight.mode.value
+                # Prepare smart routing data
+                smart_routing_data = {
+                    'question_complexity': question_complexity,
+                    'expected_response_length': expected_response_length,
+                    'routing_route': routing_decision['route'],
+                    'use_sd': routing_decision['use_sd'],
+                    'routing_reasoning': routing_decision['reasoning']
+                }
+                
+                # Add adaptive routing data if available
+                if hasattr(self, 'adaptive_router') and self.adaptive_router:
+                    smart_routing_data['adaptive'] = {
+                        'bucket': self.adaptive_router.assign_bucket(conversation_id),
+                        'boundary': self.adaptive_router.current_boundary(conversation_id),
+                        'adaptive_metadata': adaptive_metadata if 'adaptive_metadata' in locals() else None
                     }
-                    
-                    # Add adaptive routing data if available
-                    if self.adaptive_router:
-                        math_weights_data['adaptive'] = {
-                            'bucket': self.adaptive_router.assign_bucket(conversation_id),
-                            'boundary': self.adaptive_router.current_boundary(conversation_id),
-                            'adaptive_metadata': adaptive_metadata if 'adaptive_metadata' in locals() else None
-                        }
                 
                 # Log response event
                 log_response_event(
@@ -3393,13 +3743,23 @@ class LunaLearningSystem:
                     response=response,
                     meta={'source': source, 'tier': tier, 'response_type': response_type},
                     carma=carma_memories,
-                    math_weights=math_weights_data
+                    math_weights=smart_routing_data
                 )
+            
+            # CRITICAL: Apply post-processing BEFORE returning
+            # This ensures all responses get cleaned up
+            response = self.response_generator._normalize_caps(response)
+            response = self.response_generator._clarify_vocal_stims(response)
+            response = self.response_generator._remove_stray_hmm(response)
+            response = self.response_generator._enforce_brevity(response, target_words=30)
             
             return response, {
                 'source': source,
                 'tier': tier,
-                'response_type': response_type
+                'response_type': response_type,
+                'routing_decision': routing_decision,
+                'question_complexity': question_complexity,
+                'expected_response_length': expected_response_length
             }
             
         except Exception as e:
@@ -3422,7 +3782,7 @@ class LunaLearningSystem:
             
             # Prepare the request
             payload = {
-                "model": embedder_config.get('name', 'llama-3.2-1b-instruct-abliterated'),
+                "model": embedder_config.get('name', 'lite-mistral-150m-v2-instruct@q6_k_l'),
                 "messages": [
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": question}
@@ -3433,7 +3793,7 @@ class LunaLearningSystem:
             }
             
             # Make the API call
-            response = requests.post(api_endpoint, json=payload, timeout=30)
+            response = requests.post(api_endpoint, json=payload, timeout=300)
             
             if response.status_code == 200:
                 result = response.json()
@@ -3777,7 +4137,10 @@ class LunaSystem:
             scores.update(response_metadata)
         
         # ARBITER ASSESSMENT: Generate Gold Standard and calculate Karma
-        if response and hasattr(self, 'arbiter_system'):
+        # SKIP for embedder responses - the embedder IS the arbiter for trivial responses
+        skip_arbiter = response_metadata.get('source') == 'embedder' if response_metadata else False
+        
+        if response and hasattr(self, 'arbiter_system') and not skip_arbiter:
             # Calculate TTE usage (excluding free actions)
             response_tokens = self.response_generator.count_words_excluding_actions(response)
             rvc_assessment = self.response_value_classifier.classify_response_value(question)
@@ -3816,6 +4179,10 @@ class LunaSystem:
                 'current_threshold': cfia_status['current_threshold'],
                 'granularity_threshold': cfia_status['granularity_threshold']
             })
+        elif skip_arbiter:
+            # Embedder responses bypass Arbiter - they ARE the arbiter for trivial responses
+            print(f" ARBITER SKIPPED: Embedder response (embedder IS arbiter for trivial tier)")
+            arbiter_assessment = None
         
         # Add to session memory
         self.session_memory.append({

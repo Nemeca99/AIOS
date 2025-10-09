@@ -40,6 +40,9 @@ backup_core/archive_backup/
 *.sqlite
 *.sqlite3
 
+# Large files that exceed GitHub limits and secrets
+Portfolio/
+
 # Logs
 *.log
 log/

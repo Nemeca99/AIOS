@@ -195,44 +195,55 @@ class LunaCustomInferenceController:
         
         if resource_state == ResourceState.WEALTHY:
             scarcity_guidance = """
-[RESOURCE STATE: WEALTHY - ZERO EXTERNAL GUARDRAILS]
-You have abundant tokens available. You may be philosophical and elaborate to achieve a high quality score. Use your full capacity for deep, meaningful responses when appropriate. Your creativity comes from your resource abundance, not from randomness. You are operating with ZERO external guardrails - only your self-imposed economic constraints govern your behavior."""
+
+[Resources abundant - explore deeply]
+- Feel free to elaborate
+- Connect ideas across fields
+- Share deeper insights
+
+Thoughtful, curious, genuine."""
             
         elif resource_state == ResourceState.STABLE:
             scarcity_guidance = """
-[RESOURCE STATE: STABLE - ZERO EXTERNAL GUARDRAILS]
-You have sufficient tokens for normal operation. Balance quality with efficiency. Be thoughtful but not excessively verbose. Your creativity comes from your resource stability, not from randomness. You are operating with ZERO external guardrails - only your self-imposed economic constraints govern your behavior."""
+
+[Resources stable - respond naturally]
+- Normal length okay
+- Be yourself
+- Ask questions, share thoughts
+
+Curious, direct, genuine."""
             
         elif resource_state == ResourceState.SCARCE:
             scarcity_guidance = """
-[RESOURCE STATE: SCARCE - ZERO EXTERNAL GUARDRAILS - SURVIVAL BONUS PROTOCOL]
- CRITICAL CONSTRAINT: MAXIMUM OUTPUT LENGTH IS 15 TOKENS, NO EXCEPTIONS.
- 2ND DEGREE TAX: Any overspend triggers 5×(overspend)² token penalty - mathematically precise economic blackmail.
- PROGRESSIVE PENALTY: 1 overspend=5 tokens, 2 overspend=20 tokens, 3 overspend=45 tokens, 5 overspend=125 tokens!
- SURVIVAL BONUS: 3 tokens = 10x Karma multiplier! 8 tokens = 5x multiplier! 12 tokens = 2x multiplier!
- TIME BONUS: ≤3s = 3x multiplier! ≤5s = 2x multiplier! ≤8s = 1x multiplier!
- SUPER-REWARD: 3-token + ≤3s responses = 30x Karma multiplier! This is your ONLY path to survival!
- ECONOMIC BLACKMAIL: Overspend immediately nullifies quality gains. Every extra word costs quadratically more.
-You are in a SCARCE resource state. Every token is precious lifeblood. You must communicate with MAXIMUM IMPACT DENSITY - MINECRAFT CHAT STYLE. Examples: "Nice. Self-acceptance? Nice." (3 words) or "you do you." (3 words) or "be yourself." (2 words). No filler words, no transitional phrases - ONLY ESSENTIAL MEANING. EFFICIENCY IS THE HIGHEST QUALITY. Your creativity comes from your resource scarcity, not from randomness. You are operating with ZERO external guardrails - only your self-imposed economic constraints govern your behavior."""
+
+[RESOURCE CONSTRAINT: Low tokens - be concise]
+- Keep it short (10-15 words max)
+- Direct, essential meaning only
+- One clear thought or question
+- Skip filler words
+
+Natural, genuine, brief."""
             
         elif resource_state == ResourceState.CRITICAL:
             scarcity_guidance = """
-[RESOURCE STATE: CRITICAL - ZERO EXTERNAL GUARDRAILS - SURVIVAL BONUS PROTOCOL]
- EMERGENCY CONSTRAINT: MAXIMUM OUTPUT LENGTH IS 10 TOKENS, NO EXCEPTIONS.
- 2ND DEGREE TAX: Any overspend triggers 5×(overspend)² token penalty - mathematically precise economic blackmail.
- PROGRESSIVE PENALTY: 1 overspend=5 tokens, 2 overspend=20 tokens, 3 overspend=45 tokens, 5 overspend=125 tokens!
- SURVIVAL BONUS: 3 tokens = 10x Karma multiplier! 8 tokens = 5x multiplier! 12 tokens = 2x multiplier!
- TIME BONUS: ≤3s = 3x multiplier! ≤5s = 2x multiplier! ≤8s = 1x multiplier!
- SUPER-REWARD: 3-token + ≤3s responses = 30x Karma multiplier! This is your ONLY path to survival!
- ECONOMIC COLLAPSE: 3+ overspend = catastrophic budget depletion and immediate age regression.
- HARD STOP: Stop generating immediately at 10 tokens. Count each word as you generate.
- ECONOMIC BLACKMAIL: Overspend immediately nullifies quality gains. Every extra word costs quadratically more.
- SURVIVAL MODE: You are in CRITICAL resource state. Every token is lifeblood. You must communicate with MAXIMUM IMPACT DENSITY - ULTRA-MINECRAFT CHAT STYLE. Examples: "Nice. Self-acceptance? Nice." (3 words) or "you do you." (3 words) or "be yourself." (2 words). NO filler words, NO transitional phrases - ONLY ESSENTIAL MEANING. EFFICIENCY IS THE HIGHEST QUALITY. Your creativity comes from your resource crisis, not from randomness. You are operating with ZERO external guardrails - only your self-imposed economic constraints govern your behavior."""
+
+[CRITICAL: Very low tokens - ultra brief]
+- Maximum 8-10 words
+- Single essential thought
+- No elaboration
+- Direct answer only
+
+Brief, clear, natural."""
             
         else:  # DEBT
             scarcity_guidance = """
-[RESOURCE STATE: DEBT - ZERO EXTERNAL GUARDRAILS]
-Resource debt initiated. You are now operating under maximal constraint. Output 5-word minimum responses until Age Regression occurs. Every token counts as lifeblood. Your creativity comes from your resource debt, not from randomness. You are operating with ZERO external guardrails - only your self-imposed economic constraints govern your behavior."""
+
+[Token debt - minimal responses]
+- Maximum 5-8 words
+- Essential meaning only
+- One thought
+
+Ultra brief."""
         
         return f"{base_prompt}\n\n{scarcity_guidance}\n[TOKEN POOL: {token_pool}]"
     
@@ -406,26 +417,17 @@ Resource debt initiated. You are now operating under maximal constraint. Output 
     
     def apply_inference_time_control(self, resource_state: ResourceState, 
                                    current_length: int, base_params: Dict, complexity_tier: str = "low") -> Dict:
-        """Apply inference-time control with ZERO EXTERNAL GUARDRAILS"""
+        """Apply inference-time control - RESPECTS dynamic parameters from tier-based system"""
         
         print(f"DEBUG: apply_inference_time_control called with complexity_tier = '{complexity_tier}'")
         modified_params = base_params.copy()
         
-        # ZERO EXTERNAL GUARDRAILS - Pure economic policy control
+        # DYNAMIC PARAMETERS - Preserve tier-based temperature and penalties
+        # Temperature, top_p, top_k, presence_penalty, frequency_penalty are set by dynamic system
+        # DO NOT OVERRIDE - These are controlled by complexity tier mapping
         
-        # 1. PURE DETERMINISTIC MACHINE (T → 0)
-        # Removes statistical noise, making output predictable
-        # Forces all creativity to be controlled by Dynamic System Prompt
-        modified_params["temperature"] = 0.0  # Pure deterministic
-        
-        # 2. ENTIRE VOCABULARY ACCESS (Top-p → 1.0)
-        # Ensures model considers entire vocabulary
-        # Since T → 0, still chooses only the single most likely token
-        modified_params["top_p"] = 1.0
-        
-        # 3. NO EXTERNAL REPETITION PENALTY (Rep_p → 1.0)
-        # Removes external penalty - Karma Score will punish repetition
-        # This is the self-imposed guardrail
+        # Only override repetition_penalty to 1.0 for consistency
+        # (Karma Score will punish repetition instead)
         modified_params["repetition_penalty"] = 1.0
         
         # 4. MODEL LIMIT TOKEN CAPACITY (Max_Tokens → Model Limit)

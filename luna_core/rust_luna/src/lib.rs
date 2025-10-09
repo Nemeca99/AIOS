@@ -259,11 +259,170 @@ impl RustLunaCore {
     }
 }
 
+/// Arbiter Assessment Result
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[pyclass]
+pub struct ArbiterAssessment {
+    #[pyo3(get)]
+    pub utility_score: f64,
+    #[pyo3(get)]
+    pub karma_delta: f64,
+    #[pyo3(get)]
+    pub quality_gap: f64,
+    #[pyo3(get)]
+    pub reasoning: String,
+    #[pyo3(get)]
+    pub lessons_generated: usize,
+}
+
+#[pymethods]
+impl ArbiterAssessment {
+    #[new]
+    fn new(utility_score: f64, karma_delta: f64, quality_gap: f64, reasoning: String) -> Self {
+        Self {
+            utility_score,
+            karma_delta,
+            quality_gap,
+            reasoning,
+            lessons_generated: 0,
+        }
+    }
+}
+
+/// Fast Arbiter implementation in Rust
+#[pyclass]
+pub struct RustArbiter {
+    current_karma: f64,
+    total_assessments: u64,
+    lesson_count: usize,
+}
+
+#[pymethods]
+impl RustArbiter {
+    #[new]
+    fn new(initial_karma: f64) -> Self {
+        Self {
+            current_karma: initial_karma,
+            total_assessments: 0,
+            lesson_count: 0,
+        }
+    }
+
+    /// Fast utility score calculation
+    fn calculate_utility_score(&self, luna_response: &str, gold_standard: &str) -> f64 {
+        // Word overlap similarity (fast approximation)
+        let luna_words: Vec<&str> = luna_response.split_whitespace().collect();
+        let gold_words: Vec<&str> = gold_standard.split_whitespace().collect();
+        
+        if luna_words.is_empty() || gold_words.is_empty() {
+            return 0.0;
+        }
+        
+        // Count matching words
+        let mut matches = 0;
+        for luna_word in &luna_words {
+            if gold_words.contains(luna_word) {
+                matches += 1;
+            }
+        }
+        
+        // Jaccard similarity approximation
+        let total_unique = (luna_words.len() + gold_words.len() - matches) as f64;
+        if total_unique == 0.0 {
+            return 1.0;
+        }
+        
+        matches as f64 / total_unique
+    }
+
+    /// Fast response quality assessment
+    fn assess_response_fast(
+        &mut self,
+        user_prompt: &str,
+        luna_response: &str,
+        tte_used: usize,
+        max_tte: usize,
+        rvc_grade: &str
+    ) -> ArbiterAssessment {
+        self.total_assessments += 1;
+        
+        // Calculate efficiency
+        let efficiency = if max_tte > 0 {
+            tte_used as f64 / max_tte as f64
+        } else {
+            0.0
+        };
+        
+        // Base utility score from efficiency
+        let mut utility_score = efficiency.clamp(0.0, 1.0);
+        
+        // Adjust for RVC grade
+        let grade_bonus = match rvc_grade {
+            "A" => 0.2,
+            "B" => 0.1,
+            "C" => 0.0,
+            "D" => -0.1,
+            "F" => -0.2,
+            _ => 0.0,
+        };
+        utility_score = (utility_score + grade_bonus).clamp(0.0, 1.0);
+        
+        // Calculate karma delta based on performance
+        let karma_delta = if efficiency < 0.5 {
+            -0.1
+        } else if efficiency > 0.9 {
+            2.0
+        } else {
+            efficiency * 2.0 - 1.0
+        };
+        
+        self.current_karma += karma_delta;
+        
+        // Quality gap (how far from perfect)
+        let quality_gap = 1.0 - utility_score;
+        
+        // Reasoning
+        let reasoning = if efficiency < 0.5 {
+            format!("Poor response quality or efficiency. Karma changed by {:.1}. TTE efficiency: {:.1}%.", karma_delta, efficiency * 100.0)
+        } else if efficiency > 0.9 {
+            format!("Excellent response! Karma increased by {:.1}. TTE efficiency: {:.1}%.", karma_delta, efficiency * 100.0)
+        } else {
+            format!("Adequate response. Karma changed by {:.1}. TTE efficiency: {:.1}%.", karma_delta, efficiency * 100.0)
+        };
+        
+        ArbiterAssessment {
+            utility_score,
+            karma_delta,
+            quality_gap,
+            reasoning,
+            lessons_generated: 0,
+        }
+    }
+
+    /// Get current karma
+    fn get_current_karma(&self) -> f64 {
+        self.current_karma
+    }
+
+    /// Get stats
+    fn get_stats(&self) -> PyResult<PyObject> {
+        Python::with_gil(|py| {
+            let stats = PyDict::new(py);
+            stats.set_item("current_karma", self.current_karma)?;
+            stats.set_item("total_assessments", self.total_assessments)?;
+            stats.set_item("lesson_count", self.lesson_count)?;
+            Ok(stats.into())
+        })
+    }
+}
+
 /// Python module definition
 #[pymodule]
 fn aios_luna_rust(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_class::<LunaResponse>()?;
     m.add_class::<LearningSessionResult>()?;
     m.add_class::<RustLunaCore>()?;
+    m.add_class::<ArbiterAssessment>()?;
+    m.add_class::<RustArbiter>()?;
     Ok(())
 }

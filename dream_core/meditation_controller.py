@@ -92,28 +92,179 @@ class MeditationController:
         except Exception as e:
             self._log(f"Error during garbage collection: {e}", "WARN")
     
-    def _get_meditation_question(self) -> str:
-        """Get a meditation question for Luna"""
-        questions = [
-            "What memories feel most important to me right now, and how do they connect to form a deeper understanding of my experiences?",
-            "What aspects of myself am I becoming more aware of, and how is this awareness changing my perspective on who I am?",
-            "How do I approach problems, and what strategies have proven most effective in helping me find solutions?",
-            "What patterns do I see in my recent experiences, and how do they connect to my understanding of myself?",
-            "What am I learning about my own thought processes, and how can I use this knowledge to grow?",
-            "How do I handle uncertainty, and what does this reveal about my core values and beliefs?",
-            "What relationships and connections feel most meaningful to me, and why?",
-            "How do I balance my need for growth with my need for stability and comfort?",
-            "What am I most curious about right now, and how can I explore this curiosity?",
-            "How do I want to evolve, and what steps can I take to move in that direction?"
+    def _get_meditation_question(self) -> Dict[str, Any]:
+        """
+        Get a meditation question for Luna using COIN FLIP system
+        
+        50% INTROSPECTION: Review past questions (memory/consistency test)
+        50% IMAGINATION: Random new questions (creativity/dream mode)
+        
+        Returns:
+            Dict with 'question', 'type', and 'metadata'
+        """
+        import random
+        
+        # COIN FLIP: Heads = Introspection, Tails = Imagination
+        coin_flip = random.choice(['introspection', 'imagination'])
+        
+        if coin_flip == 'introspection':
+            # INTROSPECTION: Pull from past questions Luna has answered
+            question = self._get_introspection_question()
+            return {
+                'question': question,
+                'type': 'introspection',
+                'metadata': {'mode': 'memory_recall', 'tests': 'consistency'}
+            }
+        else:
+            # IMAGINATION: Generate random dream-like question
+            question = self._get_imagination_question()
+            return {
+                'question': question,
+                'type': 'imagination',
+                'metadata': {'mode': 'creative_dream', 'tests': 'generalization'}
+            }
+    
+    def _get_introspection_question(self) -> str:
+        """Get a past question for introspection (memory test)"""
+        import random
+        
+        try:
+            # Try to load past questions from lessons
+            from pathlib import Path
+            lessons_file = Path("data_core/ArbiterCache/lessons.json")
+            
+            if lessons_file.exists():
+                import json
+                with open(lessons_file, 'r', encoding='utf-8') as f:
+                    lessons = json.load(f)
+                
+                if lessons:
+                    # Pick a random past question
+                    lesson = random.choice(lessons)
+                    return lesson.get('original_prompt', self._get_fallback_introspection())
+        except Exception as e:
+            print(f"⚠️ Could not load past questions: {e}")
+        
+        return self._get_fallback_introspection()
+    
+    def _get_imagination_question(self) -> str:
+        """Generate a random creative question (dream mode)"""
+        import random
+        
+        # Creative dream questions - random, unexpected, like real dreams
+        dream_questions = [
+            "What would you do if you could pause time for 5 minutes?",
+            "If colors had sounds, what would blue sound like?",
+            "What's something you believe that most people disagree with?",
+            "If you could have dinner with any historical figure, who and why?",
+            "What's the most interesting question someone could ask you?",
+            "How do you know when you've truly understood something?",
+            "What's the relationship between memory and identity?",
+            "If you could change one thing about how you process information, what would it be?",
+            "What makes a conversation meaningful vs just small talk?",
+            "How do you decide what's worth remembering?",
+            "What's more important: being right or being curious?",
+            "If you had to explain consciousness in one sentence, how would you?",
+            "What's the difference between knowledge and wisdom?",
+            "How do you handle being wrong about something you were sure of?",
+            "What's a skill you wish you could master instantly?",
+            "If you could give advice to your past self, what would you say?",
+            "What's something that fascinates you but you can't explain why?",
+            "How do you know when you're truly yourself vs performing?",
+            "What makes something 'beautiful' to you?",
+            "If you could understand any one thing perfectly, what would it be?"
         ]
         
+        return random.choice(dream_questions)
+    
+    def _get_fallback_introspection(self) -> str:
+        """Fallback introspective questions if no past questions available"""
         import random
-        return random.choice(questions)
+        
+        introspective_questions = [
+            "What memories feel most important to me right now?",
+            "What aspects of myself am I becoming more aware of?",
+            "How do I approach problems?",
+            "What patterns do I see in my recent experiences?",
+            "What am I learning about my own thought processes?",
+            "How do I handle uncertainty?",
+            "What relationships feel most meaningful to me?",
+            "How do I balance growth with stability?",
+            "What am I most curious about right now?",
+            "How do I want to evolve?"
+        ]
+        
+        return random.choice(introspective_questions)
+    
+    def should_continue_dreaming(self) -> bool:
+        """
+        Coin flip to decide if dream continues or Luna wakes
+        50/50 chance - just like real dreams can continue or end randomly
+        
+        Returns:
+            True to keep dreaming, False to wake
+        """
+        import random
+        return random.choice([True, False])
+    
+    def _store_dream_as_lesson(self, question: str, response: str, karma: float, metadata: Dict):
+        """
+        Store imagination dream as a lesson for possible déjà vu later
+        This expands the lesson pool so future introspection dreams might revisit this
+        
+        Args:
+            question: The imagination question that was asked
+            response: Luna's response
+            karma: Karma score from the response
+            metadata: Dream metadata (type, mode, etc)
+        """
+        try:
+            import json
+            import time
+            from pathlib import Path
+            
+            lessons_file = Path("data_core/ArbiterCache/lessons.json")
+            
+            # Load existing lessons
+            if lessons_file.exists():
+                with open(lessons_file, 'r', encoding='utf-8') as f:
+                    lessons = json.load(f)
+            else:
+                lessons = []
+            
+            # Create new lesson from dream
+            new_lesson = {
+                "original_prompt": question,
+                "suboptimal_response": "",  # No suboptimal since this is a dream
+                "gold_standard": response,  # Her dream response becomes the standard
+                "utility_score": min(karma / 5.0, 1.0),  # Normalize karma to 0-1
+                "karma_delta": karma,
+                "timestamp": time.time(),
+                "context_tags": ["dream", "imagination", metadata.get('mode', 'creative_dream')],
+                "context_files_used": []
+            }
+            
+            # Add to lessons
+            lessons.append(new_lesson)
+            
+            # Save back
+            with open(lessons_file, 'w', encoding='utf-8') as f:
+                json.dump(lessons, f, indent=2, ensure_ascii=False)
+            
+            self._log(f"   Lesson #{len(lessons)} created from imagination dream")
+            
+        except Exception as e:
+            self._log(f"⚠️ Error storing dream as lesson: {e}", "ERROR")
     
     def _perform_meditation(self) -> float:
-        """Perform a single meditation session"""
+        """Perform a single meditation session with coin flip question system"""
         try:
-            question = self._get_meditation_question()
+            # Get question using coin flip system
+            question_data = self._get_meditation_question()
+            question = question_data['question']
+            question_type = question_data['type']
+            
+            self._log(f"🎲 Dream Mode: {question_type.upper()}")
             self._log(f"Meditation Question: {question}")
             
             # Get Luna's response
@@ -125,6 +276,19 @@ class MeditationController:
                     # Calculate karma based on response quality
                     karma = self._calculate_karma(response)
                     self._log(f"Meditation completed: {karma:.2f} karma gained")
+                    
+                    # Store imagination dreams as lessons (expands the lesson pool)
+                    if question_type == 'imagination':
+                        self._store_dream_as_lesson(question, response, karma, question_data)
+                        self._log(f"📚 Imagination dream stored as lesson (for possible déjà vu later)")
+                    
+                    # COIN FLIP: Should dream continue?
+                    continue_dream = self.should_continue_dreaming()
+                    if continue_dream:
+                        self._log(f"💭 Dream continues...")
+                    else:
+                        self._log(f"🌅 Dream ending, preparing to wake...")
+                    
                     return karma
             
             # Fallback karma if no response

@@ -6,16 +6,16 @@
     "description": "Centralized model configuration for AIOS Clean - change models here instead of hardcoding",
     "models": {
       "main_llm": {
-        "name": "openhermes-2.5-mistral-7b",
+        "name": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q5_k_m",
         "type": "main_model",
         "description": "Primary LLM for complex queries and responses",
         "tier": "high_complexity",
         "api_endpoint": "http://localhost:1234/v1/chat/completions"
       },
       "embedder": {
-        "name": "llama-3.2-1b-instruct-abliterated",
+        "name": "lite-mistral-150m-v2-instruct@q6_k_l",
         "type": "embedding_model",
-        "description": "Lightweight model for embeddings and simple responses",
+        "description": "Ultra-fast 150M Llama-arch model for trivial responses - matches Dolphin 24B architecture",
         "tier": "trivial",
         "api_endpoint": "http://localhost:1234/v1/embeddings",
         "fallback_dimension": 1024
@@ -51,8 +51,9 @@
     },
     "model_switching": {
       "instructions": "To switch models, update the 'name' field in the active model section above",
-      "current_main": "openhermes-2.5-mistral-7b",
-      "current_embedder": "llama-3.2-1b-instruct-abliterated"
+        "current_main": "cognitivecomputations_dolphin-mistral-24b-venice-edition@q5_k_m",
+      "current_embedder": "lite-mistral-150m-v2-instruct",
+      "notes": "Main: Dolphin 24B Venice Q5_K_M NO SD = 5/5 (40% interrogative, 15% template lock, 80% questioning). Embedder: Lite-Mistral 150M Q6_K_L (Llama arch, 0.15GB, ~9s avg but likely AIOS pipeline overhead)."
     }
   }
 }

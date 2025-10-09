@@ -59,37 +59,37 @@ class LunaExistentialBudgetSystem:
         self.state_file = Path(state_file)
         self.state_file.parent.mkdir(parents=True, exist_ok=True)
         
-        # Existential economy parameters
+        # Existential economy parameters - BALANCED FOR SUSTAINABILITY
         self.economy_params = {
             # Token pool management (Age-Gated Token Economy)
-            "base_token_pool": 8000,  # INCREASED: Starting token pool for gentler decay (was 4000)
+            "base_token_pool": 64000,  # MUCH HIGHER: Generous starting pool for stability
             "token_pool_growth_rate": 2.0,  # Multiplier per age up (exponential growth)
-            "emergency_token_reserve": 200,  # Minimum tokens to keep in reserve (5% of base)
+            "emergency_token_reserve": 1000,  # Minimum tokens to keep in reserve
             
-            # Learned Efficiency Paradox parameters
-            "learned_efficiency_threshold": 0.9,  # INCREASED: Must maintain 90% efficiency to avoid regression (was 80%)
-            "efficiency_reward_multiplier": 4.0,  # INCREASED: Bonus karma for high efficiency (was 2.0)
-            "verbosity_penalty_factor": 3.0,  # INCREASED: Penalty for unnecessary verbosity (was 1.5)
+            # Learned Efficiency Paradox parameters - RELAXED
+            "learned_efficiency_threshold": 0.5,  # REDUCED: Only need 50% efficiency to avoid regression (was 90%)
+            "efficiency_reward_multiplier": 2.0,  # REDUCED: Moderate bonus for efficiency (was 4.0)
+            "verbosity_penalty_factor": 1.0,  # REDUCED: Minimal penalty for verbosity (was 3.0)
             
-            # Age regression system (Blood Mage Economy)
-            "age_regression_enabled": True,  # Enable age regression penalty
-            "negative_balance_threshold": 0,  # When negative balance triggers regression
-            "regression_penalty_multiplier": 1.2,  # Additional karma quota penalty after regression
-            "regression_cooldown": 300,  # Seconds before regression can occur again
+            # Age regression system (Blood Mage Economy) - DISABLED
+            "age_regression_enabled": False,  # DISABLED: No regressions during fresh start
+            "negative_balance_threshold": -5000,  # MUCH LOWER: Need to be really bad to trigger
+            "regression_penalty_multiplier": 1.1,  # REDUCED: Less harsh penalty (was 1.2)
+            "regression_cooldown": 3600,  # INCREASED: 1 hour cooldown (was 5 minutes)
             
-            # Karma and aging system (Learned Efficiency Paradox)
+            # Karma and aging system - EASIER TO PROGRESS
             "base_karma_quota": 100.0,  # Starting karma quota to age up
-            "karma_quota_growth_rate": 1.5,  # Growth in karma quota per age (steeper curve)
-            "survival_karma_threshold": 1.0,  # Minimum karma per response to survive (higher bar)
+            "karma_quota_growth_rate": 1.3,  # REDUCED: Gentler growth curve (was 1.5)
+            "survival_karma_threshold": 0.5,  # REDUCED: Lower bar to survive (was 1.0)
             
-            # Efficiency-based aging system
-            "efficiency_requirement_growth": 1.2,  # Each age requires higher efficiency
-            "max_efficiency_bonus": 3.0,  # Maximum efficiency bonus multiplier
+            # Efficiency-based aging system - RELAXED
+            "efficiency_requirement_growth": 1.05,  # REDUCED: Much gentler growth (was 1.2)
+            "max_efficiency_bonus": 2.0,  # REDUCED: Moderate bonus cap (was 3.0)
             
-            # Existential anxiety parameters
-            "high_anxiety_threshold": 0.85,  # When anxiety becomes high (loosened from 0.8)
-            "low_token_anxiety_threshold": 15,  # Tokens below this trigger anxiety (loosened from 20)
-            "anxiety_decay_rate": 0.15,  # How fast anxiety decreases (faster decay from 0.1)
+            # Existential anxiety parameters - CALM
+            "high_anxiety_threshold": 0.9,  # INCREASED: Harder to get anxious (was 0.85)
+            "low_token_anxiety_threshold": 5000,  # INCREASED: Only worry when really low (was 15)
+            "anxiety_decay_rate": 0.25,  # INCREASED: Anxiety fades faster (was 0.15)
             
             # Response cost tiers (Learned Efficiency Paradox)
             "token_cost_tiers": {

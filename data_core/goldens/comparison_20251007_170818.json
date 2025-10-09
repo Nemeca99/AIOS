@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-10-07T17:08:18.803546",
+  "baseline_timestamp": "2025-10-07T15:52:46.955122",
+  "regression_threshold": 0.25,
+  "regressions_detected": [],
+  "improvements_detected": [],
+  "status": "PASS",
+  "metrics": {
+    "pass_rate": 1.0,
+    "p50_ms": 13578.961500083096,
+    "p95_ms": 17690.798199968413,
+    "mean_ms": 12803.465659997892
+  }
+}

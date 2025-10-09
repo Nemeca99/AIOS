@@ -98,6 +98,13 @@ class HybridDataCore(MultiLanguageCore):
         print(f"🔍 Getting fractal cache stats using PYTHON implementation...")
         return self.python_impl.get_fractal_cache_stats()
     
+    def get_relevant_lessons(self, current_prompt: str, max_lessons: int = 3) -> List[Dict[str, Any]]:
+        """
+        Retrieve relevant lessons from ArbiterCache for the current prompt.
+        Always uses Python implementation as lesson retrieval is Python-only.
+        """
+        return self.python_impl.get_relevant_lessons(current_prompt, max_lessons)
+    
     def get_arbiter_cache_stats(self) -> Dict[str, Any]:
         """Get statistics about the ArbiterCache."""
         if self.current_implementation == "rust" and self.rust_core_instance:

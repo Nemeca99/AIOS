@@ -13,7 +13,7 @@
         "api_endpoint": "http://localhost:1234/v1/chat/completions"
       },
       "embedder": {
-        "name": "llama-3.2-1b-instruct-abliterated",
+        "name": "lite-mistral-150m-v2-instruct@q6_k_l",
         "type": "embedding_model",
         "description": "Lightweight model for embeddings and simple responses",
         "tier": "trivial",
@@ -46,7 +46,7 @@
     "model_switching": {
       "instructions": "To switch models, update the 'name' field in the active model section above",
       "current_main": "llama-3.2-pkd-deckard-almost-human-abliterated-uncensored-7b-i1",
-      "current_embedder": "llama-3.2-1b-instruct-abliterated"
+      "current_embedder": "lite-mistral-150m-v2-instruct@q6_k_l"
     }
   }
 }
