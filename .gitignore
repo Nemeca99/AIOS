@@ -99,5 +99,6 @@ cross_arch_results.json
 luna_100q_*.json
 luna_100q_*.log
 
-# Profile dumps
-Profile-*/data_core/archive/
+# Profile dumps and archives
+Profile-*/
+data_core/archive/
