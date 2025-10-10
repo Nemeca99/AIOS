@@ -1,7 +1,7 @@
 {
   "test_session_start": "2025-10-10T00:00:00Z",
   "mission": "Production v1 Release Preparation",
-  "current_folder": "data_core",
+  "current_folder": "carma_core",
   "status": "in_progress",
   "folders_completed": [
     {
@@ -23,10 +23,19 @@
       "files_removed": 0,
       "time_hours": 2.0,
       "status": "100% complete"
+    },
+    {
+      "name": "data_core",
+      "files_tested": 9,
+      "tests_passing": 19,
+      "tests_skipped": 0,
+      "issues_fixed": 0,
+      "files_removed": 0,
+      "time_hours": 1.5,
+      "status": "100% complete"
     }
   ],
   "folders_remaining": [
-    "data_core",
     "carma_core",
     "luna_core",
     "dream_core",
@@ -37,10 +46,10 @@
     "root_scripts",
     "system_integration"
   ],
-  "total_files_tested": 52,
+  "total_files_tested": 61,
   "total_issues_fixed": 4,
   "total_files_removed": 3,
-  "total_git_commits": 8,
+  "total_git_commits": 12,
   "environment_checks": {
     "python_available": true,
     "python_version": "3.11.0",
