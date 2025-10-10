@@ -1,0 +1,21 @@
+{
+  "test_date": "2025-10-10T17:29:10.256373",
+  "folder": "dream_core",
+  "total_files": 11,
+  "syntax_errors": [],
+  "import_errors": [],
+  "files_passed": [
+    "dream_core/__init__.py",
+    "dream_core/dream_core.py",
+    "dream_core/core_functions/__init__.py",
+    "dream_core/core_functions/config_loader.py",
+    "dream_core/core_functions/dream_cycles.py",
+    "dream_core/core_functions/meditation.py",
+    "dream_core/core_functions/memory_consolidation.py",
+    "dream_core/core_functions/middleware.py",
+    "dream_core/extra/hybrid_dream_core.py",
+    "dream_core/extra/dream_state_middleware.py",
+    "dream_core/extra/model_config.py"
+  ],
+  "files_failed": []
+}
