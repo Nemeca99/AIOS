@@ -100,4 +100,4 @@ luna_100q_*.json
 luna_100q_*.log
 
 # Profile dumps
-Profile-*/
+Profile-*/data_core/archive/
