@@ -1,0 +1,37 @@
+{
+  "folder": "data_core",
+  "discovery_date": "2025-10-10",
+  "python_files": {
+    "count": 9,
+    "files": [
+      "data_core/data_core.py",
+      "data_core/data_core_unified.py",
+      "data_core/model_config.py",
+      "data_core/system/core/__init__.py",
+      "data_core/system/core/cleanup.py",
+      "data_core/system/core/stats.py",
+      "data_core/system/core/pipeline.py",
+      "data_core/system/core/database.py",
+      "data_core/system/core/lessons.py"
+    ]
+  },
+  "test_files": {
+    "count": 0,
+    "files": []
+  },
+  "rust_module": {
+    "present": false,
+    "note": "data_core/system/rust_data exists but was deleted in git status"
+  },
+  "config_files": {
+    "count": 0,
+    "files": []
+  },
+  "notes": [
+    "Data management layer - pipelines, storage, analytics",
+    "Smaller core with 9 Python files",
+    "No Rust module (was removed)",
+    "Core functionality in system/core/ subdirectory"
+  ]
+}
+
