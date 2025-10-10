@@ -1,0 +1,52 @@
+{
+  "test_date": "2025-10-10T16:46:32.041141",
+  "folder": "utils_core",
+  "total_files": 28,
+  "syntax_errors": [],
+  "import_errors": [],
+  "placeholder_issues": [
+    {
+      "file": "utils_core/base/initializer.py",
+      "issues": [
+        "Line 134: Empty pass statement"
+      ]
+    },
+    {
+      "file": "utils_core/resilience/resilience_policies.py",
+      "issues": [
+        "Line 14: Empty pass statement"
+      ]
+    }
+  ],
+  "files_passed": [
+    "utils_core/validation/file_standards.py",
+    "utils_core/core.py",
+    "utils_core/bridges/rust_bridge.py",
+    "utils_core/bridges/powershell_bridge.py",
+    "utils_core/unicode_safe_output.py",
+    "utils_core/__init__.py",
+    "utils_core/services/__init__.py",
+    "utils_core/operations/__init__.py",
+    "utils_core/resilience/__init__.py",
+    "utils_core/monitoring/__init__.py",
+    "utils_core/bridges/__init__.py",
+    "utils_core/validation/__init__.py",
+    "utils_core/base/initializer.py",
+    "utils_core/base/system_base.py",
+    "utils_core/base/unicode_safety.py",
+    "utils_core/base/__init__.py",
+    "utils_core/resilience/resilience_policies.py",
+    "utils_core/monitoring/cost_tracker.py",
+    "utils_core/validation/pii_redactor.py",
+    "utils_core/services/data_deletion.py",
+    "utils_core/monitoring/provenance.py",
+    "utils_core/monitoring/canary_controller.py",
+    "utils_core/services/schema_migrator.py",
+    "utils_core/monitoring/adaptive_routing.py",
+    "utils_core/services/model_config.py",
+    "utils_core/validation/json_standards.py",
+    "utils_core/extra/chatgpt_conversation_extractor.py",
+    "utils_core/validation/timestamp_validator.py"
+  ],
+  "files_failed": []
+}

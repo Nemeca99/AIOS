@@ -1,0 +1,61 @@
+{
+  "folder": "utils_core",
+  "discovery_date": "2025-10-10",
+  "python_files": {
+    "count": 31,
+    "files": [
+      "validation/file_standards.py",
+      "core.py",
+      "bridges/rust_bridge.py",
+      "bridges/powershell_bridge.py",
+      "unicode_safe_output.py",
+      "__init__.py",
+      "services/__init__.py",
+      "operations/__init__.py",
+      "resilience/__init__.py",
+      "monitoring/__init__.py",
+      "bridges/__init__.py",
+      "validation/__init__.py",
+      "base/initializer.py",
+      "base/system_base.py",
+      "base/unicode_safety.py",
+      "base/__init__.py",
+      "resilience/resilience_policies.py",
+      "monitoring/cost_tracker.py",
+      "validation/pii_redactor.py",
+      "services/data_deletion.py",
+      "monitoring/provenance.py",
+      "monitoring/canary_controller.py",
+      "services/schema_migrator.py",
+      "monitoring/adaptive_routing.py",
+      "services/model_config.py",
+      "extra/refactor_cores.py",
+      "extra/refactored_example_backup_core.py",
+      "validation/json_standards.py",
+      "extra/psycho_semantic_rag_system.py",
+      "extra/chatgpt_conversation_extractor.py",
+      "validation/timestamp_validator.py"
+    ]
+  },
+  "test_files": {
+    "count": 0,
+    "files": []
+  },
+  "rust_module": {
+    "present": true,
+    "path": "rust_utils",
+    "compiled_output": "rust_utils/target/release/aios_utils_rust.pyd",
+    "source": "rust_utils/src/lib.rs"
+  },
+  "config_files": {
+    "count": 0,
+    "files": []
+  },
+  "notes": [
+    "Foundation layer - critical for entire system",
+    "Contains unicode safety, bridges, validation",
+    "Rust module already compiled",
+    "No test files present - will need to create comprehensive tests"
+  ]
+}
+
