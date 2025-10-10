@@ -1,0 +1,58 @@
+{
+  "test_date": "2025-10-10T17:19:07.804256",
+  "folder": "luna_core",
+  "total_files": 34,
+  "syntax_errors": [],
+  "import_errors": [],
+  "placeholder_issues": [
+    {
+      "file": "luna_core/core/response_generator.py",
+      "issues": [
+        "Line 310: Placeholder comment"
+      ]
+    },
+    {
+      "file": "luna_core/systems/luna_token_time_econometric_system.py",
+      "issues": [
+        "Line 138: Placeholder comment"
+      ]
+    }
+  ],
+  "files_passed": [
+    "luna_core/__init__.py",
+    "luna_core/hybrid_luna_core.py",
+    "luna_core/model_config.py",
+    "luna_core/core/__init__.py",
+    "luna_core/core/luna_core.py",
+    "luna_core/core/personality.py",
+    "luna_core/core/learning_system.py",
+    "luna_core/core/response_generator.py",
+    "luna_core/core/utils.py",
+    "luna_core/core/enums_and_dataclasses.py",
+    "luna_core/core/emergence_zone.py",
+    "luna_core/systems/__init__.py",
+    "luna_core/systems/luna_arbiter_system.py",
+    "luna_core/systems/luna_ifs_personality_system.py",
+    "luna_core/systems/luna_custom_inference_controller.py",
+    "luna_core/systems/luna_existential_budget_system.py",
+    "luna_core/systems/luna_response_value_classifier.py",
+    "luna_core/systems/llm_performance_evaluator.py",
+    "luna_core/systems/luna_internal_reasoning_system.py",
+    "luna_core/systems/luna_cfia_system.py",
+    "luna_core/systems/luna_trait_classifier.py",
+    "luna_core/systems/luna_token_time_econometric_system.py",
+    "luna_core/systems/luna_soul_metric_system.py",
+    "luna_core/systems/luna_semantic_compression_filter.py",
+    "luna_core/prompts/__init__.py",
+    "luna_core/prompts/prompt_builder.py",
+    "luna_core/prompts/luna_ava_authentic_prompt_builder.py",
+    "luna_core/prompts/first_word_selector.py",
+    "luna_core/utilities/__init__.py",
+    "luna_core/utilities/enhanced_lesson_retrieval.py",
+    "luna_core/utilities/dynamic_llm_parameters.py",
+    "luna_core/utilities/luna_question_generator.py",
+    "luna_core/utilities/bigfive_question_loader.py",
+    "luna_core/extra/scripts/luna_infinite_learning.py"
+  ],
+  "files_failed": []
+}
