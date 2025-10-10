@@ -1,0 +1,31 @@
+{
+  "test_date": "2025-10-10T17:13:07.253231",
+  "folder": "carma_core",
+  "total_files": 20,
+  "syntax_errors": [],
+  "import_errors": [],
+  "placeholder_issues": [],
+  "files_passed": [
+    "carma_core/carma_core.py",
+    "carma_core/__init__.py",
+    "carma_core/refactor_script.py",
+    "carma_core/core/__init__.py",
+    "carma_core/core/fractal_cache.py",
+    "carma_core/core/executive_brain.py",
+    "carma_core/core/meta_memory.py",
+    "carma_core/core/analytics.py",
+    "carma_core/core/performance.py",
+    "carma_core/core/mycelium_network.py",
+    "carma_core/core/clusterer.py",
+    "carma_core/core/compressor.py",
+    "carma_core/implementations/__init__.py",
+    "carma_core/implementations/hybrid_carma.py",
+    "carma_core/implementations/fast_carma.py",
+    "carma_core/utils/__init__.py",
+    "carma_core/utils/fragment_decayer.py",
+    "carma_core/utils/memory_quality.py",
+    "carma_core/utils/model_config.py",
+    "carma_core/extra/__init__.py"
+  ],
+  "files_failed": []
+}
