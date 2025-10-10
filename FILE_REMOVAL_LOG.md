@@ -50,16 +50,54 @@ Each entry includes:
 
 ---
 
+### 2025-10-10 - dream_core cleanup
+
+#### 4. dream_core/extra/meditation_controller.py
+**What it did:** Old meditation controller that managed Luna's self-reflection cycles. Tried to initialize both CARMA and Luna systems for meditation sessions.
+
+**Why removed:** Imports from `luna_core.luna_core` which doesn't exist in refactored structure. Old standalone script not integrated with current architecture.
+
+**Date:** 2025-10-10  
+**Status:** Outdated middleware
+
+#### 5. dream_core/extra/dream_quick_nap_middleware.py
+**What it did:** Quick nap middleware for short dream cycles.
+
+**Why removed:** Imports from `dream_state_middleware` with broken paths. Old middleware pattern.
+
+**Date:** 2025-10-10  
+**Status:** Outdated middleware
+
+#### 6. dream_core/extra/run_dream_system.py
+**What it did:** Standalone dream system launcher.
+
+**Why removed:** Imports from `carma_core.dream_quick_nap_middleware` which doesn't exist.
+
+**Date:** 2025-10-10  
+**Status:** Outdated launcher script
+
+#### 7-8. dream_core/dream_core/* duplicate files
+**What they did:** Duplicate copies of core_functions in nested dream_core/dream_core/ directory.
+
+**Why removed:** Duplicate structure causing import conflicts.
+
+**Date:** 2025-10-10  
+**Status:** Duplicate files
+
+---
+
 ## Summary
 
-**Total Files Removed:** 3  
+**Total Files Removed:** 8  
 **Categories:**
 - Redundant test files: 0
 - Outdated modules: 2 (refactor_cores.py, refactored_example_backup_core.py)
 - Duplicate code: 0
 - Vendor cruft: 0
 - Experimental/unintegrated: 1 (psycho_semantic_rag_system.py)
+- Old middleware: 5 (dream_core extra files)
 
 **By Folder:**
 - utils_core: 3 files
+- dream_core: 5 files
 
