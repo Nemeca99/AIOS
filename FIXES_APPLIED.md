@@ -54,13 +54,33 @@ Each entry includes:
 
 ---
 
+### 2025-10-10 - enterprise_core Import Fix
+
+#### Issue 4: enterprise_core/aios_standards_checker.py - Wrong Import Paths
+**Problem:** 
+- Line 11: `from utils.unicode_safe_output` (should be `utils_core.unicode_safe_output`)
+- Line 19: `from utils.aios_file_standards` (should be `utils_core.validation.file_standards`)
+
+**Root Cause:** File wasn't updated during utils → utils_core refactoring.
+
+**Fix:** Updated both import statements to use correct module paths:
+```python
+from utils_core.unicode_safe_output import setup_unicode_safe_output
+from utils_core.validation.file_standards import AIOSStandardsManager, AIOSFileValidator, FileValidationResult, SeverityLevel
+```
+
+**Date:** 2025-10-10  
+**Git Commit:** (pending)
+
+---
+
 ## Summary by Category
 
-**Total Fixes Applied:** 3
+**Total Fixes Applied:** 4
 
 ### By Issue Type
 - Syntax errors: 0
-- Import errors: 3 (all resolved by file removal)
+- Import errors: 4 (3 resolved by file removal, 1 fixed by correcting imports)
 - Placeholder code removed: 0
 - Empty exception handlers: 0
 - Unimplemented functions: 0

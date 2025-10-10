@@ -7,8 +7,8 @@ Automated file standards checking and enforcement system
 # CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
 import sys
 from pathlib import Path
-sys.path.append(str(Path(__file__).parent))
-from utils.unicode_safe_output import setup_unicode_safe_output
+sys.path.append(str(Path(__file__).parent.parent))
+from utils_core.unicode_safe_output import setup_unicode_safe_output
 setup_unicode_safe_output()
 
 import json
@@ -16,7 +16,7 @@ import time
 import threading
 from datetime import datetime
 from typing import Dict, List, Any, Optional
-from utils.aios_file_standards import AIOSStandardsManager, AIOSFileValidator, FileValidationResult, SeverityLevel
+from utils_core.validation.file_standards import AIOSStandardsManager, AIOSFileValidator, FileValidationResult, SeverityLevel
 
 class AIOSStandardsChecker:
     """AIOS Standards Checking and Enforcement System"""
