@@ -1,0 +1,61 @@
+{
+  "test_date": "2025-10-10T16:59:32.010358",
+  "folder": "support_core",
+  "total_files": 24,
+  "syntax_errors": [],
+  "import_errors": [],
+  "placeholder_issues": [
+    {
+      "file": "support_core/core/logger.py",
+      "issues": [
+        "Line 43: Empty pass statement"
+      ]
+    },
+    {
+      "file": "support_core/core/health_checker.py",
+      "issues": [
+        "Line 47: Empty pass statement"
+      ]
+    },
+    {
+      "file": "support_core/core/config.py",
+      "issues": [
+        "Line 31: Empty pass statement"
+      ]
+    },
+    {
+      "file": "support_core/extra/integration/carma_hypothesis_integration.py",
+      "issues": [
+        "Line 33: Empty pass statement",
+        "Line 38: Empty pass statement"
+      ]
+    }
+  ],
+  "files_passed": [
+    "support_core/support_core.py",
+    "support_core/hybrid_support_core.py",
+    "support_core/model_config.py",
+    "support_core/test_refactor.py",
+    "support_core/extract_support_modules.py",
+    "support_core/core/__init__.py",
+    "support_core/core/logger.py",
+    "support_core/core/security.py",
+    "support_core/core/health_checker.py",
+    "support_core/core/embedding_operations.py",
+    "support_core/core/cache_operations.py",
+    "support_core/core/system_classes.py",
+    "support_core/core/recovery_operations.py",
+    "support_core/core/config.py",
+    "support_core/extra/integration/carma_hypothesis_integration.py",
+    "support_core/extra/integration/documentation_loader.py",
+    "support_core/extra/integration/conversation_math_engine.py",
+    "support_core/extra/gui/streamlit_app.py",
+    "support_core/extra/misc/test_refactor.py",
+    "support_core/extra/misc/extract_support_modules.py",
+    "support_core/extra/misc/_extract_modules.py",
+    "support_core/extra/misc/fix_rich_integration.py",
+    "support_core/extra/misc/disable_rich_integration.py",
+    "support_core/extra/misc/convert_docs.py"
+  ],
+  "files_failed": []
+}

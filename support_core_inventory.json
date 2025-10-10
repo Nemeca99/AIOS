@@ -1,0 +1,57 @@
+{
+  "folder": "support_core",
+  "discovery_date": "2025-10-10",
+  "python_files": {
+    "count": 24,
+    "files": [
+      "support_core.py",
+      "hybrid_support_core.py",
+      "model_config.py",
+      "test_refactor.py",
+      "extract_support_modules.py",
+      "core/__init__.py",
+      "core/logger.py",
+      "core/security.py",
+      "core/health_checker.py",
+      "core/embedding_operations.py",
+      "core/cache_operations.py",
+      "core/system_classes.py",
+      "core/recovery_operations.py",
+      "core/config.py",
+      "extra/integration/carma_hypothesis_integration.py",
+      "extra/integration/documentation_loader.py",
+      "extra/integration/conversation_math_engine.py",
+      "extra/gui/streamlit_app.py",
+      "extra/misc/test_refactor.py",
+      "extra/misc/extract_support_modules.py",
+      "extra/misc/_extract_modules.py",
+      "extra/misc/fix_rich_integration.py",
+      "extra/misc/disable_rich_integration.py",
+      "extra/misc/convert_docs.py"
+    ]
+  },
+  "test_files": {
+    "count": 2,
+    "files": [
+      "test_refactor.py",
+      "extra/misc/test_refactor.py"
+    ]
+  },
+  "rust_module": {
+    "present": true,
+    "path": "rust_support",
+    "compiled_output": "rust_support/target/release/aios_support_rust.pyd",
+    "source": "rust_support/src/lib.rs"
+  },
+  "config_files": {
+    "count": 0,
+    "files": []
+  },
+  "notes": [
+    "Support utilities layer - health checks, caching, monitoring",
+    "Rust module compiled and available",
+    "Some test files and utility scripts present",
+    "Core functionality in core/ subdirectory"
+  ]
+}
+
