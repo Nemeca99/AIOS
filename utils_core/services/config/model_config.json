@@ -1,0 +1,21 @@
+{
+  "embedder": {
+    "name": "lite-mistral-150m-v2-instruct@q6_k_l",
+    "type": "embedder",
+    "description": "Lightweight embedder for utils core operations",
+    "api_endpoint": "http://localhost:1234/v1/embeddings",
+    "cache_enabled": true
+  },
+  "validation": {
+    "enabled": true,
+    "strict_mode": false,
+    "check_encoding": true,
+    "check_standards": true
+  },
+  "monitoring": {
+    "enabled": true,
+    "log_level": "INFO",
+    "metrics_enabled": true
+  }
+}
+

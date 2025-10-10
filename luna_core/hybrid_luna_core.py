@@ -4,8 +4,8 @@ Hybrid Luna Core - Python-Rust bridge for Luna personality system
 """
 
 from pathlib import Path
-from utils_core.rust_bridge import RustBridge, MultiLanguageCore
-from .luna_core import LunaSystem
+from utils_core.bridges.rust_bridge import RustBridge, MultiLanguageCore
+from .core.luna_core import LunaSystem
 
 class HybridLunaCore(MultiLanguageCore):
     """

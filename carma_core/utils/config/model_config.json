@@ -1,0 +1,22 @@
+{
+  "embedder": {
+    "name": "lite-mistral-150m-v2-instruct@q6_k_l",
+    "type": "embedder",
+    "description": "Embedder for CARMA memory operations",
+    "api_endpoint": "http://localhost:1234/v1/embeddings",
+    "cache_enabled": true,
+    "batch_size": 32
+  },
+  "search": {
+    "default_topk": 5,
+    "similarity_threshold": 0.7,
+    "use_fast_carma": true,
+    "fallback_to_keyword": true
+  },
+  "memory": {
+    "max_fragments": 10000,
+    "consolidation_threshold": 1000,
+    "decay_enabled": false
+  }
+}
+

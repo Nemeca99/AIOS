@@ -1,0 +1,78 @@
+2025-10-10 16:21:19 - aios.AIOS - INFO - Initializing AIOS Clean System...
+2025-10-10 16:21:19 - aios.AIOS - INFO - Initializing essential systems...
+2025-10-10 16:21:19 - aios.AIOS - INFO - Initializing Data system...
+2025-10-10 16:21:19 - aios.AIOS - INFO - Initializing Support system...
+2025-10-10 16:21:21 - aios.AIOS - INFO - Other systems will be loaded on-demand
+2025-10-10 16:21:21 - aios.AIOS - INFO - AIOS Clean System Initialized Successfully
+2025-10-10 16:21:21 - aios.AIOS - INFO - Data: 391 files
+2025-10-10 16:21:21 - aios.AIOS - INFO - Support: 0 fragments
+2025-10-10 16:21:21 - aios.AIOS - INFO - Other systems (utils, luna, backup, carma, dream, streamlit, enterprise) will load on-demand
+Unicode-safe output initialized
+[2025-10-10 16:21:18.316] [AIOS-CONFIG-INFO] Configuration loaded successfully
+?? utils_core.rust_bridge not available - Python-only mode
+[96m[2025-10-10 16:21:19.274] [INFO] [AIOS] Initializing AIOS Clean System...[0m
+[96m[2025-10-10 16:21:19.275] [INFO] [AIOS] Initializing essential systems...[0m
+[96m[2025-10-10 16:21:19.275] [INFO] [AIOS] Initializing Data system...[0m
+?? Data Core System Initialized - Python Mode
+   Data Directory: F:\AIOS_Clean\data_core
+   Implementation: PYTHON
+   Fractal Cache: F:\AIOS_Clean\data_core\storage\caches\fractal
+   Arbiter Cache: F:\AIOS_Clean\data_core\storage\caches\arbiter
+   Conversations: F:\AIOS_Clean\data_core\storage\conversations
+[96m[2025-10-10 16:21:19.276] [INFO] [AIOS] Initializing Support system...[0m
+? Initializing Unified Support System
+================================================================================
+ Cache Operations Initialized
+   Cache directory: data_core\FractalCache
+ Cache Registry Initialized
+   Registry file: data_core\FractalCache\registry.json
+   Loaded 0 fragments
+ Cache Backup System Initialized
+   Note: Backup functionality moved to backup_core
+ Simple Embedder Initialized
+   Model: lite-mistral-150m-v2-instruct@q6_k_l
+   API URL: http://localhost:1234/v1/embeddings
+   Use API: False
+   Fallback dimension: 1024
+ Embedding Cache Initialized
+   Cache file: data_core\FractalCache\embeddings.json
+   Loaded 0 embeddings
+ FAISS Operations Initialized
+   Dimension: 384
+   Index path: None
+    Real FAISS implementation
+ Recovery Operations Initialized
+   Cache directory: data_core\FractalCache
+   Recovery log: log\recovery.log
+ Recovery Assessment Initialized
+   Cache directory: data_core\FractalCache
+? Unified Support System Initialized
+   Cache directory: data_core\FractalCache
+   Embedder: lite-mistral-150m-v2-instruct@q6_k_l
+   FAISS: Available
+? Rust Bridge initialized for support
+   Module path: F:\AIOS_Clean\support_core\rust_support
+   Module name: aios_support_rust
+   Python executable: C:\Users\nemec\AppData\Local\Programs\Python\Python311\python.exe
+? Compiling Rust module for support...
+? Direct import failed: No module named 'aios_support_rust'
+? Module aios_support_rust not available: Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'aios_support_rust'
+
+? Rust module compiled successfully in 1.93s
+? Loading Rust module for support...
+? Failed to import Rust module: No module named 'aios_support_rust'
+   Try running: maturin develop
+Note: Direct import of aios_support_rust failed: No module named 'aios_support_rust'
+? Using Python implementation for support
+? Hybrid Support Core Initialized
+   Current implementation: PYTHON
+   Cache directory: data_core\FractalCache
+[96m[2025-10-10 16:21:21.406] [INFO] [AIOS] Other systems will be loaded on-demand[0m
+[92m[2025-10-10 16:21:21.407] [SUCCESS] [AIOS] AIOS Clean System Initialized Successfully[0m
+[96m[2025-10-10 16:21:21.567] [INFO] [AIOS] Data: 391 files[0m
+Note: Direct import of aios_support_rust failed: No module named 'aios_support_rust'
+[96m[2025-10-10 16:21:21.621] [INFO] [AIOS] Support: 0 fragments[0m
+[96m[2025-10-10 16:21:21.621] [INFO] [AIOS] Other systems (utils, luna, backup, carma, dream, streamlit, enterprise) will load on-demand[0m
+Unknown mode: None

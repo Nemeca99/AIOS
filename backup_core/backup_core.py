@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-BACKUP CORE SYSTEM - Git-like Incremental Backup
-Self-contained backup and recovery system for AIOS Clean
-Works like Git: one active backup that gets updated incrementally
+BACKUP CORE SYSTEM - Git-like Version Control for AIOS
+Full-featured version control with commits, branches, and history
 """
 
 # CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
@@ -12,389 +11,433 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from utils_core.unicode_safe_output import setup_unicode_safe_output
 setup_unicode_safe_output()
 
-import os
-import shutil
-import json
-import zipfile
-import time
-import hashlib
-from datetime import datetime
 from typing import Dict, List, Optional, Any
+from datetime import datetime
+
+# Import all core modules
+from .core.objects import ObjectStore
+from .core.refs import RefManager
+from .core.staging import StagingArea
+from .core.commits import CommitManager
+from .core.branches import BranchManager
+from .core.diff import DiffEngine
+from .core.file_ops import FileOperations
+from .core.config import BackupConfig
+
 
 class BackupCore:
     """
-    Git-like backup system for AIOS Clean.
-    Maintains one active backup that gets updated incrementally.
-    Archives old versions of changed files before updating.
+    Git-like backup and version control system for AIOS Clean.
+    
+    Features:
+    - Content-addressable object storage
+    - Full commit history
+    - Branching and merging
+    - Staging area
+    - Diff and status tracking
+    - Tag support
     """
     
-    def __init__(self):
-        """Initialize the backup core system."""
-        self.backup_dir = Path("backup_core")
-        self.backup_dir.mkdir(exist_ok=True)
+    def __init__(self, workspace_root: Optional[Path] = None):
+        """
+        Initialize the backup core system.
         
-        # Git-like backup structure
-        self.active_backup_dir = self.backup_dir / "active_backup"
-        self.archive_backup_dir = self.backup_dir / "archive_backup"
-        self.active_backup_dir.mkdir(exist_ok=True)
-        self.archive_backup_dir.mkdir(exist_ok=True)
+        Args:
+            workspace_root: Root directory of workspace (defaults to parent of backup_core)
+        """
+        # Determine paths
+        if workspace_root is None:
+            workspace_root = Path(__file__).parent.parent
         
-        # Initialize backup tracking
-        self.backup_tracking_file = self.backup_dir / "backup_tracking.json"
-        self.file_checksums_file = self.backup_dir / "file_checksums.json"
-        self.last_backup_timestamp = self._load_last_backup_timestamp()
-        self.file_checksums = self._load_file_checksums()
+        self.workspace_root = Path(workspace_root)
+        self.repo_dir = self.workspace_root / ".aios_backup"
         
-        print(f"🔒 Backup Core System Initialized (Git-like)")
-        print(f"   Active Backup: {self.active_backup_dir}")
-        print(f"   Archive Backup: {self.archive_backup_dir}")
-        print(f"   Last Backup: {datetime.fromtimestamp(self.last_backup_timestamp) if self.last_backup_timestamp > 0 else 'Never'}")
+        # Initialize repository if needed
+        self._init_repository()
+        
+        # Initialize all components
+        self.object_store = ObjectStore(self.repo_dir)
+        self.ref_manager = RefManager(self.repo_dir)
+        self.staging_area = StagingArea(self.repo_dir)
+        self.file_ops = FileOperations(self.workspace_root)
+        self.config = BackupConfig(self.repo_dir)
+        
+        # Initialize managers
+        self.commit_manager = CommitManager(
+            self.repo_dir,
+            self.object_store,
+            self.ref_manager,
+            self.staging_area
+        )
+        
+        self.branch_manager = BranchManager(
+            self.repo_dir,
+            self.object_store,
+            self.ref_manager,
+            self.commit_manager,
+            self.staging_area
+        )
+        
+        self.diff_engine = DiffEngine(
+            self.workspace_root,
+            self.repo_dir,
+            self.object_store,
+            self.ref_manager,
+            self.staging_area,
+            self.file_ops
+        )
+        
+        print(f"🔒 AIOS Backup Core (Git-like)")
+        print(f"   Repository: {self.repo_dir}")
+        
+        # Show current branch/commit
+        current_branch = self.ref_manager.get_current_branch()
+        if current_branch:
+            print(f"   Branch: {current_branch}")
+        else:
+            head_commit = self.ref_manager.get_head_commit()
+            if head_commit:
+                print(f"   Detached HEAD: {head_commit[:8]}")
+            else:
+                print(f"   No commits yet")
     
-    def create_backup(self, 
-                     backup_name: Optional[str] = None,
+    def _init_repository(self):
+        """Initialize repository structure if it doesn't exist"""
+        if not self.repo_dir.exists():
+            print(f"📁 Initializing new repository...")
+            
+            # Create directory structure
+            self.repo_dir.mkdir(parents=True, exist_ok=True)
+            (self.repo_dir / "objects").mkdir(exist_ok=True)
+            (self.repo_dir / "refs" / "heads").mkdir(parents=True, exist_ok=True)
+            (self.repo_dir / "refs" / "tags").mkdir(parents=True, exist_ok=True)
+            
+            # Create HEAD pointing to main branch
+            head_file = self.repo_dir / "HEAD"
+            with open(head_file, 'w') as f:
+                f.write("refs/heads/main")
+            
+            print(f"✅ Repository initialized")
+    
+    # ===== Staging Operations =====
+    
+    def add(self, paths: Optional[List[str]] = None, all_files: bool = False):
+        """
+        Add files to staging area.
+        
+        Args:
+            paths: List of file/directory paths to add
+            all_files: Add all files in workspace
+        """
+        if all_files:
+            # Add all files
+            files_to_add = self.file_ops.get_all_files()
+        elif paths:
+            # Add specified paths
+            path_objs = [Path(p) for p in paths]
+            files_to_add = self.file_ops.get_files_in_paths(path_objs)
+        else:
+            print("⚠️ No files specified. Use all_files=True or provide paths")
+            return
+        
+        if not files_to_add:
+            print("⚠️ No files to add")
+            return
+        
+        print(f"📦 Staging {len(files_to_add)} files...")
+        
+        added_count = 0
+        for file_path in files_to_add:
+            try:
+                # Create blob and add to staging
+                blob_hash = self.object_store.write_blob_from_file(
+                    self.workspace_root / file_path
+                )
+                mode = self.file_ops.get_file_mode(file_path)
+                self.staging_area.add(str(file_path), blob_hash, mode)
+                added_count += 1
+            except Exception as e:
+                print(f"⚠️ Could not stage {file_path}: {e}")
+        
+        print(f"✅ Staged {added_count} files")
+    
+    def unstage(self, file_path: str):
+        """Remove file from staging area"""
+        self.staging_area.remove(file_path)
+        print(f"✅ Unstaged: {file_path}")
+    
+    def unstage_all(self):
+        """Remove all files from staging area"""
+        self.staging_area.clear()
+        print(f"✅ Cleared staging area")
+    
+    # ===== Commit Operations =====
+    
+    def commit(self, message: str, author: Optional[str] = None) -> Optional[str]:
+        """
+        Create a commit from staged files.
+        
+        Args:
+            message: Commit message
+            author: Commit author (defaults to config)
+        
+        Returns:
+            Commit hash or None
+        """
+        if author is None:
+            author = self.config.get_author_name()
+        
+        return self.commit_manager.create_commit(message, author)
+    
+    def log(self, max_count: Optional[int] = 20):
+        """Show commit history"""
+        commits = self.commit_manager.get_commit_history(max_count=max_count)
+        
+        if not commits:
+            print("No commits yet")
+            return
+        
+        formatted_log = self.commit_manager.format_commit_log(commits)
+        print(formatted_log)
+    
+    def show(self, commit_hash: Optional[str] = None):
+        """Show commit details"""
+        if commit_hash is None:
+            commit_hash = self.ref_manager.get_head_commit()
+        
+        if not commit_hash:
+            print("No commits yet")
+            return
+        
+        # Get commit info
+        info = self.commit_manager.get_commit_info(commit_hash)
+        if not info:
+            print(f"❌ Commit not found: {commit_hash}")
+            return
+        
+        # Print commit details
+        print(f"commit {commit_hash}")
+        print(f"Author: {info['author']}")
+        print(f"Date:   {info['date']}")
+        print()
+        print(f"    {info['message']}")
+        print()
+        
+        # Show files changed
+        files = self.commit_manager.get_commit_diff_files(commit_hash)
+        if files:
+            print(f"Files changed: {len(files)}")
+            for file_path in files[:10]:  # Show first 10
+                print(f"    {file_path}")
+            if len(files) > 10:
+                print(f"    ... and {len(files) - 10} more")
+    
+    # ===== Branch Operations =====
+    
+    def branch_create(self, branch_name: str, start_point: Optional[str] = None) -> bool:
+        """Create a new branch"""
+        return self.branch_manager.create(branch_name, start_point)
+    
+    def branch_delete(self, branch_name: str, force: bool = False) -> bool:
+        """Delete a branch"""
+        return self.branch_manager.delete(branch_name, force)
+    
+    def branch_rename(self, old_name: str, new_name: str) -> bool:
+        """Rename a branch"""
+        return self.branch_manager.rename(old_name, new_name)
+    
+    def branch_switch(self, branch_name: str, create: bool = False) -> bool:
+        """Switch to a different branch"""
+        return self.branch_manager.switch(branch_name, create)
+    
+    def branch_list(self, verbose: bool = False):
+        """List all branches"""
+        branches = self.branch_manager.list(verbose)
+        formatted = self.branch_manager.format_branch_list(branches)
+        print(formatted)
+    
+    def branch_merge(self, branch_name: str, message: Optional[str] = None) -> bool:
+        """Merge branch into current branch"""
+        return self.branch_manager.merge(branch_name, message)
+    
+    # ===== Status and Diff Operations =====
+    
+    def status(self):
+        """Show working directory status"""
+        status_dict = self.diff_engine.get_status()
+        formatted = self.diff_engine.format_status(status_dict)
+        print(formatted)
+    
+    def diff(self, file_path: Optional[str] = None, cached: bool = False):
+        """Show file changes"""
+        if file_path:
+            # Show diff for specific file
+            diff_text = self.diff_engine.get_diff(file_path, cached)
+            if diff_text:
+                print(diff_text)
+            else:
+                print(f"No changes to show for {file_path}")
+        else:
+            # Show status instead
+            self.status()
+    
+    # ===== Tag Operations =====
+    
+    def tag_create(self, tag_name: str, commit_hash: Optional[str] = None):
+        """
+        Create a tag at commit.
+        
+        Args:
+            tag_name: Name of tag
+            commit_hash: Commit to tag (defaults to HEAD)
+        """
+        if commit_hash is None:
+            commit_hash = self.ref_manager.get_head_commit()
+        
+        if not commit_hash:
+            print("❌ No commits to tag")
+            return
+        
+        self.ref_manager.create_tag(tag_name, commit_hash)
+        print(f"✅ Created tag: {tag_name} → {commit_hash[:8]}")
+    
+    def tag_delete(self, tag_name: str):
+        """Delete a tag"""
+        self.ref_manager.delete_tag(tag_name)
+        print(f"✅ Deleted tag: {tag_name}")
+    
+    def tag_list(self):
+        """List all tags"""
+        tags = self.ref_manager.get_all_tags_with_commits()
+        
+        if not tags:
+            print("No tags")
+            return
+        
+        for tag_name, commit_hash in sorted(tags.items()):
+            print(f"  {tag_name} → {commit_hash[:8]}")
+    
+    # ===== Checkout and Restore Operations =====
+    
+    def checkout(self, ref: str):
+        """
+        Checkout a commit, branch, or tag.
+        
+        Args:
+            ref: Branch name, tag name, or commit hash
+        """
+        # Resolve reference
+        commit_hash = self.ref_manager.resolve_ref(ref)
+        
+        if not commit_hash:
+            print(f"❌ Could not resolve reference: {ref}")
+            return
+        
+        # Check if it's a branch
+        if self.ref_manager.branch_exists(ref):
+            # Switch to branch
+            self.branch_manager.switch(ref)
+        else:
+            # Detached HEAD checkout
+            self.ref_manager.set_head(commit_hash)
+            print(f"✅ Checked out commit: {commit_hash[:8]}")
+            print(f"   HEAD is now detached")
+    
+    # ===== Information and Statistics =====
+    
+    def get_system_info(self) -> Dict[str, Any]:
+        """Get comprehensive system information"""
+        obj_stats = self.object_store.get_stats()
+        diff_stats = self.diff_engine.get_stats()
+        ref_info = self.ref_manager.get_ref_info()
+        
+        return {
+            'repository_type': 'Git-like Version Control',
+            'repository_path': str(self.repo_dir),
+            'workspace_root': str(self.workspace_root),
+            'current_branch': ref_info['current_branch'],
+            'current_commit': ref_info['head_commit'],
+            'is_detached': ref_info['is_detached'],
+            'total_commits': obj_stats['commits'],
+            'total_objects': obj_stats['total_objects'],
+            'total_blobs': obj_stats['blobs'],
+            'total_trees': obj_stats['trees'],
+            'storage_size_bytes': obj_stats['total_size_bytes'],
+            'branches': list(ref_info['branches'].keys()),
+            'tags': list(ref_info['tags'].keys()),
+            'staged_files': diff_stats['staged_count'],
+            'modified_files': diff_stats['modified_count'],
+            'untracked_files': diff_stats['untracked_count'],
+            'working_dir_clean': diff_stats['is_clean']
+        }
+    
+    def info(self):
+        """Print system information"""
+        info = self.get_system_info()
+        
+        print("\n=== AIOS Backup System Info ===")
+        print(f"Type: {info['repository_type']}")
+        print(f"Repository: {info['repository_path']}")
+        print(f"Workspace: {info['workspace_root']}")
+        print()
+        print(f"Current Branch: {info['current_branch'] or '(detached)'}")
+        if info['current_commit']:
+            print(f"Current Commit: {info['current_commit'][:8]}")
+        print()
+        print(f"Total Commits: {info['total_commits']}")
+        print(f"Total Objects: {info['total_objects']}")
+        print(f"  - Blobs: {info['total_blobs']}")
+        print(f"  - Trees: {info['total_trees']}")
+        print(f"  - Commits: {info['total_commits']}")
+        print(f"Storage Size: {info['storage_size_bytes'] / 1024:.1f} KB")
+        print()
+        print(f"Branches: {len(info['branches'])}")
+        for branch in info['branches']:
+            print(f"  - {branch}")
+        if info['tags']:
+            print(f"Tags: {len(info['tags'])}")
+            for tag in info['tags'][:5]:
+                print(f"  - {tag}")
+        print()
+        print(f"Working Directory:")
+        print(f"  Staged: {info['staged_files']}")
+        print(f"  Modified: {info['modified_files']}")
+        print(f"  Untracked: {info['untracked_files']}")
+        print(f"  Clean: {info['working_dir_clean']}")
+        print()
+    
+    # ===== Legacy Compatibility Methods =====
+    
+    def create_backup(self, backup_name: Optional[str] = None,
                      include_data: bool = True,
                      include_logs: bool = True,
                      include_config: bool = True,
                      incremental: bool = True) -> str:
         """
-        Create/update a Git-like backup: one active backup that gets updated incrementally.
-        Old versions of changed files are archived before updating.
+        Legacy method for compatibility with old backup system.
+        Creates a commit with all files.
         
-        Args:
-            backup_name: Name for the backup (defaults to 'active')
-            include_data: Include data directories
-            include_logs: Include log files
-            include_config: Include configuration files
-            incremental: Only backup changed files since last backup
-            
         Returns:
-            Path to the active backup directory
+            Commit hash
         """
-        if backup_name is None:
-            backup_name = "active"
+        print(f"🔄 Creating backup (legacy compatibility mode)...")
         
-        print(f"🔄 Updating active backup (Git-like)")
-        start_time = time.time()
+        # Stage all files
+        self.add(all_files=True)
         
-        try:
-            # Get list of files to backup
-            files_to_backup = self._get_files_to_backup(include_data, include_logs, include_config)
-            
-            # Check for changed files and archive old versions
-            changed_files = self._get_changed_files(files_to_backup)
-            
-            if changed_files:
-                print(f"📦 Archiving {len(changed_files)} changed files...")
-                self._archive_changed_files(changed_files)
-            
-            # Update active backup with new/changed files
-            print(f"🔄 Updating active backup with {len(files_to_backup)} files...")
-            self._update_active_backup(files_to_backup)
-            
-            # Update file checksums
-            self._update_file_checksums(files_to_backup)
-            
-            # Update backup tracking
-            self._update_last_backup_timestamp()
-            
-            elapsed_time = time.time() - start_time
-            
-            print(f"✅ Active backup updated")
-            print(f"   Files processed: {len(files_to_backup)}")
-            print(f"   Files changed: {len(changed_files)}")
-            print(f"   Time taken: {elapsed_time:.1f}s")
-            
-            return str(self.active_backup_dir)
-            
-        except Exception as e:
-            print(f"❌ Backup failed: {e}")
-            raise
-    
-    def _get_files_to_backup(self, include_data: bool, include_logs: bool, include_config: bool) -> List[Path]:
-        """Get list of files to include in backup."""
-        files_to_backup = []
+        # Create commit
+        message = f"Backup: {backup_name or 'auto'} at {datetime.now().isoformat()}"
+        commit_hash = self.commit(message)
         
-        # Core directories to backup (exclude backup_core to avoid recursion)
-        core_dirs = [
-            "carma_core", 
-            "data_core",
-            "dream_core",
-            "enterprise_core",
-            "luna_core",
-            "streamlit_core",
-            "support_core",
-            "utils_core"
-        ]
-        
-        # Add core files with permission handling
-        for core_dir in core_dirs:
-            if Path(core_dir).exists():
-                try:
-                    for file_path in Path(core_dir).rglob("*"):
-                        if file_path.is_file():
-                            # Skip problematic directories
-                            if any(part in ['.git', '__pycache__', '.pytest_cache', 'node_modules'] for part in file_path.parts):
-                                continue
-                            try:
-                                # Test file access before adding
-                                with open(file_path, 'rb') as f:
-                                    f.read(1)  # Read first byte to test access
-                                files_to_backup.append(file_path)
-                            except (PermissionError, OSError) as e:
-                                print(f"⚠️ Skipping {file_path} (permission denied or locked): {e}")
-                                continue
-                except (PermissionError, OSError) as e:
-                    print(f"⚠️ Cannot access directory {core_dir}: {e}")
-                    continue
-        
-        # Add main files with permission handling
-        main_files = ["main.py", "requirements.txt", "README.md"]
-        for main_file in main_files:
-            file_path = Path(main_file)
-            if file_path.exists():
-                try:
-                    # Test file access before adding
-                    with open(file_path, 'rb') as f:
-                        f.read(1)  # Read first byte to test access
-                    files_to_backup.append(file_path)
-                except (PermissionError, OSError) as e:
-                    print(f"⚠️ Skipping {file_path} (permission denied or locked): {e}")
-                    continue
-        
-        # Conditionally add other directories with permission handling
-        if include_config:
-            config_dir = Path("config")
-            if config_dir.exists():
-                try:
-                    for file_path in config_dir.rglob("*"):
-                        if file_path.is_file():
-                            try:
-                                # Test file access before adding
-                                with open(file_path, 'rb') as f:
-                                    f.read(1)  # Read first byte to test access
-                                files_to_backup.append(file_path)
-                            except (PermissionError, OSError) as e:
-                                print(f"⚠️ Skipping {file_path} (permission denied or locked): {e}")
-                                continue
-                except (PermissionError, OSError) as e:
-                    print(f"⚠️ Cannot access config directory: {e}")
-        
-        if include_logs:
-            log_dir = Path("log")
-            if log_dir.exists():
-                try:
-                    for file_path in log_dir.rglob("*"):
-                        if file_path.is_file():
-                            try:
-                                # Test file access before adding
-                                with open(file_path, 'rb') as f:
-                                    f.read(1)  # Read first byte to test access
-                                files_to_backup.append(file_path)
-                            except (PermissionError, OSError) as e:
-                                print(f"⚠️ Skipping {file_path} (permission denied or locked): {e}")
-                                continue
-                except (PermissionError, OSError) as e:
-                    print(f"⚠️ Cannot access log directory: {e}")
-        
-        return files_to_backup
-    
-    def _get_changed_files(self, files_to_backup: List[Path]) -> List[Path]:
-        """Get list of files that have changed since last backup."""
-        changed_files = []
-        
-        for file_path in files_to_backup:
-            # Get current file checksum
-            try:
-                current_checksum = self._calculate_file_checksum(file_path)
-                stored_checksum = self.file_checksums.get(str(file_path))
-                
-                # If file is new or checksum changed, it needs to be backed up
-                if stored_checksum != current_checksum:
-                    changed_files.append(file_path)
-                    
-            except Exception as e:
-                print(f"⚠️ Warning: Could not check {file_path}: {e}")
-                # If we can't check, assume it changed
-                changed_files.append(file_path)
-        
-        return changed_files
-    
-    def _archive_changed_files(self, changed_files: List[Path]):
-        """
-        Archive old versions of changed files before updating.
-        Git-like: Single archive that gets overwritten each cycle.
-        """
-        # Clear existing archive (Git-like: fresh archive each cycle)
-        if self.archive_backup_dir.exists():
-            shutil.rmtree(self.archive_backup_dir)
-        self.archive_backup_dir.mkdir(exist_ok=True)
-        
-        print(f"🧹 Cleared archive, creating fresh archive for {len(changed_files)} changed files...")
-        
-        for file_path in changed_files:
-            try:
-                # Get relative path from project root, handle absolute paths
-                if file_path.is_absolute():
-                    # Try to get relative path from current working directory
-                    try:
-                        relative_path = file_path.relative_to(Path.cwd())
-                    except ValueError:
-                        # If file is outside project directory, skip it
-                        continue
-                else:
-                    relative_path = file_path
-                
-                # Create archive path maintaining directory structure
-                archive_file_path = self.archive_backup_dir / relative_path
-                archive_file_path.parent.mkdir(parents=True, exist_ok=True)
-                
-                # Copy old version from active backup to archive
-                active_backup_file = self.active_backup_dir / relative_path
-                if active_backup_file.exists():
-                    shutil.copy2(active_backup_file, archive_file_path)
-                    print(f"📦 Archived: {relative_path}")
-                    
-            except Exception as e:
-                print(f"⚠️ Warning: Could not archive {file_path}: {e}")
-    
-    def _update_active_backup(self, files_to_backup: List[Path]):
-        """Update the active backup with current files."""
-        for file_path in files_to_backup:
-            try:
-                # Get relative path from project root, handle absolute paths
-                if file_path.is_absolute():
-                    # Try to get relative path from current working directory
-                    try:
-                        relative_path = file_path.relative_to(Path.cwd())
-                    except ValueError:
-                        # If file is outside project directory, skip it
-                        continue
-                else:
-                    relative_path = file_path
-                
-                # Create backup path maintaining directory structure
-                backup_file_path = self.active_backup_dir / relative_path
-                backup_file_path.parent.mkdir(parents=True, exist_ok=True)
-                
-                # Copy current file to active backup
-                shutil.copy2(file_path, backup_file_path)
-                
-            except Exception as e:
-                print(f"⚠️ Warning: Could not backup {file_path}: {e}")
-    
-    def _calculate_file_checksum(self, file_path: Path) -> str:
-        """Calculate SHA256 checksum of a file."""
-        hash_sha256 = hashlib.sha256()
-        try:
-            with open(file_path, "rb") as f:
-                for chunk in iter(lambda: f.read(4096), b""):
-                    hash_sha256.update(chunk)
-            return hash_sha256.hexdigest()
-        except Exception:
+        if commit_hash:
+            print(f"✅ Backup created as commit: {commit_hash[:8]}")
+            return commit_hash
+        else:
+            print(f"⚠️ No changes to backup")
             return ""
-    
-    def _update_file_checksums(self, files_to_backup: List[Path]):
-        """Update stored checksums for all files."""
-        for file_path in files_to_backup:
-            try:
-                checksum = self._calculate_file_checksum(file_path)
-                self.file_checksums[str(file_path)] = checksum
-            except Exception as e:
-                print(f"⚠️ Warning: Could not update checksum for {file_path}: {e}")
-        
-        # Save checksums to file
-        self._save_file_checksums()
-    
-    def _load_file_checksums(self) -> Dict[str, str]:
-        """Load file checksums from disk."""
-        if self.file_checksums_file.exists():
-            try:
-                with open(self.file_checksums_file, 'r') as f:
-                    return json.load(f)
-            except Exception:
-                pass
-        return {}
-    
-    def _save_file_checksums(self):
-        """Save file checksums to disk."""
-        try:
-            with open(self.file_checksums_file, 'w') as f:
-                json.dump(self.file_checksums, f, indent=2)
-        except Exception as e:
-            print(f"⚠️ Warning: Could not save checksums: {e}")
-    
-    def _load_last_backup_timestamp(self) -> float:
-        """Load the last backup timestamp."""
-        if self.backup_tracking_file.exists():
-            try:
-                with open(self.backup_tracking_file, 'r') as f:
-                    data = json.load(f)
-                    return data.get('last_backup_timestamp', 0)
-            except Exception:
-                pass
-        return 0
-    
-    def _update_last_backup_timestamp(self):
-        """Update the last backup timestamp."""
-        try:
-            data = {
-                'last_backup_timestamp': time.time(),
-                'backup_date': datetime.now().isoformat()
-            }
-            with open(self.backup_tracking_file, 'w') as f:
-                json.dump(data, f, indent=2)
-        except Exception as e:
-            print(f"⚠️ Warning: Could not update backup timestamp: {e}")
-    
-    def auto_backup_on_access(self) -> str:
-        """Trigger auto-backup when main.py is accessed."""
-        print("🔄 Auto-backup triggered by main.py access...")
-        return self.create_backup("auto_access", incremental=True)
-    
-    def get_system_info(self) -> Dict[str, Any]:
-        """Get backup system information."""
-        try:
-            active_files = len(list(self.active_backup_dir.rglob("*"))) if self.active_backup_dir.exists() else 0
-            archive_dirs = len(list(self.archive_backup_dir.iterdir())) if self.archive_backup_dir.exists() else 0
-            
-            return {
-                "system_type": "Git-like Incremental Backup",
-                "active_backup_dir": str(self.active_backup_dir),
-                "archive_backup_dir": str(self.archive_backup_dir),
-                "active_files": active_files,
-                "archive_directories": archive_dirs,
-                "total_backups": 1,  # Only one active backup
-                "last_backup": datetime.fromtimestamp(self.last_backup_timestamp).isoformat() if self.last_backup_timestamp > 0 else "Never",
-                "tracked_files": len(self.file_checksums)
-            }
-        except Exception as e:
-            return {"error": str(e)}
-    
-    def cleanup_old_archives(self, keep_days: int = 7):
-        """Clean up old archive directories (like Git garbage collection)."""
-        if not self.archive_backup_dir.exists():
-            return
-        
-        cutoff_time = time.time() - (keep_days * 24 * 60 * 60)
-        cleaned_count = 0
-        
-        for archive_dir in self.archive_backup_dir.iterdir():
-            if archive_dir.is_dir() and archive_dir.stat().st_mtime < cutoff_time:
-                try:
-                    shutil.rmtree(archive_dir)
-                    cleaned_count += 1
-                    print(f"🗑️ Cleaned old archive: {archive_dir.name}")
-                except Exception as e:
-                    print(f"⚠️ Warning: Could not clean {archive_dir}: {e}")
-        
-        if cleaned_count > 0:
-            print(f"✅ Cleaned {cleaned_count} old archive directories")
+
 
 if __name__ == "__main__":
     # Test the backup system
-    backup_system = BackupCore()
-    backup_system.create_backup()
-    print("\n" + "="*50)
-    info = backup_system.get_system_info()
-    for key, value in info.items():
-        print(f"{key}: {value}")
+    backup = BackupCore()
+    backup.info()

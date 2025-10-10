@@ -11,7 +11,7 @@ from typing import Dict, List, Optional, Any
 
 # Add utils_core to path for rust_bridge
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from utils_core.rust_bridge import RustBridge, MultiLanguageCore
+from utils_core.bridges.rust_bridge import RustBridge, MultiLanguageCore
 
 # Import original Python implementation
 from .support_core import SupportSystem
@@ -48,7 +48,7 @@ class HybridSupportCore(MultiLanguageCore):
         self.cache_dir = Path(cache_dir)
         
         # Create a health checker instance for Python fallback
-        from support_core.support_core import AIOSHealthChecker
+        from support_core.core.health_checker import AIOSHealthChecker
         self.health_checker = AIOSHealthChecker()
         
         # Expose support system components

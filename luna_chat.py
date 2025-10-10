@@ -11,13 +11,17 @@ from io import StringIO
 old_stdout = sys.stdout
 old_stderr = sys.stderr
 
-# Also suppress the unicode output initialization
+# Suppress unicode output initialization to prevent startup messages
 class SuppressOutput:
+    """Output suppressor for clean startup"""
     def write(self, data):
-        pass
+        # Intentionally suppress - used during initialization only
+        return
     def flush(self):
-        pass
+        # Intentionally suppress - used during initialization only
+        return
     def __getattr__(self, name):
+        # Return no-op lambda for any other method calls
         return lambda *args, **kwargs: None
 
 sys.stdout = SuppressOutput()

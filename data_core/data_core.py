@@ -1,15 +1,47 @@
 #!/usr/bin/env python3
 """
-DATA CORE SYSTEM
+DATA CORE SYSTEM - UNIFIED
 Self-contained data management system for AIOS Clean
+Merges Python-only and Python-Rust hybrid implementations
 """
 
 # CRITICAL: Import Unicode safety layer FIRST to prevent encoding errors
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
-from utils_core.unicode_safe_output import setup_unicode_safe_output
-setup_unicode_safe_output()
+
+# Try to import utils_core dependencies (graceful degradation if not available)
+try:
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    from utils_core.unicode_safe_output import setup_unicode_safe_output
+    setup_unicode_safe_output()
+    UNICODE_SAFE = True
+except ImportError:
+    print("⚠️ utils_core.unicode_safe_output not available - using standard output")
+    UNICODE_SAFE = False
+
+try:
+    from utils_core.rust_bridge import RustBridge, MultiLanguageCore
+    RUST_BRIDGE_AVAILABLE = True
+except ImportError:
+    print("⚠️ utils_core.rust_bridge not available - Python-only mode")
+    RUST_BRIDGE_AVAILABLE = False
+    # Create stub classes for compatibility
+    class RustBridge:
+        def __init__(self, *args, **kwargs):
+            self.available = False
+        def is_available(self):
+            return False
+        def compile_rust_module(self):
+            return False
+        def load_rust_module(self):
+            return False
+    
+    class MultiLanguageCore:
+        def __init__(self, core_name, python_impl, rust_bridge):
+            self.core_name = core_name
+            self.python_impl = python_impl
+            self.rust_bridge = rust_bridge
+            self.current_implementation = "python"
 
 import os
 import json
@@ -19,356 +51,338 @@ import time
 from datetime import datetime
 from typing import Dict, List, Optional, Any
 
+# Import modular functions from system/core
+sys.path.insert(0, str(Path(__file__).parent / "system"))
+from core.stats import (
+    get_fractal_cache_stats, get_arbiter_cache_stats,
+    get_conversation_stats, get_database_stats,
+    get_system_overview, get_dir_stats
+)
+from core.pipeline import (
+    ingest_data, export_data, get_pipeline_metrics,
+    load_pipeline_stats, save_pipeline_stats,
+    load_data_registry, save_data_registry
+)
+from core.cleanup import (
+    cleanup_old_data, export_to_json, export_to_csv,
+    export_to_text, matches_filter
+)
+from core.lessons import get_relevant_lessons
+from core.database import get_database_info
+
+
 class DataCore:
     """
-    Self-contained data management system for AIOS Clean.
-    Handles all data storage, retrieval, and management operations.
+    Unified Data Core System for AIOS Clean.
+    
+    Features:
+    - Self-contained data management
+    - Python-Rust hybrid support (when available)
+    - Modular architecture with separate function modules
+    - Graceful degradation when dependencies unavailable
     """
     
-    def __init__(self):
-        """Initialize the data core system."""
-        self.data_dir = Path("data_core")
+    def __init__(self, use_hybrid: bool = True):
+        """
+        Initialize the data core system.
+        
+        Args:
+            use_hybrid: Attempt to use Rust hybrid mode if available
+        """
+        # Use current directory (we're already in data_core/)
+        self.data_dir = Path(__file__).parent
+        # Ensure it exists (though it should already)
         self.data_dir.mkdir(exist_ok=True)
         
-        # Core data directories - Main data pipeline for ALL AIOS data
-        self.fractal_cache_dir = self.data_dir / "FractalCache"
-        self.arbiter_cache_dir = self.data_dir / "ArbiterCache"
-        self.conversations_dir = self.data_dir / "conversations"
-        self.config_dir = self.data_dir / "config"
-        self.database_dir = self.data_dir / "AIOS_Database" / "database"
+        # System directories
+        self.core_dir = self.data_dir / "system" / "core"
+        self.config_dir = self.data_dir / "system" / "config"
+        self.rust_data_dir = self.data_dir / "system" / "rust_data"
+        self.docs_dir = self.data_dir / "system" / "docs"
         
-        # Additional data pipeline directories
-        self.logs_dir = self.data_dir / "logs"
-        self.temp_dir = self.data_dir / "temp"
-        self.cache_dir = self.data_dir / "cache"
-        # Note: backups_dir removed - backup_core manages its own backups
-        self.exports_dir = self.data_dir / "exports"
-        self.imports_dir = self.data_dir / "imports"
-        self.analytics_dir = self.data_dir / "analytics"
+        # Storage directories - Main data storage
+        self.fractal_cache_dir = self.data_dir / "storage" / "caches" / "fractal"
+        self.arbiter_cache_dir = self.data_dir / "storage" / "caches" / "arbiter"
+        self.cache_dir = self.data_dir / "storage" / "caches" / "general"
+        self.database_dir = self.data_dir / "storage" / "databases" / "database"
+        self.conversations_dir = self.data_dir / "storage" / "conversations"
+        self.embeddings_dir = self.data_dir / "storage" / "embeddings"
+        self.documents_dir = self.data_dir / "storage" / "documents"
+        
+        # Learning directories
+        self.learning_system_dir = self.data_dir / "learning" / "system"
+        self.lesson_data_dir = self.data_dir / "learning" / "data"
+        self.lesson_memory_dir = self.data_dir / "learning" / "memory"
+        
+        # Analytics directories
+        self.analytics_dir = self.data_dir / "analytics" / "metrics"
+        self.goldens_dir = self.data_dir / "analytics" / "goldens"
+        self.analysis_dir = self.data_dir / "analytics" / "analysis"
+        self.qa_dir = self.data_dir / "analytics" / "qa"
+        
+        # Working directories
+        self.logs_dir = self.data_dir / "working" / "logs"
+        self.temp_dir = self.data_dir / "working" / "temp"
+        self.exports_dir = self.data_dir / "working" / "exports"
+        self.imports_dir = self.data_dir / "working" / "imports"
+        
+        # Archive and extra directories
+        self.archive_dir = self.data_dir / "archive"
+        self.extra_dir = self.data_dir / "extra"
         
         # Initialize data pipeline tracking
-        self.pipeline_stats = self._load_pipeline_stats()
-        self.data_registry = self._load_data_registry()
+        self.pipeline_stats = load_pipeline_stats(self.data_dir)
+        self.data_registry = load_data_registry(self.data_dir)
         
         # Ensure directories exist
         self._ensure_directories()
         
-        print(f"🗄️ Data Core System Initialized - Main Data Pipeline for ALL AIOS Data")
+        # Initialize Rust bridge if requested and available
+        self.rust_bridge = None
+        self.rust_core_instance = None
+        self.current_implementation = "python"
+        
+        if use_hybrid and RUST_BRIDGE_AVAILABLE:
+            self._initialize_rust_bridge()
+        
+        print(f"🗄️ Data Core System Initialized - {'Hybrid' if self.rust_core_instance else 'Python'} Mode")
         print(f"   Data Directory: {self.data_dir}")
+        print(f"   Implementation: {self.current_implementation.upper()}")
         print(f"   Fractal Cache: {self.fractal_cache_dir}")
         print(f"   Arbiter Cache: {self.arbiter_cache_dir}")
         print(f"   Conversations: {self.conversations_dir}")
-        print(f"   Logs: {self.logs_dir}")
-        print(f"   Temp: {self.temp_dir}")
-        print(f"   Cache: {self.cache_dir}")
-        print(f"   Exports: {self.exports_dir}")
-        print(f"   Analytics: {self.analytics_dir}")
     
     def _ensure_directories(self):
         """Ensure all required directories exist."""
         directories = [
+            # System
+            self.core_dir,
+            self.config_dir,
+            self.rust_data_dir,
+            self.docs_dir,
+            # Storage
             self.fractal_cache_dir,
             self.arbiter_cache_dir,
-            self.conversations_dir,
-            self.config_dir,
+            self.cache_dir,
             self.database_dir,
+            self.conversations_dir,
+            self.embeddings_dir,
+            self.documents_dir,
+            # Learning
+            self.learning_system_dir,
+            self.lesson_data_dir,
+            self.lesson_memory_dir,
+            # Analytics
+            self.analytics_dir,
+            self.goldens_dir,
+            self.analysis_dir,
+            self.qa_dir,
+            # Working
             self.logs_dir,
             self.temp_dir,
-            self.cache_dir,
-            # Note: backups_dir removed - backup_core manages its own backups
             self.exports_dir,
             self.imports_dir,
-            self.analytics_dir
+            # Archive/Extra
+            self.archive_dir,
+            self.extra_dir
         ]
         
         for directory in directories:
             directory.mkdir(parents=True, exist_ok=True)
     
+    def _initialize_rust_bridge(self):
+        """Initialize Rust bridge for hybrid operations."""
+        try:
+            self.rust_bridge = RustBridge("data", str(self.rust_data_dir))
+            
+            if self.rust_bridge.compile_rust_module():
+                self.rust_bridge.load_rust_module()
+                
+                # Try to create Rust core instance
+                RustDataCore = self.rust_bridge.get_rust_class("PyRustDataCore")
+                if RustDataCore:
+                    self.rust_core_instance = RustDataCore(str(self.data_dir))
+                    self.current_implementation = "rust"
+                    print("✅ Rust acceleration enabled")
+        except Exception as e:
+            print(f"⚠️ Rust initialization failed: {e} - Using Python implementation")
+    
+    # ==================== STATISTICS METHODS ====================
+    
     def get_fractal_cache_stats(self) -> Dict[str, Any]:
         """Get statistics about the FractalCache."""
-        if not self.fractal_cache_dir.exists():
-            return {'total_files': 0, 'total_size_mb': 0, 'files': []}
-        
-        files = []
-        total_size = 0
-        
-        for file_path in self.fractal_cache_dir.glob("*.json"):
+        if self.current_implementation == "rust" and self.rust_core_instance:
             try:
-                stat = file_path.stat()
-                file_size = stat.st_size
-                total_size += file_size
-                
-                # Try to read file metadata
-                try:
-                    with open(file_path, 'r', encoding='utf-8') as f:
-                        data = json.load(f)
-                    
-                    files.append({
-                        'name': file_path.name,
-                        'size_bytes': file_size,
-                        'created': datetime.fromtimestamp(stat.st_ctime).isoformat(),
-                        'modified': datetime.fromtimestamp(stat.st_mtime).isoformat(),
-                        'content_type': data.get('specialization', 'unknown'),
-                        'tags': data.get('tags', []),
-                        'word_count': len(data.get('content', '').split()) if data.get('content') else 0
-                    })
-                except:
-                    files.append({
-                        'name': file_path.name,
-                        'size_bytes': file_size,
-                        'created': datetime.fromtimestamp(stat.st_ctime).isoformat(),
-                        'modified': datetime.fromtimestamp(stat.st_mtime).isoformat(),
-                        'content_type': 'corrupted',
-                        'tags': [],
-                        'word_count': 0
-                    })
-                    
+                result = self.rust_core_instance.get_fractal_cache_stats()
+                return self._convert_rust_stats(result, "rust")
             except Exception as e:
-                print(f"⚠️ Error processing {file_path}: {e}")
+                print(f"❌ Rust stats failed: {e}, falling back to Python")
+                self.current_implementation = "python"
         
-        return {
-            'total_files': len(files),
-            'total_size_mb': total_size / (1024 * 1024),
-            'files': sorted(files, key=lambda x: x['modified'], reverse=True)
-        }
+        return get_fractal_cache_stats(self.fractal_cache_dir)
     
     def get_arbiter_cache_stats(self) -> Dict[str, Any]:
         """Get statistics about the ArbiterCache."""
-        if not self.arbiter_cache_dir.exists():
-            return {'total_files': 0, 'total_size_mb': 0, 'files': []}
-        
-        files = []
-        total_size = 0
-        
-        for file_path in self.arbiter_cache_dir.glob("*.json"):
+        if self.current_implementation == "rust" and self.rust_core_instance:
             try:
-                stat = file_path.stat()
-                file_size = stat.st_size
-                total_size += file_size
-                
-                files.append({
-                    'name': file_path.name,
-                    'size_bytes': file_size,
-                    'created': datetime.fromtimestamp(stat.st_ctime).isoformat(),
-                    'modified': datetime.fromtimestamp(stat.st_mtime).isoformat()
-                })
-                    
+                result = self.rust_core_instance.get_arbiter_cache_stats()
+                return self._convert_rust_stats(result, "rust")
             except Exception as e:
-                print(f"⚠️ Error processing {file_path}: {e}")
+                print(f"❌ Rust stats failed: {e}, falling back to Python")
+                self.current_implementation = "python"
         
-        return {
-            'total_files': len(files),
-            'total_size_mb': total_size / (1024 * 1024),
-            'files': sorted(files, key=lambda x: x['modified'], reverse=True)
-        }
-    
-    def get_relevant_lessons(self, current_prompt: str, max_lessons: int = 3) -> List[Dict[str, Any]]:
-        """
-        Retrieve relevant lessons from ArbiterCache for the current prompt.
-        
-        This is the Data Core's interface for lesson retrieval - it delegates to
-        the Arbiter system's mycelium retriever for the actual matching logic.
-        
-        Args:
-            current_prompt: The user's current question/prompt
-            max_lessons: Maximum number of lessons to return
-            
-        Returns:
-            List of relevant lesson dictionaries with fields:
-            - original_prompt
-            - suboptimal_response  
-            - gold_standard
-            - utility_score
-            - karma_delta
-            - context_tags
-            - timestamp
-        """
-        lessons_file = self.arbiter_cache_dir / "lessons.json"
-        
-        if not lessons_file.exists():
-            return []
-        
-        try:
-            # Load all lessons
-            with open(lessons_file, 'r', encoding='utf-8') as f:
-                all_lessons = json.load(f)
-            
-            if not all_lessons:
-                return []
-            
-            # Score lessons by relevance
-            current_prompt_lower = current_prompt.lower()
-            scored_lessons = []
-            
-            for lesson in all_lessons:
-                score = 0.0
-                
-                # Check for exact prompt match (highest priority)
-                if lesson.get('original_prompt', '').lower() == current_prompt_lower:
-                    score += 100.0
-                
-                # Check tag matches
-                tags = lesson.get('context_tags', [])
-                for tag in tags:
-                    tag_lower = tag.lower()
-                    # Check if tag appears in prompt
-                    if tag_lower in current_prompt_lower:
-                        score += 10.0
-                    # Check if any prompt word appears in tag
-                    for word in current_prompt_lower.split():
-                        if len(word) > 3 and word in tag_lower:
-                            score += 5.0
-                
-                # Check for word overlap between prompts
-                lesson_prompt = lesson.get('original_prompt', '').lower()
-                current_words = set(current_prompt_lower.split())
-                lesson_words = set(lesson_prompt.split())
-                word_overlap = len(current_words.intersection(lesson_words))
-                if word_overlap > 0:
-                    score += word_overlap * 2.0
-                
-                if score > 0:
-                    scored_lessons.append({
-                        'lesson': lesson,
-                        'score': score
-                    })
-            
-            # Sort by score and return top matches
-            scored_lessons.sort(key=lambda x: x['score'], reverse=True)
-            top_lessons = [item['lesson'] for item in scored_lessons[:max_lessons]]
-            
-            return top_lessons
-            
-        except Exception as e:
-            print(f"⚠️ Error retrieving lessons from Data Core: {e}")
-            return []
+        return get_arbiter_cache_stats(self.arbiter_cache_dir)
     
     def get_conversation_stats(self) -> Dict[str, Any]:
         """Get statistics about conversations."""
-        if not self.conversations_dir.exists():
-            return {'total_conversations': 0, 'total_size_mb': 0}
+        if self.current_implementation == "rust" and self.rust_core_instance:
+            try:
+                result = self.rust_core_instance.get_conversation_stats()
+                return self._convert_rust_stats(result, "rust")
+            except Exception as e:
+                print(f"❌ Rust stats failed: {e}, falling back to Python")
+                self.current_implementation = "python"
         
-        conversations = list(self.conversations_dir.glob("*.json"))
-        total_size = sum(f.stat().st_size for f in conversations)
-        
-        return {
-            'total_conversations': len(conversations),
-            'total_size_mb': total_size / (1024 * 1024),
-            'latest_conversation': max(conversations, key=lambda x: x.stat().st_mtime).name if conversations else None
-        }
+        return get_conversation_stats(self.conversations_dir)
     
     def get_database_stats(self) -> Dict[str, Any]:
         """Get statistics about databases."""
-        if not self.database_dir.exists():
-            return {'databases': []}
-        
-        databases = []
-        for db_file in self.database_dir.glob("*.db"):
+        if self.current_implementation == "rust" and self.rust_core_instance:
             try:
-                stat = db_file.stat()
-                db_size = stat.st_size
-                
-                # Get table info
-                tables = []
-                try:
-                    conn = sqlite3.connect(db_file)
-                    cursor = conn.cursor()
-                    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-                    tables = [row[0] for row in cursor.fetchall()]
-                    conn.close()
-                except:
-                    pass
-                
-                databases.append({
-                    'name': db_file.name,
-                    'size_mb': db_size / (1024 * 1024),
-                    'tables': tables,
-                    'created': datetime.fromtimestamp(stat.st_ctime).isoformat(),
-                    'modified': datetime.fromtimestamp(stat.st_mtime).isoformat()
-                })
-                
+                result = self.rust_core_instance.get_database_stats()
+                return self._convert_rust_stats(result, "rust")
             except Exception as e:
-                print(f"⚠️ Error processing {db_file}: {e}")
+                print(f"❌ Rust stats failed: {e}, falling back to Python")
+                self.current_implementation = "python"
         
-        return {'databases': databases}
-    
-    def cleanup_old_data(self, days_old: int = 30, dry_run: bool = True) -> Dict[str, Any]:
-        """
-        Clean up old data files.
-        
-        Args:
-            days_old: Delete files older than this many days
-            dry_run: If True, only report what would be deleted
-            
-        Returns:
-            Dictionary with cleanup results
-        """
-        cutoff_time = datetime.now().timestamp() - (days_old * 24 * 60 * 60)
-        
-        cleanup_results = {
-            'fractal_cache': {'deleted': 0, 'size_freed_mb': 0},
-            'arbiter_cache': {'deleted': 0, 'size_freed_mb': 0},
-            'conversations': {'deleted': 0, 'size_freed_mb': 0},
-            'total_deleted': 0,
-            'total_size_freed_mb': 0
-        }
-        
-        # Clean FractalCache
-        if self.fractal_cache_dir.exists():
-            for file_path in self.fractal_cache_dir.glob("*.json"):
-                if file_path.stat().st_mtime < cutoff_time:
-                    file_size = file_path.stat().st_size
-                    if not dry_run:
-                        file_path.unlink()
-                    cleanup_results['fractal_cache']['deleted'] += 1
-                    cleanup_results['fractal_cache']['size_freed_mb'] += file_size / (1024 * 1024)
-        
-        # Clean ArbiterCache
-        if self.arbiter_cache_dir.exists():
-            for file_path in self.arbiter_cache_dir.glob("*.json"):
-                if file_path.stat().st_mtime < cutoff_time:
-                    file_size = file_path.stat().st_size
-                    if not dry_run:
-                        file_path.unlink()
-                    cleanup_results['arbiter_cache']['deleted'] += 1
-                    cleanup_results['arbiter_cache']['size_freed_mb'] += file_size / (1024 * 1024)
-        
-        # Clean old conversations
-        if self.conversations_dir.exists():
-            for file_path in self.conversations_dir.glob("*.json"):
-                if file_path.stat().st_mtime < cutoff_time:
-                    file_size = file_path.stat().st_size
-                    if not dry_run:
-                        file_path.unlink()
-                    cleanup_results['conversations']['deleted'] += 1
-                    cleanup_results['conversations']['size_freed_mb'] += file_size / (1024 * 1024)
-        
-        cleanup_results['total_deleted'] = (
-            cleanup_results['fractal_cache']['deleted'] +
-            cleanup_results['arbiter_cache']['deleted'] +
-            cleanup_results['conversations']['deleted']
-        )
-        
-        cleanup_results['total_size_freed_mb'] = (
-            cleanup_results['fractal_cache']['size_freed_mb'] +
-            cleanup_results['arbiter_cache']['size_freed_mb'] +
-            cleanup_results['conversations']['size_freed_mb']
-        )
-        
-        action = "Would delete" if dry_run else "Deleted"
-        print(f"🗑️ {action} {cleanup_results['total_deleted']} files ({cleanup_results['total_size_freed_mb']:.1f} MB)")
-        
-        return cleanup_results
+        return get_database_stats(self.database_dir)
     
     def get_system_overview(self) -> Dict[str, Any]:
         """Get comprehensive system overview."""
+        if self.current_implementation == "rust" and self.rust_core_instance:
+            try:
+                overview = self.rust_core_instance.get_system_overview()
+                overview_dict = json.loads(overview) if isinstance(overview, str) else overview
+                overview_dict["implementation"] = "rust"
+                return overview_dict
+            except Exception as e:
+                print(f"❌ Rust overview failed: {e}, falling back to Python")
+                self.current_implementation = "python"
+        
+        return get_system_overview(
+            self.fractal_cache_dir, self.arbiter_cache_dir,
+            self.conversations_dir, self.database_dir
+        )
+    
+    def _convert_rust_stats(self, result, implementation: str) -> Dict[str, Any]:
+        """Convert Rust struct to Python dict."""
         return {
-            'fractal_cache': self.get_fractal_cache_stats(),
-            'arbiter_cache': self.get_arbiter_cache_stats(),
-            'conversations': self.get_conversation_stats(),
-            'databases': self.get_database_stats(),
-            'timestamp': datetime.now().isoformat()
+            "total_files": getattr(result, 'total_files', 0),
+            "total_dirs": getattr(result, 'total_dirs', 0),
+            "total_size_bytes": getattr(result, 'total_size_bytes', 0),
+            "total_size_mb": getattr(result, 'total_size_mb', 0.0),
+            "last_modified": getattr(result, 'last_modified', None),
+            "file_types": dict(getattr(result, 'file_types', {})),
+            "implementation": implementation
         }
+    
+    # ==================== LESSON METHODS ====================
+    
+    def get_relevant_lessons(self, current_prompt: str, max_lessons: int = 3) -> List[Dict[str, Any]]:
+        """Retrieve relevant lessons from ArbiterCache for the current prompt."""
+        return get_relevant_lessons(self.arbiter_cache_dir, current_prompt, max_lessons)
+    
+    # ==================== PIPELINE METHODS ====================
+    
+    def ingest_data(self, data: Any, source: str, data_type: str = "unknown") -> Dict[str, Any]:
+        """Ingest data into the AIOS data pipeline."""
+        return ingest_data(
+            data, source, data_type, self.data_dir,
+            self.fractal_cache_dir, self.arbiter_cache_dir,
+            self.conversations_dir, self.logs_dir, self.temp_dir,
+            self.pipeline_stats, self.data_registry
+        )
+    
+    def export_data(self, data_type: str, target_format: str = "json", 
+                   filter_criteria: Dict[str, Any] = None) -> Dict[str, Any]:
+        """Export data from the AIOS data pipeline."""
+        if self.current_implementation == "rust" and self.rust_core_instance and target_format == "json":
+            try:
+                source_dir_map = {
+                    "fractal_cache": str(self.fractal_cache_dir),
+                    "arbiter_cache": str(self.arbiter_cache_dir),
+                    "conversations": str(self.conversations_dir),
+                }
+                source_dir = source_dir_map.get(data_type, str(self.data_dir))
+                export_path = str(self.exports_dir / f"{data_type}_export_{int(time.time())}.json")
+                
+                filter_str = json.dumps(filter_criteria) if filter_criteria else None
+                result = self.rust_core_instance.export_to_json(source_dir, export_path, filter_str)
+                
+                return {
+                    "success": getattr(result, 'success', False),
+                    "files_processed": getattr(result, 'files_processed', 0),
+                    "export_path": getattr(result, 'export_path', ''),
+                    "implementation": "rust"
+                }
+            except Exception as e:
+                print(f"❌ Rust export failed: {e}, falling back to Python")
+                self.current_implementation = "python"
+        
+        return export_data(
+            data_type, target_format, filter_criteria,
+            self.data_dir, self.fractal_cache_dir, self.arbiter_cache_dir,
+            self.conversations_dir, self.logs_dir, self.temp_dir, self.exports_dir,
+            self.pipeline_stats, export_to_json, export_to_csv, export_to_text
+        )
+    
+    def get_pipeline_metrics(self) -> Dict[str, Any]:
+        """Get comprehensive data pipeline metrics."""
+        if self.current_implementation == "rust" and self.rust_core_instance:
+            try:
+                metrics = self.rust_core_instance.get_pipeline_metrics()
+                return {
+                    "total_ingestions": getattr(metrics, 'total_ingestions', 0),
+                    "total_exports": getattr(metrics, 'total_exports', 0),
+                    "last_ingestion": getattr(metrics, 'last_ingestion', None),
+                    "last_export": getattr(metrics, 'last_export', None),
+                    "cache_hit_rate": getattr(metrics, 'cache_hit_rate', 0.0),
+                    "implementation": "rust"
+                }
+            except Exception as e:
+                print(f"❌ Rust metrics failed: {e}, falling back to Python")
+                self.current_implementation = "python"
+        
+        return get_pipeline_metrics(
+            self.data_dir, self.fractal_cache_dir, self.arbiter_cache_dir,
+            self.conversations_dir, self.logs_dir, self.temp_dir,
+            self.exports_dir, self.pipeline_stats, self.data_registry
+        )
+    
+    # ==================== CLEANUP METHODS ====================
+    
+    def cleanup_old_data(self, days_old: int = 30, dry_run: bool = True) -> Dict[str, Any]:
+        """Clean up old data files."""
+        if self.current_implementation == "rust" and self.rust_core_instance:
+            try:
+                cleaned_files = self.rust_core_instance.cleanup_old_data(days_old, dry_run)
+                return {
+                    "files_removed": len(cleaned_files),
+                    "files_list": cleaned_files,
+                    "days_old": days_old,
+                    "dry_run": dry_run,
+                    "implementation": "rust"
+                }
+            except Exception as e:
+                print(f"❌ Rust cleanup failed: {e}, falling back to Python")
+                self.current_implementation = "python"
+        
+        return cleanup_old_data(
+            self.fractal_cache_dir, self.arbiter_cache_dir,
+            self.conversations_dir, days_old, dry_run
+        )
+    
+    # ==================== BACKUP METHODS ====================
     
     def backup_data(self, backup_name: Optional[str] = None) -> str:
         """Create a backup of all data."""
@@ -376,306 +390,47 @@ class DataCore:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             backup_name = f"data_backup_{timestamp}"
         
-        backup_dir = self.data_dir / "backups"
-        backup_dir.mkdir(exist_ok=True)
-        
-        backup_path = backup_dir / f"{backup_name}"
+        backup_path = self.archive_dir / f"{backup_name}"
         
         print(f"🗄️ Creating data backup: {backup_name}")
         
         # Copy fractal cache
         if self.fractal_cache_dir.exists():
-            shutil.copytree(self.fractal_cache_dir, backup_path / "FractalCache")
+            shutil.copytree(self.fractal_cache_dir, backup_path / "FractalCache", dirs_exist_ok=True)
         
         # Copy arbiter cache
         if self.arbiter_cache_dir.exists():
-            shutil.copytree(self.arbiter_cache_dir, backup_path / "ArbiterCache")
+            shutil.copytree(self.arbiter_cache_dir, backup_path / "ArbiterCache", dirs_exist_ok=True)
         
         # Copy conversations
         if self.conversations_dir.exists():
-            shutil.copytree(self.conversations_dir, backup_path / "conversations")
+            shutil.copytree(self.conversations_dir, backup_path / "conversations", dirs_exist_ok=True)
         
         print(f"✅ Data backup created: {backup_path}")
         
         return str(backup_path)
-
-    def _load_pipeline_stats(self) -> Dict[str, Any]:
-        """Load data pipeline statistics."""
-        stats_file = self.data_dir / "pipeline_stats.json"
-        if stats_file.exists():
-            try:
-                with open(stats_file, 'r') as f:
-                    return json.load(f)
-            except:
-                pass
-        return {
-            "total_operations": 0,
-            "data_ingested": 0,
-            "data_processed": 0,
-            "data_exported": 0,
-            "pipeline_uptime": datetime.now().isoformat(),
-            "last_operation": None
-        }
-
-    def _save_pipeline_stats(self):
-        """Save data pipeline statistics."""
-        stats_file = self.data_dir / "pipeline_stats.json"
-        try:
-            with open(stats_file, 'w') as f:
-                json.dump(self.pipeline_stats, f, indent=2)
-        except Exception as e:
-            print(f"⚠️ Warning: Could not save pipeline stats: {e}")
-
-    def _load_data_registry(self) -> Dict[str, Any]:
-        """Load data registry for tracking all data operations."""
-        registry_file = self.data_dir / "data_registry.json"
-        if registry_file.exists():
-            try:
-                with open(registry_file, 'r') as f:
-                    return json.load(f)
-            except:
-                pass
-        return {"data_sources": {}, "data_sinks": {}, "data_transforms": {}}
-
-    def _save_data_registry(self):
-        """Save data registry."""
-        registry_file = self.data_dir / "data_registry.json"
-        try:
-            with open(registry_file, 'w') as f:
-                json.dump(self.data_registry, f, indent=2)
-        except Exception as e:
-            print(f"⚠️ Warning: Could not save data registry: {e}")
-
-    def ingest_data(self, data: Any, source: str, data_type: str = "unknown") -> Dict[str, Any]:
-        """
-        Ingest data into the AIOS data pipeline.
-        
-        Args:
-            data: Data to ingest
-            source: Source system/core
-            data_type: Type of data
-            
-        Returns:
-            Ingestion results
-        """
-        ingestion_id = f"ING_{int(time.time())}_{hash(str(data)) % 10000:04d}"
-        
-        result = {
-            "ingestion_id": ingestion_id,
-            "source": source,
-            "data_type": data_type,
-            "timestamp": datetime.now().isoformat(),
-            "success": False,
-            "storage_path": None,
-            "error": None
-        }
-        
-        try:
-            # Store data in appropriate location
-            if data_type == "fragment":
-                storage_path = self.fractal_cache_dir / f"{ingestion_id}.json"
-            elif data_type == "arbiter":
-                storage_path = self.arbiter_cache_dir / f"{ingestion_id}.json"
-            elif data_type == "conversation":
-                storage_path = self.conversations_dir / f"{ingestion_id}.json"
-            elif data_type == "log":
-                storage_path = self.logs_dir / f"{ingestion_id}.log"
-            else:
-                storage_path = self.temp_dir / f"{ingestion_id}.json"
-            
-            # Write data
-            with open(storage_path, 'w', encoding='utf-8') as f:
-                if isinstance(data, (dict, list)):
-                    json.dump(data, f, indent=2, default=str)
-                else:
-                    f.write(str(data))
-            
-            result["success"] = True
-            result["storage_path"] = str(storage_path)
-            
-            # Update pipeline stats
-            self.pipeline_stats["total_operations"] += 1
-            self.pipeline_stats["data_ingested"] += 1
-            self.pipeline_stats["last_operation"] = datetime.now().isoformat()
-            self._save_pipeline_stats()
-            
-            # Update data registry
-            if source not in self.data_registry["data_sources"]:
-                self.data_registry["data_sources"][source] = {"count": 0, "last_ingestion": None}
-            self.data_registry["data_sources"][source]["count"] += 1
-            self.data_registry["data_sources"][source]["last_ingestion"] = datetime.now().isoformat()
-            self._save_data_registry()
-            
-        except Exception as e:
-            result["error"] = str(e)
-        
-        return result
-
-    def export_data(self, data_type: str, target_format: str = "json", 
-                   filter_criteria: Dict[str, Any] = None) -> Dict[str, Any]:
-        """
-        Export data from the AIOS data pipeline.
-        
-        Args:
-            data_type: Type of data to export
-            target_format: Export format (json, csv, txt)
-            filter_criteria: Criteria to filter data
-            
-        Returns:
-            Export results
-        """
-        export_id = f"EXP_{int(time.time())}_{os.urandom(4).hex()[:4]}"
-        
-        result = {
-            "export_id": export_id,
-            "data_type": data_type,
-            "format": target_format,
-            "timestamp": datetime.now().isoformat(),
-            "success": False,
-            "export_path": None,
-            "records_exported": 0,
-            "error": None
-        }
-        
-        try:
-            # Determine source directory
-            if data_type == "fragment":
-                source_dir = self.fractal_cache_dir
-            elif data_type == "arbiter":
-                source_dir = self.arbiter_cache_dir
-            elif data_type == "conversation":
-                source_dir = self.conversations_dir
-            elif data_type == "log":
-                source_dir = self.logs_dir
-            else:
-                source_dir = self.temp_dir
-            
-            # Create export file
-            export_path = self.exports_dir / f"{export_id}.{target_format}"
-            
-            # Export data based on format
-            if target_format == "json":
-                self._export_to_json(source_dir, export_path, filter_criteria)
-            elif target_format == "csv":
-                self._export_to_csv(source_dir, export_path, filter_criteria)
-            else:
-                self._export_to_text(source_dir, export_path, filter_criteria)
-            
-            result["success"] = True
-            result["export_path"] = str(export_path)
-            
-            # Update pipeline stats
-            self.pipeline_stats["total_operations"] += 1
-            self.pipeline_stats["data_exported"] += 1
-            self.pipeline_stats["last_operation"] = datetime.now().isoformat()
-            self._save_pipeline_stats()
-            
-        except Exception as e:
-            result["error"] = str(e)
-        
-        return result
-
-    def _export_to_json(self, source_dir: Path, export_path: Path, filter_criteria: Dict[str, Any] = None):
-        """Export data to JSON format."""
-        data_list = []
-        
-        for file_path in source_dir.glob("*"):
-            if file_path.is_file():
-                try:
-                    with open(file_path, 'r', encoding='utf-8') as f:
-                        data = json.load(f)
-                        if self._matches_filter(data, filter_criteria):
-                            data_list.append(data)
-                except:
-                    pass
-        
-        with open(export_path, 'w', encoding='utf-8') as f:
-            json.dump(data_list, f, indent=2, default=str)
-
-    def _export_to_csv(self, source_dir: Path, export_path: Path, filter_criteria: Dict[str, Any] = None):
-        """Export data to CSV format."""
-        import csv
-        
-        all_data = []
-        for file_path in source_dir.glob("*"):
-            if file_path.is_file():
-                try:
-                    with open(file_path, 'r', encoding='utf-8') as f:
-                        data = json.load(f)
-                        if self._matches_filter(data, filter_criteria):
-                            all_data.append(data)
-                except:
-                    pass
-        
-        if all_data:
-            fieldnames = set()
-            for item in all_data:
-                if isinstance(item, dict):
-                    fieldnames.update(item.keys())
-            
-            with open(export_path, 'w', newline='', encoding='utf-8') as f:
-                writer = csv.DictWriter(f, fieldnames=list(fieldnames))
-                writer.writeheader()
-                for item in all_data:
-                    if isinstance(item, dict):
-                        writer.writerow(item)
-
-    def _export_to_text(self, source_dir: Path, export_path: Path, filter_criteria: Dict[str, Any] = None):
-        """Export data to text format."""
-        with open(export_path, 'w', encoding='utf-8') as f:
-            for file_path in source_dir.glob("*"):
-                if file_path.is_file():
-                    try:
-                        with open(file_path, 'r', encoding='utf-8') as source_f:
-                            content = source_f.read()
-                            f.write(f"=== {file_path.name} ===\n")
-                            f.write(content)
-                            f.write("\n\n")
-                    except:
-                        pass
-
-    def _matches_filter(self, data: Any, filter_criteria: Dict[str, Any] = None) -> bool:
-        """Check if data matches filter criteria."""
-        if not filter_criteria:
+    
+    # ==================== COMPATIBILITY METHODS ====================
+    
+    def get_current_implementation(self) -> str:
+        """Get the current implementation (Python or Rust)."""
+        return self.current_implementation
+    
+    def switch_to_rust(self) -> bool:
+        """Switch to Rust implementation if available."""
+        if RUST_BRIDGE_AVAILABLE and self.rust_bridge and self.rust_bridge.is_available():
+            self.current_implementation = "rust"
+            print(f"✅ Switched to Rust implementation")
             return True
-        
-        if not isinstance(data, dict):
-            return False
-        
-        for key, value in filter_criteria.items():
-            if key not in data or data[key] != value:
-                return False
-        
+        print(f"⚠️ Rust implementation not available")
+        return False
+    
+    def switch_to_python(self) -> bool:
+        """Switch to Python implementation."""
+        self.current_implementation = "python"
+        print(f"✅ Switched to Python implementation")
         return True
 
-    def get_pipeline_metrics(self) -> Dict[str, Any]:
-        """Get comprehensive data pipeline metrics."""
-        return {
-            "pipeline_stats": self.pipeline_stats,
-            "data_registry": self.data_registry,
-            "directory_stats": {
-                "fractal_cache": self._get_dir_stats(self.fractal_cache_dir),
-                "arbiter_cache": self._get_dir_stats(self.arbiter_cache_dir),
-                "conversations": self._get_dir_stats(self.conversations_dir),
-                "logs": self._get_dir_stats(self.logs_dir),
-                "temp": self._get_dir_stats(self.temp_dir),
-                "exports": self._get_dir_stats(self.exports_dir)
-            },
-            "timestamp": datetime.now().isoformat()
-        }
-
-    def _get_dir_stats(self, directory: Path) -> Dict[str, Any]:
-        """Get statistics for a directory."""
-        if not directory.exists():
-            return {"total_files": 0, "total_size_mb": 0}
-        
-        files = list(directory.iterdir())
-        total_size = sum(f.stat().st_size for f in files if f.is_file())
-        
-        return {
-            "total_files": len([f for f in files if f.is_file()]),
-            "total_size_mb": total_size / (1024 * 1024)
-        }
 
 # Main entry point for standalone usage
 if __name__ == "__main__":
@@ -687,40 +442,46 @@ if __name__ == "__main__":
     parser.add_argument('--days', type=int, default=30, help='Days old for cleanup')
     parser.add_argument('--dry-run', action='store_true', help='Dry run for cleanup')
     parser.add_argument('--backup-name', help='Name for backup')
+    parser.add_argument('--no-hybrid', action='store_true', help='Disable Rust hybrid mode')
     
     args = parser.parse_args()
     
-    data_system = DataCore()
+    data_system = DataCore(use_hybrid=not args.no_hybrid)
     
     if args.action == 'stats':
         print("📊 Fractal Cache Stats:")
         fractal_stats = data_system.get_fractal_cache_stats()
-        print(f"  Files: {fractal_stats['total_files']}")
-        print(f"  Size: {fractal_stats['total_size_mb']:.1f} MB")
+        print(f"  Files: {fractal_stats.get('total_files', 0)}")
+        print(f"  Size: {fractal_stats.get('total_size_mb', 0):.1f} MB")
         
         print("\n📊 Arbiter Cache Stats:")
         arbiter_stats = data_system.get_arbiter_cache_stats()
-        print(f"  Files: {arbiter_stats['total_files']}")
-        print(f"  Size: {arbiter_stats['total_size_mb']:.1f} MB")
+        print(f"  Files: {arbiter_stats.get('total_files', 0)}")
+        print(f"  Size: {arbiter_stats.get('total_size_mb', 0):.1f} MB")
         
         print("\n📊 Conversation Stats:")
         conv_stats = data_system.get_conversation_stats()
-        print(f"  Conversations: {conv_stats['total_conversations']}")
-        print(f"  Size: {conv_stats['total_size_mb']:.1f} MB")
+        print(f"  Conversations: {conv_stats.get('total_conversations', conv_stats.get('total_files', 0))}")
+        print(f"  Size: {conv_stats.get('total_size_mb', 0):.1f} MB")
         
     elif args.action == 'overview':
         overview = data_system.get_system_overview()
         print("🗄️ Data System Overview:")
-        print(f"  Fractal Cache: {overview['fractal_cache']['total_files']} files, {overview['fractal_cache']['total_size_mb']:.1f} MB")
-        print(f"  Arbiter Cache: {overview['arbiter_cache']['total_files']} files, {overview['arbiter_cache']['total_size_mb']:.1f} MB")
-        print(f"  Conversations: {overview['conversations']['total_conversations']} files, {overview['conversations']['total_size_mb']:.1f} MB")
-        print(f"  Databases: {len(overview['databases']['databases'])} databases")
+        fc = overview.get('fractal_cache', {})
+        ac = overview.get('arbiter_cache', {})
+        cv = overview.get('conversations', {})
+        db = overview.get('databases', {})
+        print(f"  Fractal Cache: {fc.get('total_files', 0)} files, {fc.get('total_size_mb', 0):.1f} MB")
+        print(f"  Arbiter Cache: {ac.get('total_files', 0)} files, {ac.get('total_size_mb', 0):.1f} MB")
+        print(f"  Conversations: {cv.get('total_conversations', cv.get('total_files', 0))} files, {cv.get('total_size_mb', 0):.1f} MB")
+        print(f"  Databases: {len(db.get('databases', []))} databases")
         
     elif args.action == 'cleanup':
         results = data_system.cleanup_old_data(args.days, args.dry_run)
         print(f"🗑️ Cleanup Results:")
-        print(f"  Total Files: {results['total_deleted']}")
-        print(f"  Size Freed: {results['total_size_freed_mb']:.1f} MB")
+        print(f"  Total Files: {results.get('total_deleted', results.get('files_removed', 0))}")
+        print(f"  Size Freed: {results.get('total_size_freed_mb', 0):.1f} MB")
         
     elif args.action == 'backup':
         data_system.backup_data(args.backup_name)
+

@@ -1,0 +1,152 @@
+2025-10-10 16:21:31 - aios.AIOS - INFO - Initializing AIOS Clean System...
+2025-10-10 16:21:31 - aios.AIOS - INFO - Initializing essential systems...
+2025-10-10 16:21:31 - aios.AIOS - INFO - Initializing Data system...
+2025-10-10 16:21:31 - aios.AIOS - INFO - Initializing Support system...
+2025-10-10 16:21:33 - aios.AIOS - INFO - Other systems will be loaded on-demand
+2025-10-10 16:21:33 - aios.AIOS - INFO - AIOS Clean System Initialized Successfully
+2025-10-10 16:21:33 - aios.AIOS - INFO - Data: 391 files
+2025-10-10 16:21:33 - aios.AIOS - INFO - Support: 0 fragments
+2025-10-10 16:21:33 - aios.AIOS - INFO - Other systems (dream, enterprise, luna, streamlit, carma, backup, utils) will load on-demand
+2025-10-10 16:21:33 - aios.AIOS - INFO - Lazy loading luna system...
+2025-10-10 16:21:33 - aios.AIOS - INFO - Initializing Unified Luna System...
+2025-10-10 16:21:33 - aios.AIOS - INFO - Initializing Luna Personality System...
+2025-10-10 16:21:33 - aios.AIOS - INFO - Big Five self-reflection system loaded with 60 questions
+2025-10-10 16:21:33 - aios.AIOS - WARNING - [Experimental] Voice mining: No module named 'utils_core.timestamp_validator'
+2025-10-10 16:21:33 - aios.AIOS - INFO - Luna Personality System Initialized
+2025-10-10 16:21:33 - aios.AIOS - INFO - Personality: Luna
+2025-10-10 16:21:33 - aios.AIOS - INFO - Age: 21
+2025-10-10 16:21:33 - aios.AIOS - INFO - Memory: 0 interactions
+Unicode-safe output initialized
+[2025-10-10 16:21:30.383] [AIOS-CONFIG-INFO] Configuration loaded successfully
+?? utils_core.rust_bridge not available - Python-only mode
+[96m[2025-10-10 16:21:31.336] [INFO] [AIOS] Initializing AIOS Clean System...[0m
+[96m[2025-10-10 16:21:31.336] [INFO] [AIOS] Initializing essential systems...[0m
+[96m[2025-10-10 16:21:31.337] [INFO] [AIOS] Initializing Data system...[0m
+?? Data Core System Initialized - Python Mode
+   Data Directory: F:\AIOS_Clean\data_core
+   Implementation: PYTHON
+   Fractal Cache: F:\AIOS_Clean\data_core\storage\caches\fractal
+   Arbiter Cache: F:\AIOS_Clean\data_core\storage\caches\arbiter
+   Conversations: F:\AIOS_Clean\data_core\storage\conversations
+[96m[2025-10-10 16:21:31.337] [INFO] [AIOS] Initializing Support system...[0m
+? Initializing Unified Support System
+================================================================================
+ Cache Operations Initialized
+   Cache directory: data_core\FractalCache
+ Cache Registry Initialized
+   Registry file: data_core\FractalCache\registry.json
+   Loaded 0 fragments
+ Cache Backup System Initialized
+   Note: Backup functionality moved to backup_core
+ Simple Embedder Initialized
+   Model: lite-mistral-150m-v2-instruct@q6_k_l
+   API URL: http://localhost:1234/v1/embeddings
+   Use API: False
+   Fallback dimension: 1024
+ Embedding Cache Initialized
+   Cache file: data_core\FractalCache\embeddings.json
+   Loaded 0 embeddings
+ FAISS Operations Initialized
+   Dimension: 384
+   Index path: None
+    Real FAISS implementation
+ Recovery Operations Initialized
+   Cache directory: data_core\FractalCache
+   Recovery log: log\recovery.log
+ Recovery Assessment Initialized
+   Cache directory: data_core\FractalCache
+? Unified Support System Initialized
+   Cache directory: data_core\FractalCache
+   Embedder: lite-mistral-150m-v2-instruct@q6_k_l
+   FAISS: Available
+? Rust Bridge initialized for support
+   Module path: F:\AIOS_Clean\support_core\rust_support
+   Module name: aios_support_rust
+   Python executable: C:\Users\nemec\AppData\Local\Programs\Python\Python311\python.exe
+? Compiling Rust module for support...
+? Direct import failed: No module named 'aios_support_rust'
+? Module aios_support_rust not available: Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'aios_support_rust'
+
+? Rust module compiled successfully in 1.90s
+? Loading Rust module for support...
+? Failed to import Rust module: No module named 'aios_support_rust'
+   Try running: maturin develop
+Note: Direct import of aios_support_rust failed: No module named 'aios_support_rust'
+? Using Python implementation for support
+? Hybrid Support Core Initialized
+   Current implementation: PYTHON
+   Cache directory: data_core\FractalCache
+[96m[2025-10-10 16:21:33.438] [INFO] [AIOS] Other systems will be loaded on-demand[0m
+[92m[2025-10-10 16:21:33.438] [SUCCESS] [AIOS] AIOS Clean System Initialized Successfully[0m
+[96m[2025-10-10 16:21:33.617] [INFO] [AIOS] Data: 391 files[0m
+Note: Direct import of aios_support_rust failed: No module named 'aios_support_rust'
+[96m[2025-10-10 16:21:33.671] [INFO] [AIOS] Support: 0 fragments[0m
+[96m[2025-10-10 16:21:33.673] [INFO] [AIOS] Other systems (dream, enterprise, luna, streamlit, carma, backup, utils) will load on-demand[0m
+? LUNA Core System Commands
+==================================================
+? LUNA Core Status
+------------------------------
+[96m[2025-10-10 16:21:33.673] [INFO] [AIOS] Lazy loading luna system...[0m
+? Initializing Hybrid Luna Core...
+[96m[2025-10-10 16:21:33.673] [INFO] [LUNA] Initializing Unified Luna System...[0m
+[96m[2025-10-10 16:21:33.673] [INFO] [LUNA] Initializing Luna Personality System...[0m
+Loaded 60 Big Five questions
+Loaded 60 Big Five questions
+[96m[2025-10-10 16:21:33.680] [INFO] [LUNA] Big Five self-reflection system loaded with 60 questions[0m
+? Luna Trait Classifier Initialized
+    Strategy: Use 120 Big Five questions as psychological Rosetta Stone
+    Function: Classify novel input -> Determine response strategy
+? Luna Internal Reasoning System Initialized
+    Strategy: Use Big Five as internal thought framework
+    Process: Novel Question -> Find Similar Big Five -> Answer Big Five First -> Use as Context
+[93m[2025-10-10 16:21:33.680] [WARN] [LUNA] [Experimental] Voice mining: No module named 'utils_core.timestamp_validator'[0m
+[92m[2025-10-10 16:21:33.680] [SUCCESS] [LUNA] Luna Personality System Initialized[0m
+[96m[2025-10-10 16:21:33.680] [INFO] [LUNA] Personality: Luna[0m
+[96m[2025-10-10 16:21:33.680] [INFO] [LUNA] Age: 21[0m
+[96m[2025-10-10 16:21:33.681] [INFO] [LUNA] Memory: 0 interactions[0m
+? Fast CARMA initialized
+   Fragments: 0
+   Conversations: 0
+   Response Value Classifier: Contextual Resource Allocation and Rule of Minimal Sufficient Response enabled
+   Custom Inference Controller: Three Layers of Customization (Budget Officer, Logit Surgeon, Accountability Judge) enabled
+ Luna Response Generator Initialized
+   Model: lite-mistral-150m-v2-instruct@q6_k_l
+   LM Studio URL: http://localhost:1234/v1/chat/completions
+   IFS System: Ava + Luna + Dynamic Blend
+   Compression Filter: Maximum Impact Density enabled
+   Soul Metric System: Controlled imperfection and cognitive friction enabled
+   Token-Time Econometric: Hard constraint optimization with expiring rewards enabled
+   Existential Budget: Self-regulating economy with finite token pools and age-up conditions enabled
+   [Experimental] Conversation Math Engine: Disabled
+   [Experimental] CARMA Hypothesis Integration: Disabled
+   [Experimental] Provenance Logging: Disabled
+   [Experimental] Adaptive Routing: Disabled
+ Luna Learning System Initialized
+   Learning rate: 0.01
+   Adaptation threshold: 0.1
+ Constrained Factorial Intelligence Architecture (CFIA) Initialized
+    Generation: 2 (AIIQ/Generation Number)
+    Generation Seed: 4236 (DNA)
+     Karma Pool: 100.0 (Health/Life Force)
+     Alpha: 0.15 (Dampening Factor)
+    Total Files: 1
+    Current Threshold: 1000.0 KB
+    Target Files for Next Generation: 2
+ Luna Arbiter System Initialized
+    Generation: 2 (Karma: 100.0)
+    Cache Path: data_core\ArbiterCache
+    Loaded Lessons: 0
+    Shadow Score: Tracking enabled (Our perspective, her choice)
+ Unified Luna System Initialized
+   Personality: Luna
+   Age: 21
+   Memory: 0 interactions
+   CARMA: 0 fragments
+? Using Python implementation for luna
+? Hybrid Luna Core Initialized
+   Current implementation: PYTHON
+   Name: Unknown
+   Age: Unknown
+   Interactions: 0

@@ -34,9 +34,9 @@ class ModelConfigLoader:
             if self.config_path.exists():
                 with open(self.config_path, 'r', encoding='utf-8') as f:
                     self._config = json.load(f)
-                print(f"✅ Model config loaded from: {self.config_path}")
+                # Silent success - only log in verbose mode
             else:
-                print(f"⚠️ Config file not found: {self.config_path}")
+                # Silently use defaults - config files are optional
                 self._config = self._get_default_config()
         except Exception as e:
             print(f"❌ Error loading config: {e}")

@@ -11,81 +11,165 @@ from typing import Dict, List, Optional, Any
 
 # Add utils_core to path for rust_bridge
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from utils_core.rust_bridge import RustBridge, MultiLanguageCore
+
+try:
+    from utils_core.bridges.rust_bridge import RustBridge, MultiLanguageCore
+except ImportError:
+    # Silently fall back to Python - Rust is optional
+    RustBridge = None
+    MultiLanguageCore = None
 
 # Import original Python implementation
-from .backup_core import BackupCore
+from backup_core import BackupCore
 
-class HybridBackupCore(MultiLanguageCore):
+
+class HybridBackupCore:
     """
     Hybrid backup core that uses Rust when available, Python as fallback.
     Provides identical interface to original BackupCore.
+    
+    Note: Full Git-like features are currently Python-only.
+    Rust implementation provides basic backup functionality.
     """
     
-    def __init__(self):
+    def __init__(self, workspace_root: Optional[Path] = None):
         """Initialize hybrid backup core."""
-        # Initialize Python implementation
-        python_backup = BackupCore()
+        # Initialize Python implementation (always available)
+        self.python_implementation = BackupCore(workspace_root)
         
-        # Initialize Rust bridge
-        rust_bridge = None
-        try:
-            rust_path = Path(__file__).parent / "rust_backup"
-            if rust_path.exists():
-                rust_bridge = RustBridge("backup", str(rust_path))
-                
-                # Try to compile and load Rust module
-                if rust_bridge.compile_rust_module():
-                    rust_bridge.load_rust_module()
-        except Exception as e:
-            print(f"⚠️ Rust backup initialization failed: {e}")
-            print("   Falling back to Python implementation")
+        # Initialize Rust bridge if available
+        self.rust_bridge = None
+        self.rust_available = False
         
-        # Initialize multi-language core
-        super().__init__("backup", python_backup, rust_bridge)
+        if RustBridge is not None:
+            try:
+                rust_path = Path(__file__).parent / "rust_backup"
+                if rust_path.exists():
+                    self.rust_bridge = RustBridge("backup", str(rust_path))
+                    
+                    # Try to compile and load Rust module
+                    if self.rust_bridge.compile_rust_module():
+                        if self.rust_bridge.load_rust_module():
+                            self.rust_available = True
+            except Exception as e:
+                print(f"⚠️ Rust backup initialization failed: {e}")
+                print("   Falling back to Python implementation")
         
-        # Expose backup directory paths for compatibility
-        self.backup_dir = python_backup.backup_dir
-        self.active_backup_dir = python_backup.active_backup_dir
-        self.archive_backup_dir = python_backup.archive_backup_dir
-        self.backup_tracking_file = python_backup.backup_tracking_file
-        self.file_checksums_file = python_backup.file_checksums_file
-        self.last_backup_timestamp = python_backup.last_backup_timestamp
-        self.file_checksums = python_backup.file_checksums
+        # Default to Python (Rust has limited Git features)
+        self.current_implementation = "python"
         
         print(f"🔀 Hybrid Backup Core Initialized")
-        print(f"   Current implementation: {self.current_implementation.upper()}")
-        print(f"   Active Backup: {self.active_backup_dir}")
-        print(f"   Archive Backup: {self.archive_backup_dir}")
+        print(f"   Python: Available ✅")
+        print(f"   Rust: {'Available ✅' if self.rust_available else 'Not Available ❌'}")
+        print(f"   Current: {self.current_implementation.upper()}")
     
-    def create_backup(self, 
-                     backup_name: Optional[str] = None,
+    # ===== Pass-through methods to Python implementation =====
+    # All Git-like methods use Python implementation
+    
+    def add(self, paths: Optional[List[str]] = None, all_files: bool = False):
+        """Add files to staging area"""
+        return self.python_implementation.add(paths, all_files)
+    
+    def unstage(self, file_path: str):
+        """Remove file from staging area"""
+        return self.python_implementation.unstage(file_path)
+    
+    def unstage_all(self):
+        """Remove all files from staging area"""
+        return self.python_implementation.unstage_all()
+    
+    def commit(self, message: str, author: Optional[str] = None) -> Optional[str]:
+        """Create a commit from staged files"""
+        return self.python_implementation.commit(message, author)
+    
+    def log(self, max_count: Optional[int] = 20):
+        """Show commit history"""
+        return self.python_implementation.log(max_count)
+    
+    def show(self, commit_hash: Optional[str] = None):
+        """Show commit details"""
+        return self.python_implementation.show(commit_hash)
+    
+    def branch_create(self, branch_name: str, start_point: Optional[str] = None) -> bool:
+        """Create a new branch"""
+        return self.python_implementation.branch_create(branch_name, start_point)
+    
+    def branch_delete(self, branch_name: str, force: bool = False) -> bool:
+        """Delete a branch"""
+        return self.python_implementation.branch_delete(branch_name, force)
+    
+    def branch_rename(self, old_name: str, new_name: str) -> bool:
+        """Rename a branch"""
+        return self.python_implementation.branch_rename(old_name, new_name)
+    
+    def branch_switch(self, branch_name: str, create: bool = False) -> bool:
+        """Switch to a different branch"""
+        return self.python_implementation.branch_switch(branch_name, create)
+    
+    def branch_list(self, verbose: bool = False):
+        """List all branches"""
+        return self.python_implementation.branch_list(verbose)
+    
+    def branch_merge(self, branch_name: str, message: Optional[str] = None) -> bool:
+        """Merge branch into current branch"""
+        return self.python_implementation.branch_merge(branch_name, message)
+    
+    def status(self):
+        """Show working directory status"""
+        return self.python_implementation.status()
+    
+    def diff(self, file_path: Optional[str] = None, cached: bool = False):
+        """Show file changes"""
+        return self.python_implementation.diff(file_path, cached)
+    
+    def tag_create(self, tag_name: str, commit_hash: Optional[str] = None):
+        """Create a tag"""
+        return self.python_implementation.tag_create(tag_name, commit_hash)
+    
+    def tag_delete(self, tag_name: str):
+        """Delete a tag"""
+        return self.python_implementation.tag_delete(tag_name)
+    
+    def tag_list(self):
+        """List all tags"""
+        return self.python_implementation.tag_list()
+    
+    def checkout(self, ref: str):
+        """Checkout a commit, branch, or tag"""
+        return self.python_implementation.checkout(ref)
+    
+    def info(self):
+        """Print system information"""
+        return self.python_implementation.info()
+    
+    def get_system_info(self) -> Dict[str, Any]:
+        """Get comprehensive system information"""
+        info = self.python_implementation.get_system_info()
+        info['rust_available'] = self.rust_available
+        info['current_implementation'] = self.current_implementation
+        return info
+    
+    # ===== Legacy compatibility method with potential Rust optimization =====
+    
+    def create_backup(self, backup_name: Optional[str] = None,
                      include_data: bool = True,
                      include_logs: bool = True,
                      include_config: bool = True,
                      incremental: bool = True) -> str:
         """
-        Create/update backup using current implementation (Rust or Python).
-        
-        Args:
-            backup_name: Name for the backup (defaults to 'active')
-            include_data: Include data directories
-            include_logs: Include log files
-            include_config: Include configuration files
-            incremental: Only backup changed files since last backup
-            
-        Returns:
-            Path to the active backup directory
+        Legacy backup method.
+        Can use Rust for simple backup operations if available.
         """
-        print(f"🔄 Creating backup using {self.current_implementation.upper()} implementation...")
-        
-        if self.current_implementation == "rust" and self.rust_bridge and self.rust_bridge.is_available():
+        if self.current_implementation == "rust" and self.rust_available:
             return self._create_rust_backup(include_data, include_logs, include_config)
         else:
-            return self._create_python_backup(backup_name, include_data, include_logs, include_config, incremental)
+            return self.python_implementation.create_backup(
+                backup_name, include_data, include_logs, include_config, incremental
+            )
     
-    def _create_rust_backup(self, include_data: bool, include_logs: bool, include_config: bool) -> str:
-        """Create backup using Rust implementation."""
+    def _create_rust_backup(self, include_data: bool, include_logs: bool, 
+                           include_config: bool) -> str:
+        """Create backup using Rust implementation (basic)"""
         try:
             # Get Rust class
             PyRustBackupCore = self.rust_bridge.get_rust_class("PyRustBackupCore")
@@ -93,12 +177,12 @@ class HybridBackupCore(MultiLanguageCore):
                 raise Exception("Rust backup class not available")
             
             # Create Rust instance
-            rust_backup = PyRustBackupCore(str(self.backup_dir))
+            rust_backup = PyRustBackupCore(str(self.python_implementation.repo_dir))
             
             # Perform backup
             result = rust_backup.create_backup(include_data, include_logs, include_config)
             
-            # Access attributes using getattr for compatibility
+            # Access attributes
             success = getattr(result, 'success', False)
             if success:
                 files_processed = getattr(result, 'files_processed', 0)
@@ -110,7 +194,7 @@ class HybridBackupCore(MultiLanguageCore):
                 print(f"   Files processed: {files_processed}")
                 print(f"   Files changed: {files_changed}")
                 print(f"   Time taken: {time_taken_ms / 1000:.2f}s")
-                print(f"   Backup path: {backup_path}")
+                
                 return backup_path
             else:
                 error_message = getattr(result, 'error_message', "Unknown Rust backup error")
@@ -119,84 +203,74 @@ class HybridBackupCore(MultiLanguageCore):
         except Exception as e:
             print(f"❌ Rust backup failed: {e}")
             print("   Falling back to Python implementation...")
-            self.switch_to_python()
-            return self._create_python_backup("active", include_data, include_logs, include_config, True)
+            self.current_implementation = "python"
+            return self.python_implementation.create_backup()
     
-    def _create_python_backup(self, backup_name: Optional[str], include_data: bool, 
-                            include_logs: bool, include_config: bool, incremental: bool) -> str:
-        """Create backup using Python implementation."""
-        # Get Python implementation
-        python_backup = self.python_implementation
-        return python_backup.create_backup(backup_name, include_data, include_logs, include_config, incremental)
+    # ===== Implementation Switching =====
     
-    def benchmark_backup(self, include_data: bool = True, include_logs: bool = True, 
-                        include_config: bool = True) -> Dict[str, Any]:
-        """
-        Benchmark both Python and Rust backup implementations.
-        
-        Returns:
-            Dictionary with performance comparison data
-        """
-        print(f"⚡ Running backup performance benchmark...")
-        
-        def python_backup_func():
-            return self.python_implementation.create_backup(
-                "benchmark", include_data, include_logs, include_config, True
-            )
-        
-        def rust_backup_func():
-            if not (self.rust_bridge and self.rust_bridge.is_available()):
-                raise Exception("Rust implementation not available")
-            
-            PyRustBackupCore = self.rust_bridge.get_rust_class("PyRustBackupCore")
-            if PyRustBackupCore is None:
-                raise Exception("Rust backup class not available")
-            
-            rust_backup = PyRustBackupCore(str(self.backup_dir))
-            result = rust_backup.create_backup(include_data, include_logs, include_config)
-            
-            if not result.success:
-                raise Exception(result.error_message or "Rust backup failed")
-            
-            return result.backup_path
-        
-        return self.benchmark(include_data, include_logs, include_config)
-    
-    def switch_implementation(self, implementation: str) -> bool:
-        """
-        Switch between Python and Rust implementations.
-        
-        Args:
-            implementation: 'python' or 'rust'
-            
-        Returns:
-            True if switch successful, False otherwise
-        """
-        if implementation.lower() == "rust":
-            return self.switch_to_rust()
-        elif implementation.lower() == "python":
-            self.switch_to_python()
+    def switch_to_rust(self) -> bool:
+        """Switch to Rust implementation (if available)"""
+        if self.rust_available:
+            self.current_implementation = "rust"
+            print("✅ Switched to Rust implementation")
+            print("   Note: Git-like features still use Python")
             return True
         else:
-            print(f"❌ Invalid implementation: {implementation}")
-            print("   Valid options: 'python', 'rust'")
+            print("❌ Rust implementation not available")
             return False
     
-    def get_status(self) -> Dict[str, Any]:
+    def switch_to_python(self):
+        """Switch to Python implementation"""
+        self.current_implementation = "python"
+        print("✅ Switched to Python implementation")
+    
+    def benchmark(self) -> Dict[str, Any]:
         """
-        Get status information about the hybrid backup core.
+        Benchmark Python vs Rust implementations
+        Only tests basic backup operations
+        """
+        if not self.rust_available:
+            print("❌ Rust not available for benchmarking")
+            return {}
         
-        Returns:
-            Dictionary with status information
-        """
-        return {
-            "core_name": "hybrid_backup",
-            "current_implementation": self.current_implementation,
-            "rust_available": self.rust_bridge and self.rust_bridge.is_available(),
-            "python_available": True,
-            "backup_dir": str(self.backup_dir),
-            "active_backup_dir": str(self.active_backup_dir),
-            "archive_backup_dir": str(self.archive_backup_dir),
-            "last_backup_timestamp": self.last_backup_timestamp,
-            "file_checksums_count": len(self.file_checksums)
+        print("⚡ Running backup performance benchmark...")
+        
+        # Test Python
+        print("\n📊 Testing Python implementation...")
+        start = time.time()
+        self.switch_to_python()
+        py_result = self.create_backup("benchmark_py")
+        py_time = time.time() - start
+        
+        # Test Rust
+        print("\n📊 Testing Rust implementation...")
+        start = time.time()
+        self.switch_to_rust()
+        rust_result = self.create_backup("benchmark_rust")
+        rust_time = time.time() - start
+        
+        # Reset to Python (default)
+        self.switch_to_python()
+        
+        results = {
+            'python_time_seconds': py_time,
+            'rust_time_seconds': rust_time,
+            'speedup': py_time / rust_time if rust_time > 0 else 0,
+            'rust_faster': rust_time < py_time
         }
+        
+        print(f"\n=== Benchmark Results ===")
+        print(f"Python: {py_time:.3f}s")
+        print(f"Rust:   {rust_time:.3f}s")
+        if results['rust_faster']:
+            print(f"🚀 Rust is {results['speedup']:.2f}x faster")
+        else:
+            print(f"📊 Python is {1/results['speedup']:.2f}x faster")
+        
+        return results
+
+
+if __name__ == "__main__":
+    # Test the hybrid backup system
+    backup = HybridBackupCore()
+    backup.info()

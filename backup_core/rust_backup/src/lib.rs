@@ -9,7 +9,19 @@ use sha2::{Digest, Sha256};
 use hex;
 use anyhow::Result;
 
+/*
+ * AIOS Backup Core - Rust Implementation
+ * 
+ * High-performance backup system with Git-like features
+ * Provides basic backup operations with significant performance improvements
+ * 
+ * Note: This is the foundational Rust implementation. Full Git-like features
+ * (branching, staging, etc.) are currently Python-only but can be ported here.
+ */
+
 /// Python-compatible backup result
+/// 
+/// Returned to Python layer after backup operations
 #[derive(Debug, Serialize, Deserialize, Clone)]
 #[pyclass]
 pub struct BackupResult {
@@ -37,6 +49,14 @@ pub struct FileMetadata {
 }
 
 /// Rust implementation of AIOS Backup Core
+/// 
+/// Provides high-performance backup operations with:
+/// - SHA256-based change detection
+/// - Incremental backups (only changed files)
+/// - Archive management
+/// - Checksum tracking
+/// 
+/// Compatible with Python implementation via PyO3 bindings
 pub struct RustBackupCore {
     backup_dir: PathBuf,
     active_backup_dir: PathBuf,
@@ -326,6 +346,18 @@ impl RustBackupCore {
 }
 
 /// Python module interface
+/// 
+/// Exports Rust backup functionality to Python via PyO3
+/// 
+/// Available classes:
+/// - BackupResult: Result of backup operations
+/// - PyRustBackupCore: Main backup interface
+/// 
+/// Future enhancements planned:
+/// - Object storage implementation (Git-like blobs/trees/commits)
+/// - Branching support
+/// - Staging area
+/// - Diff engine
 #[pymodule]
 fn aios_backup_rust(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_class::<BackupResult>()?;

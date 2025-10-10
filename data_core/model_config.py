@@ -13,8 +13,8 @@ sys.path.append(str(Path(__file__).parent.parent))
 # Use local config file
 from model_config_loader import ModelConfigLoader
 
-# Load from local config
-_config_loader = ModelConfigLoader(str(Path(__file__).parent / "config" / "model_config.json"))
+# Load from local config (now in system/config)
+_config_loader = ModelConfigLoader(str(Path(__file__).parent / "system" / "config" / "model_config.json"))
 
 def get_main_model():
     return _config_loader.get_main_model()

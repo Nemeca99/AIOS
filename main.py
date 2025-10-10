@@ -43,9 +43,9 @@ sys.path.append(str(Path(__file__).parent))
 
 # Import all core systems
 from backup_core.hybrid_backup_core import HybridBackupCore as BackupCore
-from carma_core.hybrid_carma_core import HybridCarmaCore as CARMASystem
-from data_core.hybrid_data_core import HybridDataCore as DataCore
-from dream_core.hybrid_dream_core import HybridDreamCore as DreamCore
+from carma_core.implementations.hybrid_carma import HybridCarmaCore as CARMASystem
+from data_core.data_core import DataCore  # Import DataCore directly (no hybrid version)
+from dream_core.extra.hybrid_dream_core import HybridDreamCore as DreamCore
 from enterprise_core.enterprise_core import EnterpriseCore, PiBasedEncryption, GlobalAPIDistribution, CARMAChainProcessor, EnterpriseBilling, KeyRotationManager, ComplianceManager, AdvancedSecurity
 from luna_core.hybrid_luna_core import HybridLunaCore as LunaSystem
 from streamlit_core.streamlit_core import StreamlitCore
@@ -54,10 +54,10 @@ from support_core.support_core import (
     aios_config, aios_logger, aios_health_checker, aios_security_validator
 )
 from support_core.hybrid_support_core import HybridSupportCore as SupportSystem
-from utils_core.hybrid_utils_core import HybridUtilsCore as UtilsCore
+# from utils_core.hybrid_utils_core import HybridUtilsCore as UtilsCore  # TODO: doesn't exist, use direct imports
 
 # Import utilities
-from utils_core.aios_json_standards import AIOSJSONHandler, AIOSDataType, AIOSJSONStandards, ConversationMessage
+from utils_core.validation.json_standards import AIOSJSONHandler, AIOSDataType, AIOSJSONStandards, ConversationMessage
 
 # No model configuration needed - each core handles its own
 
